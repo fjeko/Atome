@@ -35,6 +35,6 @@ public sealed class RapportImportViewModel
             .ToList();
 
         int inchanges = resultats.Count(r => r.Statut == StatutImport.Inchange);
-        Resume = $"{resultats.Count} fichier(s) examiné(s), dont {inchanges} déjà à jour.";
+        Resume = $"{Texte.Pluriel(resultats.Count, "fichier examiné", "fichiers examinés")}, dont {inchanges} déjà à jour.";
     }
 }

@@ -48,8 +48,11 @@ public partial class SessionViewModel : ObservableObject
 
     // État de la carte affichée.
     private int _etapesRevelees;
-    private int? _choixFait;
+    private int? _choixFait;          // index du choix dans le pack (pas sa position à l'écran)
     private bool _reponseVisible;
+    // Ordre d'affichage des choix d'un QCM, tiré au sort à chaque passage : dans les packs,
+    // la bonne réponse est souvent la première, il ne faut pas qu'on puisse la deviner à sa place.
+    private int[] _ordreChoix = [];
 
     [ObservableProperty] private string _compteur = "";
     [ObservableProperty] private double _avancement;
@@ -101,6 +104,8 @@ public partial class SessionViewModel : ObservableObject
         _etapesRevelees = 0;
         _choixFait = null;
         _reponseVisible = false;
+        _ordreChoix = Enumerable.Range(0, Courante.Carte.Contenu.Choix?.Count ?? 0).ToArray();
+        Random.Shared.Shuffle(_ordreChoix);
         _chrono.Restart();
 
         Compteur = $"{_session.Faites + 1} / {_session.Total}";
@@ -130,14 +135,15 @@ public partial class SessionViewModel : ObservableObject
 
             case TypeCarte.Qcm:
                 elements.Add(new { genre = "question", markdown = c.Question });
-                for (int i = 0; i < c.Choix!.Count; i++)
+                for (int position = 0; position < _ordreChoix.Length; position++)
                 {
+                    int i = _ordreChoix[position]; // index du choix dans le pack
                     // Avant le choix : cliquable. Après : le bon en vert, le mauvais choisi en rouge.
                     string etat = _choixFait is null ? "actif"
                         : i == c.BonneReponse ? "bon"
                         : i == _choixFait ? "mauvais"
                         : "neutre";
-                    elements.Add(new { genre = "choix", index = i, markdown = c.Choix[i], etat });
+                    elements.Add(new { genre = "choix", index = position, markdown = c.Choix![i], etat });
                 }
                 if (_reponseVisible)
                 {
@@ -211,11 +217,12 @@ public partial class SessionViewModel : ObservableObject
 
     /// <summary>Choix d'une réponse de QCM (clic dans le contenu ou touche A à E).</summary>
     [RelayCommand]
-    private void Choisir(int index)
+    /// <param name="position">Position du choix à l'écran (0 = A).</param>
+    private void Choisir(int position)
     {
         var carte = Courante.Carte;
-        if (carte.Type != TypeCarte.Qcm || _choixFait is not null || index < 0 || index >= carte.Contenu.Choix!.Count) return;
-        _choixFait = index;
+        if (carte.Type != TypeCarte.Qcm || _choixFait is not null || position < 0 || position >= _ordreChoix.Length) return;
+        _choixFait = _ordreChoix[position];
         _reponseVisible = true;
         MettreAJourEcran(defilerEnBas: true);
     }

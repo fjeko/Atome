@@ -1,0 +1,59 @@
+{
+  "formatVersion": 1,
+  "id": "exemple-app",
+  "matiere": "Exemple",
+  "bloc": null,
+  "partie": "Pack de démonstration",
+  "sequence": null,
+  "seance": "Les trois types de cartes",
+  "ordre": 1,
+  "source": { "fichier": "app/samples/exemple.json" },
+  "resume": "Un petit pack pour essayer l'application : une section de cours avec une formule, un tableau et du code, et une carte de chaque type.",
+  "notions": ["Produit de matrices", "Boucle for"],
+  "sections": [
+    {
+      "id": "exemple-app-s01",
+      "titre": "Produit de matrices",
+      "contenu": "On peut calculer $A \\times B$ si le nombre de **colonnes de $A$** est égal au nombre de **lignes de $B$**.\n\n$$\\begin{pmatrix}1 & 2\\\\3 & 4\\end{pmatrix} \\times \\begin{pmatrix}5 & 6\\\\7 & 8\\end{pmatrix} = \\begin{pmatrix}19 & 22\\\\43 & 50\\end{pmatrix}$$\n\n| Matrice | Lignes | Colonnes |\n| --- | --- | --- |\n| $A$ | 2 | 3 |\n| $B$ | 3 | 4 |\n| $A \\times B$ | 2 | 4 |",
+      "notions": ["Produit de matrices"]
+    },
+    {
+      "id": "exemple-app-s02",
+      "titre": "La boucle for en C#",
+      "contenu": "Une boucle `for` répète un bloc un nombre connu de fois.\n\n```csharp\nint somme = 0;\nfor (int i = 1; i <= 10; i++)\n{\n    somme += i;\n}\nConsole.WriteLine(somme); // 55\n```\n\n- `int i = 1` : départ ;\n- `i <= 10` : condition pour continuer ;\n- `i++` : ce qui change à chaque tour.",
+      "notions": ["Boucle for"]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "exemple-app-c001",
+      "section": "exemple-app-s01",
+      "type": "question",
+      "recto": "À quelle condition peut-on calculer $A \\times B$ ?",
+      "verso": "Si le nombre de colonnes de $A$ est égal au nombre de lignes de $B$.",
+      "difficulte": 1
+    },
+    {
+      "id": "exemple-app-c002",
+      "section": "exemple-app-s01",
+      "type": "qcm",
+      "question": "$A$ est $2 \\times 3$ et $B$ est $3 \\times 4$. Quelle est la taille de $A \\times B$ ?",
+      "choix": ["$2 \\times 4$", "$3 \\times 3$", "$4 \\times 2$", "Le produit est impossible"],
+      "bonneReponse": 0,
+      "explication": "On garde les lignes de $A$ et les colonnes de $B$.",
+      "difficulte": 2
+    },
+    {
+      "id": "exemple-app-c003",
+      "section": "exemple-app-s02",
+      "type": "exercice",
+      "enonce": "Que vaut `somme` après cette boucle ?\n\n```csharp\nint somme = 0;\nfor (int i = 1; i <= 4; i++) somme += i * 2;\n```",
+      "etapes": [
+        "La boucle fait 4 tours : $i$ vaut 1, 2, 3 puis 4.",
+        "À chaque tour on ajoute $2i$ : $2 + 4 + 6 + 8$."
+      ],
+      "reponse": "`somme` vaut **20**.",
+      "difficulte": 2
+    }
+  ]
+}

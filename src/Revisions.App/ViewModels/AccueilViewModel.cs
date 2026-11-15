@@ -76,7 +76,7 @@ public partial class AccueilViewModel : ObservableObject
             {
                 Titre = _plan.RetourApresPause ? "Content de te revoir !" : $"Aujourd'hui : {cartes}";
                 Detail = (_plan.RetourApresPause ? $"Aujourd'hui : {cartes}, environ {minutes} min." : $"Environ {minutes} min.")
-                         + (faites > 0 ? $" Déjà {faites} faite(s) aujourd'hui." : "");
+                         + (faites > 0 ? $" Déjà {Texte.Pluriel(faites, "carte faite", "cartes faites")} aujourd'hui." : "");
             }
         }
         else if (_plan.PlafondAtteint)
@@ -89,7 +89,7 @@ public partial class AccueilViewModel : ObservableObject
         {
             Titre = faites > 0 ? "Tout est fait pour aujourd'hui" : "Rien à réviser aujourd'hui";
             Detail = faites > 0
-                ? $"Tu as révisé {faites} carte(s). Tu peux lire une nouvelle séance si tu en as envie."
+                ? $"Tu as révisé {Texte.Pluriel(faites, "carte", "cartes")}. Tu peux lire une nouvelle séance si tu en as envie."
                 : "Tu peux lire une séance dans la bibliothèque : ses cartes arriveront ensuite ici.";
             ProposerLecture = true;
         }
@@ -114,7 +114,7 @@ public partial class AccueilViewModel : ObservableObject
             1 => "Série : 1 semaine",
             _ => $"Série : {serie.Actuelle} semaines",
         };
-        SerieDetail = $"{serie.ActivesSurQuatre} semaine(s) active(s) sur les 4 dernières"
+        SerieDetail = Texte.Pluriel(serie.ActivesSurQuatre, "semaine active", "semaines actives") + " sur les 4 dernières"
                       + (serie.Meilleure > 1 ? $"  ·  meilleure série : {serie.Meilleure}" : "");
 
         var lundi = JourDeRevision.LundiDe(jour);

@@ -19,7 +19,7 @@ public sealed record LignePointFaible(PointFaible Point)
 {
     public string Titre => Point.Titre;
     public string Detail => $"{Point.Matiere}  ·  {Point.Seance}  ·  rappel estimé {Math.Round(Point.RappelMoyen * 100)} %"
-                            + (Point.Oublis > 0 ? $"  ·  {Point.Oublis} oubli(s)" : "");
+                            + (Point.Oublis > 0 ? $"  ·  {Texte.Pluriel(Point.Oublis, "oubli", "oublis")}" : "");
 }
 
 /// <summary>Écran Statistiques : régularité, réussite et points faibles (US10).</summary>
@@ -59,7 +59,7 @@ public partial class StatistiquesViewModel
                 t.Total == 0 ? 3 : Math.Max(8, HauteurMax * t.Total / maximum), t.Total > 0))
             .ToList();
         int actives = totaux.Count(t => t.Total > 0);
-        Regularite = $"{actives} semaine(s) active(s) sur les {NombreDeSemaines} dernières";
+        Regularite = $"{Texte.Pluriel(actives, "semaine active", "semaines actives")} sur les {NombreDeSemaines} dernières";
         AucuneDonnee = actives == 0;
 
         // ---- Réussite par matière : 30 derniers jours ----
@@ -70,7 +70,7 @@ public partial class StatistiquesViewModel
         // ---- Avancement par matière ----
         Maitrises = profil.MaitriseParMatiere()
             .Select(m => new LigneMatiere(m.Matiere,
-                $"{m.Maitrisees} maîtrisée(s), {m.Vues} vue(s) sur {m.Cartes}",
+                $"{Texte.Pluriel(m.Maitrisees, "maîtrisée", "maîtrisées")}, {Texte.Pluriel(m.Vues, "vue", "vues")} sur {m.Cartes}",
                 m.Cartes == 0 ? 0 : (double)m.Maitrisees / m.Cartes))
             .ToList();
 

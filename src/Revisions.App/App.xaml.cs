@@ -21,8 +21,22 @@ public partial class App : Application
     /// Aide au développement : « Revisions.exe --ecran=lecture:maths-sq1-s03 » ouvre directement un écran.
     /// Valeurs : bibliotheque, statistiques, reglages, lecture:&lt;pack&gt;, session:&lt;pack&gt;.
     /// </summary>
-    private static void OuvrirEcranDeTest(MainViewModel principal, string[] arguments)
+    private static async void OuvrirEcranDeTest(MainViewModel principal, string[] arguments)
     {
+        // « --touches=_,_,3,a » rejoue des touches dans la session (« _ » = Espace), pour les essais automatiques.
+        if (arguments.FirstOrDefault(a => a.StartsWith("--touches=")) is { } touches)
+        {
+            _ = Current.Dispatcher.InvokeAsync(async () =>
+            {
+                foreach (string touche in touches["--touches=".Length..].Split(','))
+                {
+                    await Task.Delay(350);
+                    if (principal.VueCourante is SessionViewModel session) session.Touche(touche == "_" ? " " : touche);
+                }
+            });
+        }
+        await Task.Yield();
+
         string? ecran = arguments.FirstOrDefault(a => a.StartsWith("--ecran="))?["--ecran=".Length..];
         if (ecran is null) return;
         string[] morceaux = ecran.Split(':', 2);
@@ -32,6 +46,10 @@ public partial class App : Application
             case "statistiques": principal.AllerStatistiques(); break;
             case "reglages": principal.AllerReglages(); break;
             case "lecture": principal.OuvrirLecture(morceaux[1]); break;
+            case "pdf":
+                ActivatorUtilities.CreateInstance<LectureViewModel>(Services, new ParametresLecture(morceaux[1], null, false)).VoirPdfCommand.Execute(null);
+                break;
+            case "notion": principal.RevoirLaNotion(morceaux[1]); break;
             case "session":
                 principal.DemarrerSession(Services.GetRequiredService<DepotRevisions>().CartesDuPack(morceaux[1]), "seance");
                 break;

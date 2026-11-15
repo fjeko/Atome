@@ -1,5 +1,26 @@
 # Plan de l'application « Révisions BTS SIO »
 
+> **État au 15/11/2026 : les étapes 1 à 7 sont construites.** L'application se lance, importe les packs,
+> affiche les cours, fait réviser et suit la progression. Voir `README.md` pour la lancer.
+>
+> Écarts par rapport au plan ci-dessous (décidés pendant la construction, pour garder un code simple) :
+> - **Pas d'interfaces de dépôt dans le Core** : le Core ne contient que la logique pure (validation, FSRS,
+>   sessions, gamification) ; l'import (`ImportateurPacks`) et les requêtes sont dans `Revisions.Data`,
+>   et les ViewModels les utilisent directement. Les tests d'import tournent sur une vraie base SQLite temporaire.
+> - **Trois dépôts** au lieu de cinq : `DepotBibliotheque`, `DepotRevisions`, `DepotProfil` (qui porte aussi les statistiques).
+> - **Une seule page web** `Web/rendu.html` (au lieu de `lecteur.html` + `carte.html`) et le greffon
+>   **markdown-it-texmath** (au lieu de `@vscode/markdown-it-katex`, qui n'existe pas en version navigateur).
+> - **Une zone WebView2 par écran**, recréée à chaque ouverture d'écran (pas de préchargement) : assez rapide en pratique.
+> - Table `etat_carte` sans colonne `statut` (une carte est « nouvelle » tant que sa stabilité est vide) ;
+>   table `profil` sans `meilleure_serie` (recalculée à partir de l'historique) ; colonne `pack.date_lecture` ajoutée.
+> - Pas de gestion centralisée des versions NuGet (`Directory.Packages.props`) : inutile à cette taille.
+> - **Ajout : les choix des QCM sont mélangés à chaque affichage.** Dans les packs, la bonne réponse est en
+>   première position 3 fois sur 4 ; sans mélange il suffirait de toujours répondre A.
+> - Formules FSRS-5 et paramètres **vérifiés** contre la documentation officielle (awesome-fsrs, « The Algorithm »).
+>   Les tests comparent aux valeurs des formules, pas à des sorties de l'implémentation de référence.
+> - Non fait (reste possible plus tard) : recherche dans le contenu des cours, lien cliquable vers Internet
+>   dans un cours (volontairement ignoré : application hors ligne), optimiseur des paramètres FSRS.
+
 Document de conception rédigé le 14/11/2026 par la session « Application ».
 Références : `../CLAUDE.md`, `../docs/cahier-des-charges.md`, `../packs/FORMAT.md` (le contrat des packs, qui fait foi).
 

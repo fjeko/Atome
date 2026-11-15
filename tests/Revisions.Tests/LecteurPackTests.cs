@@ -166,6 +166,21 @@ public class LecteurPackTests
     }
 
     [Fact]
+    public void Le_pack_de_demonstration_est_valide()
+    {
+        // On remonte depuis le dossier des tests compilés jusqu'à trouver app/samples.
+        var dossier = new DirectoryInfo(AppContext.BaseDirectory);
+        while (dossier is not null && !File.Exists(Path.Combine(dossier.FullName, "samples", "exemple.json")))
+            dossier = dossier.Parent;
+        Assert.NotNull(dossier);
+
+        var resultat = LecteurPack.Lire(File.ReadAllText(Path.Combine(dossier.FullName, "samples", "exemple.json")));
+
+        Assert.True(resultat.EstValide);
+        Assert.Empty(resultat.Problemes);
+    }
+
+    [Fact]
     public void Champs_inconnus_sont_ignores() =>
         Assert.True(Lire(p => p["futurChamp"] = "valeur").EstValide);
 }

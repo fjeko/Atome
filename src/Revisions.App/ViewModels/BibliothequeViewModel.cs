@@ -22,7 +22,7 @@ public sealed class LigneSeance(ResumeSeance seance)
             var morceaux = new List<string> { seance.NbCartes == 1 ? "1 carte" : $"{seance.NbCartes} cartes" };
             if (seance.NbDues > 0) morceaux.Add($"{seance.NbDues} à revoir");
             if (seance.NbNouvelles > 0) morceaux.Add($"{seance.NbNouvelles} à découvrir");
-            if (seance.NbMaitrisees > 0) morceaux.Add($"{seance.NbMaitrisees} maîtrisée(s)");
+            if (seance.NbMaitrisees > 0) morceaux.Add(Texte.Pluriel(seance.NbMaitrisees, "maîtrisée", "maîtrisées"));
             return string.Join("  ·  ", morceaux);
         }
     }
@@ -109,7 +109,7 @@ public partial class BibliothequeViewModel : ObservableObject
                 matiere.Key.Bloc is null || matiere.Key.Matiere.StartsWith(matiere.Key.Bloc, StringComparison.CurrentCultureIgnoreCase)
                     ? matiere.Key.Matiere
                     : $"{matiere.Key.Bloc} – {matiere.Key.Matiere}",
-                $"{matiere.Count()} séance(s), {matiere.Sum(s => s.NbCartes)} cartes"
+                $"{Texte.Pluriel(matiere.Count(), "séance", "séances")}, {Texte.Pluriel(matiere.Sum(s => s.NbCartes), "carte", "cartes")}"
                 + (matiere.Sum(s => s.NbDues) is > 0 and var dues ? $", {dues} à revoir" : ""),
                 matiere
                     .GroupBy(s => s.Sequence is null ? s.Partie : $"{s.Partie} – {s.Sequence}")
