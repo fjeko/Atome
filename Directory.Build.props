@@ -1,0 +1,10 @@
+<Project>
+  <!-- Réglages communs à tous les projets de la solution. -->
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <!-- WPF0001 : le thème Fluent de WPF est encore marqué « expérimental ». -->
+    <NoWarn>$(NoWarn);WPF0001</NoWarn>
+  </PropertyGroup>
+</Project>

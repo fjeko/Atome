@@ -1,0 +1,61 @@
+<UserControl x:Class="Revisions.App.Views.VueFinSession"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Racine">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel MaxWidth="720" Margin="28,48,28,28">
+            <TextBlock Text="{Binding Titre}" Style="{StaticResource Titre}" />
+            <TextBlock Text="{Binding Objectif}" Style="{StaticResource Discret}" FontSize="15" Margin="0,6,0,0"
+                       Visibility="{Binding Objectif, Converter={StaticResource VisibleSi}}" />
+
+            <!-- Les trois chiffres de la session. -->
+            <UniformGrid Columns="3" Margin="-8,22,-8,0">
+                <Border Style="{StaticResource Carte}" Margin="8,0">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Cartes}" FontSize="26" FontWeight="SemiBold" />
+                        <TextBlock Text="revues" Style="{StaticResource Discret}" />
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Carte}" Margin="8,0">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Reussite}" FontSize="26" FontWeight="SemiBold" />
+                        <TextBlock Text="de réussite" Style="{StaticResource Discret}" />
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Carte}" Margin="8,0">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Xp}" FontSize="26" FontWeight="SemiBold" />
+                        <TextBlock Text="gagnée" Style="{StaticResource Discret}" />
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <!-- Cartes ratées : une occasion de revoir la notion, pas un reproche. -->
+            <Border Style="{StaticResource Carte}" Margin="0,16,0,0"
+                    Visibility="{Binding ADesRatees, Converter={StaticResource VisibleSi}}">
+                <StackPanel>
+                    <TextBlock Text="À revoir" Style="{StaticResource SousTitre}" />
+                    <TextBlock Text="Ces cartes reviendront bientôt toutes seules. Tu peux relire la notion maintenant si tu veux."
+                               Style="{StaticResource Discret}" Margin="0,2,0,10" />
+                    <ItemsControl ItemsSource="{Binding Ratees}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel Margin="0,5">
+                                    <Button DockPanel.Dock="Right" Content="Revoir la notion" Padding="14,6" Margin="12,0,0,0" VerticalAlignment="Center"
+                                            Command="{Binding DataContext.RevoirNotionCommand, ElementName=Racine}" CommandParameter="{Binding}" />
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Texte}" TextWrapping="Wrap" />
+                                        <TextBlock Text="{Binding Seance}" Style="{StaticResource Discret}" FontSize="12" />
+                                    </StackPanel>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <Button Content="Retour à l'accueil" Command="{Binding AccueilCommand}" IsDefault="True"
+                    Style="{DynamicResource AccentButtonStyle}" FontSize="16" Padding="32,11" Margin="0,24,0,0" HorizontalAlignment="Left" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,92 @@
+// Page de rendu : reçoit du texte Markdown + LaTeX de l'application et l'affiche.
+// Dialogue avec le C# par messages (window.chrome.webview).
+(function () {
+  "use strict";
+
+  // html:false → le HTML brut contenu dans un pack est affiché comme du texte, jamais exécuté.
+  const md = window.markdownit({
+    html: false,
+    linkify: false,
+    highlight: function (code, langage) {
+      if (langage && hljs.getLanguage(langage)) {
+        try { return hljs.highlight(code, { language: langage }).value; } catch (e) { /* on retombe sur le texte brut */ }
+      }
+      return ""; // markdown-it échappe alors le code lui-même
+    },
+  });
+  // texmath repère $…$ et $$…$$ avant que markdown-it ne touche aux _ et \\ des formules.
+  md.use(window.texmath, { engine: window.katex, delimiters: "dollars", katexOptions: { throwOnError: false } });
+
+  const contenu = document.getElementById("contenu");
+  const hote = window.chrome && window.chrome.webview;
+  const envoyer = (message) => { if (hote) hote.postMessage(message); };
+
+  /** Affiche la liste d'éléments envoyée par l'application. */
+  function afficher(message) {
+    contenu.replaceChildren();
+    for (const element of message.elements || []) {
+      const bloc = document.createElement("div");
+      bloc.className = element.genre + (element.etat ? " " + element.etat : "");
+
+      if (element.genre === "titre") {
+        const titre = document.createElement("h1");
+        titre.innerHTML = md.renderInline(element.markdown || "");
+        bloc.appendChild(titre);
+      } else if (element.genre === "etiquette") {
+        bloc.textContent = element.markdown || "";
+      } else if (element.genre === "choix") {
+        const lettre = document.createElement("span");
+        lettre.className = "lettre";
+        lettre.textContent = String.fromCharCode(65 + element.index);
+        const texte = document.createElement("div");
+        texte.innerHTML = md.render(element.markdown || "");
+        bloc.append(lettre, texte);
+        if (element.etat === "actif") {
+          bloc.addEventListener("click", () => envoyer({ type: "choix", index: element.index }));
+        }
+      } else {
+        if (element.genre === "etape") {
+          const numero = document.createElement("div");
+          numero.className = "numero";
+          numero.textContent = "Étape " + element.index;
+          bloc.appendChild(numero);
+        }
+        const texte = document.createElement("div");
+        texte.innerHTML = md.render(element.markdown || "");
+        bloc.appendChild(texte);
+      }
+      contenu.appendChild(bloc);
+    }
+    // Nouvelle carte ou nouvelle page : on repart du haut ; révélation : on montre la suite.
+    if (message.defiler === "bas") {
+      const dernier = contenu.lastElementChild;
+      if (dernier) dernier.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  if (hote) hote.addEventListener("message", (e) => afficher(e.data));
+
+  // Les touches utiles sont relayées à l'application (sinon les raccourcis ne marcheraient
+  // plus dès qu'on clique dans le contenu).
+  document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+    const touche = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    if (/^[1-4a-e ]$/.test(touche) || ["Enter", "ArrowLeft", "ArrowRight", "Escape"].includes(touche)) {
+      e.preventDefault();
+      envoyer({ type: "touche", touche: touche });
+    }
+  });
+
+  // Un lien ne doit jamais faire quitter la page de rendu.
+  document.addEventListener("click", (e) => {
+    const lien = e.target.closest && e.target.closest("a");
+    if (lien) {
+      e.preventDefault();
+      envoyer({ type: "lien", href: lien.getAttribute("href") || "" });
+    }
+  });
+
+  envoyer({ type: "pret" });
+})();

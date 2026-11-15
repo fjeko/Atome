@@ -1,0 +1,53 @@
+<UserControl x:Class="Revisions.App.Views.VueLecture"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:Revisions.App.Controles">
+    <Grid Margin="20,16,20,16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- En-tête : retour, titre de la séance, actions. -->
+        <DockPanel Grid.ColumnSpan="2" Margin="0,0,0,14">
+            <Button DockPanel.Dock="Left" Content="← Bibliothèque" Command="{Binding RetourCommand}" Padding="14,7" Margin="0,0,16,0"
+                    VerticalAlignment="Center" Visibility="{Binding PeutReviser, Converter={StaticResource VisibleSi}}" />
+            <Button DockPanel.Dock="Right" Content="Réviser cette séance" Command="{Binding ReviserCommand}" Padding="16,7"
+                    Style="{DynamicResource AccentButtonStyle}" VerticalAlignment="Center"
+                    Visibility="{Binding PeutReviser, Converter={StaticResource VisibleSi}}" />
+            <Button DockPanel.Dock="Right" Content="Voir le PDF" Command="{Binding VoirPdfCommand}" Padding="16,7" Margin="0,0,10,0"
+                    VerticalAlignment="Center" ToolTip="Ouvrir le document d'origine à la page de cette section" />
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="{Binding Matiere}" Style="{StaticResource Discret}" FontSize="12" />
+                <TextBlock Text="{Binding Titre}" FontSize="19" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Sommaire. -->
+        <ListBox Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Sections}" SelectedIndex="{Binding Index, Mode=TwoWay}"
+                 Margin="0,0,14,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Titre}" TextWrapping="Wrap" Margin="2,4" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!-- Contenu de la section. -->
+        <Border Grid.Row="1" Grid.Column="1" BorderThickness="1" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+            <c:VueMarkdown Message="{Binding MessageRendu}" CommandeTouche="{Binding ToucheCommand}" />
+        </Border>
+
+        <!-- Page précédente / suivante. -->
+        <Grid Grid.Row="2" Grid.Column="1" Margin="0,12,0,0">
+            <Button Content="← Précédent" Command="{Binding PrecedentCommand}" Padding="16,7" HorizontalAlignment="Left" />
+            <TextBlock Text="{Binding Position}" Style="{StaticResource Discret}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Content="Suivant →" Command="{Binding SuivantCommand}" Padding="16,7" HorizontalAlignment="Right" />
+        </Grid>
+    </Grid>
+</UserControl>

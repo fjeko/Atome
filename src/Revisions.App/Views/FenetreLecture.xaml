@@ -1,0 +1,13 @@
+<Window x:Class="Revisions.App.Views.FenetreLecture"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:Revisions.App.Views"
+        Title="Revoir la notion" Width="1000" Height="700" MinWidth="700" MinHeight="450"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <!-- Même écran que la lecture, mais dans une fenêtre : la session en cours reste intacte derrière. -->
+    <DockPanel>
+        <Button DockPanel.Dock="Bottom" Content="Retour à la session" IsCancel="True" IsDefault="True" Click="Fermer"
+                Style="{DynamicResource AccentButtonStyle}" Padding="28,9" Margin="0,0,20,14" HorizontalAlignment="Right" />
+        <v:VueLecture />
+    </DockPanel>
+</Window>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <!-- Tout vient du dossier local : aucune requête vers Internet n'est autorisée. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'">
+  <title>Rendu</title>
+  <link rel="stylesheet" href="vendor/katex.min.css">
+  <link rel="stylesheet" href="vendor/hljs-clair.css" media="(prefers-color-scheme: light)">
+  <link rel="stylesheet" href="vendor/hljs-sombre.css" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <main id="contenu"></main>
+  <script src="vendor/markdown-it.min.js"></script>
+  <script src="vendor/katex.min.js"></script>
+  <script src="vendor/texmath.js"></script>
+  <script src="vendor/highlight.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

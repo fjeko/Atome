@@ -1,0 +1,84 @@
+<UserControl x:Class="Revisions.App.Views.VueBibliotheque"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Racine">
+    <DockPanel Margin="28,28,28,16">
+        <!-- En-tête : titre, recherche, import. -->
+        <Grid DockPanel.Dock="Top" Margin="0,0,0,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Bibliothèque" Style="{StaticResource Titre}" />
+            <TextBox Grid.Column="1" Width="220" VerticalAlignment="Center" Margin="0,0,10,0"
+                     Text="{Binding Recherche, UpdateSourceTrigger=PropertyChanged}" ToolTip="Rechercher une séance" />
+            <Button Grid.Column="2" Content="Actualiser" Command="{Binding ActualiserCommand}" Padding="16,7" Margin="0,0,10,0"
+                    ToolTip="Relire le dossier des packs" />
+            <Button Grid.Column="3" Content="Importer…" Command="{Binding ImporterCommand}" Padding="16,7"
+                    ToolTip="Importer un ou plusieurs fichiers de pack (.json)" />
+        </Grid>
+
+        <ProgressBar DockPanel.Dock="Top" IsIndeterminate="True" Height="3" Margin="0,0,0,8"
+                     Visibility="{Binding ImportEnCours, Converter={StaticResource VisibleSi}}" />
+
+        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Discret}" FontSize="15"
+                   Text="Aucun cours pour l'instant. Clique sur « Importer… » pour ajouter un pack, ou vérifie le dossier des packs dans les réglages."
+                   Visibility="{Binding EstVide, Converter={StaticResource VisibleSi}}" />
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Matieres}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Une matière. -->
+                        <Expander IsExpanded="{Binding Ouvert, Mode=TwoWay}" Margin="0,0,8,10">
+                            <Expander.Header>
+                                <StackPanel Margin="0,6">
+                                    <TextBlock Text="{Binding Titre}" FontSize="16" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding Detail}" Style="{StaticResource Discret}" FontSize="12" />
+                                </StackPanel>
+                            </Expander.Header>
+                            <ItemsControl ItemsSource="{Binding Parties}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <!-- Une partie et ses séances. -->
+                                        <StackPanel Margin="0,4,0,10">
+                                            <TextBlock Text="{Binding Titre}" FontWeight="SemiBold" Margin="0,0,0,6"
+                                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                            <ItemsControl ItemsSource="{Binding Seances}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid Margin="0,5">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="110" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <StackPanel>
+                                                                <TextBlock Text="{Binding Titre}" FontSize="15" TextWrapping="Wrap" />
+                                                                <TextBlock Text="{Binding Detail}" Style="{StaticResource Discret}" FontSize="12" />
+                                                            </StackPanel>
+                                                            <ProgressBar Grid.Column="1" Value="{Binding Maitrise, Mode=OneWay}" Maximum="1" Height="6"
+                                                                         VerticalAlignment="Center" Margin="12,0" ToolTip="Part des cartes maîtrisées" />
+                                                            <Button Grid.Column="2" Content="Lire" Padding="16,6" Margin="0,0,8,0" VerticalAlignment="Center"
+                                                                    Command="{Binding DataContext.LireCommand, ElementName=Racine}" CommandParameter="{Binding}" />
+                                                            <Button Grid.Column="3" Content="Réviser" Padding="16,6" VerticalAlignment="Center"
+                                                                    IsEnabled="{Binding ADesCartes}"
+                                                                    Command="{Binding DataContext.ReviserCommand, ElementName=Racine}" CommandParameter="{Binding}" />
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Expander>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>
