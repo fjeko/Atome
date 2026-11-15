@@ -25,10 +25,11 @@ if ($Raccourci) {
     $nom = "R$([char]0xE9)visions BTS SIO"
     $lien = Join-Path ([Environment]::GetFolderPath("Desktop")) "$nom.lnk"
     $shell = New-Object -ComObject WScript.Shell
-    $raccourci = $shell.CreateShortcut($lien)
-    $raccourci.TargetPath = $exe
-    $raccourci.WorkingDirectory = $sortie
-    $raccourci.Description = $nom
-    $raccourci.Save()
+    # Attention : ne pas appeler cette variable $raccourci, PowerShell la confondrait avec l'option -Raccourci.
+    $fichierLien = $shell.CreateShortcut($lien)
+    $fichierLien.TargetPath = $exe
+    $fichierLien.WorkingDirectory = $sortie
+    $fichierLien.Description = $nom
+    $fichierLien.Save()
     Write-Host "Raccourci cree : $lien"
 }
