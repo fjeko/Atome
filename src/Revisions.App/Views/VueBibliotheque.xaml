@@ -1,8 +1,10 @@
 <UserControl x:Class="Revisions.App.Views.VueBibliotheque"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:v="clr-namespace:Revisions.App.Views"
              x:Name="Racine">
     <DockPanel Margin="28,28,28,16">
+        <v:BandeauMascotte DockPanel.Dock="Top" Contexte="bibliotheque" Taille="72" HorizontalAlignment="Left" Margin="0,0,0,10" />
         <!-- En-tête : titre, recherche, import. -->
         <Grid DockPanel.Dock="Top" Margin="0,0,0,12">
             <Grid.ColumnDefinitions>

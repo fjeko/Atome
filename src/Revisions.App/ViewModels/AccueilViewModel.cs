@@ -60,6 +60,16 @@ public partial class AccueilViewModel : ObservableObject
         ("Tu m'as manqué ! Bon, depuis tout à l'heure. On s'y remet ?", "malin"),
     };
 
+    /// <summary>Phrases pour rire (on se moque gentiment des applis qui harcèlent leurs utilisateurs). Une ouverture sur cinq.</summary>
+    private static readonly (string Message, string Expression)[] Blagues =
+    {
+        ("Si tu veux que j'arrête de te montrer des pubs, souscris à mon abonnement à seulement 199,99 € hebdomadaires !", "malin"),
+        ("Ton arbre dépérit si tu ne révises pas… Je rigole, il est en plastique. Mais révise quand même.", "malin"),
+        ("Pas de notification menaçante ici. Juste moi, qui te regarde fixement. Sans clignoter.", "clin"),
+        ("Passe en version Premium+ pour débloquer… exactement les mêmes cartes, mais plus chères !", "malin"),
+        ("Une chouette vengeresse m'a proposé un partenariat. J'ai refusé. Tu as de la chance.", "clin"),
+    };
+
     /// <summary>Phrase dite par la mascotte (la même tant que l'application reste ouverte).</summary>
     public string MessageMascotte => _messageOuverture!;
     /// <summary>Expression de la mascotte : content, clin, joie ou malin.</summary>
@@ -71,7 +81,7 @@ public partial class AccueilViewModel : ObservableObject
         if (_messageOuverture is not null) return;
         bool dejaOuvert = profil.DernierJourOuverture == jour;
         profil.DernierJourOuverture = jour;
-        var choix = dejaOuvert ? OuverturesDuMemeJour : PremieresOuvertures;
+        var choix = Random.Shared.Next(5) == 0 ? Blagues : dejaOuvert ? OuverturesDuMemeJour : PremieresOuvertures;
         (_messageOuverture, _expressionOuverture) = choix[Random.Shared.Next(choix.Length)];
     }
 
