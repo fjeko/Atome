@@ -161,7 +161,7 @@ public partial class SessionViewModel : ObservableObject
                 }
                 if (_reponseVisible)
                 {
-                    elements.Add(new { genre = "etiquette", markdown = _choixFait == c.BonneReponse ? "Bonne réponse" : "Explication" });
+                    elements.Add(new { genre = "etiquette", markdown = _choixFait == c.BonneReponse ? "Bonne réponse ;)" : "Explication :(" });
                     elements.Add(new { genre = "explication", markdown = c.Explication });
                 }
                 break;
