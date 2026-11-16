@@ -114,6 +114,8 @@ foreach ($image in $images) { $e.Write($image) }
 $e.Flush()
 [IO.File]::WriteAllBytes((Join-Path $ressources "icone.ico"), $memoire.ToArray())
 [IO.File]::WriteAllBytes((Join-Path $ressources "icone-256.png"), $images[0])
+# Le logo d'origine (coins arrondis) est affiche en haut du menu de l'application.
+[IO.File]::WriteAllBytes((Join-Path $ressources "logo.png"), (EnPng 320 $dessinLogo))
 Write-Host "Icone ecrite : $($plan.Count) tailles, $($memoire.Length) octets"
 
 # ---- Planche de controle facultative : chaque taille (sauf 256), en vraie grandeur ----

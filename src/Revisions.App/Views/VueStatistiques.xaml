@@ -22,7 +22,7 @@
     </UserControl.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel MaxWidth="820" Margin="28,28,28,28">
+        <StackPanel MaxWidth="980" Margin="32,28,32,28">
             <TextBlock Text="Statistiques" Style="{StaticResource Titre}" />
             <TextBlock Style="{StaticResource Discret}" FontSize="15" Margin="0,6,0,0"
                        Text="Les chiffres apparaîtront ici après ta première session."

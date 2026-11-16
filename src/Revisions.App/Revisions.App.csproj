@@ -28,6 +28,11 @@
     <EmbeddedResource Include="Aide\*.md" LogicalName="Aide/%(Filename)%(Extension)" />
   </ItemGroup>
 
+  <!-- Logo affiché dans le menu (image incorporée dans l'exécutable). -->
+  <ItemGroup>
+    <Resource Include="Ressources\logo.png" />
+  </ItemGroup>
+
   <!-- Page de rendu et bibliothèques JavaScript : copiées à côté de l'exécutable. -->
   <ItemGroup>
     <Content Include="Web\**\*" CopyToOutputDirectory="PreserveNewest" />

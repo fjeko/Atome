@@ -15,19 +15,61 @@
         </Grid.RowDefinitions>
 
         <!-- Barre de navigation (masquée pendant une session ou une lecture). -->
-        <DockPanel Grid.RowSpan="2" Width="200" Margin="12,16,0,16"
-                   Visibility="{Binding NavigationVisible, Converter={StaticResource VisibleSi}}">
-            <TextBlock DockPanel.Dock="Top" Text="Révisions" FontSize="20" FontWeight="SemiBold" Margin="12,0,0,2" />
-            <TextBlock DockPanel.Dock="Top" Text="BTS SIO" Style="{StaticResource Discret}" Margin="12,0,0,18" />
-            <ListBox SelectedValue="{Binding Rubrique, Mode=TwoWay}" SelectedValuePath="Tag"
-                     Background="Transparent" BorderThickness="0" FontSize="15">
-                <ListBoxItem Tag="accueil" Content="Accueil" Padding="12,10" />
-                <ListBoxItem Tag="bibliotheque" Content="Bibliothèque" Padding="12,10" />
-                <ListBoxItem Tag="statistiques" Content="Statistiques" Padding="12,10" />
-                <ListBoxItem Tag="reglages" Content="Réglages" Padding="12,10" />
-                <ListBoxItem Tag="aide" Content="Aide" Padding="12,10" />
-            </ListBox>
-        </DockPanel>
+        <Border Grid.RowSpan="2" Width="232" Margin="14,14,0,14" Padding="10,22,10,14" CornerRadius="12"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1"
+                Visibility="{Binding NavigationVisible, Converter={StaticResource VisibleSi}}">
+            <DockPanel>
+                <!-- Logo, puis nom de l'application. -->
+                <Image DockPanel.Dock="Top" Source="/Ressources/logo.png" Width="104" Height="104"
+                       RenderOptions.BitmapScalingMode="HighQuality" />
+                <TextBlock DockPanel.Dock="Top" Text="Révisions" FontSize="22" FontWeight="SemiBold"
+                           HorizontalAlignment="Center" Margin="0,12,0,22" />
+
+                <!-- Rubriques : une icône (police d'icônes de Windows) et un libellé. -->
+                <ListBox SelectedValue="{Binding Rubrique, Mode=TwoWay}" SelectedValuePath="Tag"
+                         Background="Transparent" BorderThickness="0" FontSize="15.5">
+                    <ListBox.Resources>
+                        <Style x:Key="Icone" TargetType="TextBlock">
+                            <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets" />
+                            <Setter Property="FontSize" Value="18" />
+                            <Setter Property="Width" Value="34" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </ListBox.Resources>
+                    <ListBoxItem Tag="accueil" Padding="14,13">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE80F;" Style="{StaticResource Icone}" />
+                            <TextBlock Text="Accueil" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="bibliotheque" Padding="14,13">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE8F1;" Style="{StaticResource Icone}" />
+                            <TextBlock Text="Bibliothèque" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="statistiques" Padding="14,13">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE9D2;" Style="{StaticResource Icone}" />
+                            <TextBlock Text="Statistiques" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="reglages" Padding="14,13">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE713;" Style="{StaticResource Icone}" />
+                            <TextBlock Text="Réglages" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem Tag="aide" Padding="14,13">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE897;" Style="{StaticResource Icone}" />
+                            <TextBlock Text="Aide" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </ListBoxItem>
+                </ListBox>
+            </DockPanel>
+        </Border>
 
         <!-- Écran courant : la vue est choisie d'après le type du ViewModel (voir App.xaml). -->
         <ContentControl Grid.Column="1" Content="{Binding VueCourante}" Focusable="False" />

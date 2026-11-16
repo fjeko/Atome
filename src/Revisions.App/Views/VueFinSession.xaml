@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Name="Racine">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel MaxWidth="720" Margin="28,48,28,28">
+        <StackPanel MaxWidth="940" Margin="32,44,32,28">
             <TextBlock Text="{Binding Titre}" Style="{StaticResource Titre}" />
             <TextBlock Text="{Binding Objectif}" Style="{StaticResource Discret}" FontSize="15" Margin="0,6,0,0"
                        Visibility="{Binding Objectif, Converter={StaticResource VisibleSi}}" />
