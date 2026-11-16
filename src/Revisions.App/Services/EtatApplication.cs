@@ -1,5 +1,5 @@
 using System.IO;
-using System.Windows;
+using Revisions.Core.Apparence;
 using Revisions.Core.Modeles;
 using Revisions.Core.Temps;
 using Revisions.Data;
@@ -22,13 +22,12 @@ public sealed class EtatApplication(TimeProvider horloge, DepotProfil profil)
     /// <summary>Prévenu quand le thème change, pour que les zones de contenu web suivent.</summary>
     public event Action? ThemeChange;
 
+    /// <summary>Couleurs en cours, calculées à partir du thème et de la couleur d'accent choisis.</summary>
+    public Palette Palette { get; private set; } =
+        Themes.Resoudre(Themes.Trouver(null), null, systemeSombre: false, Couleur.Parse("#0067C0"));
+
     /// <summary>Vrai si l'application est affichée en sombre.</summary>
-    public bool EstSombre => Reglages.Theme switch
-    {
-        "sombre" => true,
-        "clair" => false,
-        _ => SystemeEnSombre(),
-    };
+    public bool EstSombre => Palette.Sombre;
 
     public void Initialiser()
     {
@@ -78,12 +77,10 @@ public sealed class EtatApplication(TimeProvider horloge, DepotProfil profil)
 
     private void AppliquerTheme()
     {
-        Application.Current.ThemeMode = Reglages.Theme switch
-        {
-            "sombre" => ThemeMode.Dark,
-            "clair" => ThemeMode.Light,
-            _ => ThemeMode.System,
-        };
+        var theme = Themes.Trouver(Reglages.Theme);
+        Couleur? accentPerso = Couleur.TryParse(Reglages.CouleurAccent, out var accent) ? accent : null;
+        Palette = Themes.Resoudre(theme, accentPerso, SystemeEnSombre(), ServiceTheme.AccentWindows());
+        ServiceTheme.Appliquer(Palette, theme.Sombre);
         ThemeChange?.Invoke();
     }
 

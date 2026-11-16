@@ -25,6 +25,7 @@ public sealed class FenetrePdf : Window
         Height = 800;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
         Content = _web;
+        ServiceTheme.Habiller(this);
         Loaded += async (_, _) => await OuvrirAsync(dossierCours, fichierRelatif, page, sombre);
         Closed += (_, _) => _web.Dispose();
     }

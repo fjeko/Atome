@@ -78,9 +78,8 @@ public sealed class VueMarkdown : ContentControl
         try
         {
             // Couleur de fond avant le premier affichage : évite un éclair blanc en thème sombre.
-            _web.DefaultBackgroundColor = Etat.EstSombre
-                ? System.Drawing.Color.FromArgb(0x1f, 0x1f, 0x1f)
-                : System.Drawing.Color.White;
+            var feuille = Etat.Palette.Feuille;
+            _web.DefaultBackgroundColor = System.Drawing.Color.FromArgb(feuille.R, feuille.G, feuille.B);
             await _web.EnsureCoreWebView2Async(await ServiceWeb.Environnement);
             var web = _web.CoreWebView2!;
             ServiceWeb.Securiser(web);
@@ -109,9 +108,25 @@ public sealed class VueMarkdown : ContentControl
         }
     }
 
+    /// <summary>Transmet le thème à la page : mode clair/sombre, puis les couleurs exactes de la palette.</summary>
     private void AppliquerTheme()
     {
-        if (_web.CoreWebView2 is { } web) ServiceWeb.AppliquerTheme(web, Etat.EstSombre);
+        if (_web.CoreWebView2 is not { } web) return;
+        var palette = Etat.Palette;
+        ServiceWeb.AppliquerTheme(web, palette.Sombre);
+        if (!_pagePrete) return;
+
+        // Les noms sont ceux des variables CSS de Web/app.css.
+        var variables = new Dictionary<string, string>
+        {
+            ["--fond"] = palette.Feuille.Hex,
+            ["--texte"] = palette.Texte.Hex,
+            ["--discret"] = palette.Discret.Hex,
+            ["--bord"] = palette.Bord.Hex,
+            ["--fond-doux"] = palette.FondDoux.Hex,
+            ["--accent"] = palette.AccentTexte.Hex,
+        };
+        web.PostWebMessageAsJson(JsonSerializer.Serialize(new { type = "theme", variables }));
     }
 
     /// <summary>Envoie le message courant à la page (dès qu'elle est prête).</summary>
@@ -130,6 +145,7 @@ public sealed class VueMarkdown : ContentControl
         {
             case "pret":
                 _pagePrete = true;
+                AppliquerTheme();
                 Envoyer();
                 break;
             case "choix":

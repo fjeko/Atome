@@ -1,5 +1,6 @@
 using System.Globalization;
 using Dapper;
+using Revisions.Core.Apparence;
 using Revisions.Core.Modeles;
 using Revisions.Core.Planification;
 
@@ -87,7 +88,9 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees)
                 : defaut.RetentionCible,
             DossierPacks = valeurs.GetValueOrDefault("dossier_packs"),
             DossierCours = valeurs.GetValueOrDefault("dossier_cours"),
-            Theme = valeurs.GetValueOrDefault("theme", defaut.Theme),
+            // Une valeur abîmée ou inconnue retombe sur un choix sûr plutôt que de faire planter l'affichage.
+            Theme = Themes.Trouver(valeurs.GetValueOrDefault("theme")).Cle,
+            CouleurAccent = Couleur.TryParse(valeurs.GetValueOrDefault("couleur_accent"), out var accent) ? accent.Hex : null,
         };
     }
 
@@ -102,6 +105,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees)
         EcrireValeur("dossier_packs", r.DossierPacks);
         EcrireValeur("dossier_cours", r.DossierCours);
         EcrireValeur("theme", r.Theme);
+        EcrireValeur("couleur_accent", r.CouleurAccent);
     }
 
     /// <summary>Jour où le mode reprise a commencé, ou null s'il n'est pas actif.</summary>

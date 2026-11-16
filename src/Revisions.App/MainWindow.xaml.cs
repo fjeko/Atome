@@ -8,7 +8,11 @@ namespace Revisions.App;
 /// <summary>Fenêtre principale. Seul code ici : les raccourcis clavier de la session et de la lecture.</summary>
 public partial class MainWindow : Window
 {
-    public MainWindow() => InitializeComponent();
+    public MainWindow()
+    {
+        InitializeComponent();
+        Services.ServiceTheme.Habiller(this); // fond du thème choisi
+    }
 
     /// <summary>
     /// Traduit les touches en commandes pour l'écran affiché. On intercepte la touche avant les

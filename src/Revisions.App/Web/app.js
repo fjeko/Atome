@@ -87,7 +87,17 @@
     }
   }
 
-  if (hote) hote.addEventListener("message", (e) => afficher(e.data));
+  /** Applique les couleurs du thème choisi dans l'application (variables CSS de app.css). */
+  function appliquerTheme(variables) {
+    for (const nom of Object.keys(variables || {})) {
+      document.documentElement.style.setProperty(nom, variables[nom]);
+    }
+  }
+
+  if (hote) hote.addEventListener("message", (e) => {
+    if (e.data && e.data.type === "theme") appliquerTheme(e.data.variables);
+    else afficher(e.data);
+  });
 
   // Les touches utiles sont relayées à l'application (sinon les raccourcis ne marcheraient
   // plus dès qu'on clique dans le contenu).

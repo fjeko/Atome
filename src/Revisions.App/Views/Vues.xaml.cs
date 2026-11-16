@@ -43,14 +43,22 @@ public partial class VueReglages : UserControl
 
 public partial class FenetreLecture : Window
 {
-    public FenetreLecture() => InitializeComponent();
+    public FenetreLecture()
+    {
+        InitializeComponent();
+        Services.ServiceTheme.Habiller(this);
+    }
 
     private void Fermer(object sender, RoutedEventArgs e) => Close();
 }
 
 public partial class FenetreRapport : Window
 {
-    public FenetreRapport() => InitializeComponent();
+    public FenetreRapport()
+    {
+        InitializeComponent();
+        Services.ServiceTheme.Habiller(this);
+    }
 
     private void Fermer(object sender, RoutedEventArgs e) => Close();
 }

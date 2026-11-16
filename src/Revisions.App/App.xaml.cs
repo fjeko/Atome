@@ -40,6 +40,21 @@ public partial class App : Application
         }
         await Task.Yield();
 
+        // « --hauteur=1700 » agrandit la fenêtre (pour capturer un écran long en entier).
+        if (arguments.FirstOrDefault(a => a.StartsWith("--hauteur=")) is { } hauteur)
+            Current.MainWindow!.Height = double.Parse(hauteur["--hauteur=".Length..]);
+
+        // « --theme=ocean » et « --accent=#D8498F » (ou « --accent=auto ») changent l'apparence au vol.
+        var etat = Services.GetRequiredService<EtatApplication>();
+        string? theme = arguments.FirstOrDefault(a => a.StartsWith("--theme="))?["--theme=".Length..];
+        string? accent = arguments.FirstOrDefault(a => a.StartsWith("--accent="))?["--accent=".Length..];
+        if (theme is not null || accent is not null)
+        {
+            if (theme is not null) etat.Reglages.Theme = theme;
+            if (accent is not null) etat.Reglages.CouleurAccent = accent == "auto" ? null : accent;
+            etat.Enregistrer();
+        }
+
         string? ecran = arguments.FirstOrDefault(a => a.StartsWith("--ecran="))?["--ecran=".Length..];
         if (ecran is null) return;
         string[] morceaux = ecran.Split(':', 2);
