@@ -5,8 +5,8 @@
 # Un fichier .ico contient plusieurs tailles, et Windows choisit la plus proche de ce qu'il affiche.
 # Un logo detaille devient illisible en petit : on fournit donc trois niveaux de detail.
 #   - 16 a 40 px (barre de titre, barre des taches) : dessin tres simple, 3 noeuds ;
-#   - 48 a 96 px (icones du Bureau)                 : dessin a traits epais, 5 noeuds comme le logo ;
-#   - 128 et 256 px (tres grandes icones)           : le logo d'origine.
+#   - 48 a 256 px (icones du Bureau)                : dessin a traits epais, 5 noeuds comme le logo.
+# Le logo d'origine (logo-source.webp) sert de modele ; il est trop fin pour une icone.
 # (Pas d'accents dans ce fichier : Windows PowerShell 5.1 les lit mal dans un script sans BOM.)
 param([string]$Planche = "")   # chemin facultatif d'une image de controle montrant toutes les tailles
 
@@ -78,8 +78,11 @@ $dessinSimple = { param($dc, $taille)
 }
 
 # ---- Quelle taille utilise quel dessin ----
+# Attention : pour toute taille au-dessus de 48 px, l'Explorateur Windows part de l'image de 256 px
+# et la reduit. Elle doit donc etre a traits epais elle aussi, sinon l'icone du Bureau est illisible
+# sur un ecran a haute resolution. ($dessinLogo reste disponible si on veut revenir au logo detaille.)
 $plan = @(
-    @(256, $dessinLogo), @(128, $dessinLogo),
+    @(256, $dessinMoyen), @(128, $dessinMoyen),
     @(96, $dessinMoyen), @(72, $dessinMoyen), @(64, $dessinMoyen), @(48, $dessinMoyen),
     @(40, $dessinSimple), @(32, $dessinSimple), @(24, $dessinSimple), @(20, $dessinSimple), @(16, $dessinSimple))
 
