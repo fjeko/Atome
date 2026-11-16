@@ -21,10 +21,14 @@ public partial class MainWindow : Window
     protected override void OnPreviewKeyDown(KeyEventArgs e)
     {
         base.OnPreviewKeyDown(e);
-        if (e.OriginalSource is TextBoxBase || Keyboard.Modifiers != ModifierKeys.None) return;
+        if (e.OriginalSource is TextBoxBase) return;
+        // Ctrl, Alt et Windows annoncent un autre raccourci : on ne s'en mêle pas. Maj, elle, est permise :
+        // sur un clavier AZERTY, les chiffres de la rangée du haut se tapent avec Maj.
+        if ((Keyboard.Modifiers & (ModifierKeys.Control | ModifierKeys.Alt | ModifierKeys.Windows)) != 0) return;
 
         string? touche = e.Key switch
         {
+            Key.Tab => "Tab",
             Key.Space => " ",
             Key.Enter => "Enter",
             Key.Left => "ArrowLeft",
@@ -40,6 +44,14 @@ public partial class MainWindow : Window
 
         switch ((DataContext as MainViewModel)?.VueCourante)
         {
+            case SessionViewModel session when touche == "Tab":
+                // Tab entre dans la zone de réponse écrite quand il y en a une ; sinon Tab garde son rôle habituel.
+                if (session.SaisieVisible)
+                {
+                    session.DemanderSaisie();
+                    e.Handled = true;
+                }
+                break;
             case SessionViewModel session:
                 session.Touche(touche);
                 e.Handled = true;

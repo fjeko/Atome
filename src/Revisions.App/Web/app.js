@@ -103,8 +103,12 @@
   // plus dès qu'on clique dans le contenu).
   document.addEventListener("keydown", (e) => {
     if (e.ctrlKey || e.altKey || e.metaKey) return;
-    const touche = e.key.length === 1 ? e.key.toLowerCase() : e.key;
-    if (/^[1-4a-e ]$/.test(touche) || ["Enter", "ArrowLeft", "ArrowRight", "Escape"].includes(touche)) {
+    let touche = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    // Chiffres : on lit la position de la touche (e.code) et non le caractère, car sur un clavier
+    // AZERTY la rangée du haut donne « & é " ' » sans Maj. Le pavé numérique marche aussi.
+    const chiffre = /^(?:Digit|Numpad)([1-4])$/.exec(e.code);
+    if (chiffre) touche = chiffre[1];
+    if (/^[1-4a-e ]$/.test(touche) || ["Enter", "ArrowLeft", "ArrowRight", "Tab"].includes(touche)) {
       e.preventDefault();
       envoyer({ type: "touche", touche: touche });
     }

@@ -17,6 +17,12 @@ public partial class App : Application
     public static IServiceProvider Services { get; private set; } = null!;
 
 #if DEBUG
+    /// <summary>Horloge d'essai : l'heure du système, décalée d'une durée fixe.</summary>
+    private sealed class HorlogeDecalee(TimeSpan decalage) : TimeProvider
+    {
+        public override DateTimeOffset GetUtcNow() => base.GetUtcNow() + decalage;
+    }
+
     /// <summary>
     /// Aide au développement : « Revisions.exe --ecran=lecture:maths-sq1-s03 » ouvre directement un écran.
     /// Valeurs : bibliotheque, statistiques, reglages, lecture:&lt;pack&gt;, session:&lt;pack&gt;.
@@ -80,6 +86,7 @@ public partial class App : Application
                 ActivatorUtilities.CreateInstance<LectureViewModel>(Services, new ParametresLecture(morceaux[1], null, false)).VoirPdfCommand.Execute(null);
                 break;
             case "notion": principal.RevoirLaNotion(morceaux[1]); break;
+            case "rapport": principal.AnnoncerImport(principal.ImporterDossier(), afficherRapportSiRien: true); break;
             case "session":
                 principal.DemarrerSession(Services.GetRequiredService<DepotRevisions>().CartesDuPack(morceaux[1]), "seance");
                 break;
@@ -104,7 +111,16 @@ public partial class App : Application
         try
         {
             var services = new ServiceCollection();
+#if DEBUG
+            // Essais : REVISIONS_DECALAGE_JOURS=10 fait croire à l'application qu'on est 10 jours plus tard
+            // (pour voir des cartes à revoir et le mode reprise sans attendre).
+            services.AddSingleton<TimeProvider>(
+                int.TryParse(Environment.GetEnvironmentVariable("REVISIONS_DECALAGE_JOURS"), out int jours)
+                    ? new HorlogeDecalee(TimeSpan.FromDays(jours))
+                    : TimeProvider.System);
+#else
             services.AddSingleton(TimeProvider.System);
+#endif
             services.AddSingleton(new BaseDeDonnees(BaseDeDonnees.CheminParDefaut));
             services.AddSingleton<DepotBibliotheque>();
             services.AddSingleton<DepotRevisions>();

@@ -1,6 +1,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Revisions.App.ViewModels;
 
 namespace Revisions.App.Views;
 
@@ -14,34 +15,45 @@ public partial class VueSession : UserControl
     {
         InitializeComponent();
 
-        // L'écran lui-même peut recevoir le focus : c'est là qu'on « sort » de la zone de saisie,
-        // pour que Espace et 1-4 redeviennent des raccourcis.
-        Focusable = true;
-        FocusVisualStyle = null;
-        Loaded += (_, _) => Focus();
+        // Quand le ViewModel le demande (touche Tab), le curseur va dans la zone de saisie.
+        DataContextChanged += (_, e) =>
+        {
+            if (e.OldValue is SessionViewModel ancien) ancien.SaisieDemandee -= EntrerDansLaZone;
+            if (e.NewValue is SessionViewModel nouveau) nouveau.SaisieDemandee += EntrerDansLaZone;
+        };
 
-        // Quand la zone disparaît (réponse révélée), le focus ne doit pas rester dans le vide.
+        // Quand la zone disparaît (réponse révélée), le focus revient à la fenêtre :
+        // Espace et 1-4 redeviennent des raccourcis.
         ZoneSaisie.IsVisibleChanged += (_, e) =>
         {
-            if (!(bool)e.NewValue) Dispatcher.BeginInvoke(() => Focus());
+            if (!(bool)e.NewValue) Dispatcher.BeginInvoke(SortirDeLaZone);
         };
+    }
+
+    private void EntrerDansLaZone()
+    {
+        ZoneSaisie.Focus();
+        ZoneSaisie.CaretIndex = ZoneSaisie.Text.Length; // on continue d'écrire à la suite
+    }
+
+    /// <summary>
+    /// Sort de la zone de saisie en donnant le focus à l'écran lui-même. Il ne suffit pas de le
+    /// rendre à la fenêtre : WPF se souvient du dernier contrôle utilisé et y remettrait le curseur.
+    /// </summary>
+    private void SortirDeLaZone()
+    {
+        Focusable = true;
+        FocusVisualStyle = null; // pas de cadre en pointillés autour de l'écran
+        Focus();
     }
 
     protected override void OnPreviewKeyDown(KeyEventArgs e)
     {
         base.OnPreviewKeyDown(e);
-        if (Keyboard.Modifiers != ModifierKeys.None) return;
-
-        if (e.Key == Key.Escape && ZoneSaisie.IsKeyboardFocused)
+        // Échap dans la zone : on la quitte (le texte déjà écrit est gardé).
+        if (e.Key == Key.Escape && ZoneSaisie.IsKeyboardFocused && Keyboard.Modifiers == ModifierKeys.None)
         {
-            // Échap : on quitte la zone (le texte déjà écrit est gardé).
-            Focus();
-            e.Handled = true;
-        }
-        else if (e.Key == Key.Tab && ZoneSaisie.IsVisible && !ZoneSaisie.IsKeyboardFocused)
-        {
-            // Tab : on entre dans la zone pour écrire.
-            ZoneSaisie.Focus();
+            SortirDeLaZone();
             e.Handled = true;
         }
     }

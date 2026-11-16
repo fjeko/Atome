@@ -7,7 +7,7 @@ Une session peut se faire entièrement au clavier.
 | Touche | Action |
 | --- | --- |
 | **Espace** | voir la réponse, ou l'étape suivante d'un exercice |
-| **1**, **2**, **3**, **4** | noter : Raté, Difficile, Bien, Facile |
+| **1**, **2**, **3**, **4** | noter : Raté, Difficile, Bien, Facile (rangée du haut, avec ou sans Maj, ou pavé numérique) |
 | **A** à **E** | choisir une réponse de QCM |
 | **Entrée** | la suite logique : révéler, continuer, ou noter « Bien » |
 

@@ -97,7 +97,7 @@ Pour restaurer une sauvegarde : fermer l'application, puis remplacer `revisions.
 | Touche | Action |
 | --- | --- |
 | Espace | Voir la réponse / l'étape suivante |
-| 1, 2, 3, 4 | Raté, Difficile, Bien, Facile |
+| 1, 2, 3, 4 | Raté, Difficile, Bien, Facile (rangée du haut avec ou sans Maj, ou pavé numérique) |
 | A à E | Choisir une réponse de QCM |
 | Entrée | Suite logique (révéler, continuer, ou « Bien ») |
 | Tab | Entrer dans la zone de réponse écrite (cartes « question ») |

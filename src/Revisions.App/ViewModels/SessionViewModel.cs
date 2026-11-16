@@ -261,6 +261,18 @@ public partial class SessionViewModel : ObservableObject
         Enregistrer(valeur);
     }
 
+    /// <summary>Levé quand il faut placer le curseur dans la zone de réponse écrite (touche Tab).</summary>
+    public event Action? SaisieDemandee;
+
+    /// <summary>
+    /// Demande à l'écran de placer le curseur dans la zone de saisie. Le ViewModel ne connaît pas
+    /// les contrôles : il prévient seulement, et c'est la vue qui déplace le focus.
+    /// </summary>
+    public void DemanderSaisie()
+    {
+        if (SaisieVisible) SaisieDemandee?.Invoke();
+    }
+
     [RelayCommand]
     private void RevoirNotion() => _main.RevoirLaNotion(Courante.Carte.SectionId);
 
@@ -285,6 +297,9 @@ public partial class SessionViewModel : ObservableObject
                 break;
             case "1" or "2" or "3" or "4":
                 Noter(touche);
+                break;
+            case "Tab":
+                DemanderSaisie();
                 break;
             case "a" or "b" or "c" or "d" or "e":
                 Choisir(touche[0] - 'a');
@@ -348,9 +363,7 @@ public partial class SessionViewModel : ObservableObject
     }
 
     /// <summary>Début du texte d'une carte, pour la liste des cartes ratées.</summary>
-    private static string Extrait(Carte carte)
-    {
-        string texte = (carte.Contenu.Recto ?? carte.Contenu.Question ?? carte.Contenu.Enonce ?? "").ReplaceLineEndings(" ");
-        return texte.Length <= 110 ? texte : texte[..110] + "…";
-    }
+    private static string Extrait(Carte carte) =>
+        // La liste est en texte simple : les formules LaTeX sont converties en caractères ordinaires.
+        Core.Packs.TexteSimple.Extrait(carte.Contenu.Recto ?? carte.Contenu.Question ?? carte.Contenu.Enonce, 110);
 }
