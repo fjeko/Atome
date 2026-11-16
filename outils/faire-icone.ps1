@@ -39,41 +39,33 @@ $dessinLogo = { param($dc, $taille)
     $dc.Pop()
 }
 
-# Dessin moyen, sur une grille de 64 : tronc, 4 branches, 5 noeuds en anneau, livre ouvert a deux epaisseurs.
+# Dessin moyen, grille de 64 : arbre de competences (7 noeuds, pleins = acquis, anneaux = a debloquer).
 $dessinMoyen = { param($dc, $taille)
     $dc.PushTransform((New-Object Windows.Media.ScaleTransform(($taille / 64.0), ($taille / 64.0))))
     $dc.DrawRoundedRectangle($marine, $null, (New-Object Windows.Rect(0, 0, 64, 64)), 12, 12)
-    # Livre : une page epaisse et un feuillet fin de chaque cote.
-    $dc.DrawGeometry($creme, $null, [Windows.Media.Geometry]::Parse(
-        "M4,43 L30.5,53 L30.5,60.5 L4,50.5 Z M60,43 L33.5,53 L33.5,60.5 L60,50.5 Z " +
-        "M10,39.5 L30.5,47.5 L30.5,50 L10,42 Z M54,39.5 L33.5,47.5 L33.5,50 L54,42 Z"))
-    # Arbre : branches basses, branches hautes, puis le tronc par-dessus.
-    $branche = Trait 3.4
-    $dc.DrawLine($branche, (Point 32 45), (Point 13.5 33))
-    $dc.DrawLine($branche, (Point 32 45), (Point 50.5 33))
-    $dc.DrawLine($branche, (Point 32 36), (Point 19.5 21.5))
-    $dc.DrawLine($branche, (Point 32 36), (Point 44.5 21.5))
-    $dc.DrawLine((Trait 4.6), (Point 32 57), (Point 32 16))
-    # Noeuds : des anneaux, comme les pastilles de circuit du logo.
+    $lien = Trait 3.2
+    $dc.DrawLine($lien, (Point 32 54), (Point 32 41))
+    $dc.DrawLine($lien, (Point 32 41), (Point 18 29))
+    $dc.DrawLine($lien, (Point 18 29), (Point 18 14))
+    $dc.DrawLine($lien, (Point 32 41), (Point 46 29))
+    $dc.DrawLine($lien, (Point 46 29), (Point 46 14))
+    $dc.DrawLine($lien, (Point 32 41), (Point 32 14))
     $anneau = New-Object Windows.Media.Pen($cuivre, 2.6)
-    foreach ($n in @(@(32, 10.5), @(17, 18.5), @(47, 18.5), @(10, 30.5), @(54, 30.5))) {
-        $dc.DrawEllipse($marine, $anneau, (Point $n[0] $n[1]), 4.6, 4.6)
-    }
+    foreach ($n in @(@(32, 54), @(32, 41), @(18, 29), @(18, 11))) { $dc.DrawEllipse($cuivre, $null, (Point $n[0] $n[1]), 4.6, 4.6) }
+    foreach ($n in @(@(46, 29), @(46, 11), @(32, 11))) { $dc.DrawEllipse($marine, $anneau, (Point $n[0] $n[1]), 4.6, 4.6) }
     $dc.Pop()
 }
 
-# Dessin simple, sur une grille de 32 : tronc, 2 branches, 3 noeuds pleins, livre ouvert.
+# Dessin simple, grille de 32 : version epuree (5 noeuds) pour les petites tailles.
 $dessinSimple = { param($dc, $taille)
     $dc.PushTransform((New-Object Windows.Media.ScaleTransform(($taille / 32.0), ($taille / 32.0))))
     $dc.DrawRoundedRectangle($marine, $null, (New-Object Windows.Rect(0, 0, 32, 32)), 6, 6)
-    $dc.DrawGeometry($creme, $null, [Windows.Media.Geometry]::Parse(
-        "M2.5,19.5 L15,24.5 L15,29 L2.5,24 Z M29.5,19.5 L17,24.5 L17,29 L29.5,24 Z"))
-    $dc.DrawLine((Trait 2.8), (Point 16 27.5), (Point 16 9))
-    $dc.DrawLine((Trait 2.3), (Point 16 18), (Point 8.5 11.5))
-    $dc.DrawLine((Trait 2.3), (Point 16 18), (Point 23.5 11.5))
-    foreach ($n in @(@(16, 6.2), @(7.2, 9.6), @(24.8, 9.6))) {
-        $dc.DrawEllipse($cuivre, $null, (Point $n[0] $n[1]), 3.1, 3.1)
-    }
+    $lien = Trait 2.6
+    $dc.DrawLine($lien, (Point 16 26), (Point 16 18))
+    $dc.DrawLine($lien, (Point 16 18), (Point 8 10))
+    $dc.DrawLine($lien, (Point 16 18), (Point 24 10))
+    $dc.DrawLine($lien, (Point 16 18), (Point 16 7))
+    foreach ($n in @(@(16, 26), @(16, 18), @(8, 8), @(24, 8), @(16, 6))) { $dc.DrawEllipse($cuivre, $null, (Point $n[0] $n[1]), 3.4, 3.4) }
     $dc.Pop()
 }
 
@@ -113,7 +105,8 @@ for ($i = 0; $i -lt $plan.Count; $i++) {
 foreach ($image in $images) { $e.Write($image) }
 $e.Flush()
 [IO.File]::WriteAllBytes((Join-Path $ressources "icone.ico"), $memoire.ToArray())
-[IO.File]::WriteAllBytes((Join-Path $ressources "icone-256.png"), $images[0])Write-Host "Icone ecrite : $($plan.Count) tailles, $($memoire.Length) octets"
+[IO.File]::WriteAllBytes((Join-Path $ressources "icone-256.png"), $images[0])
+Write-Host "Icone ecrite : $($plan.Count) tailles, $($memoire.Length) octets"
 
 # ---- Planche de controle facultative : chaque taille (sauf 256), en vraie grandeur ----
 if ($Planche) {

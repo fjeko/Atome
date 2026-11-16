@@ -72,7 +72,26 @@
         </Border>
 
         <!-- Écran courant : la vue est choisie d'après le type du ViewModel (voir App.xaml). -->
-        <ContentControl Grid.Column="1" Content="{Binding VueCourante}" Focusable="False" />
+        <!-- Chaque nouvel écran apparaît en fondu, en remontant légèrement : l'appli paraît plus vivante. -->
+        <ContentControl Grid.Column="1" Content="{Binding VueCourante, NotifyOnTargetUpdated=True}" Focusable="False">
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Setter Property="RenderTransform"><Setter.Value><TranslateTransform /></Setter.Value></Setter>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.28" />
+                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)" From="14" To="0" Duration="0:0:0.28">
+                                        <DoubleAnimation.EasingFunction><CubicEase EasingMode="EaseOut" /></DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
 
         <!-- Bandeau d'information (résultat d'un import). -->
         <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource Carte}" Padding="14,8" Margin="28,0,28,14"
