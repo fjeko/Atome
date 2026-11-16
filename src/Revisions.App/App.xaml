@@ -16,6 +16,7 @@
         <DataTemplate DataType="{x:Type vm:FinSessionViewModel}"><v:VueFinSession /></DataTemplate>
         <DataTemplate DataType="{x:Type vm:StatistiquesViewModel}"><v:VueStatistiques /></DataTemplate>
         <DataTemplate DataType="{x:Type vm:ReglagesViewModel}"><v:VueReglages /></DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AideViewModel}"><v:VueAide /></DataTemplate>
 
         <!-- Styles communs. Les couleurs viennent du thème Fluent : elles suivent le mode clair ou sombre. -->
         <Style x:Key="Carte" TargetType="Border">

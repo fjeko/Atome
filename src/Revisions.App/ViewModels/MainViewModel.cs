@@ -63,6 +63,7 @@ public partial class MainViewModel(
             case "bibliotheque": AllerBibliotheque(); break;
             case "statistiques": AllerStatistiques(); break;
             case "reglages": AllerReglages(); break;
+            case "aide": AllerAide(); break;
         }
     }
 
@@ -77,6 +78,9 @@ public partial class MainViewModel(
 
     [RelayCommand]
     public void AllerReglages() => Afficher(Creer<ReglagesViewModel>(), "reglages");
+
+    [RelayCommand]
+    public void AllerAide() => Afficher(Creer<AideViewModel>(), "aide");
 
     [RelayCommand]
     private void FermerBandeau() => Bandeau = null;

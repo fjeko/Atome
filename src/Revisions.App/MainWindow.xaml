@@ -25,6 +25,7 @@
                 <ListBoxItem Tag="bibliotheque" Content="Bibliothèque" Padding="12,10" />
                 <ListBoxItem Tag="statistiques" Content="Statistiques" Padding="12,10" />
                 <ListBoxItem Tag="reglages" Content="Réglages" Padding="12,10" />
+                <ListBoxItem Tag="aide" Content="Aide" Padding="12,10" />
             </ListBox>
         </DockPanel>
 

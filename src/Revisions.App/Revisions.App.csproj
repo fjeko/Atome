@@ -20,6 +20,12 @@
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4314.35" />
   </ItemGroup>
 
+  <!-- Pages de l'aide (Markdown), incorporées dans l'exécutable sous le nom « Aide/<fichier> ».
+       Aide\prompt-type.md est une copie de docs\prompt-type.md : la recopier si le prompt change. -->
+  <ItemGroup>
+    <EmbeddedResource Include="Aide\*.md" LogicalName="Aide/%(Filename)%(Extension)" />
+  </ItemGroup>
+
   <!-- Page de rendu et bibliothèques JavaScript : copiées à côté de l'exécutable. -->
   <ItemGroup>
     <Content Include="Web\**\*" CopyToOutputDirectory="PreserveNewest" />

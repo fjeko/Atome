@@ -48,6 +48,10 @@ public partial class App : Application
             case "bibliotheque": principal.AllerBibliotheque(); break;
             case "statistiques": principal.AllerStatistiques(); break;
             case "reglages": principal.AllerReglages(); break;
+            case "aide":
+                principal.AllerAide();
+                if (morceaux.Length > 1 && principal.VueCourante is AideViewModel aide) aide.Index = int.Parse(morceaux[1]);
+                break;
             case "lecture": principal.OuvrirLecture(morceaux[1]); break;
             case "pdf":
                 ActivatorUtilities.CreateInstance<LectureViewModel>(Services, new ParametresLecture(morceaux[1], null, false)).VoirPdfCommand.Execute(null);

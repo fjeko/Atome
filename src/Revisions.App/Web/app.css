@@ -66,6 +66,10 @@ section > eqn { display: block; overflow-x: auto; overflow-y: hidden; padding: .
 .notions { color: var(--discret); font-size: .92em; margin-bottom: 1.2em; }
 .question { font-size: 1.12em; }
 .reponse, .explication { border-top: 1px solid var(--bord); margin-top: 1.2em; padding-top: .6em; }
+/* Texte à copier (prompt de l'aide) : encadré pour le distinguer de l'explication. */
+.prompt { border: 1px dashed var(--bord); border-left: 4px solid var(--accent); border-radius: 8px; background: var(--fond-doux); padding: .4em 1.2em; margin-top: 1em; font-size: .93em; }
+.prompt pre { background: var(--fond); }
+
 /* Réponse saisie à côté de la bonne réponse (l'une sous l'autre si la fenêtre est étroite). */
 .comparaison { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; border-top: 1px solid var(--bord); margin-top: 1.2em; padding-top: .8em; }
 .comparaison .colonne + .colonne { border-left: 1px solid var(--bord); padding-left: 28px; }
