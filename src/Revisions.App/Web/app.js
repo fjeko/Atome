@@ -34,6 +34,27 @@
         bloc.appendChild(titre);
       } else if (element.genre === "etiquette") {
         bloc.textContent = element.markdown || "";
+      } else if (element.genre === "comparaison") {
+        // Deux colonnes : la réponse écrite par l'étudiant (texte brut) et la bonne réponse.
+        const gauche = document.createElement("div");
+        gauche.className = "colonne";
+        const titreGauche = document.createElement("div");
+        titreGauche.className = "etiquette";
+        titreGauche.textContent = "Ta réponse";
+        const saisie = document.createElement("div");
+        saisie.className = "saisie";
+        saisie.textContent = element.saisie || ""; // textContent : jamais interprété comme du HTML
+        gauche.append(titreGauche, saisie);
+
+        const droite = document.createElement("div");
+        droite.className = "colonne";
+        const titreDroite = document.createElement("div");
+        titreDroite.className = "etiquette";
+        titreDroite.textContent = "Réponse";
+        const bonne = document.createElement("div");
+        bonne.innerHTML = md.render(element.markdown || "");
+        droite.append(titreDroite, bonne);
+        bloc.append(gauche, droite);
       } else if (element.genre === "choix") {
         const lettre = document.createElement("span");
         lettre.className = "lettre";

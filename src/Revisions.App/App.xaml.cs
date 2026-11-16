@@ -31,7 +31,10 @@ public partial class App : Application
                 foreach (string touche in touches["--touches=".Length..].Split(','))
                 {
                     await Task.Delay(350);
-                    if (principal.VueCourante is SessionViewModel session) session.Touche(touche == "_" ? " " : touche);
+                    if (principal.VueCourante is not SessionViewModel session) continue;
+                    // « saisie:texte » remplit la zone de réponse écrite.
+                    if (touche.StartsWith("saisie:")) session.ReponseSaisie = touche["saisie:".Length..];
+                    else session.Touche(touche == "_" ? " " : touche);
                 }
             });
         }

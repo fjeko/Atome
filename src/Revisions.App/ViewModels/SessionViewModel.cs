@@ -79,6 +79,14 @@ public partial class SessionViewModel : ObservableObject
     /// <summary>Message d'encouragement quand l'objectif du jour est atteint.</summary>
     [ObservableProperty] private string? _bandeau;
 
+    /// <summary>
+    /// Réponse écrite par l'étudiant sur une carte « question » (facultatif). Elle n'est pas enregistrée :
+    /// elle sert seulement à comparer avec la bonne réponse avant de se noter.
+    /// </summary>
+    [ObservableProperty] private string _reponseSaisie = "";
+    /// <summary>La zone de saisie n'existe que sur une carte « question », avant la réponse.</summary>
+    [ObservableProperty] private bool _saisieVisible;
+
     public SessionViewModel(ParametresSession parametres, MainViewModel main, EtatApplication etat,
         DepotRevisions revisions, DepotProfil profil, Planificateur planificateur)
     {
@@ -104,6 +112,7 @@ public partial class SessionViewModel : ObservableObject
         _etapesRevelees = 0;
         _choixFait = null;
         _reponseVisible = false;
+        ReponseSaisie = "";
         _ordreChoix = Enumerable.Range(0, Courante.Carte.Contenu.Choix?.Count ?? 0).ToArray();
         Random.Shared.Shuffle(_ordreChoix);
         _chrono.Restart();
@@ -126,7 +135,12 @@ public partial class SessionViewModel : ObservableObject
         {
             case TypeCarte.Question:
                 elements.Add(new { genre = "question", markdown = c.Recto });
-                if (_reponseVisible)
+                if (_reponseVisible && !string.IsNullOrWhiteSpace(ReponseSaisie))
+                {
+                    // Une réponse a été écrite : on l'affiche à côté de la bonne pour comparer.
+                    elements.Add(new { genre = "comparaison", saisie = ReponseSaisie.Trim(), markdown = c.Verso });
+                }
+                else if (_reponseVisible)
                 {
                     elements.Add(new { genre = "etiquette", markdown = "Réponse" });
                     elements.Add(new { genre = "reponse", markdown = c.Verso });
@@ -170,11 +184,14 @@ public partial class SessionViewModel : ObservableObject
         TexteReveler = carte.Type == TypeCarte.Exercice && _etapesRevelees < c.Etapes!.Count
             ? (_etapesRevelees == 0 ? "Voir la première étape" : "Étape suivante")
             : "Voir la réponse";
+        SaisieVisible = carte.Type == TypeCarte.Question && !_reponseVisible;
         ContinuerVisible = mauvaisChoix;
         NotesVisibles = _reponseVisible && !mauvaisChoix;
         RateVisible = !qcm;
         Consigne = !_reponseVisible
-            ? (qcm ? "Choisis une réponse (clic ou touches A à E)" : "Réponds de tête, puis appuie sur Espace")
+            ? (qcm ? "Choisis une réponse (clic ou touches A à E)"
+                : SaisieVisible ? "Réponds de tête ou par écrit, puis appuie sur Espace"
+                : "Réponds de tête, puis appuie sur Espace")
             : mauvaisChoix ? "Ce n'est pas grave : la carte reviendra bientôt."
             : "Comment ça s'est passé ? (touches 1 à 4)";
 

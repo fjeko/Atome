@@ -66,6 +66,15 @@ section > eqn { display: block; overflow-x: auto; overflow-y: hidden; padding: .
 .notions { color: var(--discret); font-size: .92em; margin-bottom: 1.2em; }
 .question { font-size: 1.12em; }
 .reponse, .explication { border-top: 1px solid var(--bord); margin-top: 1.2em; padding-top: .6em; }
+/* Réponse saisie à côté de la bonne réponse (l'une sous l'autre si la fenêtre est étroite). */
+.comparaison { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; border-top: 1px solid var(--bord); margin-top: 1.2em; padding-top: .8em; }
+.comparaison .colonne + .colonne { border-left: 1px solid var(--bord); padding-left: 28px; }
+.comparaison .etiquette { margin-top: 0; }
+.comparaison .saisie { white-space: pre-wrap; overflow-wrap: anywhere; margin: .6em 0; }
+@media (max-width: 560px) {
+  .comparaison { grid-template-columns: 1fr; }
+  .comparaison .colonne + .colonne { border-left: none; padding-left: 0; margin-top: 1em; }
+}
 .etape { border-left: 3px solid var(--accent); padding: .1em 0 .1em 1em; margin: .7em 0; }
 .etape .numero { color: var(--discret); font-size: .82em; }
 

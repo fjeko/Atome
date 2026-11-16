@@ -21,11 +21,6 @@ public partial class VueLecture : UserControl
     public VueLecture() => InitializeComponent();
 }
 
-public partial class VueSession : UserControl
-{
-    public VueSession() => InitializeComponent();
-}
-
 public partial class VueFinSession : UserControl
 {
     public VueFinSession() => InitializeComponent();
