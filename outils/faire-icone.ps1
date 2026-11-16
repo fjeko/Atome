@@ -72,7 +72,7 @@ $dessinSimple = { param($dc, $taille)
 $plan = @(
     @(256, $dessinMoyen), @(128, $dessinMoyen),
     @(96, $dessinMoyen), @(72, $dessinMoyen), @(64, $dessinMoyen), @(48, $dessinMoyen),
-    @(40, $dessinSimple), @(32, $dessinSimple), @(24, $dessinSimple), @(20, $dessinSimple), @(16, $dessinSimple))
+    @(40, $dessinMoyen), @(32, $dessinMoyen), @(24, $dessinMoyen), @(20, $dessinMoyen), @(16, $dessinMoyen))
 
 function EnPng([int]$taille, [scriptblock]$dessin) {
     $visuel = New-Object Windows.Media.DrawingVisual
