@@ -33,8 +33,21 @@ remontant depuis l'exécutable ; modifiable dans Réglages).
 dotnet test
 ```
 
-101 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
-construction des sessions, mode reprise, XP, niveaux, série hebdomadaire.
+335 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
+construction des sessions, mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
+bibliothèque en niveaux, couleurs et contrastes de chaque thème, enregistrement des réglages.
+
+## Ce que fait l'application
+
+- **Accueil** : la session du jour en un clic, objectif minimal, série en semaines, XP et niveau.
+- **Bibliothèque en tuiles** : matière → compétence (B1.2…) → séquence (SQ1…) → séances, avec fil
+  d'Ariane, recherche, nombre de cartes à revoir et barre de maîtrise sur chaque tuile.
+- **Lecture** : le cours section par section (Markdown, LaTeX, code coloré), PDF d'origine à la bonne page.
+- **Session** : cartes question, QCM (choix mélangés) et exercice pas à pas ; sur une carte question,
+  on peut **écrire sa réponse** pour la comparer à la bonne avant de se noter.
+- **Statistiques** : régularité, réussite par matière, points faibles avec session ciblée.
+- **Réglages** : rythme, reprise, **thèmes** (clair, sombre, six thèmes colorés) et **couleur d'accent**.
+- **Aide** : fonctionnement, raccourcis, ajout de cours, création d'un pack avec Claude (prompt à copier), données.
 
 ## Organisation du code
 
@@ -42,12 +55,16 @@ construction des sessions, mode reprise, XP, niveaux, série hebdomadaire.
 app/
   src/
     Revisions.Core/     Cœur métier, sans interface ni base : modèles, validation des packs,
-                        FSRS, construction des sessions, gamification. Entièrement testable.
+                        FSRS, construction des sessions, gamification, niveaux de la bibliothèque
+                        (Bibliotheque/), couleurs et thèmes (Apparence/). Entièrement testable.
     Revisions.Data/     SQLite (Microsoft.Data.Sqlite + Dapper) : schéma, import, requêtes.
     Revisions.App/      Interface WPF en MVVM (CommunityToolkit.Mvvm) + rendu WebView2.
       ViewModels/       Un ViewModel par écran : toute la logique d'affichage.
       Views/            Les écrans en XAML (aucune logique dans le code-behind).
       Controles/        VueMarkdown : la zone qui affiche Markdown + LaTeX.
+      Services/         État partagé, thème (ServiceTheme), WebView2, journal d'erreurs.
+      Aide/             Pages de l'aide en Markdown, incorporées dans l'exécutable.
+                        prompt-type.md est une copie de ../docs/prompt-type.md : la recopier si le prompt change.
       Web/              Page de rendu locale + markdown-it, KaTeX, highlight.js (hors ligne).
   tests/Revisions.Tests/  Tests xUnit.
   samples/exemple.json    Petit pack de démonstration (à importer depuis la Bibliothèque).
@@ -83,6 +100,9 @@ Pour restaurer une sauvegarde : fermer l'application, puis remplacer `revisions.
 | 1, 2, 3, 4 | Raté, Difficile, Bien, Facile |
 | A à E | Choisir une réponse de QCM |
 | Entrée | Suite logique (révéler, continuer, ou « Bien ») |
+| Tab | Entrer dans la zone de réponse écrite (cartes « question ») |
+| Ctrl + Entrée | Depuis la zone : voir la réponse et comparer |
+| Échap | Sortir de la zone (le texte est gardé) |
 | ← → | Section précédente / suivante en lecture |
 
 ## Liste de vérification manuelle
@@ -95,11 +115,18 @@ Pour restaurer une sauvegarde : fermer l'application, puis remplacer `revisions.
 - [ ] Fin de session : chiffres cohérents, « Revoir la notion » ouvre la bonne section.
 - [ ] Fermeture puis réouverture : XP, série et cartes dues sont conservées.
 - [ ] Thème clair et thème sombre (Réglages).
+- [ ] Changer de thème et de couleur d'accent : tout change tout de suite, et le choix est gardé au redémarrage.
+- [ ] Carte « question » : écrire une réponse (Tab), Ctrl+Entrée, comparaison affichée, puis note au clavier.
+- [ ] Bibliothèque : descendre dans les tuiles, revenir par « Retour » et par le fil d'Ariane, rechercher.
+- [ ] Aide : « Copier le prompt » puis coller dans un éditeur de texte.
 - [ ] Réimport d'un pack modifié : l'historique des cartes est conservé.
 
 ## Outils de développement (version Debug uniquement)
 
 - `Revisions.exe --ecran=bibliotheque` (ou `statistiques`, `reglages`, `lecture:<id du pack>`,
-  `session:<id du pack>`) ouvre directement un écran.
+  `session:<id du pack>`, `aide:<numéro de page>`, `bibliotheque:0,1` pour descendre dans les tuiles,
+  `bibliotheque:?texte` pour une recherche) ouvre directement un écran.
+- `--theme=ocean` et `--accent=#D8498F` (ou `--accent=auto`) changent l'apparence au lancement ;
+  `--hauteur=1700` agrandit la fenêtre pour capturer un écran long.
 - Variable d'environnement `REVISIONS_DONNEES` : utilise un autre dossier de données, pour essayer
   sans toucher à son vrai historique.

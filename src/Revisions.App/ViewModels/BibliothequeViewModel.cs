@@ -2,16 +2,19 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
 using Revisions.App.Services;
+using Revisions.Core.Bibliotheque;
 using Revisions.Data;
 
 namespace Revisions.App.ViewModels;
 
 /// <summary>Une séance dans la bibliothèque, avec ses textes prêts à afficher.</summary>
-public sealed class LigneSeance(ResumeSeance seance)
+/// <param name="seance">La séance et ses compteurs.</param>
+/// <param name="emplacement">Où elle se trouve (affiché dans les résultats de recherche), ou null.</param>
+public sealed class LigneSeance(ResumeSeance seance, string? emplacement = null)
 {
     public string PackId => seance.PackId;
     public string Titre => seance.Seance;
-    public bool Lu => seance.Lu;
+    public string? Emplacement => emplacement;
     public bool ADesCartes => seance.NbCartes > 0;
     public double Maitrise => seance.NbCartes == 0 ? 0 : (double)seance.NbMaitrisees / seance.NbCartes;
 
@@ -19,7 +22,7 @@ public sealed class LigneSeance(ResumeSeance seance)
     {
         get
         {
-            var morceaux = new List<string> { seance.NbCartes == 1 ? "1 carte" : $"{seance.NbCartes} cartes" };
+            var morceaux = new List<string> { Texte.Pluriel(seance.NbCartes, "carte", "cartes") };
             if (seance.NbDues > 0) morceaux.Add($"{seance.NbDues} à revoir");
             if (seance.NbNouvelles > 0) morceaux.Add($"{seance.NbNouvelles} à découvrir");
             if (seance.NbMaitrisees > 0) morceaux.Add(Texte.Pluriel(seance.NbMaitrisees, "maîtrisée", "maîtrisées"));
@@ -28,49 +31,61 @@ public sealed class LigneSeance(ResumeSeance seance)
     }
 }
 
-/// <summary>Une partie (séquence, compétence) et ses séances.</summary>
-public sealed record GroupePartie(string Titre, IReadOnlyList<LigneSeance> Seances);
-
-/// <summary>Une matière et ses parties.</summary>
-public sealed record GroupeMatiere(string Titre, string Detail, IReadOnlyList<GroupePartie> Parties, bool Recherche)
+/// <summary>Une tuile : un niveau de la bibliothèque dans lequel on peut entrer.</summary>
+public sealed class TuileBibliotheque(NoeudBibliotheque noeud)
 {
-    // Matières dépliées par l'utilisateur : on s'en souvient tant que l'application est ouverte.
-    private static readonly HashSet<string> Ouvertes = [];
-
-    /// <summary>Vrai si la matière est dépliée (toujours pendant une recherche).</summary>
-    public bool Ouvert
-    {
-        get => Recherche || Ouvertes.Contains(Titre);
-        set
-        {
-            if (Recherche) return;
-            if (value) Ouvertes.Add(Titre); else Ouvertes.Remove(Titre);
-        }
-    }
+    public NoeudBibliotheque Noeud => noeud;
+    public string Titre => noeud.Titre;
+    public string? Etiquette => noeud.Etiquette;
+    public string Detail => $"{Texte.Pluriel(noeud.NbSeances, "séance", "séances")}  ·  {Texte.Pluriel(noeud.NbCartes, "carte", "cartes")}";
+    public string? Dues => noeud.NbDues > 0 ? $"{noeud.NbDues} à revoir" : null;
+    public double Maitrise => noeud.Maitrise;
+    public string InfoMaitrise => $"{Texte.Pluriel(noeud.NbMaitrisees, "carte maîtrisée", "cartes maîtrisées")} sur {noeud.NbCartes}";
 }
 
-/// <summary>Écran Bibliothèque : cours rangés par matière, partie et séance (US2), import (US1).</summary>
+/// <summary>Un maillon du fil d'Ariane (« Bibliothèque › Bloc 1 › B1.2 »).</summary>
+/// <param name="Titre">Titre court du niveau.</param>
+/// <param name="Profondeur">0 pour la racine, 1 pour une matière, etc.</param>
+/// <param name="EstCourant">Vrai pour le dernier maillon (le niveau affiché).</param>
+public sealed record MaillonFil(string Titre, int Profondeur, bool EstCourant);
+
+/// <summary>
+/// Écran Bibliothèque (US1, US2) : on descend de tuile en tuile (matière, compétence, séquence)
+/// jusqu'à la liste des séances. Le regroupement en niveaux est fait par
+/// <see cref="ArbreBibliotheque"/>, dans le cœur métier.
+/// </summary>
 public partial class BibliothequeViewModel : ObservableObject
 {
+    /// <summary>Nombre maximal de résultats affichés pendant une recherche.</summary>
+    private const int MaxResultats = 60;
+
+    // Dernier endroit visité : on y revient en rouvrant la bibliothèque (par exemple après une lecture).
+    private static List<string> _dernierChemin = [];
+
     private readonly MainViewModel _main;
     private readonly EtatApplication _etat;
     private readonly DepotBibliotheque _bibliotheque;
     private readonly DepotRevisions _revisions;
     private readonly ImportateurPacks _importateur;
-    private List<ResumeSeance> _seances = [];
 
-    [ObservableProperty]
-    private IReadOnlyList<GroupeMatiere> _matieres = [];
+    private List<ResumeSeance> _toutes = [];
+    private NoeudBibliotheque _racine = ArbreBibliotheque.Construire([]);
+    /// <summary>Niveaux traversés depuis la racine (vide = on est à la racine).</summary>
+    private List<NoeudBibliotheque> _chemin = [];
 
-    /// <summary>Texte de recherche : filtre les séances par titre, partie ou matière.</summary>
-    [ObservableProperty]
-    private string _recherche = "";
+    [ObservableProperty] private IReadOnlyList<MaillonFil> _fil = [];
+    [ObservableProperty] private string _titreNiveau = "";
+    [ObservableProperty] private IReadOnlyList<TuileBibliotheque> _tuiles = [];
+    [ObservableProperty] private IReadOnlyList<LigneSeance> _seances = [];
+    [ObservableProperty] private bool _peutRevenir;
+    /// <summary>Petit texte sous les résultats d'une recherche (nombre trouvé, liste tronquée…).</summary>
+    [ObservableProperty] private string? _infoRecherche;
 
-    [ObservableProperty]
-    private bool _estVide;
+    /// <summary>Texte de recherche : remplace les tuiles par la liste des séances trouvées.</summary>
+    [ObservableProperty] private string _recherche = "";
 
-    [ObservableProperty]
-    private bool _importEnCours;
+    [ObservableProperty] private bool _estVide;
+    [ObservableProperty] private bool _importEnCours;
 
     public BibliothequeViewModel(MainViewModel main, EtatApplication etat, DepotBibliotheque bibliotheque,
         DepotRevisions revisions, ImportateurPacks importateur)
@@ -83,42 +98,104 @@ public partial class BibliothequeViewModel : ObservableObject
         Charger();
     }
 
-    partial void OnRechercheChanged(string value) => Construire();
+    partial void OnRechercheChanged(string value) => Afficher();
 
+    /// <summary>Relit les séances en base et reconstruit l'arbre, en restant au même endroit.</summary>
     private void Charger()
     {
-        _seances = _bibliotheque.ListerSeances(_etat.Jour);
-        Construire();
+        _toutes = _bibliotheque.ListerSeances(_etat.Jour);
+        _racine = ArbreBibliotheque.Construire(_toutes);
+        _chemin = ArbreBibliotheque.Suivre(_racine, _dernierChemin);
+        EstVide = _toutes.Count == 0;
+        Afficher();
     }
 
-    /// <summary>Regroupe les séances (déjà triées par la requête) en matières puis en parties.</summary>
-    private void Construire()
+    /// <summary>Met à jour ce qui est affiché : les résultats d'une recherche, ou le niveau courant.</summary>
+    private void Afficher()
     {
         string filtre = Recherche.Trim();
-        bool Correspond(ResumeSeance s) =>
-            filtre.Length == 0
-            || s.Seance.Contains(filtre, StringComparison.CurrentCultureIgnoreCase)
-            || s.Partie.Contains(filtre, StringComparison.CurrentCultureIgnoreCase)
-            || s.Matiere.Contains(filtre, StringComparison.CurrentCultureIgnoreCase);
+        if (filtre.Length > 0)
+        {
+            AfficherRecherche(filtre);
+            return;
+        }
 
-        Matieres = _seances
-            .Where(Correspond)
-            .GroupBy(s => (s.Bloc, s.Matiere))
-            .Select(matiere => new GroupeMatiere(
-                // Certaines matières contiennent déjà leur bloc dans leur nom : on ne le répète pas.
-                matiere.Key.Bloc is null || matiere.Key.Matiere.StartsWith(matiere.Key.Bloc, StringComparison.CurrentCultureIgnoreCase)
-                    ? matiere.Key.Matiere
-                    : $"{matiere.Key.Bloc} – {matiere.Key.Matiere}",
-                $"{Texte.Pluriel(matiere.Count(), "séance", "séances")}, {Texte.Pluriel(matiere.Sum(s => s.NbCartes), "carte", "cartes")}"
-                + (matiere.Sum(s => s.NbDues) is > 0 and var dues ? $", {dues} à revoir" : ""),
-                matiere
-                    .GroupBy(s => s.Sequence is null ? s.Partie : $"{s.Partie} – {s.Sequence}")
-                    .Select(partie => new GroupePartie(partie.Key, partie.Select(s => new LigneSeance(s)).ToList()))
-                    .ToList(),
-                Recherche: filtre.Length > 0))
+        var niveau = _chemin.Count > 0 ? _chemin[^1] : _racine;
+        _dernierChemin = _chemin.Select(n => n.Cle).ToList();
+
+        TitreNiveau = _chemin.Count > 0 ? niveau.Titre : "";
+        Tuiles = niveau.Enfants.Select(n => new TuileBibliotheque(n)).ToList();
+        Seances = niveau.Seances.Select(s => new LigneSeance(s)).ToList();
+        PeutRevenir = _chemin.Count > 0;
+        InfoRecherche = null;
+        Fil = _chemin.Select(n => n.TitreCourt).Prepend("Bibliothèque")
+            .Select((titre, i) => new MaillonFil(titre, i, i == _chemin.Count))
             .ToList();
-        EstVide = _seances.Count == 0;
     }
+
+    private void AfficherRecherche(string filtre)
+    {
+        bool Contient(string? texte) => texte is not null && texte.Contains(filtre, StringComparison.CurrentCultureIgnoreCase);
+        var trouvees = _toutes.Where(s => Contient(s.Seance) || Contient(s.Partie) || Contient(s.Matiere) || Contient(s.Sequence)).ToList();
+
+        TitreNiveau = $"Recherche : « {filtre} »";
+        Tuiles = [];
+        Seances = trouvees.Take(MaxResultats).Select(s => new LigneSeance(s, $"{s.Matiere}  ›  {s.Partie}")).ToList();
+        PeutRevenir = false;
+        Fil = [new MaillonFil("Bibliothèque", 0, true)]; // un clic dessus quitte la recherche
+        InfoRecherche = trouvees.Count switch
+        {
+            0 => "Aucune séance ne correspond.",
+            > MaxResultats => $"{trouvees.Count} séances trouvées, les {MaxResultats} premières sont affichées : précise ta recherche pour voir les autres.",
+            _ => Texte.Pluriel(trouvees.Count, "séance trouvée", "séances trouvées") + ".",
+        };
+    }
+
+    // ---- Navigation --------------------------------------------------------------------------
+
+    /// <summary>Entre dans une tuile.</summary>
+    [RelayCommand]
+    private void Ouvrir(TuileBibliotheque tuile)
+    {
+        _chemin.Add(tuile.Noeud);
+        Afficher();
+    }
+
+    /// <summary>Remonte d'un niveau.</summary>
+    [RelayCommand]
+    private void Retour()
+    {
+        if (_chemin.Count == 0) return;
+        _chemin.RemoveAt(_chemin.Count - 1);
+        Afficher();
+    }
+
+    /// <summary>Clic sur un maillon du fil d'Ariane : on revient à ce niveau (et on quitte la recherche).</summary>
+    [RelayCommand]
+    private void AllerA(MaillonFil maillon)
+    {
+        _chemin = _chemin.Take(maillon.Profondeur).ToList();
+        if (Recherche.Length > 0) Recherche = ""; // déclenche Afficher()
+        else Afficher();
+    }
+
+#if DEBUG
+    /// <summary>Aide aux essais : descend dans l'arbre en suivant des numéros de tuile (0 = la première).</summary>
+    public void DescendreParIndices(IEnumerable<int> indices)
+    {
+        _chemin = [];
+        var noeud = _racine;
+        foreach (int indice in indices)
+        {
+            if (indice >= noeud.Enfants.Count) break;
+            noeud = noeud.Enfants[indice];
+            _chemin.Add(noeud);
+        }
+        Afficher();
+    }
+#endif
+
+    // ---- Actions sur une séance ------------------------------------------------------------
 
     [RelayCommand]
     private void Lire(LigneSeance seance) => _main.OuvrirLecture(seance.PackId);
@@ -126,6 +203,8 @@ public partial class BibliothequeViewModel : ObservableObject
     /// <summary>Révise toutes les cartes d'une séance, dans l'ordre du cours (US12).</summary>
     [RelayCommand]
     private void Reviser(LigneSeance seance) => _main.DemarrerSession(_revisions.CartesDuPack(seance.PackId), "seance");
+
+    // ---- Import ------------------------------------------------------------------------------
 
     /// <summary>Import manuel d'un ou plusieurs fichiers de pack.</summary>
     [RelayCommand]

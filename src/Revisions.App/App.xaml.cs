@@ -60,7 +60,15 @@ public partial class App : Application
         string[] morceaux = ecran.Split(':', 2);
         switch (morceaux[0])
         {
-            case "bibliotheque": principal.AllerBibliotheque(); break;
+            case "bibliotheque":
+                // « bibliotheque:0,1 » descend dans les tuiles ; « bibliotheque:?matrice » lance une recherche.
+                principal.AllerBibliotheque();
+                if (morceaux.Length > 1 && principal.VueCourante is BibliothequeViewModel bibliotheque)
+                {
+                    if (morceaux[1].StartsWith('?')) bibliotheque.Recherche = morceaux[1][1..];
+                    else bibliotheque.DescendreParIndices(morceaux[1].Split(',', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse));
+                }
+                break;
             case "statistiques": principal.AllerStatistiques(); break;
             case "reglages": principal.AllerReglages(); break;
             case "aide":

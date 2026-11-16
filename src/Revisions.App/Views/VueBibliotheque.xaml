@@ -4,7 +4,7 @@
              x:Name="Racine">
     <DockPanel Margin="28,28,28,16">
         <!-- En-tête : titre, recherche, import. -->
-        <Grid DockPanel.Dock="Top" Margin="0,0,0,16">
+        <Grid DockPanel.Dock="Top" Margin="0,0,0,12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -23,62 +23,113 @@
         <ProgressBar DockPanel.Dock="Top" IsIndeterminate="True" Height="3" Margin="0,0,0,8"
                      Visibility="{Binding ImportEnCours, Converter={StaticResource VisibleSi}}" />
 
+        <!-- Bouton Retour et fil d'Ariane cliquable. -->
+        <DockPanel DockPanel.Dock="Top" Margin="0,0,0,10">
+            <Button DockPanel.Dock="Left" Content="← Retour" Command="{Binding RetourCommand}" Padding="14,6" Margin="0,0,12,0"
+                    Visibility="{Binding PeutRevenir, Converter={StaticResource VisibleSi}}" />
+            <ItemsControl ItemsSource="{Binding Fil}" VerticalAlignment="Center">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Padding="8,4" Background="Transparent" BorderThickness="0" Cursor="Hand"
+                                    Command="{Binding DataContext.AllerACommand, ElementName=Racine}" CommandParameter="{Binding}">
+                                <TextBlock Text="{Binding Titre}">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <!-- Le niveau affiché est en gras. -->
+                                                <DataTrigger Binding="{Binding EstCourant}" Value="True">
+                                                    <Setter Property="FontWeight" Value="SemiBold" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Button>
+                            <TextBlock Text="›" VerticalAlignment="Center" Margin="2,0" Style="{StaticResource Discret}"
+                                       Visibility="{Binding EstCourant, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </DockPanel>
+
         <TextBlock DockPanel.Dock="Top" Style="{StaticResource Discret}" FontSize="15"
                    Text="Aucun cours pour l'instant. Clique sur « Importer… » pour ajouter un pack, ou vérifie le dossier des packs dans les réglages."
                    Visibility="{Binding EstVide, Converter={StaticResource VisibleSi}}" />
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Matieres}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <!-- Une matière. -->
-                        <Expander IsExpanded="{Binding Ouvert, Mode=TwoWay}" Margin="0,0,8,10">
-                            <Expander.Header>
-                                <StackPanel Margin="0,6">
-                                    <TextBlock Text="{Binding Titre}" FontSize="16" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding Detail}" Style="{StaticResource Discret}" FontSize="12" />
-                                </StackPanel>
-                            </Expander.Header>
-                            <ItemsControl ItemsSource="{Binding Parties}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <!-- Une partie et ses séances. -->
-                                        <StackPanel Margin="0,4,0,10">
-                                            <TextBlock Text="{Binding Titre}" FontWeight="SemiBold" Margin="0,0,0,6"
-                                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                                            <ItemsControl ItemsSource="{Binding Seances}">
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Grid Margin="0,5">
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="*" />
-                                                                <ColumnDefinition Width="110" />
-                                                                <ColumnDefinition Width="Auto" />
-                                                                <ColumnDefinition Width="Auto" />
-                                                            </Grid.ColumnDefinitions>
-                                                            <StackPanel>
-                                                                <TextBlock Text="{Binding Titre}" FontSize="15" TextWrapping="Wrap" />
-                                                                <TextBlock Text="{Binding Detail}" Style="{StaticResource Discret}" FontSize="12" />
-                                                            </StackPanel>
-                                                            <ProgressBar Grid.Column="1" Value="{Binding Maitrise, Mode=OneWay}" Maximum="1" Height="6"
-                                                                         VerticalAlignment="Center" Margin="12,0" ToolTip="Part des cartes maîtrisées" />
-                                                            <Button Grid.Column="2" Content="Lire" Padding="16,6" Margin="0,0,8,0" VerticalAlignment="Center"
-                                                                    Command="{Binding DataContext.LireCommand, ElementName=Racine}" CommandParameter="{Binding}" />
-                                                            <Button Grid.Column="3" Content="Réviser" Padding="16,6" VerticalAlignment="Center"
-                                                                    IsEnabled="{Binding ADesCartes}"
-                                                                    Command="{Binding DataContext.ReviserCommand, ElementName=Racine}" CommandParameter="{Binding}" />
-                                                        </Grid>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </Expander>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <StackPanel>
+                <TextBlock Text="{Binding TitreNiveau}" Style="{StaticResource SousTitre}" FontSize="19" Margin="0,2,0,10"
+                           Visibility="{Binding TitreNiveau, Converter={StaticResource VisibleSi}}" />
+
+                <!-- Tuiles des sous-niveaux. -->
+                <ItemsControl ItemsSource="{Binding Tuiles}" Margin="-6,0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Width="262" Height="158" Margin="6" Padding="16,14" Cursor="Hand"
+                                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                                    Command="{Binding DataContext.OuvrirCommand, ElementName=Racine}" CommandParameter="{Binding}">
+                                <DockPanel>
+                                    <!-- Bas de la tuile : barre de maîtrise et compteurs. -->
+                                    <ProgressBar DockPanel.Dock="Bottom" Value="{Binding Maitrise, Mode=OneWay}" Maximum="1" Height="5"
+                                                 ToolTip="{Binding InfoMaitrise}" />
+                                    <DockPanel DockPanel.Dock="Bottom" Margin="0,0,0,8">
+                                        <TextBlock DockPanel.Dock="Right" Text="{Binding Dues}" FontSize="12" FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}" />
+                                        <TextBlock Text="{Binding Detail}" FontSize="12" Style="{StaticResource Discret}" TextWrapping="NoWrap" />
+                                    </DockPanel>
+                                    <!-- Haut de la tuile : bloc (s'il y en a un) et titre. -->
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Etiquette}" FontSize="12" Style="{StaticResource Discret}" Margin="0,0,0,2"
+                                               Visibility="{Binding Etiquette, Converter={StaticResource VisibleSi}}" />
+                                    <TextBlock Text="{Binding Titre}" FontSize="15.5" FontWeight="SemiBold" TextWrapping="Wrap"
+                                               TextTrimming="CharacterEllipsis" VerticalAlignment="Top" ToolTip="{Binding Titre}" />
+                                </DockPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- Séances du niveau (ou résultats de la recherche). -->
+                <ItemsControl ItemsSource="{Binding Seances}" Margin="0,6,8,0">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource Carte}" Padding="16,10" Margin="0,0,0,8">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="110" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Emplacement}" Style="{StaticResource Discret}" FontSize="12"
+                                                   Visibility="{Binding Emplacement, Converter={StaticResource VisibleSi}}" />
+                                        <TextBlock Text="{Binding Titre}" FontSize="15" TextWrapping="Wrap" />
+                                        <TextBlock Text="{Binding Detail}" Style="{StaticResource Discret}" FontSize="12" />
+                                    </StackPanel>
+                                    <ProgressBar Grid.Column="1" Value="{Binding Maitrise, Mode=OneWay}" Maximum="1" Height="6"
+                                                 VerticalAlignment="Center" Margin="12,0" ToolTip="Part des cartes maîtrisées" />
+                                    <Button Grid.Column="2" Content="Lire" Padding="16,6" Margin="0,0,8,0" VerticalAlignment="Center"
+                                            Command="{Binding DataContext.LireCommand, ElementName=Racine}" CommandParameter="{Binding}" />
+                                    <Button Grid.Column="3" Content="Réviser" Padding="16,6" VerticalAlignment="Center"
+                                            IsEnabled="{Binding ADesCartes}"
+                                            Command="{Binding DataContext.ReviserCommand, ElementName=Racine}" CommandParameter="{Binding}" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <TextBlock Text="{Binding InfoRecherche}" Style="{StaticResource Discret}" Margin="0,4,0,0"
+                           Visibility="{Binding InfoRecherche, Converter={StaticResource VisibleSi}}" />
+            </StackPanel>
         </ScrollViewer>
     </DockPanel>
 </UserControl>

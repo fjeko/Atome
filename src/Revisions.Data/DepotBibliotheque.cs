@@ -1,25 +1,9 @@
 using System.Text.Json;
 using Dapper;
+using Revisions.Core.Bibliotheque;
 using Revisions.Core.Modeles;
 
 namespace Revisions.Data;
-
-/// <summary>Une ligne de la bibliothèque : une séance et ses compteurs.</summary>
-public sealed class ResumeSeance
-{
-    public string PackId { get; set; } = "";
-    public string? Bloc { get; set; }
-    public string Matiere { get; set; } = "";
-    public string Partie { get; set; } = "";
-    public string? Sequence { get; set; }
-    public string Seance { get; set; } = "";
-    public int? Ordre { get; set; }
-    public bool Lu { get; set; }
-    public int NbCartes { get; set; }
-    public int NbMaitrisees { get; set; }
-    public int NbDues { get; set; }
-    public int NbNouvelles { get; set; }
-}
 
 /// <summary>Une séance complète pour l'écran de lecture.</summary>
 public sealed record SeanceALire(
