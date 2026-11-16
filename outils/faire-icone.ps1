@@ -39,21 +39,17 @@ $dessinLogo = { param($dc, $taille)
     $dc.Pop()
 }
 
-# Dessin moyen, grille de 64 : arbre de competences (7 noeuds, pleins = acquis, anneaux = a debloquer).
+# Dessin moyen, grille de 64 : le meme arbre que le logo du menu (grille de 120, reduite a 0.45).
 $dessinMoyen = { param($dc, $taille)
     $dc.PushTransform((New-Object Windows.Media.ScaleTransform(($taille / 64.0), ($taille / 64.0))))
     $dc.DrawRoundedRectangle($marine, $null, (New-Object Windows.Rect(0, 0, 64, 64)), 12, 12)
-    $lien = Trait 3.2
-    $dc.DrawLine($lien, (Point 32 54), (Point 32 41))
-    $dc.DrawLine($lien, (Point 32 41), (Point 18 29))
-    $dc.DrawLine($lien, (Point 18 29), (Point 18 14))
-    $dc.DrawLine($lien, (Point 32 41), (Point 46 29))
-    $dc.DrawLine($lien, (Point 46 29), (Point 46 14))
-    $dc.DrawLine($lien, (Point 32 41), (Point 32 14))
-    $anneau = New-Object Windows.Media.Pen($cuivre, 2.6)
-    foreach ($n in @(@(32, 54), @(32, 41), @(18, 29), @(18, 11))) { $dc.DrawEllipse($cuivre, $null, (Point $n[0] $n[1]), 4.6, 4.6) }
-    foreach ($n in @(@(46, 29), @(46, 11), @(32, 11))) { $dc.DrawEllipse($marine, $anneau, (Point $n[0] $n[1]), 4.6, 4.6) }
-    $dc.Pop()
+    $dc.PushTransform((New-Object Windows.Media.MatrixTransform(0.45, 0, 0, 0.45, 5, 5)))
+    $lien = Trait 6.5
+    $dc.DrawGeometry($null, $lien, [Windows.Media.Geometry]::Parse("M60,106 L60,82 L30,60 L14,34 M30,60 L40,28 M60,82 L82.7,65.3 M60,82 L60,25 M87.3,51.4 L82.7,36.6 M94.7,52.3 L101.3,41.7"))
+    $anneau = New-Object Windows.Media.Pen($cuivre, 5.5)
+    foreach ($n in @(@(60, 106), @(60, 82), @(30, 60), @(14, 34), @(40, 28))) { $dc.DrawEllipse($cuivre, $null, (Point $n[0] $n[1]), 9, 9) }
+    foreach ($n in @(@(60, 16), @(90, 60), @(80, 28), @(106, 34))) { $dc.DrawEllipse($null, $anneau, (Point $n[0] $n[1]), 8, 8) }
+    $dc.Pop(); $dc.Pop()
 }
 
 # Dessin simple, grille de 32 : version epuree (5 noeuds) pour les petites tailles.

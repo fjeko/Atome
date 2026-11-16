@@ -27,20 +27,23 @@
     <Viewbox>
         <Canvas Width="120" Height="120">
             <!-- Liens (ils s'arrêtent au bord des nœuds creux). -->
-            <Path Style="{StaticResource Lien}" Data="M60,104 L60,76" />
-            <Path Style="{StaticResource Lien}" Data="M60,76 L34,54 L34,26" />
-            <Path Style="{StaticResource Lien}" Data="M60,76 L79.5,58.5" />
-            <Path Style="{StaticResource Lien}" Data="M60,76 L60,33" />
-            <Path Style="{StaticResource Lien}" Data="M86,47 L86,33" />
+            <Path Style="{StaticResource Lien}" Data="M60,106 L60,82 L30,60 L14,34" />
+            <Path Style="{StaticResource Lien}" Data="M30,60 L40,28" />
+            <Path Style="{StaticResource Lien}" Data="M60,82 L82.7,65.3" />
+            <Path Style="{StaticResource Lien}" Data="M60,82 L60,25" />
+            <Path Style="{StaticResource Lien}" Data="M87.3,51.4 L82.7,36.6" />
+            <Path Style="{StaticResource Lien}" Data="M94.7,52.3 L101.3,41.7" />
 
             <!-- Nœuds (coin haut-gauche = centre − 9). -->
-            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="51" Canvas.Top="95" />
-            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="51" Canvas.Top="67" />
-            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="25" Canvas.Top="45" />
-            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="25" Canvas.Top="8" />
-            <Ellipse Style="{StaticResource NoeudCreux}" Canvas.Left="77" Canvas.Top="45" />
-            <Ellipse Style="{StaticResource NoeudCreux}" Canvas.Left="77" Canvas.Top="8" />
-            <Ellipse Style="{StaticResource NoeudCreux}" Canvas.Left="51" Canvas.Top="15" />
+            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="51" Canvas.Top="97" />
+            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="51" Canvas.Top="73" />
+            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="21" Canvas.Top="51" />
+            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="5" Canvas.Top="25" />
+            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="31" Canvas.Top="19" />
+            <Ellipse Style="{StaticResource NoeudCreux}" Canvas.Left="51" Canvas.Top="7" />
+            <Ellipse Style="{StaticResource NoeudCreux}" Canvas.Left="81" Canvas.Top="51" />
+            <Ellipse Style="{StaticResource NoeudCreux}" Canvas.Left="71" Canvas.Top="19" />
+            <Ellipse Style="{StaticResource NoeudCreux}" Canvas.Left="97" Canvas.Top="25" />
         </Canvas>
     </Viewbox>
 </UserControl>
