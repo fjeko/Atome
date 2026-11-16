@@ -37,6 +37,8 @@ public sealed class TuileBibliotheque(NoeudBibliotheque noeud)
     public NoeudBibliotheque Noeud => noeud;
     public string Titre => noeud.Titre;
     public string? Etiquette => noeud.Etiquette;
+    /// <summary>Tracé du pictogramme de la matière (null pour les autres niveaux).</summary>
+    public string? Dessin => noeud.Icone is { } icone ? DessinsPictogrammes.Pour(icone) : null;
     public string Detail => $"{Texte.Pluriel(noeud.NbSeances, "séance", "séances")}  ·  {Texte.Pluriel(noeud.NbCartes, "carte", "cartes")}";
     public string? Dues => noeud.NbDues > 0 ? $"{noeud.NbDues} à revoir" : null;
     public double Maitrise => noeud.Maitrise;

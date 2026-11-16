@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Revisions.App.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:Revisions.App.Views"
         Title="Révisions BTS SIO"
         Width="1180" Height="780" MinWidth="900" MinHeight="600"
         WindowStartupLocation="CenterScreen">
@@ -21,8 +22,7 @@
                 Visibility="{Binding NavigationVisible, Converter={StaticResource VisibleSi}}">
             <DockPanel>
                 <!-- Logo, puis nom de l'application. -->
-                <Image DockPanel.Dock="Top" Source="/Ressources/logo.png" Width="104" Height="104"
-                       RenderOptions.BitmapScalingMode="HighQuality" />
+                <v:LogoArbre DockPanel.Dock="Top" Width="112" Height="112" />
                 <TextBlock DockPanel.Dock="Top" Text="Révisions" FontSize="22" FontWeight="SemiBold"
                            HorizontalAlignment="Center" Margin="0,12,0,22" />
 

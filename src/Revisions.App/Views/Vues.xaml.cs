@@ -31,6 +31,11 @@ public partial class VueStatistiques : UserControl
     public VueStatistiques() => InitializeComponent();
 }
 
+public partial class LogoArbre : UserControl
+{
+    public LogoArbre() => InitializeComponent();
+}
+
 public partial class VueAide : UserControl
 {
     public VueAide() => InitializeComponent();

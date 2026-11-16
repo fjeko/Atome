@@ -73,7 +73,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button Height="186" Margin="7" Padding="20,18" Cursor="Hand" HorizontalAlignment="Stretch"
+                            <Button Height="188" Margin="7" Padding="20,18" Cursor="Hand" HorizontalAlignment="Stretch"
                                     HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
                                     Command="{Binding DataContext.OuvrirCommand, ElementName=Racine}" CommandParameter="{Binding}">
                                 <DockPanel>
@@ -85,10 +85,20 @@
                                                    Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}" />
                                         <TextBlock Text="{Binding Detail}" FontSize="13" Style="{StaticResource Discret}" TextWrapping="NoWrap" />
                                     </DockPanel>
-                                    <!-- Haut de la tuile : bloc (s'il y en a un) et titre. -->
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Etiquette}" FontSize="13" Style="{StaticResource Discret}" Margin="0,0,0,4"
-                                               Visibility="{Binding Etiquette, Converter={StaticResource VisibleSi}}" />
-                                    <TextBlock Text="{Binding Titre}" FontSize="17.5" FontWeight="SemiBold" TextWrapping="Wrap"
+                                    <!-- Pictogramme de la matière, dans le coin : un dessin au trait sur une pastille
+                                         à peine teintée, pour repérer la matière sans alourdir la tuile. -->
+                                    <!-- Il partage une ligne avec le nom du bloc : le titre garde ainsi toute la largeur. -->
+                                    <DockPanel DockPanel.Dock="Top" Margin="0,-2,0,8"
+                                               Visibility="{Binding Dessin, Converter={StaticResource VisibleSi}}">
+                                        <Grid DockPanel.Dock="Right" Width="42" Height="42">
+                                            <Border CornerRadius="10" Background="{DynamicResource AccentFillColorDefaultBrush}" Opacity="0.16" />
+                                            <Path Data="{Binding Dessin}" Width="24" Height="24" Stretch="Uniform"
+                                                  Stroke="{DynamicResource AccentTextFillColorPrimaryBrush}" StrokeThickness="1.7"
+                                                  StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
+                                        </Grid>
+                                        <TextBlock Text="{Binding Etiquette}" FontSize="13" Style="{StaticResource Discret}" VerticalAlignment="Center" />
+                                    </DockPanel>
+                                    <TextBlock Text="{Binding Titre}" FontSize="16.5" FontWeight="SemiBold" TextWrapping="Wrap"
                                                TextTrimming="CharacterEllipsis" VerticalAlignment="Top" ToolTip="{Binding Titre}" />
                                 </DockPanel>
                             </Button>

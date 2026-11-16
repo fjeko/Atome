@@ -34,6 +34,8 @@ public sealed class NoeudBibliotheque
     public required string TitreCourt { get; init; }
     /// <summary>Petite mention au-dessus du titre (le bloc d'une matière), ou null.</summary>
     public string? Etiquette { get; init; }
+    /// <summary>Pictogramme de la tuile (seulement pour les matières), ou null.</summary>
+    public Pictogramme? Icone { get; init; }
 
     public List<NoeudBibliotheque> Enfants { get; } = [];
     public List<ResumeSeance> Seances { get; } = [];
@@ -144,6 +146,7 @@ public static partial class ArbreBibliotheque
             Titre = titreMatiere,
             TitreCourt = courtMatiere,
             Etiquette = string.IsNullOrWhiteSpace(s.Bloc) ? null : s.Bloc,
+            Icone = Pictogrammes.PourMatiere(s.Matiere),
         };
 
         // Compétence puis partie, toutes deux tirées du champ « partie ».
