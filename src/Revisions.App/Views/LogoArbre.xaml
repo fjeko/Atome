@@ -1,77 +1,54 @@
 <UserControl x:Class="Revisions.App.Views.LogoArbre"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- Logo de l'application, redessiné en tracés : pas de fond, traits épais, net à toutes les tailles.
-         L'arbre garde sa couleur cuivre ; le livre prend la couleur du texte, pour rester visible
-         en thème clair comme en thème sombre. Grille de dessin : 120 × 120. -->
+    <!-- Logo : un livre ouvert dont sort un arbre de compétences (skill tree).
+         Les branches sont des pistes de circuit imprimé (angles à 45°) qui finissent par des nœuds :
+         pleins = compétences acquises, creux = à débloquer. Pas de fond, traits épais, couleur d'accent du thème.
+         Grille de dessin : 120 × 120. -->
     <UserControl.Resources>
-        <SolidColorBrush x:Key="Cuivre" Color="#CC8553" />
-        <!-- Trait de l'arbre. -->
-        <Style x:Key="Branche" TargetType="Path">
-            <Setter Property="Stroke" Value="{StaticResource Cuivre}" />
-            <Setter Property="StrokeThickness" Value="5" />
+        <Style x:Key="Piste" TargetType="Path">
+            <Setter Property="Stroke" Value="{DynamicResource AccentFillColorDefaultBrush}" />
+            <Setter Property="StrokeThickness" Value="6" />
+            <Setter Property="StrokeLineJoin" Value="Round" />
             <Setter Property="StrokeStartLineCap" Value="Round" />
             <Setter Property="StrokeEndLineCap" Value="Round" />
         </Style>
-        <!-- Nœud au bout d'une branche : un anneau, comme une pastille de circuit. -->
-        <Style x:Key="Noeud" TargetType="Ellipse">
+        <Style x:Key="NoeudPlein" TargetType="Ellipse">
             <Setter Property="Width" Value="15" />
             <Setter Property="Height" Value="15" />
-            <Setter Property="Stroke" Value="{StaticResource Cuivre}" />
-            <Setter Property="StrokeThickness" Value="4" />
+            <Setter Property="Fill" Value="{DynamicResource AccentFillColorDefaultBrush}" />
         </Style>
-        <!-- Feuille : une amande pleine, tournée selon sa branche. -->
-        <Style x:Key="Feuille" TargetType="Path">
-            <Setter Property="Fill" Value="{StaticResource Cuivre}" />
-            <Setter Property="Data" Value="M0,0 C4,-6.5 12,-6.5 17,0 C12,6.5 4,6.5 0,0 Z" />
+        <Style x:Key="NoeudCreux" TargetType="Ellipse">
+            <Setter Property="Width" Value="15" />
+            <Setter Property="Height" Value="15" />
+            <Setter Property="Stroke" Value="{DynamicResource AccentFillColorDefaultBrush}" />
+            <Setter Property="StrokeThickness" Value="4.5" />
         </Style>
-        <!-- Page du livre. -->
-        <Style x:Key="Page" TargetType="Path">
+        <!-- Livre : suit la couleur du texte pour rester visible en thème clair comme sombre. -->
+        <Style x:Key="Livre" TargetType="Path" BasedOn="{StaticResource Piste}">
             <Setter Property="Stroke" Value="{DynamicResource TextFillColorPrimaryBrush}" />
-            <Setter Property="StrokeThickness" Value="5" />
-            <Setter Property="StrokeStartLineCap" Value="Round" />
-            <Setter Property="StrokeEndLineCap" Value="Round" />
-            <Setter Property="Opacity" Value="0.88" />
         </Style>
     </UserControl.Resources>
 
     <Viewbox>
         <Canvas Width="120" Height="120">
-            <!-- Livre ouvert : deux pages de chaque côté. -->
-            <Path Style="{StaticResource Page}" Data="M5,92 Q34,89 55,107" />
-            <Path Style="{StaticResource Page}" Data="M15,81 Q38,80 55,96" />
-            <Path Style="{StaticResource Page}" Data="M115,92 Q86,89 65,107" />
-            <Path Style="{StaticResource Page}" Data="M105,81 Q82,80 65,96" />
+            <!-- Livre ouvert : deux pages qui se rejoignent au milieu. -->
+            <Path Style="{StaticResource Livre}" Data="M10,78 L10,98 L60,110 L110,98 L110,78" />
+            <Path Style="{StaticResource Livre}" Data="M10,78 L60,90 L110,78" />
 
-            <!-- Tronc et branches. -->
-            <Path Style="{StaticResource Branche}" StrokeThickness="6.5" Data="M60,110 C60,90 59,70 60,52" />
-            <Path Style="{StaticResource Branche}" Data="M60,52 C58,42 62,34 60,26" />
-            <Path Style="{StaticResource Branche}" Data="M60,66 C53,53 45,45 36,40" />
-            <Path Style="{StaticResource Branche}" Data="M60,66 C67,53 75,45 84,40" />
-            <Path Style="{StaticResource Branche}" Data="M60,82 C48,68 35,62 23,60" />
-            <Path Style="{StaticResource Branche}" Data="M60,82 C72,68 85,62 97,60" />
+            <!-- Tronc, puis pistes à 45°. -->
+            <Path Style="{StaticResource Piste}" Data="M60,90 L60,22" />
+            <Path Style="{StaticResource Piste}" Data="M60,84 L38,62 L25,62" />
+            <Path Style="{StaticResource Piste}" Data="M60,84 L82,62 L95,62" />
+            <Path Style="{StaticResource Piste}" Data="M60,56 L42,38 L42,24" />
+            <Path Style="{StaticResource Piste}" Data="M60,56 L78,38 L78,24" />
 
-            <!-- Nœuds (le coin haut-gauche de chaque anneau est donné par Canvas.Left / Top). -->
-            <Ellipse Style="{StaticResource Noeud}" Canvas.Left="52.5" Canvas.Top="9" />
-            <Ellipse Style="{StaticResource Noeud}" Canvas.Left="22" Canvas.Top="28" />
-            <Ellipse Style="{StaticResource Noeud}" Canvas.Left="83" Canvas.Top="28" />
-            <Ellipse Style="{StaticResource Noeud}" Canvas.Left="7" Canvas.Top="52" />
-            <Ellipse Style="{StaticResource Noeud}" Canvas.Left="98" Canvas.Top="52" />
-
-            <!-- Feuilles. -->
-            <!-- Chaque feuille part du point (Left, Top) et s'allonge dans la direction de l'angle. -->
-            <Path Style="{StaticResource Feuille}" Canvas.Left="57" Canvas.Top="46">
-                <Path.RenderTransform><RotateTransform Angle="-140" /></Path.RenderTransform>
-            </Path>
-            <Path Style="{StaticResource Feuille}" Canvas.Left="63" Canvas.Top="46">
-                <Path.RenderTransform><RotateTransform Angle="-40" /></Path.RenderTransform>
-            </Path>
-            <Path Style="{StaticResource Feuille}" Canvas.Left="44" Canvas.Top="70">
-                <Path.RenderTransform><RotateTransform Angle="-175" /></Path.RenderTransform>
-            </Path>
-            <Path Style="{StaticResource Feuille}" Canvas.Left="76" Canvas.Top="70">
-                <Path.RenderTransform><RotateTransform Angle="-5" /></Path.RenderTransform>
-            </Path>
+            <!-- Nœuds : pleins = acquis, creux = à débloquer (coin haut-gauche = centre − 7,5). -->
+            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="52.5" Canvas.Top="7" />
+            <Ellipse Style="{StaticResource NoeudCreux}" Canvas.Left="34.5" Canvas.Top="9" />
+            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="70.5" Canvas.Top="9" />
+            <Ellipse Style="{StaticResource NoeudPlein}" Canvas.Left="10" Canvas.Top="54.5" />
+            <Ellipse Style="{StaticResource NoeudCreux}" Canvas.Left="95" Canvas.Top="54.5" />
         </Canvas>
     </Viewbox>
 </UserControl>
