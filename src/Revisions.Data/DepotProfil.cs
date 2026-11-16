@@ -122,6 +122,13 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees)
         set => EcrireValeur("objectif_bonus_jour", value is { } j ? BaseDeDonnees.Iso(j) : null);
     }
 
+    /// <summary>Dernier jour où l'application a été ouverte (sert au message de la mascotte).</summary>
+    public DateOnly? DernierJourOuverture
+    {
+        get => BaseDeDonnees.Jour(LireValeur("derniere_ouverture"));
+        set => EcrireValeur("derniere_ouverture", value is { } j ? BaseDeDonnees.Iso(j) : null);
+    }
+
     // ---- Activité ------------------------------------------------------------------------
 
     /// <summary>Tous les jours où au moins une carte a été révisée.</summary>

@@ -40,6 +40,41 @@ public partial class AccueilViewModel : ObservableObject
     public string SerieDetail { get; }
     public IReadOnlyList<JourDeSemaine> Semaine { get; }
 
+    // ---- Mascotte : un message par ouverture de l'application (pas à chaque retour sur l'accueil) ----
+    private static string? _messageOuverture;
+    private static string _expressionOuverture = "content";
+
+    private static readonly (string Message, string Expression)[] PremieresOuvertures =
+    {
+        ("Bonjour ! Prêt à apprendre ?", "content"),
+        ("Coucou ! Content que t'aies ouvert l'application !", "joie"),
+        ("Salut ! On s'y met tranquillement ?", "clin"),
+        ("Hello ! Un petit coup de cerveau aujourd'hui ?", "content"),
+        ("Te revoilà ! On fait pousser l'arbre ?", "clin"),
+    };
+
+    private static readonly (string Message, string Expression)[] OuverturesDuMemeJour =
+    {
+        ("Ça faisait longtemps ! Non, j'déconne. On s'y remet ?", "malin"),
+        ("Déjà de retour ? J'adore. On s'y remet ?", "joie"),
+        ("Tu m'as manqué ! Bon, depuis tout à l'heure. On s'y remet ?", "malin"),
+    };
+
+    /// <summary>Phrase dite par la mascotte (la même tant que l'application reste ouverte).</summary>
+    public string MessageMascotte => _messageOuverture!;
+    /// <summary>Expression de la mascotte : content, clin, joie ou malin.</summary>
+    public string ExpressionMascotte => _expressionOuverture;
+
+    /// <summary>Choisit le message à la première visite de l'accueil après le lancement.</summary>
+    private static void ChoisirMessage(DepotProfil profil, DateOnly jour)
+    {
+        if (_messageOuverture is not null) return;
+        bool dejaOuvert = profil.DernierJourOuverture == jour;
+        profil.DernierJourOuverture = jour;
+        var choix = dejaOuvert ? OuverturesDuMemeJour : PremieresOuvertures;
+        (_messageOuverture, _expressionOuverture) = choix[Random.Shared.Next(choix.Length)];
+    }
+
     public AccueilViewModel(MainViewModel main, EtatApplication etat, DepotRevisions revisions, DepotProfil profil)
     {
         _main = main;
@@ -47,6 +82,7 @@ public partial class AccueilViewModel : ObservableObject
         _revisions = revisions;
 
         var jour = etat.Jour;
+        ChoisirMessage(profil, jour);
         var reglages = etat.Reglages;
         var joursActifs = profil.JoursActifs();
         int faites = profil.CartesFaites(jour);
