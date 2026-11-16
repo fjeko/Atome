@@ -39,16 +39,22 @@ $dessinLogo = { param($dc, $taille)
     $dc.Pop()
 }
 
-# Dessin moyen, grille de 64 : le meme arbre que le logo du menu (grille de 120, reduite a 0.45).
+# Dessin moyen, grille de 64 : le meme arbre que le logo du menu (grille de 120, reduite a 0.45), style Arc Raiders.
+$gris = Pinceau 0x6B 0x7A 0x90
 $dessinMoyen = { param($dc, $taille)
     $dc.PushTransform((New-Object Windows.Media.ScaleTransform(($taille / 64.0), ($taille / 64.0))))
     $dc.DrawRoundedRectangle($marine, $null, (New-Object Windows.Rect(0, 0, 64, 64)), 12, 12)
     $dc.PushTransform((New-Object Windows.Media.MatrixTransform(0.45, 0, 0, 0.45, 5, 5)))
-    $lien = Trait 6.5
-    $dc.DrawGeometry($null, $lien, [Windows.Media.Geometry]::Parse("M60,106 L60,82 L30,60 L14,34 M30,60 L40,28 M60,82 L82.7,65.3 M60,82 L60,25 M87.3,51.4 L82.7,36.6 M94.7,52.3 L101.3,41.7"))
-    $anneau = New-Object Windows.Media.Pen($cuivre, 5.5)
-    foreach ($n in @(@(60, 106), @(60, 82), @(30, 60), @(14, 34), @(40, 28))) { $dc.DrawEllipse($cuivre, $null, (Point $n[0] $n[1]), 9, 9) }
-    foreach ($n in @(@(60, 16), @(90, 60), @(80, 28), @(106, 34))) { $dc.DrawEllipse($null, $anneau, (Point $n[0] $n[1]), 8, 8) }
+    # Branches verrouillees (fines, grises) puis troncs et branches debloques.
+    $fin = New-Object Windows.Media.Pen($gris, 4.5); $fin.StartLineCap = 'Round'; $fin.EndLineCap = 'Round'
+    $dc.DrawGeometry($null, $fin, [Windows.Media.Geometry]::Parse("M46,38 L46,23 M74,38 L74,21 M25,73 L31,57.5 M98,72 L108,57.5 M94,73 L90,56.5"))
+    $dc.DrawGeometry($null, (Trait 7), [Windows.Media.Geometry]::Parse(
+        "M60,118 L60,86 M60,66 C60,56 46,56 46,50 M60,66 C60,56 74,56 74,50 M36,118 C36,104 22,102 22,88 M22,72 C22,66 12,64 12,57.5 M84,118 C84,104 98,102 98,88"))
+    $anneau = New-Object Windows.Media.Pen($cuivre, 5)
+    $verrou = New-Object Windows.Media.Pen($gris, 4.5)
+    foreach ($n in @(@(60, 76, 10), @(46, 44, 6), @(22, 80, 8), @(12, 52, 5.5))) { $dc.DrawEllipse($cuivre, $null, (Point $n[0] $n[1]), $n[2], $n[2]) }
+    foreach ($n in @(@(74, 44, 6), @(98, 80, 8))) { $dc.DrawEllipse($null, $anneau, (Point $n[0] $n[1]), $n[2], $n[2]) }
+    foreach ($n in @(@(46, 16, 7), @(74, 14, 7), @(32, 52, 5.5), @(110, 52, 5.5), @(89, 51, 5.5))) { $dc.DrawEllipse($null, $verrou, (Point $n[0] $n[1]), $n[2], $n[2]) }
     $dc.Pop(); $dc.Pop()
 }
 
