@@ -1,8 +1,29 @@
-# Atome
+<p align="center">
+  <img src="docs/images/logo.png" alt="Logo Atome" width="140">
+</p>
+
+<h1 align="center">Atome</h1>
+
+<p align="center"><em>Tes révisions, at home.</em></p>
+
+<p align="center">
+  <a href="../../releases/latest"><strong>⬇ Télécharger Atome</strong></a> ·
+  <a href="#créer-ses-propres-packs">Créer ses packs</a> ·
+  <a href="../../issues">Signaler un bug</a>
+</p>
 
 > Application Windows de révision pour le **BTS SIO** : tu importes tes cours sous forme de « packs »,
 > tu les lis dans l'application (Markdown et formules LaTeX, hors ligne), puis tu révises avec des cartes
 > planifiées par **répétition espacée**, avec une gamification qui ne punit jamais une absence.
+
+<p align="center">
+  <img src="docs/images/lecture.png" alt="Lecture d'un cours avec formule et tableau" width="49%">
+  <img src="docs/images/session.png" alt="Session de révision avec cartes" width="49%">
+</p>
+<p align="center">
+  <img src="docs/images/bibliotheque.png" alt="Bibliothèque en tuiles" width="49%">
+  <img src="docs/images/reglages.png" alt="Réglages et thèmes" width="49%">
+</p>
 
 **Version de test** : un bug, une idée ? Ouvre un [Issue](../../issues) sur ce dépôt.
 
