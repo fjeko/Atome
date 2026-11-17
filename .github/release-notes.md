@@ -17,3 +17,9 @@ Le code est entièrement visible dans ce dépôt si tu veux vérifier.
 Aucun cours n'est fourni. Essaie d'abord avec le pack d'exemple (`samples/exemple.json`), puis lis la section « Créer ses propres packs » du README.
 
 ## Nouveautés
+- **Mise à jour automatique** : Atome propose lui-même les nouvelles versions. **C'est la dernière installation à faire à la main** : les prochaines se feront depuis l'application.
+- **Signalement d'erreurs** : si quelque chose plante, tu peux envoyer le rapport en un clic.
+- **TD en groupe** : le même TD à plusieurs, chacun sur son PC, avec un code à partager.
+- **Planning** : import direct de l'Excel de planning de l'organisme de formation.
+- **Démarrage** : un accueil qui règle les premières cartes sur ton niveau.
+- **Partage** : export et import de ton contenu dans un seul fichier `.atome`.
