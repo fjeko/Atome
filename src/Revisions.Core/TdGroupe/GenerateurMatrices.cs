@@ -44,17 +44,11 @@ public sealed class GenerateurMatrices : IGenerateurTd
         if (!VersionsPrisesEnCharge.Contains(p.Version))
             throw new TdImpossibleException("Version du générateur de matrices inconnue : mets Atome à jour.");
 
-        var r = new GenerateurAleatoire(GraineInterne(p));
+        var r = new GenerateurAleatoire(p.GraineInterne);
         var exercices = ChoisirGenres(r, p.Nombre).Select(g => Creer(g, r, p.Niveau)).ToList();
         return new Td(p, CodeTd.Ecrire(p), $"Matrices · {NomsNiveaux[p.Niveau - 1].ToLowerInvariant()}",
             exercices, EmpreinteTd.Calculer(exercices));
     }
-
-    /// <summary>
-    /// Graine du générateur : la graine du code, le niveau et le nombre d'exercices réunis sur 64 bits,
-    /// pour que deux TD de même graine mais de niveaux différents n'aient pas les mêmes tirages.
-    /// </summary>
-    private static ulong GraineInterne(ParametresTd p) => ((ulong)p.Graine << 16) | ((ulong)p.Niveau << 8) | (ulong)p.Nombre;
 
     /// <summary>
     /// Choisit les sortes d'exercices : chaque tour complet passe par toutes les sortes, dans l'ordre du cours ;

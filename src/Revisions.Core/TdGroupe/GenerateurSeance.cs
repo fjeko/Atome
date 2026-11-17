@@ -37,7 +37,7 @@ public sealed class GenerateurSeance(Func<string, ContenuSeance?> charger) : IGe
         if (candidates.Count == 0)
             throw new TdImpossibleException("Cette séance n'a pas de carte « exercice » ou « QCM » à ce niveau. Choisis un niveau plus élevé ou une autre séance.");
 
-        var r = new GenerateurAleatoire(((ulong)p.Graine << 16) | ((ulong)p.Niveau << 8) | (ulong)p.Nombre);
+        var r = new GenerateurAleatoire(p.GraineInterne);
         r.Melanger(candidates);
         var exercices = candidates.Take(p.Nombre).Select(c => Convertir(c, r, contenu)).ToList();
 

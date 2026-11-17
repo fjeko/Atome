@@ -11,7 +11,15 @@ namespace Revisions.Core.TdGroupe;
 /// <param name="Nombre">Nombre d'exercices.</param>
 /// <param name="Graine">Graine du hasard (0 à 9999).</param>
 /// <param name="PackId">Pour un TD « séance » : l'identifiant du pack (sinon null).</param>
-public sealed record ParametresTd(string Type, int Version, int Niveau, int Nombre, int Graine, string? PackId = null);
+public sealed record ParametresTd(string Type, int Version, int Niveau, int Nombre, int Graine, string? PackId = null)
+{
+    /// <summary>
+    /// Graine du générateur aléatoire : la graine du code, le niveau et le nombre d'exercices réunis sur 64 bits,
+    /// pour que deux TD de même graine mais de niveaux différents n'aient pas les mêmes tirages.
+    /// NE PAS MODIFIER : tous les TD déjà partagés changeraient.
+    /// </summary>
+    public ulong GraineInterne => ((ulong)(uint)Graine << 16) | ((ulong)(uint)Niveau << 8) | (uint)Nombre;
+}
 
 /// <summary>Un TD généré : la liste des exercices à faire ensemble.</summary>
 /// <param name="Code">Code à dicter aux camarades.</param>
