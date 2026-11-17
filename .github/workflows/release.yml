@@ -1,0 +1,54 @@
+# Fabrique et publie automatiquement une Release quand on pousse un tag de version (ex. v0.2.0).
+#
+#   git tag v0.2.0
+#   git push origin v0.2.0
+#
+# Etapes : compilation, tests, installateur (Inno Setup), ZIP portable, puis creation de la Release
+# avec les deux fichiers. Les versions 0.x sont marquees "pre-release".
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write   # necessaire pour creer la Release
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Tests
+        run: dotnet test --nologo -v q
+
+      - name: Installer Inno Setup
+        run: choco install innosetup -y --no-progress
+
+      - name: Fabriquer le setup et le ZIP portable
+        shell: pwsh
+        run: |
+          $version = "${{ github.ref_name }}".TrimStart("v")
+          ./creer-setup.ps1 -Version $version
+
+      - name: Creer la Release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $version = $tag.TrimStart("v")
+          $options = @()
+          if ($version.StartsWith("0.")) { $options += "--prerelease" }
+          gh release create $tag `
+            "installateur/sortie/Atome-Setup-$version.exe" `
+            "installateur/sortie/Atome-portable.zip" `
+            --title "Atome $version" `
+            --notes-file .github/release-notes.md `
+            --generate-notes `
+            @options
