@@ -45,6 +45,53 @@ public sealed class DepotPlanning(BaseDeDonnees baseDeDonnees, TimeProvider horl
         return new ResultatImportPlanning(source, lecture, true);
     }
 
+    /// <summary>Id du planning actif, ou null.</summary>
+    private string? IdActif()
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.ExecuteScalar<string?>(
+            "SELECT p.id FROM planning p JOIN reglage r ON r.cle = @CleActif AND r.valeur = p.id", new { CleActif });
+    }
+
+    /// <summary>
+    /// Nombre de dates personnelles du planning actif qui s'appliqueraient encore au planning <paramref name="nouveau"/>
+    /// (même période ou même devoir : même matière et même libellé ou code).
+    /// </summary>
+    public int SurchargesConservees(PlanningCned nouveau)
+    {
+        if (IdActif() is not { } actif) return 0;
+        var cles = ClesDe(nouveau);
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.Query<string>("SELECT element FROM planning_surcharge WHERE planning_id = @actif", new { actif }).Count(cles.Contains);
+    }
+
+    private static HashSet<string> ClesDe(PlanningCned planning) =>
+        planning.Periodes.Select(p => p.Cle).Concat(planning.Devoirs.Select(d => d.Cle)).ToHashSet();
+
+    /// <summary>
+    /// Importe un planning et le rend actif en remplaçant l'actuel. Les dates personnelles des éléments identiques
+    /// (même matière et même libellé ou code) sont gardées : avec le même id elles sont déjà là, avec un autre id
+    /// elles sont recopiées. Rien n'est supprimé de l'ancien planning.
+    /// </summary>
+    public ResultatImportPlanning Remplacer(string json, string source)
+    {
+        string? ancien = IdActif();
+        var resultat = Importer(json, source, activer: true);
+        if (!resultat.Enregistre || ancien is null || resultat.Lecture.Planning is not { } nouveau || ancien == nouveau.Id) return resultat;
+
+        var cles = ClesDe(nouveau);
+        using var connexion = baseDeDonnees.Ouvrir();
+        using var transaction = connexion.BeginTransaction();
+        var existantes = connexion.Query<(string Element, string Debut, string? Fin)>(
+            "SELECT element, debut, fin FROM planning_surcharge WHERE planning_id = @ancien", new { ancien }, transaction);
+        foreach (var s in existantes.Where(s => cles.Contains(s.Element)))
+            connexion.Execute(
+                "INSERT OR IGNORE INTO planning_surcharge (planning_id, element, debut, fin) VALUES (@id, @element, @debut, @fin)",
+                new { id = nouveau.Id, element = s.Element, debut = s.Debut, fin = s.Fin }, transaction);
+        transaction.Commit();
+        return resultat;
+    }
+
     /// <summary>
     /// Import automatique au démarrage : chaque fichier .json du dossier « planning » est lu.
     /// Un fichier identique à celui déjà en base est ignoré (rien à faire).

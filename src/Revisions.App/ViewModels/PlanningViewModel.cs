@@ -24,6 +24,7 @@ public partial class PlanningViewModel : ObservableObject
     private readonly MainViewModel _main;
     private readonly DepotPlanning _depot;
     private readonly DateOnly _jour;
+    private readonly DepotBibliotheque _bibliotheque;
     private readonly PlanningCned? _original;
     private bool _chargement = true;
 
@@ -63,6 +64,7 @@ public partial class PlanningViewModel : ObservableObject
         _main = main;
         _depot = depot;
         _jour = etat.Jour;
+        _bibliotheque = bibliotheque;
 
         var lecture = depot.LireActif();
         _original = lecture?.Planning;
@@ -171,6 +173,116 @@ public partial class PlanningViewModel : ObservableObject
             return;
         }
         _main.AllerPlanning();
+    }
+
+    // ---- Import de l'Excel du CNED ----------------------------------------------------------------
+
+    /// <summary>Aperçu de l'import de l'Excel, affiché avant de valider (null : rien en cours).</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(ApercuVisible))]
+    private ApercuImportExcel? _apercu;
+
+    public bool ApercuVisible => Apercu is not null;
+
+    /// <summary>
+    /// Bouton « Importer l'Excel du CNED » : lit le fichier, le convertit en planning et montre un aperçu.
+    /// Rien n'est enregistré avant « Valider l'import ».
+    /// </summary>
+    [RelayCommand]
+    private void ImporterExcel()
+    {
+        var dialogue = new OpenFileDialog { Title = "Importer l'Excel du CNED", Filter = "Excel (*.xlsx)|*.xlsx" };
+        if (dialogue.ShowDialog() != true) return;
+        MessageImport = null;
+        Apercu = null;
+
+        ResultatExcelCned resultat;
+        try
+        {
+            // FileShare.ReadWrite : le fichier peut être resté ouvert dans Excel.
+            using var flux = new FileStream(dialogue.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            resultat = ImporteurExcelCned.Convertir(flux, dialogue.FileName, _jour);
+        }
+        catch (IOException e)
+        {
+            MessageImport = "Le fichier n'a pas pu être lu : " + e.Message;
+            return;
+        }
+        if (resultat.Planning is not { } planning)
+        {
+            MessageImport = "Ce fichier n'a pas été importé :\n• " + string.Join("\n• ", resultat.Erreurs);
+            return;
+        }
+
+        var ids = _bibliotheque.ListerSeances(_jour).Select(s => s.PackId).ToList();
+        var avertissements = resultat.Avertissements.Concat(LecteurPlanning.VerifierCibles(planning, ids)).ToList();
+        int conservees = _depot.SurchargesConservees(planning);
+        Apercu = new ApercuImportExcel(planning, resultat.Json!, dialogue.FileName, avertissements, conservees, _original?.Titre);
+    }
+
+    /// <summary>Valide l'aperçu : le planning remplace l'actif, les dates personnelles des éléments identiques sont gardées.</summary>
+    [RelayCommand]
+    private void ValiderImportExcel()
+    {
+        if (Apercu is not { } apercu) return;
+        var resultat = _depot.Remplacer(apercu.Json, apercu.Fichier);
+        if (!resultat.Enregistre)
+        {
+            MessageImport = "Ce planning n'a pas été importé :\n• " + string.Join("\n• ", resultat.Lecture.Erreurs);
+            Apercu = null;
+            return;
+        }
+        _main.AllerPlanning();
+    }
+
+    [RelayCommand]
+    private void AnnulerImportExcel() => Apercu = null;
+}
+
+/// <summary>Une ligne de l'aperçu : titre de matière ou période.</summary>
+public sealed record LigneApercu(string Texte, bool EstTitre);
+
+/// <summary>Ce que l'import de l'Excel va faire, montré avant validation.</summary>
+public sealed class ApercuImportExcel
+{
+    public string Json { get; }
+    public string Fichier { get; }
+    public string Titre { get; }
+    public string Resume { get; }
+    public string? Remplacement { get; }
+    public IReadOnlyList<LigneApercu> Lignes { get; }
+    public IReadOnlyList<string> Avertissements { get; }
+    public bool AAvertissements => Avertissements.Count > 0;
+
+    public ApercuImportExcel(PlanningCned planning, string json, string fichier, IReadOnlyList<string> avertissements,
+        int surchargesConservees, string? titreActuel)
+    {
+        Json = json;
+        Fichier = fichier;
+        Avertissements = avertissements;
+        Titre = planning.Titre;
+
+        int sansCartes = planning.Periodes.Count(p => p.Cibles.Count == 0);
+        int deduites = planning.Periodes.Count(p => p.Approx);
+        Resume = $"{planning.Periodes.Count} périodes ({deduites} avec une fin déduite, {sansCartes} sans cartes) et {planning.Devoirs.Count} devoirs ou quiz, en {planning.Matieres.Count} matières.";
+        Remplacement = titreActuel is null
+            ? null
+            : $"Il remplacera « {titreActuel} ». " + (surchargesConservees == 0
+                ? "Aucune date personnelle à reprendre."
+                : $"{surchargesConservees} date(s) personnelle(s) sur des éléments identiques seront gardées.");
+
+        var lignes = new List<LigneApercu>();
+        foreach (string matiere in planning.Matieres)
+        {
+            lignes.Add(new LigneApercu(matiere, true));
+            foreach (var p in planning.Periodes.Where(p => p.Matiere == matiere).OrderBy(p => p.Debut))
+                lignes.Add(new LigneApercu(
+                    $"{p.Libelle} : {p.Debut:dd/MM/yyyy} → {p.Fin:dd/MM/yyyy}" + (p.Approx ? " (fin déduite)" : "") + (p.Cibles.Count == 0 ? " (sans cartes)" : ""), false));
+            var devoirs = planning.Devoirs.Where(d => d.Matiere == matiere).OrderBy(d => d.Semaine).ToList();
+            if (devoirs.Count > 0)
+                lignes.Add(new LigneApercu("Devoirs : " + string.Join(", ", devoirs.Select(d => $"{d.Code} ({d.DateLimite:dd/MM})")), false));
+        }
+        Lignes = lignes;
     }
 }
 

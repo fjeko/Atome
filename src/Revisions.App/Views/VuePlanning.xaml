@@ -5,13 +5,65 @@
         <StackPanel Margin="28,28,28,24" MaxWidth="1000" HorizontalAlignment="Left">
             <Grid>
                 <TextBlock Text="Planning" Style="{StaticResource Titre}" />
-                <Button Content="Importer un planning…" Command="{Binding ImporterCommand}"
-                        HorizontalAlignment="Right" VerticalAlignment="Center" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button Content="Importer l'Excel du CNED…" Command="{Binding ImporterExcelCommand}" Margin="0,0,8,0"
+                            ToolTip="Le fichier « Proposition de planning » reçu du CNED (.xlsx) : Atome le convertit tout seul." />
+                    <Button Content="Importer un planning…" Command="{Binding ImporterCommand}"
+                            ToolTip="Un fichier de planning .json (déjà converti)." />
+                </StackPanel>
             </Grid>
             <TextBlock Style="{StaticResource Discret}" FontSize="14" TextWrapping="Wrap" Margin="0,6,0,0"
                        Text="La proposition de planning du CNED, pour te repérer. Ce n'est pas une obligation : tu avances à ton rythme. Quand tu le suis, les nouvelles cartes viennent d'abord de ce qui est au programme, et le contenu d'un devoir proche est révisé un peu plus." />
             <TextBlock Text="{Binding MessageImport}" TextWrapping="Wrap" Margin="0,10,0,0"
                        Visibility="{Binding MessageImport, Converter={StaticResource VisibleSi}}" />
+
+            <!-- Aperçu de l'import de l'Excel : rien n'est enregistré avant « Valider l'import ». -->
+            <Border Style="{StaticResource Carte}" Margin="0,18,0,0" Visibility="{Binding ApercuVisible, Converter={StaticResource VisibleSi}}">
+                <StackPanel DataContext="{Binding Apercu}">
+                    <TextBlock Text="Aperçu de l'import" Style="{StaticResource SousTitre}" />
+                    <TextBlock Text="{Binding Titre}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,6,0,0" />
+                    <TextBlock Text="{Binding Resume}" TextWrapping="Wrap" Style="{StaticResource Discret}" Margin="0,2,0,0" />
+                    <TextBlock Text="{Binding Remplacement}" TextWrapping="Wrap" Style="{StaticResource Discret}" Margin="0,2,0,0" />
+
+                    <Expander Header="Points à vérifier" IsExpanded="True" Margin="0,10,0,0"
+                              Visibility="{Binding AAvertissements, Converter={StaticResource VisibleSi}}">
+                        <ItemsControl ItemsSource="{Binding Avertissements}" Margin="8,4,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate><TextBlock Text="{Binding StringFormat='• {0}'}" TextWrapping="Wrap" Style="{StaticResource Discret}" /></DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Expander>
+
+                    <Expander Header="Périodes et devoirs" Margin="0,6,0,0">
+                        <ItemsControl ItemsSource="{Binding Lignes}" Margin="8,4,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Texte}" TextWrapping="Wrap" FontSize="13">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource Discret}">
+                                                <Setter Property="Margin" Value="12,0,0,0" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding EstTitre}" Value="True">
+                                                        <Setter Property="FontWeight" Value="SemiBold" />
+                                                        <Setter Property="Margin" Value="0,8,0,0" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Expander>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                        <Button Content="Valider l'import" Command="{Binding DataContext.ValiderImportExcelCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                Padding="14,5" Margin="0,0,8,0" />
+                        <Button Content="Annuler" Command="{Binding DataContext.AnnulerImportExcelCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                Padding="14,5" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
 
             <!-- Aucun planning : l'application fonctionne comme avant. -->
             <Border Style="{StaticResource Carte}" Margin="0,18,0,0" Visibility="{Binding SansPlanning, Converter={StaticResource VisibleSi}}">

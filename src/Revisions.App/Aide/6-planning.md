@@ -35,3 +35,18 @@ Un devoir noté porte sur ce qui a commencé depuis le devoir noté précédent 
 ### Ajouter ou changer de planning
 
 Le fichier se place dans le dossier **planning**, à côté du dossier **packs** : il est lu au démarrage. Tu peux aussi utiliser **Importer un planning…**. Le fichier est vérifié avant d'être pris : dates cohérentes, et un avertissement si une période vise des cours qui n'existent pas.
+
+### Importer l'Excel du CNED
+
+Tu n'as pas besoin de convertir quoi que ce soit : le CNED t'envoie un Excel « Proposition de planning » (SLAM ou SISR), Atome sait le lire.
+
+1. Sur l'écran **Planning**, clique sur **Importer l'Excel du CNED…** et choisis le fichier `.xlsx`.
+2. Un **aperçu** s'affiche, rien n'est encore enregistré : les périodes, les devoirs, et les **points à vérifier**.
+3. Clique sur **Valider l'import** : ce planning remplace l'ancien. Les dates que tu avais changées sont **gardées** pour les périodes et les devoirs qui n'ont pas changé.
+
+À savoir :
+
+- Quand une période n'a pas de date de fin dans le fichier (cellule non fusionnée), Atome la déduit et la marque **à confirmer** (barre plus pâle).
+- Les périodes **sans cartes** s'affichent quand même sur la frise : il n'y a pas de cours dans l'application pour ces parties (culture générale, ateliers, option SISR…). Seuls les cours que tu as importés sous forme de packs donnent des cartes.
+- Atome corrige seul les coquilles connues (un « DV3 » sans « DV2 » devient DV2, les thèmes 4 et 5 du CEJM sont les thèmes 2 et 3) et te le dit dans les points à vérifier.
+- Si le CNED change son fichier, réimporte-le : même nom de fichier, même planning, tes dates personnelles restent.
