@@ -4,7 +4,7 @@
 #   git push origin v0.2.0
 #
 # Etapes : compilation, tests, installateur (Inno Setup), ZIP portable, puis creation de la Release
-# avec les deux fichiers. Les versions 0.x sont marquees "pre-release".
+# avec le setup, son empreinte .sha256 et le ZIP. Seuls les tags avec suffixe (v0.3.0-beta.1) sont des "pre-release".
 name: Release
 
 on:
@@ -44,8 +44,10 @@ jobs:
           $tag = "${{ github.ref_name }}"
           $version = $tag.TrimStart("v")
           $options = @()
-          # Attention : une pre-release n'est jamais proposee par la mise a jour d'Atome (API releases/latest).
-          if ($version.StartsWith("0.")) { $options += "--prerelease" }
+          # Une pre-release n'est jamais proposee par la mise a jour d'Atome (API releases/latest).
+          # Donc les versions 0.x sont des Releases normales ; seul un tag avec suffixe (v0.3.0-beta.1)
+          # devient une pre-release : pratique pour publier un essai sans le proposer a tout le monde.
+          if ($version.Contains("-")) { $options += "--prerelease" }
           # Le .sha256 (fabrique par creer-setup.ps1) est obligatoire : sans lui, Atome refuse la mise a jour automatique.
           $empreinte = "installateur/sortie/Atome-Setup-$version.exe.sha256"
           if (-not (Test-Path $empreinte)) { throw "Empreinte SHA-256 manquante : $empreinte" }
