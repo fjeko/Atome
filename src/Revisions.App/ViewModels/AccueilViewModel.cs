@@ -150,6 +150,8 @@ public partial class AccueilViewModel : ObservableObject
                 ? $"Tu as révisé {Texte.Pluriel(faites, "carte", "cartes")}. Tu peux lire une nouvelle séance si tu en as envie."
                 : "Tu peux lire une séance dans la bibliothèque : ses cartes arriveront ensuite ici.";
             ProposerLecture = true;
+            // Limite de nouvelles cartes du jour atteinte : on peut quand même continuer, par paquets de 5, si on en a envie.
+            PeutContinuer = !_plan.ModeReprise && _journee.NombreDeNouvelles(1) > 0;
         }
 
         // ---- Objectif minimal ----
