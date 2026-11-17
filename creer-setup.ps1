@@ -40,3 +40,14 @@ Write-Host "Creation de l'installateur..."
 if ($LASTEXITCODE -ne 0) { throw "Inno Setup a echoue." }
 
 Write-Host "Termine : $(Join-Path $racine "installateur\sortie\Atome-Setup-$Version.exe")"
+
+# Version portable : le meme dossier, sans les fichiers de debogage (.pdb), en ZIP.
+$zip = Join-Path $racine "installateur\sortie\Atome-portable.zip"
+if (Test-Path $zip) { Remove-Item $zip -Force }
+$tmp = Join-Path $env:TEMP "atome-portable"
+if (Test-Path $tmp) { Remove-Item $tmp -Recurse -Force }
+Copy-Item $sortie $tmp -Recurse
+Get-ChildItem $tmp -Recurse -Filter *.pdb | Remove-Item -Force
+Compress-Archive -Path "$tmp\*" -DestinationPath $zip
+Remove-Item $tmp -Recurse -Force
+Write-Host "Version portable : $zip"

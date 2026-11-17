@@ -4,6 +4,8 @@
 > tu les lis dans l'application (Markdown et formules LaTeX, hors ligne), puis tu révises avec des cartes
 > planifiées par **répétition espacée**, avec une gamification qui ne punit jamais une absence.
 
+**Version de test** : un bug, une idée ? Ouvre un [Issue](../../issues) sur ce dépôt.
+
 **Atome** est mon tout premier projet. Il a été **entièrement généré par une IA (Claude, d'Anthropic)** :
 je l'ai imaginé, guidé et testé, mais je n'ai pas écrit le code moi-même. Je l'ai fait pour mes propres
 révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je le partage à mes camarades.
