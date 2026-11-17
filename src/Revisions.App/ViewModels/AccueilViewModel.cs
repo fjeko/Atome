@@ -20,9 +20,10 @@ public sealed record SeanceAuProgramme(string PackId, string Seance, string Mati
 public partial class AccueilViewModel : ObservableObject
 {
     private readonly MainViewModel _main;
-    private readonly EtatApplication _etat;
-    private readonly Journee _journee;
+    private readonly JourneeDeRevision _journee;
     private readonly PlanDuJour _plan;
+    private readonly SessionComposee _duJour;
+    private readonly SessionComposee _bonus;
 
     public string Titre { get; }
     public string Detail { get; }
@@ -47,9 +48,15 @@ public partial class AccueilViewModel : ObservableObject
     public IReadOnlyList<string> Echeances { get; }
     public bool AfficherEcheances => Echeances.Count > 0;
 
-    /// <summary>De 1 à 3 séances à lire, choisies selon le planning (vide sans planning suivi).</summary>
+    /// <summary>
+    /// De 1 à 3 séances à lire : celles qui débloquent de nouvelles cartes s'il en manque,
+    /// sinon celles du planning (vide sans planning suivi).
+    /// </summary>
     public IReadOnlyList<SeanceAuProgramme> AuProgramme { get; }
     public bool AfficherAuProgramme => AuProgramme.Count > 0;
+    /// <summary>« À lire pour débloquer de nouvelles cartes » ou « Au programme ».</summary>
+    public string TitreAuProgramme { get; }
+    public string DetailAuProgramme { get; }
 
     // ---- Mascotte : un message par ouverture de l'application (pas à chaque retour sur l'accueil) ----
     private static string? _messageOuverture;
@@ -99,27 +106,21 @@ public partial class AccueilViewModel : ObservableObject
     public AccueilViewModel(MainViewModel main, EtatApplication etat, SelectionDuJour selection, DepotProfil profil)
     {
         _main = main;
-        _etat = etat;
-        _journee = selection.Charger(etat.Jour);
-
         var jour = etat.Jour;
         ChoisirMessage(profil, jour);
         var reglages = etat.Reglages;
         var joursActifs = profil.JoursActifs();
-        int faites = profil.CartesFaites(jour);
-        // Cartes dues, plus celles avancées pour préparer un devoir proche (planning).
-        int dues = _journee.Dues().Count;
 
-        // ---- Plan du jour (plafond, nouvelles cartes, mode reprise) ----
-        _plan = CalculPlanDuJour.Calculer(new ContexteJour(
-            jour, joursActifs.Count > 0 ? joursActifs[^1] : null, profil.DebutReprise,
-            dues, faites, profil.NouvellesVues(jour), reglages));
-        if (_plan.DebutReprise != profil.DebutReprise) profil.DebutReprise = _plan.DebutReprise;
+        // ---- Plan du jour (plafond, nouvelles cartes, mode reprise) et session du jour ----
+        _journee = JourneeDeRevision.Preparer(etat, selection, profil);
+        _plan = _journee.Plan;
+        int faites = _journee.Faites;
+        _duJour = _journee.Composer(DemandeSession.DuJour);
+        // « Encore 5 cartes » : seulement si l'étudiant le demande, une fois le quota du jour rempli.
+        _bonus = _journee.Journee.Composer(DemandeSession.DuJour, 5, _plan.ModeReprise ? 0 : 5);
 
-        int nouvelles = _journee.NombreDeNouvelles(_plan.MaxNouvelles);
-        int duesProposees = Math.Min(dues, _plan.MaxCartes);
-        int aFaire = duesProposees + Math.Min(nouvelles, _plan.MaxCartes - duesProposees);
-        int minutes = Math.Max(1, (int)Math.Round(aFaire * profil.SecondesParCarte() / 60));
+        int aFaire = _duJour.Cartes.Count;
+        int minutes = EstimationDuree.Minutes(aFaire, _journee.SecondesParCarte);
 
         if (aFaire > 0)
         {
@@ -141,17 +142,17 @@ public partial class AccueilViewModel : ObservableObject
         {
             Titre = "C'est bien pour aujourd'hui !";
             Detail = $"Tu as révisé {faites} cartes. Le reste attendra demain.";
-            PeutContinuer = dues > 0 || _journee.NombreDeNouvelles(1) > 0;
+            PeutContinuer = _bonus.Cartes.Count > 0;
         }
         else
         {
             Titre = faites > 0 ? "Tout est fait pour aujourd'hui" : "Rien à réviser aujourd'hui";
             Detail = faites > 0
                 ? $"Tu as révisé {Texte.Pluriel(faites, "carte", "cartes")}. Tu peux lire une nouvelle séance si tu en as envie."
-                : "Tu peux lire une séance dans la bibliothèque : ses cartes arriveront ensuite ici.";
+                : "Tu peux lire une séance : ses nouvelles cartes arriveront ensuite ici.";
             ProposerLecture = true;
             // Limite de nouvelles cartes du jour atteinte : on peut quand même continuer, par paquets de 5, si on en a envie.
-            PeutContinuer = !_plan.ModeReprise && _journee.NombreDeNouvelles(1) > 0;
+            PeutContinuer = !_plan.ModeReprise && _bonus.Cartes.Count > 0;
         }
 
         // ---- Objectif minimal ----
@@ -185,32 +186,31 @@ public partial class AccueilViewModel : ObservableObject
             .ToList();
 
         // ---- Planning du CNED : prochaines échéances et séances à lire (seulement s'il est suivi) ----
-        Echeances = _journee.Echeances(3).Select(Libelles.Echeance).ToList();
-        AuProgramme = _journee.Suggestions(3)
+        Echeances = _journee.Journee.Echeances(3).Select(Libelles.Echeance).ToList();
+
+        // Pas assez de nouvelles cartes parce que leurs cours n'ont pas été lus : on propose 1 à 3 séances à lire.
+        bool debloquer = _duJour.DebloquerUtile || (aFaire == 0 && !_plan.PlafondAtteint && _bonus.DebloquerUtile);
+        var suggestions = debloquer ? _journee.Journee.SeancesADebloquer(3) : _journee.Journee.Suggestions(3);
+        AuProgramme = suggestions
             .Select(s => new SeanceAuProgramme(s.Seance.PackId, s.Seance.Seance, s.Seance.Matiere, s.Raison))
             .ToList();
+        TitreAuProgramme = debloquer ? "À lire pour débloquer de nouvelles cartes" : "Au programme";
+        DetailAuProgramme = debloquer
+            ? "Les nouvelles cartes arrivent après la lecture de leur cours. Ouvre une de ces séances quand tu veux."
+            : "Des séances à lire quand tu veux : leurs cartes arriveront ensuite.";
     }
 
     /// <summary>Lance la session du jour.</summary>
     [RelayCommand]
-    private void Commencer()
-    {
-        var jour = _etat.Jour;
-        var cartes = ConstructeurSession.Construire(
-            _journee.Dues(), _journee.Nouvelles(_plan.MaxNouvelles), jour, _plan.MaxCartes, _plan.MaxNouvelles);
-        _main.DemarrerSession(cartes, _plan.ModeReprise ? "reprise" : "quotidienne");
-    }
+    private void Commencer() => _main.DemarrerSession(_journee.Journee.Charger(_duJour), _journee.Mode(TypeSession.DuJour));
 
     /// <summary>Après le plafond : 5 cartes de plus, seulement si l'étudiant le demande.</summary>
     [RelayCommand]
-    private void EncoreCinq()
-    {
-        var jour = _etat.Jour;
-        int nouvelles = _plan.ModeReprise ? 0 : 5;
-        var cartes = ConstructeurSession.Construire(
-            _journee.Dues(), _journee.Nouvelles(nouvelles), jour, 5, nouvelles);
-        _main.DemarrerSession(cartes, "bonus");
-    }
+    private void EncoreCinq() => _main.DemarrerSession(_journee.Journee.Charger(_bonus), "bonus");
+
+    /// <summary>Ouvre l'écran « Autre révision » (une matière, mes points faibles, ce que je viens de lire, un devoir).</summary>
+    [RelayCommand]
+    private void AutreRevision() => _main.AllerChoixRevision();
 
     [RelayCommand]
     private void AllerBibliotheque() => _main.AllerBibliotheque();

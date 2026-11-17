@@ -59,7 +59,10 @@ public partial class SessionViewModel : ObservableObject
 
     [ObservableProperty] private string _compteur = "";
     [ObservableProperty] private double _avancement;
-    [ObservableProperty] private string _contexte = "";
+    /// <summary>Fil « Matière › Partie › Séance » au-dessus de la carte (un clic ouvre la section du cours).</summary>
+    [ObservableProperty] private string _fil = "";
+    /// <summary>Pourquoi cette carte est là (« À revoir · vue il y a 6 jours »…), ou null.</summary>
+    [ObservableProperty] private string? _motif;
     [ObservableProperty] private string? _messageRendu;
 
     /// <summary>Bouton principal avant la réponse : « Voir la réponse » ou « Étape suivante ».</summary>
@@ -127,7 +130,8 @@ public partial class SessionViewModel : ObservableObject
 
         Compteur = $"{_session.Faites + 1} / {_session.Total}";
         Avancement = (double)_session.Faites / _session.Total;
-        Contexte = $"{Courante.Matiere}  ·  {Courante.Seance}" + (_session.CouranteEstUnRetour ? "  ·  on la revoit" : "");
+        Fil = Courante.Fil;
+        Motif = _session.CouranteEstUnRetour ? "On la revoit · pour bien l'ancrer" : Courante.Motif?.Texte;
         MettreAJourEcran(defilerEnBas: false);
     }
 

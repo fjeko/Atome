@@ -256,6 +256,7 @@ public sealed class CollectionsTests : IDisposable
             c.Execute("UPDATE pack SET masque = 1 WHERE id LIKE 'libre-%'");
             c.Execute("DROP TABLE collection");
             c.Execute("ALTER TABLE pack DROP COLUMN collection");
+            c.Execute("ALTER TABLE pack DROP COLUMN derniere_lecture");
             c.Execute("PRAGMA user_version = 6");
         }
         SqliteConnection.ClearAllPools();

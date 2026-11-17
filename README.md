@@ -40,6 +40,8 @@ révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je
 
 - **Lecture des cours** : chaque séance se lit dans l'application, section par section (Markdown, formules LaTeX, code coloré).
 - **Répétition espacée FSRS** : des cartes (question, QCM, exercice pas à pas) revues au bon moment, à ton rythme.
+- **Révisions choisies et expliquées** : session du jour, une matière ou une partie, mes points faibles, ce que je viens de lire,
+  préparer un devoir ; chaque carte dit pourquoi elle est là, et les nouvelles cartes attendent que tu aies lu le cours.
 - **Gamification sans punition** : XP, niveaux, série comptée en semaines, mode reprise après une pause, plafond de cartes par jour.
 - **Mes acquis** : tu déclares ce que tu maîtrises déjà, les cartes s'adaptent à ton niveau.
 - **Planning CNED** : la proposition de ton organisme de formation en frises par matière, avec **import direct du fichier Excel**.
@@ -156,8 +158,8 @@ Au démarrage, l'application importe automatiquement les packs de son dossier de
 dotnet test
 ```
 
-724 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
-construction des sessions, mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
+784 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
+construction des sessions (types de session, paquets de matière, motifs, verrouillage des cours non lus, durée estimée), mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
 bibliothèque en niveaux, couleurs et contrastes de chaque thème, enregistrement des réglages,
 ordre du cours (tri naturel, chiffres romains) et tourniquet des matières, planning de l'année (priorités,
 devoirs, avancement avant une échéance, dates personnelles, migration), TD en groupe (hasard maison
@@ -167,6 +169,19 @@ figé, codes et chiffre de contrôle, calcul matriciel, déterminisme des TD, v�
 
 - **Accueil** : la session du jour en un clic, objectif minimal, série en semaines, XP et niveau.
   Avec un planning : 1 à 3 séances « Au programme » et les prochaines échéances, sur un ton neutre.
+  S'il manque des nouvelles cartes parce que leurs cours ne sont pas lus : « À lire pour débloquer de nouvelles cartes ».
+- **Autre révision** : une matière ou une partie (arbre de la bibliothèque), mes points faibles (oublis FSRS et « Raté »
+  de l'historique, séances sous 70 % de réussite, liste affichée avant de commencer), ce que je viens de lire (7 jours),
+  préparer le prochain devoir du planning. Chaque choix affiche son nombre de cartes et une durée estimée.
+- **Choix des cartes** (`Revisions.Core/Sessions/CompositeurSession.cs`) :
+  - **paquets** de 4 à 6 cartes de la même matière (de la même partie si possible), qui alternent entre les matières (`Paquets.cs`) ;
+    une carte ratée revient plus loin, si possible dans un paquet de sa matière (`SessionEnCours.cs`) ;
+  - un **motif** sur chaque carte, sous le fil cliquable « Matière › Partie › Séance » : « À revoir · vue il y a 6 jours »,
+    « Nouvelle · tu as lu ce cours », « Point faible · ratée 3 fois », « Préparation du devoir DV1 (semaine du 30/11) »… (`Motifs.cs`) ;
+  - **pas de nouvelle carte d'un cours non lu** : une séance est « lue » dès qu'elle a été ouverte en lecture dans Atome
+    (critère simple : l'ouverture affiche la première section), ou marquée Vu / Révisé dans Mes acquis.
+    Réglage « Proposer des nouvelles cartes de cours non lus » (désactivé par défaut). Les cartes déjà vues ne sont jamais bloquées ;
+  - collections masquées, plafond quotidien, limite de nouvelles cartes et mode reprise s'appliquent à tous les types de session.
 - **Planning** : la proposition de ton organisme de formation en frises par matière (import direct d'un fichier Excel, voir l'aide).
   Dates modifiables (gardées dans la base, le fichier n'est jamais modifié),
   interrupteur général et par matière, quiz masquables. Sans planning, l'application suit l'ordre du cours.
@@ -182,7 +197,7 @@ figé, codes et chiffre de contrôle, calcul matriciel, déterminisme des TD, v�
   les exercices et QCM de **n'importe quelle séance**. Code : `Revisions.Core/TdGroupe`.
 - **Statistiques** : régularité, réussite par matière, points faibles avec session ciblée.
 - **Réglages** : rythme, reprise, **thèmes** (clair, sombre, six thèmes colorés) et **couleur d'accent**.
-- **Aide** : fonctionnement, raccourcis, ajout de cours, création d'un pack avec Claude (prompt à copier), données, signalement d'erreurs, mises à jour, TD à plusieurs sur Discord.
+- **Aide** : fonctionnement, raccourcis, ajout de cours, création d'un pack avec Claude (prompt à copier), données, signalement d'erreurs, mises à jour, TD à plusieurs sur Discord, comment Atome choisit tes cartes.
 - **Signaler une erreur** : un petit drapeau sur chaque carte (session, fin de session) et chaque section en lecture, touche **S** en session. L'écran **Mes signalements** (Réglages) liste les signalements et les exporte en `signalements-<prénom>-<date>.json`, pour corriger les packs en lot (le texte vu au moment du signalement est conservé). Code : `Revisions.Core/Signalements`, `Revisions.Data/DepotSignalements.cs`.
 
 ## Organisation du code
@@ -255,7 +270,9 @@ puis dévoile la correction étape par étape, Entrée (hors des cases) fait la 
 - [ ] Lecture : une matrice, un tableau et un bloc de code s'affichent correctement.
 - [ ] « Voir le PDF » ouvre le document à la page de la section.
 - [ ] Session complète au clavier seul (question, QCM, exercice).
-- [ ] Une carte ratée revient plus loin dans la session.
+- [ ] Une carte ratée revient plus loin dans la session, si possible dans un paquet de sa matière.
+- [ ] Accueil : « Session du jour » et « Autre révision… » ; chaque choix affiche cartes et durée ; motif et fil cliquable au-dessus des cartes.
+- [ ] Une séance jamais ouverte ne donne pas de nouvelle carte ; l'ouvrir en lecture la débloque (ou le réglage « cours non lus »).
 - [ ] Fin de session : chiffres cohérents, « Revoir la notion » ouvre la bonne section.
 - [ ] Fermeture puis réouverture : XP, série et cartes dues sont conservées.
 - [ ] Thème clair et thème sombre (Réglages).
@@ -270,7 +287,7 @@ puis dévoile la correction étape par étape, Entrée (hors des cases) fait la 
 ## Outils de développement (version Debug uniquement)
 
 - `Atome.exe --ecran=bibliotheque` (ou `statistiques`, `reglages`, `lecture:<id du pack>`,
-  `session:<id du pack>`, `aide:<numéro de page>`, `bibliotheque:0,1` pour descendre dans les tuiles,
+  `session:<id du pack>`, `choix` (écran « Autre révision »), `aide:<numéro de page>`, `bibliotheque:0,1` pour descendre dans les tuiles,
   `bibliotheque:?texte` pour une recherche), `td` ou `td:<code>` (rejoint ce TD ; `td:<code>:demo` remplit
   une grille avec une erreur et vérifie, pour capturer l'écran de correction) ouvre directement un écran.
 - `--theme=ocean` et `--accent=#D8498F` (ou `--accent=auto`) changent l'apparence au lancement ;

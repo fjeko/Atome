@@ -37,10 +37,29 @@ public sealed class SessionEnCours
     {
         var carte = Courante ?? throw new InvalidOperationException("La session est terminée.");
         if (ratee && _dejaRevenues.Add(carte.Carte.Id))
-        {
-            int index = Math.Min(_file.Count, _position + 1 + EcartRetour);
-            _file.Insert(index, carteMiseAJour ?? carte);
-        }
+            _file.Insert(PlaceDuRetour(carte.Matiere), carteMiseAJour ?? carte);
         _position++;
+    }
+
+    /// <summary>Écart minimal et maximal autour de <see cref="EcartRetour"/> pour rester dans un paquet de la même matière.</summary>
+    public const int EcartMin = 3, EcartMax = 10;
+
+    /// <summary>
+    /// Où replacer une carte ratée : environ <see cref="EcartRetour"/> cartes plus loin, en restant si possible
+    /// juste après une carte de la même matière (donc dans un de ses paquets). On cherche la place la plus proche
+    /// de l'écart habituel, entre <see cref="EcartMin"/> et <see cref="EcartMax"/> cartes plus loin.
+    /// </summary>
+    private int PlaceDuRetour(string matiere)
+    {
+        int debut = _position + 1;
+        int habituel = Math.Min(_file.Count, debut + EcartRetour);
+        int meilleur = -1;
+        for (int index = Math.Min(_file.Count, debut + EcartMin); index <= Math.Min(_file.Count, debut + EcartMax); index++)
+        {
+            // Juste après une carte de la même matière (la carte d'avant n'est pas celle qui vient d'être ratée).
+            bool memeMatiere = index - 1 > _position && _file[index - 1].Matiere == matiere;
+            if (memeMatiere && (meilleur < 0 || Math.Abs(index - habituel) < Math.Abs(meilleur - habituel))) meilleur = index;
+        }
+        return meilleur >= 0 ? meilleur : habituel;
     }
 }

@@ -28,7 +28,18 @@
             <ProgressBar Value="{Binding Avancement, Mode=OneWay}" Maximum="1" Height="6" Margin="16,0" VerticalAlignment="Center" />
         </DockPanel>
 
-        <TextBlock Grid.Row="1" Text="{Binding Contexte}" Style="{StaticResource Discret}" Margin="0,14,0,8" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+        <!-- D'où vient la carte et pourquoi elle est là : en petit, discret. Un clic sur le fil ouvre la section du cours. -->
+        <StackPanel Grid.Row="1" Margin="0,12,0,8">
+            <TextBlock TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" FontSize="12">
+                <Hyperlink Command="{Binding RevoirNotionCommand}" TextDecorations="{x:Null}"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" ToolTip="Ouvrir la section du cours">
+                    <Run Text="{Binding Fil, Mode=OneWay}" />
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Text="{Binding Motif}" Style="{StaticResource Discret}" FontSize="12" Margin="0,2,0,0"
+                       TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"
+                       Visibility="{Binding Motif, Converter={StaticResource VisibleSi}}" />
+        </StackPanel>
 
         <!-- La carte. -->
         <Border Grid.Row="2" BorderThickness="1" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">

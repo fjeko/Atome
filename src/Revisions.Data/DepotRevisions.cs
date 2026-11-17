@@ -13,7 +13,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
     private const string SelectCartes =
         """
         SELECT c.id AS Id, c.section_id AS SectionId, c.type AS Type, c.difficulte AS Difficulte, c.donnees_json AS Donnees,
-               c.pack_id AS PackId, m.nom AS Matiere, p.seance AS Seance,
+               c.pack_id AS PackId, m.nom AS Matiere, p.seance AS Seance, p.partie AS Partie,
                e.stabilite AS Stabilite, e.difficulte_fsrs AS DifficulteFsrs, e.echeance AS Echeance,
                e.derniere_revision AS DerniereRevision, e.repetitions AS Repetitions, e.oublis AS Oublis
         FROM carte c
@@ -67,6 +67,43 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
                 """, new { jour = BaseDeDonnees.Iso(jour) })
             .Select(l => new CarteVue(l.Id, l.PackId, l.Stabilite, BaseDeDonnees.Jour(l.Derniere)!.Value, BaseDeDonnees.Jour(l.Echeance)!.Value))
             .ToList();
+    }
+
+    /// <summary>
+    /// Toutes les cartes déjà vues, sans leur contenu, avec leurs oublis FSRS et leur nombre de « Raté » dans l'historique
+    /// (de quoi composer n'importe quel type de session sans relire la base).
+    /// </summary>
+    public List<CarteVue> CartesConnues(DateOnly jour)
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.Query<(string Id, string PackId, double Stabilite, string Derniere, string Echeance, long Oublis, long Ratees)>(
+                """
+                SELECT c.id, c.pack_id, e.stabilite,
+                       COALESCE(e.derniere_revision, e.echeance, @jour), COALESCE(e.echeance, @jour), e.oublis,
+                       (SELECT COUNT(*) FROM revision r WHERE r.carte_id = c.id AND r.note = 1)
+                FROM carte c JOIN etat_carte e ON e.carte_id = c.id
+                WHERE c.archivee = 0 AND e.stabilite IS NOT NULL
+                """, new { jour = BaseDeDonnees.Iso(jour) })
+            .Select(l => new CarteVue(l.Id, l.PackId, l.Stabilite, BaseDeDonnees.Jour(l.Derniere)!.Value,
+                BaseDeDonnees.Jour(l.Echeance)!.Value, (int)l.Oublis, (int)l.Ratees))
+            .ToList();
+    }
+
+    /// <summary>
+    /// Réponses par séance depuis une date, hors première découverte d'une carte
+    /// (une réponse est « réussie » si elle n'est pas « Raté »).
+    /// </summary>
+    public Dictionary<string, ReussiteSeance> ReussiteParSeance(DateOnly depuis)
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.Query<(string PackId, long Reponses, long Reussies)>(
+                """
+                SELECT c.pack_id, COUNT(*), SUM(r.note > 1)
+                FROM revision r JOIN carte c ON c.id = r.carte_id
+                WHERE c.archivee = 0 AND r.stabilite_avant IS NOT NULL AND r.jour >= @depuis
+                GROUP BY c.pack_id
+                """, new { depuis = BaseDeDonnees.Iso(depuis) })
+            .ToDictionary(l => l.PackId, l => new ReussiteSeance((int)l.Reponses, (int)l.Reussies));
     }
 
     /// <summary>Charge les cartes demandées, dans l'ordre de la liste.</summary>
@@ -160,6 +197,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
         public string PackId { get; set; } = "";
         public string Matiere { get; set; } = "";
         public string Seance { get; set; } = "";
+        public string Partie { get; set; } = "";
         public double? Stabilite { get; set; }
         public double? DifficulteFsrs { get; set; }
         public string? Echeance { get; set; }
@@ -186,7 +224,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
                 Repetitions = Repetitions,
                 Oublis = Oublis,
             };
-            return new CarteAReviser(new Carte(Id, SectionId, type, Difficulte, contenu), etat, PackId, Matiere, Seance);
+            return new CarteAReviser(new Carte(Id, SectionId, type, Difficulte, contenu), etat, PackId, Matiere, Seance, Partie);
         }
     }
 }

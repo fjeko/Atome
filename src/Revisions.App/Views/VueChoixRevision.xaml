@@ -1,0 +1,106 @@
+<UserControl x:Class="Revisions.App.Views.VueChoixRevision"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <!-- Liste simple de séances (points faibles, lectures récentes). -->
+        <DataTemplate x:Key="LigneSeance">
+            <TextBlock TextWrapping="Wrap" Margin="0,4,0,0">
+                <Run Text="{Binding Titre, Mode=OneWay}" /> <Run Text="·" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <Run Text="{Binding Detail, Mode=OneWay}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            </TextBlock>
+        </DataTemplate>
+        <Style x:Key="BoutonLancer" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Content" Value="Commencer" />
+            <Setter Property="Padding" Value="22,8" />
+            <Setter Property="Margin" Value="0,14,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel MaxWidth="940" Margin="32,28,32,28">
+            <DockPanel>
+                <Button DockPanel.Dock="Left" Content="Retour" Command="{Binding RetourCommand}" Padding="14,6" VerticalAlignment="Center" />
+                <TextBlock Text="Autre révision" Style="{StaticResource Titre}" Margin="18,0,0,0" VerticalAlignment="Center" />
+            </DockPanel>
+            <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,10,0,0"
+                       Text="Choisis ce que tu veux réviser. Chaque choix indique son nombre de cartes et une durée estimée. Tes limites du jour s'appliquent partout." />
+            <TextBlock Text="{Binding Remarque}" TextWrapping="Wrap" Margin="0,8,0,0" FontWeight="SemiBold"
+                       Visibility="{Binding Remarque, Converter={StaticResource VisibleSi}}" />
+
+            <!-- Session du jour (recommandée). -->
+            <Border Style="{StaticResource Carte}" Margin="0,18,0,0">
+                <StackPanel>
+                    <TextBlock Text="Session du jour (recommandée)" Style="{StaticResource SousTitre}" />
+                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
+                               Text="Les cartes à revoir de toutes les matières, puis des nouvelles cartes des cours que tu as lus. Rangées par petits paquets de la même matière." />
+                    <TextBlock Text="{Binding ResumeDuJour}" FontWeight="SemiBold" Margin="0,10,0,0" />
+                    <Button Style="{StaticResource BoutonLancer}" Command="{Binding LancerDuJourCommand}" IsEnabled="{Binding PeutDuJour}" />
+                </StackPanel>
+            </Border>
+
+            <!-- Une matière ou une partie. -->
+            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+                <StackPanel>
+                    <TextBlock Text="Une matière ou une partie" Style="{StaticResource SousTitre}" />
+                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,8"
+                               Text="Ses cartes à revoir d'abord, puis ses nouvelles cartes, dans la limite de ton réglage." />
+                    <TreeView ItemsSource="{Binding Arbre}" MaxHeight="300" BorderThickness="0" Background="Transparent">
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                                <Setter Property="IsSelected" Value="{Binding EstChoisi, Mode=TwoWay}" />
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Enfants}">
+                                <TextBlock Margin="0,2">
+                                    <Run Text="{Binding Titre, Mode=OneWay}" />
+                                    <Run Text="{Binding Detail, Mode=OneWay}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" FontSize="12" />
+                                </TextBlock>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+                    <TextBlock Text="{Binding ResumePerimetre}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,10,0,0" />
+                    <Button Style="{StaticResource BoutonLancer}" Command="{Binding LancerPerimetreCommand}" />
+                </StackPanel>
+            </Border>
+
+            <!-- Mes points faibles. -->
+            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+                <StackPanel>
+                    <TextBlock Text="Mes points faibles" Style="{StaticResource SousTitre}" />
+                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
+                               Text="Les cartes que tu as le plus souvent ratées, et celles des séances où tu réussis moins de 70 %. Pas de nouvelle carte." />
+                    <ItemsControl ItemsSource="{Binding SeancesFaibles}" ItemTemplate="{StaticResource LigneSeance}" Margin="0,8,0,0" />
+                    <TextBlock Text="{Binding ResumePointsFaibles}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,10,0,0" />
+                    <Button Style="{StaticResource BoutonLancer}" Command="{Binding LancerPointsFaiblesCommand}" IsEnabled="{Binding PeutPointsFaibles}" />
+                </StackPanel>
+            </Border>
+
+            <!-- Ce que je viens de lire. -->
+            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+                <StackPanel>
+                    <TextBlock Text="Ce que je viens de lire" Style="{StaticResource SousTitre}" />
+                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
+                               Text="Les cours ouverts dans Atome ces 7 derniers jours : leurs cartes à revoir, leurs nouvelles cartes, puis les autres pour consolider." />
+                    <ItemsControl ItemsSource="{Binding SeancesLues}" ItemTemplate="{StaticResource LigneSeance}" Margin="0,8,0,0" />
+                    <TextBlock Text="{Binding ResumeLecture}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,10,0,0" />
+                    <Button Style="{StaticResource BoutonLancer}" Command="{Binding LancerLectureCommand}" IsEnabled="{Binding PeutLecture}" />
+                </StackPanel>
+            </Border>
+
+            <!-- Préparer un devoir. -->
+            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+                <StackPanel>
+                    <TextBlock Text="Préparer un devoir" Style="{StaticResource SousTitre}" />
+                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
+                               Text="Le contenu couvert par ton prochain devoir du planning : les cartes à revoir, celles que tu risques d'avoir oubliées le jour J, puis des nouvelles cartes des cours lus." />
+                    <TextBlock Text="{Binding NomDevoir}" TextWrapping="Wrap" Margin="0,8,0,0"
+                               Visibility="{Binding NomDevoir, Converter={StaticResource VisibleSi}}" />
+                    <TextBlock Text="{Binding ResumeDevoir}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,10,0,0" />
+                    <Button Style="{StaticResource BoutonLancer}" Command="{Binding LancerDevoirCommand}" IsEnabled="{Binding PeutDevoir}" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

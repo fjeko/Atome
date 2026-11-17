@@ -4,12 +4,20 @@ using Revisions.Core.Planification;
 namespace Revisions.Core.Sessions;
 
 /// <summary>Une carte prête à être présentée en session, avec ce qu'il faut pour l'afficher et la planifier.</summary>
+/// <param name="Partie">Partie du cours (pour le fil « Matière › Partie › Séance »).</param>
+/// <param name="Motif">Pourquoi la carte est dans la session (null pour une session lancée depuis une séance).</param>
 public sealed record CarteAReviser(
     Carte Carte,
     EtatCarte Etat,
     string PackId,
     string Matiere,
-    string Seance);
+    string Seance,
+    string Partie = "",
+    Motif? Motif = null)
+{
+    /// <summary>Fil affiché au-dessus de la carte : « Matière › Partie › Séance » (sans niveau vide).</summary>
+    public string Fil => string.Join(" › ", new[] { Matiere, Partie, Seance }.Where(t => !string.IsNullOrWhiteSpace(t)));
+}
 
 /// <summary>Choisit les cartes d'une session et les met dans le bon ordre.</summary>
 public static class ConstructeurSession

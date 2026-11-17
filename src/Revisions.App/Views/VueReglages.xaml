@@ -43,6 +43,10 @@
                         <TextBlock DockPanel.Dock="Right" Text="{Binding NouvellesParJour}" Style="{StaticResource Valeur}" />
                         <Slider Value="{Binding NouvellesParJour}" Minimum="0" Maximum="40" TickFrequency="1" IsSnapToTickEnabled="True" />
                     </DockPanel>
+
+                    <CheckBox Content="Proposer des nouvelles cartes de cours non lus" IsChecked="{Binding NouvellesNonLues}" Margin="0,14,0,0" />
+                    <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="0,4,0,0"
+                               Text="Désactivé : une nouvelle carte n'arrive qu'une fois son cours ouvert dans Atome, ou marqué « Vu » ou « Révisé » dans Mes acquis. Les cartes déjà vues reviennent toujours." />
                 </StackPanel>
             </Border>
 

@@ -3,8 +3,19 @@ using Revisions.Core.Planning;
 
 namespace Revisions.Core.Sessions;
 
-/// <summary>Une carte déjà vue, réduite à ce qu'il faut pour décider de l'avancer.</summary>
-public sealed record CarteVue(string CarteId, string PackId, double Stabilite, DateOnly DerniereRevision, DateOnly Echeance);
+/// <summary>Une carte déjà vue, réduite à ce qu'il faut pour la choisir (avancer avant un devoir, points faibles…).</summary>
+/// <param name="Oublis">Nombre d'oublis comptés par FSRS (« Raté » sur une carte déjà apprise).</param>
+/// <param name="Ratees">Nombre de « Raté » dans l'historique, première découverte comprise.</param>
+public sealed record CarteVue(string CarteId, string PackId, double Stabilite, DateOnly DerniereRevision, DateOnly Echeance,
+    int Oublis = 0, int Ratees = 0)
+{
+    /// <summary>Nombre de fois où la carte a été ratée : le plus grand des deux compteurs (ils se recoupent).</summary>
+    public int FoisRatee => Math.Max(Oublis, Ratees);
+
+    /// <summary>Probabilité de s'en souvenir ce jour-là (1 = sûr, 0 = oubliée).</summary>
+    public double Rappel(DateOnly jour) =>
+        Fsrs.Retrievabilite(Math.Max(0, jour.DayNumber - DerniereRevision.DayNumber), Stabilite);
+}
 
 /// <summary>
 /// Préparation d'un devoir : pendant les 14 jours avant la date limite, une carte du contenu du devoir

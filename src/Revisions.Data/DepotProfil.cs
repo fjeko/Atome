@@ -96,6 +96,8 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
             CouleurAccent = Couleur.TryParse(valeurs.GetValueOrDefault("couleur_accent"), out var accent) ? accent.Hex : null,
             // Activé tant qu'on ne l'a pas explicitement désactivé.
             VerifierMisesAJour = valeurs.GetValueOrDefault("verifier_mises_a_jour") != "0",
+            // Désactivé tant qu'on ne l'a pas explicitement activé.
+            NouvellesNonLues = valeurs.GetValueOrDefault("nouvelles_non_lues") == "1",
         };
     }
 
@@ -110,6 +112,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
         EcrireValeur("dossier_packs", r.DossierPacks);
         EcrireValeur("dossier_cours", r.DossierCours);
         EcrireValeur("cours_libres", r.CoursLibres is { } libres ? (libres ? "1" : "0") : null);
+        EcrireValeur("nouvelles_non_lues", r.NouvellesNonLues ? "1" : "0");
         EcrireValeur("theme", r.Theme);
         EcrireValeur("couleur_accent", r.CouleurAccent);
         EcrireValeur("verifier_mises_a_jour", r.VerifierMisesAJour ? "1" : "0");
@@ -177,8 +180,8 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
         using var connexion = baseDeDonnees.Ouvrir();
         var durees = connexion.Query<int>(
             "SELECT duree_ms FROM revision WHERE duree_ms IS NOT NULL ORDER BY id DESC LIMIT 200").Order().ToList();
-        // On borne pour qu'une carte laissée ouverte pendant une pause ne fausse pas l'estimation.
-        return durees.Count < 10 ? 25 : Math.Clamp(durees[durees.Count / 2] / 1000.0, 5, 120);
+        // Médiane des derniers temps de réponse, environ 20 s par carte sans historique (voir EstimationDuree).
+        return Revisions.Core.Sessions.EstimationDuree.SecondesParCarte(durees);
     }
 
     // ---- Statistiques --------------------------------------------------------------------

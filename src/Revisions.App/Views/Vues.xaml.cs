@@ -118,3 +118,8 @@ public partial class VuePlanning : UserControl
 {
     public VuePlanning() => InitializeComponent();
 }
+
+public partial class VueChoixRevision : UserControl
+{
+    public VueChoixRevision() => InitializeComponent();
+}

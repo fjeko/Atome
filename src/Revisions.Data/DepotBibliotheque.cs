@@ -71,12 +71,29 @@ public sealed class DepotBibliotheque(BaseDeDonnees baseDeDonnees)
         return connexion.ExecuteScalar<string?>("SELECT pack_id FROM section WHERE id = @sectionId", new { sectionId });
     }
 
-    /// <summary>Note qu'une séance a été ouverte en lecture (ses nouvelles cartes passeront en premier).</summary>
+    /// <summary>
+    /// Note qu'une séance a été ouverte en lecture. Critère retenu pour « séance lue » : l'ouverture de l'écran de lecture,
+    /// qui affiche tout de suite la première section (simple et prévisible ; pas de suivi du défilement).
+    /// Ses nouvelles cartes sont alors débloquées, et elle compte pour « Ce que je viens de lire » pendant 7 jours.
+    /// </summary>
     public void MarquerLue(string packId, DateTimeOffset maintenant)
     {
         using var connexion = baseDeDonnees.Ouvrir();
-        connexion.Execute("UPDATE pack SET date_lecture = COALESCE(date_lecture, @date) WHERE id = @packId",
+        connexion.Execute("UPDATE pack SET date_lecture = COALESCE(date_lecture, @date), derniere_lecture = @date WHERE id = @packId",
             new { packId, date = maintenant.ToString("O") });
+    }
+
+    /// <summary>Jour de la dernière ouverture en lecture de chaque séance lue.</summary>
+    public Dictionary<string, DateOnly> DernieresLectures()
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.Query<(string Id, string Date)>("SELECT id, derniere_lecture FROM pack WHERE derniere_lecture IS NOT NULL")
+            // Date complète au format « O » (heure locale) : les 10 premiers caractères donnent le jour.
+            .Select(l => (l.Id, Jour: l.Date.Length >= 10
+                && DateOnly.TryParseExact(l.Date[..10], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture,
+                    System.Globalization.DateTimeStyles.None, out var j) ? j : (DateOnly?)null))
+            .Where(l => l.Jour is not null)
+            .ToDictionary(l => l.Id, l => l.Jour!.Value);
     }
 
     private static List<string> Liste(string? json) =>

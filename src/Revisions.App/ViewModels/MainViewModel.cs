@@ -188,6 +188,9 @@ public partial class MainViewModel(
     [RelayCommand]
     public void AllerAide() => Afficher(Creer<AideViewModel>(), "aide");
 
+    /// <summary>Écran « Autre révision » : choisir ce qu'on révise (rangé sous la rubrique Accueil).</summary>
+    public void AllerChoixRevision() => Afficher(Creer<ChoixRevisionViewModel>(), "accueil");
+
     [RelayCommand]
     private void FermerBandeau() => Bandeau = null;
 

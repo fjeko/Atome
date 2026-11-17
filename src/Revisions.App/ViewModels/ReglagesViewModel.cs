@@ -77,6 +77,8 @@ public partial class ReglagesViewModel : ObservableObject
 
     /// <summary>« Vérifier les mises à jour au démarrage » (activé par défaut).</summary>
     [ObservableProperty] private bool _verifierMisesAJour;
+    /// <summary>Proposer des nouvelles cartes de cours non lus (désactivé par défaut).</summary>
+    [ObservableProperty] private bool _nouvellesNonLues;
 
     /// <summary>« Mes collections » : une ligne par collection de packs, avec son interrupteur « Afficher et réviser ».</summary>
     [ObservableProperty] private IReadOnlyList<ChoixCollection> _mesCollections = [];
@@ -137,6 +139,7 @@ public partial class ReglagesViewModel : ObservableObject
         _dossierCours = r.DossierCours ?? "";
         _accentLibre = r.CouleurAccent ?? "";
         _verifierMisesAJour = r.VerifierMisesAJour;
+        _nouvellesNonLues = r.NouvellesNonLues;
         MesCollections = main.ListerCollections().Select(i => new ChoixCollection(i, ChangerCollectionAsync)).ToList();
 #pragma warning restore MVVMTK0034
         _cleTheme = r.Theme;
@@ -185,6 +188,7 @@ public partial class ReglagesViewModel : ObservableObject
         r.Theme = _cleTheme;
         r.CouleurAccent = _couleurAccent;
         r.VerifierMisesAJour = VerifierMisesAJour;
+        r.NouvellesNonLues = NouvellesNonLues;
         _etat.Enregistrer(); // enregistre et applique le thème immédiatement
     }
 

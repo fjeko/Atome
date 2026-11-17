@@ -4,9 +4,11 @@ Le CNED propose un planning pour l'année. **C'est une proposition, pas une obli
 
 ### Dans quel ordre arrivent les nouvelles cartes
 
-Sans planning, les nouvelles cartes suivent l'ordre du cours (matière, puis partie, puis séance), **en alternant les matières** : une carte de maths, une de Bloc 1, une d'anglais…
+Par défaut, une nouvelle carte n'arrive qu'une fois son cours **lu** (ouvert dans Atome, ou marqué Vu / Révisé dans *Mes acquis*) : voir la page *Comment Atome choisit tes cartes*.
 
-Quand tu suis le planning, elles viennent dans cet ordre :
+Sans planning, les nouvelles cartes suivent l'ordre du cours (matière, puis partie, puis séance). Elles sont ensuite rangées en **petits paquets par matière**, qui alternent : quelques cartes de maths, quelques cartes de Bloc 1, quelques cartes d'anglais…
+
+Quand tu suis le planning, elles viennent dans cet ordre (parmi les cours lus, sauf si tu as activé « cours non lus » dans les Réglages) :
 
 1. le contenu d'un **devoir proche** (dans les 14 jours) ;
 2. les séances que tu as **lues** ici, ou marquées **Vu / Révisé** dans *Mes acquis* ;

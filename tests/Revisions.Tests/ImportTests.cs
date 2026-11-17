@@ -68,6 +68,38 @@ public sealed class ImportTests : IDisposable
     }
 
     [Fact]
+    public void Les_nouvelles_cartes_se_debloquent_a_la_lecture_et_la_session_porte_motifs_et_partie()
+    {
+        _importateur.ImporterFichier(Ecrire("pack.json", PackExemple.Json), null);
+        var biblio = new DepotBibliotheque(_base);
+        var selection = new SelectionDuJour(_revisions, biblio, new DepotAcquis(_base, biblio), new DepotPlanning(_base, _horloge));
+
+        // Cours pas encore lu : aucune nouvelle carte, mais le choix « cours non lus » les propose.
+        var avant = selection.Charger(Jour).Composer(Revisions.Core.Sessions.DemandeSession.DuJour, 40, 10);
+        Assert.Empty(avant.Cartes);
+        Assert.Equal(3, avant.NouvellesBloquees);
+        Assert.Equal(3, selection.Charger(Jour, nouvellesNonLues: true).Composer(Revisions.Core.Sessions.DemandeSession.DuJour, 40, 10).Cartes.Count);
+
+        // Ouverture en lecture : débloquée, et comptée dans « Ce que je viens de lire ».
+        biblio.MarquerLue("maths-sq1-s03", _horloge.GetLocalNow());
+        Assert.Equal(Jour, biblio.DernieresLectures()["maths-sq1-s03"]);
+        var journee = selection.Charger(Jour);
+        var session = journee.Composer(Revisions.Core.Sessions.DemandeSession.LectureRecente, 40, 10);
+        var cartes = journee.Charger(session);
+        Assert.Equal(3, cartes.Count);
+        Assert.All(cartes, c => Assert.Equal("Nouvelle · tu as lu ce cours", c.Motif!.Texte));
+        Assert.All(cartes, c => Assert.False(string.IsNullOrEmpty(c.Partie)));
+
+        // Une révision ratée : la carte devient un point faible.
+        var carte = cartes[0];
+        var resultat = new Planificateur(new Fsrs()).Appliquer(carte.Etat, Note.Rate, Jour, 0.9);
+        long id = _revisions.CreerSession("quotidienne", Jour, _horloge.GetUtcNow());
+        _revisions.EnregistrerReponse(id, carte.Etat, resultat, Note.Rate, Jour, _horloge.GetUtcNow(), 4000, false, 1);
+        var faibles = selection.Charger(Jour).Composer(Revisions.Core.Sessions.DemandeSession.PointsFaibles, 40, 10);
+        Assert.Equal("Point faible · ratée 1 fois", Assert.Single(faibles.Cartes).Motif.Texte);
+    }
+
+    [Fact]
     public void Reimport_identique_ne_change_rien()
     {
         string fichier = Ecrire("pack.json", PackExemple.Json);

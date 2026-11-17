@@ -12,7 +12,9 @@ Quand tu as fini de lire, **Réviser cette séance** te fait passer ses cartes t
 
 ### La session du jour
 
-Sur l'**Accueil**, le bouton **Commencer** lance la session du jour : les cartes à revoir aujourd'hui, toutes matières mélangées, plus quelques nouvelles cartes, dans l'ordre du cours et en alternant les matières (voir la page *Le planning*). Tu n'as rien à choisir.
+Sur l'**Accueil**, le bouton **Session du jour** lance les cartes à revoir aujourd'hui, toutes matières confondues, plus quelques nouvelles cartes **des cours que tu as lus**, rangées en petits paquets par matière. Tu n'as rien à choisir.
+
+Envie d'autre chose ? **Autre révision…** te propose une matière ou une partie, tes points faibles, ce que tu viens de lire ou la préparation d'un devoir. Tout est expliqué dans la page *Comment Atome choisit tes cartes*.
 
 Il y a trois sortes de cartes :
 

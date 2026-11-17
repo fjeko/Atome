@@ -84,6 +84,7 @@ public partial class App : Application
                 if (morceaux.Length > 1 && principal.VueCourante is TdGroupeViewModel td) td.DemonstrationDev(morceaux[1]);
                 break;
             case "reglages": principal.AllerReglages(); break;
+            case "choix": principal.AllerChoixRevision(); break;
             case "planning": principal.AllerPlanning(); break;
             case "aide":
                 principal.AllerAide();

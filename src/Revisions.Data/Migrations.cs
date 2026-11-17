@@ -197,5 +197,11 @@ internal static class Migrations
         INSERT INTO collection (cle, nom, masque)
           SELECT 'mes-packs', 'Mes packs', 0 FROM pack WHERE collection = 'mes-packs' GROUP BY collection;
         """,
+
+        // ---- 8 : dernière ouverture en lecture (session « Ce que je viens de lire ») ------------
+        """
+        ALTER TABLE pack ADD COLUMN derniere_lecture TEXT;   -- dernière ouverture en lecture (date_lecture = la première)
+        UPDATE pack SET derniere_lecture = date_lecture;
+        """,
     ];
 }

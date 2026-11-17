@@ -117,4 +117,9 @@ public sealed class Reglages
     public string? CouleurAccent { get; set; }
     /// <summary>Vérifier au démarrage (une fois par jour au plus) s'il existe une nouvelle version sur GitHub.</summary>
     public bool VerifierMisesAJour { get; set; } = true;
+    /// <summary>
+    /// Proposer aussi des nouvelles cartes de cours pas encore lus (ni ouverts dans Atome, ni marqués Vu / Révisé).
+    /// Désactivé par défaut : on découvre une carte après avoir lu son cours.
+    /// </summary>
+    public bool NouvellesNonLues { get; set; }
 }
