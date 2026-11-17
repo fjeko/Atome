@@ -14,7 +14,7 @@ L'application n'est pas encore signée numériquement, donc Windows se méfie. C
 Le code est entièrement visible dans ce dépôt si tu veux vérifier.
 
 ## Pour commencer
-Atome est livré avec **440 cours libres** pour commencer tout de suite (voir « Nouveautés »). Pour réviser tes propres cours, lis la section « Créer ses propres packs » du README ; le pack d'exemple (`samples/exemple.json`) permet aussi d'essayer l'application.
+Atome est livré avec **440 cours libres**, basés sur le référentiel officiel du programme de 1ère année de BTS SIO option SLAM, pour commencer tout de suite (voir « Nouveautés »). Pour réviser tes propres cours, lis la section « Créer ses propres packs » du README ; le pack d’exemple (`samples/exemple.json`) permet aussi d’essayer l’application.
 
 ## Nouveautés
 - **Cours libres** : 440 cours originaux (licence CC BY-SA 4.0) livrés avec Atome ; proposés au premier lancement, interrupteur dans les Réglages.
