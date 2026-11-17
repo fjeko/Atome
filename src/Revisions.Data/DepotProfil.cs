@@ -89,7 +89,8 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees)
             DossierPacks = valeurs.GetValueOrDefault("dossier_packs"),
             DossierCours = valeurs.GetValueOrDefault("dossier_cours"),
             // Une valeur abîmée ou inconnue retombe sur un choix sûr plutôt que de faire planter l'affichage.
-            Theme = Themes.Trouver(valeurs.GetValueOrDefault("theme")).Cle,
+            // Jamais choisi (premier lancement) : Crépuscule.
+            Theme = valeurs.TryGetValue("theme", out var cleTheme) ? Themes.Trouver(cleTheme).Cle : "crepuscule",
             CouleurAccent = Couleur.TryParse(valeurs.GetValueOrDefault("couleur_accent"), out var accent) ? accent.Hex : null,
         };
     }

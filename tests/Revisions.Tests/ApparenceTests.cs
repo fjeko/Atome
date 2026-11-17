@@ -149,7 +149,7 @@ public class ApparenceTests
 
             // Par défaut : thème de Windows, pas de couleur imposée.
             var defaut = profil.ChargerReglages();
-            Assert.Equal("systeme", defaut.Theme);
+            Assert.Equal("crepuscule", defaut.Theme);
             Assert.Null(defaut.CouleurAccent);
 
             profil.EnregistrerReglages(new Reglages { Theme = "foret", CouleurAccent = "#d8498f", PlafondQuotidien = 55 });
