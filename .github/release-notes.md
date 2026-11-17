@@ -14,7 +14,7 @@ L'application n'est pas encore signée numériquement, donc Windows se méfie. C
 Le code est entièrement visible dans ce dépôt si tu veux vérifier.
 
 ## Pour commencer
-Aucun cours n'est fourni. Essaie d'abord avec le pack d'exemple (`samples/exemple.json`), puis lis la section « Créer ses propres packs » du README.
+Atome est livré avec **440 cours libres** pour commencer tout de suite (voir « Nouveautés »). Pour réviser tes propres cours, lis la section « Créer ses propres packs » du README ; le pack d'exemple (`samples/exemple.json`) permet aussi d'essayer l'application.
 
 ## Nouveautés
 - **Cours libres** : 440 cours originaux (licence CC BY-SA 4.0) livrés avec Atome ; proposés au premier lancement, interrupteur dans les Réglages.
