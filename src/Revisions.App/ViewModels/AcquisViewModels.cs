@@ -27,6 +27,8 @@ public partial class NoeudAcquis : ObservableObject
     public required string Titre { get; init; }
     /// <summary>Clés des niveaux depuis la matière (une séance se termine par « § » + identifiant du pack).</summary>
     public required List<string> Cles { get; init; }
+    /// <summary>Bloc de la matière (« Bloc 1 »), ou null.</summary>
+    public string? Etiquette { get; init; }
     public int Profondeur { get; init; }
     public bool EstSeance { get; init; }
     public List<NoeudAcquis> Enfants { get; } = [];
@@ -78,7 +80,7 @@ public sealed class ArbreAcquis
     private NoeudAcquis Creer(NoeudBibliotheque niveau, List<string> parent, int profondeur)
     {
         var cles = new List<string>(parent) { niveau.Cle };
-        var noeud = Preparer(new NoeudAcquis { Titre = niveau.Titre, Cles = cles, Profondeur = profondeur });
+        var noeud = Preparer(new NoeudAcquis { Titre = niveau.Titre, Cles = cles, Profondeur = profondeur, Etiquette = niveau.Etiquette });
         foreach (var enfant in niveau.Enfants) noeud.Enfants.Add(Creer(enfant, cles, profondeur + 1));
         foreach (var seance in niveau.Seances)
         {
@@ -102,14 +104,34 @@ public sealed class ArbreAcquis
         return noeud;
     }
 
-    /// <summary>Enregistre le réglage d'une ligne, recalcule les cartes sans historique, puis remet les textes à jour.</summary>
-    private void Modifier(NoeudAcquis noeud)
+    /// <summary>Un menu a changé : enregistre, recalcule les cartes sans historique, remet les textes à jour.</summary>
+    private void Modifier(NoeudAcquis noeud) =>
+        Definir(noeud, ListesAcquis.VersAvancement(noeud.Avancement), ListesAcquis.VersComprehension(noeud.Comprehension),
+                recalculer: true, majMenus: false);
+
+    /// <summary>
+    /// Règle l'acquis d'un niveau (en base et à l'écran). Pour régler beaucoup de niveaux d'un coup,
+    /// passer « recalculer: false » puis appeler <see cref="Recalculer"/> une seule fois.
+    /// </summary>
+    public void Definir(NoeudAcquis noeud, Avancement? av, Comprehension? co, bool recalculer = true, bool majMenus = true)
     {
-        var av = ListesAcquis.VersAvancement(noeud.Avancement);
-        var co = ListesAcquis.VersComprehension(noeud.Comprehension);
         _depot.Definir(noeud.Chemin, av, co);
         if (av is null && co is null) _reglages.Remove(noeud.Chemin);
         else _reglages[noeud.Chemin] = new ReglageAcquis(av, co);
+        if (majMenus)
+        {
+            noeud.EnChargement = true; // les menus changent, mais sans relancer l'enregistrement
+            noeud.Avancement = ListesAcquis.Indice(av);
+            noeud.Comprehension = ListesAcquis.Indice(co);
+            noeud.EnChargement = false;
+        }
+        if (recalculer) Recalculer();
+        else Rafraichir();
+    }
+
+    /// <summary>Recalcule l'état des cartes jamais révisées d'après les acquis, puis rafraîchit les textes.</summary>
+    public void Recalculer()
+    {
         _depot.Recalculer(_jour, _seances);
         Rafraichir();
     }
@@ -166,9 +188,14 @@ public sealed partial class AcquisViewModel : ObservableObject
     private void RefaireQuestionnaire() => _main.AllerQuestionnaire();
 }
 
+
 /// <summary>
-/// Questionnaire de premier lancement, posé par la mascotte : une matière à la fois,
-/// « tu as déjà commencé ? » puis, si oui, où il en est dans chaque partie. Se termine par un récapitulatif.
+/// Questionnaire de premier lancement, posé par la mascotte. Il est fait pour être rapide :
+/// 1. « Tu pars de zéro ? » : si oui, c'est fini en un clic ;
+/// 2. sinon, pour chaque matière : pas commencé / un peu / tout vu ;
+/// 3. « un peu » : un seul clic sur la dernière partie vue (le cours est dans l'ordre : tout ce qui précède est vu) ;
+/// 4. une seule question de ressenti (je découvre, fragile, correct, solide) pour tout ce qui a été vu.
+/// Le détail séance par séance se règle ensuite, à son rythme, dans « Mes acquis ».
 /// </summary>
 public sealed partial class QuestionnaireViewModel : ObservableObject
 {
@@ -176,93 +203,142 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
     private readonly DepotAcquis _depot;
     private readonly ArbreAcquis _arbre;
     private int _indice = -1;
+    /// <summary>Les parties de la matière en cours, dans l'ordre du cours.</summary>
+    private List<NoeudAcquis> _parties = [];
+    /// <summary>Ce à quoi s'applique la question de ressenti : les parties vues, ou toute la matière.</summary>
+    private List<NoeudAcquis> _concernes = [];
 
     [ObservableProperty] private string _message = "";
     [ObservableProperty] private string _expression = "content";
+    /// <summary>Petit repère au-dessus de la mascotte : « Bloc 1 · matière 2 sur 7 ».</summary>
+    [ObservableProperty] private string _repere = "";
+    [ObservableProperty] private bool _estIntro;
     [ObservableProperty] private bool _estQuestion;
-    [ObservableProperty] private bool _estDetail;
+    [ObservableProperty] private bool _estJusqua;
+    [ObservableProperty] private bool _estRessenti;
     [ObservableProperty] private bool _estRecap;
-    [ObservableProperty] private bool _detailler;
     [ObservableProperty] private string _recap = "";
 
-    public ObservableCollection<NoeudAcquis> Lignes { get; } = [];
+    public ObservableCollection<NoeudAcquis> Parties { get; } = [];
 
     public QuestionnaireViewModel(MainViewModel main, EtatApplication etat, DepotAcquis depot, DepotBibliotheque bibliotheque)
     {
         _main = main;
         _depot = depot;
         _arbre = new ArbreAcquis(depot, bibliotheque, etat.Jour);
-        PasserALaMatiereSuivante();
+        ChangerEtape(intro: true);
+        Expression = "joie";
+        Message = "Salut, moi c'est Atome ! Une minute pour que je cale tes premières cartes sur ton niveau. Tu pars de zéro ?";
     }
 
     private NoeudAcquis Matiere => _arbre.Racines[_indice];
 
-    private void PasserALaMatiereSuivante()
+    /// <summary>N'affiche qu'une seule étape à la fois.</summary>
+    private void ChangerEtape(bool intro = false, bool question = false, bool jusqua = false, bool ressenti = false, bool recap = false)
+    {
+        EstIntro = intro; EstQuestion = question; EstJusqua = jusqua; EstRessenti = ressenti; EstRecap = recap;
+    }
+
+    // ---- 1. Intro ------------------------------------------------------------------------
+
+    /// <summary>« Je pars de zéro » : rien à régler, on passe directement à l'accueil.</summary>
+    [RelayCommand]
+    private void PartirDeZero() => Terminer();
+
+    [RelayCommand]
+    private void DejaBosse() => MatiereSuivante();
+
+    // ---- 2. Une matière après l'autre -----------------------------------------------------
+
+    private void MatiereSuivante()
     {
         _indice++;
-        EstDetail = false;
         if (_indice >= _arbre.Racines.Count)
         {
             AfficherRecap();
             return;
         }
-        Detailler = false;
-        EstQuestion = true;
+        var m = Matiere;
+        _parties = m.Enfants.Count > 0 ? [.. m.Enfants] : [];
+        Repere = $"{(string.IsNullOrWhiteSpace(m.Etiquette) ? "" : m.Etiquette + " · ")}matière {_indice + 1} sur {_arbre.Racines.Count}";
+        ChangerEtape(question: true);
         Expression = _indice % 2 == 0 ? "content" : "clin";
-        Message = _indice == 0
-            ? $"Salut ! Dis-moi où tu en es, pour que je m'adapte. Tu as déjà commencé « {Matiere.Titre} » ?"
-            : $"Et « {Matiere.Titre} », tu as déjà commencé ?";
+        Message = $"« {m.Titre} » : où en es-tu ?";
     }
+
+    [RelayCommand]
+    private void PasEncore() => MatiereSuivante();
+
+    /// <summary>« Tout est vu » : toute la matière, puis la question de ressenti.</summary>
+    [RelayCommand]
+    private void ToutVu()
+    {
+        _concernes = [Matiere];
+        PoserQuestionRessenti();
+    }
+
+    /// <summary>« Un peu » : l'étudiant montre jusqu'où il est allé.</summary>
+    [RelayCommand]
+    private void UnPeu()
+    {
+        Parties.Clear();
+        foreach (var p in _parties) Parties.Add(p);
+        ChangerEtape(jusqua: true);
+        Expression = "content";
+        Message = "Clique sur la dernière partie que tu as vue. Je compte tout ce qui est avant comme vu.";
+    }
+
+    // ---- 3. Jusqu'où ----------------------------------------------------------------------
+
+    /// <summary>La partie donnée est la dernière vue : elle et toutes les précédentes passent à « vu ».</summary>
+    [RelayCommand]
+    private void JusquIci(NoeudAcquis derniere)
+    {
+        int fin = _parties.IndexOf(derniere);
+        if (fin < 0) return;
+        for (int i = 0; i < _parties.Count; i++)
+            _arbre.Definir(_parties[i], i <= fin ? Avancement.Vu : null, null, recalculer: false);
+        _concernes = _parties.Take(fin + 1).ToList();
+        PoserQuestionRessenti();
+    }
+
+    // ---- 4. Ressenti ----------------------------------------------------------------------
+
+    private void PoserQuestionRessenti()
+    {
+        ChangerEtape(ressenti: true);
+        Expression = "clin";
+        Message = "Et ce que tu as vu, tu le sens comment ? (Pas de bonne réponse, c'est juste pour régler le rythme des révisions.)";
+    }
+
+    /// <summary>Applique le ressenti (1 = je découvre … 4 = solide) à tout ce qui a été vu, puis passe à la matière suivante.</summary>
+    [RelayCommand]
+    private void Ressenti(string indice)
+    {
+        var niveau = (Comprehension)(int.Parse(indice) - 1);
+        // À partir de « correct », on considère que la matière a été révisée, pas seulement vue.
+        var avancement = niveau >= Comprehension.Correct ? Avancement.Revise : Avancement.Vu;
+        foreach (var n in _concernes) _arbre.Definir(n, avancement, niveau, recalculer: false);
+        _arbre.Recalculer();
+        MatiereSuivante();
+    }
+
+    // ---- Fin ------------------------------------------------------------------------------
 
     private void AfficherRecap()
     {
-        EstQuestion = false;
-        EstRecap = true;
+        ChangerEtape(recap: true);
+        Repere = "";
         Expression = "joie";
         var (pasVu, vu, revise) = _arbre.Bilan();
-        Message = "Parfait, c'est noté ! Tu pourras tout changer dans « Mes acquis ».";
+        Message = "Parfait, c'est noté ! Tes premières révisions seront adaptées à ça.";
         Recap = $"{revise} séance(s) révisée(s), {vu} vue(s), {pasVu} pas encore vue(s).\n"
-              + "Les cartes de ce que tu as déjà vu reviendront progressivement, étalées sur plusieurs jours.";
+              + "Ce que tu connais déjà reviendra petit à petit, étalé sur plusieurs jours. "
+              + "Pour affiner séance par séance, ouvre « Mes acquis » dans le menu.";
     }
 
     [RelayCommand]
-    private void Oui()
-    {
-        EstQuestion = false;
-        EstDetail = true;
-        Expression = "content";
-        Message = "Super ! Pour chaque partie, dis-moi si tu l'as vue, et comment tu la sens. Laisse « — » si tu n'as rien à dire.";
-        ConstruireLignes();
-    }
-
-    [RelayCommand]
-    private void Non() => PasserALaMatiereSuivante();
-
-    [RelayCommand]
-    private void Suivant() => PasserALaMatiereSuivante();
-
-    partial void OnDetaillerChanged(bool value) { if (EstDetail) ConstruireLignes(); }
-
-    /// <summary>Liste à plat des parties de la matière ; avec « détailler », les séances aussi.</summary>
-    private void ConstruireLignes()
-    {
-        Lignes.Clear();
-        var tous = new List<NoeudAcquis>();
-        void Parcourir(NoeudAcquis n) { foreach (var e in n.Enfants) { tous.Add(e); Parcourir(e); } }
-        Parcourir(Matiere);
-        Lignes.Add(Matiere); // première ligne : toute la matière d'un coup
-
-        // Sans « détailler » on s'arrête aux parties et séquences ; si la matière n'a que des séances, on les montre.
-        var parties = tous.Where(n => !n.EstSeance).ToList();
-        foreach (var n in Detailler || parties.Count == 0 ? tous : parties) Lignes.Add(n);
-    }
-
-    [RelayCommand]
-    private void PlusTard()
-    {
-        _depot.MarquerQuestionnaireVu();
-        _main.AllerAccueil();
-    }
+    private void PlusTard() => Terminer();
 
     [RelayCommand]
     private void Terminer()
