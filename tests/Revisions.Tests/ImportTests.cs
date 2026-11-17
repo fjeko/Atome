@@ -62,7 +62,9 @@ public sealed class ImportTests : IDisposable
         Assert.Equal(3, Compter("carte"));
         Assert.Equal(3, Compter("etat_carte"));
         Assert.All(_revisions.CartesDuPack("maths-sq1-s03"), c => Assert.True(c.Etat.EstNouvelle));
-        Assert.Equal(3, _revisions.NouvellesCartes(10).Count);
+        var biblio = new DepotBibliotheque(_base);
+        var journee = new SelectionDuJour(_revisions, biblio, new DepotAcquis(_base, biblio), new DepotPlanning(_base, _horloge)).Charger(Jour);
+        Assert.Equal(3, journee.Nouvelles(10).Count);
     }
 
     [Fact]

@@ -168,7 +168,7 @@ public class AcquisTests
             depot.Definir(CalculAcquis.Chemin(ArbreBibliotheque.Chemin(seanceB)), Avancement.Vu, Comprehension.Decouverte);
             depot.Recalculer(Jour);
 
-            var nouvelles = new DepotRevisions(bd).NouvellesCartes(10);
+            var nouvelles = new SelectionDuJour(new DepotRevisions(bd), biblio, depot, new DepotPlanning(bd, TimeProvider.System)).Charger(Jour).Nouvelles(10);
             Assert.Equal("cpb", nouvelles[0].Etat.CarteId); // la séance « je découvre » passe avant la séance 1
         }
         finally

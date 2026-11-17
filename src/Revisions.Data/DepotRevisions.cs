@@ -39,18 +39,43 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
     }
 
     /// <summary>
-    /// Nouvelles cartes, dans l'ordre de découverte : séances déjà lues d'abord, puis par numéro
-    /// de séance (la séance 1 de chaque matière avant les séances 2), de la plus facile à la plus difficile.
+    /// Toutes les nouvelles cartes, sans leur contenu. L'ordre de découverte est décidé ensuite
+    /// par <see cref="ChoixNouvelles"/> (ordre du cours, tourniquet des matières, planning).
     /// </summary>
-    public List<CarteAReviser> NouvellesCartes(int maximum) =>
-        maximum <= 0
-            ? []
-            : Charger(SelectCartes +
-                      """
-                       AND e.stabilite IS NULL
-                      ORDER BY e.prioritaire DESC, (p.date_lecture IS NULL), COALESCE(p.ordre, 9999), p.id, c.difficulte, c.position
-                      LIMIT @maximum
-                      """, new { maximum });
+    public List<CandidateNouvelle> CandidatesNouvelles()
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.Query<(string Id, string PackId, long Position, long Prioritaire)>(
+                """
+                SELECT c.id, c.pack_id, c.position, e.prioritaire
+                FROM carte c JOIN etat_carte e ON e.carte_id = c.id
+                WHERE c.archivee = 0 AND e.stabilite IS NULL
+                """)
+            .Select(l => new CandidateNouvelle(l.Id, l.PackId, (int)l.Position, l.Prioritaire != 0))
+            .ToList();
+    }
+
+    /// <summary>Cartes déjà vues qui ne sont pas encore dues (candidates à l'avancement avant un devoir), sans leur contenu.</summary>
+    public List<CarteVue> CartesVuesNonDues(DateOnly jour)
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.Query<(string Id, string PackId, double Stabilite, string Derniere, string Echeance)>(
+                """
+                SELECT c.id, c.pack_id, e.stabilite, e.derniere_revision, e.echeance
+                FROM carte c JOIN etat_carte e ON e.carte_id = c.id
+                WHERE c.archivee = 0 AND e.stabilite IS NOT NULL AND e.derniere_revision IS NOT NULL AND e.echeance > @jour
+                """, new { jour = BaseDeDonnees.Iso(jour) })
+            .Select(l => new CarteVue(l.Id, l.PackId, l.Stabilite, BaseDeDonnees.Jour(l.Derniere)!.Value, BaseDeDonnees.Jour(l.Echeance)!.Value))
+            .ToList();
+    }
+
+    /// <summary>Charge les cartes demandées, dans l'ordre de la liste.</summary>
+    public List<CarteAReviser> ChargerCartes(IReadOnlyList<string> ids)
+    {
+        if (ids.Count == 0) return [];
+        var parId = Charger(SelectCartes + " AND c.id IN @ids", new { ids }).ToDictionary(c => c.Carte.Id);
+        return ids.Where(parId.ContainsKey).Select(id => parId[id]).ToList();
+    }
 
     /// <summary>Toutes les cartes d'une séance, dans l'ordre du cours (US12).</summary>
     public List<CarteAReviser> CartesDuPack(string packId) =>

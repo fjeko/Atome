@@ -130,5 +130,22 @@ internal static class Migrations
         );
         ALTER TABLE etat_carte ADD COLUMN prioritaire INTEGER NOT NULL DEFAULT 0;  -- nouvelle carte à montrer en premier
         """,
+
+        // ---- 3 : planning du CNED (repère facultatif) ----------------------------------------
+        """
+        CREATE TABLE planning (
+          id           TEXT PRIMARY KEY,             -- « id » du fichier de planning
+          contenu_json TEXT NOT NULL,                -- le fichier tel quel (relu et validé à chaque chargement)
+          source       TEXT,                         -- chemin du fichier importé
+          date_import  TEXT NOT NULL
+        );
+        CREATE TABLE planning_surcharge (            -- dates choisies par l'étudiant ; le fichier n'est jamais modifié
+          planning_id  TEXT NOT NULL,
+          element      TEXT NOT NULL,                -- clé de la période ou du devoir (voir Core/Planning)
+          debut        TEXT NOT NULL,                -- début de la période, ou semaine du devoir (AAAA-MM-JJ)
+          fin          TEXT,                         -- fin de la période (NULL pour un devoir)
+          PRIMARY KEY (planning_id, element)
+        );
+        """,
     ];
 }
