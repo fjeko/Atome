@@ -1,0 +1,104 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq12-s03",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 8 – Risques et responsabilité civile",
+  "sequence": null,
+  "seance": "Les responsabilités extracontractuelles",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Hors contrat, on répond de sa faute, des personnes dont on doit répondre et des choses que l'on garde ; régimes spéciaux et exonérations.",
+  "notions": [
+    "Responsabilité pour faute",
+    "Responsabilité du fait d'autrui",
+    "Responsabilité du fait des choses",
+    "Régimes spéciaux",
+    "Causes d'exonération"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq12-s03-s01",
+      "titre": "Responsabilité du fait personnel",
+      "contenu": "Hors de tout contrat, « tout fait quelconque de l'homme qui cause à autrui un dommage oblige celui par la faute duquel il est arrivé à le réparer » (art. 1240). La négligence ou l'imprudence suffit (art. 1241).\n\nTrois conditions : une **faute**, un **dommage**, un **lien de causalité**.\n\n⚠️ Entre deux cocontractants, pour un dommage lié au contrat, on applique la **responsabilité contractuelle**, pas celle-ci (principe de non-cumul).",
+      "notions": [
+        "Responsabilité pour faute"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq12-s03-s02",
+      "titre": "Du fait d'autrui et du fait des choses",
+      "contenu": "**Fait d'autrui** (art. 1242) :\n- les **commettants** (employeurs) répondent des dommages causés par leurs **préposés** (salariés) dans l'exercice de leurs fonctions ;\n- les parents répondent de leurs enfants mineurs.\n\n**Fait des choses** : on est responsable des dommages causés par une chose dont on a la **garde** (usage, direction, contrôle), sans avoir à prouver de faute : une étagère qui tombe sur un client, une enseigne qui blesse un passant.\n\n**Régimes spéciaux** :\n- **produits défectueux** (art. 1245 et s.) : le producteur répond, sans faute, des dommages causés par un produit qui n'offre pas la sécurité attendue ;\n- **risques professionnels** : accidents du travail et maladies professionnelles indemnisés par la sécurité sociale ;\n- **préjudice écologique** (art. 1246) : toute personne responsable d'une atteinte non négligeable à l'environnement doit la réparer, en priorité en nature.",
+      "notions": [
+        "Responsabilité du fait d'autrui",
+        "Responsabilité du fait des choses",
+        "Régimes spéciaux"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq12-s03-s03",
+      "titre": "Les causes d'exonération",
+      "contenu": "Le responsable échappe à tout ou partie de sa responsabilité en démontrant :\n- la **force majeure** (imprévisible, irrésistible, extérieure) ;\n- la **faute de la victime** (exonération partielle en général, totale si elle présente les caractères de la force majeure) ;\n- le **fait d'un tiers** présentant les caractères de la force majeure.",
+      "notions": [
+        "Causes d'exonération"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq12-s03-c001",
+      "section": "libre-cejm-sq12-s03-s01",
+      "type": "qcm",
+      "question": "Deux cocontractants sont en litige sur une prestation mal exécutée. Quel régime appliquer ?",
+      "choix": [
+        "La responsabilité contractuelle",
+        "La responsabilité pour faute de l'art. 1240",
+        "La responsabilité du fait des choses",
+        "Le choix est libre"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le non-cumul impose le régime contractuel entre les parties.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq12-s03-c002",
+      "section": "libre-cejm-sq12-s03-s02",
+      "type": "qcm",
+      "question": "Un livreur salarié renverse un piéton pendant sa tournée. Qui la victime peut-elle poursuivre ?",
+      "choix": [
+        "L'employeur, en tant que commettant",
+        "Seulement le livreur",
+        "Le fabricant du vélo",
+        "Personne"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le commettant répond des dommages causés par son préposé dans ses fonctions.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq12-s03-c003",
+      "section": "libre-cejm-sq12-s03-s02",
+      "type": "qcm",
+      "question": "Une batterie de trottinette explose à cause d'un défaut de conception et blesse l'utilisateur. Quel régime ?",
+      "choix": [
+        "Responsabilité du fait des produits défectueux",
+        "Responsabilité contractuelle de moyens",
+        "Préjudice écologique",
+        "Responsabilité pénale uniquement"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le producteur répond sans faute des produits n'offrant pas la sécurité attendue.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq12-s03-c004",
+      "section": "libre-cejm-sq12-s03-s03",
+      "type": "question",
+      "recto": "Un client entre dans une zone interdite d'un magasin malgré les panneaux et se blesse. Que peut invoquer le magasin ?",
+      "verso": "La faute de la victime, qui peut réduire voire supprimer sa responsabilité.",
+      "difficulte": 2
+    }
+  ]
+}

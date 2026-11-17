@@ -1,0 +1,143 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq2-s01",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 2 – Conception objet et architecture logicielle",
+  "sequence": null,
+  "seance": "Classes, objets, encapsulation, constructeurs",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une classe est un modèle, un objet en est un exemplaire. On protège les attributs (encapsulation) et on les manipule par des accesseurs et des mutateurs ; le constructeur initialise l'objet.",
+  "notions": [
+    "Classe",
+    "Objet",
+    "Instanciation",
+    "Encapsulation",
+    "Visibilité",
+    "Accesseur",
+    "Mutateur",
+    "Constructeur",
+    "Mot-clé this",
+    "Destruction automatique"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq2-s01-s01",
+      "titre": "Classe et objet",
+      "contenu": "Une **classe** est un **modèle** qui décrit une famille d'objets : leurs données (**attributs**) et leurs comportements (**méthodes**). Un **objet** est un **exemplaire concret** créé à partir de ce modèle : on parle d'**instance**.\n\nExemple : la coopérative **Les Paniers du Vallon** vend des produits locaux.\n\n```java\npublic class Produit {\n    private String nom;\n    private double prixKilo;\n\n    public Produit(String nom, double prixKilo) {\n        this.nom = nom;\n        this.prixKilo = prixKilo;\n    }\n\n    public double prixPour(double kilos) {\n        return prixKilo * kilos;\n    }\n}\n```\n\nCréer un objet = **instancier** la classe avec `new` :\n\n```java\nProduit pommes = new Produit(\"Pommes reinette\", 3.20);\ndouble total = pommes.prixPour(2.5); // 8.0\n```\n\n`pommes` est une **référence** vers l'objet créé en mémoire. Deux `new` créent deux objets distincts, même avec les mêmes valeurs.",
+      "notions": [
+        "Classe",
+        "Objet",
+        "Instanciation"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s01-s02",
+      "titre": "Encapsulation",
+      "contenu": "L'**encapsulation** consiste à **cacher les données** d'un objet et à n'y donner accès que par des méthodes contrôlées. Ainsi, l'objet garde ses données **cohérentes**.\n\n| Modificateur | Accessible depuis |\n| --- | --- |\n| `private` | la classe elle-même seulement |\n| (aucun) | le même paquetage |\n| `protected` | le paquetage + les classes filles |\n| `public` | partout |\n\nRègle de base : **attributs `private`**, méthodes utiles `public`.\n\nPourquoi ? Si `prixKilo` était public, n'importe quel code pourrait écrire `pommes.prixKilo = -5;`. Avec l'encapsulation, on vérifie la valeur avant de l'accepter.",
+      "notions": [
+        "Encapsulation",
+        "Visibilité"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s01-s03",
+      "titre": "Accesseurs et mutateurs",
+      "contenu": "- Un **accesseur** (*getter*) renvoie la valeur d'un attribut : `getNom()`.\n- Un **mutateur** (*setter*) modifie un attribut **en contrôlant** la nouvelle valeur : `setPrixKilo(double p)`.\n\n```java\npublic double getPrixKilo() {\n    return prixKilo;\n}\n\npublic void setPrixKilo(double prixKilo) {\n    if (prixKilo <= 0) {\n        throw new IllegalArgumentException(\"Le prix doit être positif\");\n    }\n    this.prixKilo = prixKilo;\n}\n```\n\nOn n'écrit pas un mutateur pour tout : si un attribut ne doit jamais changer (un numéro d'adhérent), on ne fournit qu'un accesseur.",
+      "notions": [
+        "Accesseur",
+        "Mutateur"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s01-s04",
+      "titre": "Constructeur et destruction",
+      "contenu": "Le **constructeur** porte le **nom de la classe**, n'a **pas de type de retour**, et s'exécute à la création de l'objet pour **initialiser** ses attributs.\n\n- `this` désigne **l'objet courant** : `this.nom = nom;` distingue l'attribut du paramètre.\n- On peut avoir **plusieurs constructeurs** avec des paramètres différents ; l'un peut appeler l'autre avec `this(...)`.\n- Si tu n'écris aucun constructeur, Java fournit un constructeur par défaut sans paramètre.\n\n```java\npublic Produit(String nom) {\n    this(nom, 1.0); // appelle l'autre constructeur\n}\n```\n\n**Destruction** : en Java (comme en C#), tu ne détruis pas les objets toi-même. Le **ramasse-miettes** (*garbage collector*) libère automatiquement la mémoire des objets qui ne sont plus référencés.",
+      "notions": [
+        "Constructeur",
+        "Mot-clé this",
+        "Destruction automatique"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq2-s01-c001",
+      "section": "libre-b2-21-sq2-s01-s01",
+      "type": "question",
+      "recto": "Quelle différence entre une classe et un objet ?",
+      "verso": "La classe est le **modèle** (attributs + méthodes) ; l'objet est un **exemplaire** créé à partir de ce modèle avec `new`.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq2-s01-c002",
+      "section": "libre-b2-21-sq2-s01-s01",
+      "type": "qcm",
+      "question": "Que produit l'instruction `new Produit(\"Miel\", 12.0)` ?",
+      "choix": [
+        "Une nouvelle classe Produit",
+        "Un nouvel objet de la classe Produit",
+        "Une copie de tous les produits existants",
+        "Une méthode statique"
+      ],
+      "bonneReponse": 1,
+      "explication": "`new` instancie la classe : il crée un objet et appelle le constructeur.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq2-s01-c003",
+      "section": "libre-b2-21-sq2-s01-s02",
+      "type": "qcm",
+      "question": "Quelle visibilité donner, en règle générale, aux attributs d'une classe ?",
+      "choix": [
+        "private",
+        "public",
+        "protected",
+        "static"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les attributs sont privés ; on y accède par des méthodes qui contrôlent les valeurs.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq2-s01-c004",
+      "section": "libre-b2-21-sq2-s01-s03",
+      "type": "question",
+      "recto": "Pourquoi un mutateur est-il plus sûr qu'un attribut public ?",
+      "verso": "Il peut **vérifier** la nouvelle valeur (et la refuser) avant de modifier l'attribut : l'objet reste cohérent.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s01-c005",
+      "section": "libre-b2-21-sq2-s01-s04",
+      "type": "qcm",
+      "question": "Quelle affirmation sur un constructeur Java est vraie ?",
+      "choix": [
+        "Il renvoie toujours void",
+        "Il porte le nom de la classe et n'a pas de type de retour",
+        "Il faut l'appeler après new pour initialiser l'objet",
+        "Une classe ne peut en avoir qu'un"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le constructeur est appelé automatiquement par `new` ; on peut en définir plusieurs (surcharge).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s01-c006",
+      "section": "libre-b2-21-sq2-s01-s04",
+      "type": "exercice",
+      "enonce": "Écris une classe `Adherent` (club de randonnée **Les Crêtes**) avec un numéro non modifiable, un nom, et un nombre de sorties (≥ 0). Prévois le constructeur, les accesseurs et une méthode `ajouterSortie()`.",
+      "etapes": [
+        "Attributs privés : `private final int numero; private String nom; private int nbSorties;`",
+        "Constructeur : `public Adherent(int numero, String nom) { this.numero = numero; this.nom = nom; this.nbSorties = 0; }`",
+        "Accesseurs : `getNumero()`, `getNom()`, `getNbSorties()` ; mutateur `setNom` seulement (le numéro ne change pas).",
+        "Méthode : `public void ajouterSortie() { nbSorties++; }` : le compteur ne peut qu'augmenter, il reste donc ≥ 0."
+      ],
+      "reponse": "Classe aux attributs privés, numéro `final` sans mutateur, compteur modifié uniquement par `ajouterSortie()`.",
+      "difficulte": 2
+    }
+  ]
+}

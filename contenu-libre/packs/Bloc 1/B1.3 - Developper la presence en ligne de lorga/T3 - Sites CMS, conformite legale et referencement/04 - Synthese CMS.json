@@ -1,0 +1,68 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq3-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – Développer la présence en ligne de l'organisation › Thème 3 – Sites CMS, conformité légale et référencement",
+  "sequence": null,
+  "seance": "Synthèse CMS",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif sur les CMS : choix, installation, vocabulaire, extensions, import et maintenance, à travers un cas.",
+  "notions": [
+    "Choisir et déployer un CMS",
+    "Plan de maintenance"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq3-s04-s01",
+      "titre": "Choisir et déployer",
+      "contenu": "### Cas : le refuge pour animaux Les Pattes Unies\nBesoin : présenter les animaux à adopter (fiches avec photos), publier des actualités, recevoir des dons en ligne, mises à jour par deux bénévoles.",
+      "notions": [
+        "Choisir et déployer un CMS"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq3-s04-s02",
+      "titre": "Plan de maintenance",
+      "contenu": "| Fréquence | Action |\n| --- | --- |\n| chaque semaine | sauvegarde (fichiers + base), vérifier qu'elle s'est bien faite |\n| chaque semaine | mises à jour du cœur, du thème et des extensions (après sauvegarde) |\n| chaque mois | supprimer extensions/comptes inutilisés, vérifier les comptes administrateurs |\n| chaque trimestre | test de restauration, revue des performances |",
+      "notions": [
+        "Plan de maintenance"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq3-s04-c001",
+      "section": "libre-b1-13-sq3-s04-s01",
+      "type": "exercice",
+      "enonce": "Propose une solution : type d'outil, contenus (pages/articles), extensions nécessaires et rôles des utilisateurs.",
+      "etapes": [
+        "Besoin standard, bénévoles non informaticiens → CMS.",
+        "Pages : Le refuge, Adopter, Contact, Mentions légales. Articles : actualités.",
+        "Fiches animaux : type de contenu personnalisé via une extension (ou catégorie d'articles).",
+        "Extensions : formulaire de contact, dons en ligne, sauvegarde, sécurité ; bandeau cookies si traceurs.",
+        "Rôles : un administrateur (technicien), deux bénévoles en « éditeur »."
+      ],
+      "reponse": "CMS + extensions (formulaire, dons, sauvegarde, sécurité), pages permanentes et articles d'actualité, bénévoles en rôle éditeur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq3-s04-c002",
+      "section": "libre-b1-13-sq3-s04-s02",
+      "type": "qcm",
+      "question": "Pourquoi faire une sauvegarde juste avant de mettre à jour les extensions ?",
+      "choix": [
+        "Pour accélérer la mise à jour",
+        "Pour pouvoir revenir en arrière si la mise à jour casse le site",
+        "Parce que la mise à jour efface toujours la base",
+        "C'est inutile si le site est petit"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une incompatibilité peut rendre le site inutilisable : la sauvegarde permet de restaurer.",
+      "difficulte": 2
+    }
+  ]
+}

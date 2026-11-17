@@ -1,0 +1,140 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq4-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – Gérer le patrimoine informatique › Thème 3 – Incidents, habilitations et bonnes pratiques de gestion des services",
+  "sequence": null,
+  "seance": "Référentiels et ITIL : vue d'ensemble",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Pourquoi s'appuyer sur un référentiel de bonnes pratiques, d'où vient ITIL et quels sont ses grands concepts : système de valeur, chaîne de valeur, principes directeurs, quatre dimensions, pratiques et amélioration continue.",
+  "notions": [
+    "Intérêt d'un référentiel",
+    "Origine et objectifs d'ITIL",
+    "Système de valeur de service",
+    "Chaîne de valeur",
+    "Principes directeurs",
+    "Quatre dimensions",
+    "Pratiques",
+    "Amélioration continue"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq4-s01-s01",
+      "titre": "Pourquoi un référentiel de bonnes pratiques ?",
+      "contenu": "Imagine un service informatique où chaque technicien a ses propres méthodes : l'un note les pannes sur un carnet, l'autre ne note rien, un troisième répond d'abord à ses amis. Résultat : des oublis, des utilisateurs mécontents et aucune vision d'ensemble.\n\nUn **référentiel de bonnes pratiques** rassemble des méthodes **éprouvées** par de nombreuses organisations. Il donne un **langage commun** et une organisation qui a fait ses preuves, qu'on **adapte** à sa taille.\n\n**ITIL** (*Information Technology Infrastructure Library*) est le plus connu pour la **gestion des services informatiques** (ITSM). Il est né à la fin des années 1980 à l'initiative du gouvernement britannique, qui voulait rendre ses services informatiques plus efficaces. Il a connu plusieurs versions ; la version 4 met l'accent sur la **création de valeur** pour l'utilisateur.\n\nCe qu'ITIL **n'est pas** :\n- **pas un logiciel** (même si des outils de tickets s'en inspirent) ;\n- **pas une loi** ni une norme obligatoire ;\n- **pas une certification d'entreprise** : des **personnes** peuvent passer un examen ITIL, mais une organisation qui veut une certification se tourne vers la norme **ISO/IEC 20000**.",
+      "notions": [
+        "Intérêt d'un référentiel",
+        "Origine et objectifs d'ITIL"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq4-s01-s02",
+      "titre": "Le système de valeur et la chaîne de valeur",
+      "contenu": "Dans ITIL 4, tout part d'une idée : l'informatique existe pour **créer de la valeur** avec ses utilisateurs (gagner du temps, vendre plus, servir les usagers).\n\nLe **système de valeur de service** (SVS) montre comment une **demande** ou une **opportunité** se transforme en **valeur**. Il comprend :\n- les **principes directeurs** ;\n- la **gouvernance** (qui décide, qui contrôle) ;\n- la **chaîne de valeur de service** ;\n- les **pratiques** ;\n- l'**amélioration continue**.\n\nLa **chaîne de valeur** décrit six activités qu'on combine selon les besoins :\n| Activité | Idée |\n| --- | --- |\n| Planifier | définir la vision, les priorités |\n| Améliorer | progresser en permanence |\n| Engager | dialoguer avec les utilisateurs et partenaires |\n| Concevoir et faire la transition | préparer de nouveaux services ou des changements |\n| Obtenir/construire | acheter ou développer les composants |\n| Fournir et soutenir | faire fonctionner le service et aider les utilisateurs |\n\nPar exemple, traiter un incident mobilise surtout *Engager* et *Fournir et soutenir*.",
+      "notions": [
+        "Système de valeur de service",
+        "Chaîne de valeur"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq4-s01-s03",
+      "titre": "Les sept principes directeurs",
+      "contenu": "ITIL 4 propose **sept principes directeurs**, des conseils valables en toute situation :\n\n1. **Privilégier la valeur** : chaque action doit apporter quelque chose à l'utilisateur.\n2. **Commencer là où on est** : partir de l'existant au lieu de tout jeter.\n3. **Progresser par itérations avec des retours** : avancer par petites étapes et demander l'avis.\n4. **Collaborer et promouvoir la visibilité** : travailler ensemble, rendre le travail visible.\n5. **Penser et travailler de façon holistique** : voir l'ensemble, pas seulement son morceau.\n6. **Opter pour la simplicité et rester pratique** : supprimer ce qui ne sert à rien.\n7. **Optimiser et automatiser** : améliorer d'abord, automatiser ensuite.\n\n### Exemple\nL'office de tourisme des Gorges du Tarnet veut un nouvel outil de tickets. Plutôt que de tout reconstruire, on récupère la liste des incidents de l'ancien tableur (*commencer là où on est*), on met en service une première version avec deux catégories seulement et on ajuste chaque mois avec les agents (*progresser par itérations*).",
+      "notions": [
+        "Principes directeurs"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq4-s01-s04",
+      "titre": "Les quatre dimensions, les pratiques et l'amélioration continue",
+      "contenu": "Pour qu'un service fonctionne, il faut penser à **quatre dimensions** :\n1. **Organisations et personnes** : compétences, rôles, culture ;\n2. **Information et technologie** : données, logiciels, matériel ;\n3. **Partenaires et fournisseurs** : prestataires, éditeurs, opérateurs ;\n4. **Flux de valeur et processus** : comment le travail s'enchaîne.\n\nOublier une dimension fait échouer un projet : un super logiciel (dimension 2) sans formation des techniciens (dimension 1) ne sert à rien.\n\nLes **pratiques** sont des ensembles de ressources organisées pour un objectif : gestion des incidents, des demandes de service, des problèmes, des actifs informatiques, centre de services, gestion des niveaux de service… ITIL 4 en décrit 34.\n\nL'**amélioration continue** est permanente : on mesure, on analyse, on corrige, et on recommence (dans l'esprit de la roue de Deming : *planifier, faire, vérifier, agir*).",
+      "notions": [
+        "Quatre dimensions",
+        "Pratiques",
+        "Amélioration continue"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq4-s01-c001",
+      "section": "libre-b1-11-sq4-s01-s01",
+      "type": "qcm",
+      "question": "Quelle affirmation sur ITIL est juste ?",
+      "choix": [
+        "C'est un logiciel de gestion de tickets",
+        "C'est une norme obligatoire en France",
+        "C'est un recueil de bonnes pratiques que chaque organisation adapte",
+        "C'est la certification que reçoivent les entreprises bien organisées"
+      ],
+      "bonneReponse": 2,
+      "explication": "ITIL est un cadre de bonnes pratiques. Pour certifier une organisation, on utilise plutôt la norme ISO/IEC 20000.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq4-s01-c002",
+      "section": "libre-b1-11-sq4-s01-s01",
+      "type": "question",
+      "recto": "Que signifie ITSM ?",
+      "verso": "*IT Service Management* : le pilotage des services informatiques, c'est-à-dire organiser l'informatique comme un fournisseur de services aux utilisateurs.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq4-s01-c003",
+      "section": "libre-b1-11-sq4-s01-s02",
+      "type": "qcm",
+      "question": "Dans quelle activité de la chaîne de valeur se situe surtout le travail quotidien du support (aider les utilisateurs, faire fonctionner les services) ?",
+      "choix": [
+        "Planifier",
+        "Concevoir et faire la transition",
+        "Fournir et soutenir",
+        "Obtenir/construire"
+      ],
+      "bonneReponse": 2,
+      "explication": "« Fournir et soutenir » couvre l'exploitation des services et l'assistance aux utilisateurs.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq4-s01-c004",
+      "section": "libre-b1-11-sq4-s01-s03",
+      "type": "qcm",
+      "question": "Un technicien veut automatiser un processus de création de comptes qui comporte des étapes inutiles. Quel principe lui rappelle qu'il faut d'abord simplifier ?",
+      "choix": [
+        "Privilégier la valeur",
+        "Optimiser et automatiser",
+        "Collaborer et promouvoir la visibilité",
+        "Commencer là où on est"
+      ],
+      "bonneReponse": 1,
+      "explication": "Ce principe dit d'optimiser avant d'automatiser : automatiser un processus mal conçu ne fait que reproduire ses défauts plus vite.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq4-s01-c005",
+      "section": "libre-b1-11-sq4-s01-s04",
+      "type": "question",
+      "recto": "Cite les quatre dimensions de la gestion des services selon ITIL 4.",
+      "verso": "Organisations et personnes ; information et technologie ; partenaires et fournisseurs ; flux de valeur et processus.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq4-s01-c006",
+      "section": "libre-b1-11-sq4-s01-s04",
+      "type": "qcm",
+      "question": "Une mairie achète un outil de tickets performant, mais personne n'est formé et l'éditeur n'assure aucun support. Quelles dimensions ont été négligées ?",
+      "choix": [
+        "Information et technologie seulement",
+        "Organisations et personnes, et partenaires et fournisseurs",
+        "Flux de valeur et processus seulement",
+        "Aucune, l'outil suffit"
+      ],
+      "bonneReponse": 1,
+      "explication": "La formation relève des personnes ; le support de l'éditeur relève des partenaires et fournisseurs.",
+      "difficulte": 2
+    }
+  ]
+}

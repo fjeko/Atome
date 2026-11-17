@@ -1,0 +1,71 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq1-s08",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – Développer la présence en ligne de l'organisation › Thème 1 – Améliorer un site web",
+  "sequence": null,
+  "seance": "Mise en production",
+  "ordre": 8,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Déployer un site du poste de développement vers le serveur de production : transfert sécurisé des fichiers, import de la base de données, adaptation de la configuration, tests de mise en ligne et pièges à éviter.",
+  "notions": [
+    "Serveur de production",
+    "Transfert sécurisé",
+    "Import de la base de données",
+    "Tests de mise en ligne",
+    "Pièges du déploiement"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq1-s08-s01",
+      "titre": "Du local à la production",
+      "contenu": "Le **serveur de production** héberge la version accessible au public. Étapes :\n1. **Préparer** : vérifier que tout fonctionne en local, sauvegarder l'existant en production.\n2. **Transférer les fichiers** de manière **sécurisée** : **SFTP** (sur SSH) ou **FTPS** — pas de FTP simple, qui envoie les mots de passe en clair.\n```bash\nscp -r ./site/* deploy@srv-web.exemple.net:/var/www/atelier/\n```\n3. **Exporter la base** locale et l'**importer** en production :\n```bash\nmysqldump -u root -p atelier_dev > atelier.sql        # en local\nmysql -u atelier_prod -p atelier < atelier.sql        # sur le serveur\n```\n4. **Adapter la configuration** : identifiants de la base de production, URL du site, mode débogage **désactivé**.",
+      "notions": [
+        "Serveur de production",
+        "Transfert sécurisé",
+        "Import de la base de données"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq1-s08-s02",
+      "titre": "Tester et éviter les pièges",
+      "contenu": "**Tests après mise en ligne** : toutes les pages s'affichent, liens et images OK, formulaires envoyés, connexion à la base OK, HTTPS actif (cadenas), affichage mobile, pas de message d'erreur technique visible.\n\n**Pièges classiques** :\n| Piège | Conséquence |\n| --- | --- |\n| chemins de la machine locale (`C:\\xampp\\htdocs\\img\\logo.png`, `http://localhost/...`) | images et liens cassés en ligne |\n| identifiants de base de développement | site qui ne se connecte pas |\n| mode débogage laissé actif | erreurs détaillées visibles par tous (risque de sécurité) |\n| fichiers de test ou sauvegardes `.sql` laissés en ligne | fuite de données |\n| casse des noms de fichiers (`Logo.PNG` vs `logo.png`) | fonctionne sous Windows, pas sous Linux |",
+      "notions": [
+        "Tests de mise en ligne",
+        "Pièges du déploiement"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq1-s08-c001",
+      "section": "libre-b1-13-sq1-s08-s01",
+      "type": "qcm",
+      "question": "Pourquoi éviter le FTP simple pour publier un site ?",
+      "choix": [
+        "Il est trop lent",
+        "Il transmet identifiants et fichiers en clair sur le réseau",
+        "Il ne gère pas les images",
+        "Il est interdit par la loi"
+      ],
+      "bonneReponse": 1,
+      "explication": "SFTP ou FTPS chiffrent la connexion.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq1-s08-c002",
+      "section": "libre-b1-13-sq1-s08-s02",
+      "type": "exercice",
+      "enonce": "Après mise en ligne, le logo ne s'affiche pas. Le code contient `<img src=\"http://localhost/vitrine/img/Logo.png\">` et le fichier sur le serveur Linux s'appelle `logo.png`. Corrige.",
+      "etapes": [
+        "`localhost` désigne la machine du visiteur, pas le serveur : utiliser un chemin relatif.",
+        "Linux distingue majuscules et minuscules : harmoniser le nom."
+      ],
+      "reponse": "`<img src=\"img/logo.png\" alt=\"Logo de l'atelier\">` (chemin relatif, nom exact en minuscules).",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq1-s05",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – Protéger les données à caractère personnel › Thème 1 – Cybermenaces et bonnes pratiques",
+  "sequence": null,
+  "seance": "Autres menaces : enregistreurs de frappe, usurpation",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. D'autres logiciels malveillants volent des informations à l'insu de l'utilisateur : enregistreurs de frappe, logiciels espions et publicitaires. L'usurpation d'identité numérique exploite ces vols. On distingue aussi attaques passives et actives.",
+  "notions": [
+    "Virus",
+    "Ver",
+    "Cheval de Troie",
+    "Logiciel espion",
+    "Logiciel publicitaire",
+    "Enregistreur de frappe",
+    "Usurpation d'identité numérique",
+    "Attaque passive",
+    "Attaque active"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq1-s05-s01",
+      "titre": "Familles de logiciels malveillants",
+      "contenu": "| Type | Particularité |\n| --- | --- |\n| **Virus** | s'attache à un fichier ou programme ; se propage quand on l'exécute |\n| **Ver** | se propage **seul** par le réseau, sans action de l'utilisateur |\n| **Cheval de Troie** | se présente comme un logiciel utile mais cache une fonction malveillante (porte dérobée) |\n| **Logiciel espion** (*spyware*) | collecte des informations à l'insu de l'utilisateur |\n| **Logiciel publicitaire** (*adware*) | affiche des publicités intrusives, modifie le navigateur |",
+      "notions": [
+        "Virus",
+        "Ver",
+        "Cheval de Troie",
+        "Logiciel espion",
+        "Logiciel publicitaire"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s05-s02",
+      "titre": "Enregistreur de frappe",
+      "contenu": "Un **enregistreur de frappe** (*keylogger*) **mémorise tout ce qui est tapé** au clavier (mots de passe, numéros de carte, messages) et l'envoie à l'attaquant. Il peut être :\n- **logiciel** (installé par un cheval de Troie) ;\n- **matériel** (petit adaptateur entre le clavier et l'ordinateur, sur un poste en libre accès).\n\nParades : antivirus à jour, ne pas utiliser de poste public pour des comptes sensibles, **authentification multifacteur** (le mot de passe volé ne suffit plus), vérifier physiquement les postes partagés.",
+      "notions": [
+        "Enregistreur de frappe"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s05-s03",
+      "titre": "Usurpation d'identité numérique",
+      "contenu": "L'**usurpation d'identité numérique** consiste à utiliser les données d'une personne (identifiants, nom, photo, documents) pour se faire passer pour elle : ouvrir un crédit, publier en son nom, escroquer ses contacts. C'est un **délit** en droit français.\n\nRéflexes : limiter les informations publiques, mots de passe uniques, double authentification, surveiller ses comptes ; en cas d'usurpation, prévenir les plateformes, changer les mots de passe, **porter plainte**.",
+      "notions": [
+        "Usurpation d'identité numérique"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s05-s04",
+      "titre": "Attaques passives et actives",
+      "contenu": "- **Attaque passive** : l'attaquant **observe** sans modifier (écoute du trafic Wi-Fi non chiffré, analyse de métadonnées). Difficile à détecter ; on s'en protège par le **chiffrement**.\n- **Attaque active** : l'attaquant **modifie** ou **perturbe** (injection, falsification, déni de service, usurpation). Plus visible ; on s'en protège par l'**intégrité**, l'**authentification**, la surveillance.",
+      "notions": [
+        "Attaque passive",
+        "Attaque active"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq1-s05-c001",
+      "section": "libre-b3-31-sq1-s05-s01",
+      "type": "qcm",
+      "question": "Un programme se propage de machine en machine sur le réseau sans que personne ne clique. C'est :",
+      "choix": [
+        "un virus",
+        "un ver",
+        "un cheval de Troie",
+        "un logiciel publicitaire"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'autonomie de propagation caractérise le ver.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s05-c002",
+      "section": "libre-b3-31-sq1-s05-s02",
+      "type": "question",
+      "recto": "Pourquoi l'authentification multifacteur limite-t-elle l'effet d'un enregistreur de frappe ?",
+      "verso": "Parce que le mot de passe capturé **ne suffit plus** : il faut aussi un second facteur (code, clé, application) que l'attaquant n'a pas.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s05-c003",
+      "section": "libre-b3-31-sq1-s05-s03",
+      "type": "qcm",
+      "question": "Lequel limite le risque d'usurpation d'identité ?",
+      "choix": [
+        "Utiliser le même mot de passe partout",
+        "Publier une copie de sa carte d'identité",
+        "Activer la double authentification sur ses comptes",
+        "Accepter toutes les demandes d'amis"
+      ],
+      "bonneReponse": 2,
+      "explication": "Elle protège même si un mot de passe fuit.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq1-s05-c004",
+      "section": "libre-b3-31-sq1-s05-s04",
+      "type": "qcm",
+      "question": "L'écoute d'un réseau Wi-Fi public non chiffré pour récupérer des mots de passe est :",
+      "choix": [
+        "une attaque passive",
+        "une attaque active",
+        "un déni de service",
+        "un rançongiciel"
+      ],
+      "bonneReponse": 0,
+      "explication": "L'attaquant se contente d'observer le trafic.",
+      "difficulte": 2
+    }
+  ]
+}

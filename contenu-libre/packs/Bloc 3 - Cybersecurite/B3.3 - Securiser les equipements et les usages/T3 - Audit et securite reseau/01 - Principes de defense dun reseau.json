@@ -1,0 +1,97 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq4-s01",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – Sécuriser les équipements et les usages des utilisateurs › Thème 3 – Audit et sécurité réseau",
+  "sequence": null,
+  "seance": "Principes de défense d'un réseau",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Sécuriser un réseau repose sur des principes éprouvés : défense en profondeur, compartimentation, moindre privilège, besoin d'en connaître, attention au maillon faible, haute disponibilité, séparation des tâches et zones de sécurité.",
+  "notions": [
+    "Défense en profondeur réseau",
+    "Compartimentation",
+    "Zones de sécurité",
+    "Moindre privilège réseau",
+    "Besoin d'en connaître",
+    "Séparation des tâches",
+    "Rotation",
+    "Maillon faible",
+    "Haute disponibilité"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq4-s01-s01",
+      "titre": "Défense en profondeur et compartimentation",
+      "contenu": "- **Défense en profondeur** : plusieurs barrières indépendantes (pare-feu périmétrique, pare-feu internes, filtrage applicatif, durcissement des serveurs, supervision).\n- **Compartimentation** (segmentation) : découper le réseau en **zones** (VLAN, sous-réseaux) séparées par des filtrages : utilisateurs, serveurs, administration, invités, téléphonie, objets connectés, DMZ. Une compromission reste **confinée**.\n- **Zones de sécurité** : chaque zone a un niveau de confiance et des règles de flux entre zones.\n\nLe **rebond** (*pivot*) est la technique d'un attaquant qui, après avoir compromis une machine, s'en sert pour attaquer les autres : la compartimentation le freine.",
+      "notions": [
+        "Défense en profondeur réseau",
+        "Compartimentation",
+        "Zones de sécurité"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq4-s01-s02",
+      "titre": "Moindre privilège et besoin d'en connaître",
+      "contenu": "- **Moindre privilège** : s'applique aux **utilisateurs**, mais aussi aux **services** et **flux** : un serveur web n'a pas besoin d'accéder au serveur de paie ; un service tourne avec un compte dédié non administrateur.\n- **Besoin d'en connaître** : n'accéder qu'aux informations nécessaires à sa mission, même avec un niveau d'habilitation élevé.\n- **Séparation des tâches** : une même personne ne réalise pas seule une opération critique de bout en bout (celui qui crée un compte n'est pas celui qui valide ses droits).\n- **Rotation** des tâches et des secrets (mots de passe de comptes de service, clés) : limite la fraude interne et l'usage d'un secret volé.",
+      "notions": [
+        "Moindre privilège réseau",
+        "Besoin d'en connaître",
+        "Séparation des tâches",
+        "Rotation"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq4-s01-s03",
+      "titre": "Maillon faible et haute disponibilité",
+      "contenu": "- **Maillon faible** : la sécurité d'un système est celle de son **élément le plus faible** (un vieux routeur jamais mis à jour, un prestataire, un utilisateur non sensibilisé). Il faut un niveau **homogène**.\n- **Haute disponibilité** : éviter les **points uniques de défaillance** : double alimentation, liens redondants, équipements en grappe, sauvegardes, plan de reprise.\n- **Prévention d'intrusion** : IPS qui bloque les attaques connues sur les flux.",
+      "notions": [
+        "Maillon faible",
+        "Haute disponibilité"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq4-s01-c001",
+      "section": "libre-b3-33-sq4-s01-s01",
+      "type": "qcm",
+      "question": "Pourquoi placer les caméras IP et objets connectés dans un VLAN séparé ?",
+      "choix": [
+        "Pour améliorer la qualité vidéo",
+        "Pour qu'un objet compromis ne serve pas de rebond vers les postes et serveurs",
+        "Parce que les caméras n'acceptent pas les autres VLAN",
+        "Pour économiser des adresses IP"
+      ],
+      "bonneReponse": 1,
+      "explication": "La compartimentation limite la propagation d'une compromission.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq4-s01-c002",
+      "section": "libre-b3-33-sq4-s01-s02",
+      "type": "qcm",
+      "question": "Le compte de service d'une application web est administrateur du domaine. Quel principe est violé ?",
+      "choix": [
+        "Haute disponibilité",
+        "Moindre privilège appliqué aux services",
+        "Rotation",
+        "Maillon faible"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le moindre privilège concerne aussi les comptes techniques.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq4-s01-c003",
+      "section": "libre-b3-33-sq4-s01-s03",
+      "type": "question",
+      "recto": "Que signifie « la sécurité d'un réseau est celle de son maillon le plus faible » ?",
+      "verso": "Qu'un attaquant passera par l'élément **le moins protégé** : inutile de renforcer un point si un autre reste grand ouvert.",
+      "difficulte": 1
+    }
+  ]
+}

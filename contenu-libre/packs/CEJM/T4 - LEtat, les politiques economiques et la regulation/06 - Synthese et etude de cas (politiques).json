@@ -1,0 +1,67 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq07-s03",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 4 – L'État, les politiques économiques et la régulation",
+  "sequence": null,
+  "seance": "Synthèse et étude de cas (politiques)",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif des politiques économiques et de leurs limites, puis analyse d'une conjoncture fictive.",
+  "notions": [
+    "Synthèse des politiques économiques",
+    "Application à un cas"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq07-s03-s01",
+      "titre": "L'essentiel",
+      "contenu": "- 3 fonctions : **allocation, redistribution, stabilisation**.\n- PIB = somme des valeurs ajoutées ; croissance = taux de variation du PIB ; compléments : PIB/habitant, IDH.\n- Conjoncturel (court terme) : **budgétaire** (État : dépenses, impôts) et **monétaire** (BCE : taux directeurs, inflation ≈ 2 %).\n- Structurel (long terme) : politique de l'**offre** (coûts des entreprises) ou de la **demande** (pouvoir d'achat).\n- Limites : déficit (flux annuel) ≠ dette (stock), règles européennes (3 % / 60 %), concurrence fiscale, tensions sociales.",
+      "notions": [
+        "Synthèse des politiques économiques"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq07-s03-s02",
+      "titre": "Étude de cas : conjoncture fictive",
+      "contenu": "Dans le pays fictif d'Albérie (membre de la zone euro), l'inflation atteint 6 %. La banque centrale relève ses taux directeurs de 2 points. Le gouvernement, dont le déficit atteint 5 % du PIB, annonce une baisse des dépenses publiques.\n\n*Ébénis*, PME fictive de fabrication de meubles, avait prévu d'emprunter 300 000 € pour automatiser son atelier. 60 % de ses ventes se font auprès de ménages, 40 % auprès de collectivités (écoles, mairies).",
+      "notions": [
+        "Application à un cas"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq07-s03-c001",
+      "section": "libre-cejm-sq07-s03-s01",
+      "type": "qcm",
+      "question": "Quelle mesure est une politique budgétaire de relance ?",
+      "choix": [
+        "Lancer un programme de rénovation des écoles financé par l'État",
+        "Relever les taux directeurs",
+        "Réduire les dépenses publiques",
+        "Augmenter la TVA"
+      ],
+      "bonneReponse": 0,
+      "explication": "Plus de dépenses publiques pour stimuler la demande.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq07-s03-c002",
+      "section": "libre-cejm-sq07-s03-s02",
+      "type": "exercice",
+      "enonce": "Analyse les effets de cette conjoncture sur *Ébénis*.",
+      "etapes": [
+        "Politique monétaire restrictive : le crédit devient plus cher ; l'emprunt de 300 000 € coûtera plus d'intérêts, l'automatisation peut être reportée.",
+        "Les ménages empruntent et consomment moins : la demande de meubles baisse (60 % des ventes).",
+        "La politique budgétaire de rigueur réduit les achats des collectivités (40 % des ventes).",
+        "À l'inverse, si l'inflation recule, les coûts des matières premières se stabiliseront."
+      ],
+      "reponse": "Double frein : financement plus coûteux et demande en baisse (ménages et collectivités) ; Ébénis doit revoir le calendrier de son investissement ou chercher un autre financement.",
+      "difficulte": 3
+    }
+  ]
+}

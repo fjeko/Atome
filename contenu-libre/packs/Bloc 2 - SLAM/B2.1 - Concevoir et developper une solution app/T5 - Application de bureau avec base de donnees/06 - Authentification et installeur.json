@@ -1,0 +1,89 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq4-s06",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 5 – Application de bureau avec base de données",
+  "sequence": null,
+  "seance": "Authentification et installeur",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. L'authentification vérifie l'identité de l'utilisateur avec un identifiant et un mot de passe haché. On livre ensuite l'application avec un installeur, accompagné de mentions légales.",
+  "notions": [
+    "Authentification",
+    "Identification",
+    "Contrôle d'authentification",
+    "Installeur",
+    "Mentions légales"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq4-s06-s01",
+      "titre": "Principes de l'authentification",
+      "contenu": "- **Identification** : dire qui on est (saisir un identifiant).\n- **Authentification** : **prouver** qui on est (mot de passe, code, empreinte…).\n- **Autorisation** : ce qu'on a ensuite le droit de faire (le profil).\n\nBonnes pratiques pour le formulaire de connexion :\n- masquer la saisie du mot de passe (`UseSystemPasswordChar = true` ou `PasswordChar = '•'`) ;\n- message d'erreur **neutre** : « Identifiant ou mot de passe incorrect » (ne pas dire lequel est faux) ;\n- limiter les tentatives (blocage temporaire après plusieurs échecs).",
+      "notions": [
+        "Authentification",
+        "Identification"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq4-s06-s02",
+      "titre": "Vérifier le couple identifiant / mot de passe",
+      "contenu": "```csharp\npublic Utilisateur? Authentifier(string login, string mdp)\n{\n    using var cnx = new MySqlConnection(Config.Chaine);\n    cnx.Open();\n    using var cmd = new MySqlCommand(\n        \"SELECT u.id, u.mdp_hash, p.libelle FROM utilisateur u JOIN profil p ON p.id = u.id_profil WHERE u.login = @login\", cnx);\n    cmd.Parameters.AddWithValue(\"@login\", login);\n    using var r = cmd.ExecuteReader();\n    if (!r.Read()) return null;                                   // login inconnu\n    if (!BCrypt.Net.BCrypt.Verify(mdp, r.GetString(\"mdp_hash\"))) return null;  // mauvais mot de passe\n    return new Utilisateur { Id = r.GetInt32(\"id\"), Login = login, Profil = r.GetString(\"libelle\") };\n}\n```\n\nOn cherche par **login seulement**, puis on **vérifie l'empreinte** en C# : on ne compare jamais un mot de passe en clair dans la requête.",
+      "notions": [
+        "Contrôle d'authentification"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq4-s06-s03",
+      "titre": "Créer un installeur et mentions légales",
+      "contenu": "Pour livrer une application de bureau, on crée un **installeur** (outil intégré à Visual Studio, Inno Setup, WiX, MSIX…). Il :\n- copie l'exécutable et les **bibliothèques** nécessaires (pilote de base de données…) ;\n- crée les **raccourcis** et l'entrée de désinstallation ;\n- peut vérifier les **prérequis** (version de .NET) ;\n- place le **fichier de configuration** (chaîne de connexion) à adapter.\n\nL'application doit aussi présenter des **mentions légales** : éditeur, licence d'utilisation, licences des bibliothèques tierces, et, si des données personnelles sont traitées, l'information prévue par le RGPD.",
+      "notions": [
+        "Installeur",
+        "Mentions légales"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq4-s06-c001",
+      "section": "libre-b2-21-sq4-s06-s01",
+      "type": "qcm",
+      "question": "Pourquoi afficher « Identifiant ou mot de passe incorrect » plutôt que « Mot de passe incorrect » ?",
+      "choix": [
+        "C'est plus court",
+        "Pour ne pas révéler à un attaquant que l'identifiant existe",
+        "Parce que l'application ne sait pas lequel est faux",
+        "Pour respecter la charte graphique"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un message précis permet de deviner les identifiants valides.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq4-s06-c002",
+      "section": "libre-b2-21-sq4-s06-s02",
+      "type": "exercice",
+      "enonce": "Décris la logique du bouton « Se connecter » : appel au contrôleur, cas d'échec, cas de succès avec un profil « lecteur » qui ne doit pas pouvoir modifier.",
+      "etapes": [
+        "Récupérer les champs ; si l'un est vide, afficher « Champs obligatoires » et s'arrêter.",
+        "Appeler `controleur.Authentifier(login, mdp)`.",
+        "Si le résultat est `null` : message neutre, effacer le mot de passe, incrémenter le compteur d'échecs.",
+        "Sinon : ouvrir la fenêtre principale en lui passant l'utilisateur.",
+        "Dans la fenêtre principale : si `Profil == \"lecteur\"`, désactiver ou masquer les boutons Ajouter/Modifier/Supprimer."
+      ],
+      "reponse": "Contrôle des champs, appel au contrôleur, message neutre en cas d'échec, adaptation de l'interface au profil.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b2-21-sq4-s06-c003",
+      "section": "libre-b2-21-sq4-s06-s03",
+      "type": "question",
+      "recto": "Que doit faire un installeur d'application de bureau ?",
+      "verso": "Copier l'exécutable et ses dépendances, créer raccourcis et désinstallation, vérifier les prérequis et installer la configuration.",
+      "difficulte": 1
+    }
+  ]
+}

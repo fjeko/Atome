@@ -1,0 +1,163 @@
+{
+  "formatVersion": 1,
+  "id": "libre-algo-p0-s01",
+  "matiere": "Algorithmique appliquée",
+  "bloc": "Bloc 6",
+  "partie": "Aide-mémoire Python",
+  "sequence": null,
+  "seance": "Mémento du langage Python",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Fiche de référence à consulter pendant tout le module : correspondances pseudo-code ↔ Python, fonctions et portée, listes, bibliothèques et règles de syntaxe.",
+  "notions": [
+    "Correspondances pseudo-code ↔ Python",
+    "Python, langage interprété",
+    "Fonctions : défaut, retours multiples, lambda",
+    "Noms, constantes et portée",
+    "Listes : accès, tranches, méthodes",
+    "Copie superficielle et profonde",
+    "Fonctions prédéfinies et bibliothèques",
+    "Règles de syntaxe"
+  ],
+  "sections": [
+    {
+      "id": "libre-algo-p0-s01-s01",
+      "titre": "Correspondances pseudo-code ↔ Python",
+      "contenu": "| Pseudo-code | Python |\n|---|---|\n| `x ← 3` | `x = 3` |\n| `SAISIR x` | `x = int(input(\"…\"))` (ou `float`) |\n| `AFFICHER \"Total : \", t` | `print(\"Total :\", t)` ou `print(f\"Total : {t}\")` |\n| `div`, `mod` | `//`, `%` |\n| `=`, `≠` (comparaison) | `==`, `!=` |\n| `ET`, `OU`, `NON` | `and`, `or`, `not` |\n| `SI c ALORS … SINON … FINSI` | `if c:` … `else:` |\n| `SINON SI` | `elif` |\n| `TANTQUE c FAIRE … FINTANTQUE` | `while c:` |\n| `POUR i DE 1 À n FAIRE` | `for i in range(1, n + 1):` |\n| `POUR i DE n À 1 PAS -1` | `for i in range(n, 0, -1):` |\n| parcours d'une collection | `for element in liste:` |\n| sortir d'une boucle | `break` |\n| passer au tour suivant | `continue` |\n\nPython est **interprété** : le code est compilé à la volée en un code intermédiaire (bytecode), puis exécuté. On l'écrit dans un éditeur ou un IDE (Thonny, VS Code…) ; un fichier `.py` se lit de haut en bas ; `#` commence un commentaire.",
+      "notions": [
+        "Correspondances pseudo-code ↔ Python",
+        "Python, langage interprété"
+      ]
+    },
+    {
+      "id": "libre-algo-p0-s01-s02",
+      "titre": "Fonctions, noms et portée",
+      "contenu": "```python\ndef puissance(base, exposant=2):   # exposant a une valeur par défaut\n    '''Renvoie base ** exposant.'''\n    return base ** exposant\n\ndef min_max(t):\n    return min(t), max(t)          # plusieurs valeurs renvoyées (tuple)\n\ncarre = lambda x: x * x            # fonction anonyme, pour un usage court\n\npuissance(3)        # 9\npuissance(2, 5)     # 32\nmini, maxi = min_max([4, 1, 7])    # mini = 1, maxi = 7\n```\n\n- **Noms** : lettres, chiffres, `_`, ne commence pas par un chiffre, sensible à la **casse** (`Total` ≠ `total`).\n- **Constantes** : par convention en MAJUSCULES (`TAUX_TVA`) ; Python ne les protège pas.\n- **Portée** : variable créée dans une fonction = locale ; `global nom` permet de modifier une globale (à éviter).\n- **Mots réservés** interdits comme noms : `if`, `for`, `while`, `def`, `return`, `class`, `True`, `None`, `and`, `in`, `import`…",
+      "notions": [
+        "Fonctions : défaut, retours multiples, lambda",
+        "Noms, constantes et portée"
+      ]
+    },
+    {
+      "id": "libre-algo-p0-s01-s03",
+      "titre": "Listes",
+      "contenu": "```python\nt = [5, 2, 8]\nt[0]            # 5          t[-1]  → 8 (dernier)\nt[1:3]          # [2, 8]     tranche : début inclus, fin exclue\nlen(t)          # 3\nt.append(4)     # [5, 2, 8, 4]       ajout à la fin\nt.insert(0, 9)  # [9, 5, 2, 8, 4]    insertion à l'indice 0\nt.remove(2)     # [9, 5, 8, 4]       supprime la 1re valeur 2\ndel t[0]        # [5, 8, 4]          supprime l'indice 0\nt.pop()         # renvoie 4 → t = [5, 8]\nt.sort()        # tri sur place, renvoie None\n8 in t          # True\nt.index(8)      # position de 8\n```\n\n**Copie superficielle / profonde** :\n- `b = a` : **alias**, même liste ;\n- `b = a.copy()` ou `a[:]` : copie **superficielle** (suffit pour une liste de nombres) ;\n- `copy.deepcopy(a)` : copie **profonde**, nécessaire pour une liste de listes.\n\n**Permuter** deux variables : `a, b = b, a`.",
+      "notions": [
+        "Listes : accès, tranches, méthodes",
+        "Copie superficielle et profonde"
+      ]
+    },
+    {
+      "id": "libre-algo-p0-s01-s04",
+      "titre": "Fonctions prédéfinies et bibliothèques",
+      "contenu": "| Fonction | Exemple | Résultat |\n|---|---|---|\n| `len` | `len(\"abc\")` | 3 |\n| `min`, `max`, `sum` | `sum([1, 2, 3])` | 6 |\n| `abs` | `abs(-4)` | 4 |\n| `round` | `round(3.456, 1)` | 3.5 |\n| `int`, `float`, `str` | `int(\"12\")` | 12 |\n| `type` | `type(2.0)` | `float` |\n\n**Importer** :\n```python\nimport math                     # math.sqrt(2), math.pi, math.floor(2.7)\nimport random                   # random.randint(1, 6), random.choice(t), random.shuffle(t)\nfrom datetime import date       # date.today(), date(2026, 9, 1)\n```\n\nUn **package** est un dossier qui regroupe plusieurs modules (ex. `os.path`). Les bibliothèques externes s'installent avec `pip install nom`.\n\n### Règles de syntaxe\n- **Indentation** obligatoire et cohérente (4 espaces) : elle délimite les blocs.\n- **Deux-points** à la fin de `if`, `elif`, `else`, `for`, `while`, `def`.\n- **Casse** : `print` ≠ `Print`.",
+      "notions": [
+        "Fonctions prédéfinies et bibliothèques",
+        "Règles de syntaxe"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-algo-p0-s01-c001",
+      "section": "libre-algo-p0-s01-s01",
+      "type": "qcm",
+      "question": "Quelle est la traduction de `POUR i DE 0 À 9 FAIRE` ?",
+      "choix": [
+        "`for i in range(10):`",
+        "`for i in range(9):`",
+        "`for i in range(0, 9):`",
+        "`for i in range(1, 10):`"
+      ],
+      "bonneReponse": 0,
+      "explication": "La borne de fin de `range` est exclue : pour aller jusqu'à 9, on écrit 10.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p0-s01-c002",
+      "section": "libre-algo-p0-s01-s01",
+      "type": "question",
+      "recto": "Que font `break` et `continue` dans une boucle ?",
+      "verso": "`break` sort immédiatement de la boucle ; `continue` saute la fin du tour en cours et passe au suivant.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p0-s01-c003",
+      "section": "libre-algo-p0-s01-s02",
+      "type": "qcm",
+      "question": "Que vaut `puissance(4)` avec `def puissance(base, exposant=2)` ?",
+      "choix": [
+        "16",
+        "4",
+        "8",
+        "Erreur"
+      ],
+      "bonneReponse": 0,
+      "explication": "`exposant` prend sa valeur par défaut, 2 : $4^2 = 16$.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p0-s01-c004",
+      "section": "libre-algo-p0-s01-s02",
+      "type": "question",
+      "recto": "Comment une fonction Python peut-elle renvoyer deux valeurs ?",
+      "verso": "`return a, b` renvoie un tuple ; on le récupère avec `x, y = f(...)`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p0-s01-c005",
+      "section": "libre-algo-p0-s01-s03",
+      "type": "qcm",
+      "question": "Avec `m = [[1, 2], [3, 4]]` et `c = m.copy()`, on fait `c[0][0] = 9`. Que vaut `m[0][0]` ?",
+      "choix": [
+        "9",
+        "1",
+        "Erreur",
+        "None"
+      ],
+      "bonneReponse": 0,
+      "explication": "La copie superficielle copie la liste extérieure mais partage les lignes : il faut `copy.deepcopy`.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-algo-p0-s01-c006",
+      "section": "libre-algo-p0-s01-s03",
+      "type": "qcm",
+      "question": "Que vaut `t[1:3]` pour `t = [10, 20, 30, 40]` ?",
+      "choix": [
+        "[20, 30]",
+        "[10, 20, 30]",
+        "[20, 30, 40]",
+        "[20]"
+      ],
+      "bonneReponse": 0,
+      "explication": "Indices 1 et 2 ; l'indice 3 est exclu.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p0-s01-c007",
+      "section": "libre-algo-p0-s01-s04",
+      "type": "qcm",
+      "question": "Quel fragment est syntaxiquement valide ?",
+      "choix": [
+        "`if x == 3: print(x)`",
+        "`if x = 3: print(x)`",
+        "`if x == 3 print(x)`",
+        "`If x == 3: print(x)`"
+      ],
+      "bonneReponse": 0,
+      "explication": "Il faut `==` pour comparer, le deux-points, et `if` en minuscules.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p0-s01-c008",
+      "section": "libre-algo-p0-s01-s04",
+      "type": "question",
+      "recto": "Comment tirer au hasard un élément d'une liste `t` ?",
+      "verso": "`random.choice(t)` après `import random`.",
+      "difficulte": 1
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "formatVersion": 1,
+  "id": "libre-algo-p2-s05",
+  "matiere": "Algorithmique appliquée",
+  "bloc": "Bloc 6",
+  "partie": "Thème 2 – Tableaux et vecteurs",
+  "sequence": null,
+  "seance": "Synthèse tableaux",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif des tableaux à une et deux dimensions, de leur traduction en Python et de leurs équivalents dans d'autres langages, avec les pièges classiques.",
+  "notions": [
+    "Mémo des algorithmes sur tableaux",
+    "Tableaux dans les langages typés",
+    "Pièges fréquents"
+  ],
+  "sections": [
+    {
+      "id": "libre-algo-p2-s05-s01",
+      "titre": "Mémo des algorithmes",
+      "contenu": "| Besoin | Idée clé |\n|---|---|\n| somme / moyenne | accumulateur à 0, diviser par le nombre d'éléments **utiles** |\n| min / max | initialiser avec la **première case** |\n| recherche | `TANTQUE` avec double condition (bornes, trouvé) |\n| échange | variable temporaire |\n| inversion | échanges sur la **moitié** seulement |\n| copie | `.copy()` / `deepcopy`, jamais `b = a` |\n| matrice : parcours | deux boucles, `m[ligne][colonne]` |\n| produit de matrices | trois boucles, test de compatibilité, accumulateur à 0 |",
+      "notions": [
+        "Mémo des algorithmes sur tableaux"
+      ]
+    },
+    {
+      "id": "libre-algo-p2-s05-s02",
+      "titre": "Les tableaux dans d'autres langages",
+      "contenu": "| | Python (liste) | C# (tableau) |\n|---|---|---|\n| déclaration | `t = [0] * 5` | `int[] t = new int[5];` |\n| taille | variable (`append`) | **fixe** |\n| types | mélange possible | **un seul type** déclaré |\n| matrice | liste de listes | `int[,] m = new int[2, 3];` |\n| hors bornes | `IndexError` | `IndexOutOfRangeException` |\n\nEn C#, pour une taille variable, on utilise `List<int>`. Dans tous les langages, l'indice commence à 0.",
+      "notions": [
+        "Tableaux dans les langages typés"
+      ]
+    },
+    {
+      "id": "libre-algo-p2-s05-s03",
+      "titre": "Les pièges classiques",
+      "contenu": "1. **Dépassement de bornes** : boucle jusqu'à `n` au lieu de `n - 1` (`range(n + 1)` au lieu de `range(n)`).\n2. **Échange sans variable temporaire.**\n3. **Ligne et colonne inversées**, ou boucles mal imbriquées.\n4. **Matrice créée par `[[0] * nc] * nl`** : lignes partagées.\n5. **Copie par affectation** (`b = a`).\n6. **Accumulateur du produit** non initialisé, ou initialisé une seule fois pour toute la matrice.\n7. **Taille déclarée confondue avec le nombre d'éléments utilisés.**",
+      "notions": [
+        "Pièges fréquents"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-algo-p2-s05-c001",
+      "section": "libre-algo-p2-s05-s01",
+      "type": "qcm",
+      "question": "Quel algorithme demande une variable temporaire ?",
+      "choix": [
+        "L'échange de deux cases",
+        "La somme",
+        "La recherche d'une valeur",
+        "Le comptage"
+      ],
+      "bonneReponse": 0,
+      "explication": "Sans variable temporaire, la première affectation écrase une des deux valeurs.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p2-s05-c002",
+      "section": "libre-algo-p2-s05-s02",
+      "type": "question",
+      "recto": "Pourquoi dit-on qu'un tableau C# est « statique » ?",
+      "verso": "Sa taille est fixée à la création et tous ses éléments ont le même type déclaré.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p2-s05-c003",
+      "section": "libre-algo-p2-s05-s03",
+      "type": "qcm",
+      "question": "Quelle boucle parcourt correctement un tableau `t` de taille `n` (indices 0 à n − 1) ?",
+      "choix": [
+        "`for i in range(n):`",
+        "`for i in range(1, n + 1):`",
+        "`for i in range(n + 1):`",
+        "`for i in range(1, n):`"
+      ],
+      "bonneReponse": 0,
+      "explication": "`range(n)` donne 0 à n − 1. Les autres dépassent ou oublient une case.",
+      "difficulte": 1
+    }
+  ]
+}

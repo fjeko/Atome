@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-m-s04",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Méthodologie de l'épreuve",
+  "sequence": null,
+  "seance": "Lire un graphique économique",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Présenter un graphique, décrire les évolutions avec des chiffres exacts, puis les interpréter, sans confondre niveau et variation.",
+  "notions": [
+    "Présentation et description d'un graphique",
+    "Taux de variation",
+    "Niveau et variation"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-m-s04-s01",
+      "titre": "Présenter puis décrire",
+      "contenu": "**1. Présenter** : titre, nature des données, **unités** (euros, milliers, %, indice), **source**, **période**, champ (France, zone euro…).\n\n**2. Décrire** du général au particulier :\n- la **tendance** générale (hausse, baisse, stabilité) ;\n- les **ruptures** (changement de rythme, retournement) ;\n- les **écarts** entre séries ;\n- chaque idée appuyée sur des **chiffres exacts avec leur unité et leur date**.\n\nExemple (données inventées) : chiffre d'affaires d'une coopérative de 2021 à 2025, en milliers d'euros : 400 ; 440 ; 470 ; 450 ; 520.\n\n« De 2021 à 2025, le chiffre d'affaires progresse globalement, de 400 000 € à 520 000 €, malgré un recul en 2024 (de 470 000 € à 450 000 €). »",
+      "notions": [
+        "Présentation et description d'un graphique"
+      ]
+    },
+    {
+      "id": "libre-cejm-m-s04-s02",
+      "titre": "Calculer et interpréter",
+      "contenu": "**Taux de variation** entre une valeur de départ $V_D$ et une valeur d'arrivée $V_A$ :\n\n$$\\text{taux} = \\frac{V_A - V_D}{V_D} \\times 100$$\n\nAvec l'exemple : de 2021 à 2025, $\\frac{520 - 400}{400} \\times 100 = 30\\,\\%$. De 2023 à 2024 : $\\frac{450 - 470}{470} \\times 100 \\approx -4{,}3\\,\\%$.\n\n**Coefficient multiplicateur** : $\\frac{V_A}{V_D} = 1{,}3$ (le chiffre d'affaires a été multiplié par 1,3).\n\n⚠️ **Niveau ≠ variation.** Si un graphique montre des **taux de croissance** qui baissent (de 5 % à 2 %), la grandeur **continue d'augmenter**, mais moins vite. Elle ne diminue que si le taux devient négatif.\n\n**Interpréter**, c'est relier l'évolution à une cause ou à une conséquence pour l'organisation étudiée.",
+      "notions": [
+        "Taux de variation",
+        "Niveau et variation"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-m-s04-c001",
+      "section": "libre-cejm-m-s04-s01",
+      "type": "qcm",
+      "question": "Que faut-il toujours préciser quand on cite un chiffre lu sur un graphique ?",
+      "choix": [
+        "L'unité et la date ou la période",
+        "La couleur de la courbe",
+        "Le nom du logiciel utilisé",
+        "Rien de plus"
+      ],
+      "bonneReponse": 0,
+      "explication": "« 450 » ne veut rien dire ; « 450 000 € en 2024 » est exploitable.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-m-s04-c002",
+      "section": "libre-cejm-m-s04-s02",
+      "type": "exercice",
+      "enonce": "Le nombre d'adhérents d'une association passe de 250 à 310. Calcule le taux de variation.",
+      "etapes": [
+        "$\\frac{310 - 250}{250} \\times 100 = \\frac{60}{250} \\times 100$",
+        "= 24"
+      ],
+      "reponse": "+24 %",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-m-s04-c003",
+      "section": "libre-cejm-m-s04-s02",
+      "type": "qcm",
+      "question": "Le taux de croissance du PIB d'un pays passe de 3 % à 1 % en deux ans. Que fait le PIB ?",
+      "choix": [
+        "Il continue d'augmenter, mais plus lentement",
+        "Il baisse",
+        "Il reste stable",
+        "Il baisse de 2 %"
+      ],
+      "bonneReponse": 0,
+      "explication": "Un taux positif signifie une hausse du niveau. Seul un taux négatif traduit une baisse.",
+      "difficulte": 2
+    }
+  ]
+}

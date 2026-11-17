@@ -1,0 +1,59 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq3-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 8 – Diagnostic de pannes réseau",
+  "sequence": null,
+  "seance": "Rédiger un rapport d'incident réseau",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Documenter une intervention réseau dans un rapport clair : symptômes, diagnostic, hypothèses vérifiées, correction, tests et préconisations.",
+  "notions": [
+    "Contenu d'un rapport d'incident",
+    "Rédiger un rapport"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq3-s04-s01",
+      "titre": "Ce que contient le rapport",
+      "contenu": "| Rubrique | Contenu |\n| --- | --- |\n| Identification | n° de ticket, date, demandeur, technicien |\n| Symptômes | ce qui est constaté, par qui, depuis quand, périmètre (un poste, un service) |\n| Diagnostic | tests réalisés et résultats (`ipconfig`, `ping`…) |\n| Cause | hypothèse confirmée |\n| Correction | ce qui a été modifié, précisément |\n| Tests de validation | ce qui prouve que c'est réglé |\n| Préconisations | ce qu'il faudrait faire pour que ça ne se reproduise pas |\n| Escalade éventuelle | à qui, pourquoi |\n\nStyle : phrases courtes, faits vérifiables, pas de jugement sur l'utilisateur.",
+      "notions": [
+        "Contenu d'un rapport d'incident"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq3-s04-s02",
+      "titre": "Exemple de rapport",
+      "contenu": "**Ticket 2026-0412 – 14/04 – Accueil de la piscine intercommunale**\n- **Symptômes** : depuis 9 h, le poste de caisse n'accède plus au logiciel de billetterie en ligne. Les autres postes fonctionnent.\n- **Diagnostic** : `ipconfig /all` → IP 192.168.1.80, passerelle **192.168.1.1** ; la passerelle du réseau est 192.168.1.254. Ping vers 192.168.1.254 OK, vers 9.9.9.9 KO.\n- **Cause** : passerelle erronée, saisie lors du remplacement de la carte réseau la veille (IP statique).\n- **Correction** : passage en DHCP (le poste reçoit 192.168.1.112, passerelle .254).\n- **Tests** : ping 9.9.9.9 OK, billetterie accessible, une vente test réalisée.\n- **Préconisation** : ne pas configurer d'IP statique sur les postes ; documenter la procédure de remplacement de carte.",
+      "notions": [
+        "Rédiger un rapport"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq3-s04-c001",
+      "section": "libre-b1-12b-sq3-s04-s01",
+      "type": "question",
+      "recto": "Pourquoi ajouter des préconisations à un rapport d'incident ?",
+      "verso": "Pour éviter que l'incident se reproduise (cause racine, amélioration durable) et aider la décision.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq3-s04-c002",
+      "section": "libre-b1-12b-sq3-s04-s02",
+      "type": "exercice",
+      "enonce": "Rédige la rubrique « Diagnostic » et « Cause » pour ce cas : un poste voit les sites Internet mais pas le serveur `srv-dossiers.local` ; `ipconfig /all` montre comme DNS 1.1.1.1 au lieu du DNS interne 10.0.0.5.",
+      "etapes": [
+        "Diagnostic : décrire les tests et leurs résultats (accès Internet OK, nom interne KO, DNS configuré 1.1.1.1).",
+        "Ajouter un test qui confirme : `nslookup srv-dossiers.local 10.0.0.5` répond.",
+        "Cause : le poste n'interroge pas le DNS interne, qui seul connaît les noms internes."
+      ],
+      "reponse": "Diagnostic : Internet OK ; `nslookup srv-dossiers.local` échoue avec le DNS 1.1.1.1 mais réussit en interrogeant 10.0.0.5. Cause : serveur DNS public configuré sur le poste au lieu du DNS interne.",
+      "difficulte": 2
+    }
+  ]
+}

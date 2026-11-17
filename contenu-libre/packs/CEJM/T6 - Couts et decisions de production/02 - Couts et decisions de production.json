@@ -1,0 +1,94 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq10-s02",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 6 – Coûts et décisions de production",
+  "sequence": null,
+  "seance": "Coûts et décisions de production",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Choisir une combinaison productive, mesurer la productivité et ses gains, tenir compte des taux d'intérêt et du développement durable.",
+  "notions": [
+    "Combinaison productive et substitution",
+    "Productivité partielle et globale",
+    "Gains de productivité",
+    "Taux d'intérêt et investissement",
+    "Développement durable et choix de production"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq10-s02-s01",
+      "titre": "La combinaison productive",
+      "contenu": "La **combinaison productive** est la façon dont l'entreprise associe travail et capital. Elle peut être plutôt **capitalistique** (beaucoup de machines, peu de salariés : une usine automatisée) ou plutôt **travaillistique** (beaucoup de main-d'œuvre : un service d'aide à domicile).\n\nCritères de choix : **coût relatif** du travail et du capital, qualité recherchée, volume, flexibilité, savoir-faire disponibles, image.\n\nQuand le travail devient cher par rapport au capital, l'entreprise peut **substituer du capital au travail** : remplacer des tâches manuelles par des machines ou des logiciels.",
+      "notions": [
+        "Combinaison productive et substitution"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq10-s02-s02",
+      "titre": "Productivité et gains de productivité",
+      "contenu": "La **productivité** mesure l'efficacité d'un facteur : production obtenue par unité de facteur.\n\n- **Productivité du travail** (partielle) : $\\frac{\\text{production}}{\\text{nombre de salariés (ou d'heures)}}$\n- **Productivité du capital** (partielle) : $\\frac{\\text{production}}{\\text{capital utilisé}}$\n- **Productivité globale** : production rapportée à l'ensemble des facteurs ; elle traduit l'efficacité de leur combinaison (organisation, innovation).\n\nExemple fictif : un atelier produit 12 000 pièces par an avec 4 salariés (3 000 pièces par salarié). Après l'achat d'une machine, il en produit 15 000 avec les mêmes 4 salariés : 3 750 pièces par salarié.\n\n$$\\text{gain} = \\frac{3\\,750 - 3\\,000}{3\\,000} \\times 100 = 25\\,\\%$$\n\n⚠️ **Production ≠ productivité** : produire plus en embauchant beaucoup peut faire **baisser** la productivité.\n\nLes gains de productivité peuvent être répartis : baisse des prix (clients), hausse des salaires, hausse des profits (investissement, actionnaires), réduction du temps de travail.",
+      "notions": [
+        "Productivité partielle et globale",
+        "Gains de productivité"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq10-s02-s03",
+      "titre": "Investir : taux d'intérêt et développement durable",
+      "contenu": "Investir (acheter une machine, un logiciel) coûte aujourd'hui et rapporte plus tard. Quand l'investissement est financé par emprunt, son coût dépend du **taux d'intérêt** :\n- taux bas → emprunter coûte peu → plus de projets deviennent rentables ;\n- taux élevés → certains projets sont abandonnés ou reportés.\n\nLe **développement durable** pèse aussi sur les choix : préférer une machine moins énergivore, réduire les déchets, relocaliser une partie de la production. Cela peut coûter plus cher à court terme mais réduire des coûts futurs (énergie, taxes carbone) et améliorer l'image.",
+      "notions": [
+        "Taux d'intérêt et investissement",
+        "Développement durable et choix de production"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq10-s02-c001",
+      "section": "libre-cejm-sq10-s02-s01",
+      "type": "qcm",
+      "question": "Un entrepôt remplace des préparateurs de commandes par des robots. C'est…",
+      "choix": [
+        "Une substitution du capital au travail",
+        "Une substitution du travail au capital",
+        "Une externalisation",
+        "Une baisse de productivité"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le capital technique (robots) remplace une partie du travail humain.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq10-s02-c002",
+      "section": "libre-cejm-sq10-s02-s02",
+      "type": "exercice",
+      "enonce": "Une équipe de 5 personnes traite 400 dossiers par mois. L'année suivante, 6 personnes en traitent 450. La productivité du travail a-t-elle augmenté ?",
+      "etapes": [
+        "Avant : $\\frac{400}{5} = 80$ dossiers par personne.",
+        "Après : $\\frac{450}{6} = 75$ dossiers par personne.",
+        "Variation : $\\frac{75 - 80}{80} \\times 100 = -6{,}25\\,\\%$"
+      ],
+      "reponse": "Non : la production augmente, mais la productivité baisse de 6,25 %.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq10-s02-c003",
+      "section": "libre-cejm-sq10-s02-s03",
+      "type": "qcm",
+      "question": "Pourquoi une hausse des taux d'intérêt peut-elle freiner l'automatisation d'un atelier ?",
+      "choix": [
+        "L'emprunt nécessaire coûte plus cher, ce qui réduit la rentabilité de l'investissement",
+        "Les machines deviennent illégales",
+        "Les salariés coûtent moins cher",
+        "La production augmente trop"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le coût du financement fait partie du calcul de rentabilité.",
+      "difficulte": 2
+    }
+  ]
+}

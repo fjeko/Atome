@@ -1,0 +1,196 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq1-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – Gérer le patrimoine informatique › Thème 1 – Inventaire et gestion d'un parc informatique",
+  "sequence": null,
+  "seance": "Processeur, bus et mémoire",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Comment fonctionne un processeur (cycle d'instruction, cœurs, cache, fréquence), ce que sont les bus et leur débit, les générations de mémoire DDR et les unités binaires.",
+  "notions": [
+    "Rôle et cycle du processeur",
+    "Architectures x86 ARM et 32 64 bits",
+    "Cœurs multithreading cache fréquence",
+    "Bus et chipset",
+    "Calcul de débit",
+    "Mémoire DDR",
+    "Unités binaires kibi mébi gibi"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq1-s03-s01",
+      "titre": "Le rôle du processeur et le cycle d'instruction",
+      "contenu": "Le **processeur** (CPU) traite les instructions qui composent les programmes. Une instruction, c'est un ordre très simple : additionner deux nombres, copier une valeur en mémoire, comparer, sauter à une autre instruction.\n\nPour chaque instruction, il répète un **cycle** :\n1. **Chercher** (*fetch*) l'instruction en mémoire ;\n2. **Décoder** : comprendre ce qu'elle demande ;\n3. **Exécuter** : faire le calcul (dans l'**UAL**, l'unité arithmétique et logique) ;\n4. **Écrire** le résultat dans un registre ou en mémoire.\n\nÀ l'intérieur, on trouve notamment :\n- l'**unité de commande**, qui orchestre le cycle ;\n- l'**UAL**, qui calcule ;\n- les **registres**, de toutes petites mémoires ultrarapides ;\n- la **mémoire cache** (voir plus loin).",
+      "notions": [
+        "Rôle et cycle du processeur"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-s02",
+      "titre": "Familles, 32/64 bits, cœurs, cache et fréquence",
+      "contenu": "**Familles d'architecture** :\n- **x86** (Intel, AMD) : la majorité des PC et serveurs ;\n- **ARM** : smartphones, tablettes, de plus en plus de portables ; très économe en énergie.\nUn programme compilé pour x86 ne tourne pas tel quel sur ARM (et inversement).\n\n**32 ou 64 bits** : c'est la taille des données que le processeur manipule d'un coup et des adresses mémoire. Un système 32 bits ne peut adresser qu'environ 4 Gio de RAM ; en 64 bits, la limite est immense. **Ça n'a rien à voir avec le nombre de cœurs.**\n\n**Cœurs** : un processeur à 8 cœurs, c'est 8 unités capables d'exécuter des instructions en parallèle.\n**Multithreading** (*Hyper-Threading* chez Intel, *SMT* chez AMD) : chaque cœur gère deux fils d'exécution (*threads*) pour mieux s'occuper pendant les temps morts. 8 cœurs / 16 threads.\n\n**Cache** : mémoire très rapide intégrée au processeur (niveaux L1, L2, L3), qui garde les données souvent utilisées pour éviter d'aller les chercher dans la RAM, plus lente.\n\n**Fréquence** (en GHz) : nombre de cycles d'horloge par seconde. 3,5 GHz = 3,5 milliards de cycles/s. **Une fréquence plus haute ne veut pas dire forcément plus rapide** : le nombre de cœurs, le cache et l'architecture comptent autant.",
+      "notions": [
+        "Architectures x86 ARM et 32 64 bits",
+        "Cœurs multithreading cache fréquence"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-s03",
+      "titre": "Les bus, le chipset et le calcul d'un débit",
+      "contenu": "Un **bus** est un ensemble de liaisons qui transporte des données entre composants (processeur ↔ mémoire, carte mère ↔ carte graphique…).\n\n- **Bus parallèle** : plusieurs bits envoyés en même temps sur plusieurs fils (ancien PATA, bus mémoire).\n- **Bus série** : les bits passent les uns après les autres, mais très vite (USB, SATA, PCI Express). Les bus série ont largement remplacé les bus parallèles, car ils montent mieux en fréquence.\n- **Sens** : un bus peut être **simplex** (un seul sens), **half-duplex** (les deux sens, chacun son tour) ou **full-duplex** (les deux sens en même temps).\n\nLe **chipset** est le « carrefour » de la carte mère : il gère la communication avec les périphériques (USB, SATA, réseau…).\n\n### Calculer un débit\n$$\\text{débit (octets/s)} = \\frac{\\text{largeur du bus (bits)} \\times \\text{nombre de transferts par seconde}}{8}$$\n\n**Exemple** : un bus de 64 bits qui réalise 2 400 millions de transferts par seconde :\n$$\\frac{64 \\times 2\\,400 \\times 10^6}{8} = 19\\,200 \\times 10^6 \\text{ o/s} = 19{,}2 \\text{ Go/s}$$\n\nOn divise par 8 pour passer des **bits** aux **octets**.",
+      "notions": [
+        "Bus et chipset",
+        "Calcul de débit"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-s04",
+      "titre": "La mémoire DDR",
+      "contenu": "La RAM des PC est de type **SDRAM DDR** (*Double Data Rate*) : elle effectue **deux transferts par cycle d'horloge**. Les générations se succèdent : DDR3, DDR4, DDR5.\n\n- Chaque génération est **plus rapide** et **moins gourmande** en énergie.\n- Elles ne sont **pas compatibles entre elles** : une barrette DDR5 n'entre pas dans un slot DDR4 (l'encoche est placée ailleurs).\n\n**Lire une référence** : « DDR4-3200 » signifie 3 200 millions de transferts par seconde. Une barrette a un bus de 64 bits, donc :\n$$\\frac{64 \\times 3\\,200 \\times 10^6}{8} = 25\\,600 \\times 10^6 \\text{ o/s}$$\nd'où son autre nom commercial **PC4-25600** (25 600 Mo/s).\n\nEn **double canal** (*dual channel*), deux barrettes identiques travaillent ensemble : la bande passante théorique double.",
+      "notions": [
+        "Mémoire DDR"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-s05",
+      "titre": "Les unités binaires",
+      "contenu": "Il existe **deux familles de préfixes**, source de beaucoup de confusions :\n\n| Préfixe décimal (SI) | Valeur | Préfixe binaire (CEI) | Valeur |\n| --- | --- | --- | --- |\n| kilo (ko) | $10^3 = 1\\,000$ | kibi (Kio) | $2^{10} = 1\\,024$ |\n| méga (Mo) | $10^6$ | mébi (Mio) | $2^{20} = 1\\,048\\,576$ |\n| giga (Go) | $10^9$ | gibi (Gio) | $2^{30}$ |\n| téra (To) | $10^{12}$ | tébi (Tio) | $2^{40}$ |\n\nRappel : **1 octet = 8 bits**.\n\n### Pourquoi ça compte\nTu achètes un disque de « 1 To ». Le fabricant compte en puissances de 10 : $10^{12}$ octets. Windows affiche la taille en puissances de 2 (même s'il écrit « Go ») :\n$$\\frac{10^{12}}{2^{30}} \\approx 931 \\text{ Gio}$$\nIl ne manque rien : c'est juste une autre unité !",
+      "notions": [
+        "Unités binaires kibi mébi gibi"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq1-s03-c001",
+      "section": "libre-b1-11-sq1-s03-s01",
+      "type": "exercice",
+      "enonce": "Remets dans l'ordre les étapes du cycle d'une instruction : exécuter, décoder, écrire le résultat, chercher.",
+      "etapes": [
+        "Le processeur doit d'abord récupérer l'instruction : chercher.",
+        "Il doit la comprendre avant d'agir : décoder.",
+        "Il fait le travail, puis range le résultat."
+      ],
+      "reponse": "Chercher → décoder → exécuter → écrire le résultat.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-c002",
+      "section": "libre-b1-11-sq1-s03-s01",
+      "type": "qcm",
+      "question": "Quelle partie du processeur réalise les calculs ?",
+      "choix": [
+        "L'unité de commande",
+        "L'unité arithmétique et logique (UAL)",
+        "Le chipset",
+        "La mémoire cache"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'UAL fait les opérations arithmétiques et logiques ; l'unité de commande coordonne le cycle.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-c003",
+      "section": "libre-b1-11-sq1-s03-s02",
+      "type": "qcm",
+      "question": "Un collègue dit : « Mon processeur est en 64 bits, donc il a 64 cœurs. » Qu'en penses-tu ?",
+      "choix": [
+        "Il a raison",
+        "C'est faux : 64 bits désigne la taille des données et adresses traitées, pas le nombre de cœurs",
+        "C'est faux : 64 bits désigne la fréquence",
+        "C'est vrai seulement pour les processeurs ARM"
+      ],
+      "bonneReponse": 1,
+      "explication": "32/64 bits et nombre de cœurs sont deux caractéristiques indépendantes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-c004",
+      "section": "libre-b1-11-sq1-s03-s02",
+      "type": "question",
+      "recto": "Quel est le rôle de la mémoire cache intégrée au processeur ?",
+      "verso": "À garder tout près du processeur les données et instructions souvent utilisées, pour éviter des accès plus lents à la RAM.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-c005",
+      "section": "libre-b1-11-sq1-s03-s03",
+      "type": "exercice",
+      "enonce": "Un bus parallèle de 32 bits fonctionne à 100 MHz avec un transfert par cycle. Calcule son débit en Mo/s.",
+      "etapes": [
+        "Bits transférés par seconde : $32 \\times 100 \\times 10^6 = 3\\,200 \\times 10^6$ bits/s.",
+        "Conversion en octets : $3\\,200 \\times 10^6 / 8 = 400 \\times 10^6$ o/s."
+      ],
+      "reponse": "400 Mo/s.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-c006",
+      "section": "libre-b1-11-sq1-s03-s03",
+      "type": "qcm",
+      "question": "Quelle est la différence entre un bus half-duplex et un bus full-duplex ?",
+      "choix": [
+        "Le half-duplex est deux fois plus rapide",
+        "Le half-duplex fait circuler les données dans les deux sens mais chacun son tour ; le full-duplex dans les deux sens simultanément",
+        "Le full-duplex ne transmet que dans un sens",
+        "Il n'y a aucune différence"
+      ],
+      "bonneReponse": 1,
+      "explication": "Half-duplex : comme un talkie-walkie. Full-duplex : comme un appel téléphonique.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-c007",
+      "section": "libre-b1-11-sq1-s03-s04",
+      "type": "exercice",
+      "enonce": "Calcule le débit théorique d'une barrette DDR5-4800 (bus 64 bits) en Mo/s.",
+      "etapes": [
+        "4800 signifie 4 800 millions de transferts par seconde.",
+        "Bits par seconde : $64 \\times 4\\,800 \\times 10^6 = 307\\,200 \\times 10^6$.",
+        "En octets : $307\\,200 \\times 10^6 / 8 = 38\\,400 \\times 10^6$ o/s."
+      ],
+      "reponse": "38 400 Mo/s (soit 38,4 Go/s), d'où l'appellation PC5-38400.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-c008",
+      "section": "libre-b1-11-sq1-s03-s04",
+      "type": "question",
+      "recto": "Peut-on installer une barrette DDR4 sur une carte mère prévue pour la DDR5 ?",
+      "verso": "Non. Les générations DDR ne sont pas compatibles : l'encoche, la tension et le fonctionnement diffèrent.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-c009",
+      "section": "libre-b1-11-sq1-s03-s05",
+      "type": "exercice",
+      "enonce": "Convertis 500 Go (décimaux) en Gio, arrondi à l'unité.",
+      "etapes": [
+        "500 Go = $500 \\times 10^9$ octets.",
+        "1 Gio = $2^{30} = 1\\,073\\,741\\,824$ octets.",
+        "$500 \\times 10^9 / 1\\,073\\,741\\,824 \\approx 465{,}66$."
+      ],
+      "reponse": "Environ 466 Gio.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq1-s03-c010",
+      "section": "libre-b1-11-sq1-s03-s05",
+      "type": "qcm",
+      "question": "Combien d'octets dans 1 Kio ?",
+      "choix": [
+        "1 000",
+        "1 024",
+        "1 000 000",
+        "8 192"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le préfixe kibi vaut $2^{10} = 1\\,024$. Le préfixe kilo vaut 1 000.",
+      "difficulte": 1
+    }
+  ]
+}

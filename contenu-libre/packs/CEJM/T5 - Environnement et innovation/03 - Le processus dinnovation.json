@@ -1,0 +1,80 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq09-s03",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 5 – Environnement et innovation",
+  "sequence": null,
+  "seance": "Le processus d'innovation",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. De la recherche à la mise sur le marché : étapes, patrimoine technologique, stratégie de leader ou de suiveur, modes d'accès, risques et destruction créatrice.",
+  "notions": [
+    "Étapes du processus d'innovation",
+    "Leader ou suiveur",
+    "Modes d'accès à l'innovation",
+    "Risques et destruction créatrice"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq09-s03-s01",
+      "titre": "De la recherche au marché",
+      "contenu": "Les étapes classiques :\n1. **Recherche fondamentale** (comprendre des phénomènes) puis **appliquée** (viser un usage) ;\n2. **Développement** : conception, prototype, tests ;\n3. **Industrialisation** : produire à grande échelle ;\n4. **Commercialisation** : lancement, puis améliorations.\n\nLe **patrimoine technologique** est l'ensemble des savoirs, brevets et savoir-faire accumulés par l'entreprise : il faut le **protéger** (brevets, secret) et le **valoriser** (licences).\n\nÊtre **leader** (premier sur le marché) donne une image et une avance, mais coûte cher et comporte un risque d'échec. Être **suiveur** permet d'apprendre des erreurs du pionnier, avec moins de risques, mais en arrivant après lui.",
+      "notions": [
+        "Étapes du processus d'innovation",
+        "Leader ou suiveur"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq09-s03-s02",
+      "titre": "Modes d'accès, risques et destruction créatrice",
+      "contenu": "**Modes d'accès** à l'innovation :\n- **interne** : recherche et développement propres (maîtrise totale, mais coûteuse et lente) ;\n- **partenariat** : recherche avec des laboratoires, d'autres entreprises, des start-up (partage des coûts et des risques) ;\n- **acquisition** : achat d'une licence ou rachat d'une entreprise innovante (rapide, mais cher).\n\n**Contraintes et risques** : coûts élevés, délais, échec commercial, copie par les concurrents, résistance au changement en interne.\n\n**Destruction créatrice** : chaque vague d'innovations fait disparaître des activités et des emplois anciens et en crée de nouveaux (l'économiste Joseph Schumpeter). Exemple : le streaming a fait reculer la location de DVD tout en créant des métiers de la donnée et de la production de contenus.",
+      "notions": [
+        "Modes d'accès à l'innovation",
+        "Risques et destruction créatrice"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq09-s03-c001",
+      "section": "libre-cejm-sq09-s03-s01",
+      "type": "qcm",
+      "question": "Quel est l'avantage principal d'une stratégie de suiveur ?",
+      "choix": [
+        "Réduire le risque en profitant de l'expérience du pionnier",
+        "Bénéficier de l'image d'inventeur",
+        "Déposer le premier brevet",
+        "Fixer les standards du marché"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le suiveur observe ce qui marche avant d'investir.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq09-s03-c002",
+      "section": "libre-cejm-sq09-s03-s02",
+      "type": "question",
+      "recto": "Qu'est-ce que la destruction créatrice ?",
+      "verso": "Le processus par lequel les innovations font disparaître des activités anciennes tout en créant de nouvelles activités et de nouveaux emplois.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq09-s03-c003",
+      "section": "libre-cejm-sq09-s03-s02",
+      "type": "qcm",
+      "question": "Une PME rachète une start-up qui a développé un capteur innovant. Mode d'accès ?",
+      "choix": [
+        "Acquisition",
+        "Interne",
+        "Partenariat",
+        "Imitation"
+      ],
+      "bonneReponse": 0,
+      "explication": "Elle achète directement la compétence innovante.",
+      "difficulte": 1
+    }
+  ]
+}

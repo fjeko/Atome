@@ -1,0 +1,95 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq3-s03",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "Thème 6 – Ordonnancement de projet (MPM)",
+  "sequence": null,
+  "seance": "Entraînement projets plus longs",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Ordonnancer un projet d'une dizaine de tâches données dans le désordre, en repérant les antériorités redondantes et en gérant plusieurs fins possibles.",
+  "notions": [
+    "Antériorités redondantes",
+    "Niveaux des tâches",
+    "Dates au plus tôt",
+    "Dates au plus tard",
+    "Plusieurs tâches finales"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq3-s03-s01",
+      "titre": "Remettre de l'ordre",
+      "contenu": "*Cabinet Ortolan*, un cabinet d'architectes fictif, renouvelle son parc informatique. Les tâches arrivent dans le désordre :\n\n| Tâche | Description | Durée (jours) | Antérieures |\n|---|---|---|---|\n| G | Formation des utilisateurs | 2 | E, F, A |\n| A | Audit du parc | 3 | — |\n| D | Commande du matériel | 4 | B |\n| B | Cahier des charges | 2 | A |\n| F | Migration des données | 3 | C, E |\n| C | Sauvegarde des données | 2 | A |\n| E | Installation des postes | 3 | D |\n| H | Bilan | 1 | G |\n| I | Recyclage des anciens postes | 2 | F |\n\n**Antériorité redondante** : G cite A, mais A précède déjà E (via B et D). On ne garde que les antérieures **immédiates** : G a pour antérieures E et F. (La garder ne change pas les dates, mais alourdit le graphe.)\n\n**Niveaux** (méthode par retrait) : A (0) ; B, C (1) ; D (2) ; E (3) ; F (4) ; G, I (5) ; H (6).\n\nDeux tâches n'ont pas de successeur : H et I. Toutes deux sont reliées à **Fin**.",
+      "notions": [
+        "Antériorités redondantes",
+        "Niveaux des tâches"
+      ]
+    },
+    {
+      "id": "libre-maths-sq3-s03-s02",
+      "titre": "Les dates du projet",
+      "contenu": "**Au plus tôt** (gauche → droite) :\n\n| Tâche | A | B | C | D | E | F | G | I | H | Fin |\n|---|---|---|---|---|---|---|---|---|---|---|\n| Calcul | 0 | $0+3$ | $0+3$ | $3+2$ | $5+4$ | $\\max(9+3 ; 3+2)$ | $\\max(9+3 ; 12+3)$ | $12+3$ | $15+2$ | $\\max(17+1 ; 15+2)$ |\n| $t$ | 0 | 3 | 3 | 5 | 9 | 12 | 15 | 15 | 17 | **18** |\n\n**Au plus tard** (droite → gauche) :\n\n| Tâche | Fin | H | I | G | F | E | D | C | B | A |\n|---|---|---|---|---|---|---|---|---|---|---|\n| Calcul | 18 | $18-1$ | $18-2$ | $17-2$ | $\\min(15 ; 16)-3$ | $\\min(12 ; 15)-3$ | $9-4$ | $12-2$ | $5-2$ | $\\min(3 ; 10)-3$ |\n| $T$ | 18 | 17 | 16 | 15 | 12 | 9 | 5 | 10 | 3 | **0** ✔️ |\n\n**Durée minimale : 18 jours.** Attention à la case Fin : elle prend le **maximum** sur toutes les tâches finales (H finit à 18, I à 17).",
+      "notions": [
+        "Dates au plus tôt",
+        "Dates au plus tard",
+        "Plusieurs tâches finales"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq3-s03-c001",
+      "section": "libre-maths-sq3-s03-s01",
+      "type": "qcm",
+      "question": "Une tâche X a pour antérieures déclarées Y et Z, et Z est déjà une antérieure de Y. Que faire ?",
+      "choix": [
+        "Ne garder que Y, car Z est redondante",
+        "Ne garder que Z",
+        "Garder les deux arcs obligatoirement",
+        "Supprimer la tâche X"
+      ],
+      "bonneReponse": 0,
+      "explication": "Si Z précède Y, attendre la fin de Y garantit déjà que Z est finie. L'arc Z → X n'apporte rien.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq3-s03-c002",
+      "section": "libre-maths-sq3-s03-s02",
+      "type": "exercice",
+      "enonce": "Dans le projet *Cabinet Ortolan*, la sauvegarde (C) dure finalement 8 jours au lieu de 2. La durée du projet change-t-elle ?",
+      "etapes": [
+        "$t_C = 3$, donc C finit à $3 + 8 = 11$.",
+        "$t_F = \\max(9 + 3 ;\\ 3 + 8) = \\max(12 ; 11) = 12$ : inchangé.",
+        "Les dates suivantes ne bougent pas."
+      ],
+      "reponse": "Non : le projet dure toujours 18 jours (C avait une marge suffisante).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq3-s03-c003",
+      "section": "libre-maths-sq3-s03-s02",
+      "type": "qcm",
+      "question": "Un projet a deux tâches finales : P finit au plus tôt à 20, Q à 23. À quelle date Fin peut-elle au plus tôt être atteinte ?",
+      "choix": [
+        "23",
+        "20",
+        "43",
+        "21,5"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le projet est fini quand toutes les tâches le sont : maximum, donc 23.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq3-s03-c004",
+      "section": "libre-maths-sq3-s03-s02",
+      "type": "question",
+      "recto": "Une tâche a pour successeurs Fin (date 18) et une autre tâche de date au plus tard 15. Sa durée est 2. Quelle est sa date au plus tard ?",
+      "verso": "$\\min(18 ; 15) - 2 = 13$.",
+      "difficulte": 2
+    }
+  ]
+}

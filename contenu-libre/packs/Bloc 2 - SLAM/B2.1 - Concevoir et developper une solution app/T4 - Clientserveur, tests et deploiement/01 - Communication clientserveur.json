@@ -1,0 +1,98 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq3-s06",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 4 – Client/serveur, tests et déploiement",
+  "sequence": null,
+  "seance": "Communication client/serveur",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Deux applications peuvent échanger des informations par le réseau grâce aux sockets. Le serveur écoute sur un port, le client s'y connecte, puis chacun lit et écrit dans un flux.",
+  "notions": [
+    "Client/serveur",
+    "Port",
+    "Socket",
+    "ServerSocket",
+    "Flux d'entrée et de sortie",
+    "Protocole applicatif",
+    "Plan de tests réseau"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq3-s06-s01",
+      "titre": "Le modèle client/serveur",
+      "contenu": "- Le **serveur** attend des connexions sur un **port** (numéro de 0 à 65535, par ex. 5050).\n- Le **client** se connecte en donnant l'**adresse IP** du serveur et le port.\n- Une **socket** est l'extrémité d'une connexion : chacun lit et écrit dedans comme dans un fichier.\n\nEn TCP, la connexion est **fiable** : les messages arrivent dans l'ordre et sans perte.\n\nCas : l'application **ChronoQuiz** fait jouer plusieurs postes à un quiz ; un serveur central envoie les questions et reçoit les réponses.",
+      "notions": [
+        "Client/serveur",
+        "Port",
+        "Socket"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s06-s02",
+      "titre": "Côté serveur et côté client en Java",
+      "contenu": "```java\n// Serveur\ntry (ServerSocket serveur = new ServerSocket(5050)) {\n    Socket client = serveur.accept();          // bloque jusqu'à une connexion\n    BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));\n    PrintWriter out = new PrintWriter(client.getOutputStream(), true);\n    String reponse = in.readLine();\n    out.println(\"Reçu : \" + reponse);\n}\n\n// Client\ntry (Socket s = new Socket(\"192.168.1.20\", 5050)) {\n    PrintWriter out = new PrintWriter(s.getOutputStream(), true);\n    BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));\n    out.println(\"B\");\n    System.out.println(in.readLine());\n}\n```\n\n- `accept()` **bloque** jusqu'à ce qu'un client arrive.\n- Il faut un **protocole** : un format de messages convenu (ex. `REPONSE;3;B`).",
+      "notions": [
+        "ServerSocket",
+        "Flux d'entrée et de sortie"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s06-s03",
+      "titre": "Protocole et plan de tests",
+      "contenu": "Le **protocole applicatif** fixe les messages possibles. Exemple pour ChronoQuiz :\n\n| Message | Sens | Signification |\n| --- | --- | --- |\n| `JOIN;pseudo` | client → serveur | rejoindre la partie |\n| `Q;3;texte` | serveur → client | question n° 3 |\n| `R;3;B` | client → serveur | réponse B à la question 3 |\n| `SCORE;12` | serveur → client | score |\n\nUn **plan de tests** liste les situations à vérifier : connexion normale, serveur absent, message mal formé, déconnexion brutale d'un client, deux clients simultanés… Pour chacun : action, résultat attendu, résultat obtenu.",
+      "notions": [
+        "Protocole applicatif",
+        "Plan de tests réseau"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq3-s06-c001",
+      "section": "libre-b2-21-sq3-s06-s01",
+      "type": "qcm",
+      "question": "Quelle information un client doit-il connaître pour se connecter à un serveur TCP ?",
+      "choix": [
+        "Le nom de la classe Java du serveur",
+        "L'adresse IP (ou le nom) du serveur et le port d'écoute",
+        "Le mot de passe administrateur",
+        "Uniquement le port"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'adresse identifie la machine, le port identifie le service.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq3-s06-c002",
+      "section": "libre-b2-21-sq3-s06-s02",
+      "type": "qcm",
+      "question": "Que fait `serveur.accept()` ?",
+      "choix": [
+        "Il envoie un message au client",
+        "Il attend (bloque) jusqu'à ce qu'un client se connecte, puis renvoie sa socket",
+        "Il ferme la connexion",
+        "Il choisit un port libre"
+      ],
+      "bonneReponse": 1,
+      "explication": "`accept()` est bloquant : c'est pour cela qu'un serveur multi-clients utilise des threads.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq3-s06-c003",
+      "section": "libre-b2-21-sq3-s06-s03",
+      "type": "exercice",
+      "enonce": "Écris trois lignes d'un plan de tests pour ChronoQuiz (cas à tester, résultat attendu).",
+      "etapes": [
+        "Client lancé alors que le serveur est arrêté → message « Serveur injoignable » sans plantage.",
+        "Client envoie `R;abc` (mal formé) → le serveur ignore le message et répond `ERREUR;format`.",
+        "Un client se déconnecte en pleine partie → le serveur le retire de la liste et continue avec les autres."
+      ],
+      "reponse": "Trois cas non nominaux, chacun avec un résultat attendu vérifiable.",
+      "difficulte": 2
+    }
+  ]
+}

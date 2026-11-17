@@ -1,0 +1,143 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq1-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 1 – Premiers programmes en C#",
+  "sequence": null,
+  "seance": "Boucles et trace d'exécution",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Répéter des instructions avec while, do…while et for, choisir la bonne boucle, contrôler une saisie, imbriquer des boucles, comprendre la portée d'une variable et dérouler une trace d'exécution.",
+  "notions": [
+    "Boucle while",
+    "Boucle do while",
+    "Boucle for",
+    "Choix de la boucle",
+    "Contrôle de saisie",
+    "Boucles imbriquées",
+    "Portée d'une variable",
+    "Trace d'exécution"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq1-s04-s01",
+      "titre": "While et do…while",
+      "contenu": "**while** : tant que la condition est vraie, on répète. La condition est testée **avant** chaque tour : la boucle peut ne jamais s'exécuter.\n```csharp\nint stock = 10;\nwhile (stock > 0)\n{\n    Console.WriteLine($\"Il reste {stock} paniers\");\n    stock -= 3;\n}\n```\n\n**do…while** : on exécute **d'abord**, on teste **après**. Le corps est exécuté **au moins une fois**.\n```csharp\nstring reponse;\ndo\n{\n    Console.Write(\"Continuer (o/n) ? \");\n    reponse = Console.ReadLine();\n} while (reponse != \"o\" && reponse != \"n\");\n```\n\n**Piège** : la **boucle infinie**. Si rien dans le corps ne fait évoluer la condition (ici, oublier `stock -= 3`), la boucle ne s'arrête jamais.",
+      "notions": [
+        "Boucle while",
+        "Boucle do while"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s04-s02",
+      "titre": "La boucle for",
+      "contenu": "Si le **nombre de tours est connu avant de commencer**, la boucle `for` s'impose :\n```csharp\nfor (int i = 1; i <= 5; i++)\n{\n    Console.WriteLine($\"Table {i} préparée\");\n}\n```\nLes trois parties : **initialisation** (`int i = 1`), **condition** (`i <= 5`), **pas** (`i++`).\n\n**Erreur d'un cran** : `i < 5` fait 4 tours (1 à 4), `i <= 5` en fait 5. Vérifie toujours les bornes !\n\n| Situation | Boucle |\n| --- | --- |\n| nombre de tours connu | `for` |\n| on répète tant qu'une condition est vraie, peut-être 0 fois | `while` |\n| on doit agir au moins une fois (saisie à contrôler, menu) | `do…while` |",
+      "notions": [
+        "Boucle for",
+        "Choix de la boucle"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s04-s03",
+      "titre": "Contrôler une saisie",
+      "contenu": "On ne fait jamais confiance à une saisie. Le schéma classique utilise `do…while` :\n```csharp\nint quantite;\ndo\n{\n    Console.Write(\"Quantité (1 à 20) : \");\n    quantite = int.Parse(Console.ReadLine());\n    if (quantite < 1 || quantite > 20)\n        Console.WriteLine(\"Valeur hors limites, recommence.\");\n} while (quantite < 1 || quantite > 20);\n```\nTant que la valeur est hors des bornes, on redemande. (Si l'utilisateur tape des lettres, `int.Parse` plante encore : on règlera ça avec `try/catch` ou `TryParse`.)",
+      "notions": [
+        "Contrôle de saisie"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s04-s04",
+      "titre": "Boucles imbriquées et portée",
+      "contenu": "Une boucle peut en contenir une autre. Pour chaque tour de la boucle extérieure, la boucle intérieure fait **tous** ses tours.\n```csharp\nfor (int rangee = 1; rangee <= 3; rangee++)\n{\n    for (int siege = 1; siege <= 4; siege++)\n    {\n        Console.Write($\"R{rangee}S{siege} \");\n    }\n    Console.WriteLine();\n}\n```\nCe code affiche 3 lignes de 4 sièges : 12 places au total.\n\n**Portée** : une variable n'existe que **dans le bloc `{ }` où elle est déclarée**. `siege` n'existe pas en dehors de la boucle intérieure ; une variable déclarée dans le corps d'un `while` est recréée à chaque tour. Si tu as besoin d'une valeur après la boucle (un total, par exemple), déclare la variable **avant** la boucle.",
+      "notions": [
+        "Boucles imbriquées",
+        "Portée d'une variable"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s04-s05",
+      "titre": "Dérouler une trace d'exécution",
+      "contenu": "Une **trace** consiste à exécuter le programme « à la main », ligne par ligne, en notant la valeur des variables dans un tableau. C'est l'outil n°1 pour comprendre un code ou trouver une erreur.\n\n```csharp\nint n = 1, somme = 0;\nwhile (n <= 4)\n{\n    somme += n;\n    n += 1;\n}\n```\n| Tour | n (avant) | somme (après) | n (après) |\n| --- | --- | --- | --- |\n| 1 | 1 | 1 | 2 |\n| 2 | 2 | 3 | 3 |\n| 3 | 3 | 6 | 4 |\n| 4 | 4 | 10 | 5 |\nEnsuite `n = 5` : la condition `n <= 4` est fausse, la boucle s'arrête. Résultat : `somme = 10`.",
+      "notions": [
+        "Trace d'exécution"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq1-s04-c001",
+      "section": "libre-b1-12a-sq1-s04-s01",
+      "type": "qcm",
+      "question": "Quelle boucle exécute toujours son corps au moins une fois ?",
+      "choix": [
+        "`while`",
+        "`do…while`",
+        "`for`",
+        "Aucune"
+      ],
+      "bonneReponse": 1,
+      "explication": "Dans `do…while`, la condition est testée après le corps.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s04-c002",
+      "section": "libre-b1-12a-sq1-s04-s02",
+      "type": "qcm",
+      "question": "Combien de fois s'affiche « Bip » ?\n```csharp\nfor (int i = 0; i < 4; i++) Console.WriteLine(\"Bip\");\n```",
+      "choix": [
+        "3",
+        "4",
+        "5",
+        "Une infinité"
+      ],
+      "bonneReponse": 1,
+      "explication": "i prend les valeurs 0, 1, 2, 3 : quatre tours.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s04-c003",
+      "section": "libre-b1-12a-sq1-s04-s03",
+      "type": "exercice",
+      "enonce": "Écris une boucle qui demande un mot de passe tant qu'il fait moins de 8 caractères (utilise `motDePasse.Length`).",
+      "etapes": [
+        "Il faut demander au moins une fois : `do…while`.",
+        "Dans le corps : lire la saisie.",
+        "Condition pour recommencer : longueur < 8."
+      ],
+      "reponse": "```csharp\nstring motDePasse;\ndo\n{\n    Console.Write(\"Mot de passe (8 caractères min.) : \");\n    motDePasse = Console.ReadLine();\n} while (motDePasse.Length < 8);\n```",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s04-c004",
+      "section": "libre-b1-12a-sq1-s04-s04",
+      "type": "qcm",
+      "question": "Ce code ne compile pas. Pourquoi ?\n```csharp\nfor (int i = 0; i < 3; i++)\n{\n    int total = i * 2;\n}\nConsole.WriteLine(total);\n```",
+      "choix": [
+        "`i` n'est pas initialisé",
+        "`total` est déclaré dans la boucle : il n'existe plus après",
+        "Il manque un `break`",
+        "`Console.WriteLine` n'accepte pas les entiers"
+      ],
+      "bonneReponse": 1,
+      "explication": "La portée de `total` se limite au bloc de la boucle. Il faut le déclarer avant.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s04-c005",
+      "section": "libre-b1-12a-sq1-s04-s05",
+      "type": "exercice",
+      "enonce": "Fais la trace de ce code et donne les valeurs finales de `x` et `compteur`.\n```csharp\nint x = 50, compteur = 0;\nwhile (x > 10)\n{\n    x = x / 2;\n    compteur++;\n}\n```",
+      "etapes": [
+        "Tour 1 : x = 50 > 10 → x = 25, compteur = 1.",
+        "Tour 2 : 25 > 10 → x = 12 (division entière), compteur = 2.",
+        "Tour 3 : 12 > 10 → x = 6, compteur = 3.",
+        "6 > 10 est faux : fin."
+      ],
+      "reponse": "`x = 6` et `compteur = 3`.",
+      "difficulte": 2
+    }
+  ]
+}

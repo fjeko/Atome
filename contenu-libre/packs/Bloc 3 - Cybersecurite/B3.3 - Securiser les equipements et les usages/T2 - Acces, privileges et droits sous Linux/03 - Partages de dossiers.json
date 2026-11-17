@@ -1,0 +1,101 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq2-s03",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – Sécuriser les équipements et les usages des utilisateurs › Thème 2 – Accès, privilèges et droits sous Linux",
+  "sequence": null,
+  "seance": "Partages de dossiers",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Sous Windows, l'accès à un dossier partagé dépend de deux couches : les autorisations de partage et les autorisations NTFS. Les droits des groupes se cumulent, mais un refus l'emporte. On sait créer un partage, le masquer et s'y connecter.",
+  "notions": [
+    "Autorisations de partage",
+    "Autorisations NTFS",
+    "Droit effectif",
+    "Cumul des autorisations",
+    "Priorité du refus",
+    "Création de partage",
+    "Partage masqué",
+    "Chemin UNC"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq2-s03-s01",
+      "titre": "Deux couches d'autorisations",
+      "contenu": "Pour un accès **par le réseau**, Windows applique :\n1. les **autorisations de partage** (Lecture, Modifier, Contrôle total) ;\n2. les **autorisations NTFS** du dossier (plus fines).\n\nLe **droit effectif** est le **plus restrictif** des deux. Bonne pratique : partage « Contrôle total » ou « Modifier » pour les utilisateurs authentifiés, et gestion fine **en NTFS**.\n\nEn local (sur le serveur lui-même), seules les autorisations NTFS s'appliquent.",
+      "notions": [
+        "Autorisations de partage",
+        "Autorisations NTFS",
+        "Droit effectif"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq2-s03-s02",
+      "titre": "Cumul et refus",
+      "contenu": "Un utilisateur membre de **plusieurs groupes** cumule leurs autorisations : Lecture (groupe A) + Écriture (groupe B) = Lecture + Écriture.\n\nMais une autorisation **Refuser** explicite **l'emporte** sur les autorisations « Autoriser ».\n\nExemple : Léo est dans *Personnel* (Lecture sur `Direction`) et dans *Stagiaires* (Refuser Lecture sur `Direction`) → Léo **ne peut pas** lire. On utilise le refus avec parcimonie : il rend les droits difficiles à comprendre.",
+      "notions": [
+        "Cumul des autorisations",
+        "Priorité du refus"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq2-s03-s03",
+      "titre": "Créer, masquer, se connecter",
+      "contenu": "Créer un partage :\n\n```powershell\nNew-SmbShare -Name \"Plans\" -Path \"D:\\Plans\" -FullAccess \"ARPENT\\Admins\" -ChangeAccess \"ARPENT\\Geometres\"\n```\n\nUn **partage masqué** a un nom terminé par `$` (`Plans$`) : il n'apparaît pas dans la liste du serveur, mais reste accessible à qui connaît le nom **et** a les droits. Ce n'est **pas** une protection, juste de la discrétion. Les partages administratifs (`C$`, `ADMIN$`) sont masqués.\n\nSe connecter : chemin **UNC** `\\\\SRV-FICHIERS\\Plans`, ou lecteur réseau :\n\n```powershell\nNew-PSDrive -Name P -PSProvider FileSystem -Root \"\\\\SRV-FICHIERS\\Plans\" -Persist\n```",
+      "notions": [
+        "Création de partage",
+        "Partage masqué",
+        "Chemin UNC"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq2-s03-c001",
+      "section": "libre-b3-33-sq2-s03-s01",
+      "type": "qcm",
+      "question": "Partage : Lecture pour Commerciaux ; NTFS : Modification pour Commerciaux. Droit effectif par le réseau ?",
+      "choix": [
+        "Lecture",
+        "Modification",
+        "Contrôle total",
+        "Aucun"
+      ],
+      "bonneReponse": 0,
+      "explication": "On retient le plus restrictif des deux couches.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq2-s03-c002",
+      "section": "libre-b3-33-sq2-s03-s02",
+      "type": "qcm",
+      "question": "Mia est dans Comptables (Modification) et dans Intérimaires (Refuser Écriture). Que peut-elle faire sur le dossier ?",
+      "choix": [
+        "Modifier",
+        "Lire, mais pas écrire",
+        "Rien du tout",
+        "Contrôle total"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le refus d'écriture l'emporte ; la lecture issue de Modification reste.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq2-s03-c003",
+      "section": "libre-b3-33-sq2-s03-s03",
+      "type": "exercice",
+      "enonce": "Configure le partage `Projets` pour trois profils : chefs de projet (tout gérer), équipe (lire et modifier), stagiaires (lire seulement).",
+      "etapes": [
+        "Créer les groupes : GG_Chefs, GG_Equipe, GG_Stagiaires.",
+        "Partage `Projets` : « Modifier » (ou Contrôle total) pour les utilisateurs authentifiés ; on gère le détail en NTFS.",
+        "NTFS : GG_Chefs Contrôle total ; GG_Equipe Modification ; GG_Stagiaires Lecture et exécution.",
+        "Vérifier le droit effectif avec un compte de chaque profil (onglet Accès effectif)."
+      ],
+      "reponse": "Partage large + NTFS fin : Contrôle total / Modification / Lecture selon le groupe.",
+      "difficulte": 2
+    }
+  ]
+}

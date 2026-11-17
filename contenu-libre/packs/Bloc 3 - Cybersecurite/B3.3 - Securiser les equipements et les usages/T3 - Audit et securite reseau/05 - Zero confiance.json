@@ -1,0 +1,88 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq4-s05",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – Sécuriser les équipements et les usages des utilisateurs › Thème 3 – Audit et sécurité réseau",
+  "sequence": null,
+  "seance": "Zéro confiance",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le modèle « zéro confiance » abandonne l'idée d'un périmètre interne sûr : chaque accès est vérifié selon l'identité, l'état de l'appareil et le contexte. On l'adopte progressivement, avec la micro-segmentation.",
+  "notions": [
+    "Zéro confiance",
+    "Fin du périmètre",
+    "Piliers du zéro confiance",
+    "Micro-segmentation",
+    "Trajectoire zéro confiance"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq4-s05-s01",
+      "titre": "La fin du périmètre",
+      "contenu": "Le modèle classique « **château fort** » : tout ce qui est **à l'intérieur** du réseau est de confiance, on protège surtout la frontière.\n\nIl ne tient plus : télétravail, cloud, applications SaaS, appareils mobiles, prestataires… et un attaquant qui franchit le périmètre (hameçonnage) circule librement.\n\n**Zéro confiance** (*Zero Trust*) : « **ne jamais faire confiance, toujours vérifier** ». Aucun accès n'est accordé du seul fait d'être sur le réseau interne.",
+      "notions": [
+        "Zéro confiance",
+        "Fin du périmètre"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq4-s05-s02",
+      "titre": "Les piliers",
+      "contenu": "Piliers habituels :\n- **identité** forte de l'utilisateur (MFA, authentification continue) ;\n- **appareil** : conformité vérifiée (à jour, chiffré, antivirus actif) ;\n- **réseau** : **micro-segmentation**, chaque application ou groupe de serveurs isolé avec des règles précises ;\n- **application et charges de travail** : accès par application, pas au réseau entier ;\n- **données** : classification, chiffrement, contrôle d'usage ;\n- **visibilité et analyse** : journaux centralisés, détection d'anomalies, automatisation.\n\nChaque accès est décidé **au cas par cas**, au **moindre privilège**, et réévalué.",
+      "notions": [
+        "Piliers du zéro confiance",
+        "Micro-segmentation"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq4-s05-s03",
+      "titre": "Une trajectoire progressive",
+      "contenu": "On n'adopte pas le zéro confiance en un jour. Trajectoire typique :\n1. **inventorier** utilisateurs, appareils, applications et flux ;\n2. généraliser la **MFA** et un annuaire d'identité central ;\n3. vérifier la **conformité des appareils** avant l'accès ;\n4. remplacer le VPN « tout le réseau » par un **accès par application** ;\n5. **segmenter** progressivement, en commençant par les ressources critiques ;\n6. **superviser** et ajuster les règles.",
+      "notions": [
+        "Trajectoire zéro confiance"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq4-s05-c001",
+      "section": "libre-b3-33-sq4-s05-s01",
+      "type": "qcm",
+      "question": "Selon le modèle zéro confiance, un poste branché dans les locaux accède-t-il automatiquement aux serveurs internes ?",
+      "choix": [
+        "Oui, il est dans le périmètre",
+        "Non, chaque accès est vérifié (identité, appareil, contexte), quel que soit l'emplacement",
+        "Oui, s'il est en Wi-Fi",
+        "Non, il n'a jamais accès"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'emplacement réseau ne suffit plus à donner confiance.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq4-s05-c002",
+      "section": "libre-b3-33-sq4-s05-s02",
+      "type": "question",
+      "recto": "Qu'est-ce que la micro-segmentation ?",
+      "verso": "Découper le réseau très finement (par application ou groupe de serveurs) avec des règles de flux précises, pour qu'une compromission ne permette pas d'atteindre le reste.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq4-s05-c003",
+      "section": "libre-b3-33-sq4-s05-s03",
+      "type": "exercice",
+      "enonce": "L'éditeur fictif **CodeMarine** (60 salariés, moitié en télétravail) utilise un VPN qui donne accès à tout le réseau interne. Propose trois étapes vers le zéro confiance.",
+      "etapes": [
+        "Imposer la MFA pour toutes les connexions, via un annuaire d'identité centralisé.",
+        "Vérifier l'état des postes (chiffrement, mises à jour, EDR) avant d'autoriser l'accès.",
+        "Remplacer l'accès « tout le réseau » par un accès par application (portail ou proxy d'accès), et segmenter les serveurs critiques (code source, paie) avec des règles dédiées.",
+        "Centraliser les journaux pour détecter les accès anormaux."
+      ],
+      "reponse": "MFA généralisée, conformité des appareils, accès par application et segmentation des ressources critiques.",
+      "difficulte": 2
+    }
+  ]
+}

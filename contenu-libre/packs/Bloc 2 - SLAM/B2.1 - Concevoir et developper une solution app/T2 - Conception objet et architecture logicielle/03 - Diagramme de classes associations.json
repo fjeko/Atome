@@ -1,0 +1,121 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq2-s03",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 2 – Conception objet et architecture logicielle",
+  "sequence": null,
+  "seance": "Diagramme de classes : associations",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le diagramme de classes UML représente la structure statique d'une application : classes, attributs, méthodes et associations avec leurs multiplicités, rôles et navigabilité.",
+  "notions": [
+    "Représentation d'une classe",
+    "Association",
+    "Multiplicité",
+    "Rôle",
+    "Navigabilité",
+    "Classe-association"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq2-s03-s01",
+      "titre": "Représenter une classe",
+      "contenu": "Une classe se dessine en **trois compartiments** : nom, attributs, opérations.\n\n```text\n+------------------------------+\n|           Emprunt            |\n+------------------------------+\n| - dateDebut : LocalDate      |\n| - dureeJours : int           |\n+------------------------------+\n| + Emprunt(d : LocalDate)     |\n| + dateRetour() : LocalDate   |\n| + estEnRetard() : boolean    |\n+------------------------------+\n```\n\nVisibilités : `-` privé, `+` public, `#` protégé, `~` paquetage. Un membre **souligné** est statique. Le type se note après deux-points.",
+      "notions": [
+        "Représentation d'une classe"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s03-s02",
+      "titre": "Association binaire et multiplicités",
+      "contenu": "Une **association** est un lien durable entre deux classes, dessiné par un trait. À chaque extrémité, on indique une **multiplicité** : combien d'objets de **cette classe** sont liés à **un** objet de l'autre classe.\n\n| Notation | Sens |\n| --- | --- |\n| `1` | exactement un |\n| `0..1` | zéro ou un |\n| `*` ou `0..*` | zéro ou plusieurs |\n| `1..*` | au moins un |\n\n```text\nAdherent  1 ---------- 0..* Emprunt\n```\n\n**Lecture** : un adhérent a **0..*** emprunts (on lit la multiplicité côté Emprunt) ; un emprunt concerne **1** adhérent (on lit côté Adherent). La multiplicité se lit **à l'extrémité opposée** à la classe dont on part : c'est l'inverse de Merise.",
+      "notions": [
+        "Association",
+        "Multiplicité"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s03-s03",
+      "titre": "Rôles et navigabilité",
+      "contenu": "Un **rôle** nomme une extrémité de l'association : il indique ce que représente l'objet pour l'autre. Exemple : entre `Personne` et `Societe`, le rôle `employeur` côté Societe.\n\nLa **navigabilité** (pointe de flèche ouverte) indique **qui connaît qui** dans le code :\n\n```text\nCommande -----> Client\n```\n\nIci, une `Commande` connaît son `Client` (elle a un attribut `client`), mais le `Client` ne connaît pas ses commandes. Sans flèche, l'association est navigable dans les deux sens (ou non précisée).\n\nDans le code, une navigabilité vers une multiplicité `1` donne **un attribut objet** ; vers `*`, **une collection**.",
+      "notions": [
+        "Rôle",
+        "Navigabilité"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s03-s04",
+      "titre": "Classe-association",
+      "contenu": "Parfois, une information n'appartient **ni à l'une ni à l'autre** classe mais **au lien** entre elles. On utilise une **classe-association**, reliée au trait par un pointillé.\n\nExemple (centre de formation **SkillPont**) : un `Stagiaire` suit plusieurs `Module`s, et pour chaque couple on mémorise une `note`.\n\n```text\nStagiaire  *  ----------  *  Module\n                  :\n            +------------+\n            | Inscription|\n            | - note     |\n            +------------+\n```\n\nLa note n'est ni une propriété du stagiaire (il en a plusieurs) ni du module (plusieurs stagiaires). En Java, on crée une classe `Inscription` qui référence un stagiaire et un module.",
+      "notions": [
+        "Classe-association"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq2-s03-c001",
+      "section": "libre-b2-21-sq2-s03-s01",
+      "type": "qcm",
+      "question": "Sur un schéma UML, qu'indique le caractère `#` placé avant un attribut ?",
+      "choix": [
+        "public",
+        "privé",
+        "protégé",
+        "statique"
+      ],
+      "bonneReponse": 2,
+      "explication": "`-` privé, `+` public, `#` protégé, `~` paquetage ; le statique est souligné.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq2-s03-c002",
+      "section": "libre-b2-21-sq2-s03-s02",
+      "type": "qcm",
+      "question": "`Rayon 1 ------ 1..* Produit`. Que signifie le `1..*` ?",
+      "choix": [
+        "Un produit est dans au moins un rayon",
+        "Un rayon contient au moins un produit",
+        "Il y a au moins un rayon dans le magasin",
+        "Un produit est dans un seul rayon"
+      ],
+      "bonneReponse": 1,
+      "explication": "On part d'un Rayon et on lit la multiplicité du côté Produit : un rayon contient 1 ou plusieurs produits.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s03-c003",
+      "section": "libre-b2-21-sq2-s03-s02",
+      "type": "question",
+      "recto": "D'où se lit la multiplicité d'une association UML ?",
+      "verso": "Pour un objet d'une classe A, le nombre d'objets B liés se lit **à l'extrémité côté B**.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s03-c004",
+      "section": "libre-b2-21-sq2-s03-s03",
+      "type": "qcm",
+      "question": "`Facture -----> Client` (flèche vers Client, multiplicité 1 côté Client). Quel attribut ajoute-t-on ?",
+      "choix": [
+        "Un attribut `client` de type Client dans Facture",
+        "Un attribut `factures` de type ArrayList dans Client",
+        "Les deux",
+        "Aucun, la flèche est décorative"
+      ],
+      "bonneReponse": 0,
+      "explication": "La flèche dit que Facture connaît Client ; multiplicité 1 → un simple attribut objet.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s03-c005",
+      "section": "libre-b2-21-sq2-s03-s04",
+      "type": "question",
+      "recto": "Quand utilise-t-on une classe-association ?",
+      "verso": "Quand une donnée dépend du **couple** d'objets liés (ex. la note d'un stagiaire dans un module), et non d'une seule des deux classes.",
+      "difficulte": 2
+    }
+  ]
+}

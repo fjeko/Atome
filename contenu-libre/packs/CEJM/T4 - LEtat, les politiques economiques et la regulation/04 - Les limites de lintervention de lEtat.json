@@ -1,0 +1,98 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq07-s02",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 4 – L'État, les politiques économiques et la régulation",
+  "sequence": null,
+  "seance": "Les limites de l'intervention de l'État",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Déficit et dette publics, contraintes européennes et mondialisation : pourquoi l'État ne peut pas tout et quels effets ses choix ont sur les entreprises.",
+  "notions": [
+    "Déficit et dette publics",
+    "Règles européennes",
+    "Concurrence fiscale et sociale",
+    "Effets des politiques sur les entreprises"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq07-s02-s01",
+      "titre": "Déficit, dette et soutenabilité",
+      "contenu": "- **Déficit public** : sur **une année**, les dépenses publiques dépassent les recettes.\n- **Dette publique** : **stock** de tous les emprunts accumulés et non remboursés.\n\nChaque déficit est financé par l'emprunt et **augmente la dette**. Celle-ci coûte des **intérêts**, qui pèsent sur les budgets suivants (« effet boule de neige »). La dette est **soutenable** tant que l'État peut payer ses intérêts et que les prêteurs lui font confiance. Si la confiance baisse, les taux d'intérêt exigés augmentent.\n\nOn les exprime en **% du PIB**. Exemple fictif : déficit de 110 Md€ pour un PIB de 2 500 Md€ → $\\frac{110}{2\\,500} = 4{,}4\\,\\%$ du PIB.",
+      "notions": [
+        "Déficit et dette publics"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq07-s02-s02",
+      "titre": "Les contraintes européennes et mondiales",
+      "contenu": "**Règles européennes** : les États membres se sont engagés à surveiller leurs finances publiques avec des valeurs de référence : **déficit public inférieur à 3 % du PIB** et **dette inférieure à 60 % du PIB** ; la Commission européenne suit des trajectoires de réduction pour les pays qui s'en écartent.\n\n**Compétences partagées** : l'Union a des compétences exclusives (politique monétaire de la zone euro, politique commerciale, règles de concurrence) ; un État ne peut donc pas tout décider seul.\n\n**Mondialisation** : les entreprises et les capitaux peuvent se déplacer. Les États se livrent une **concurrence fiscale et sociale** (impôts bas, cotisations allégées) pour les attirer, ce qui réduit leurs marges de manœuvre.\n\nAutres limites : **tensions sociales** (une réforme impopulaire), **effets pervers** (une relance qui fait surtout augmenter les importations), **délais** d'action.",
+      "notions": [
+        "Règles européennes",
+        "Concurrence fiscale et sociale"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq07-s02-s03",
+      "titre": "Les effets sur les entreprises",
+      "contenu": "| Mesure | Effet possible sur une entreprise |\n|---|---|\n| hausse des taux directeurs | emprunts plus chers, investissements reportés, clients moins solvables |\n| plan de relance par la commande publique | carnets de commandes remplis (BTP, numérique public) |\n| hausse de l'impôt sur les sociétés | moins de bénéfice disponible pour investir |\n| baisse des cotisations patronales | coût du travail réduit, embauches facilitées |\n| politique de rigueur | baisse de la demande publique et des ménages |",
+      "notions": [
+        "Effets des politiques sur les entreprises"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq07-s02-c001",
+      "section": "libre-cejm-sq07-s02-s01",
+      "type": "exercice",
+      "enonce": "Un pays fictif a un PIB de 600 Md€ et une dette publique de 540 Md€. Calcule le ratio de dette et compare-le à la règle européenne de 60 %.",
+      "etapes": [
+        "$\\frac{540}{600} \\times 100 = 90\\,\\%$"
+      ],
+      "reponse": "90 % du PIB, au-dessus de la référence européenne de 60 %.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq07-s02-c002",
+      "section": "libre-cejm-sq07-s02-s01",
+      "type": "qcm",
+      "question": "Un État a un déficit de 3 % du PIB chaque année. Que fait sa dette ?",
+      "choix": [
+        "Elle augmente",
+        "Elle diminue",
+        "Elle reste stable",
+        "Elle disparaît"
+      ],
+      "bonneReponse": 0,
+      "explication": "Chaque déficit est financé par de nouveaux emprunts qui s'ajoutent au stock.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq07-s02-c003",
+      "section": "libre-cejm-sq07-s02-s02",
+      "type": "qcm",
+      "question": "Pourquoi un État de la zone euro ne peut-il pas baisser seul ses taux directeurs ?",
+      "choix": [
+        "La politique monétaire relève de la BCE pour toute la zone euro",
+        "Parce que sa dette est trop élevée",
+        "Parce que le Parlement l'interdit",
+        "Il le peut librement"
+      ],
+      "bonneReponse": 0,
+      "explication": "La politique monétaire est une compétence exclusive de l'Union pour les pays de la zone euro.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq07-s02-c004",
+      "section": "libre-cejm-sq07-s02-s03",
+      "type": "question",
+      "recto": "Explique comment une politique de rigueur peut toucher une entreprise de services informatiques travaillant pour des collectivités.",
+      "verso": "Les collectivités réduisent leurs dépenses : moins de commandes publiques, donc baisse du chiffre d'affaires de l'entreprise.",
+      "difficulte": 2
+    }
+  ]
+}

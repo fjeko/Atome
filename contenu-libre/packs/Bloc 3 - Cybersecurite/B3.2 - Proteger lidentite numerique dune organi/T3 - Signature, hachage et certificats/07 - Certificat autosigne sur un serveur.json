@@ -1,0 +1,86 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq3-s07",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – Protéger l'identité numérique d'une organisation › Thème 3 – Signature, hachage et certificats",
+  "sequence": null,
+  "seance": "Certificat autosigné sur un serveur",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Pour un environnement de test, on installe un certificat autosigné sur un serveur web (Apache) afin d'activer HTTPS, puis on redirige HTTP vers HTTPS. On sait pourquoi les navigateurs l'avertissent.",
+  "notions": [
+    "Certificat autosigné de test",
+    "Configuration HTTPS Apache",
+    "Redirection HTTP vers HTTPS",
+    "Confiance d'un certificat autosigné"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq3-s07-s01",
+      "titre": "Générer le certificat",
+      "contenu": "Sur un serveur Debian de test (`ateliers.test`) :\n\n```bash\nsudo openssl req -x509 -newkey rsa:3072 -nodes -days 365 \\\n  -keyout /etc/ssl/private/ateliers.key \\\n  -out /etc/ssl/certs/ateliers.crt \\\n  -subj \"/CN=ateliers.test\" -addext \"subjectAltName=DNS:ateliers.test\"\nsudo chmod 600 /etc/ssl/private/ateliers.key\n```\n\n`-nodes` : la clé n'est pas protégée par phrase de passe (sinon Apache la demanderait à chaque démarrage) ; on protège donc le **fichier** par ses droits (lisible par root seulement).",
+      "notions": [
+        "Certificat autosigné de test"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s07-s02",
+      "titre": "Configurer Apache en HTTPS",
+      "contenu": "```bash\nsudo a2enmod ssl\n```\n\nFichier `/etc/apache2/sites-available/ateliers-ssl.conf` :\n\n```apache\n<VirtualHost *:443>\n    ServerName ateliers.test\n    DocumentRoot /var/www/ateliers\n    SSLEngine on\n    SSLCertificateFile /etc/ssl/certs/ateliers.crt\n    SSLCertificateKeyFile /etc/ssl/private/ateliers.key\n    SSLProtocol -all +TLSv1.2 +TLSv1.3\n</VirtualHost>\n\n<VirtualHost *:80>\n    ServerName ateliers.test\n    Redirect permanent / https://ateliers.test/\n</VirtualHost>\n```\n\n```bash\nsudo a2ensite ateliers-ssl && sudo apache2ctl configtest && sudo systemctl reload apache2\n```",
+      "notions": [
+        "Configuration HTTPS Apache",
+        "Redirection HTTP vers HTTPS"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s07-s03",
+      "titre": "L'avertissement du navigateur",
+      "contenu": "Le navigateur affiche une alerte : le certificat n'est signé par **aucune AC de confiance**. La connexion est chiffrée, mais l'identité du serveur n'est pas garantie : un attaquant pourrait présenter son propre autosigné.\n\nPour un test interne, on peut **importer** le certificat dans le magasin de confiance des postes concernés après avoir **vérifié son empreinte** avec l'administrateur. En production publique, on utilise un certificat d'une AC reconnue (gratuite avec ACME).",
+      "notions": [
+        "Confiance d'un certificat autosigné"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq3-s07-c001",
+      "section": "libre-b3-32-sq3-s07-s01",
+      "type": "question",
+      "recto": "Pourquoi restreindre les droits du fichier de clé privée à 600 ?",
+      "verso": "Pour que seul **root** puisse la lire : la clé n'étant pas protégée par une phrase de passe, ses permissions sont sa seule protection.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq3-s07-c002",
+      "section": "libre-b3-32-sq3-s07-s02",
+      "type": "qcm",
+      "question": "Quelle directive limite Apache aux versions sûres de TLS ?",
+      "choix": [
+        "`SSLEngine on`",
+        "`SSLProtocol -all +TLSv1.2 +TLSv1.3`",
+        "`Redirect permanent`",
+        "`ServerName`"
+      ],
+      "bonneReponse": 1,
+      "explication": "On désactive tout puis on n'autorise que TLS 1.2 et 1.3.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq3-s07-c003",
+      "section": "libre-b3-32-sq3-s07-s03",
+      "type": "exercice",
+      "enonce": "Un collègue propose d'utiliser un certificat autosigné sur le site public de vente en ligne « pour économiser ». Argumente.",
+      "etapes": [
+        "Les visiteurs verraient une alerte de sécurité : perte de confiance et de ventes.",
+        "Habituer les clients à ignorer les alertes les expose aux vraies attaques.",
+        "L'identité du site n'est pas garantie : un attaquant pourrait se faire passer pour lui.",
+        "Des certificats reconnus existent gratuitement (DV par ACME) et se renouvellent automatiquement."
+      ],
+      "reponse": "Refuser : utiliser un certificat d'AC reconnue (gratuit), garder l'autosigné pour les tests.",
+      "difficulte": 2
+    }
+  ]
+}

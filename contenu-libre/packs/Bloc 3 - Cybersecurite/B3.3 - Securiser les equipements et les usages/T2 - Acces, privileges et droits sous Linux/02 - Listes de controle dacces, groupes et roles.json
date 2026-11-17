@@ -1,0 +1,90 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq2-s02",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – Sécuriser les équipements et les usages des utilisateurs › Thème 2 – Accès, privilèges et droits sous Linux",
+  "sequence": null,
+  "seance": "Listes de contrôle d'accès, groupes et rôles",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les systèmes appliquent le contrôle d'accès par des listes associées à chaque objet. On attribue les droits à des groupes plutôt qu'à des personnes, avec la bonne granularité, et on isole ce qui doit l'être.",
+  "notions": [
+    "ACL",
+    "ACE",
+    "Groupes",
+    "Méthode AGDLP",
+    "Granularité",
+    "Bac à sable"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq2-s02-s01",
+      "titre": "Les ACL",
+      "contenu": "Une **ACL** (*Access Control List*) est attachée à un objet et contient des **entrées** (ACE) : « tel sujet a tel droit ».\n\n- **Windows (NTFS)** : chaque fichier/dossier a une ACL avec des entrées **Autoriser** ou **Refuser** pour des utilisateurs ou groupes (Lecture, Écriture, Modification, Contrôle total…). Les droits sont **hérités** du dossier parent par défaut.\n- **Linux** : permissions de base propriétaire/groupe/autres, complétées par des **ACL POSIX** (`setfacl`, `getfacl`) pour des cas plus fins.\n\n```powershell\nicacls \"D:\\Plans\" /grant \"ARPENT\\Geometres:(OI)(CI)M\"\n```\n(`(OI)(CI)` = héritage aux fichiers et sous-dossiers, `M` = modification.)",
+      "notions": [
+        "ACL",
+        "ACE"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq2-s02-s02",
+      "titre": "Groupes et rôles",
+      "contenu": "On attribue les droits à des **groupes**, jamais directement aux utilisateurs :\n- arrivée, départ, changement de poste = on change l'**appartenance aux groupes**, pas les ACL ;\n- les droits restent **lisibles** et **auditables**.\n\nBonne pratique Active Directory (**AGDLP**) : les **comptes** (A) vont dans des groupes **globaux** par fonction (G : « Géomètres »), qui sont membres de groupes **locaux de domaine** par ressource et droit (DL : « Plans_Modif »), auxquels on donne la **permission** (P).",
+      "notions": [
+        "Groupes",
+        "Méthode AGDLP"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq2-s02-s03",
+      "titre": "Granularité et environnement isolé",
+      "contenu": "La **granularité** est le niveau de finesse des droits : par dossier, par fichier, par enregistrement, par champ. Trop grossière, elle donne trop de droits ; trop fine, elle devient ingérable et source d'erreurs. On cherche le bon compromis, souvent au niveau du dossier ou de la fonctionnalité.\n\nUn **environnement isolé** (*bac à sable*, *sandbox*) exécute un programme avec des droits très limités et sans accès au reste du système : ouverture de pièces jointes suspectes, applications des navigateurs, tests de logiciels.",
+      "notions": [
+        "Granularité",
+        "Bac à sable"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq2-s02-c001",
+      "section": "libre-b3-33-sq2-s02-s01",
+      "type": "question",
+      "recto": "Que contient une ACL ?",
+      "verso": "Une liste d'**entrées** qui indiquent, pour un objet, quels sujets (utilisateurs, groupes) ont quels droits (autoriser ou refuser).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-33-sq2-s02-c002",
+      "section": "libre-b3-33-sq2-s02-s02",
+      "type": "qcm",
+      "question": "Un nouveau géomètre arrive. Quelle est la meilleure action ?",
+      "choix": [
+        "Ajouter son compte dans l'ACL de chaque dossier",
+        "L'ajouter au groupe « Géomètres » qui possède déjà les droits",
+        "Lui donner le contrôle total sur le serveur",
+        "Lui prêter le compte d'un collègue"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une seule opération, cohérente et traçable.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq2-s02-c003",
+      "section": "libre-b3-33-sq2-s02-s03",
+      "type": "exercice",
+      "enonce": "Dans l'application de gestion d'une clinique vétérinaire fictive, attribue des droits par rôle : accueil, vétérinaire, comptable, sur les fonctions « fiche animal », « ordonnance », « facture ».",
+      "etapes": [
+        "Accueil : fiche animal (créer, lire coordonnées), facture (créer, encaisser), ordonnance (aucun accès au contenu médical).",
+        "Vétérinaire : fiche animal (lire, modifier les données médicales), ordonnance (créer, lire), facture (lire).",
+        "Comptable : facture (lire, exporter), fiche animal et ordonnance (aucun accès).",
+        "Créer un groupe par rôle et attribuer les droits aux groupes."
+      ],
+      "reponse": "Droits par rôle selon le besoin d'en connaître ; le médical réservé aux vétérinaires.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-14-sq2-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.4 – Travailler en mode projet › Thème 2 – Méthodes agiles et gestion de versions",
+  "sequence": null,
+  "seance": "Esprit agile et valeurs",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le principe itératif et incrémental, les quatre valeurs et quelques principes du manifeste agile, les avantages et limites, la planification par tranches de temps, le tableau Kanban et les grands courants agiles.",
+  "notions": [
+    "Itératif et incrémental",
+    "Valeurs du manifeste agile",
+    "Principes agiles",
+    "Avantages et limites",
+    "Tranches de temps",
+    "Kanban",
+    "Courants agiles"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-14-sq2-s01-s01",
+      "titre": "Le principe agile",
+      "contenu": "Les méthodes **agiles** livrent le produit **par petits morceaux** (incrémental) en **cycles courts** répétés (itératif), en s'adaptant aux retours du client.\n\nLe **Manifeste agile** (2001) énonce **quatre valeurs** : on privilégie…\n1. les **individus et leurs interactions** plutôt que les processus et les outils ;\n2. un **logiciel qui fonctionne** plutôt qu'une documentation exhaustive ;\n3. la **collaboration avec le client** plutôt que la négociation contractuelle ;\n4. l'**adaptation au changement** plutôt que le suivi d'un plan.\nAttention : « plutôt que » ne veut pas dire « à la place de ». Les éléments de droite gardent de la valeur : on fait **de la documentation et de la planification**, mais juste ce qu'il faut.\n\nParmi les **12 principes** : satisfaire le client par des livraisons rapides et régulières, accueillir les changements même tardifs, livrer souvent (quelques semaines), travailler chaque jour avec les métiers, privilégier le dialogue en face à face, rythme soutenable, amélioration régulière de l'équipe.",
+      "notions": [
+        "Itératif et incrémental",
+        "Valeurs du manifeste agile",
+        "Principes agiles"
+      ]
+    },
+    {
+      "id": "libre-b1-14-sq2-s01-s02",
+      "titre": "Avantages, limites, outils",
+      "contenu": "| Avantages | Limites |\n| --- | --- |\n| le client voit vite des résultats et peut réorienter | demande une forte **disponibilité** du client |\n| les risques sont détectés tôt | budget et date finale plus difficiles à fixer à l'avance |\n| motivation et autonomie de l'équipe | moins adapté aux très grandes équipes ou aux contrats rigides |\n\n**Tranches de temps** (*timeboxing*) : chaque activité a une **durée fixe** qu'on ne dépasse pas (itération de 2 semaines, réunion de 15 minutes). Si tout n'est pas fini, on **réduit le contenu**, pas la date.\n\n**Kanban** : un tableau de **flux** en colonnes (*À faire / En cours / Terminé*) où les cartes avancent. On **limite le nombre de cartes « en cours »** pour finir avant de commencer autre chose.\n\nGrands courants : **Scrum** (le plus répandu), **Kanban**, **Extreme Programming** (XP, pratiques de développement : tests, binômes, intégration continue), SAFe (agilité à grande échelle).",
+      "notions": [
+        "Avantages et limites",
+        "Tranches de temps",
+        "Kanban",
+        "Courants agiles"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-14-sq2-s01-c001",
+      "section": "libre-b1-14-sq2-s01-s01",
+      "type": "qcm",
+      "question": "Quelle affirmation sur l'agilité est fausse ?",
+      "choix": [
+        "On livre régulièrement des versions qui fonctionnent",
+        "On accueille les changements de besoin",
+        "En agile, on ne planifie pas et on n'écrit aucune documentation",
+        "Le client collabore tout au long du projet"
+      ],
+      "bonneReponse": 2,
+      "explication": "On planifie à court terme et on documente ce qui est utile ; le manifeste dit « plutôt que », pas « à la place de ».",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-14-sq2-s01-c002",
+      "section": "libre-b1-14-sq2-s01-s01",
+      "type": "question",
+      "recto": "Cite deux des quatre valeurs du Manifeste agile.",
+      "verso": "Individus et interactions ; logiciel qui fonctionne ; collaboration avec le client ; adaptation au changement (chacune « plutôt que » processus/outils, documentation exhaustive, négociation contractuelle, suivi d'un plan).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-14-sq2-s01-c003",
+      "section": "libre-b1-14-sq2-s01-s02",
+      "type": "qcm",
+      "question": "Dans un tableau Kanban, pourquoi limiter le nombre de cartes dans la colonne « En cours » ?",
+      "choix": [
+        "Pour que le tableau soit plus joli",
+        "Pour finir les tâches commencées avant d'en démarrer d'autres et fluidifier le travail",
+        "Parce que le logiciel l'impose",
+        "Pour cacher le travail en retard"
+      ],
+      "bonneReponse": 1,
+      "explication": "Trop de travail en parallèle ralentit tout : on privilégie le flux de tâches terminées.",
+      "difficulte": 2
+    }
+  ]
+}

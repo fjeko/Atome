@@ -1,0 +1,70 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq2-s06",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – Développer la présence en ligne de l'organisation › Thème 2 – Site web dynamique : PHP, MVC, SQL et responsive",
+  "sequence": null,
+  "seance": "Responsive",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Adapter un site à toutes les tailles d'écran : principe du responsive, requêtes média et points de rupture, tests avec les outils du navigateur, orientation et note de synthèse de tests.",
+  "notions": [
+    "Principe du responsive",
+    "Points de rupture et requêtes média",
+    "Tests avec les outils du navigateur",
+    "Note de synthèse de tests"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq2-s06-s01",
+      "titre": "Principe et points de rupture",
+      "contenu": "Un site **responsive** s'adapte à la largeur de l'écran : téléphone, tablette, ordinateur. Ingrédients :\n- la balise `<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">` ;\n- des **largeurs fluides** (`%`, `fr`, `max-width`) plutôt que fixes ;\n- des images qui ne dépassent pas : `img { max-width: 100%; height: auto; }` ;\n- des **requêtes média** qui changent la mise en page à certains **points de rupture**.\n\nApproche « **mobile d'abord** » : on écrit le style pour petit écran, puis on enrichit pour les grands :\n```css\n.grille-jeux { display: grid; grid-template-columns: 1fr; gap: 16px; }\n\n@media (min-width: 600px) {\n  .grille-jeux { grid-template-columns: repeat(2, 1fr); }\n}\n@media (min-width: 1000px) {\n  .grille-jeux { grid-template-columns: repeat(4, 1fr); }\n}\n```",
+      "notions": [
+        "Principe du responsive",
+        "Points de rupture et requêtes média"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq2-s06-s02",
+      "titre": "Tester et rédiger une synthèse",
+      "contenu": "Les outils du navigateur (F12) ont un **mode appareil** : choisir un modèle de téléphone, une largeur, l'**orientation** (portrait/paysage). On teste aussi sur de **vrais appareils** quand c'est possible.\n\nPoints à vérifier : pas de défilement horizontal, menu utilisable au doigt (cibles assez grandes), textes lisibles sans zoom, images non déformées, formulaires utilisables.\n\n**Note de synthèse de tests** :\n| Page | Largeur / orientation | Constat | Gravité | Action |\n| --- | --- | --- | --- | --- |\n| Accueil | 360 px portrait | menu chevauche le logo | forte | menu « hamburger » sous 600 px |\n| Fiche jeu | 768 px paysage | RAS | — | — |\n| Contact | 360 px | champs trop étroits | moyenne | largeur 100 % |\n\n**Piège** : ne tester qu'un seul format (celui de son écran).",
+      "notions": [
+        "Tests avec les outils du navigateur",
+        "Note de synthèse de tests"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq2-s06-c001",
+      "section": "libre-b1-13-sq2-s06-s01",
+      "type": "exercice",
+      "enonce": "Avec le CSS ci-dessus, combien de colonnes affiche la grille sur un écran de 375 px, 768 px et 1280 px de large ?",
+      "etapes": [
+        "375 px : aucune requête média ne s'applique → 1 colonne.",
+        "768 px : min-width 600 s'applique, pas 1000 → 2 colonnes.",
+        "1280 px : les deux s'appliquent, la dernière l'emporte → 4 colonnes."
+      ],
+      "reponse": "1, 2 et 4 colonnes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq2-s06-c002",
+      "section": "libre-b1-13-sq2-s06-s02",
+      "type": "qcm",
+      "question": "Quelle balise est indispensable dans le `<head>` pour qu'un site responsive s'affiche correctement sur mobile ?",
+      "choix": [
+        "`<meta charset=\"utf-8\">`",
+        "`<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">`",
+        "`<meta name=\"description\">`",
+        "`<link rel=\"icon\">`"
+      ],
+      "bonneReponse": 1,
+      "explication": "Sans viewport, le mobile affiche la page comme un écran d'ordinateur réduit.",
+      "difficulte": 1
+    }
+  ]
+}

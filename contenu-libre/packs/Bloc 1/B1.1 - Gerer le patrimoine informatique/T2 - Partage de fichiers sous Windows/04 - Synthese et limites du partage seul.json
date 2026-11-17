@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq2-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – Gérer le patrimoine informatique › Thème 2 – Partage de fichiers sous Windows",
+  "sequence": null,
+  "seance": "Synthèse et limites du partage seul",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Ce que protègent vraiment les autorisations de partage, pourquoi il faut les compléter par les autorisations NTFS, et un récapitulatif de la démarche.",
+  "notions": [
+    "Limites des autorisations de partage",
+    "Autorisations NTFS",
+    "Démarche complète de partage"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq2-s04-s01",
+      "titre": "Ce que le partage ne protège pas",
+      "contenu": "Les autorisations de **partage** ne s'appliquent **qu'aux accès par le réseau**. Une personne qui ouvre une session **directement sur la machine** (en local, ou via le bureau à distance) n'y est pas soumise.\n\nExemple : le dossier « Paie » est partagé avec la seule gérante. Mais si un vendeur ouvre une session sur le poste qui héberge le dossier, il peut naviguer jusqu'à `D:\\Paie`… si rien d'autre ne l'en empêche.\n\nAutres limites :\n- les autorisations de partage sont **peu fines** (3 niveaux seulement) ;\n- elles s'appliquent à **tout** le partage, pas à un sous-dossier précis.",
+      "notions": [
+        "Limites des autorisations de partage"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq2-s04-s02",
+      "titre": "Les autorisations NTFS en complément",
+      "contenu": "Le système de fichiers **NTFS** possède ses propres autorisations (onglet *Sécurité*), qui s'appliquent **à tous les accès**, locaux comme réseau, et sont plus fines : lecture et exécution, écriture, modification, contrôle total, affichage du contenu du dossier, etc. Elles se transmettent aux sous-dossiers par **héritage**.\n\nLors d'un accès par le réseau, **les deux** sont vérifiées et c'est **la plus restrictive** qui gagne.\n\n| Partage | NTFS | Droit effectif par le réseau |\n| --- | --- | --- |\n| Modifier | Lecture | **Lecture** |\n| Lecture | Contrôle total | **Lecture** |\n| Contrôle total | Modifier | **Modifier** |\n\nPratique courante : **partage** large (« Utilisateurs authentifiés : Modifier ») et **NTFS** précis par groupe. Tu approfondiras ça plus tard dans la formation.",
+      "notions": [
+        "Autorisations NTFS"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq2-s04-s03",
+      "titre": "Récapitulatif de la démarche",
+      "contenu": "1. **Analyser le besoin** : profils, dossiers, droits.\n2. **Créer les groupes** (un par profil) et les **comptes nominatifs**, puis placer les comptes dans les groupes.\n3. **Préparer la machine** : profil réseau privé, service Serveur actif, pare-feu.\n4. **Créer le partage** et régler ses autorisations (et les autorisations NTFS).\n5. **Tester** chaque profil depuis un poste client propre (VM).\n6. **Documenter** : tableau d'habilitations, chemin UNC, date.",
+      "notions": [
+        "Démarche complète de partage"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq2-s04-c001",
+      "section": "libre-b1-11-sq2-s04-s01",
+      "type": "qcm",
+      "question": "Les autorisations de partage protègent un dossier…",
+      "choix": [
+        "dans tous les cas",
+        "uniquement lors d'un accès par le réseau",
+        "uniquement lors d'un accès local",
+        "uniquement pour les administrateurs"
+      ],
+      "bonneReponse": 1,
+      "explication": "Elles sont vérifiées par le service de partage, donc seulement pour les accès réseau.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq2-s04-c002",
+      "section": "libre-b1-11-sq2-s04-s02",
+      "type": "exercice",
+      "enonce": "Sur le partage « Projets », le groupe G_Stagiaires a l'autorisation de partage Contrôle total et l'autorisation NTFS Lecture. Quel est leur droit effectif par le réseau ? Et en local ?",
+      "etapes": [
+        "Par le réseau : on prend la plus restrictive entre partage (Contrôle total) et NTFS (Lecture) → Lecture.",
+        "En local : seules les autorisations NTFS s'appliquent → Lecture."
+      ],
+      "reponse": "Lecture dans les deux cas.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq2-s04-c003",
+      "section": "libre-b1-11-sq2-s04-s03",
+      "type": "question",
+      "recto": "Pourquoi documenter les partages et leurs habilitations ?",
+      "verso": "Pour que n'importe quel technicien puisse comprendre, vérifier et faire évoluer la configuration (et pour pouvoir contrôler qui a accès à quoi).",
+      "difficulte": 1
+    }
+  ]
+}

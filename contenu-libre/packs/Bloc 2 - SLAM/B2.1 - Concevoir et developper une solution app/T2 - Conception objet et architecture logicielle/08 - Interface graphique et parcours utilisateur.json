@@ -1,0 +1,86 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq2-s08",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 2 – Conception objet et architecture logicielle",
+  "sequence": null,
+  "seance": "Interface graphique et parcours utilisateur",
+  "ordre": 8,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un éditeur visuel aide à construire les fenêtres d'une application Java. On gère les ressources (images, icônes) et on vérifie que l'enchaînement des écrans suit le parcours prévu.",
+  "notions": [
+    "Éditeur visuel",
+    "Composants graphiques",
+    "Ressources",
+    "Parcours utilisateur"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq2-s08-s01",
+      "titre": "Éditeur visuel d'interfaces",
+      "contenu": "Avec Swing (ou JavaFX), une fenêtre se construit en **plaçant des composants** : `JFrame` (fenêtre), `JPanel` (zone), `JLabel` (texte), `JTextField` (saisie), `JButton` (bouton), `JTable` (tableau).\n\nUn **éditeur visuel** (WindowBuilder pour Eclipse, Scene Builder pour JavaFX, le concepteur de NetBeans) permet de les poser à la souris ; l'outil **génère le code** correspondant.\n\n```java\nJButton btnValider = new JButton(\"Valider\");\nbtnValider.addActionListener(e -> controleur.valider(txtNom.getText()));\npanel.add(btnValider);\n```\n\nLe gestionnaire d'événement (ici une lambda) doit **rester court** : il transmet la demande au contrôleur.",
+      "notions": [
+        "Éditeur visuel",
+        "Composants graphiques"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s08-s02",
+      "titre": "Gestion des ressources",
+      "contenu": "Les **ressources** sont les fichiers non Java utilisés par l'application : images, icônes, fichiers de configuration, textes traduits.\n\n- On les range dans un dossier dédié (`resources/` ou `src/main/resources/`).\n- On les charge **par le chemin de classe**, pas par un chemin absolu :\n\n```java\nImageIcon logo = new ImageIcon(getClass().getResource(\"/images/logo.png\"));\n```\n\nAinsi, elles seront trouvées même une fois l'application empaquetée dans une archive `.jar`. Un chemin comme `C:\\Users\\Moi\\logo.png` ne fonctionnera que sur ta machine.",
+      "notions": [
+        "Ressources"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s08-s03",
+      "titre": "Parcours utilisateur",
+      "contenu": "Le **parcours utilisateur** est l'enchaînement des écrans et actions pour atteindre un objectif. Il doit correspondre aux **cas d'utilisation** et à la **maquette** validée.\n\nVérifications à faire :\n- chaque étape du scénario est réalisable ;\n- l'utilisateur sait toujours **où il est** et comment **revenir** ;\n- les erreurs (saisie vide, valeur incorrecte) sont **signalées clairement** ;\n- les actions irréversibles demandent **confirmation**.",
+      "notions": [
+        "Parcours utilisateur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq2-s08-c001",
+      "section": "libre-b2-21-sq2-s08-s01",
+      "type": "qcm",
+      "question": "Que doit contenir idéalement le gestionnaire du clic sur « Valider » ?",
+      "choix": [
+        "Toute la logique de calcul et l'accès à la base",
+        "Un appel au contrôleur avec les valeurs saisies",
+        "La création de la base de données",
+        "Rien, Swing gère tout seul"
+      ],
+      "bonneReponse": 1,
+      "explication": "Respecter MVC : la vue transmet, le contrôleur et le modèle traitent.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s08-c002",
+      "section": "libre-b2-21-sq2-s08-s02",
+      "type": "question",
+      "recto": "Pourquoi charger une image avec `getClass().getResource(...)` plutôt qu'avec un chemin absolu ?",
+      "verso": "Parce que la ressource est cherchée **dans l'application** (y compris dans le .jar) : elle sera trouvée sur n'importe quel poste.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s08-c003",
+      "section": "libre-b2-21-sq2-s08-s03",
+      "type": "exercice",
+      "enonce": "Pour le cas « Enregistrer un retour de matériel » de LocaPro, décris un parcours en 3 écrans maximum et les contrôles de saisie.",
+      "etapes": [
+        "Écran 1 : recherche de la location par numéro (champ + bouton Rechercher) ; erreur si numéro inconnu.",
+        "Écran 2 : détail de la location, case « matériel en bon état », champ remarque ; bouton Valider le retour.",
+        "Confirmation : « Enregistrer le retour de la location n° … ? » puis message de succès et retour à l'écran 1.",
+        "Contrôles : numéro numérique non vide ; remarque obligatoire si le matériel est abîmé."
+      ],
+      "reponse": "Recherche → détail/validation → confirmation, avec messages d'erreur et retour possible.",
+      "difficulte": 2
+    }
+  ]
+}

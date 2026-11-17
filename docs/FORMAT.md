@@ -86,7 +86,7 @@ Exemple : `packs/Mathematiques/SQ1 - Calcul matriciel/S03 - Multiplication de ma
 | `id` | oui | Identifiant unique et **stable** du pack (minuscules, chiffres, tirets). |
 | `matiere` | oui | Nom de la matière, tel qu'affiché dans la bibliothèque. |
 | `bloc` | non | « Bloc 1 », « Bloc 6 »… pour regrouper les matières. |
-| `partie` | oui | Compétence ou séquence (ex. « B1.2 Partie I – SQ1 », « SQ1 – Calcul matriciel »). |
+| `partie` | oui | Compétence ou séquence (ex. « B1.2 Partie I – SQ1 », « SQ1 – Calcul matriciel »). Variante « compétence › thème » : « B1.1 – Gérer le patrimoine informatique › Thème 1 – Inventaire » (la compétence est un niveau de la bibliothèque, le thème le suivant). |
 | `sequence` | non | Niveau intermédiaire si la partie en contient plusieurs. |
 | `seance` | oui | Titre de la séance. |
 | `ordre` | non | Entier pour trier les séances d'une même partie. |

@@ -1,0 +1,112 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq2-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 6 – Bases des réseaux et adressage IP",
+  "sequence": null,
+  "seance": "Ethernet et commutation",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La couche liaison : câblage structuré, alimentation par Ethernet, carte réseau et adresse MAC, structure d'une trame, accès au support, fonctionnement d'un commutateur et normes Ethernet.",
+  "notions": [
+    "Câblage structuré",
+    "Alimentation par Ethernet",
+    "Adresse MAC",
+    "Trame Ethernet",
+    "Accès au support",
+    "Table d'adresses du commutateur",
+    "Normes Ethernet"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq2-s04-s01",
+      "titre": "Câblage structuré et PoE",
+      "contenu": "Dans un bâtiment, on ne tire pas un câble du poste jusqu'au switch à chaque besoin. On réalise un **câblage structuré** :\n- des **prises murales** RJ45 dans chaque bureau ;\n- des câbles qui rejoignent une **baie de brassage** ;\n- dans la baie, un **panneau de brassage** où arrivent les câbles des prises ;\n- des **cordons de brassage** courts relient le panneau aux ports du commutateur.\nChanger un poste de réseau = déplacer un cordon dans la baie.\n\n**PoE** (*Power over Ethernet*) : le commutateur **alimente électriquement** l'appareil par le câble réseau (téléphone IP, borne Wi-Fi, caméra). Pas besoin de prise électrique à côté. Normes IEEE 802.3af, at, bt (puissances croissantes).",
+      "notions": [
+        "Câblage structuré",
+        "Alimentation par Ethernet"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s04-s02",
+      "titre": "Adresse MAC et trame",
+      "contenu": "Chaque **carte réseau** possède une **adresse MAC** de **48 bits**, écrite en 6 octets hexadécimaux : `3C:52:82:1A:9F:04`. Les 3 premiers octets identifient le **fabricant** (OUI).\n\nUne **trame Ethernet** contient :\n```text\n| Préambule | MAC destination | MAC source | Type | Données (46 à 1500 octets) | FCS |\n```\n- **Type** : indique le protocole transporté (IPv4, IPv6, ARP…) ;\n- **FCS** : code de contrôle pour détecter les erreurs de transmission.\n\nL'adresse `FF:FF:FF:FF:FF:FF` est l'adresse de **diffusion** : la trame est reçue par toutes les machines du réseau local.\n\n**Accès au support** : historiquement, sur un câble partagé, les machines écoutaient avant d'émettre et détectaient les collisions (CSMA/CD). Avec des commutateurs en **full-duplex**, chaque lien est dédié : plus de collisions. Le Wi-Fi, lui, partage les ondes et utilise une méthode d'évitement des collisions (CSMA/CA).",
+      "notions": [
+        "Adresse MAC",
+        "Trame Ethernet",
+        "Accès au support"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s04-s03",
+      "titre": "Comment travaille un commutateur",
+      "contenu": "Le commutateur **apprend** où se trouvent les machines en lisant l'**adresse MAC source** des trames qu'il reçoit, et remplit sa **table d'adresses MAC** (table CAM) :\n| Adresse MAC | Port |\n| --- | --- |\n| 3C:52:82:1A:9F:04 | 2 |\n| 00:1B:44:11:3A:B7 | 7 |\n\nQuand une trame arrive :\n- si l'adresse **destination** est dans la table → il l'envoie **uniquement** sur le bon port ;\n- si elle est **inconnue** ou de **diffusion** → il l'envoie sur **tous les ports** sauf celui d'arrivée (inondation).",
+      "notions": [
+        "Table d'adresses du commutateur"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s04-s04",
+      "titre": "Les normes Ethernet",
+      "contenu": "| Norme | Débit | Support | Distance max |\n| --- | --- | --- | --- |\n| 100BASE-TX | 100 Mbit/s | paires torsadées cat. 5 | 100 m |\n| 1000BASE-T | 1 Gbit/s | paires torsadées cat. 5e/6 | 100 m |\n| 10GBASE-T | 10 Gbit/s | paires torsadées cat. 6a | 100 m |\n| 1000BASE-SX | 1 Gbit/s | fibre multimode | environ 550 m |\n| 10GBASE-LR | 10 Gbit/s | fibre monomode | 10 km |\nLecture : le nombre = débit en Mbit/s, « BASE » = transmission en bande de base, le suffixe = type de support.",
+      "notions": [
+        "Normes Ethernet"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq2-s04-c001",
+      "section": "libre-b1-12b-sq2-s04-s01",
+      "type": "question",
+      "recto": "Qu'est-ce que le PoE ?",
+      "verso": "*Power over Ethernet* : l'alimentation électrique d'un appareil (téléphone IP, borne Wi-Fi, caméra) par le câble réseau, depuis le commutateur.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq2-s04-c002",
+      "section": "libre-b1-12b-sq2-s04-s02",
+      "type": "qcm",
+      "question": "Combien de bits compte une adresse MAC ?",
+      "choix": [
+        "32",
+        "48",
+        "64",
+        "128"
+      ],
+      "bonneReponse": 1,
+      "explication": "48 bits, soit 6 octets notés en hexadécimal.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq2-s04-c003",
+      "section": "libre-b1-12b-sq2-s04-s03",
+      "type": "exercice",
+      "enonce": "Un commutateur vient de démarrer (table vide). Le poste A (port 1) envoie une trame au poste B (port 4). Puis B répond à A. Décris ce que fait le commutateur à chaque étape.",
+      "etapes": [
+        "Trame A→B : il apprend « MAC de A = port 1 ». La destination B est inconnue : il inonde sur tous les ports sauf le 1.",
+        "Réponse B→A : il apprend « MAC de B = port 4 ». A est connu : il envoie seulement sur le port 1."
+      ],
+      "reponse": "Après ces deux trames, la table contient A→port 1 et B→port 4 ; les échanges suivants entre A et B ne passent plus que par leurs ports.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s04-c004",
+      "section": "libre-b1-12b-sq2-s04-s04",
+      "type": "qcm",
+      "question": "Que signifie le « T » de 1000BASE-T ?",
+      "choix": [
+        "Transport",
+        "Paires torsadées (Twisted pair)",
+        "Tera",
+        "Transmission par fibre"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le suffixe indique le support : T pour les paires torsadées en cuivre, SX/LR pour la fibre.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq2-s02",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – Protéger l'identité numérique d'une organisation › Thème 2 – Cryptographie, accès distant et preuve numérique",
+  "sequence": null,
+  "seance": "Chiffres classiques et cryptanalyse",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les premiers chiffres remplaçaient chaque lettre par une autre. L'analyse des fréquences les casse facilement. Les chiffres polyalphabétiques, les machines à rotors puis le masque jetable ont cherché à résister.",
+  "notions": [
+    "Substitution monoalphabétique",
+    "Chiffre par décalage",
+    "Analyse des fréquences",
+    "Chiffre polyalphabétique",
+    "Machine à rotors",
+    "Masque jetable"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq2-s02-s01",
+      "titre": "Substitution monoalphabétique",
+      "contenu": "Une lettre donnée est **systématiquement** transformée en **une seule et même** lettre de substitution.\n\nExemple simple : le **chiffre par décalage** de 3 (dit « de César ») : A→D, B→E, …, X→A, Y→B, Z→C.\n\n`RESEAU` → `UHVHDX`.\n\nMathématiquement, avec A=0 … Z=25 : $c = (p + k) \\bmod 26$ et $p = (c - k) \\bmod 26$.\n\nSeulement 25 décalages possibles : on les essaie tous (**force brute**). Une substitution quelconque (alphabet mélangé) offre $26!$ clés, mais reste fragile.",
+      "notions": [
+        "Substitution monoalphabétique",
+        "Chiffre par décalage"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s02-s02",
+      "titre": "Analyse des fréquences",
+      "contenu": "Dans une langue, les lettres n'apparaissent pas avec la même fréquence. En français, **E** est de loin la plus fréquente (environ 15 %), puis A, S, I, N, T, R…\n\nDans une substitution monoalphabétique, la fréquence est **conservée** : la lettre la plus fréquente du texte chiffré correspond probablement à E. On en déduit la clé, puis on complète avec les mots courts (LE, DE, LA, UN).\n\nCette méthode casse **toute** substitution monoalphabétique sur un texte assez long.",
+      "notions": [
+        "Analyse des fréquences"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s02-s03",
+      "titre": "Polyalphabétique, rotors, masque jetable",
+      "contenu": "- **Polyalphabétique** (type Vigenère) : la substitution **change à chaque lettre** selon une **clé** répétée. Avec la clé `CLE` (décalages 2, 11, 4), une même lettre claire donne des lettres chiffrées différentes : l'analyse des fréquences simple ne marche plus. On le casse en trouvant la **longueur de la clé** (répétitions dans le texte), puis en analysant chaque position séparément.\n- **Machines à rotors** (Enigma, première moitié du XXᵉ siècle) : des rotors qui tournent à chaque frappe produisent une substitution polyalphabétique très longue. Cassée grâce aux mathématiciens et aux erreurs d'utilisation.\n- **Masque jetable** (chiffre de Vernam) : clé **aléatoire**, **aussi longue** que le message, **utilisée une seule fois**. C'est le seul chiffre prouvé **inconditionnellement sûr**, mais impraticable à grande échelle (distribuer des clés aussi longues que les messages).",
+      "notions": [
+        "Chiffre polyalphabétique",
+        "Machine à rotors",
+        "Masque jetable"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq2-s02-c001",
+      "section": "libre-b3-32-sq2-s02-s01",
+      "type": "exercice",
+      "enonce": "Chiffre `PARE FEU` avec un décalage de 4.",
+      "etapes": [
+        "P(15)+4 = 19 → T ; A(0)+4 → E ; R(17)+4 = 21 → V ; E(4)+4 = 8 → I.",
+        "F(5)+4 = 9 → J ; E → I ; U(20)+4 = 24 → Y."
+      ],
+      "reponse": "`TEVI JIY`",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-32-sq2-s02-c002",
+      "section": "libre-b3-32-sq2-s02-s01",
+      "type": "question",
+      "recto": "Pourquoi le chiffre par décalage est-il cassable en quelques secondes ?",
+      "verso": "Parce qu'il n'y a que **25 clés** possibles : on les teste toutes (force brute).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s02-c003",
+      "section": "libre-b3-32-sq2-s02-s02",
+      "type": "exercice",
+      "enonce": "Dans un texte chiffré par décalage, la lettre la plus fréquente est `K`. Quelle est la clé probable et comment déchiffrer ?",
+      "etapes": [
+        "Hypothèse : K correspond à E.",
+        "K = 10, E = 4 → décalage k = 10 − 4 = 6.",
+        "Déchiffrer en reculant chaque lettre de 6 : $p = (c - 6) \\bmod 26$.",
+        "Vérifier que le texte obtenu a du sens ; sinon tester la 2e lettre la plus fréquente comme E."
+      ],
+      "reponse": "Clé probable : décalage de 6.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s02-c004",
+      "section": "libre-b3-32-sq2-s02-s03",
+      "type": "qcm",
+      "question": "Quelle condition N'est PAS nécessaire à la sécurité du masque jetable ?",
+      "choix": [
+        "Clé vraiment aléatoire",
+        "Clé aussi longue que le message",
+        "Clé utilisée une seule fois",
+        "Algorithme gardé secret"
+      ],
+      "bonneReponse": 3,
+      "explication": "L'algorithme peut être public : la sécurité repose sur la clé.",
+      "difficulte": 2
+    }
+  ]
+}

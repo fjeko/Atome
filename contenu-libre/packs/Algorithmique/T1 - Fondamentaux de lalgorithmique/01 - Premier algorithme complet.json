@@ -1,0 +1,144 @@
+{
+  "formatVersion": 1,
+  "id": "libre-algo-p1-s01",
+  "matiere": "Algorithmique appliquée",
+  "bloc": "Bloc 6",
+  "partie": "Thème 1 – Fondamentaux de l'algorithmique",
+  "sequence": null,
+  "seance": "Premier algorithme complet",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. De l'énoncé au programme : repérer les entrées, le traitement et les sorties, rédiger l'algorithme sous forme de pseudo-code, avant de le convertir en Python et de le tester.",
+  "notions": [
+    "Définition d'un algorithme",
+    "Analyse d'un énoncé",
+    "Structure d'un algorithme en pseudo-code",
+    "Traduction en Python"
+  ],
+  "sections": [
+    {
+      "id": "libre-algo-p1-s01-s01",
+      "titre": "Qu'est-ce qu'un algorithme ?",
+      "contenu": "Un **algorithme** est une suite finie d'instructions précises qui, à partir de **données d'entrée**, produit un **résultat**. Une recette de cuisine ou un itinéraire GPS en sont des exemples de la vie courante.\n\nEn informatique, on l'écrit d'abord en **pseudo-code** : un langage simple, en français, indépendant de tout langage de programmation. On le **traduit** ensuite dans un vrai langage (ici Python) pour le faire exécuter par l'ordinateur.\n\nPourquoi passer par le pseudo-code ?\n- on se concentre sur la **logique**, sans se battre avec la syntaxe ;\n- le même algorithme peut être traduit en Python, C#, PHP… ;\n- c'est la forme attendue à l'épreuve écrite.",
+      "notions": [
+        "Définition d'un algorithme"
+      ]
+    },
+    {
+      "id": "libre-algo-p1-s01-s02",
+      "titre": "Analyser l'énoncé : entrées, traitement, sorties",
+      "contenu": "Énoncé : *« Une boutique en ligne fictive, Papeterie Mistral, applique une remise de 5 % dès 10 articles achetés. Écrire un programme qui demande le prix unitaire et la quantité, puis affiche le total à payer. »*\n\nAvant d'écrire une ligne, on remplit ce petit tableau :\n\n| | Ce que c'est | Type |\n|---|---|---|\n| **Entrées** | prix unitaire, quantité | réel, entier |\n| **Traitement** | total = prix × quantité ; si quantité ≥ 10, total = total × 0,95 | |\n| **Sortie** | le total à payer | réel |\n\nChaque information qui change ou qu'on doit retenir devient une **variable**, avec un nom parlant (`prixUnitaire` plutôt que `p`).",
+      "notions": [
+        "Analyse d'un énoncé"
+      ]
+    },
+    {
+      "id": "libre-algo-p1-s01-s03",
+      "titre": "Écrire le pseudo-code",
+      "contenu": "Un algorithme en pseudo-code a trois parties : un **nom**, les **déclarations** de variables avec leur type, et le **corps** entre `DÉBUT` et `FIN`.\n\n```text\nALGORITHME PrixCommande\nVARIABLES\n    prixUnitaire, total : réel\n    quantite : entier\nDÉBUT\n    AFFICHER \"Prix unitaire ?\"\n    SAISIR prixUnitaire\n    AFFICHER \"Quantité ?\"\n    SAISIR quantite\n    total ← prixUnitaire * quantite\n    SI quantite >= 10 ALORS\n        total ← total * 0.95\n    FINSI\n    AFFICHER \"Total à payer : \", total\nFIN\n```\n\n- `←` est l'**affectation** : on range la valeur de droite dans la variable de gauche.\n- `SAISIR` lit une valeur tapée au clavier ; `AFFICHER` écrit à l'écran.\n- L'indentation (décalage) montre ce qui est **à l'intérieur** du `SI`.",
+      "notions": [
+        "Structure d'un algorithme en pseudo-code"
+      ]
+    },
+    {
+      "id": "libre-algo-p1-s01-s04",
+      "titre": "Traduire en Python et tester",
+      "contenu": "```python\n# Calcul du total d'une commande avec remise de 5 % dès 10 articles\nprix_unitaire = float(input(\"Prix unitaire ? \"))\nquantite = int(input(\"Quantité ? \"))\ntotal = prix_unitaire * quantite\nif quantite >= 10:\n    total = total * 0.95\nprint(\"Total à payer :\", round(total, 2))\n```\n\nCorrespondances :\n\n| Pseudo-code | Python |\n|---|---|\n| `x ← 5` | `x = 5` |\n| `SAISIR x` (réel) | `x = float(input())` |\n| `AFFICHER x` | `print(x)` |\n| `SI … ALORS … FINSI` | `if …:` + bloc indenté |\n\n`input()` renvoie toujours du **texte** : on le convertit avec `int()` ou `float()`.\n\n**Test** avec un prix de 4 et une quantité de 12 : $4 \\times 12 = 48$, puis $48 \\times 0{,}95 = 45{,}6$. Le programme affiche `Total à payer : 45.6`. Sans `round`, Python afficherait `45.599999999999994` : les réels sont stockés de façon approchée, d'où l'arrondi à l'affichage.",
+      "notions": [
+        "Traduction en Python"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-algo-p1-s01-c001",
+      "section": "libre-algo-p1-s01-s01",
+      "type": "question",
+      "recto": "Qu'est-ce qu'un algorithme ?",
+      "verso": "Une suite finie d'instructions précises qui transforme des données d'entrée en un résultat.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p1-s01-c002",
+      "section": "libre-algo-p1-s01-s01",
+      "type": "qcm",
+      "question": "Pourquoi écrire d'abord un algorithme en pseudo-code ?",
+      "choix": [
+        "Pour se concentrer sur la logique, indépendamment du langage",
+        "Parce que Python ne sait pas lire le français",
+        "Parce que le pseudo-code s'exécute plus vite",
+        "Parce qu'il évite d'avoir à tester"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le pseudo-code n'est pas exécuté : c'est un brouillon structuré qui fixe la logique avant la traduction.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p1-s01-c003",
+      "section": "libre-algo-p1-s01-s02",
+      "type": "qcm",
+      "question": "Dans l'énoncé « calculer l'âge d'une personne à partir de son année de naissance et de l'année en cours », quelles sont les entrées ?",
+      "choix": [
+        "L'année de naissance et l'année en cours",
+        "L'âge",
+        "L'âge et l'année de naissance",
+        "Aucune"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les entrées sont les données fournies ; l'âge est la sortie calculée.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p1-s01-c004",
+      "section": "libre-algo-p1-s01-s03",
+      "type": "question",
+      "recto": "Quelles sont les trois parties d'un algorithme en pseudo-code ?",
+      "verso": "Le nom (`ALGORITHME …`), la déclaration des variables avec leur type, et le corps entre `DÉBUT` et `FIN`.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p1-s01-c005",
+      "section": "libre-algo-p1-s01-s03",
+      "type": "qcm",
+      "question": "Que fait l'instruction `total ← total * 0.95` ?",
+      "choix": [
+        "Elle remplace la valeur de total par 95 % de son ancienne valeur",
+        "Elle compare total et total × 0,95",
+        "Elle affiche total × 0,95",
+        "Elle crée une deuxième variable total"
+      ],
+      "bonneReponse": 0,
+      "explication": "On calcule d'abord la partie droite avec l'ancienne valeur, puis on range le résultat dans total.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p1-s01-c006",
+      "section": "libre-algo-p1-s01-s04",
+      "type": "exercice",
+      "enonce": "Traduis en Python : `SAISIR age` (entier), puis `SI age >= 18 ALORS AFFICHER \"majeur\" SINON AFFICHER \"mineur\" FINSI`.",
+      "etapes": [
+        "`input` renvoie du texte : on convertit avec `int`.",
+        "`SI … SINON` devient `if …:` / `else:` avec indentation."
+      ],
+      "reponse": "```python\nage = int(input(\"Âge ? \"))\nif age >= 18:\n    print(\"majeur\")\nelse:\n    print(\"mineur\")\n```",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p1-s01-c007",
+      "section": "libre-algo-p1-s01-s04",
+      "type": "qcm",
+      "question": "Pourquoi écrit-on `quantite = int(input(\"Quantité ? \"))` et pas seulement `input(...)` ?",
+      "choix": [
+        "Parce que `input` renvoie du texte qu'il faut convertir en nombre",
+        "Pour afficher la question",
+        "Parce que `int` arrondit la saisie",
+        "Ce n'est pas nécessaire en Python"
+      ],
+      "bonneReponse": 0,
+      "explication": "Sans conversion, `quantite >= 10` comparerait un texte à un nombre et provoquerait une erreur.",
+      "difficulte": 2
+    }
+  ]
+}

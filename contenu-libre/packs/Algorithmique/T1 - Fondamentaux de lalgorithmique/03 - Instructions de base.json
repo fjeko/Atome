@@ -1,0 +1,185 @@
+{
+  "formatVersion": 1,
+  "id": "libre-algo-p1-s03",
+  "matiere": "Algorithmique appliquée",
+  "bloc": "Bloc 6",
+  "partie": "Thème 1 – Fondamentaux de l'algorithmique",
+  "sequence": null,
+  "seance": "Instructions de base",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Affectation, opérateurs, entrées-sorties, alternatives et boucles : les briques de tout algorithme, avec leur traduction en Python et la trace d'exécution.",
+  "notions": [
+    "Affectation et initialisation",
+    "Opérateurs et priorités",
+    "Structures conditionnelles",
+    "Boucles pour, tant que, répéter",
+    "Accumulateurs",
+    "Trace d'exécution",
+    "Contrôle de saisie"
+  ],
+  "sections": [
+    {
+      "id": "libre-algo-p1-s03-s01",
+      "titre": "Variables, affectation et opérateurs",
+      "contenu": "Une **variable** est une case mémoire qui porte un nom et contient une valeur d'un certain type. On doit lui donner une valeur (l'**initialiser**) avant de l'utiliser.\n\n| Opération | Pseudo-code | Python | Exemple |\n|---|---|---|---|\n| division réelle | `/` | `/` | `17 / 5` → `3.4` |\n| division entière | `div` | `//` | `17 // 5` → `3` |\n| reste | `mod` | `%` | `17 % 5` → `2` |\n| puissance | `^` | `**` | `2 ** 3` → `8` |\n| égal / différent | `=` / `≠` | `==` / `!=` | |\n| et, ou, non | `ET`, `OU`, `NON` | `and`, `or`, `not` | |\n\n**Priorités** : comme en maths, `*` `/` `//` `%` avant `+` `-` ; et pour les booléens, **`not` puis `and` puis `or`**. `2 + 3 * 4` vaut 14 ; `True or False and False` vaut `True` (le `and` passe d'abord). Dans le doute : des parenthèses.\n\nUsage typique du reste : `n % 2 == 0` teste si `n` est pair.",
+      "notions": [
+        "Affectation et initialisation",
+        "Opérateurs et priorités"
+      ]
+    },
+    {
+      "id": "libre-algo-p1-s03-s02",
+      "titre": "Les alternatives",
+      "contenu": "```text\nSI moyenne >= 16 ALORS\n    AFFICHER \"Très bien\"\nSINON SI moyenne >= 12 ALORS\n    AFFICHER \"Bien\"\nSINON SI moyenne >= 10 ALORS\n    AFFICHER \"Admis\"\nSINON\n    AFFICHER \"Non admis\"\nFINSI\n```\n\n```python\nif moyenne >= 16:\n    print(\"Très bien\")\nelif moyenne >= 12:\n    print(\"Bien\")\nelif moyenne >= 10:\n    print(\"Admis\")\nelse:\n    print(\"Non admis\")\n```\n\n- Les conditions sont testées **dans l'ordre** ; la première vraie l'emporte, les suivantes sont ignorées. C'est pourquoi on teste d'abord `>= 16`.\n- L'**alternative multiple** (`SELON … CAS`) s'écrit en Python avec `elif` (ou `match` depuis Python 3.10).\n- On peut **imbriquer** un `if` dans un autre, mais au-delà de deux niveaux, préfère `elif` ou des conditions combinées (`and`, `or`).",
+      "notions": [
+        "Structures conditionnelles"
+      ]
+    },
+    {
+      "id": "libre-algo-p1-s03-s03",
+      "titre": "Les trois boucles",
+      "contenu": "| Boucle | Quand l'utiliser | Python |\n|---|---|---|\n| `POUR i DE 1 À n` | nombre de tours **connu** | `for i in range(1, n + 1):` |\n| `TANTQUE condition` | nombre de tours **inconnu**, on peut ne faire aucun tour | `while condition:` |\n| `RÉPÉTER … JUSQU'À condition` | au moins **un** tour, arrêt quand la condition devient vraie | `while True:` … `if condition: break` |\n\n⚠️ `range(a, b)` va de `a` à `b - 1`. `range(5)` donne 0, 1, 2, 3, 4.\n\n**Accumulateurs** : on initialise **avant** la boucle, on met à jour **dedans**.\n- somme : `s = 0` puis `s = s + x`\n- produit : `p = 1` puis `p = p * x`\n- compteur : `c = 0` puis `c = c + 1`\n\nDans un `TANTQUE`, n'oublie pas de faire évoluer la variable testée, sinon la boucle ne s'arrête jamais (**boucle infinie**).",
+      "notions": [
+        "Boucles pour, tant que, répéter",
+        "Accumulateurs"
+      ]
+    },
+    {
+      "id": "libre-algo-p1-s03-s04",
+      "titre": "Trace d'exécution et saisie contrôlée",
+      "contenu": "### Trace\nPour comprendre un algorithme, on note l'état des variables après chaque tour :\n\n```text\nn ← 4 ; s ← 0 ; i ← 1\nTANTQUE i <= n FAIRE\n    s ← s + i * i\n    i ← i + 1\nFINTANTQUE\nAFFICHER s\n```\n\n| tour | i (avant) | s (après) | i (après) |\n|---|---|---|---|\n| 1 | 1 | 1 | 2 |\n| 2 | 2 | 5 | 3 |\n| 3 | 3 | 14 | 4 |\n| 4 | 4 | 30 | 5 |\n\nPuis `5 <= 4` est faux : la boucle s'arrête et l'algorithme affiche **30** (la somme des carrés de 1 à 4).\n\n### Saisie contrôlée\nOn redemande tant que la valeur est invalide. On fait une **saisie d'amorçage** avant la boucle :\n\n```python\nnote = float(input(\"Note (0 à 20) ? \"))\nwhile note < 0 or note > 20:\n    print(\"Valeur impossible.\")\n    note = float(input(\"Note (0 à 20) ? \"))\n```",
+      "notions": [
+        "Trace d'exécution",
+        "Contrôle de saisie"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-algo-p1-s03-c001",
+      "section": "libre-algo-p1-s03-s01",
+      "type": "qcm",
+      "question": "Que vaut `23 // 4` en Python ?",
+      "choix": [
+        "5",
+        "5.75",
+        "3",
+        "6"
+      ],
+      "bonneReponse": 0,
+      "explication": "`//` est la division entière : 23 = 4 × 5 + 3, donc 5. Le reste (`23 % 4`) vaut 3.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p1-s03-c002",
+      "section": "libre-algo-p1-s03-s01",
+      "type": "qcm",
+      "question": "Que vaut `(True or False) and False` ?",
+      "choix": [
+        "False",
+        "True",
+        "Erreur",
+        "None"
+      ],
+      "bonneReponse": 0,
+      "explication": "La parenthèse donne `True`, puis `True and False` donne `False`. Sans parenthèses, le résultat serait `True`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p1-s03-c003",
+      "section": "libre-algo-p1-s03-s01",
+      "type": "question",
+      "recto": "Comment tester en Python qu'un entier `n` est multiple de 3 ?",
+      "verso": "`n % 3 == 0` (le reste de la division par 3 est nul).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p1-s03-c004",
+      "section": "libre-algo-p1-s03-s02",
+      "type": "qcm",
+      "question": "Avec le programme ci-dessus et `moyenne = 17`, que s'affiche-t-il ?",
+      "choix": [
+        "Très bien",
+        "Très bien, Bien et Admis",
+        "Admis",
+        "Bien"
+      ],
+      "bonneReponse": 0,
+      "explication": "Seule la première condition vraie est exécutée ; les `elif` suivants sont ignorés.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p1-s03-c005",
+      "section": "libre-algo-p1-s03-s02",
+      "type": "exercice",
+      "enonce": "Écris en Python un test qui affiche « tarif réduit » si `age` est inférieur à 12 **ou** supérieur ou égal à 65, et « plein tarif » sinon.",
+      "etapes": [
+        "On combine deux conditions avec `or`.",
+        "Attention aux bornes : `< 12` et `>= 65`."
+      ],
+      "reponse": "```python\nif age < 12 or age >= 65:\n    print(\"tarif réduit\")\nelse:\n    print(\"plein tarif\")\n```",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p1-s03-c006",
+      "section": "libre-algo-p1-s03-s03",
+      "type": "qcm",
+      "question": "Quelles valeurs prend `i` dans `for i in range(2, 6):` ?",
+      "choix": [
+        "2, 3, 4, 5",
+        "2, 3, 4, 5, 6",
+        "3, 4, 5, 6",
+        "0, 1, 2, 3, 4, 5"
+      ],
+      "bonneReponse": 0,
+      "explication": "La borne de fin est exclue.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p1-s03-c007",
+      "section": "libre-algo-p1-s03-s03",
+      "type": "qcm",
+      "question": "Un programme redemande un mot de passe tant que celui-ci est erroné. Quelle boucle est la mieux adaptée ?",
+      "choix": [
+        "RÉPÉTER … JUSQU'À (au moins une saisie)",
+        "POUR i DE 1 À 3",
+        "Aucune, un SI suffit",
+        "POUR i DE 1 À 1000"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le nombre d'essais est inconnu à l'avance, et il y en a forcément un premier.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p1-s03-c008",
+      "section": "libre-algo-p1-s03-s04",
+      "type": "exercice",
+      "enonce": "Fais la trace et donne l'affichage :\n```python\nx = 1\nc = 0\nwhile x < 50:\n    x = x * 3\n    c = c + 1\nprint(c, x)\n```",
+      "etapes": [
+        "Tour 1 : x = 3, c = 1. Tour 2 : x = 9, c = 2.",
+        "Tour 3 : x = 27, c = 3. Tour 4 : x = 81, c = 4.",
+        "81 < 50 est faux : on sort de la boucle."
+      ],
+      "reponse": "`4 81`",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p1-s03-c009",
+      "section": "libre-algo-p1-s03-s04",
+      "type": "qcm",
+      "question": "Dans la saisie contrôlée ci-dessus, pourquoi la condition est-elle `note < 0 or note > 20` ?",
+      "choix": [
+        "Parce qu'on redemande tant que la note est hors de l'intervalle",
+        "Parce qu'on redemande tant que la note est valide",
+        "Il faudrait `and`",
+        "Pour accepter −1"
+      ],
+      "bonneReponse": 0,
+      "explication": "La boucle tourne tant que la saisie est **mauvaise** : inférieure à 0 **ou** supérieure à 20. Avec `and`, aucune note ne vérifierait les deux.",
+      "difficulte": 2
+    }
+  ]
+}

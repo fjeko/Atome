@@ -1,0 +1,89 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq2-s05",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – Protéger l'identité numérique d'une organisation › Thème 2 – Cryptographie, accès distant et preuve numérique",
+  "sequence": null,
+  "seance": "Certificats et protocole de transport",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un certificat lie une clé publique à une identité, garanti par une autorité de certification. Le protocole TLS l'utilise pour authentifier le serveur et établir une connexion chiffrée.",
+  "notions": [
+    "Certificat numérique",
+    "Autorité de certification",
+    "TLS",
+    "HTTPS",
+    "Alerte de certificat"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq2-s05-s01",
+      "titre": "Le problème de la confiance",
+      "contenu": "La clé publique résout l'échange de clés, mais une question demeure : **cette clé publique appartient-elle vraiment à** `banque-exemple.fr` ? Un attaquant pourrait présenter la sienne.\n\nLe **certificat numérique** répond : c'est un document qui **associe une clé publique à une identité** (nom de domaine, organisation), dont la **signature** émane d'une **autorité de certification** (AC) jugée fiable.\n\nLes navigateurs et systèmes contiennent une liste d'**AC racines** de confiance ; ils vérifient la signature du certificat présenté.",
+      "notions": [
+        "Certificat numérique",
+        "Autorité de certification"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s05-s02",
+      "titre": "TLS en bref",
+      "contenu": "**TLS** (*Transport Layer Security*, successeur de SSL) sécurise une connexion : **HTTPS** = HTTP sur TLS (port 443).\n\nÉtapes simplifiées :\n1. le client propose les versions et algorithmes qu'il accepte ;\n2. le serveur choisit et envoie son **certificat** ;\n3. le client **vérifie** le certificat (AC, nom de domaine, dates de validité, non-révocation) ;\n4. les deux établissent une **clé de session** (échange de type Diffie-Hellman) ;\n5. les données sont chiffrées en symétrique (AES, ChaCha20) avec contrôle d'intégrité.\n\nVersions à utiliser : **TLS 1.2 et 1.3** ; SSL et TLS 1.0/1.1 sont obsolètes.",
+      "notions": [
+        "TLS",
+        "HTTPS"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s05-s03",
+      "titre": "Lire une alerte de certificat",
+      "contenu": "Un avertissement « connexion non sécurisée » peut signifier :\n- certificat **expiré** ;\n- certificat émis pour **un autre nom** de domaine ;\n- certificat **autosigné** ou d'une AC inconnue ;\n- une **interception** (homme du milieu).\n\nRéflexe : sur un site public, **ne pas forcer** le passage ni saisir d'informations ; signaler. Sur un serveur de test interne, on peut ajouter manuellement le certificat après l'avoir vérifié.",
+      "notions": [
+        "Alerte de certificat"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq2-s05-c001",
+      "section": "libre-b3-32-sq2-s05-s01",
+      "type": "question",
+      "recto": "Que garantit un certificat numérique ?",
+      "verso": "Que la **clé publique** qu'il contient appartient bien à l'**identité** indiquée, ce qu'atteste la signature d'une autorité de certification.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-32-sq2-s05-c002",
+      "section": "libre-b3-32-sq2-s05-s02",
+      "type": "qcm",
+      "question": "Que vérifie le navigateur dans le certificat d'un site ?",
+      "choix": [
+        "Seulement la couleur du cadenas",
+        "La signature par une AC de confiance, le nom de domaine, les dates de validité et la non-révocation",
+        "Le nombre de visiteurs",
+        "Le contenu de la page"
+      ],
+      "bonneReponse": 1,
+      "explication": "Si un de ces points échoue, le navigateur affiche une alerte.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s05-c003",
+      "section": "libre-b3-32-sq2-s05-s03",
+      "type": "qcm",
+      "question": "Le navigateur indique que le certificat de l'intranet a expiré hier. Le risque est-il nul ?",
+      "choix": [
+        "Oui, ce n'est qu'une date",
+        "Non : il faut le renouveler ; habituer les utilisateurs à ignorer les alertes les rend vulnérables aux vraies attaques",
+        "Non, le site est forcément piraté",
+        "Oui, si on utilise un autre navigateur"
+      ],
+      "bonneReponse": 1,
+      "explication": "Ignorer les alertes devient un réflexe dangereux.",
+      "difficulte": 2
+    }
+  ]
+}

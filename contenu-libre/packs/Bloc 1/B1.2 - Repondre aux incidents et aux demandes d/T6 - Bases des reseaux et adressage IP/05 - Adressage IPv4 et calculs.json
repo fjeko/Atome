@@ -1,0 +1,151 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq2-s05",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 6 – Bases des réseaux et adressage IP",
+  "sequence": null,
+  "seance": "Adressage IPv4 et calculs",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Structure d'une adresse IPv4, masque et notation CIDR, calcul de l'adresse réseau par ET logique, plage et nombre d'hôtes, types d'adresses, adresses privées et NAT, passerelle et routage.",
+  "notions": [
+    "Structure d'une adresse IPv4",
+    "Masque et CIDR",
+    "Adresse réseau par ET logique",
+    "Plage et nombre d'hôtes",
+    "Unicast multicast broadcast",
+    "Adresses réservées et privées",
+    "NAT",
+    "Passerelle et routage",
+    "Classes historiques"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq2-s05-s01",
+      "titre": "Structure d'une adresse et masque",
+      "contenu": "Une adresse **IPv4** fait **32 bits**, écrite en 4 octets décimaux : `192.168.40.17`. Chaque octet va de 0 à 255.\n\nElle a deux parties :\n- la partie **réseau** (identifie le réseau) ;\n- la partie **hôte** (identifie la machine dans ce réseau).\n\nLe **masque** indique où est la frontière : ses bits à 1 couvrent la partie réseau.\n```text\nMasque 255.255.255.0 = 11111111.11111111.11111111.00000000 → 24 bits à 1\nNotation CIDR : 192.168.40.17/24\n```\n| CIDR | Masque |\n| --- | --- |\n| /8 | 255.0.0.0 |\n| /16 | 255.255.0.0 |\n| /24 | 255.255.255.0 |\n| /26 | 255.255.255.192 |\n| /28 | 255.255.255.240 |\n\nHistoriquement, les **classes** fixaient le masque selon le premier octet : A (1–126, /8), B (128–191, /16), C (192–223, /24), D (224–239, multicast), E (expérimental). Aujourd'hui on raisonne en **CIDR**, avec des masques de n'importe quelle longueur.",
+      "notions": [
+        "Structure d'une adresse IPv4",
+        "Masque et CIDR",
+        "Classes historiques"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s05-s02",
+      "titre": "Calculer l'adresse réseau",
+      "contenu": "L'**adresse réseau** se calcule en appliquant un **ET logique** sur chaque paire de bits de l'adresse et du masque : le résultat vaut 1 uniquement quand les deux bits valent 1. Pour les octets à 255 on recopie, pour les octets à 0 on met 0 ; seul l'octet « mixte » se calcule en binaire.\n\nExemple : `172.16.93.200/20`\n- masque /20 = 255.255.**240**.0 ;\n- 3e octet : 93 = `0101 1101`, 240 = `1111 0000` → ET = `0101 0000` = **80** ;\n- adresse réseau : **172.16.80.0/20**.",
+      "notions": [
+        "Adresse réseau par ET logique"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s05-s03",
+      "titre": "Plage d'hôtes et nombre d'hôtes",
+      "contenu": "Dans un réseau, deux adresses sont **réservées** :\n- la **première** (tous les bits hôte à 0) : l'**adresse du réseau** ;\n- la **dernière** (tous les bits hôte à 1) : l'adresse de **diffusion** (*broadcast*), qui atteint toutes les machines du réseau.\n\nAvec $n$ bits pour la partie hôte :\n$$\\text{nombre d'hôtes} = 2^n - 2$$\n\nExemple `192.168.40.0/26` : 6 bits hôte → $2^6 - 2 = 62$ hôtes.\n- réseau : 192.168.40.0\n- premier hôte : 192.168.40.1\n- dernier hôte : 192.168.40.62\n- diffusion : 192.168.40.63\n\nTypes de communication : **unicast** (vers une seule machine), **broadcast** (vers toutes celles du réseau), **multicast** (vers un groupe abonné, adresses 224.0.0.0 à 239.255.255.255).",
+      "notions": [
+        "Plage et nombre d'hôtes",
+        "Unicast multicast broadcast"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s05-s04",
+      "titre": "Adresses privées, NAT, passerelle",
+      "contenu": "**Adresses privées** (RFC 1918), utilisables librement dans les réseaux internes, **non routées** sur Internet :\n- 10.0.0.0/8\n- 172.16.0.0/12 (172.16.0.0 à 172.31.255.255)\n- 192.168.0.0/16\n\nAutres adresses particulières : 127.0.0.1 (**boucle locale**, la machine elle-même), 169.254.x.x (**APIPA** : adresse auto-attribuée quand aucun serveur DHCP n'a répondu), 0.0.0.0.\n\n**NAT** (traduction d'adresses) : le routeur remplace l'adresse privée des postes par **son adresse publique** pour sortir sur Internet, et fait la correspondance au retour. Une seule adresse publique suffit pour toute l'organisation.\n\n**Passerelle par défaut** : l'adresse du routeur **sur le réseau local**. Un poste envoie à la passerelle tout paquet destiné à **un autre réseau** ; si la destination est dans son réseau, il l'envoie directement. La passerelle doit donc être **dans le même réseau** que le poste.\n\n**Routage** : chaque routeur possède une **table de routage** (réseau de destination → interface ou routeur suivant) pour faire avancer les paquets de proche en proche.",
+      "notions": [
+        "Adresses réservées et privées",
+        "NAT",
+        "Passerelle et routage"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq2-s05-c001",
+      "section": "libre-b1-12b-sq2-s05-s01",
+      "type": "qcm",
+      "question": "Quel masque correspond à /26 ?",
+      "choix": [
+        "255.255.255.0",
+        "255.255.255.128",
+        "255.255.255.192",
+        "255.255.255.224"
+      ],
+      "bonneReponse": 2,
+      "explication": "26 bits à 1 : trois octets à 255 puis 11000000 = 192.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq2-s05-c002",
+      "section": "libre-b1-12b-sq2-s05-s02",
+      "type": "exercice",
+      "enonce": "Calcule l'adresse réseau de `10.4.77.130/25`.",
+      "etapes": [
+        "/25 = 255.255.255.128.",
+        "Les trois premiers octets se recopient : 10.4.77.",
+        "4e octet : 130 = 1000 0010 ; 128 = 1000 0000 ; ET = 1000 0000 = 128."
+      ],
+      "reponse": "10.4.77.128/25.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s05-c003",
+      "section": "libre-b1-12b-sq2-s05-s03",
+      "type": "exercice",
+      "enonce": "Pour `10.4.77.130/25`, donne l'adresse de diffusion, la plage d'hôtes et le nombre d'hôtes.",
+      "etapes": [
+        "Réseau : 10.4.77.128 (calculé avant). 7 bits hôte.",
+        "Diffusion : tous les bits hôte à 1 → 128 + 127 = 255 → 10.4.77.255.",
+        "Plage : de .129 à .254.",
+        "Nombre : $2^7 - 2 = 126$."
+      ],
+      "reponse": "Diffusion 10.4.77.255 ; hôtes de 10.4.77.129 à 10.4.77.254 ; 126 hôtes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s05-c004",
+      "section": "libre-b1-12b-sq2-s05-s03",
+      "type": "exercice",
+      "enonce": "Un service a besoin de 50 adresses pour ses machines. Quel est le plus grand masque (le plus petit réseau) qui convient ?",
+      "etapes": [
+        "Il faut $2^n - 2 \\ge 50$.",
+        "$n = 5$ : 30, insuffisant. $n = 6$ : 62, suffisant.",
+        "Bits réseau : 32 − 6 = 26."
+      ],
+      "reponse": "/26 (255.255.255.192), qui offre 62 adresses d'hôtes.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b1-12b-sq2-s05-c005",
+      "section": "libre-b1-12b-sq2-s05-s04",
+      "type": "qcm",
+      "question": "Un poste affiche l'adresse 169.254.12.7. Que peux-tu en déduire ?",
+      "choix": [
+        "Il est directement connecté à Internet",
+        "Il n'a pas obtenu d'adresse d'un serveur DHCP et s'en est attribué une automatiquement",
+        "Il a une adresse publique",
+        "Il est configuré en adresse statique correcte"
+      ],
+      "bonneReponse": 1,
+      "explication": "169.254.0.0/16 (APIPA) signale l'absence de réponse DHCP : piste de diagnostic classique.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s05-c006",
+      "section": "libre-b1-12b-sq2-s05-s04",
+      "type": "qcm",
+      "question": "Poste 192.168.5.20/24 avec la passerelle 192.168.6.1. Que se passe-t-il ?",
+      "choix": [
+        "Tout fonctionne",
+        "Le poste communique dans son réseau, mais ne peut pas joindre les autres réseaux : la passerelle n'est pas dans son réseau",
+        "Le poste ne communique avec personne",
+        "Le NAT corrige automatiquement"
+      ],
+      "bonneReponse": 1,
+      "explication": "La passerelle doit appartenir au réseau du poste (192.168.5.0/24).",
+      "difficulte": 2
+    }
+  ]
+}

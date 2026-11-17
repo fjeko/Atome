@@ -1,0 +1,93 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq2-s07",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – Protéger les données à caractère personnel › Thème 2 – Conformité au RGPD",
+  "sequence": null,
+  "seance": "Droits et violations",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les personnes disposent de droits sur leurs données (accès, rectification, effacement, opposition, portabilité…). Toute violation de données doit être documentée et, si elle présente un risque, notifiée à la CNIL sous 72 heures.",
+  "notions": [
+    "Droit d'accès",
+    "Droit de rectification",
+    "Droit à l'effacement",
+    "Droit d'opposition",
+    "Droit à la portabilité",
+    "Violation de données",
+    "Notification à la CNIL"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq2-s07-s01",
+      "titre": "Les droits des personnes",
+      "contenu": "| Droit | Contenu |\n| --- | --- |\n| **Accès** | obtenir la confirmation du traitement et une copie de ses données |\n| **Rectification** | corriger des données inexactes |\n| **Effacement** (« droit à l'oubli ») | faire supprimer ses données dans certains cas |\n| **Opposition** | s'opposer au traitement (toujours possible pour la prospection) |\n| **Limitation** | geler temporairement l'utilisation des données |\n| **Portabilité** | récupérer ses données dans un format réutilisable (si base contrat ou consentement) |\n\nDélai de réponse : **un mois** (prolongeable de deux mois si la demande est complexe, en prévenant la personne). En principe gratuit.",
+      "notions": [
+        "Droit d'accès",
+        "Droit de rectification",
+        "Droit à l'effacement",
+        "Droit d'opposition",
+        "Droit à la portabilité"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq2-s07-s02",
+      "titre": "Violation de données",
+      "contenu": "Selon l'article 4 du RGPD, une **violation de données** est une violation de la sécurité entraînant, « de manière accidentelle ou illicite, la **destruction**, la **perte**, l'**altération**, la **divulgation** non autorisée de données à caractère personnel ou l'**accès** non autorisé à de telles données » (formulation abrégée).\nExemples : ordinateur portable non chiffré volé, e-mail envoyé au mauvais destinataire avec un fichier client, rançongiciel.\n\nObligations du responsable :\n1. **documenter** toute violation dans le registre des violations ;\n2. **notifier la CNIL** dans les **72 heures** après en avoir pris connaissance, **sauf** si la violation ne présente **pas de risque** pour les personnes ;\n3. **informer les personnes** concernées si le risque est **élevé** (données sensibles, bancaires, grand nombre de personnes…).\n\nLe sous-traitant doit prévenir le responsable **dans les meilleurs délais**.",
+      "notions": [
+        "Violation de données",
+        "Notification à la CNIL"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq2-s07-c001",
+      "section": "libre-b3-31-sq2-s07-s01",
+      "type": "qcm",
+      "question": "De combien de temps dispose-t-on pour donner suite à une demande d'accès ?",
+      "choix": [
+        "72 heures",
+        "15 jours",
+        "Un mois, prolongeable de deux mois si nécessaire",
+        "Un an"
+      ],
+      "bonneReponse": 2,
+      "explication": "72 h, c'est le délai de notification d'une violation à la CNIL.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq2-s07-c002",
+      "section": "libre-b3-31-sq2-s07-s02",
+      "type": "qcm",
+      "question": "Un commercial perd une clé USB **chiffrée** contenant un fichier clients ; la clé de chiffrement n'est pas compromise. Que faire ?",
+      "choix": [
+        "Notifier la CNIL et informer tous les clients",
+        "Inscrire la violation dans le registre ; la notification n'est en principe pas nécessaire car le risque est très faible",
+        "Rien du tout",
+        "Porter plainte contre le commercial"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le chiffrement rend les données inexploitables : pas de risque, mais l'incident se documente toujours.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq2-s07-c003",
+      "section": "libre-b3-31-sq2-s07-s02",
+      "type": "exercice",
+      "enonce": "Un salarié de l'auto-école **Feu Vert Formation** envoie par erreur à tous les élèves un fichier contenant les noms, téléphones et résultats d'examen de 300 élèves. Décris les étapes à suivre.",
+      "etapes": [
+        "Contenir : demander aux destinataires de supprimer le message, rappeler l'e-mail si possible.",
+        "Évaluer le risque : données d'identification et résultats, 300 personnes, divulgation large → risque réel.",
+        "Notifier la CNIL dans les 72 h (téléservice), en décrivant faits, données, personnes, mesures.",
+        "Informer les élèves si le risque est jugé élevé, avec les mesures prises.",
+        "Inscrire l'incident au registre des violations et corriger la cause (listes de diffusion, vérification avant envoi)."
+      ],
+      "reponse": "Contenir, évaluer, notifier sous 72 h, informer si risque élevé, documenter et corriger.",
+      "difficulte": 2
+    }
+  ]
+}

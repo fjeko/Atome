@@ -1,0 +1,93 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq08-s01",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 4 – L'État, les politiques économiques et la régulation",
+  "sequence": null,
+  "seance": "Droit, réglementation et autorités indépendantes",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Pourquoi le droit encadre l'économie, la différence entre réglementer et réguler, et le rôle des autorités administratives et publiques indépendantes.",
+  "notions": [
+    "Réglementation et régulation",
+    "Autorités administratives et publiques indépendantes",
+    "Détournement de finalité"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq08-s01-s01",
+      "titre": "Réglementer ou réguler ?",
+      "contenu": "Le droit remplit plusieurs fonctions dans l'économie : **organiser** les échanges (contrats), **protéger** les plus faibles (consommateurs, salariés), **sanctionner** les abus, **garantir** une concurrence loyale.\n\n- **Réglementer** : fixer des règles générales et obligatoires (lois, décrets).\n- **Réguler** : surveiller en continu un secteur, adapter, contrôler et sanctionner pour en maintenir l'équilibre. C'est une action **permanente** et **spécialisée**.",
+      "notions": [
+        "Réglementation et régulation"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq08-s01-s02",
+      "titre": "Les autorités indépendantes",
+      "contenu": "Les **autorités administratives indépendantes (AAI)** et **autorités publiques indépendantes (API, dotées de la personnalité morale)** régulent des secteurs sensibles **sans recevoir d'ordres du gouvernement**, ce qui garantit leur neutralité et leur expertise.\n\n| Autorité | Domaine |\n|---|---|\n| CNIL | protection des **données personnelles** |\n| Autorité de la concurrence | **ententes**, abus de position dominante, **concentrations** |\n| AMF (Autorité des marchés financiers) | **marchés financiers**, information des investisseurs |\n| Arcep | télécommunications et services postaux |\n| Arcom | audiovisuel et communication numérique |\n\n**Pouvoirs** : rendre des **avis** et des recommandations, **contrôler** (enquêtes, audits), **sanctionner** (amendes, injonctions). Leurs décisions peuvent être contestées devant le juge.",
+      "notions": [
+        "Autorités administratives et publiques indépendantes"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq08-s01-s03",
+      "titre": "Le détournement de finalité des données",
+      "contenu": "Les données personnelles doivent être collectées pour une **finalité** déterminée et explicite. Les utiliser pour un autre but, incompatible avec le premier, est un **détournement de finalité** (sanctionné par la CNIL, et pénalement).\n\nExemple : une salle de sport collecte les adresses de ses abonnés pour leur envoyer les factures, puis les vend à une agence de publicité : détournement de finalité.",
+      "notions": [
+        "Détournement de finalité"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq08-s01-c001",
+      "section": "libre-cejm-sq08-s01-s01",
+      "type": "question",
+      "recto": "Quelle différence entre réglementer et réguler ?",
+      "verso": "Réglementer : poser des règles générales. Réguler : surveiller un secteur en continu, contrôler et sanctionner pour maintenir son équilibre.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq08-s01-c002",
+      "section": "libre-cejm-sq08-s01-s02",
+      "type": "qcm",
+      "question": "Une application collecte des données de localisation sans informer ses utilisateurs. Quelle autorité peut la sanctionner ?",
+      "choix": [
+        "La CNIL",
+        "L'AMF",
+        "L'Autorité de la concurrence",
+        "L'Arcep"
+      ],
+      "bonneReponse": 0,
+      "explication": "La protection des données personnelles relève de la CNIL.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq08-s01-c003",
+      "section": "libre-cejm-sq08-s01-s02",
+      "type": "qcm",
+      "question": "Pourquoi confier la régulation à une autorité indépendante plutôt qu'à un ministère ?",
+      "choix": [
+        "Pour garantir neutralité et expertise, à l'abri des pressions politiques",
+        "Pour que les règles ne s'appliquent pas",
+        "Parce que les ministères n'existent plus",
+        "Pour éviter tout contrôle du juge"
+      ],
+      "bonneReponse": 0,
+      "explication": "L'indépendance renforce la confiance des acteurs régulés.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq08-s01-c004",
+      "section": "libre-cejm-sq08-s01-s03",
+      "type": "question",
+      "recto": "Donne un exemple de détournement de finalité.",
+      "verso": "Utiliser le fichier clients d'un service de livraison, collecté pour livrer les commandes, pour faire de la prospection politique.",
+      "difficulte": 2
+    }
+  ]
+}

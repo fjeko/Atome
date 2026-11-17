@@ -1,0 +1,85 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq08-s03",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 4 – L'État, les politiques économiques et la régulation",
+  "sequence": null,
+  "seance": "La propriété industrielle",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Protéger une invention, un design ou un signe distinctif : brevet, dessins et modèles, marque, nom commercial et enseigne, et lutter contre la contrefaçon.",
+  "notions": [
+    "Brevet, dessins et modèles, marque",
+    "Territorialité et antériorité",
+    "Dépôt et contrefaçon"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq08-s03-s01",
+      "titre": "Les droits de propriété industrielle",
+      "contenu": "La **propriété industrielle** donne un **monopole d'exploitation** temporaire ou renouvelable sur une création, en échange d'un **dépôt** (en France auprès de l'INPI ; il existe aussi des titres européens et internationaux).\n\n| Droit | Protège | Conditions | Durée |\n|---|---|---|---|\n| **Brevet** | une **invention** technique | nouvelle, inventive, susceptible d'application industrielle | 20 ans, non renouvelable |\n| **Dessins et modèles** | l'**apparence** d'un produit (forme, couleurs, motifs) | nouveauté, caractère propre | 5 ans, renouvelable jusqu'à 25 ans |\n| **Marque** | un **signe** distinguant des produits ou services (mot, logo, son…) | distinctive, disponible, licite | 10 ans, renouvelable **indéfiniment** |\n\nPrincipes : **territorialité** (protection seulement dans les pays où le titre est déposé) et **antériorité** (le premier à déposer est protégé ; vérifier d'abord qu'un signe identique n'existe pas).\n\nLe **nom commercial** (nom sous lequel l'entreprise exerce) et l'**enseigne** (signe qui identifie un point de vente) sont protégés par leur usage et l'action en concurrence déloyale.\n\nSignes non classiques : une marque peut aussi être un son (un jingle), une couleur, une forme, si elle est distinctive.",
+      "notions": [
+        "Brevet, dessins et modèles, marque",
+        "Territorialité et antériorité"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq08-s03-s02",
+      "titre": "Déposer et se défendre",
+      "contenu": "**Dépôt d'une marque**, étapes : 1) recherche d'antériorité ; 2) choix des **classes** de produits et services ; 3) dépôt (en ligne) et paiement ; 4) publication, période d'opposition ; 5) enregistrement.\n\n**Contrefaçon** : reproduire, imiter ou utiliser un droit de propriété industrielle **sans autorisation**. Le titulaire peut agir :\n- au **civil** : faire cesser l'atteinte, saisir les produits, obtenir des dommages-intérêts ;\n- au **pénal** : la contrefaçon est un délit (jusqu'à 3 ans d'emprisonnement et 300 000 € d'amende, davantage en bande organisée).",
+      "notions": [
+        "Dépôt et contrefaçon"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq08-s03-c001",
+      "section": "libre-cejm-sq08-s03-s01",
+      "type": "qcm",
+      "question": "Une start-up invente un procédé de recyclage des batteries. Quel titre demander ?",
+      "choix": [
+        "Un brevet",
+        "Une marque",
+        "Un dessin et modèle",
+        "Un nom commercial"
+      ],
+      "bonneReponse": 0,
+      "explication": "Une invention technique se protège par brevet.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq08-s03-c002",
+      "section": "libre-cejm-sq08-s03-s01",
+      "type": "qcm",
+      "question": "Quelle est la durée de protection d'une marque ?",
+      "choix": [
+        "10 ans, renouvelable indéfiniment",
+        "20 ans non renouvelable",
+        "5 ans renouvelable jusqu'à 25 ans",
+        "À vie"
+      ],
+      "bonneReponse": 0,
+      "explication": "La marque peut être conservée sans limite tant qu'elle est renouvelée (et exploitée).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq08-s03-c003",
+      "section": "libre-cejm-sq08-s03-s02",
+      "type": "qcm",
+      "question": "Un site vend des sacs portant une marque déposée, fabriqués sans autorisation du titulaire. C'est…",
+      "choix": [
+        "De la contrefaçon",
+        "Du parasitisme uniquement",
+        "Une entente",
+        "Un abus de position dominante"
+      ],
+      "bonneReponse": 0,
+      "explication": "L'utilisation non autorisée d'une marque déposée est une contrefaçon.",
+      "difficulte": 1
+    }
+  ]
+}

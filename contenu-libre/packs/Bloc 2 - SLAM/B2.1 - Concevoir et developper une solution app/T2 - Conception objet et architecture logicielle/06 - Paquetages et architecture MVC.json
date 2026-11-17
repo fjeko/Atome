@@ -1,0 +1,133 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq2-s06",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 2 – Conception objet et architecture logicielle",
+  "sequence": null,
+  "seance": "Paquetages et architecture MVC",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les paquetages regroupent les classes par rôle et limitent les dépendances. L'architecture MVC sépare le modèle, la vue et le contrôleur.",
+  "notions": [
+    "Paquetage",
+    "Bibliothèque",
+    "Diagramme de paquetages",
+    "Dépendance entre paquetages",
+    "MVC",
+    "Modèle",
+    "Vue",
+    "Contrôleur",
+    "Organisation MVC en paquetages"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq2-s06-s01",
+      "titre": "Le paquetage",
+      "contenu": "Un **paquetage** (*package*) regroupe des classes liées, comme un dossier regroupe des fichiers. Il sert à :\n- **organiser** un projet qui grossit ;\n- éviter les **conflits de noms** (deux classes `Client` dans deux paquetages différents) ;\n- contrôler la **visibilité** (membres sans modificateur = visibles dans le paquetage).\n\nLes **bibliothèques** Java sont elles-mêmes des paquetages : `java.util` (collections), `java.time` (dates), `java.io` (fichiers). On les utilise avec `import` :\n\n```java\nimport java.util.ArrayList;\nimport java.time.LocalDate;\n```",
+      "notions": [
+        "Paquetage",
+        "Bibliothèque"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s06-s02",
+      "titre": "Diagramme de paquetages",
+      "contenu": "Le **diagramme de paquetages** montre les paquetages (rectangles à onglet) et leurs **dépendances** (flèches pointillées) :\n- `«import»` : le contenu public du paquetage cible devient utilisable directement ;\n- `«access»` : utilisable, mais avec le nom qualifié.\n\nRègle d'or : **pas de dépendance circulaire**. Si `vue` dépend de `controleur` et que `controleur` dépend de `vue`, on ne peut plus modifier l'un sans casser l'autre.\n\nLes éléments d'un paquetage ont une visibilité : `+` public (visible des paquetages qui l'importent), `-` privé (interne).",
+      "notions": [
+        "Diagramme de paquetages",
+        "Dépendance entre paquetages"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s06-s03",
+      "titre": "L'architecture MVC",
+      "contenu": "**MVC** sépare l'application en trois rôles :\n\n| Couche | Rôle | Exemple |\n| --- | --- | --- |\n| **Modèle** | les données et les règles métier | `Reservation`, calcul du prix |\n| **Vue** | l'affichage et la saisie | fenêtre, formulaire |\n| **Contrôleur** | reçoit les actions de la vue, appelle le modèle, choisit quoi afficher | `ReservationControleur` |\n\nFlux typique : l'utilisateur clique (vue) → la vue appelle le contrôleur → le contrôleur interroge ou modifie le modèle → il renvoie le résultat à la vue.\n\nIntérêts : on peut changer l'interface sans toucher au métier, tester le modèle seul, travailler à plusieurs.\n\nPiège : une **vue qui appelle directement le modèle** ou la base de données court-circuite le contrôleur.",
+      "notions": [
+        "MVC",
+        "Modèle",
+        "Vue",
+        "Contrôleur"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s06-s04",
+      "titre": "Ranger les classes en paquetages MVC",
+      "contenu": "Organisation courante d'un projet Java :\n\n```text\ncom.ateliervert.app\n├── modele/        Client, Commande, Produit\n├── dal/           accès aux données (lecture/écriture en base)\n├── controleur/    CommandeControleur\n└── vue/           FenetrePrincipale, FormCommande\n```\n\nDépendances autorisées : `vue → controleur → modele` et `controleur → dal → modele`. Le modèle ne dépend de personne.",
+      "notions": [
+        "Organisation MVC en paquetages"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq2-s06-c001",
+      "section": "libre-b2-21-sq2-s06-s01",
+      "type": "qcm",
+      "question": "À quoi sert `import java.time.LocalDate;` ?",
+      "choix": [
+        "À créer une nouvelle classe LocalDate",
+        "À utiliser la classe LocalDate du paquetage java.time sans écrire son nom complet",
+        "À télécharger une bibliothèque sur Internet",
+        "À rendre LocalDate publique"
+      ],
+      "bonneReponse": 1,
+      "explication": "`import` évite d'écrire le nom complet `java.time.LocalDate` à chaque utilisation.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq2-s06-c002",
+      "section": "libre-b2-21-sq2-s06-s02",
+      "type": "qcm",
+      "question": "Lequel de ces graphes de dépendances pose problème ?",
+      "choix": [
+        "vue → controleur → modele",
+        "vue → controleur ; controleur → modele ; controleur → dao",
+        "modele → vue ; vue → controleur ; controleur → modele",
+        "controleur → modele ; controleur → vue"
+      ],
+      "bonneReponse": 2,
+      "explication": "La troisième proposition forme un cycle modele → vue → controleur → modele.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s06-c003",
+      "section": "libre-b2-21-sq2-s06-s03",
+      "type": "qcm",
+      "question": "Où placer le calcul du prix d'une location avec remise fidélité ?",
+      "choix": [
+        "Dans le modèle",
+        "Dans la vue",
+        "Dans le gestionnaire de clic du bouton",
+        "Dans le fichier de configuration"
+      ],
+      "bonneReponse": 0,
+      "explication": "C'est une règle métier : elle appartient au modèle, pour être réutilisable et testable.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s06-c004",
+      "section": "libre-b2-21-sq2-s06-s03",
+      "type": "question",
+      "recto": "Quel est le rôle du contrôleur dans MVC ?",
+      "verso": "Faire le **lien** : recevoir les actions de la vue, appeler le modèle, et transmettre le résultat à la vue.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq2-s06-c005",
+      "section": "libre-b2-21-sq2-s06-s04",
+      "type": "exercice",
+      "enonce": "Classe ces classes de l'application de location de matériel **LocaPro** dans les paquetages modele, dal, controleur, vue : `FenetreLocation`, `Materiel`, `LocationDAO`, `LocationControleur`, `Location`, `Connexion`.",
+      "etapes": [
+        "modele : `Materiel`, `Location` (données et règles).",
+        "dal : `LocationDAO`, `Connexion` (accès à la base).",
+        "controleur : `LocationControleur`.",
+        "vue : `FenetreLocation`."
+      ],
+      "reponse": "modele {Materiel, Location} ; dal {LocationDAO, Connexion} ; controleur {LocationControleur} ; vue {FenetreLocation}.",
+      "difficulte": 2
+    }
+  ]
+}

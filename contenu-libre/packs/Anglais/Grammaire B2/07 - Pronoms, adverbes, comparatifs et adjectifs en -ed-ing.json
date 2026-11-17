@@ -1,0 +1,127 @@
+{
+  "formatVersion": 1,
+  "id": "libre-ang-g-s07",
+  "matiere": "Anglais",
+  "bloc": "Bloc 5",
+  "partie": "Grammaire B2",
+  "sequence": null,
+  "seance": "Pronoms, adverbes, comparatifs et adjectifs en -ed/-ing",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Pronoms réfléchis et d'insistance, formation et place des adverbes, comparatifs et superlatifs, et différence entre bored et boring.",
+  "notions": [
+    "Pronoms réfléchis et emphatiques",
+    "Formation et place des adverbes",
+    "Comparatifs et superlatifs",
+    "Adjectifs en -ed et -ing"
+  ],
+  "sections": [
+    {
+      "id": "libre-ang-g-s07-s01",
+      "titre": "Pronoms réfléchis et emphatiques",
+      "contenu": "*myself, yourself, himself, herself, itself, ourselves, yourselves, themselves*\n\n- **Réfléchi** (le sujet agit sur lui-même) : *She introduced **herself** to the team.*\n- **Emphatique** (insistance : « moi-même », « lui-même ») : *The CEO **himself** answered the email.* / *I fixed it **myself**.*\n- ***by** + pronom* = seul, sans aide : *He built the website **by himself**.*\n- Réciproque : ***each other*** (l'un l'autre) : *They help **each other**.* ≠ *They help themselves* (chacun s'aide soi-même / ils se servent).\n\n⚠️ Beaucoup de verbes réfléchis en français ne le sont pas en anglais : *se réunir → meet, se détendre → relax, se souvenir → remember*.",
+      "notions": [
+        "Pronoms réfléchis et emphatiques"
+      ]
+    },
+    {
+      "id": "libre-ang-g-s07-s02",
+      "titre": "Les adverbes",
+      "contenu": "**Formation** : adjectif + **-ly** (*quick → quickly, careful → carefully, easy → easily*). Irréguliers : *good → **well**, fast → fast, hard → hard* (*hardly* = à peine !).\n\n⚠️ Un adverbe modifie un **verbe** ; ne pas mettre l'adjectif à sa place : *She speaks English **fluently*** (et non ~~*fluent*~~).\n\n**Place** :\n- adverbes de **fréquence** (*always, often, never*) : **avant** le verbe principal, **après** *be* et l'auxiliaire : *I **often** work late.* / *He **is always** on time.* / *We **have never** met.*\n- adverbes de **manière, lieu, temps** : en général **après le verbe et son complément** : *She solved the problem **quickly**.*\n- jamais entre le verbe et son complément d'objet : ~~*She solved quickly the problem*~~.",
+      "notions": [
+        "Formation et place des adverbes"
+      ]
+    },
+    {
+      "id": "libre-ang-g-s07-s03",
+      "titre": "Comparatifs et superlatifs",
+      "contenu": "| Adjectif | Comparatif | Superlatif |\n|---|---|---|\n| court (1 syllabe, ou 2 en -y) | *fast → fast**er** than* ; *easy → eas**ier** than* | *the fast**est*** ; *the eas**iest*** |\n| long | ***more** reliable **than*** | ***the most** reliable* |\n| irréguliers | *good → better* ; *bad → worse* ; *far → further* | *the best, the worst, the furthest* |\n\nAutres structures :\n- égalité : ***as** fast **as*** ; infériorité : ***not as** expensive **as*** ou ***less** expensive **than***\n- progression : *Prices are getting **higher and higher**.*\n- parallèle : ***The more** you practise, **the better** you speak.*",
+      "notions": [
+        "Comparatifs et superlatifs"
+      ]
+    },
+    {
+      "id": "libre-ang-g-s07-s04",
+      "titre": "Adjectifs en -ed et -ing",
+      "contenu": "- **-ing** : décrit ce qui **provoque** le sentiment : *The meeting was **boring**.* (la réunion était ennuyeuse)\n- **-ed** : décrit ce que **ressent** une personne : *I was **bored** during the meeting.* (je m'ennuyais)\n\nPaires courantes : *interested / interesting, tired / tiring, confused / confusing, surprised / surprising, frustrated / frustrating, motivated / motivating*.",
+      "notions": [
+        "Adjectifs en -ed et -ing"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-ang-g-s07-c001",
+      "section": "libre-ang-g-s07-s01",
+      "type": "qcm",
+      "question": "Complète : *Don't worry, we can solve this problem ___.*",
+      "choix": [
+        "ourselves",
+        "us",
+        "ourself",
+        "each other"
+      ],
+      "bonneReponse": 0,
+      "explication": "Insistance « nous-mêmes » : *ourselves*.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-g-s07-c002",
+      "section": "libre-ang-g-s07-s02",
+      "type": "qcm",
+      "question": "Quelle phrase est correcte ?",
+      "choix": [
+        "He always checks his emails carefully.",
+        "He checks always his emails carefully.",
+        "He always checks carefully his emails.",
+        "He checks his emails careful always."
+      ],
+      "bonneReponse": 0,
+      "explication": "Fréquence avant le verbe, manière après le complément.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-g-s07-c003",
+      "section": "libre-ang-g-s07-s03",
+      "type": "qcm",
+      "question": "Complète : *This solution is ___ than the previous one.*",
+      "choix": [
+        "cheaper",
+        "more cheap",
+        "cheapest",
+        "the cheaper"
+      ],
+      "bonneReponse": 0,
+      "explication": "Adjectif court : *-er than*.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-g-s07-c004",
+      "section": "libre-ang-g-s07-s03",
+      "type": "exercice",
+      "enonce": "Traduis : « Plus tu commences tôt, moins tu stresses. »",
+      "etapes": [
+        "Structure *the + comparatif…, the + comparatif…*."
+      ],
+      "reponse": "*The earlier you start, the less you stress.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-g-s07-c005",
+      "section": "libre-ang-g-s07-s04",
+      "type": "qcm",
+      "question": "Complète : *The new procedure is really ___; nobody understands it.*",
+      "choix": [
+        "confusing",
+        "confused",
+        "confuse",
+        "confusion"
+      ],
+      "bonneReponse": 0,
+      "explication": "La procédure provoque la confusion : *-ing*.",
+      "difficulte": 1
+    }
+  ]
+}

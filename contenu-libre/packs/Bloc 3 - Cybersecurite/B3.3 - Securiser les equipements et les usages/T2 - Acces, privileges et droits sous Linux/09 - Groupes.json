@@ -1,0 +1,90 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq3-s02",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – Sécuriser les équipements et les usages des utilisateurs › Thème 2 – Accès, privilèges et droits sous Linux",
+  "sequence": null,
+  "seance": "Groupes",
+  "ordre": 9,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un groupe rassemble des utilisateurs pour leur donner les mêmes droits. Chaque utilisateur a un groupe principal et peut appartenir à des groupes secondaires.",
+  "notions": [
+    "Groupe principal",
+    "Groupes secondaires",
+    "/etc/group",
+    "groupadd",
+    "usermod -aG",
+    "gpasswd"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq3-s02-s01",
+      "titre": "Groupe principal et groupes secondaires",
+      "contenu": "- Le **groupe principal** (GID dans `/etc/passwd`) est attribué aux **fichiers que l'utilisateur crée**.\n- Les **groupes secondaires** donnent des droits supplémentaires (accès à un dossier partagé, à `sudo`…).\n\nLes groupes sont décrits dans `/etc/group` :\n\n```text\ncompta:x:1050:ines,tom\n```\n(nom : x : GID : membres secondaires).",
+      "notions": [
+        "Groupe principal",
+        "Groupes secondaires",
+        "/etc/group"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq3-s02-s02",
+      "titre": "Gérer les groupes",
+      "contenu": "```bash\nsudo groupadd compta                 # créer un groupe\nsudo usermod -aG compta tom          # AJOUTER tom au groupe compta\nsudo gpasswd -d tom compta           # retirer tom du groupe\ngroups tom                           # voir ses groupes\n```\n\n**Piège** : `usermod -G compta tom` **sans `-a`** **remplace** tous les groupes secondaires de tom par `compta` seul (il peut perdre `sudo` !).\n\nLes changements de groupe sont pris en compte à la **prochaine connexion** de l'utilisateur.",
+      "notions": [
+        "groupadd",
+        "usermod -aG",
+        "gpasswd"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq3-s02-c001",
+      "section": "libre-b3-33-sq3-s02-s01",
+      "type": "qcm",
+      "question": "Ines (groupe principal `ines`, secondaire `compta`) crée un fichier. Quel groupe lui est attribué par défaut ?",
+      "choix": [
+        "ines",
+        "compta",
+        "root",
+        "aucun"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les nouveaux fichiers prennent le groupe principal (sauf répertoire avec SGID).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq3-s02-c002",
+      "section": "libre-b3-33-sq3-s02-s02",
+      "type": "qcm",
+      "question": "Quelle commande ajoute `lea` au groupe `atelier` sans lui retirer ses autres groupes ?",
+      "choix": [
+        "`sudo usermod -G atelier lea`",
+        "`sudo usermod -aG atelier lea`",
+        "`sudo groupadd atelier lea`",
+        "`sudo chgrp atelier lea`"
+      ],
+      "bonneReponse": 1,
+      "explication": "Sans `-a`, la liste des groupes secondaires est remplacée.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq3-s02-c003",
+      "section": "libre-b3-33-sq3-s02-s02",
+      "type": "exercice",
+      "enonce": "Crée le groupe `projet-x`, ajoutes-y `nora` et `tom`, puis vérifie.",
+      "etapes": [
+        "`sudo groupadd projet-x`",
+        "`sudo usermod -aG projet-x nora`",
+        "`sudo usermod -aG projet-x tom`",
+        "Vérifier : `getent group projet-x` (affiche les membres) ; ils doivent se reconnecter pour en profiter."
+      ],
+      "reponse": "groupadd puis usermod -aG pour chacun, vérification avec getent.",
+      "difficulte": 2
+    }
+  ]
+}

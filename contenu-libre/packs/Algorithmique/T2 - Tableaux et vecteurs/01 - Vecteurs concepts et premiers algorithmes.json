@@ -1,0 +1,136 @@
+{
+  "formatVersion": 1,
+  "id": "libre-algo-p2-s01",
+  "matiere": "Algorithmique appliquée",
+  "bloc": "Bloc 6",
+  "partie": "Thème 2 – Tableaux et vecteurs",
+  "sequence": null,
+  "seance": "Vecteurs : concepts et premiers algorithmes",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un tableau à une dimension regroupe plusieurs valeurs de même type derrière un unique identifiant : déclaration, indices, parcours, puis somme, moyenne, extremum et comptage.",
+  "notions": [
+    "Vecteur : déclaration et indices",
+    "Règles : type unique, taille fixe, bornes",
+    "Parcours complet et avec arrêt",
+    "Somme, moyenne, extremum, comptage"
+  ],
+  "sections": [
+    {
+      "id": "libre-algo-p2-s01-s01",
+      "titre": "Pourquoi des tableaux ?",
+      "contenu": "Imagine relever la température chaque jour de la semaine. Avec des variables simples, il faudrait `t1`, `t2`, … `t7`, et sept lignes pour les additionner. Avec 365 jours, c'est impossible.\n\nUn **tableau à une dimension** (ou **vecteur**) contient plusieurs valeurs **de même type**, toutes accessibles par **un unique nom** ; chaque élément est repéré par un **indice**.\n\n```text\nVARIABLES\n    temp : tableau[7] de réels\n```\n\n| indice | 0 | 1 | 2 | 3 | 4 | 5 | 6 |\n|---|---|---|---|---|---|---|---|\n| `temp` | 12 | 15 | 9 | 18 | 21 | 17 | 11 |\n\n`temp[3]` vaut 18. En Python, on utilise une **liste** : `temp = [12, 15, 9, 18, 21, 17, 11]`.\n\nSelon les conventions de pseudo-code, les indices commencent à 0 (comme en Python) ou à 1 ; annonce toujours celle que tu utilises. Ici : **de 0 à n − 1**.",
+      "notions": [
+        "Vecteur : déclaration et indices"
+      ]
+    },
+    {
+      "id": "libre-algo-p2-s01-s02",
+      "titre": "Les règles algorithmiques",
+      "contenu": "En algorithmique « classique » (et dans les langages typés comme C#) :\n1. tous les éléments ont **le même type** ;\n2. la **taille est fixée** à la déclaration ;\n3. on n'accède **jamais en dehors des bornes** : `temp[7]` dans un tableau de 7 cases est une erreur (en Python : `IndexError: list index out of range`).\n\nLes listes Python sont plus souples (taille variable avec `append`, types mélangés possibles), mais on s'impose les règles ci-dessus pour écrire des algorithmes transposables.\n\nCréation en Python :\n```python\ntemp = [0.0] * 7          # 7 cases à 0.0\nnoms = []                 # liste vide…\nnoms.append(\"Lina\")       # …qu'on remplit au fur et à mesure\nprint(len(temp))          # 7\n```",
+      "notions": [
+        "Règles : type unique, taille fixe, bornes"
+      ]
+    },
+    {
+      "id": "libre-algo-p2-s01-s03",
+      "titre": "Parcourir un tableau",
+      "contenu": "**Parcours complet** : une boucle `POUR` de 0 à n − 1.\n\n```text\nPOUR i DE 0 À 6 FAIRE\n    AFFICHER temp[i]\nFINPOUR\n```\n\n```python\nfor i in range(len(temp)):   # i = 0, 1, …, 6\n    print(temp[i])\n```\n\nSi l'on n'a pas besoin de l'indice, Python permet aussi `for t in temp: print(t)`.\n\n**Parcours avec arrêt anticipé** : une boucle `TANTQUE` qui s'arrête dès qu'on a trouvé ce qu'on cherche.\n\n```python\nt = [5, 12, 7, 12, 3]\ntrouve = False\ni = 0\nwhile i < len(t) and not trouve:\n    if t[i] == 12:\n        trouve = True\n    else:\n        i = i + 1\nprint(trouve, i)    # True 1  (première position de 12)\n```\n\nL'ordre de la condition compte : on teste `i < len(t)` **avant** de lire `t[i]`.",
+      "notions": [
+        "Parcours complet et avec arrêt"
+      ]
+    },
+    {
+      "id": "libre-algo-p2-s01-s04",
+      "titre": "Somme, moyenne, maximum, comptage",
+      "contenu": "Avec `temp = [12, 15, 9, 18, 21, 17, 11]` :\n\n```python\n# Somme et moyenne\nsomme = 0\nfor i in range(len(temp)):\n    somme = somme + temp[i]\nmoyenne = somme / len(temp)\nprint(somme, round(moyenne, 1))      # 103 14.7\n\n# Maximum et son rang : on part de la première case\nmaxi = temp[0]\nrang = 0\nfor i in range(1, len(temp)):\n    if temp[i] > maxi:\n        maxi = temp[i]\n        rang = i\nprint(maxi, rang)                    # 21 4\n\n# Comptage des jours à 15 °C ou plus\nnb = 0\nfor i in range(len(temp)):\n    if temp[i] >= 15:\n        nb = nb + 1\nprint(nb)                            # 4\n```\n\n⚠️ Initialiser le maximum à 0 est une erreur : si toutes les valeurs sont négatives, on trouverait 0. On initialise avec **la première case**.",
+      "notions": [
+        "Somme, moyenne, extremum, comptage"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-algo-p2-s01-c001",
+      "section": "libre-algo-p2-s01-s01",
+      "type": "qcm",
+      "question": "Un tableau a 10 cases, indicées à partir de 0. Quel est l'indice de la dernière case ?",
+      "choix": [
+        "9",
+        "10",
+        "11",
+        "1"
+      ],
+      "bonneReponse": 0,
+      "explication": "De 0 à n − 1 : la dernière case est la n° 9.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p2-s01-c002",
+      "section": "libre-algo-p2-s01-s01",
+      "type": "question",
+      "recto": "Avec `temp = [12, 15, 9, 18]`, que vaut `temp[1]` ?",
+      "verso": "15 (la case d'indice 0 contient 12).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p2-s01-c003",
+      "section": "libre-algo-p2-s01-s02",
+      "type": "qcm",
+      "question": "Quelle erreur provoque `t[5]` si `t = [4, 8, 1, 3, 9]` ?",
+      "choix": [
+        "IndexError : l'indice 5 n'existe pas",
+        "Aucune, renvoie 9",
+        "Aucune, renvoie 0",
+        "TypeError"
+      ],
+      "bonneReponse": 0,
+      "explication": "5 cases → indices 0 à 4. L'indice 5 est hors bornes.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p2-s01-c004",
+      "section": "libre-algo-p2-s01-s03",
+      "type": "qcm",
+      "question": "Pourquoi la condition est-elle `i < len(t) and not trouve` dans la recherche ?",
+      "choix": [
+        "Pour s'arrêter soit à la fin du tableau, soit dès que la valeur est trouvée",
+        "Pour parcourir deux fois le tableau",
+        "Parce que `for` est interdit",
+        "Pour compter les occurrences"
+      ],
+      "bonneReponse": 0,
+      "explication": "Sans le premier test, on lirait une case hors bornes si la valeur est absente.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p2-s01-c005",
+      "section": "libre-algo-p2-s01-s04",
+      "type": "exercice",
+      "enonce": "Écris un programme qui affiche le minimum d'une liste `t` non vide et sa position.",
+      "etapes": [
+        "On initialise avec la première case : `mini = t[0]`, `pos = 0`.",
+        "On parcourt à partir de l'indice 1 et on met à jour si `t[i] < mini`."
+      ],
+      "reponse": "```python\nmini = t[0]\npos = 0\nfor i in range(1, len(t)):\n    if t[i] < mini:\n        mini = t[i]\n        pos = i\nprint(mini, pos)\n```",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p2-s01-c006",
+      "section": "libre-algo-p2-s01-s04",
+      "type": "qcm",
+      "question": "Pour trouver le maximum de `[-8, -3, -12]`, un élève initialise `maxi = 0`. Qu'affiche son programme ?",
+      "choix": [
+        "0",
+        "-3",
+        "-12",
+        "Une erreur"
+      ],
+      "bonneReponse": 0,
+      "explication": "Aucune case ne dépasse 0, donc `maxi` reste à 0, qui n'est même pas dans le tableau. Il faut initialiser avec `t[0]`.",
+      "difficulte": 2
+    }
+  ]
+}

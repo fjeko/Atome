@@ -1,0 +1,149 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq1-s04",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 1 – Modélisation fonctionnelle et maquettage",
+  "sequence": null,
+  "seance": "Diagramme d'activités",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le diagramme d'activités représente un déroulement sous forme de flux : actions, décisions, actions en parallèle et partitions par rôle. Il se construit souvent à partir de la description textuelle d'un cas.",
+  "notions": [
+    "Action",
+    "État initial et final",
+    "Transition",
+    "Décision",
+    "Garde",
+    "Fusion",
+    "Bifurcation",
+    "Jointure",
+    "Synchronisation",
+    "Partition",
+    "Événement",
+    "Temporisation",
+    "Passage texte vers diagramme"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq1-s04-s01",
+      "titre": "Les éléments de base",
+      "contenu": "Le **diagramme d'activités** montre l'enchaînement des **actions** d'un processus.\n\n| Élément | Notation |\n| --- | --- |\n| État initial | disque noir plein |\n| Action | rectangle aux coins arrondis, avec un verbe : « Vérifier le stock » |\n| Transition | flèche d'une action à la suivante |\n| État final | disque noir entouré d'un cercle |\n\nUne transition est franchie automatiquement quand l'action précédente est terminée. Chaque chemin doit pouvoir **atteindre un état final** : sinon le processus ne se termine jamais.",
+      "notions": [
+        "Action",
+        "État initial et final",
+        "Transition"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq1-s04-s02",
+      "titre": "Décisions et transitions conditionnelles",
+      "contenu": "Un **losange de décision** sépare le flux en plusieurs branches. Chaque flèche sortante porte une **garde** entre crochets : `[stock suffisant]`, `[stock insuffisant]`. Les gardes doivent être **exclusives** et couvrir tous les cas (`[sinon]` aide).\n\nUn **losange de fusion** réunit des branches alternatives avant de continuer.\n\nExemple (épicerie en ligne **Panier Malin**) :\n\n```text\n(●) -> [Recevoir la commande] -> <?>\n   <?> --[stock suffisant]--> [Préparer le colis] --> <fusion>\n   <?> --[stock insuffisant]--> [Prévenir le client] --> <fusion>\n<fusion> -> [Archiver la commande] -> (◉)\n```",
+      "notions": [
+        "Décision",
+        "Garde",
+        "Fusion"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq1-s04-s03",
+      "titre": "Bifurcation et jointure",
+      "contenu": "Quand plusieurs actions peuvent se faire **en même temps**, on utilise une **barre de synchronisation** épaisse :\n- **bifurcation** (*fork*) : une flèche entre, plusieurs sortent → les actions démarrent en parallèle ;\n- **jointure** (*join*) : plusieurs flèches entrent, une sort → on attend que **toutes** les actions parallèles soient finies.\n\nExemple Panier Malin : après le paiement, on **imprime la facture** et on **prépare le colis** en parallèle ; on n'expédie qu'une fois les deux terminés.\n\nPiège : une bifurcation sans jointure laisse des flux « orphelins ». Et ne confonds pas avec la décision : la décision choisit **un** chemin, la bifurcation lance **tous** les chemins.",
+      "notions": [
+        "Bifurcation",
+        "Jointure",
+        "Synchronisation"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq1-s04-s04",
+      "titre": "Partitions, événements et temporisations",
+      "contenu": "Les **partitions** (ou couloirs) découpent le diagramme en colonnes, **une par rôle** (Client, Système, Préparateur…). Chaque action est placée dans la colonne de celui qui la réalise : on voit qui fait quoi.\n\nOn peut aussi représenter :\n- la **réception d'un événement** (pentagone en creux) : « Paiement reçu » ;\n- l'**envoi d'un signal** (pentagone en pointe) : « Envoyer la notification » ;\n- une **temporisation** (sablier) : « 48 h écoulées » → relancer le client.",
+      "notions": [
+        "Partition",
+        "Événement",
+        "Temporisation"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq1-s04-s05",
+      "titre": "De la description textuelle au diagramme",
+      "contenu": "Méthode :\n1. Crée **une partition par acteur** et une pour le système.\n2. Chaque phrase du scénario nominal devient une **action** dans la bonne partition.\n3. Chaque scénario alternatif ou d'erreur devient une **décision** avec ses gardes, au niveau de l'étape d'où il part.\n4. Les actions indépendantes deviennent des branches **parallèles** (bifurcation + jointure).\n5. Vérifie que chaque chemin atteint un **état final**.",
+      "notions": [
+        "Passage texte vers diagramme"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq1-s04-c001",
+      "section": "libre-b2-21-sq1-s04-s01",
+      "type": "qcm",
+      "question": "Comment représente-t-on l'état final d'un diagramme d'activités ?",
+      "choix": [
+        "Un disque noir plein",
+        "Un disque noir entouré d'un cercle",
+        "Un losange",
+        "Une barre épaisse"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le disque plein seul est l'état initial ; cerclé, c'est l'état final.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq1-s04-c002",
+      "section": "libre-b2-21-sq1-s04-s02",
+      "type": "question",
+      "recto": "À quoi servent les gardes sur les flèches qui sortent d'une décision ?",
+      "verso": "Ce sont les **conditions** entre crochets qui disent quelle branche est suivie. Elles doivent être exclusives et couvrir tous les cas.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq1-s04-c003",
+      "section": "libre-b2-21-sq1-s04-s03",
+      "type": "qcm",
+      "question": "Après une barre de bifurcation suivie de deux actions A et B, puis une jointure, quand l'action suivante démarre-t-elle ?",
+      "choix": [
+        "Dès que A est terminée",
+        "Dès que A ou B est terminée",
+        "Quand A et B sont toutes les deux terminées",
+        "Avant A et B"
+      ],
+      "bonneReponse": 2,
+      "explication": "La jointure **attend** la fin de toutes les branches parallèles.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq1-s04-c004",
+      "section": "libre-b2-21-sq1-s04-s03",
+      "type": "question",
+      "recto": "Quelle différence entre un losange de décision et une barre de bifurcation ?",
+      "verso": "La décision fait suivre **un seul** chemin selon une condition ; la bifurcation lance **tous** les chemins en parallèle.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq1-s04-c005",
+      "section": "libre-b2-21-sq1-s04-s04",
+      "type": "question",
+      "recto": "À quoi servent les partitions d'un diagramme d'activités ?",
+      "verso": "À répartir les actions **par rôle** (acteur ou système) pour voir qui réalise chaque action.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq1-s04-c006",
+      "section": "libre-b2-21-sq1-s04-s05",
+      "type": "exercice",
+      "enonce": "Transforme en diagramme d'activités (décris-le en texte) le cas « Retirer un colis » : 1. Le client donne son code. 2. Le système cherche le colis. 3. Le commerçant remet le colis. 4. Le système enregistre la remise. Erreur 2a : code inconnu, le système affiche un refus.",
+      "etapes": [
+        "Partitions : Client, Système, Commerçant.",
+        "Initial → « Donner son code » (Client) → « Chercher le colis » (Système).",
+        "Décision : [colis trouvé] → « Remettre le colis » (Commerçant) → « Enregistrer la remise » (Système) → final.",
+        "[code inconnu] → « Afficher un refus » (Système) → final (ou fusion avant un final unique)."
+      ],
+      "reponse": "3 partitions, 5 actions, une décision à deux gardes, chaque branche aboutissant à un état final.",
+      "difficulte": 3
+    }
+  ]
+}

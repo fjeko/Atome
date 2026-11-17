@@ -1,0 +1,183 @@
+{
+  "formatVersion": 1,
+  "id": "libre-ang-t-s09",
+  "matiere": "Anglais",
+  "bloc": "Bloc 5",
+  "partie": "Thèmes de communication",
+  "sequence": null,
+  "seance": "Sécurité et citoyenneté",
+  "ordre": 9,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Parler de surveillance et de prévention, rédiger un court rapport de sécurité, et exprimer une opinion sur la vie politique et un programme électoral.",
+  "notions": [
+    "Sécurité et citoyenneté : mise en situation",
+    "Sécurité et citoyenneté : verbes",
+    "Sécurité et citoyenneté : noms",
+    "Sécurité et citoyenneté : adjectifs et adverbes",
+    "Sécurité et citoyenneté : expressions et mots de liaison"
+  ],
+  "sections": [
+    {
+      "id": "libre-ang-t-s09-s01",
+      "titre": "En situation",
+      "contenu": "***Security report – Building B***\n*Following two **break-ins** last month, we **carried out** a security audit. We recommend installing **CCTV cameras** at the entrances, replacing the old locks with **badge readers** and training staff to report **suspicious** behaviour. However, the cameras must comply with **privacy** rules.*\n\n*— Are you going to **vote** in the local **election**?*\n*— Yes. I've read the **candidates'** **manifestos**. I'm in favour of the one who wants to **invest** in public transport.*",
+      "notions": [
+        "Sécurité et citoyenneté : mise en situation"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s09-s02",
+      "titre": "Verbes",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **to prevent** | prévenir, empêcher | *Strong passwords prevent many attacks.* |\n| **to monitor** | surveiller | *The system monitors network traffic.* |\n| **to report** | signaler | *Report any suspicious email to IT.* |\n| **to vote (for)** | voter (pour) | *Who did you vote for?* |\n| **to elect** | élire | *She was elected mayor in 2026.* |\n| **to campaign** | faire campagne | *Volunteers campaigned door to door.* |\n| **to comply with** | respecter, se conformer à | *We must comply with data protection law.* |",
+      "notions": [
+        "Sécurité et citoyenneté : verbes"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s09-s03",
+      "titre": "Noms",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **CCTV / a surveillance camera** | la vidéosurveillance / une caméra | *CCTV was installed in the car park.* |\n| **a break-in** | un cambriolage | *There was a break-in last night.* |\n| **a threat** | une menace | *Phishing is a major threat.* |\n| **privacy** | la vie privée | *Cameras raise privacy concerns.* |\n| **an election** | une élection | *The election takes place in March.* |\n| **a manifesto** | un programme (électoral) | *Their manifesto promises lower taxes.* |\n| **a citizen** | un citoyen | *Every citizen has the right to vote.* |",
+      "notions": [
+        "Sécurité et citoyenneté : noms"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s09-s04",
+      "titre": "Adjectifs et adverbes",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **suspicious** | suspect | *Don't open suspicious attachments.* |\n| **secure** | sécurisé | *Use a secure connection.* |\n| **intrusive** | intrusif | *Some people find cameras intrusive.* |\n| **fair** | juste, équitable | *Is this tax fair?* |\n| **committed** | engagé | *She is a committed activist.* |",
+      "notions": [
+        "Sécurité et citoyenneté : adjectifs et adverbes"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s09-s05",
+      "titre": "Expressions et mots de liaison",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **I'm in favour of… / I'm against…** | je suis pour… / je suis contre… | *I'm in favour of more cycle lanes.* |\n| **As far as I'm concerned** | en ce qui me concerne | *As far as I'm concerned, privacy comes first.* |\n| **It is argued that…** | on avance que… | *It is argued that cameras reduce crime.* |\n| **to carry out an audit** | réaliser un audit | *We carried out an audit of the network.* |\n| **on the grounds that** | au motif que | *They rejected the plan on the grounds that it was too expensive.* |",
+      "notions": [
+        "Sécurité et citoyenneté : expressions et mots de liaison"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-ang-t-s09-c001",
+      "section": "libre-ang-t-s09-s02",
+      "type": "question",
+      "recto": "Traduis en français : **to monitor**\n\n*The system monitors network traffic.*",
+      "verso": "surveiller",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s09-c002",
+      "section": "libre-ang-t-s09-s02",
+      "type": "question",
+      "recto": "Traduis en français : **to comply with**\n\n*We must comply with data protection law.*",
+      "verso": "respecter, se conformer à",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s09-c003",
+      "section": "libre-ang-t-s09-s02",
+      "type": "question",
+      "recto": "Traduis en anglais : **prévenir, empêcher**",
+      "verso": "**to prevent** — *Strong passwords prevent many attacks.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s09-c004",
+      "section": "libre-ang-t-s09-s02",
+      "type": "qcm",
+      "question": "Complète : *All staff must ___ any lost badge immediately.*",
+      "choix": [
+        "report",
+        "prevent",
+        "elect",
+        "campaign"
+      ],
+      "bonneReponse": 0,
+      "explication": "Signaler un incident : *report*.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s09-c005",
+      "section": "libre-ang-t-s09-s03",
+      "type": "question",
+      "recto": "Traduis en français : **a break-in**\n\n*There was a break-in last night.*",
+      "verso": "un cambriolage",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s09-c006",
+      "section": "libre-ang-t-s09-s03",
+      "type": "question",
+      "recto": "Traduis en français : **a manifesto**\n\n*Their manifesto promises lower taxes.*",
+      "verso": "un programme (électoral)",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s09-c007",
+      "section": "libre-ang-t-s09-s03",
+      "type": "question",
+      "recto": "Traduis en anglais : **la vie privée**",
+      "verso": "**privacy** — *Cameras raise privacy concerns.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s09-c008",
+      "section": "libre-ang-t-s09-s04",
+      "type": "question",
+      "recto": "Traduis en français : **intrusive**\n\n*Some people find cameras intrusive.*",
+      "verso": "intrusif",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s09-c009",
+      "section": "libre-ang-t-s09-s04",
+      "type": "question",
+      "recto": "Traduis en anglais : **sécurisé**",
+      "verso": "**secure** — *Use a secure connection.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s09-c010",
+      "section": "libre-ang-t-s09-s05",
+      "type": "question",
+      "recto": "Traduis en français : **on the grounds that**\n\n*They rejected the plan on the grounds that it was too expensive.*",
+      "verso": "au motif que",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s09-c011",
+      "section": "libre-ang-t-s09-s05",
+      "type": "question",
+      "recto": "Traduis en anglais : **je suis pour… / je suis contre…**",
+      "verso": "**I'm in favour of… / I'm against…** — *I'm in favour of more cycle lanes.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s09-c012",
+      "section": "libre-ang-t-s09-s05",
+      "type": "qcm",
+      "question": "Complète : *Following the audit, we recommend ___ the locks.*",
+      "choix": [
+        "replacing",
+        "to replace",
+        "replace",
+        "replaced"
+      ],
+      "bonneReponse": 0,
+      "explication": "*Recommend* est suivi de *-ing* (ou de *that* + proposition).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s09-c013",
+      "section": "libre-ang-t-s09-s01",
+      "type": "question",
+      "recto": "Faux ami : que signifie *a manifesto* ?",
+      "verso": "Un programme politique (électoral). « Une manifestation » se dit *a demonstration* ou *a protest*.",
+      "difficulte": 2
+    }
+  ]
+}

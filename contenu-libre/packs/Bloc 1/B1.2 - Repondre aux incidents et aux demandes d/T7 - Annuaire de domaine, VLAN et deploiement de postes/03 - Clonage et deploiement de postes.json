@@ -1,0 +1,70 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq2-s09",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 7 – Annuaire de domaine, VLAN et déploiement de postes",
+  "sequence": null,
+  "seance": "Clonage et déploiement de postes",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Déployer rapidement des postes identiques par clonage, en évitant les doublons d'identifiants grâce à la généralisation, puis personnaliser et intégrer chaque clone au domaine.",
+  "notions": [
+    "Identifiant unique de machine SID",
+    "Généralisation Sysprep",
+    "Personnalisation du clone",
+    "Ordre d'intégration au domaine"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq2-s09-s01",
+      "titre": "Pourquoi généraliser avant de cloner ?",
+      "contenu": "Installer 20 postes un par un prend des jours. On prépare **un poste modèle** puis on le **clone** (copie de VM ou d'image disque).\n\nProblème : chaque installation Windows possède des **identifiants uniques**, dont le **SID** (identifiant de sécurité) de la machine, le nom, et d'autres données propres. Des clones bruts sont des **jumeaux parfaits**, ce qui crée des conflits (nom identique, identifiants en double, logiciels qui se basent sur l'identifiant de la machine).\n\nLa solution : **généraliser** le modèle avec l'outil **Sysprep** avant de le cloner. Il retire les informations propres à la machine ; au démarrage suivant, chaque clone repasse par une mini-installation (OOBE) et génère ses propres identifiants.\n```bat\nC:\\Windows\\System32\\Sysprep\\sysprep.exe /generalize /oobe /shutdown\n```",
+      "notions": [
+        "Identifiant unique de machine SID",
+        "Généralisation Sysprep"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s09-s02",
+      "titre": "Personnaliser et intégrer le clone",
+      "contenu": "Après le clonage, pour chaque poste :\n1. terminer l'OOBE (langue, compte local) ;\n2. **renommer** le poste (`ES-LYO-015`) et redémarrer ;\n3. configurer son **adresse IP** si elle est statique (sinon DHCP) et le **DNS** ;\n4. **joindre le domaine** ;\n5. vérifier : session d'un compte du domaine, GPO appliquées, agent d'inventaire.\n\n**Piège** : joindre le domaine **avant** de renommer et d'adresser le poste → l'objet ordinateur porte un nom provisoire ou deux postes entrent en conflit.\n\nSous Linux, l'équivalent consiste à régénérer l'identifiant machine (`/etc/machine-id`), les clés SSH de l'hôte et le nom d'hôte.",
+      "notions": [
+        "Personnalisation du clone",
+        "Ordre d'intégration au domaine"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq2-s09-c001",
+      "section": "libre-b1-12b-sq2-s09-s01",
+      "type": "qcm",
+      "question": "Pourquoi lancer Sysprep avec l'option /generalize avant de cloner un poste Windows ?",
+      "choix": [
+        "Pour compresser l'image",
+        "Pour supprimer les informations propres à la machine afin que chaque clone génère ses propres identifiants",
+        "Pour joindre automatiquement le domaine",
+        "Pour installer les mises à jour"
+      ],
+      "bonneReponse": 1,
+      "explication": "Sans généralisation, les clones partagent des identifiants qui devraient être uniques.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s09-c002",
+      "section": "libre-b1-12b-sq2-s09-s02",
+      "type": "exercice",
+      "enonce": "Remets dans l'ordre : joindre le domaine, cloner le modèle, renommer le clone, lancer Sysprep sur le modèle, configurer l'IP/DNS du clone, tester la session de domaine.",
+      "etapes": [
+        "On généralise le modèle avant de le copier.",
+        "On clone, puis on donne au clone son identité (nom, puis réseau).",
+        "On l'intègre au domaine, puis on vérifie."
+      ],
+      "reponse": "Sysprep sur le modèle → cloner → renommer → IP/DNS → joindre le domaine → tester la session de domaine.",
+      "difficulte": 2
+    }
+  ]
+}

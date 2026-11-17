@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq11-s03",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 7 – Structures juridiques et organisation de l'entreprise",
+  "sequence": null,
+  "seance": "L'économie sociale et solidaire",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les principes de l'économie sociale et solidaire et ses formes : association, coopérative, mutuelle, fondation.",
+  "notions": [
+    "Principes de l'ESS",
+    "Formes de l'ESS"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq11-s03-s01",
+      "titre": "Principes de l'ESS",
+      "contenu": "L'**économie sociale et solidaire** (ESS), reconnue par la loi du 31 juillet 2014, regroupe des structures privées qui respectent :\n1. un **but autre que le seul partage des bénéfices** ;\n2. une **gouvernance démocratique** (en principe chaque membre dispose d'une seule voix, quel que soit son apport) ;\n3. une **gestion encadrée** : les bénéfices sont majoritairement réinvestis dans l'activité, avec des réserves impartageables.\n\nDes sociétés commerciales peuvent aussi relever de l'ESS si elles respectent ces principes et poursuivent une utilité sociale.\n\n⚠️ L'ESS n'est pas le **service public** : ce sont des organisations **privées**.",
+      "notions": [
+        "Principes de l'ESS"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq11-s03-s02",
+      "titre": "Les formes de l'ESS",
+      "contenu": "| Forme | Caractéristiques | Exemple inventé |\n|---|---|---|\n| **Association** | au moins 2 personnes, but non lucratif (pas de partage des bénéfices entre membres), peut avoir une activité économique | une ludothèque de quartier |\n| **Coopérative** (SCOP, SCIC…) | société dont les membres (salariés, usagers, producteurs) sont associés ; chaque membre a une voix | une SCOP de menuiserie détenue par ses salariés |\n| **Mutuelle** | organisme d'assurance ou de santé appartenant à ses adhérents, sans actionnaires | une mutuelle santé étudiante |\n| **Fondation** | affectation irrévocable de biens à une œuvre d'intérêt général | une fondation finançant la recherche sur l'eau |\n\n**Avantages** : sens et engagement, fidélité des membres, avantages fiscaux possibles, image. **Contraintes** : accès plus difficile aux capitaux, décisions parfois plus lentes, rémunération limitée.",
+      "notions": [
+        "Formes de l'ESS"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq11-s03-c001",
+      "section": "libre-cejm-sq11-s03-s01",
+      "type": "qcm",
+      "question": "Quel principe distingue une coopérative d'une SA classique ?",
+      "choix": [
+        "Chaque membre pèse autant qu'un autre, quelle que soit sa part de capital",
+        "L'absence de clients",
+        "L'interdiction de faire du bénéfice",
+        "Le fait d'appartenir à l'État"
+      ],
+      "bonneReponse": 0,
+      "explication": "Dans une SA, le pouvoir dépend du nombre d'actions détenues.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq11-s03-c002",
+      "section": "libre-cejm-sq11-s03-s02",
+      "type": "qcm",
+      "question": "Des salariés reprennent leur entreprise et en deviennent associés majoritaires avec une voix chacun. Quelle forme ?",
+      "choix": [
+        "Une SCOP (coopérative)",
+        "Une fondation",
+        "Une mutuelle",
+        "Une SA cotée"
+      ],
+      "bonneReponse": 0,
+      "explication": "La société coopérative de production appartient majoritairement à ses salariés.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq11-s03-c003",
+      "section": "libre-cejm-sq11-s03-s02",
+      "type": "question",
+      "recto": "Une association peut-elle vendre des produits et réaliser un excédent ?",
+      "verso": "Oui, mais l'excédent ne peut pas être partagé entre les membres : il est réinvesti dans le projet associatif.",
+      "difficulte": 2
+    }
+  ]
+}

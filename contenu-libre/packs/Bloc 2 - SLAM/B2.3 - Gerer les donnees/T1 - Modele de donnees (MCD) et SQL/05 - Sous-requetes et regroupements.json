@@ -1,0 +1,112 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq1-s05",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – Gérer les données › Thème 1 – Modèle de données (MCD) et SQL",
+  "sequence": null,
+  "seance": "Sous-requêtes et regroupements",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. GROUP BY calcule des agrégats par groupe et HAVING filtre les groupes. Les sous-requêtes permettent de tester l'appartenance, l'existence ou de comparer à un ensemble ; elles servent aussi pour la différence et la division.",
+  "notions": [
+    "GROUP BY",
+    "HAVING",
+    "Sous-requête",
+    "IN",
+    "ALL et ANY",
+    "EXISTS",
+    "Différence ensembliste",
+    "Division relationnelle",
+    "Sous-requête dans FROM"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq1-s05-s01",
+      "titre": "GROUP BY et HAVING",
+      "contenu": "```sql\nSELECT categorie, COUNT(*) AS nb, AVG(prix_achat) AS prix_moyen\nFROM jeu\nGROUP BY categorie\nHAVING COUNT(*) >= 5\nORDER BY nb DESC;\n```\n\n- `GROUP BY` : un groupe par valeur de `categorie`, une ligne de résultat par groupe.\n- Toute colonne du SELECT qui n'est pas dans un agrégat doit figurer dans le `GROUP BY`.\n- `WHERE` filtre les **lignes avant** le regroupement ; `HAVING` filtre les **groupes après** (il peut utiliser les agrégats).\n\nOrdre d'exécution logique : `FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY`.",
+      "notions": [
+        "GROUP BY",
+        "HAVING"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq1-s05-s02",
+      "titre": "Sous-requêtes : IN, comparaisons, ALL/ANY",
+      "contenu": "Une **sous-requête** est un SELECT imbriqué dans une autre requête.\n\n```sql\n-- Jeux plus chers que la moyenne (sous-requête qui renvoie une valeur)\nSELECT titre FROM jeu WHERE prix_achat > (SELECT AVG(prix_achat) FROM jeu);\n\n-- Adhérents ayant emprunté un jeu de stratégie (appartenance)\nSELECT nom FROM adherent\nWHERE id IN (SELECT p.id_adherent FROM pret p JOIN jeu j ON j.id = p.id_jeu\n             WHERE j.categorie = 'stratégie');\n\n-- Jeux plus chers que TOUS les jeux de l'éditeur 4 (quantificateur)\nSELECT titre FROM jeu WHERE prix_achat > ALL (SELECT prix_achat FROM jeu WHERE id_editeur = 4);\n```\n\n`> ANY (...)` : supérieur à **au moins une** valeur ; `> ALL (...)` : supérieur à **toutes**.\n\nPiège : `NOT IN (sous-requête)` renvoie **zéro ligne** si la sous-requête contient un **NULL**. Filtre les NULL ou préfère `NOT EXISTS`.",
+      "notions": [
+        "Sous-requête",
+        "IN",
+        "ALL et ANY"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq1-s05-s03",
+      "titre": "EXISTS, différence, division, sous-requête en FROM",
+      "contenu": "**EXISTS** teste s'il existe au moins une ligne (sous-requête **corrélée** : elle utilise la ligne courante).\n\n```sql\nSELECT nom FROM adherent a\nWHERE NOT EXISTS (SELECT 1 FROM pret p WHERE p.id_adherent = a.id);   -- jamais emprunté\n```\n\n**Différence** (A sauf B) : `NOT EXISTS`, `NOT IN` ou `EXCEPT` selon le SGBD.\n\n**Division** : « les adhérents qui ont emprunté **tous** les jeux de catégorie *coopératif* ». Méthode par comptage :\n\n```sql\nSELECT p.id_adherent FROM pret p JOIN jeu j ON j.id = p.id_jeu\nWHERE j.categorie = 'coopératif'\nGROUP BY p.id_adherent\nHAVING COUNT(DISTINCT p.id_jeu) = (SELECT COUNT(*) FROM jeu WHERE categorie = 'coopératif');\n```\n\n**Sous-requête dans FROM** : son résultat sert de table temporaire (avec un alias obligatoire).\n\n```sql\nSELECT AVG(nb) FROM (SELECT COUNT(*) AS nb FROM pret GROUP BY id_adherent) AS t;\n```",
+      "notions": [
+        "EXISTS",
+        "Différence ensembliste",
+        "Division relationnelle",
+        "Sous-requête dans FROM"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq1-s05-c001",
+      "section": "libre-b2-23-sq1-s05-s01",
+      "type": "qcm",
+      "question": "Pour n'afficher que les catégories dont le prix moyen dépasse 30 €, on écrit :",
+      "choix": [
+        "`WHERE AVG(prix_achat) > 30`",
+        "`HAVING AVG(prix_achat) > 30`",
+        "`GROUP BY AVG(prix_achat) > 30`",
+        "`ORDER BY AVG(prix_achat) > 30`"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un agrégat ne peut pas être filtré dans WHERE (exécuté avant le regroupement) : on utilise HAVING.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq1-s05-c002",
+      "section": "libre-b2-23-sq1-s05-s01",
+      "type": "exercice",
+      "enonce": "Nombre de prêts par adhérent (nom), pour les adhérents ayant emprunté au moins 3 fois en 2026, du plus gros emprunteur au plus petit.",
+      "etapes": [
+        "Joindre adherent et pret : `FROM adherent a JOIN pret p ON p.id_adherent = a.id`.",
+        "Filtrer les lignes de 2026 avant regroupement : `WHERE p.date_pret BETWEEN '2026-01-01' AND '2026-12-31'`.",
+        "Grouper : `GROUP BY a.id, a.nom`.",
+        "Filtrer les groupes : `HAVING COUNT(*) >= 3`.",
+        "Trier : `ORDER BY COUNT(*) DESC`."
+      ],
+      "reponse": "`SELECT a.nom, COUNT(*) AS nb FROM adherent a JOIN pret p ON p.id_adherent = a.id WHERE p.date_pret BETWEEN '2026-01-01' AND '2026-12-31' GROUP BY a.id, a.nom HAVING COUNT(*) >= 3 ORDER BY nb DESC;`",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq1-s05-c003",
+      "section": "libre-b2-23-sq1-s05-s02",
+      "type": "qcm",
+      "question": "`SELECT nom FROM adherent WHERE id NOT IN (SELECT id_adherent FROM pret);` ne renvoie rien alors que certains adhérents n'ont jamais emprunté. Pourquoi ?",
+      "choix": [
+        "NOT IN n'existe pas en SQL",
+        "La sous-requête contient au moins une valeur NULL",
+        "Il faut écrire NOT ANY",
+        "La table pret est vide"
+      ],
+      "bonneReponse": 1,
+      "explication": "Avec un NULL dans la liste, la comparaison « différent de NULL » est inconnue pour toutes les lignes.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b2-23-sq1-s05-c004",
+      "section": "libre-b2-23-sq1-s05-s03",
+      "type": "question",
+      "recto": "Quelle méthode simple permet d'écrire une division relationnelle (« … qui ont X **tous** les … ») ?",
+      "verso": "Compter : grouper par candidat, puis ne retenir que les groupes pour lesquels `COUNT(DISTINCT élément)` est **égal au nombre total** d'éléments à couvrir.",
+      "difficulte": 3
+    }
+  ]
+}

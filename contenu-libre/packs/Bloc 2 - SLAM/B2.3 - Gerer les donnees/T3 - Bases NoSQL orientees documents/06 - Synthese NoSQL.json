@@ -1,0 +1,83 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq3-s06",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – Gérer les données › Thème 3 – Bases NoSQL orientées documents",
+  "sequence": null,
+  "seance": "Synthèse NoSQL",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif des bases orientées documents : quand les choisir, vocabulaire, commandes CRUD, filtres, agrégation et accès depuis une application C#.",
+  "notions": [
+    "Choisir entre relationnel et NoSQL",
+    "Pièges NoSQL",
+    "Exercice de synthèse NoSQL"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq3-s06-s01",
+      "titre": "Relationnel ou documentaire ?",
+      "contenu": "| Critère | Relationnel | Documentaire |\n| --- | --- | --- |\n| Structure | fixe, normalisée | souple, imbriquée |\n| Relations nombreuses | jointures efficaces | à limiter (imbrication ou `$lookup`) |\n| Transactions complexes | point fort historique | possibles mais moins naturelles |\n| Répartition sur plusieurs serveurs | plus difficile | prévue dès la conception |\n| Langage | SQL standard | API propre à chaque produit |\n\nBeaucoup d'applications combinent les deux : une base relationnelle pour la gestion, une base documentaire pour un catalogue ou des journaux d'événements.",
+      "notions": [
+        "Choisir entre relationnel et NoSQL"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s06-s02",
+      "titre": "Les pièges",
+      "contenu": "- Croire que « sans schéma » dispense de **concevoir** : il faut choisir imbrication ou référence selon les lectures.\n- Oublier `$set` : on **remplace** le document entier.\n- Mal placer l'opérateur : `{ prix: { $gt: 10 } }` et non `{ $gt: { prix: 10 } }`.\n- Mapper la classe C# avec des noms de champs différents de la collection.\n- Laisser le serveur sans **authentification**, accessible depuis Internet.",
+      "notions": [
+        "Pièges NoSQL"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s06-s03",
+      "titre": "Exercice de synthèse",
+      "contenu": "Pour un exercice complet : conçois la forme des documents, insère un petit jeu de test, écris les requêtes, puis l'équivalent dans l'application.",
+      "notions": [
+        "Exercice de synthèse NoSQL"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq3-s06-c001",
+      "section": "libre-b2-23-sq3-s06-s01",
+      "type": "question",
+      "recto": "Citer deux raisons de choisir une base documentaire.",
+      "verso": "Des données à **structure variable** (ou imbriquée, lue d'un bloc) et un besoin de **répartition** sur plusieurs serveurs / gros volumes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq3-s06-c002",
+      "section": "libre-b2-23-sq3-s06-s02",
+      "type": "qcm",
+      "question": "Après `db.plantes.replaceOne({ nom: \"Pilea\" }, { prix: 8 })`, que contient le document ?",
+      "choix": [
+        "Tous ses champs, avec prix = 8",
+        "Seulement _id et prix",
+        "Rien, il est supprimé",
+        "Une erreur est levée"
+      ],
+      "bonneReponse": 1,
+      "explication": "replaceOne remplace tout le contenu : nom, stock, catégorie sont perdus. Il fallait `updateOne` avec `$set`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq3-s06-c003",
+      "section": "libre-b2-23-sq3-s06-s03",
+      "type": "exercice",
+      "enonce": "Le festival **Sons de Brume** stocke ses concerts : `{ artiste, scene, jour, billetsVendus, genres: [...] }`. Écris : (1) les concerts de la scène « Grand Chapiteau » triés par jour ; (2) le total des billets par scène ; (3) l'ajout du genre « électro » au concert de l'artiste « Nuit Polaire ».",
+      "etapes": [
+        "(1) `db.concerts.find({ scene: \"Grand Chapiteau\" }).sort({ jour: 1 })`",
+        "(2) `db.concerts.aggregate([{ $group: { _id: \"$scene\", total: { $sum: \"$billetsVendus\" } } }])`",
+        "(3) `db.concerts.updateOne({ artiste: \"Nuit Polaire\" }, { $push: { genres: \"électro\" } })`"
+      ],
+      "reponse": "find + sort, aggregate avec $group/$sum, updateOne avec $push.",
+      "difficulte": 3
+    }
+  ]
+}

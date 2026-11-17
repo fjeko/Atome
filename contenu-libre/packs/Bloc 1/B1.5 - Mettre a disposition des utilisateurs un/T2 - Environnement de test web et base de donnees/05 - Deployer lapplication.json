@@ -1,0 +1,60 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-15-sq2-s05",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.5 – Mettre à disposition des utilisateurs un service informatique › Thème 2 – Environnement de test web et base de données",
+  "sequence": null,
+  "seance": "Déployer l'application",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Déployer une application web sur l'environnement de test : copie sécurisée des fichiers, création de la base à partir d'un script SQL et sauvegarde par export.",
+  "notions": [
+    "Copie sécurisée",
+    "Créer la base depuis un script",
+    "Sauvegarde par export"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-15-sq2-s05-s01",
+      "titre": "Copier et créer la base",
+      "contenu": "### Cas : l'application de réservation de salles de la maison des associations\nCopie **sécurisée** des fichiers depuis le poste du développeur (par SSH) :\n```bash\nscp -r resa/ adm.lea@192.168.56.10:/tmp/\nssh adm.lea@192.168.56.10 \"sudo mv /tmp/resa /var/www/resa\"\n```\n(ou `rsync -av` pour ne transférer que les différences).\n\nCréation de la base à partir du **script SQL** fourni par l'équipe (`resa.sql` : création des tables et données de test) :\n```bash\nscp resa.sql adm.lea@192.168.56.11:/tmp/\nssh adm.lea@192.168.56.11\nsudo mariadb -e \"CREATE DATABASE resa CHARACTER SET utf8mb4;\"\nsudo mariadb resa < /tmp/resa.sql\nsudo mariadb resa -e \"SHOW TABLES;\"\n```\nOn adapte ensuite le fichier de configuration de l'application (hôte de la base par son **nom**, nom de la base, compte applicatif).",
+      "notions": [
+        "Copie sécurisée",
+        "Créer la base depuis un script"
+      ]
+    },
+    {
+      "id": "libre-b1-15-sq2-s05-s02",
+      "titre": "Sauvegarder par export",
+      "contenu": "Avant chaque nouvelle version, on **exporte** la base :\n```bash\nsudo mariadb-dump resa > /var/backups/resa_$(date +%F).sql\n```\n`$(date +%F)` ajoute la date au nom (`resa_2026-11-17.sql`). Restauration : `mariadb resa < fichier.sql`.\n\nOn peut planifier l'export chaque nuit avec **cron** (`sudo crontab -e`) :\n```text\n30 2 * * * mariadb-dump resa > /var/backups/resa_$(date +\\%F).sql\n```",
+      "notions": [
+        "Sauvegarde par export"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-15-sq2-s05-c001",
+      "section": "libre-b1-15-sq2-s05-s01",
+      "type": "question",
+      "recto": "Quelle commande importe le script `resa.sql` dans la base `resa` ?",
+      "verso": "`mariadb resa < resa.sql` (avec les droits nécessaires, par exemple via sudo ou -u utilisateur -p).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-15-sq2-s05-c002",
+      "section": "libre-b1-15-sq2-s05-s02",
+      "type": "exercice",
+      "enonce": "Écris la ligne cron qui exporte la base `resa` tous les dimanches à 23 h dans `/var/backups/resa_hebdo.sql`.",
+      "etapes": [
+        "Format cron : minute heure jour-du-mois mois jour-de-la-semaine commande.",
+        "Minute 0, heure 23, tous les jours du mois et tous les mois, jour de la semaine 0 (dimanche)."
+      ],
+      "reponse": "`0 23 * * 0 mariadb-dump resa > /var/backups/resa_hebdo.sql`",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq5-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – Gérer le patrimoine informatique › Thème 4 – Sauvegardes d'un serveur de fichiers",
+  "sequence": null,
+  "seance": "Pratique : sauvegarde planifiée et restauration",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Installer la fonctionnalité de sauvegarde d'un serveur Windows, lancer une sauvegarde ponctuelle, planifier des sauvegardes et restaurer un fichier en choisissant la bonne version.",
+  "notions": [
+    "Installer la fonctionnalité de sauvegarde",
+    "Sauvegarde ponctuelle",
+    "Sauvegarde planifiée",
+    "Restaurer un fichier",
+    "Choisir la version à restaurer",
+    "Tester la restauration"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq5-s04-s01",
+      "titre": "Installer la fonctionnalité",
+      "contenu": "Windows Server propose la fonctionnalité **Sauvegarde Windows Server** (*Windows Server Backup*). Elle n'est pas installée par défaut.\n\nPar le **Gestionnaire de serveur** : *Gérer > Ajouter des rôles et fonctionnalités > Fonctionnalités > Sauvegarde Windows Server*.\n\nOu en PowerShell (en administrateur) :\n```powershell\nInstall-WindowsFeature -Name Windows-Server-Backup\n```\n\nLa console s'ouvre ensuite avec `wbadmin.msc`, et l'outil en ligne de commande s'appelle `wbadmin`.\n\nBonne pratique : utiliser un **disque dédié** à la sauvegarde (pas une partition du disque des données).",
+      "notions": [
+        "Installer la fonctionnalité de sauvegarde"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq5-s04-s02",
+      "titre": "Sauvegarde ponctuelle et planifiée",
+      "contenu": "- **Ponctuelle** (« Sauvegarder une fois ») : utile **avant une intervention** risquée (mise à jour, migration).\n- **Planifiée** : l'outil sauvegarde **automatiquement** aux heures choisies (par exemple chaque jour à 21 h et 13 h). C'est la base d'une vraie stratégie.\n\nExemple en ligne de commande : sauvegarde ponctuelle du dossier des partages vers le disque E: :\n```powershell\nwbadmin start backup -backupTarget:E: -include:D:\\Partages -quiet\n```\n\nDans l'assistant de planification, on choisit : **quoi** (serveur complet ou personnalisé), **quand** (une ou plusieurs fois par jour), **où** (disque dédié, volume, dossier réseau partagé).\n\nChoisis des horaires **hors activité** pour ne pas ralentir les utilisateurs.",
+      "notions": [
+        "Sauvegarde ponctuelle",
+        "Sauvegarde planifiée"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq5-s04-s03",
+      "titre": "Restaurer et choisir la bonne version",
+      "contenu": "Assistant **Récupérer** : on choisit la **date et l'heure** de la sauvegarde, puis les **fichiers ou dossiers**, la **destination** (emplacement d'origine ou autre dossier) et le comportement en cas de conflit (écraser, créer une copie).\n\nEn ligne de commande :\n```powershell\nwbadmin get versions\nwbadmin start recovery -version:03/14/2026-21:00 -itemType:File -items:D:\\Partages\\Devis\\devis-0412.ods -recoveryTarget:D:\\Restauration\n```\n\n**Choisir la bonne version** : demande à l'utilisateur **quand le fichier était encore bon**.\nExemple : Mme Kader écrase le 14 mars à 10 h le fichier des tarifs avec une mauvaise version. Les sauvegardes ont lieu à 13 h et 21 h.\n- version du **14 mars 13 h** : contient déjà le fichier écrasé → mauvaise ;\n- version du **13 mars 21 h** : dernière version **avant** l'erreur → la bonne.\n\nConseil : restaure **dans un autre dossier** puis laisse l'utilisateur vérifier avant de remplacer.",
+      "notions": [
+        "Restaurer un fichier",
+        "Choisir la version à restaurer"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq5-s04-s04",
+      "titre": "Tester la restauration",
+      "contenu": "Une sauvegarde **jamais testée** n'est qu'un espoir. Il faut **régulièrement** :\n- restaurer un fichier au hasard et vérifier qu'il s'ouvre ;\n- vérifier les **journaux** de sauvegarde (réussites, échecs, avertissements) ;\n- de temps en temps, simuler une **restauration complète** sur une machine de test.\n\nC'est le piège le plus fréquent : on découvre le jour de la panne que la sauvegarde échouait depuis des semaines.",
+      "notions": [
+        "Tester la restauration"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq5-s04-c001",
+      "section": "libre-b1-11-sq5-s04-s01",
+      "type": "question",
+      "recto": "Pourquoi ne faut-il pas sauvegarder sur une autre partition du même disque que les données ?",
+      "verso": "Parce qu'une panne de ce disque détruirait en même temps les données et leur sauvegarde.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq5-s04-c002",
+      "section": "libre-b1-11-sq5-s04-s02",
+      "type": "qcm",
+      "question": "Avant de mettre à jour une application critique sur le serveur, que fais-tu ?",
+      "choix": [
+        "Rien, la sauvegarde planifiée de la nuit suffira",
+        "Une sauvegarde ponctuelle juste avant l'intervention",
+        "Je désactive la sauvegarde planifiée",
+        "J'archive les données"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une sauvegarde ponctuelle juste avant permet de revenir à l'état exact précédant la mise à jour.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq5-s04-c003",
+      "section": "libre-b1-11-sq5-s04-s03",
+      "type": "exercice",
+      "enonce": "Sauvegardes à 12 h et 20 h chaque jour. Mardi 16 h, un utilisateur supprime par erreur un dossier, il s'en aperçoit mercredi 9 h. Quelle version restaurer ? Quelles modifications sont perdues ?",
+      "etapes": [
+        "Le dossier existait jusqu'à mardi 16 h.",
+        "Sauvegarde mardi 20 h : après la suppression, le dossier n'y est plus.",
+        "Sauvegarde mardi 12 h : avant la suppression, le dossier y est.",
+        "Les modifications faites dans le dossier entre 12 h et 16 h n'ont été capturées par aucune sauvegarde."
+      ],
+      "reponse": "Restaurer la version de mardi 12 h ; les modifications du dossier faites entre 12 h et 16 h sont perdues.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq5-s04-c004",
+      "section": "libre-b1-11-sq5-s04-s04",
+      "type": "question",
+      "recto": "Pourquoi faut-il tester régulièrement la restauration ?",
+      "verso": "Pour s'assurer que les sauvegardes fonctionnent réellement et sont exploitables, et connaître le temps de restauration : on ne doit pas le découvrir le jour d'une panne.",
+      "difficulte": 2
+    }
+  ]
+}

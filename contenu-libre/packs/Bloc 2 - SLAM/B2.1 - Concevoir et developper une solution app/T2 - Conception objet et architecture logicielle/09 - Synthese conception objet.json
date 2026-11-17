@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq2-s09",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 2 – Conception objet et architecture logicielle",
+  "sequence": null,
+  "seance": "Synthèse : conception objet",
+  "ordre": 9,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif de la conception objet : classes et encapsulation, associations et multiplicités, héritage, composition, passage au code et organisation MVC en paquetages.",
+  "notions": [
+    "Récapitulatif POO et UML",
+    "Exercice de synthèse POO"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq2-s09-s01",
+      "titre": "L'essentiel en un tableau",
+      "contenu": "| Notion | À retenir |\n| --- | --- |\n| Encapsulation | attributs privés, accès contrôlé |\n| Constructeur | même nom que la classe, initialise l'objet |\n| static | partagé par la classe ; constante = `static final` |\n| Héritage | « est un », `extends`, `super(...)` en premier |\n| Abstraite | non instanciable, méthodes à redéfinir |\n| Multiplicité | lue du côté de la classe comptée |\n| Composition | losange plein, cycle de vie lié |\n| Agrégation | losange creux, parties indépendantes |\n| MVC | modèle = métier, vue = affichage, contrôleur = lien |\n| Paquetages | pas de cycle de dépendances |",
+      "notions": [
+        "Récapitulatif POO et UML"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s09-s02",
+      "titre": "Exercice type examen",
+      "contenu": "Pour un exercice d'examen, procède dans l'ordre : lis l'énoncé en soulignant les noms (classes, attributs) et les verbes (méthodes, associations), dessine le diagramme, puis écris le code classe par classe en commençant par celles qui ne dépendent de personne.",
+      "notions": [
+        "Exercice de synthèse POO"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq2-s09-c001",
+      "section": "libre-b2-21-sq2-s09-s01",
+      "type": "qcm",
+      "question": "`Medecin 1 ———— 0..* Consultation`. Quelle phrase est juste ?",
+      "choix": [
+        "Une consultation implique plusieurs médecins",
+        "Un médecin réalise zéro ou plusieurs consultations",
+        "Un médecin réalise au moins une consultation",
+        "La relation est une composition"
+      ],
+      "bonneReponse": 1,
+      "explication": "On part du Médecin et on lit `0..*` côté Consultation.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s09-c002",
+      "section": "libre-b2-21-sq2-s09-s01",
+      "type": "question",
+      "recto": "Citer trois erreurs fréquentes en conception objet.",
+      "verso": "Attributs publics (encapsulation oubliée) ; multiplicités lues à l'envers ; composition confondue avec agrégation (ou cycle entre paquetages, vue qui appelle le modèle).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s09-c003",
+      "section": "libre-b2-21-sq2-s09-s02",
+      "type": "exercice",
+      "enonce": "Le refuge animalier **Patte Tendre** gère des `Animal` (nom, âge) ; un animal est un `Chien` ou un `Chat` (un chat a un booléen `sociable`). Un `Box` accueille au plus 2 animaux. Écris l'essentiel du code : classes, héritage, et une méthode `accueillir(Animal a)` qui refuse un 3e animal.",
+      "etapes": [
+        "`public abstract class Animal { private String nom; private int age; public Animal(String nom, int age) {...} }`",
+        "`public class Chien extends Animal { public Chien(String n, int a) { super(n, a); } }`",
+        "`public class Chat extends Animal { private boolean sociable; public Chat(String n, int a, boolean s) { super(n, a); sociable = s; } }`",
+        "`public class Box { private ArrayList<Animal> occupants = new ArrayList<>();`",
+        "`public boolean accueillir(Animal a) { if (occupants.size() >= 2) return false; occupants.add(a); return true; } }`"
+      ],
+      "reponse": "Animal abstraite, deux sous-classes avec `super(...)`, Box avec une liste et un contrôle de la multiplicité maximale 2.",
+      "difficulte": 3
+    }
+  ]
+}

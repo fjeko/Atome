@@ -1,0 +1,67 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq08-s04",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 4 – L'État, les politiques économiques et la régulation",
+  "sequence": null,
+  "seance": "Synthèse et étude de cas (régulation)",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif de la régulation, du droit de la concurrence et de la propriété industrielle, puis cas d'un secteur fictif.",
+  "notions": [
+    "Synthèse régulation",
+    "Application à un cas"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq08-s04-s01",
+      "titre": "L'essentiel",
+      "contenu": "- Réglementer (règles générales) ≠ réguler (surveillance continue d'un secteur) ; autorités indépendantes : avis, contrôle, sanction.\n- **Concurrence déloyale** : préjudice à un concurrent (confusion, dénigrement, parasitisme, désorganisation) → responsabilité civile.\n- **Pratiques anticoncurrentielles** : atteinte au marché (entente, abus de position dominante) → Autorité de la concurrence ; contrôle des concentrations.\n- **Propriété industrielle** : brevet (20 ans), dessins et modèles (jusqu'à 25 ans), marque (10 ans renouvelables) ; territorialité, antériorité ; contrefaçon.",
+      "notions": [
+        "Synthèse régulation"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq08-s04-s02",
+      "titre": "Étude de cas : le marché des trottinettes en libre-service",
+      "contenu": "Dans la ville fictive de Valmont, trois opérateurs de trottinettes partagées se font concurrence.\n1. *Zipa* a breveté un système de verrouillage antivol ; *Roulo* commercialise le même système sans licence.\n2. *Roulo* publie sur les réseaux sociaux que les trottinettes de *Kizo* « prennent feu », sans preuve.\n3. *Zipa* et *Kizo* discutent d'un accord pour appliquer le même tarif à la minute.\n4. *Zipa* envisage de racheter *Kizo*.",
+      "notions": [
+        "Application à un cas"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq08-s04-c001",
+      "section": "libre-cejm-sq08-s04-s01",
+      "type": "qcm",
+      "question": "Quelle situation relève de l'Autorité de la concurrence plutôt que d'un tribunal pour concurrence déloyale ?",
+      "choix": [
+        "Le leader d'un marché refuse sans raison de vendre à un nouveau distributeur",
+        "Un concurrent imite le logo d'un autre",
+        "Un ancien salarié détourne le fichier clients",
+        "Un commerçant dénigre son voisin"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le refus de vente par une entreprise dominante peut constituer un abus de position dominante.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-cejm-sq08-s04-c002",
+      "section": "libre-cejm-sq08-s04-s02",
+      "type": "exercice",
+      "enonce": "Qualifie juridiquement chacune des quatre situations du cas des trottinettes.",
+      "etapes": [
+        "1. Contrefaçon de brevet : Zipa peut agir au civil et au pénal.",
+        "2. Dénigrement (concurrence déloyale) : Kizo peut agir en responsabilité civile.",
+        "3. Projet d'entente sur les prix : pratique anticoncurrentielle interdite, sanctionnable par l'Autorité de la concurrence.",
+        "4. Concentration : si elle dépasse les seuils, elle doit être notifiée et peut être autorisée, encadrée ou interdite."
+      ],
+      "reponse": "Contrefaçon, dénigrement, entente, concentration contrôlée.",
+      "difficulte": 3
+    }
+  ]
+}

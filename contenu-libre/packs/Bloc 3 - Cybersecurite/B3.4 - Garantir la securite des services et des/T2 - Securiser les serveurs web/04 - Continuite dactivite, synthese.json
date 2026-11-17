@@ -1,0 +1,97 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-34-sq2-s04",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.4 – Garantir la sécurité des services et des données face aux cyberattaques › Thème 2 – Sécuriser les serveurs web",
+  "sequence": null,
+  "seance": "Continuité d'activité, synthèse",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le plan de continuité et le plan de reprise d'activité préparent l'organisation à une panne ou une attaque majeure, avec des objectifs de durée d'interruption et de perte de données. Synthèse de la sécurisation des serveurs web.",
+  "notions": [
+    "PCA",
+    "PRA",
+    "RTO",
+    "RPO",
+    "Contenu d'un PRA",
+    "Synthèse serveurs web"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-34-sq2-s04-s01",
+      "titre": "PCA et PRA",
+      "contenu": "- **PCA** (plan de continuité d'activité) : permettre à l'activité de **continuer** pendant l'incident, éventuellement en **mode dégradé** (serveur de secours qui prend le relais, procédures manuelles).\n- **PRA** (plan de reprise d'activité) : **redémarrer** après un arrêt, dans un délai défini (restauration sur un site ou une infrastructure de secours).\n\nDeux indicateurs :\n- **RTO** (*Recovery Time Objective*) : durée maximale d'**interruption** acceptable ;\n- **RPO** (*Recovery Point Objective*) : **perte de données** maximale acceptable (temps écoulé depuis la dernière sauvegarde utilisable).",
+      "notions": [
+        "PCA",
+        "PRA",
+        "RTO",
+        "RPO"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq2-s04-s02",
+      "titre": "Construire le plan",
+      "contenu": "Contenu d'un PRA :\n- analyse des **activités critiques** et de leurs RTO/RPO ;\n- **scénarios** (panne matérielle, rançongiciel, sinistre du local, perte du fournisseur) ;\n- **moyens** de secours (réplication, sauvegardes hors site, serveur de secours, hébergement alternatif) ;\n- **procédures** pas à pas, **contacts**, rôles ;\n- **tests** réguliers (exercices de restauration, bascule) et mises à jour du plan.",
+      "notions": [
+        "Contenu d'un PRA"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq2-s04-s03",
+      "titre": "Synthèse",
+      "contenu": "| Domaine | À retenir |\n| --- | --- |\n| Protocoles | SSH, SFTP, HTTPS, TLS partout |\n| Réseau | DMZ pour le web, base isolée, administration dédiée |\n| Vulnérabilités | veille CERT-FR/CVE, inventaire, scan autorisé, correctifs testés |\n| Configuration | services inutiles arrêtés, versions masquées, mots de passe par défaut changés |\n| Sauvegardes | 3-2-1, hors site, chiffrées, planifiées, **restaurées en test** |\n| Continuité | RTO, RPO, PCA/PRA testés |",
+      "notions": [
+        "Synthèse serveurs web"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-34-sq2-s04-c001",
+      "section": "libre-b3-34-sq2-s04-s01",
+      "type": "qcm",
+      "question": "La direction accepte de perdre au plus 1 heure de commandes. Quel indicateur cela fixe-t-il ?",
+      "choix": [
+        "Le RTO",
+        "Le RPO",
+        "Le SLA du FAI",
+        "Le CVSS"
+      ],
+      "bonneReponse": 1,
+      "explication": "RPO = perte de données maximale ; il impose une sauvegarde ou réplication au moins horaire.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq2-s04-c002",
+      "section": "libre-b3-34-sq2-s04-s02",
+      "type": "exercice",
+      "enonce": "Le site de vente fictif **BrocanteNet** a un RTO de 4 h et un RPO de 15 min. Sa stratégie actuelle : une sauvegarde quotidienne à 2 h, restauration estimée à 6 h. Est-ce conforme ? Que proposer ?",
+      "etapes": [
+        "RPO : avec une sauvegarde par jour, on peut perdre jusqu'à 24 h de données → non conforme (15 min exigées).",
+        "RTO : 6 h de restauration > 4 h → non conforme.",
+        "Proposer une **réplication** de la base vers un serveur secondaire (ou journaux binaires sauvegardés toutes les 15 min).",
+        "Préparer un serveur de secours prêt à démarrer (image, configuration automatisée), et tester la bascule pour mesurer un temps réel inférieur à 4 h."
+      ],
+      "reponse": "Non conforme sur les deux indicateurs : réplication/journaux toutes les 15 min et serveur de secours testé.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq2-s04-c003",
+      "section": "libre-b3-34-sq2-s04-s03",
+      "type": "qcm",
+      "question": "Laquelle est une bonne pratique ?",
+      "choix": [
+        "Garder les sauvegardes sur le serveur pour aller plus vite",
+        "Laisser un service de test exposé « au cas où »",
+        "Tester la restauration régulièrement et mesurer sa durée",
+        "Appliquer les correctifs sans sauvegarde pour gagner du temps"
+      ],
+      "bonneReponse": 2,
+      "explication": "Les trois autres sont des pièges classiques.",
+      "difficulte": 2
+    }
+  ]
+}

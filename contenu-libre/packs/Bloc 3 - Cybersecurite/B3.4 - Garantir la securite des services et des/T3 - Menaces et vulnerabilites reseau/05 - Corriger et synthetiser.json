@@ -1,0 +1,89 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-34-sq3-s05",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.4 – Garantir la sécurité des services et des données face aux cyberattaques › Thème 3 – Menaces et vulnérabilités réseau",
+  "sequence": null,
+  "seance": "Corriger et synthétiser",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une analyse ne vaut que par les corrections qu'elle déclenche. On applique la défense en profondeur, une configuration sécurisée et une journalisation exploitée ; détecter sans corriger ne protège pas. Synthèse de la démarche.",
+  "notions": [
+    "Limites de la détection",
+    "Plan correctif",
+    "Configuration sécurisée",
+    "Journalisation",
+    "Synthèse analyse réseau"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-34-sq3-s05-s01",
+      "titre": "Détecter ne suffit pas",
+      "contenu": "Une alerte d'IDS, un rapport de scan ou une capture qui montre un mot de passe en clair ne protègent **rien** tant qu'on ne **corrige** pas.\n\nLe **plan correctif** classe chaque constat :\n| Constat | Gravité | Correction | Responsable | Échéance |\n| --- | --- | --- | --- | --- |\n| Telnet actif sur le switch | élevée | SSH + désactivation Telnet | admin réseau | 1 semaine |\n| MySQL exposé | critique | écoute locale + pare-feu | admin système | 48 h |\n| HTTP sur l'intranet | moyenne | certificat + redirection | admin web | 1 mois |\n\nPuis **vérification** (nouveau scan, nouvelle capture) et clôture.",
+      "notions": [
+        "Limites de la détection",
+        "Plan correctif"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq3-s05-s02",
+      "titre": "Bonnes pratiques durables",
+      "contenu": "- **Défense en profondeur** : segmentation, pare-feu entre zones, durcissement des équipements.\n- **Configuration sécurisée** : services inutiles arrêtés, protocoles chiffrés, comptes par défaut supprimés, versions à jour, sauvegarde des configurations.\n- **Journalisation** : activer les journaux (pare-feu, serveurs, équipements), les **centraliser**, les **consulter** et définir des **alertes**.\n- **Contrôles réguliers** : scans autorisés planifiés, revue des règles de pare-feu, exercices.",
+      "notions": [
+        "Configuration sécurisée",
+        "Journalisation"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq3-s05-s03",
+      "titre": "Synthèse",
+      "contenu": "Démarche complète : **autorisation** → **découverte** → **scan** → **analyse** (versions, configuration, capture) → **constats** → **plan correctif** → **vérification** → **rapport**.\n\nPièges : tester sans autorisation écrite ; confondre port ouvert et vulnérabilité ; s'arrêter au constat.",
+      "notions": [
+        "Synthèse analyse réseau"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-34-sq3-s05-c001",
+      "section": "libre-b3-34-sq3-s05-s01",
+      "type": "qcm",
+      "question": "Le scanner de vulnérabilités signale chaque mois la même faille critique, sans action. Quel est le problème ?",
+      "choix": [
+        "Le scanner est défectueux",
+        "La détection sans correction ne réduit pas le risque : il manque un plan correctif suivi",
+        "Il faut scanner plus souvent",
+        "Il faut changer d'outil"
+      ],
+      "bonneReponse": 1,
+      "explication": "Il faut des responsables, des échéances et une vérification.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq3-s05-c002",
+      "section": "libre-b3-34-sq3-s05-s02",
+      "type": "question",
+      "recto": "Pourquoi refaire un scan et une capture après correction ?",
+      "verso": "Pour **vérifier** que les corrections sont effectives (services fermés, plus rien en clair) et le documenter.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq3-s05-c003",
+      "section": "libre-b3-34-sq3-s05-s03",
+      "type": "exercice",
+      "enonce": "Rédige les 5 recommandations principales du rapport d'analyse du laboratoire de l'école de musique fictive **Do Ré Mi Fa Sol** : scan → FTP, Telnet et MySQL ouverts sur le serveur ; capture → mots de passe FTP en clair, réutilisés pour la messagerie ; aucun journal centralisé.",
+      "etapes": [
+        "Remplacer FTP par SFTP et Telnet par SSH (authentification par clé), désactiver les services en clair.",
+        "Restreindre MySQL à l'écoute locale et filtrer le port au pare-feu.",
+        "Changer tous les mots de passe exposés, imposer un mot de passe unique par service et la MFA sur la messagerie.",
+        "Segmenter : serveurs et administration dans des zones séparées, règles de flux minimales.",
+        "Centraliser les journaux et mettre en place des alertes ; planifier un nouveau scan et une nouvelle capture pour vérifier les corrections."
+      ],
+      "reponse": "Chiffrer les services, fermer MySQL, mots de passe uniques + MFA, segmentation, journalisation et vérification.",
+      "difficulte": 3
+    }
+  ]
+}

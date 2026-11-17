@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq4-s06",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – Sécuriser les équipements et les usages des utilisateurs › Thème 3 – Audit et sécurité réseau",
+  "sequence": null,
+  "seance": "Synthèse : sécurité réseau",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif : principes de défense, vulnérabilités par couche, cartographie et audit, VPN et zéro confiance.",
+  "notions": [
+    "Récapitulatif sécurité réseau",
+    "Exercice de synthèse réseau"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq4-s06-s01",
+      "titre": "L'essentiel",
+      "contenu": "| Thème | À retenir |\n| --- | --- |\n| Principes | défense en profondeur, compartimentation, moindre privilège (aussi pour les services), séparation des tâches, maillon faible, haute disponibilité |\n| Couches | 2 : ARP, MAC ; 3 : usurpation IP ; 4 : ports, SYN ; 7 : injections, DNS |\n| Audit | cartographie, chaîne de connexion, organisation/architecture/configuration/code/intrusion |\n| VPN | tunnel chiffré, accès distant ou site à site, IPsec/OpenVPN/WireGuard, pas d'anonymat total |\n| Zéro confiance | vérifier chaque accès, micro-segmentation, trajectoire progressive |",
+      "notions": [
+        "Récapitulatif sécurité réseau"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq4-s06-s02",
+      "titre": "Exercice de synthèse",
+      "contenu": "Méthode : cartographier, identifier les zones, définir les flux nécessaires, filtrer le reste, sécuriser les accès distants, superviser.",
+      "notions": [
+        "Exercice de synthèse réseau"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq4-s06-c001",
+      "section": "libre-b3-33-sq4-s06-s01",
+      "type": "qcm",
+      "question": "Quelle affirmation est vraie ?",
+      "choix": [
+        "Un VPN rend l'utilisateur totalement anonyme",
+        "Le moindre privilège ne concerne que les utilisateurs",
+        "La compartimentation limite le rebond d'un attaquant",
+        "Un périmètre bien protégé suffit"
+      ],
+      "bonneReponse": 2,
+      "explication": "Les trois autres sont des erreurs fréquentes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq4-s06-c002",
+      "section": "libre-b3-33-sq4-s06-s01",
+      "type": "question",
+      "recto": "Cite trois principes de défense d'un réseau.",
+      "verso": "Par exemple : défense en profondeur, compartimentation (segmentation), moindre privilège (et besoin d'en connaître, séparation des tâches, haute disponibilité).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq4-s06-c003",
+      "section": "libre-b3-33-sq4-s06-s02",
+      "type": "exercice",
+      "enonce": "La coopérative agricole fictive **Terres du Lac** a un siège et un entrepôt distant ; tout est sur un seul réseau à plat ; les commerciaux accèdent au logiciel de gestion depuis chez eux par un port ouvert sur Internet. Propose une architecture sécurisée.",
+      "etapes": [
+        "Segmenter le siège : VLAN utilisateurs, serveurs, administration, invités, objets connectés ; filtrage entre VLAN au pare-feu.",
+        "Relier l'entrepôt par un VPN site à site (IPsec ou WireGuard) entre les deux pare-feu, avec filtrage des flux nécessaires.",
+        "Fermer le port exposé ; accès des commerciaux par VPN d'accès distant avec MFA, puis vers le seul logiciel de gestion (moindre privilège).",
+        "Placer les éventuels services publics en DMZ ; superviser et centraliser les journaux.",
+        "À terme : évolution vers un accès par application (zéro confiance)."
+      ],
+      "reponse": "Segmentation, VPN site à site, VPN nomade avec MFA, DMZ et supervision.",
+      "difficulte": 3
+    }
+  ]
+}

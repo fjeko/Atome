@@ -1,0 +1,89 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq3-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – Gérer le patrimoine informatique › Thème 3 – Incidents, habilitations et bonnes pratiques de gestion des services",
+  "sequence": null,
+  "seance": "Organiser un parc : entités, lieux et groupes",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Structurer le parc dans un outil de gestion : entités, lieux, groupes, transferts d'équipements, et ce qu'apporte une gestion de parc complète par rapport à un simple inventaire.",
+  "notions": [
+    "Arborescence d'entités",
+    "Lieux",
+    "Groupes d'utilisateurs ou de techniciens",
+    "Transfert d'équipement",
+    "Gestion de parc complète vs inventaire"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq3-s03-s01",
+      "titre": "Entités et lieux",
+      "contenu": "- Les **entités** découpent l'organisation au sens **administratif** : qui gère quoi, qui voit quoi. Elles servent à **cloisonner** les droits.\n- Les **lieux** décrivent l'emplacement **physique** : bâtiment, étage, salle. Ils servent à **retrouver** le matériel.\n\nExemple à la médiathèque intercommunale des Trois-Rivières :\n- entités : *Réseau des médiathèques* > *Médiathèque centrale*, *Annexe de Port-Joli* ;\n- lieux de la centrale : *RDC – Accueil*, *Étage 1 – Espace multimédia*, *Sous-sol – Local technique*.\n\nUn poste appartient à **une entité** (qui le gère) et se trouve dans **un lieu** (où il est).",
+      "notions": [
+        "Arborescence d'entités",
+        "Lieux"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq3-s03-s02",
+      "titre": "Groupes et transferts",
+      "contenu": "- Les **groupes** (d'utilisateurs ou de techniciens) permettent d'**attribuer des tickets** à une équipe (« Équipe réseau ») ou de rattacher du matériel à un service.\n- Le **transfert** fait passer un équipement d'une entité à une autre (un portable prêté par la centrale à l'annexe pour un an). L'historique est conservé ; selon la configuration, les tickets ou documents liés suivent ou non.\n\nConseil : quand un matériel **change de site**, pense à modifier **l'entité et le lieu**, sinon l'inventaire ne reflète plus la réalité.",
+      "notions": [
+        "Groupes d'utilisateurs ou de techniciens",
+        "Transfert d'équipement"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq3-s03-s03",
+      "titre": "Gestion de parc complète vs simple inventaire",
+      "contenu": "Un **outil d'inventaire** (agent + serveur) dit **ce qui existe** : matériel, logiciels, configuration. C'est une photographie technique.\n\nUne **gestion de parc complète** va plus loin :\n- éléments non inventoriables par un agent : **écrans, téléphones, prises et ports réseau**, câblage, consommables ;\n- informations **administratives** : fournisseur, date d'achat, garantie, contrat, coût ;\n- **liens** : quel poste est branché sur quel port de switch, quel ticket concerne quel matériel ;\n- **synchronisation** avec l'outil d'inventaire, avec des **verrous** : quand un technicien corrige un champ à la main, un verrou empêche la prochaine remontée automatique de l'écraser ;\n- **gestion des tickets** liée au matériel.",
+      "notions": [
+        "Gestion de parc complète vs inventaire"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq3-s03-c001",
+      "section": "libre-b1-11-sq3-s03-s01",
+      "type": "qcm",
+      "question": "Tu veux pouvoir retrouver rapidement dans quelle salle se trouve chaque imprimante. Quelle notion utilises-tu ?",
+      "choix": [
+        "L'entité",
+        "Le lieu",
+        "Le profil",
+        "La récursivité"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le lieu décrit l'emplacement physique. L'entité sert au découpage administratif et aux droits.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq3-s03-c002",
+      "section": "libre-b1-11-sq3-s03-s02",
+      "type": "question",
+      "recto": "Un ordinateur est déplacé de la médiathèque centrale vers l'annexe, qui a sa propre entité. Que dois-tu mettre à jour dans l'outil ?",
+      "verso": "Le transférer vers l'entité de l'annexe et changer son lieu, pour que l'outil reflète sa nouvelle gestion et son emplacement réel.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq3-s03-c003",
+      "section": "libre-b1-11-sq3-s03-s03",
+      "type": "qcm",
+      "question": "À quoi sert un verrou sur un champ synchronisé avec l'outil d'inventaire ?",
+      "choix": [
+        "À empêcher l'utilisateur d'allumer le poste",
+        "À empêcher la prochaine remontée automatique d'écraser une valeur saisie à la main",
+        "À chiffrer la base de données",
+        "À bloquer les tickets liés au poste"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le verrou protège une modification manuelle contre l'écrasement par la synchronisation suivante.",
+      "difficulte": 2
+    }
+  ]
+}

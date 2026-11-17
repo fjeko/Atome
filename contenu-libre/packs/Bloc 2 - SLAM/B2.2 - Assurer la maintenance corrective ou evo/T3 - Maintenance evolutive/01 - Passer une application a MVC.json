@@ -1,0 +1,90 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-22-sq3-s01",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.2 – Assurer la maintenance corrective ou évolutive d'une solution applicative › Thème 3 – Maintenance évolutive",
+  "sequence": null,
+  "seance": "Passer une application à MVC",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Faire évoluer une application monolithique vers une architecture MVC : variantes du modèle MVC, connexion indépendante, couche d'accès aux données, et refactorisation progressive.",
+  "notions": [
+    "Variantes MVC",
+    "Modèle actif",
+    "Vue liée au modèle",
+    "Connexion indépendante",
+    "Configuration externe",
+    "Refactorisation vers MVC"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-22-sq3-s01-s01",
+      "titre": "Variantes de MVC",
+      "contenu": "MVC n'est pas une recette unique. Quelques variantes :\n- **Modèle passif** : le contrôleur lit le modèle et met la vue à jour lui-même (le plus simple).\n- **Modèle actif** : le modèle **prévient** les vues quand il change (patron *observateur*, événements) ; plusieurs vues restent synchronisées automatiquement.\n- **Vue liée au format du modèle** : la vue est construite directement sur la structure des objets (liaison de données, MVVM en WPF) ; le contrôleur ou le *ViewModel* expose des propriétés que la vue affiche.\n\nLe principe commun : **séparer** les données/règles, l'affichage et la coordination.",
+      "notions": [
+        "Variantes MVC",
+        "Modèle actif",
+        "Vue liée au modèle"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq3-s01-s02",
+      "titre": "Connexion indépendante",
+      "contenu": "Dans une application monolithique, la chaîne de connexion est souvent recopiée dans chaque formulaire. Première étape de la refonte : **une seule classe** responsable de la connexion, alimentée par la **configuration**.\n\n```csharp\npublic static class Config\n{\n    public static string Chaine =>\n        Environment.GetEnvironmentVariable(\"ATELIER_DB\")\n        ?? throw new InvalidOperationException(\"Chaîne de connexion absente\");\n}\n```\n\nAinsi, changer de serveur (local → hébergé) ne demande **aucune recompilation**, et les **secrets** ne sont pas dans le code versionné (fichier de configuration ignoré par Git, variable d'environnement, coffre de secrets).",
+      "notions": [
+        "Connexion indépendante",
+        "Configuration externe"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq3-s01-s03",
+      "titre": "Refactoriser vers MVC",
+      "contenu": "Démarche progressive, testée à chaque étape :\n1. **Centraliser la connexion** (classe unique + configuration).\n2. **Créer les classes métier** à partir des tables manipulées.\n3. **Extraire tout le SQL** des formulaires vers des classes DAO.\n4. **Créer les contrôleurs** : les formulaires n'appellent plus qu'eux.\n5. **Alléger les formulaires** : affichage et saisie uniquement.\n6. Rechercher les **couplages résiduels** : un formulaire qui crée encore une `MySqlConnection` ou un `MySqlCommand`.",
+      "notions": [
+        "Refactorisation vers MVC"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-22-sq3-s01-c001",
+      "section": "libre-b2-22-sq3-s01-s01",
+      "type": "qcm",
+      "question": "Dans un MVC à modèle actif, comment la vue apprend-elle qu'une donnée a changé ?",
+      "choix": [
+        "Elle relit la base toutes les secondes",
+        "Le modèle émet une notification (événement) à laquelle la vue est abonnée",
+        "L'utilisateur clique sur Actualiser",
+        "Le contrôleur redémarre la fenêtre"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le modèle actif utilise le patron observateur : il notifie ses abonnés.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq3-s01-c002",
+      "section": "libre-b2-22-sq3-s01-s02",
+      "type": "question",
+      "recto": "Pourquoi sortir la chaîne de connexion du code source ?",
+      "verso": "Pour changer de base **sans recompiler** et pour ne pas publier le **mot de passe** dans le dépôt Git.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq3-s01-c003",
+      "section": "libre-b2-22-sq3-s01-s03",
+      "type": "exercice",
+      "enonce": "Dans un formulaire, on trouve : `var cmd = new MySqlCommand(\"SELECT * FROM adherent WHERE actif=1\", cnx); dgv.DataSource = ...`. Réorganise en MVC.",
+      "etapes": [
+        "Créer la classe métier `Adherent` (propriétés de la table).",
+        "Créer `AdherentDAO.ListerActifs()` qui exécute la requête et renvoie une `List<Adherent>`.",
+        "Créer `AdherentControleur.GetActifs()` qui appelle le DAO.",
+        "Dans le formulaire, ne garder que `dgv.DataSource = controleur.GetActifs();`"
+      ],
+      "reponse": "SQL dans le DAO, appel par le contrôleur, formulaire réduit à l'affichage.",
+      "difficulte": 2
+    }
+  ]
+}

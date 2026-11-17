@@ -1,0 +1,75 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq3-s05",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – Gérer le patrimoine informatique › Thème 3 – Incidents, habilitations et bonnes pratiques de gestion des services",
+  "sequence": null,
+  "seance": "Synthèse : proposer un tableau d'habilitations",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. À partir d'un cahier des charges, définir les entités, les profils et les habilitations de chaque acteur, puis présenter le tout dans un tableau clair.",
+  "notions": [
+    "Analyse d'un cahier des charges",
+    "Tableau d'habilitations"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq3-s05-s01",
+      "titre": "Lire un cahier des charges",
+      "contenu": "Le cahier des charges décrit les besoins en langage courant. Ton travail : repérer les **acteurs**, ce qu'ils doivent **faire** (→ profil) et **où** (→ entité).\n\n### Cas : la clinique vétérinaire Patte Douce (2 sites)\n« L'outil sera partagé entre le site de Villeneuve et celui de Bourg-Haut. Ahmed, technicien, intervient sur les deux sites. Julie, technicienne à mi-temps, s'occupe seulement de Bourg-Haut. Le gérant veut tout consulter. Les vétérinaires et assistants déclarent leurs pannes. »\n\nRepérage :\n- entités : *Patte Douce* (racine) > *Villeneuve*, *Bourg-Haut* ;\n- Ahmed : technicien, partout ;\n- Julie : technicienne, Bourg-Haut uniquement ;\n- gérant : consultation, partout ;\n- personnel : déclaration de pannes, sur son site.",
+      "notions": [
+        "Analyse d'un cahier des charges"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq3-s05-s02",
+      "titre": "Construire le tableau",
+      "contenu": "| Compte | Profil | Entité | Récursif |\n| --- | --- | --- | --- |\n| ahmed (technicien) | Technicien | Patte Douce | oui |\n| julie (technicienne) | Technicien | Bourg-Haut | oui (ou non s'il n'y a pas de sous-entité) |\n| gerant | Observateur | Patte Douce | oui |\n| personnel de Villeneuve | Self-Service | Villeneuve | non |\n| personnel de Bourg-Haut | Self-Service | Bourg-Haut | non |\n\nVérifie toujours :\n- que **chaque phrase** du cahier des charges est couverte ;\n- que **personne n'a plus** que nécessaire (moindre privilège) ;\n- que les **comptes par défaut** sont sécurisés.",
+      "notions": [
+        "Tableau d'habilitations"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq3-s05-c001",
+      "section": "libre-b1-11-sq3-s05-s01",
+      "type": "question",
+      "recto": "Dans un cahier des charges, quels mots indiquent généralement le profil et lesquels indiquent l'entité ?",
+      "verso": "Les verbes d'action (consulter, traiter, déclarer, administrer) indiquent le profil ; les lieux ou services (sur le site X, pour le service Y) indiquent l'entité.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq3-s05-c002",
+      "section": "libre-b1-11-sq3-s05-s02",
+      "type": "exercice",
+      "enonce": "Ajoute au tableau : « Une stagiaire, Zoé, aidera Julie à Bourg-Haut pendant 2 mois : elle doit consulter le parc et créer des tickets, sans modifier le matériel. » Propose son habilitation.",
+      "etapes": [
+        "Acteur : Zoé, temporaire.",
+        "Actions : consulter + déclarer, sans modifier → profil Observateur (qui permet généralement de créer des tickets) ou un profil personnalisé dérivé.",
+        "Lieu : Bourg-Haut uniquement → entité Bourg-Haut.",
+        "Bonne pratique : fixer une date de fin de validité au compte (2 mois)."
+      ],
+      "reponse": "zoe : profil Observateur (ou profil adapté) sur l'entité Bourg-Haut, récursif, compte avec date d'expiration.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq3-s05-c003",
+      "section": "libre-b1-11-sq3-s05-s02",
+      "type": "qcm",
+      "question": "Dans le cas Patte Douce, quelle erreur donnerait trop de droits à Julie ?",
+      "choix": [
+        "Profil Technicien sur Bourg-Haut, récursif",
+        "Profil Technicien sur l'entité racine Patte Douce, récursif",
+        "Profil Technicien sur Bourg-Haut, non récursif",
+        "Aucune de ces habilitations ne pose problème"
+      ],
+      "bonneReponse": 1,
+      "explication": "Sur l'entité racine avec récursivité, Julie pourrait agir aussi sur Villeneuve, ce qui dépasse son besoin.",
+      "difficulte": 2
+    }
+  ]
+}

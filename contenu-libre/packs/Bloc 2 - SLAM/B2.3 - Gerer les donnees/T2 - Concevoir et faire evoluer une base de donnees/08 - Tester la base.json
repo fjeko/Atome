@@ -1,0 +1,77 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq2-s08",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – Gérer les données › Thème 2 – Concevoir et faire évoluer une base de données",
+  "sequence": null,
+  "seance": "Tester la base",
+  "ordre": 8,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une base se teste comme un programme : on vérifie que les contraintes refusent les données invalides, que les requêtes métier renvoient les résultats attendus et que les droits sont corrects.",
+  "notions": [
+    "Test des contraintes",
+    "Test des requêtes",
+    "Test des droits"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq2-s08-s01",
+      "titre": "Tester les contraintes",
+      "contenu": "On écrit des requêtes **qui doivent échouer** et on vérifie qu'elles échouent :\n\n| Test | Requête | Attendu |\n| --- | --- | --- |\n| clé primaire | insérer deux fois le même id | refus (doublon) |\n| clé étrangère | prêt avec un `id_jeu` inexistant | refus |\n| NOT NULL | jeu sans titre | refus |\n| CHECK | état « cassé » hors liste | refus |\n| suppression | supprimer un jeu qui a des prêts | refus (ou cascade si voulu) |\n\nSi une requête invalide est **acceptée**, la base a un défaut de conception.",
+      "notions": [
+        "Test des contraintes"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq2-s08-s02",
+      "titre": "Tester les requêtes et les droits",
+      "contenu": "**Requêtes métier** : avec un jeu de test connu, on calcule **à la main** le résultat attendu, puis on compare. Exemple : 3 prêts non rendus dans le jeu de test → la vue `prets_en_cours` doit renvoyer 3 lignes.\n\n**Droits** : on se connecte avec chaque compte (accueil, trésorier…) et on vérifie qu'il **peut** faire ce qui est prévu et **ne peut pas** faire le reste (un `DELETE` refusé pour l'accueil).\n\nLes tests peuvent être automatisés (scripts SQL rejoués, tests unitaires sur la couche d'accès aux données).",
+      "notions": [
+        "Test des requêtes",
+        "Test des droits"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq2-s08-c001",
+      "section": "libre-b2-23-sq2-s08-s01",
+      "type": "qcm",
+      "question": "On insère un prêt pour un adhérent inexistant et l'insertion réussit. Que conclure ?",
+      "choix": [
+        "Tout va bien",
+        "La clé étrangère vers adherent est absente ou désactivée",
+        "L'adhérent a été créé automatiquement",
+        "La table pret est pleine"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une contrainte de clé étrangère aurait dû refuser la ligne.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq2-s08-c002",
+      "section": "libre-b2-23-sq2-s08-s02",
+      "type": "exercice",
+      "enonce": "Propose 4 tests pour la table `reservation(id, #id_salle, debut, fin)` avec la règle « fin postérieure à début » et une clé étrangère vers salle.",
+      "etapes": [
+        "Insertion valide (salle existante, fin > début) → acceptée.",
+        "Salle inexistante → refusée (clé étrangère).",
+        "fin = début ou fin < début → refusée (`CHECK (fin > debut)`).",
+        "debut NULL → refusée (NOT NULL)."
+      ],
+      "reponse": "Un cas nominal accepté et trois cas invalides refusés.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq2-s08-c003",
+      "section": "libre-b2-23-sq2-s08-s02",
+      "type": "question",
+      "recto": "Pourquoi tester les droits avec chaque compte ?",
+      "verso": "Pour vérifier que chaque profil a **exactement** les droits prévus : ni trop (risque), ni trop peu (blocage).",
+      "difficulte": 1
+    }
+  ]
+}

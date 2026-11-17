@@ -1,0 +1,90 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq1-s04",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – Protéger les données à caractère personnel › Thème 1 – Cybermenaces et bonnes pratiques",
+  "sequence": null,
+  "seance": "Déni de service et réseaux de machines infectées",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un réseau de machines infectées (botnet) obéit à un attaquant ; il sert notamment à saturer un service par un déni de service distribué. On apprend le principe et les parades.",
+  "notions": [
+    "Botnet",
+    "Machine zombie",
+    "Serveur de commande",
+    "Déni de service",
+    "DDoS",
+    "Parades au déni de service"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq1-s04-s01",
+      "titre": "Les réseaux de machines infectées",
+      "contenu": "Un **botnet** est un réseau de machines **infectées** (ordinateurs, caméras, box, objets connectés) appelées **zombies**, contrôlées à distance par un attaquant via un **serveur de commande et de contrôle** (C2).\n\nLe propriétaire ne s'en rend souvent pas compte. Les objets connectés mal protégés (mot de passe par défaut, jamais mis à jour) sont des recrues faciles.\n\nUsages : envoi massif de pourriels, attaques par déni de service, minage de cryptomonnaie, tentatives de connexion en masse.",
+      "notions": [
+        "Botnet",
+        "Machine zombie",
+        "Serveur de commande"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s04-s02",
+      "titre": "Le déni de service distribué",
+      "contenu": "Un **déni de service** (DoS) vise à rendre un service **indisponible** en le saturant (requêtes, connexions, trafic). Quand l'attaque vient de **milliers de machines** à la fois, c'est un **déni de service distribué** (DDoS).\n\nConséquences : site marchand inaccessible, perte de chiffre d'affaires, image dégradée. Le DDoS sert parfois de **diversion** pendant une autre attaque, ou de moyen de **chantage**.\n\nLe DDoS n'atteint ni la **confidentialité** ni l'**intégrité** des données : il vise la **disponibilité**.",
+      "notions": [
+        "Déni de service",
+        "DDoS"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s04-s03",
+      "titre": "Parades",
+      "contenu": "- Recourir à un **hébergeur** ou un service **anti-DDoS** (filtrage du trafic en amont, réseau de diffusion de contenu).\n- **Limiter le débit** par client et filtrer les adresses suspectes (pare-feu).\n- **Surdimensionner** ou rendre élastique l'infrastructure critique.\n- Préparer une **procédure** : contacts de l'hébergeur et du fournisseur d'accès, page de maintenance.\n- Côté utilisateur, éviter de devenir zombie : changer les mots de passe par défaut, mettre à jour box et objets connectés.",
+      "notions": [
+        "Parades au déni de service"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq1-s04-c001",
+      "section": "libre-b3-31-sq1-s04-s01",
+      "type": "question",
+      "recto": "Qu'est-ce qu'une machine zombie ?",
+      "verso": "Un appareil **infecté** qui obéit, à l'insu de son propriétaire, aux ordres d'un attaquant au sein d'un botnet.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq1-s04-c002",
+      "section": "libre-b3-31-sq1-s04-s02",
+      "type": "qcm",
+      "question": "Quel critère de sécurité un DDoS attaque-t-il ?",
+      "choix": [
+        "La confidentialité",
+        "L'intégrité",
+        "La disponibilité",
+        "La traçabilité"
+      ],
+      "bonneReponse": 2,
+      "explication": "Le service est saturé et ne répond plus.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s04-c003",
+      "section": "libre-b3-31-sq1-s04-s03",
+      "type": "exercice",
+      "enonce": "Le site de billetterie **TicketMarée** devient inaccessible chaque vendredi soir, au moment d'une mise en vente, avec un trafic venant de milliers d'adresses du monde entier. Identifie l'attaque et propose trois mesures.",
+      "etapes": [
+        "Trafic massif, distribué, sur un moment clé : déni de service distribué (DDoS).",
+        "Mesure 1 : souscrire un service anti-DDoS / filtrage chez l'hébergeur.",
+        "Mesure 2 : limitation du nombre de requêtes par adresse et file d'attente virtuelle.",
+        "Mesure 3 : procédure d'urgence (contact hébergeur, communication aux clients) et dépôt de plainte."
+      ],
+      "reponse": "DDoS ; protection en amont, limitation de débit, procédure de crise.",
+      "difficulte": 2
+    }
+  ]
+}

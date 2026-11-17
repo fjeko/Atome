@@ -1,0 +1,117 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq1-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 1 – Premiers programmes en C#",
+  "sequence": null,
+  "seance": "Conditions",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Faire réagir un programme selon la situation : comparateurs, opérateurs logiques, if/else, alternatives imbriquées et switch.",
+  "notions": [
+    "Comparateurs",
+    "Opérateurs logiques",
+    "If else",
+    "Alternatives imbriquées",
+    "Switch"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq1-s03-s01",
+      "titre": "Comparateurs et opérateurs logiques",
+      "contenu": "Une **condition** est une expression qui vaut `true` ou `false`.\n\n| Comparateur | Sens |\n| --- | --- |\n| `==` | égal à |\n| `!=` | différent de |\n| `<`, `<=` | inférieur, inférieur ou égal |\n| `>`, `>=` | supérieur, supérieur ou égal |\n\n**Piège** : `=` affecte, `==` compare.\n\nOn combine les conditions avec :\n- `&&` (ET) : vrai si **les deux** sont vraies ;\n- `||` (OU) : vrai si **au moins une** est vraie ;\n- `!` (NON) : inverse.\n\n```csharp\nbool reduction = age < 18 || age >= 65;\nbool valide = quantite > 0 && quantite <= stock;\n```",
+      "notions": [
+        "Comparateurs",
+        "Opérateurs logiques"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s03-s02",
+      "titre": "If, else et alternatives imbriquées",
+      "contenu": "```csharp\nif (montant >= 50)\n{\n    Console.WriteLine(\"Livraison offerte\");\n}\nelse\n{\n    Console.WriteLine(\"Frais de livraison : 4,90 €\");\n}\n```\n\nPlusieurs cas : `else if`.\n```csharp\nif (note >= 16)\n    mention = \"Très bien\";\nelse if (note >= 14)\n    mention = \"Bien\";\nelse if (note >= 12)\n    mention = \"Assez bien\";\nelse\n    mention = \"Aucune\";\n```\nLes conditions sont testées **dans l'ordre** : dès qu'une est vraie, les suivantes sont ignorées. L'ordre compte !\n\nOn peut aussi **imbriquer** un `if` dans un autre :\n```csharp\nif (estAdherent)\n{\n    if (anciennete >= 5) remise = 0.15;\n    else remise = 0.10;\n}\n```",
+      "notions": [
+        "If else",
+        "Alternatives imbriquées"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s03-s03",
+      "titre": "Le switch",
+      "contenu": "Quand on compare **une même variable** à plusieurs **valeurs précises**, le `switch` est plus lisible :\n```csharp\nswitch (choix)\n{\n    case 1:\n        Console.WriteLine(\"Nouvelle commande\");\n        break;\n    case 2:\n        Console.WriteLine(\"Consulter le stock\");\n        break;\n    case 3:\n    case 4:\n        Console.WriteLine(\"Statistiques\");\n        break;\n    default:\n        Console.WriteLine(\"Choix inconnu\");\n        break;\n}\n```\n- chaque `case` se termine par `break` ;\n- `default` traite tous les autres cas ;\n- plusieurs `case` peuvent partager le même code.\n\nLe `switch` convient aux **valeurs exactes** (menus, codes) ; pour des **intervalles** (`note >= 14`), on garde `if/else if`.",
+      "notions": [
+        "Switch"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq1-s03-c001",
+      "section": "libre-b1-12a-sq1-s03-s01",
+      "type": "qcm",
+      "question": "`int age = 70; bool estEtudiant = false;` Que vaut `age < 26 || estEtudiant` ?",
+      "choix": [
+        "true",
+        "false",
+        "70",
+        "Erreur"
+      ],
+      "bonneReponse": 1,
+      "explication": "`age < 26` est faux et `estEtudiant` est faux : faux OU faux = faux.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s03-c002",
+      "section": "libre-b1-12a-sq1-s03-s01",
+      "type": "question",
+      "recto": "Quelle est la différence entre `=` et `==` en C# ?",
+      "verso": "`=` range une valeur dans une variable ; `==` teste l'égalité de deux valeurs et renvoie `true` ou `false`.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq1-s03-c003",
+      "section": "libre-b1-12a-sq1-s03-s02",
+      "type": "exercice",
+      "enonce": "Le cinéma associatif Le Lumière pratique ces tarifs : moins de 12 ans 4 €, de 12 à 25 ans inclus 6 €, au-delà 8 €. Écris le `if/else if/else` qui calcule `tarif` à partir de `age`.",
+      "etapes": [
+        "Premier cas : `age < 12` → 4.",
+        "Sinon, si `age <= 25` → 6 (on sait déjà que age ≥ 12).",
+        "Sinon → 8."
+      ],
+      "reponse": "```csharp\ndouble tarif;\nif (age < 12) tarif = 4;\nelse if (age <= 25) tarif = 6;\nelse tarif = 8;\n```",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s03-c004",
+      "section": "libre-b1-12a-sq1-s03-s02",
+      "type": "qcm",
+      "question": "Que se passe-t-il avec ce code si `note = 17` ?\n```csharp\nif (note >= 10) Console.WriteLine(\"Admis\");\nelse if (note >= 16) Console.WriteLine(\"Félicitations\");\n```",
+      "choix": [
+        "Il affiche « Admis » puis « Félicitations »",
+        "Il affiche seulement « Admis »",
+        "Il affiche seulement « Félicitations »",
+        "Il n'affiche rien"
+      ],
+      "bonneReponse": 1,
+      "explication": "La première condition est vraie, donc le `else if` n'est jamais testé. Il faut tester le cas le plus restrictif en premier.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s03-c005",
+      "section": "libre-b1-12a-sq1-s03-s03",
+      "type": "qcm",
+      "question": "Quel mot-clé traite, dans un `switch`, toutes les valeurs non prévues ?",
+      "choix": [
+        "`else`",
+        "`default`",
+        "`break`",
+        "`otherwise`"
+      ],
+      "bonneReponse": 1,
+      "explication": "`default` joue le rôle du « sinon » dans un `switch`.",
+      "difficulte": 1
+    }
+  ]
+}

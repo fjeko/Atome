@@ -1,0 +1,85 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq14-s02",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 9 – Financement",
+  "sequence": null,
+  "seance": "Les solutions de financement",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Financer l'exploitation (découvert, crédit fournisseurs, affacturage) et l'investissement (autofinancement, capital, emprunt, crédit-bail, financement participatif), et choisir.",
+  "notions": [
+    "Financement de l'exploitation",
+    "Financement de l'investissement",
+    "Critères de choix"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq14-s02-s01",
+      "titre": "Financer l'exploitation",
+      "contenu": "| Solution | Principe | Atouts / limites |\n|---|---|---|\n| **crédit fournisseurs** | payer ses fournisseurs à 30 ou 60 jours | gratuit, mais délais plafonnés par la loi |\n| **découvert** et facilités de caisse | compte bancaire temporairement négatif | souple, rapide ; coûteux, révocable |\n| **affacturage** | céder ses créances clients à un organisme (le factor) qui les paie immédiatement, moyennant commission | trésorerie immédiate, gestion du recouvrement ; coût élevé |\n| escompte, crédits de campagne | avances bancaires adossées aux ventes ou à la saison | adaptés aux activités saisonnières |",
+      "notions": [
+        "Financement de l'exploitation"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq14-s02-s02",
+      "titre": "Financer l'investissement",
+      "contenu": "| Solution | Principe | Atouts | Contreparties |\n|---|---|---|---|\n| **autofinancement** | utiliser les bénéfices conservés | indépendance, pas de coût d'intérêt | limité par les résultats passés |\n| **augmentation de capital** | apports des associés ou de nouveaux investisseurs | ressources permanentes, renforce la solidité | **dilution** du pouvoir des associés existants |\n| **emprunt bancaire à long terme** | prêt remboursé avec intérêts | pas de perte de contrôle | coût (intérêts), **garanties** demandées, limité par la capacité d'endettement |\n| **crédit-bail** (leasing) | louer le bien avec option d'achat en fin de contrat | aucun apport, le bien est financé à 100 % | coût total élevé ; l'entreprise n'est pas propriétaire pendant le contrat |\n| **financement participatif** | collecte auprès de nombreux particuliers (dons, prêts, parts) via une plateforme | rapide, effet marketing | succès incertain, montants limités |\n\n**Critères de choix** : coût, capacité d'endettement (une entreprise déjà très endettée n'obtiendra plus de prêt), volonté de garder le **contrôle**, rapidité, montant.",
+      "notions": [
+        "Financement de l'investissement",
+        "Critères de choix"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq14-s02-c001",
+      "section": "libre-cejm-sq14-s02-s01",
+      "type": "qcm",
+      "question": "Une entreprise attend le paiement de factures à 60 jours mais a besoin de trésorerie immédiatement. Quelle solution ?",
+      "choix": [
+        "L'affacturage",
+        "L'augmentation de capital",
+        "Le crédit-bail",
+        "L'emprunt sur 10 ans"
+      ],
+      "bonneReponse": 0,
+      "explication": "Céder ses créances transforme immédiatement des factures en liquidités.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq14-s02-c002",
+      "section": "libre-cejm-sq14-s02-s02",
+      "type": "qcm",
+      "question": "Les fondateurs veulent garder la majorité du pouvoir. Quelle solution risquent-ils d'éviter ?",
+      "choix": [
+        "L'augmentation de capital ouverte à de nouveaux investisseurs",
+        "L'emprunt bancaire",
+        "L'autofinancement",
+        "Le crédit-bail"
+      ],
+      "bonneReponse": 0,
+      "explication": "Faire entrer de nouveaux associés dilue le pouvoir des fondateurs.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq14-s02-c003",
+      "section": "libre-cejm-sq14-s02-s02",
+      "type": "qcm",
+      "question": "Une entreprise très endettée veut financer un nouvel investissement. Quelle solution est la plus réaliste ?",
+      "choix": [
+        "Augmentation de capital ou autofinancement",
+        "Un nouvel emprunt bancaire important",
+        "Un découvert prolongé",
+        "Le crédit fournisseurs"
+      ],
+      "bonneReponse": 0,
+      "explication": "Sa capacité d'endettement est saturée : il faut renforcer les fonds propres.",
+      "difficulte": 3
+    }
+  ]
+}

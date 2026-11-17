@@ -1,0 +1,90 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-34-sq1-s05",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.4 – Garantir la sécurité des services et des données face aux cyberattaques › Thème 1 – Développement web et RGPD",
+  "sequence": null,
+  "seance": "Protection dès la conception, synthèse",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Intégrer la protection des données dès le début d'un projet web : réglages protecteurs par défaut, sécurité, durées de conservation automatisées, registre et répartition des rôles entre client, prestataire et hébergeur.",
+  "notions": [
+    "Privacy by design",
+    "Privacy by default",
+    "Sécurité applicative web",
+    "Rôles dans un projet web",
+    "Registre et projet web"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-34-sq1-s05-s01",
+      "titre": "Protection dès la conception et par défaut",
+      "contenu": "**Dès la conception** (*by design*) :\n- lister les données et finalités dans le cahier des charges ;\n- prévoir les **durées** et leur **purge automatique** (tâche planifiée) ;\n- **pseudonymiser** ce qui peut l'être (statistiques) ;\n- prévoir les **fonctions de droits** (export, rectification, suppression) ;\n- environnements de test avec des **données fictives**.\n\n**Par défaut** (*by default*) : profil non public par défaut, options facultatives désactivées, partage minimal, durée de session raisonnable.",
+      "notions": [
+        "Privacy by design",
+        "Privacy by default"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq1-s05-s02",
+      "titre": "Sécurité de l'application",
+      "contenu": "Mesures de base attendues d'une application qui traite des données personnelles :\n- **HTTPS** partout (et en-tête HSTS) ;\n- mots de passe **hachés** avec `password_hash()` (bcrypt/Argon2) et vérifiés avec `password_verify()` ;\n- **requêtes préparées** contre l'injection SQL ; **échappement** des sorties (`htmlspecialchars`) contre le XSS ;\n- jeton **anti-CSRF** sur les formulaires ;\n- gestion des **droits** côté serveur à chaque requête ;\n- **journalisation** des accès aux données sensibles ; secrets hors du dépôt Git ;\n- mises à jour du framework et des bibliothèques.",
+      "notions": [
+        "Sécurité applicative web"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq1-s05-s03",
+      "titre": "Rôles et registre",
+      "contenu": "Dans un projet web, qui est qui ?\n- le **client** qui commande le site et décide des finalités : **responsable de traitement** ;\n- l'**agence/développeur** qui réalise et maintient le site selon ses instructions : **sous-traitant** (s'il traite des données réelles) ;\n- l'**hébergeur**, l'outil d'e-mailing, la solution de paiement : **sous-traitants** (ou responsables pour leurs propres finalités).\n\nLe développeur **conseille** son client (obligation de conseil) et l'aide à compléter son **registre** : chaque fonctionnalité qui collecte des données devient un traitement à documenter.",
+      "notions": [
+        "Rôles dans un projet web",
+        "Registre et projet web"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-34-sq1-s05-c001",
+      "section": "libre-b3-34-sq1-s05-s01",
+      "type": "question",
+      "recto": "Donne un exemple de « protection par défaut » dans une application web.",
+      "verso": "Par exemple : profil **privé** par défaut, cases de consentement **décochées**, options de partage **désactivées** tant que l'utilisateur ne les active pas.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq1-s05-c002",
+      "section": "libre-b3-34-sq1-s05-s02",
+      "type": "qcm",
+      "question": "Quelle fonction PHP utiliser pour stocker un mot de passe ?",
+      "choix": [
+        "`md5($mdp)`",
+        "`sha1($mdp)`",
+        "`password_hash($mdp, PASSWORD_DEFAULT)`",
+        "`base64_encode($mdp)`"
+      ],
+      "bonneReponse": 2,
+      "explication": "password_hash utilise un algorithme lent et salé (bcrypt par défaut).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq1-s05-c003",
+      "section": "libre-b3-34-sq1-s05-s03",
+      "type": "exercice",
+      "enonce": "Synthèse : l'agence fictive **PixelBocage** développe pour une salle de yoga un site avec réservation en ligne, comptes clients, paiement et newsletter. Liste les points RGPD que l'agence doit intégrer.",
+      "etapes": [
+        "Rôles : la salle est responsable de traitement ; l'agence, l'hébergeur, le prestataire de paiement et l'outil d'e-mailing sont sous-traitants (contrats à prévoir).",
+        "Formulaires minimaux avec mentions d'information ; base légale contrat pour la réservation, consentement distinct (case décochée) pour la newsletter.",
+        "Fonctions de droits : export des données, modification du profil, suppression du compte (factures archivées).",
+        "Bandeau cookies conforme si traceurs non exemptés.",
+        "Sécurité : HTTPS, password_hash, requêtes préparées, échappement, droits côté serveur ; purge automatique des comptes inactifs après une durée fixée.",
+        "Aider la salle à remplir son registre (réservations, clients, newsletter)."
+      ],
+      "reponse": "Rôles et contrats, minimisation et information, consentement distinct, fonctions de droits, cookies, sécurité, durées et registre.",
+      "difficulte": 3
+    }
+  ]
+}

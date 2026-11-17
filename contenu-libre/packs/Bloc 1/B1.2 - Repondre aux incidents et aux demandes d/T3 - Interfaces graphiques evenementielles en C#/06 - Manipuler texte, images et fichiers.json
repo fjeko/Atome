@@ -1,0 +1,128 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq2-s06",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 3 – Interfaces graphiques événementielles en C#",
+  "sequence": null,
+  "seance": "Manipuler texte, images et fichiers",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Travailler avec les caractères et leurs codes, considérer une chaîne comme une suite indexée de caractères, utiliser les séquences d'échappement, les dates, les images des ressources, les boîtes de dialogue de fichiers et les tableaux de structures.",
+  "notions": [
+    "Caractère et code",
+    "Chaîne comme tableau de caractères",
+    "Séquences d'échappement",
+    "Dates",
+    "Images et ressources",
+    "Boîtes de dialogue",
+    "Tableau de structures"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq2-s06-s01",
+      "titre": "Caractères, codes et chaînes",
+      "contenu": "Un `char` est **un seul** caractère, entre apostrophes : `'A'`. Un `string` est une **suite** de caractères, entre guillemets : `\"A\"`. Ce ne sont pas les mêmes types !\n\nChaque caractère a un **code numérique** (Unicode ; pour les lettres de base, identique à l'ASCII) :\n```csharp\nchar c = 'A';\nint code = c;              // 65\nchar suivant = (char)(code + 1);   // 'B'\n```\n\nOn peut parcourir une chaîne comme un **tableau de caractères** :\n```csharp\nstring mot = \"Kayak\";\nchar premier = mot[0];        // 'K'\nchar dernier = mot[mot.Length - 1];  // 'k'\nint nbA = 0;\nforeach (char ch in mot)\n    if (ch == 'a') nbA++;     // 2\n```\nOn peut lire `mot[i]`, mais pas le modifier : une chaîne est immuable.",
+      "notions": [
+        "Caractère et code",
+        "Chaîne comme tableau de caractères"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s06-s02",
+      "titre": "Séquences d'échappement et dates",
+      "contenu": "Certains caractères spéciaux s'écrivent avec une **séquence d'échappement** commençant par `\\` :\n| Séquence | Signification |\n| --- | --- |\n| `\\n` | retour à la ligne |\n| `\\t` | tabulation |\n| `\\\"` | guillemet dans une chaîne |\n| `\\\\` | barre oblique inverse |\n\nPour un chemin Windows, on préfère une chaîne **verbatim** (préfixe `@`), où `\\` n'est pas interprété : `@\"C:\\Photos\\Rando\"`.\n\nLes **dates** utilisent le type `DateTime` :\n```csharp\nDateTime maintenant = DateTime.Now;\nDateTime rdv = new DateTime(2026, 9, 14, 10, 30, 0);\nTimeSpan ecart = rdv - maintenant;\nlblInfo.Text = $\"Rendez-vous le {rdv:dd/MM/yyyy à HH:mm}, dans {ecart.Days} jours\";\nDateTime echeance = DateTime.Today.AddDays(30);\n```\nLe contrôle `DateTimePicker` permet à l'utilisateur de choisir une date sans faute de frappe (propriété `Value`).",
+      "notions": [
+        "Séquences d'échappement",
+        "Dates"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s06-s03",
+      "titre": "Images, ressources et boîtes de dialogue",
+      "contenu": "**Images des ressources** : on ajoute des images au projet (*Propriétés du projet > Ressources*). Elles sont **intégrées** à l'exécutable, donc toujours disponibles :\n```csharp\npicMeteo.Image = Properties.Resources.soleil;\npicMeteo.SizeMode = PictureBoxSizeMode.Zoom;   // adapte l'image au cadre\n```\n\n**Boîtes de dialogue standard** : elles évitent de réinventer la sélection de fichiers.\n```csharp\nprivate void btnOuvrir_Click(object sender, EventArgs e)\n{\n    using (OpenFileDialog dlg = new OpenFileDialog())\n    {\n        dlg.Title = \"Choisir une photo\";\n        dlg.Filter = \"Images|*.jpg;*.png|Tous les fichiers|*.*\";\n        if (dlg.ShowDialog() == DialogResult.OK)\n        {\n            picPhoto.Image = Image.FromFile(dlg.FileName);\n            lblFichier.Text = Path.GetFileName(dlg.FileName);\n        }\n    }\n}\n```\nAutres : `SaveFileDialog` (enregistrer), `FolderBrowserDialog` (choisir un dossier), `MessageBox` (message). On teste toujours le résultat (`DialogResult.OK`) : l'utilisateur peut avoir annulé.",
+      "notions": [
+        "Images et ressources",
+        "Boîtes de dialogue"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s06-s04",
+      "titre": "Les tableaux de structures",
+      "contenu": "Une **structure** (`struct`) regroupe plusieurs valeurs qui vont ensemble :\n```csharp\nstruct Randonnee\n{\n    public string Nom;\n    public double DistanceKm;\n    public int Denivele;\n}\n\nRandonnee[] sorties = new Randonnee[3];\nsorties[0].Nom = \"Tour du lac Vert\";\nsorties[0].DistanceKm = 12.4;\nsorties[0].Denivele = 380;\n```\nUn **tableau de structures** remplace avantageusement plusieurs tableaux parallèles (`noms[]`, `distances[]`, `deniveles[]`) qu'il faudrait garder synchronisés.",
+      "notions": [
+        "Tableau de structures"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq2-s06-c001",
+      "section": "libre-b1-12a-sq2-s06-s01",
+      "type": "exercice",
+      "enonce": "Écris une fonction qui teste si un mot est un palindrome (il se lit pareil dans les deux sens), sans tenir compte de la casse.",
+      "etapes": [
+        "Mettre le mot en minuscules.",
+        "Comparer le caractère i avec le caractère Length − 1 − i, jusqu'au milieu.",
+        "Dès qu'une paire diffère, renvoyer false ; sinon true à la fin."
+      ],
+      "reponse": "```csharp\nstatic bool EstPalindrome(string mot)\n{\n    mot = mot.ToLower();\n    for (int i = 0; i < mot.Length / 2; i++)\n        if (mot[i] != mot[mot.Length - 1 - i]) return false;\n    return true;\n}\n```",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq2-s06-c002",
+      "section": "libre-b1-12a-sq2-s06-s01",
+      "type": "qcm",
+      "question": "Quel est le type de `'Z'` en C# ?",
+      "choix": [
+        "string",
+        "char",
+        "int",
+        "bool"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les apostrophes délimitent un caractère unique (`char`) ; les guillemets, une chaîne (`string`).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq2-s06-c003",
+      "section": "libre-b1-12a-sq2-s06-s02",
+      "type": "qcm",
+      "question": "Comment écrire en C# le chemin `C:\\Factures\\2026` dans une chaîne ?",
+      "choix": [
+        "`\"C:\\Factures\\2026\"`",
+        "`@\"C:\\Factures\\2026\"`",
+        "`'C:\\Factures\\2026'`",
+        "`\"C:/Factures/2026\\\"`"
+      ],
+      "bonneReponse": 1,
+      "explication": "Avec `@`, les barres obliques inverses sont prises telles quelles. Sans `@`, il faut les doubler : `\"C:\\\\Factures\\\\2026\"`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq2-s06-c004",
+      "section": "libre-b1-12a-sq2-s06-s03",
+      "type": "question",
+      "recto": "Pourquoi tester `ShowDialog() == DialogResult.OK` avant d'utiliser le fichier choisi ?",
+      "verso": "Parce que l'utilisateur a pu annuler : dans ce cas, aucun fichier n'est choisi et l'utiliser provoquerait une erreur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq2-s06-c005",
+      "section": "libre-b1-12a-sq2-s06-s04",
+      "type": "qcm",
+      "question": "Quel avantage a un tableau de structures sur trois tableaux séparés (noms, distances, dénivelés) ?",
+      "choix": [
+        "Il est plus rapide à parcourir dans tous les cas",
+        "Les informations d'un même élément restent regroupées, sans risque de décalage entre tableaux",
+        "Il n'a pas de taille fixe",
+        "Il trie automatiquement les données"
+      ],
+      "bonneReponse": 1,
+      "explication": "Avec des tableaux parallèles, une suppression oubliée dans l'un décale tout. La structure garde les données ensemble.",
+      "difficulte": 2
+    }
+  ]
+}

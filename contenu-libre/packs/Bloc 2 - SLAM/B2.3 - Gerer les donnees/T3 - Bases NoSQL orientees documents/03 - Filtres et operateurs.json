@@ -1,0 +1,98 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq3-s03",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – Gérer les données › Thème 3 – Bases NoSQL orientées documents",
+  "sequence": null,
+  "seance": "Filtres et opérateurs",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les filtres de MongoDB utilisent des opérateurs de comparaison, des opérateurs logiques, des tests sur les tableaux et les champs imbriqués, ainsi que le tri et la limitation des résultats.",
+  "notions": [
+    "Opérateurs de comparaison MongoDB",
+    "$and",
+    "$or",
+    "$not",
+    "Notation pointée",
+    "Requête sur tableau",
+    "sort et limit"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq3-s03-s01",
+      "titre": "Opérateurs de comparaison",
+      "contenu": "| Opérateur | Sens | SQL |\n| --- | --- | --- |\n| `$eq` | égal | `=` |\n| `$ne` | différent | `<>` |\n| `$gt`, `$gte` | supérieur, supérieur ou égal | `>`, `>=` |\n| `$lt`, `$lte` | inférieur, inférieur ou égal | `<`, `<=` |\n| `$in`, `$nin` | dans / pas dans une liste | `IN`, `NOT IN` |\n| `$exists` | le champ existe | (pas d'équivalent direct) |\n\n```javascript\ndb.plantes.find({ prix: { $lt: 20 } })\ndb.plantes.find({ prix: { $gte: 10, $lte: 30 } })          // intervalle\ndb.plantes.find({ categorie: { $in: [\"intérieur\", \"succulente\"] } })\ndb.plantes.find({ rusticite: { $exists: true } })\n```\n\nSyntaxe : l'opérateur est **imbriqué** dans le champ : `{ champ: { $op: valeur } }`.",
+      "notions": [
+        "Opérateurs de comparaison MongoDB"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s03-s02",
+      "titre": "Opérateurs logiques",
+      "contenu": "Plusieurs critères dans le même objet sont combinés en **ET** implicite :\n\n```javascript\ndb.plantes.find({ categorie: \"intérieur\", prix: { $lt: 20 } })\n```\n\nPour un **OU** :\n\n```javascript\ndb.plantes.find({ $or: [ { stock: 0 }, { prix: { $gt: 50 } } ] })\n```\n\n`$and` explicite sert quand on applique deux conditions au même champ avec le même opérateur ; `$not` inverse une condition.",
+      "notions": [
+        "$and",
+        "$or",
+        "$not"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s03-s03",
+      "titre": "Champs imbriqués, tableaux, tri",
+      "contenu": "- **Champ imbriqué** : notation pointée **entre guillemets** : `{ \"entretien.lumiere\": \"indirecte\" }`.\n- **Tableau** : `{ tags: \"intérieur\" }` trouve les documents dont le tableau **contient** cette valeur ; `$all` exige plusieurs valeurs ; `$size` teste la taille.\n- **Tri, limite** :\n\n```javascript\ndb.plantes.find({ categorie: \"intérieur\" }).sort({ prix: -1 }).limit(3)   // 3 plus chères\n```\n\n`1` = croissant, `-1` = décroissant.",
+      "notions": [
+        "Notation pointée",
+        "Requête sur tableau",
+        "sort et limit"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq3-s03-c001",
+      "section": "libre-b2-23-sq3-s03-s01",
+      "type": "qcm",
+      "question": "Quelle syntaxe est correcte pour « prix supérieur à 25 » ?",
+      "choix": [
+        "`{ $gt: { prix: 25 } }`",
+        "`{ prix: { $gt: 25 } }`",
+        "`{ prix > 25 }`",
+        "`{ prix: \"$gt 25\" }`"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le champ d'abord, puis un objet contenant l'opérateur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq3-s03-c002",
+      "section": "libre-b2-23-sq3-s03-s02",
+      "type": "exercice",
+      "enonce": "Écris le filtre : plantes d'extérieur dont le stock est inférieur à 5 **ou** dont le prix dépasse 35 €.",
+      "etapes": [
+        "Condition commune : `categorie: \"extérieur\"` (ET implicite).",
+        "Alternative : `$or: [ { stock: { $lt: 5 } }, { prix: { $gt: 35 } } ]`.",
+        "Assembler les deux dans le même objet filtre."
+      ],
+      "reponse": "`db.plantes.find({ categorie: \"extérieur\", $or: [ { stock: { $lt: 5 } }, { prix: { $gt: 35 } } ] })`",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq3-s03-c003",
+      "section": "libre-b2-23-sq3-s03-s03",
+      "type": "qcm",
+      "question": "Comment trouver les plantes dont le sous-document `entretien` a `arrosage` égal à « mensuel » ?",
+      "choix": [
+        "`{ entretien: \"mensuel\" }`",
+        "`{ arrosage: \"mensuel\" }`",
+        "`{ \"entretien.arrosage\": \"mensuel\" }`",
+        "`{ entretien: { arrosage } }`"
+      ],
+      "bonneReponse": 2,
+      "explication": "On utilise la notation pointée, entre guillemets.",
+      "difficulte": 2
+    }
+  ]
+}

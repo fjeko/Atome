@@ -1,0 +1,131 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq1-s05",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 1 – Premiers programmes en C#",
+  "sequence": null,
+  "seance": "Erreurs, tests et débogueur",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Distinguer les types d'erreurs, protéger une saisie avec try/catch ou TryParse, préparer un jeu de tests et utiliser le débogueur (points d'arrêt, pas à pas, observation).",
+  "notions": [
+    "Types d'erreurs",
+    "Try catch",
+    "TryParse",
+    "Jeu de tests",
+    "Débogueur"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq1-s05-s01",
+      "titre": "Trois familles d'erreurs",
+      "contenu": "| Erreur | Quand ? | Exemple |\n| --- | --- | --- |\n| **De compilation** (syntaxe) | le programme ne se lance pas | `;` oublié, variable non déclarée |\n| **D'exécution** (exception) | le programme plante pendant qu'il tourne | division par zéro, `int.Parse(\"abc\")` |\n| **De logique** | le programme tourne mais donne un **mauvais résultat** | `<` au lieu de `<=`, mauvaise formule |\n\nLes erreurs de logique sont les plus traîtres : rien ne prévient. Seuls des **tests** les révèlent.",
+      "notions": [
+        "Types d'erreurs"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s05-s02",
+      "titre": "Intercepter une exception : try/catch",
+      "contenu": "```csharp\ntry\n{\n    Console.Write(\"Âge : \");\n    int age = int.Parse(Console.ReadLine());\n    Console.WriteLine($\"Dans 10 ans : {age + 10}\");\n}\ncatch (FormatException)\n{\n    Console.WriteLine(\"Merci de saisir un nombre entier.\");\n}\n```\n- Le bloc `try` contient le code « risqué ».\n- Si une exception de type `FormatException` survient, l'exécution saute dans le `catch` : le programme **ne plante pas**.\n- On peut combiner avec une boucle pour redemander jusqu'à obtenir une saisie valide.",
+      "notions": [
+        "Try catch"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s05-s03",
+      "titre": "Une alternative : TryParse",
+      "contenu": "`int.TryParse` tente la conversion **sans lever d'exception** : il renvoie `true` si elle a réussi et place le résultat dans une variable.\n```csharp\nint nb;\nConsole.Write(\"Nombre d'invités : \");\nwhile (!int.TryParse(Console.ReadLine(), out nb) || nb < 0)\n{\n    Console.Write(\"Saisie invalide, recommence : \");\n}\nConsole.WriteLine($\"{nb} invités enregistrés\");\n```\nC'est souvent plus simple qu'un `try/catch` pour contrôler une saisie.",
+      "notions": [
+        "TryParse"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s05-s04",
+      "titre": "Préparer un jeu de tests",
+      "contenu": "Un **jeu de tests** est une liste de cas avec, pour chacun, la **donnée d'entrée** et le **résultat attendu**. On le prépare **avant** de tester (idéalement avant de coder).\n\nExemple pour la règle « livraison gratuite à partir de 50 € » :\n| Cas | Montant | Attendu |\n| --- | --- | --- |\n| normal en dessous | 30 | frais 4,90 € |\n| **limite** | 50 | gratuit |\n| juste en dessous de la limite | 49,99 | frais 4,90 € |\n| au-dessus | 120 | gratuit |\n| invalide | « abc » | message d'erreur |\n| invalide | -5 | message d'erreur |\n\nPense toujours aux **valeurs limites** et aux **saisies invalides** : c'est là que se cachent les erreurs.",
+      "notions": [
+        "Jeu de tests"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s05-s05",
+      "titre": "Utiliser le débogueur",
+      "contenu": "Avec le **débogueur**, on fait avancer le programme ligne par ligne pour observer ce qui se passe réellement.\n- **Point d'arrêt** : clic dans la marge (ou **F9**) → l'exécution s'arrête sur cette ligne.\n- **Pas à pas principal** (**F10**) : exécute la ligne et passe à la suivante.\n- **Pas à pas détaillé** (**F11**) : entre dans les fonctions appelées.\n- **Continuer** (**F5**) : reprend jusqu'au point d'arrêt suivant.\n- Fenêtres **Variables locales** et **Espion** : affichent les valeurs en direct ; survoler une variable montre aussi sa valeur.\n\nMéthode : placer un point d'arrêt **juste avant** la zone suspecte, avancer pas à pas, et **comparer** les valeurs observées à celles attendues (ta trace).",
+      "notions": [
+        "Débogueur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq1-s05-c001",
+      "section": "libre-b1-12a-sq1-s05-s01",
+      "type": "qcm",
+      "question": "Un programme de calcul de TVA s'exécute sans planter mais affiche 20 € de TVA pour 100 € HT au taux de 5,5 %. C'est une erreur…",
+      "choix": [
+        "de compilation",
+        "d'exécution",
+        "de logique",
+        "du système d'exploitation"
+      ],
+      "bonneReponse": 2,
+      "explication": "Le programme fonctionne mais le résultat est faux : erreur de logique (sans doute le mauvais taux utilisé).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s05-c002",
+      "section": "libre-b1-12a-sq1-s05-s02",
+      "type": "question",
+      "recto": "À quoi sert un bloc `try/catch` ?",
+      "verso": "À intercepter une erreur d'exécution (exception) pour la traiter proprement au lieu de laisser le programme planter.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s05-c003",
+      "section": "libre-b1-12a-sq1-s05-s03",
+      "type": "qcm",
+      "question": "Que renvoie `int.TryParse(\"12a\", out int n)` ?",
+      "choix": [
+        "12",
+        "false, et n vaut 0",
+        "Une exception FormatException",
+        "true"
+      ],
+      "bonneReponse": 1,
+      "explication": "La conversion échoue : la méthode renvoie `false` et `n` reçoit la valeur par défaut 0, sans planter.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s05-c004",
+      "section": "libre-b1-12a-sq1-s05-s04",
+      "type": "exercice",
+      "enonce": "Propose un jeu de tests (au moins 5 cas) pour un programme qui accepte une note entre 0 et 20 et affiche « admis » à partir de 10.",
+      "etapes": [
+        "Cas normaux : une note < 10 et une note > 10.",
+        "Valeurs limites : 0, 10, 20 (et 9,99 si les décimales sont permises).",
+        "Valeurs invalides : -1, 21, du texte."
+      ],
+      "reponse": "Par exemple : 7 → non admis ; 15 → admis ; 10 → admis ; 0 → non admis ; 20 → admis ; -1 → erreur ; 21 → erreur ; « dix » → erreur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s05-c005",
+      "section": "libre-b1-12a-sq1-s05-s05",
+      "type": "qcm",
+      "question": "Quelle touche, dans Visual Studio, passe à la ligne suivante en traitant d'un bloc les appels de fonctions, sans y descendre ?",
+      "choix": [
+        "F5",
+        "F9",
+        "F10",
+        "F11"
+      ],
+      "bonneReponse": 2,
+      "explication": "F10 = pas à pas principal ; F11 entre dans les fonctions ; F9 pose un point d'arrêt ; F5 continue.",
+      "difficulte": 1
+    }
+  ]
+}

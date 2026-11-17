@@ -1,0 +1,87 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq2-s06",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – Gérer les données › Thème 2 – Concevoir et faire évoluer une base de données",
+  "sequence": null,
+  "seance": "Générer et alimenter la base",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un outil de modélisation génère le script de création. On alimente ensuite la base dans le bon ordre avec un jeu de données de test, et on sait exporter la base.",
+  "notions": [
+    "Génération de script SQL",
+    "Ordre d'insertion",
+    "Jeu de données de test",
+    "Export de base",
+    "Sauvegarde logique"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq2-s06-s01",
+      "titre": "Générer le script",
+      "contenu": "Les outils de modélisation produisent, à partir du MCD, le **MLD** puis un **script SQL** pour le SGBD choisi : `CREATE TABLE` avec types, clés et contraintes.\n\nÀ vérifier dans le script généré :\n- les **types** (longueurs, décimales) ;\n- les `NOT NULL` qui correspondent aux cardinalités minimales 1 ;\n- les **noms** de contraintes et de colonnes ;\n- l'**ordre** de création : on crée d'abord la table visée, puis celle qui porte la clé étrangère (ou les clés étrangères sont ajoutées à la fin par `ALTER TABLE`).",
+      "notions": [
+        "Génération de script SQL"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq2-s06-s02",
+      "titre": "Ordre d'insertion et jeu de test",
+      "contenu": "On insère d'abord les tables **sans clé étrangère** (tables de référence), puis celles qui les référencent :\n\n```text\n1. categorie, editeur, adherent\n2. jeu (référence editeur, categorie)\n3. pret (référence jeu, adherent)\n```\n\nUn bon **jeu de test** :\n- couvre les **cas normaux** et les **cas limites** (adhérent sans prêt, jeu jamais prêté, prêt non rendu avec `date_retour` NULL) ;\n- contient assez de lignes pour vérifier les regroupements ;\n- n'utilise **pas de vraies données personnelles** (noms inventés, e-mails en `@exemple.test`).",
+      "notions": [
+        "Ordre d'insertion",
+        "Jeu de données de test"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq2-s06-s03",
+      "titre": "Exporter la base",
+      "contenu": "L'**export** (sauvegarde logique) produit un fichier SQL qui recrée structure et données :\n\n```bash\nmysqldump -u admin -p ludotheque > ludotheque_2026-11-17.sql\npg_dump -U admin ludotheque > ludotheque.sql\n```\n\nUsages : sauvegarde, migration vers un autre serveur, partage d'un jeu de test. Les outils graphiques (phpMyAdmin, DBeaver) proposent la même fonction. Attention : un export contient les **données personnelles** : il doit être protégé comme la base elle-même.",
+      "notions": [
+        "Export de base",
+        "Sauvegarde logique"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq2-s06-c001",
+      "section": "libre-b2-23-sq2-s06-s01",
+      "type": "qcm",
+      "question": "Le script échoue : « table referenced by foreign key does not exist ». Cause probable ?",
+      "choix": [
+        "Une clé primaire manque dans toutes les tables",
+        "Une table est créée avant la table qu'elle référence",
+        "Le SGBD ne gère pas les clés étrangères",
+        "Il manque des données"
+      ],
+      "bonneReponse": 1,
+      "explication": "Il faut créer d'abord les tables référencées, ou ajouter les clés étrangères à la fin.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq2-s06-c002",
+      "section": "libre-b2-23-sq2-s06-s02",
+      "type": "exercice",
+      "enonce": "Tables : `service(id, nom)`, `employe(id, nom, #id_service, #id_responsable)` (le responsable est un employé), `badge(id, #id_employe)`. Donne l'ordre d'insertion.",
+      "etapes": [
+        "`service` ne dépend de rien : en premier.",
+        "`employe` dépend de `service` et de lui-même : insérer d'abord les responsables (id_responsable NULL), puis les autres.",
+        "`badge` dépend d'`employe` : en dernier."
+      ],
+      "reponse": "service → employe (responsables d'abord) → badge.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq2-s06-c003",
+      "section": "libre-b2-23-sq2-s06-s03",
+      "type": "question",
+      "recto": "Que contient un export de type « dump » SQL ?",
+      "verso": "Les instructions SQL qui **recréent la structure** (CREATE TABLE…) **et les données** (INSERT…) de la base.",
+      "difficulte": 1
+    }
+  ]
+}

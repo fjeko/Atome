@@ -41,6 +41,8 @@ Ces cours sont écrits par une IA et relus par un étudiant : **ils peuvent cont
 
 ## Organisation et mises à jour
 
-Les fichiers sont dans `packs/<Matière>/<Partie>/<séance>.json`, au format décrit dans
+Les fichiers sont rangés par matière, puis par compétence du référentiel (B1.1, B2.3…) et par thème numéroté :
+`packs/<Matière>/<Compétence>/<Thème>/<séance>.json`. Dans le champ `partie`, la compétence et le thème sont séparés
+par « › » (« B1.1 – Gérer le patrimoine informatique › Thème 1 – … »). Le format des fichiers est décrit dans
 [`docs/FORMAT.md`](../docs/FORMAT.md). Les identifiants commencent par `libre-` et restent stables : une mise à jour
 d'Atome met à jour ces cours **sans toucher à ta progression**.

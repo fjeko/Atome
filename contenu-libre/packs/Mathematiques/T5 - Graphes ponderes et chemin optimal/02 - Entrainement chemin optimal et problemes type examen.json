@@ -1,0 +1,87 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq2-s09",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "Thème 5 – Graphes pondérés et chemin optimal",
+  "sequence": null,
+  "seance": "Entraînement chemin optimal et problèmes type examen",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Exercices complets de chemin optimal à partir d'un tableau de valeurs, et problème de synthèse enchaînant graphe, matrice, puissances et conclusion rédigée.",
+  "notions": [
+    "Chemin optimal à partir d'un tableau",
+    "Problème de synthèse"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq2-s09-s01",
+      "titre": "Exercice guidé : tournée de livraison",
+      "contenu": "*Cargo Douceur*, livreur fictif de colis, peut passer par plusieurs dépôts entre l'entrée E et la destination F. Les durées (en minutes) sont :\n\n| Arc | E→P | E→Q | P→Q | P→R | Q→R | Q→S | R→S | R→F | S→F |\n|---|---|---|---|---|---|---|---|---|---|\n| Durée | 3 | 5 | 1 | 6 | 3 | 7 | 2 | 8 | 4 |\n\n**Niveaux** : E (0), P (1), Q (2), R (3), S (4), F (5).\n\n**Durée minimale**\n\n| Sommet | E | P | Q | R | S | F |\n|---|---|---|---|---|---|---|\n| Valeur | 0 | 3 | $\\min(5 ; 4) = 4$ | $\\min(9 ; 7) = 7$ | $\\min(11 ; 9) = 9$ | $\\min(15 ; 13) = 13$ |\n| Vient de | — | E | P | Q | R | S |\n\nChemin : $E \\to P \\to Q \\to R \\to S \\to F$, **13 minutes**, longueur 5.\n\n**Durée maximale** (par exemple pour prévoir le pire) : P 3 ; Q $\\max(5 ; 4) = 5$ (E) ; R $\\max(9 ; 8) = 9$ (P) ; S $\\max(12 ; 11) = 12$ (Q) ; F $\\max(17 ; 16) = 17$ (R). Chemin : $E \\to P \\to R \\to F$, **17 minutes**, longueur 3.",
+      "notions": [
+        "Chemin optimal à partir d'un tableau"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s09-s02",
+      "titre": "Problème de synthèse type examen",
+      "contenu": "Un sujet enchaîne souvent : **contexte → graphe → matrice → puissances → phrase de conclusion**.\n\n*Énoncé type.* Une médiathèque numérique fictive relie 4 rubriques : Films (F), Livres (L), Musique (M), Podcasts (P). Liens : F → L, F → M, L → P, M → L, P → F.\n\n1. **Matrice** (ordre F, L, M, P) : $\\begin{pmatrix}0 & 1 & 1 & 0\\\\0 & 0 & 0 & 1\\\\0 & 1 & 0 & 0\\\\1 & 0 & 0 & 0\\end{pmatrix}$\n2. **$M^2$** : ligne F = lignes L + M = $(0, 1, 0, 1)$ ; ligne L = ligne P = $(1, 0, 0, 0)$ ; ligne M = ligne L = $(0, 0, 0, 1)$ ; ligne P = ligne F = $(0, 1, 1, 0)$.\n3. **Interprétation** : $(M^2)_{F,P} = 1$ → un seul parcours en 2 clics de Films à Podcasts ($F \\to L \\to P$).\n4. **Chemin hamiltonien** : $F \\to M \\to L \\to P$ (et même un circuit hamiltonien en ajoutant $P \\to F$).\n5. **Conclusion rédigée** : « Toutes les rubriques sont accessibles depuis n'importe quelle autre, car le graphe possède un circuit hamiltonien. »",
+      "notions": [
+        "Problème de synthèse"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq2-s09-c001",
+      "section": "libre-maths-sq2-s09-s01",
+      "type": "exercice",
+      "enonce": "Pour *Cargo Douceur*, l'arc R→F passe de 8 à 4 minutes (nouvelle route). Quel est le nouveau trajet le plus rapide de E à F ?",
+      "etapes": [
+        "Valeurs inchangées jusqu'à R : E 0, P 3, Q 4, R 7 (depuis Q), S 9 (depuis R).",
+        "F : $\\min(7 + 4 ;\\ 9 + 4) = 11$, depuis R.",
+        "On remonte : F ← R ← Q ← P ← E."
+      ],
+      "reponse": "$E \\to P \\to Q \\to R \\to F$, en 11 minutes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s09-c002",
+      "section": "libre-maths-sq2-s09-s01",
+      "type": "qcm",
+      "question": "Dans un tableau de recherche du minimum, un élève écrit pour Q : « $\\min(5 ; 3) = 3$ » alors que l'arc P→Q vaut 1 et que P vaut 3. Quelle est son erreur ?",
+      "choix": [
+        "Il a oublié d'ajouter la valeur de P avant de comparer",
+        "Il aurait dû prendre le maximum",
+        "Il a oublié l'arc E→Q",
+        "Aucune"
+      ],
+      "bonneReponse": 0,
+      "explication": "On compare des valeurs de chemins complets : $0 + 5 = 5$ et $3 + 1 = 4$, donc le minimum est 4.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s09-c003",
+      "section": "libre-maths-sq2-s09-s02",
+      "type": "exercice",
+      "enonce": "Avec la médiathèque ci-dessus, quel est le nombre total de chemins de longueur 2 ? Lesquels arrivent en L ?",
+      "etapes": [
+        "Somme des coefficients de $M^2$ : $2 + 1 + 1 + 2 = 6$.",
+        "Colonne L de $M^2$ : des 1 en lignes F et P.",
+        "Ce sont $F \\to M \\to L$ et $P \\to F \\to L$."
+      ],
+      "reponse": "6 chemins de longueur 2 ; deux arrivent en L : $F \\to M \\to L$ et $P \\to F \\to L$.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-maths-sq2-s09-c004",
+      "section": "libre-maths-sq2-s09-s02",
+      "type": "question",
+      "recto": "Pourquoi un circuit hamiltonien garantit-il que tout sommet peut atteindre tout autre sommet ?",
+      "verso": "Parce que le circuit passe par tous les sommets et revient au départ : en le suivant, on atteint n'importe quel sommet depuis n'importe quel autre.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq3-s06",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 4 – Programmation orientée objet en C#",
+  "sequence": null,
+  "seance": "Cas d'utilisation et recherche",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Modéliser ce que fait une application avec un diagramme de cas d'utilisation et une description textuelle (préconditions, scénario), puis implémenter une recherche à la volée insensible à la casse.",
+  "notions": [
+    "Diagramme de cas d'utilisation",
+    "Acteur",
+    "Description textuelle d'un cas",
+    "Recherche à la volée"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq3-s06-s01",
+      "titre": "Le diagramme de cas d'utilisation",
+      "contenu": "Le **diagramme de cas d'utilisation** (UML) montre **qui** utilise l'application et **pour faire quoi**, sans dire comment.\n- Un **acteur** (bonhomme) : un rôle extérieur au système (un agent, un client, un autre logiciel).\n- Un **cas d'utilisation** (ellipse) : un service rendu, formulé par un **verbe à l'infinitif** (« Réserver un vélo »).\n- Le **rectangle** délimite le système.\n\n```text\n                +-------- Application Roue Libre --------+\n                |                                        |\n [Agent] ------ |--( Enregistrer une location )          |\n    |           |--( Rechercher un vélo )                |\n    |           |--( Ajouter un vélo à la flotte )       |\n [Responsable] -|--( Consulter les statistiques )        |\n                +----------------------------------------+\n```\nDes relations « include » (un cas en utilise toujours un autre) et « extend » (un cas en complète parfois un autre) peuvent préciser les liens.",
+      "notions": [
+        "Diagramme de cas d'utilisation",
+        "Acteur"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s06-s02",
+      "titre": "La description textuelle d'un cas",
+      "contenu": "Chaque cas important est détaillé par écrit :\n| Rubrique | « Rechercher un vélo » |\n| --- | --- |\n| Acteur | Agent |\n| Préconditions | l'agent est connecté ; la flotte est chargée |\n| Scénario nominal | 1. L'agent tape une partie de la référence ou du modèle. 2. Le système affiche au fur et à mesure les vélos correspondants. 3. L'agent sélectionne un vélo. 4. Le système affiche sa fiche. |\n| Scénarios alternatifs | 2a. Aucun vélo ne correspond : le système affiche « Aucun résultat ». |\n| Postconditions | le vélo choisi est sélectionné pour une location |\n\nLes **préconditions** sont ce qui doit être vrai **avant** de commencer ; le code doit les **vérifier** (ou l'interface les rendre obligatoires).",
+      "notions": [
+        "Description textuelle d'un cas"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s06-s03",
+      "titre": "Implémenter une recherche à la volée",
+      "contenu": "« Au fur et à mesure » : la recherche se relance à **chaque frappe** (`TextChanged`), et elle doit être **insensible à la casse** : « ve-0 » doit trouver « VE-07 ».\n```csharp\nprivate void txtRecherche_TextChanged(object sender, EventArgs e)\n{\n    string saisie = txtRecherche.Text.Trim();\n    List<Velo> resultats = flotte\n        .Where(v => v.Reference.Contains(saisie, StringComparison.OrdinalIgnoreCase))\n        .ToList();\n\n    lstResultats.DataSource = resultats;\n    lblAucun.Visible = resultats.Count == 0;   // scénario alternatif 2a\n}\n```\n- `Contains(..., StringComparison.OrdinalIgnoreCase)` ignore majuscules/minuscules.\n- Les accents ne sont pas ignorés par cette option : « elec » ne trouve pas « Élec ». Si c'est nécessaire, il faut une comparaison plus avancée (`CompareInfo.IndexOf` avec `CompareOptions.IgnoreNonSpace`).",
+      "notions": [
+        "Recherche à la volée"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq3-s06-c001",
+      "section": "libre-b1-12a-sq3-s06-s01",
+      "type": "qcm",
+      "question": "Comment formule-t-on un cas d'utilisation ?",
+      "choix": [
+        "Par un nom de classe",
+        "Par un verbe à l'infinitif décrivant un service rendu à l'acteur",
+        "Par le nom du développeur",
+        "Par une ligne de code"
+      ],
+      "bonneReponse": 1,
+      "explication": "Exemple : « Rechercher un vélo ». Le cas décrit ce que l'acteur obtient du système.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq3-s06-c002",
+      "section": "libre-b1-12a-sq3-s06-s02",
+      "type": "exercice",
+      "enonce": "Rédige les préconditions et le scénario nominal du cas « Enregistrer un retour de vélo » (acteur : agent).",
+      "etapes": [
+        "Préconditions : agent connecté ; le vélo est actuellement en location.",
+        "1. L'agent sélectionne la location en cours (ou scanne la référence du vélo).",
+        "2. Le système affiche la date de début et calcule le prix (ou le retard).",
+        "3. L'agent indique l'état du vélo et valide.",
+        "4. Le système clôt la location et remet le vélo disponible."
+      ],
+      "reponse": "Préconditions : agent connecté, vélo en location. Scénario : sélection de la location → calcul du prix → saisie de l'état → validation → vélo disponible.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq3-s06-c003",
+      "section": "libre-b1-12a-sq3-s06-s03",
+      "type": "qcm",
+      "question": "Quelle option rend `Contains` insensible à la casse ?",
+      "choix": [
+        "`StringComparison.Ordinal`",
+        "`StringComparison.OrdinalIgnoreCase`",
+        "`ToString()`",
+        "Aucune, Contains l'est déjà"
+      ],
+      "bonneReponse": 1,
+      "explication": "Par défaut `Contains` est sensible à la casse ; `OrdinalIgnoreCase` ignore la différence majuscules/minuscules.",
+      "difficulte": 2
+    }
+  ]
+}

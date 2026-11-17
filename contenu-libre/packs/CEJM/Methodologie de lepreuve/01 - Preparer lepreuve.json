@@ -1,0 +1,85 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-m-s01",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Méthodologie de l'épreuve",
+  "sequence": null,
+  "seance": "Préparer l'épreuve",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Ce que l'épreuve de CEJM évalue, comment elle se présente et comment s'organiser le jour J, depuis la première lecture du sujet jusqu'à la relecture finale.",
+  "notions": [
+    "Compétences évaluées",
+    "Format de l'épreuve",
+    "Gestion du temps et méthode"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-m-s01-s01",
+      "titre": "Ce que l'épreuve évalue",
+      "contenu": "La CEJM (culture économique, juridique et managériale) croise trois disciplines autour d'une **situation d'entreprise**. On n'attend pas une récitation de cours, mais la capacité à :\n\n- **analyser** une situation à partir de documents ;\n- **mobiliser** des notions et des règles pour l'expliquer ;\n- **argumenter** une réponse structurée, avec un vocabulaire précis ;\n- **exploiter** des données chiffrées (calculs simples, lecture de graphiques).\n\nLes trois champs sont liés : une décision de management (externaliser, innover, se financer) a des aspects économiques (coûts, marché) et juridiques (contrat, responsabilité).",
+      "notions": [
+        "Compétences évaluées"
+      ]
+    },
+    {
+      "id": "libre-cejm-m-s01-s02",
+      "titre": "Le format de l'écrit",
+      "contenu": "L'écrit (épreuve de **4 heures**) s'appuie sur un **dossier documentaire** : présentation d'une organisation, documents économiques, juridiques et managériaux (textes, tableaux, graphiques, extraits de contrats ou de décisions).\n\nOn y trouve en général :\n1. des **questions guidées** liées à la situation (repérer, expliquer, analyser, qualifier juridiquement, calculer) ;\n2. une **question d'argumentation** (développement structuré) qui demande de prendre du recul sur un thème du programme, en s'appuyant sur ses connaissances et sur le dossier.\n\nSelon la réglementation de la session, un **oral de contrôle** peut être proposé aux candidats proches de la moyenne ; il porte sur les mêmes compétences.",
+      "notions": [
+        "Format de l'épreuve"
+      ]
+    },
+    {
+      "id": "libre-cejm-m-s01-s03",
+      "titre": "Méthode pendant l'épreuve",
+      "contenu": "| Temps indicatif | Étape |\n|---|---|\n| 15 min | lire **tout** le sujet : la situation, puis les questions, puis survoler les documents |\n| 15 min | associer chaque question aux documents utiles ; surligner les verbes directeurs |\n| 2 h 45 | rédiger, question par question, en gardant un œil sur la montre |\n| 15 min | **relire** : orthographe, chiffres, réponse effective à chaque question |\n\nConseils :\n- numérote clairement tes réponses et saute des lignes ;\n- commence par les questions où tu es le plus à l'aise, mais **ne laisse rien en blanc** ;\n- prévois environ 45 min pour la question d'argumentation : elle pèse lourd.",
+      "notions": [
+        "Gestion du temps et méthode"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-m-s01-c001",
+      "section": "libre-cejm-m-s01-s01",
+      "type": "qcm",
+      "question": "Qu'attend-on principalement d'un candidat à l'épreuve de CEJM ?",
+      "choix": [
+        "Analyser une situation d'entreprise en mobilisant des notions et en argumentant",
+        "Réciter des définitions sans lien avec le sujet",
+        "Recopier les documents fournis",
+        "Donner son opinion personnelle sans justification"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les connaissances servent à analyser et à justifier ; la paraphrase et l'opinion non argumentée rapportent peu.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-m-s01-c002",
+      "section": "libre-cejm-m-s01-s02",
+      "type": "question",
+      "recto": "Sur quoi s'appuie l'écrit de CEJM ?",
+      "verso": "Sur une situation d'organisation et un dossier documentaire (textes, chiffres, graphiques, documents juridiques), avec des questions guidées et une question d'argumentation.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-m-s01-c003",
+      "section": "libre-cejm-m-s01-s03",
+      "type": "qcm",
+      "question": "Quelle est la première chose à faire en découvrant le sujet ?",
+      "choix": [
+        "Lire la situation et l'ensemble des questions avant de rédiger",
+        "Commencer à rédiger la question 1",
+        "Lire seulement les documents chiffrés",
+        "Commencer par la question d'argumentation"
+      ],
+      "bonneReponse": 0,
+      "explication": "Une vue d'ensemble permet de repérer ce que chaque document apporte et d'éviter les répétitions.",
+      "difficulte": 1
+    }
+  ]
+}

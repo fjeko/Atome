@@ -1,0 +1,90 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq4-s04",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 5 – Application de bureau avec base de données",
+  "sequence": null,
+  "seance": "Couche d'accès, modèle et contrôleur",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une application MVC avec base de données ajoute une couche d'accès aux données. Les classes métier utilisent des propriétés automatiques et redéfinissent ToString ; le contrôleur fait le lien entre vue et données.",
+  "notions": [
+    "Couche d'accès aux données",
+    "Architecture MVC avec base",
+    "Propriété automatique",
+    "Redéfinition de ToString",
+    "Méthode de lecture",
+    "Contrôleur intermédiaire"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq4-s04-s01",
+      "titre": "Architecture en couches",
+      "contenu": "```text\nVue (formulaires)  →  Contrôleur  →  Couche d'accès (DAL)  →  Base\n                          ↘ Modèle (classes métier) ↙\n```\n\n- **Vue** : formulaires WinForms ou WPF, aucun SQL.\n- **Contrôleur** : reçoit les demandes de la vue, appelle la DAL, renvoie des objets métier.\n- **DAL** (*Data Access Layer*) : seule couche qui contient du SQL ; transforme les lignes en objets.\n- **Modèle** : classes métier (`Transporteur`, `Livraison`).\n\nAvantage : si la base change (MySQL → PostgreSQL), seule la DAL est modifiée.",
+      "notions": [
+        "Couche d'accès aux données",
+        "Architecture MVC avec base"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq4-s04-s02",
+      "titre": "Classes métier en C#",
+      "contenu": "En C#, une **propriété automatique** remplace attribut + accesseur + mutateur :\n\n```csharp\npublic class Transporteur\n{\n    public int Id { get; set; }\n    public string Nom { get; set; } = \"\";\n    public string Ville { get; set; } = \"\";\n\n    public override string ToString() => $\"{Nom} ({Ville})\";\n}\n```\n\nRedéfinir **`ToString()`** est utile : c'est cette chaîne qui s'affiche quand on met l'objet dans une liste déroulante.\n\nOn peut restreindre : `public int Id { get; private set; }` (lecture publique, écriture interne).",
+      "notions": [
+        "Propriété automatique",
+        "Redéfinition de ToString"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq4-s04-s03",
+      "titre": "La couche d'accès et le contrôleur",
+      "contenu": "```csharp\npublic class TransporteurDAO\n{\n    public List<Transporteur> Lister()\n    {\n        var liste = new List<Transporteur>();\n        using var cnx = new MySqlConnection(Config.Chaine);\n        cnx.Open();\n        using var cmd = new MySqlCommand(\"SELECT id, nom, ville FROM transporteur ORDER BY nom\", cnx);\n        using var r = cmd.ExecuteReader();\n        while (r.Read())\n            liste.Add(new Transporteur { Id = r.GetInt32(\"id\"), Nom = r.GetString(\"nom\"), Ville = r.GetString(\"ville\") });\n        return liste;\n    }\n}\n\npublic class TransporteurControleur\n{\n    private readonly TransporteurDAO dao = new();\n    public List<Transporteur> GetTransporteurs() => dao.Lister();\n}\n```\n\nLa vue n'appelle **que** le contrôleur : `dgvTransporteurs.DataSource = controleur.GetTransporteurs();`",
+      "notions": [
+        "Méthode de lecture",
+        "Contrôleur intermédiaire"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq4-s04-c001",
+      "section": "libre-b2-21-sq4-s04-s01",
+      "type": "qcm",
+      "question": "Dans cette architecture, où écrit-on `SELECT * FROM livraison` ?",
+      "choix": [
+        "Dans le formulaire",
+        "Dans la classe Livraison",
+        "Dans la couche d'accès aux données",
+        "Dans le contrôleur"
+      ],
+      "bonneReponse": 2,
+      "explication": "Seule la DAL contient du SQL ; elle renvoie des objets Livraison.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq4-s04-c002",
+      "section": "libre-b2-21-sq4-s04-s02",
+      "type": "question",
+      "recto": "Pourquoi redéfinir `ToString()` dans une classe métier ?",
+      "verso": "Pour contrôler le **texte affiché** quand l'objet est montré (liste déroulante, liste, débogage) au lieu du nom de la classe.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq4-s04-c003",
+      "section": "libre-b2-21-sq4-s04-s03",
+      "type": "exercice",
+      "enonce": "Écris la méthode DAO `Ajouter(Transporteur t)` qui insère un transporteur (nom, ville) avec une requête paramétrée.",
+      "etapes": [
+        "Ouvrir la connexion dans un `using`.",
+        "Requête : `INSERT INTO transporteur (nom, ville) VALUES (@nom, @ville)`.",
+        "Paramètres : `cmd.Parameters.AddWithValue(\"@nom\", t.Nom); cmd.Parameters.AddWithValue(\"@ville\", t.Ville);`",
+        "Exécuter `cmd.ExecuteNonQuery();` (renvoie 1 si l'insertion a réussi)."
+      ],
+      "reponse": "Méthode qui ouvre la connexion, exécute un INSERT paramétré, et ne contient aucune référence à l'interface.",
+      "difficulte": 2
+    }
+  ]
+}

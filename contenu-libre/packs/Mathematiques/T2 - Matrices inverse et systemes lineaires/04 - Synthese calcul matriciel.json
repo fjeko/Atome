@@ -1,0 +1,106 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq1-s07",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "Thème 2 – Matrices : inverse et systèmes linéaires",
+  "sequence": null,
+  "seance": "Synthèse calcul matriciel",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Fiche mémo de tout le calcul matriciel : vocabulaire, opérations, produit, inverse et systèmes, avec les pièges à éviter.",
+  "notions": [
+    "Opérations sur les matrices",
+    "Inverse et systèmes",
+    "Pièges fréquents"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq1-s07-s01",
+      "titre": "Mémo : vocabulaire et opérations",
+      "contenu": "| Notion | À retenir |\n|---|---|\n| Dimension | $n \\times p$ = lignes × colonnes |\n| Coefficient $a_{i,j}$ | ligne $i$, colonne $j$ |\n| Égalité | même dimension + coefficients égaux deux à deux |\n| $A + B$, $A - B$ | même dimension, case par case |\n| $k \\cdot A$ | chaque coefficient multiplié par $k$ |\n| $A \\times B$ | colonnes de $A$ = lignes de $B$ ; $(n \\times p)(p \\times q) \\to n \\times q$ ; ligne × colonne |\n| $A^n$ | seulement si $A$ carrée |\n| $I_n$ | neutre : $AI = IA = A$ |",
+      "notions": [
+        "Opérations sur les matrices"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s07-s02",
+      "titre": "Mémo : inverse et systèmes",
+      "contenu": "- $A^{-1}$ existe seulement pour certaines matrices carrées ; elle vérifie $AA^{-1} = A^{-1}A = I$.\n- **Vérifier** : calculer $A \\times B$ et trouver $I$.\n- **Déduire** : $AB = kI$ ($k \\neq 0$) ⟹ $A^{-1} = \\frac{1}{k}B$. Avec des puissances, on met $A$ en facteur et on écrit $kI$, pas $k$.\n- **Système** : $MX = Y$ ⟹ $X = M^{-1}Y$ (multiplication **à gauche**).\n- Rédaction type : « On calcule $PM$, on obtient $I_3$, donc $M$ est inversible et $M^{-1} = P$. Comme $MX = Y$, on a $X = PY = \\dots$ »",
+      "notions": [
+        "Inverse et systèmes"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s07-s03",
+      "titre": "Les pièges à éviter",
+      "contenu": "1. **Croire que $AB = BA$.** C'est faux en général. Garde toujours l'ordre.\n2. **Multiplier case par case** au lieu de faire ligne × colonne.\n3. **Mélanger l'ordre des dimensions** : c'est lignes × colonnes.\n4. **Diviser par une matrice** : interdit. On multiplie par l'inverse, du bon côté.\n5. **Écrire $X = YM^{-1}$** au lieu de $X = M^{-1}Y$.\n6. **Oublier qu'une inverse peut ne pas exister.**\n7. **Arrondir trop tôt**, ou rendre une solution décimale quand on compte des objets.\n8. **Confondre matrice nulle et identité** : $A - A = 0$, alors que $AA^{-1} = I$.",
+      "notions": [
+        "Pièges fréquents"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq1-s07-c001",
+      "section": "libre-maths-sq1-s07-s01",
+      "type": "qcm",
+      "question": "$A$ est $4 \\times 2$, $B$ est $2 \\times 4$. Quelle est la dimension de $B \\times A$ ?",
+      "choix": [
+        "$2 \\times 2$",
+        "$4 \\times 4$",
+        "$2 \\times 4$",
+        "Impossible"
+      ],
+      "bonneReponse": 0,
+      "explication": "$(2 \\times 4)(4 \\times 2)$ : compatible, résultat $2 \\times 2$. Et $A \\times B$ serait $4 \\times 4$.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s07-c002",
+      "section": "libre-maths-sq1-s07-s01",
+      "type": "question",
+      "recto": "Cite deux propriétés des nombres qui restent vraies pour le produit matriciel, et une qui devient fausse.",
+      "verso": "Vraies : associativité $(AB)C = A(BC)$, distributivité $A(B+C) = AB + AC$. Fausse : la commutativité ($AB \\neq BA$ en général).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s07-c003",
+      "section": "libre-maths-sq1-s07-s02",
+      "type": "exercice",
+      "enonce": "Résous $\\begin{cases}x + y = 7\\\\x + 2y = 10\\end{cases}$ sachant que $\\begin{pmatrix}1 & 1\\\\1 & 2\\end{pmatrix}^{-1} = \\begin{pmatrix}2 & -1\\\\-1 & 1\\end{pmatrix}$.",
+      "etapes": [
+        "$X = M^{-1}Y = \\begin{pmatrix}2 & -1\\\\-1 & 1\\end{pmatrix}\\begin{pmatrix}7\\\\10\\end{pmatrix}$",
+        "$x = 14 - 10 = 4$ et $y = -7 + 10 = 3$",
+        "Vérification : $4 + 3 = 7$ et $4 + 6 = 10$."
+      ],
+      "reponse": "$x = 4$, $y = 3$",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s07-c004",
+      "section": "libre-maths-sq1-s07-s03",
+      "type": "qcm",
+      "question": "Quelle écriture est correcte ?",
+      "choix": [
+        "$AX = B \\Rightarrow X = A^{-1}B$",
+        "$AX = B \\Rightarrow X = BA^{-1}$",
+        "$AX = B \\Rightarrow X = \\dfrac{B}{A}$",
+        "$AX = B \\Rightarrow X = B - A$"
+      ],
+      "bonneReponse": 0,
+      "explication": "$A$ précède $X$ dans le produit : il faut donc multiplier par $A^{-1}$ du côté gauche.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s07-c005",
+      "section": "libre-maths-sq1-s07-s03",
+      "type": "question",
+      "recto": "Pourquoi $A - A$ et $A \\times A^{-1}$ ne donnent-ils pas la même matrice ?",
+      "verso": "$A - A$ donne la matrice **nulle** (que des 0) ; $A \\times A^{-1}$ donne l'**identité** (des 1 sur la diagonale).",
+      "difficulte": 1
+    }
+  ]
+}

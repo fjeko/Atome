@@ -1,0 +1,66 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq14-s03",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 9 – Financement",
+  "sequence": null,
+  "seance": "Synthèse et étude de cas",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif des besoins et solutions de financement, puis cas chiffré d'une entreprise fictive saisonnière qui veut se moderniser.",
+  "notions": [
+    "Synthèse financement",
+    "Application à un cas"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq14-s03-s01",
+      "titre": "L'essentiel",
+      "contenu": "- **BFR** = stocks + créances clients − dettes fournisseurs ; il augmente avec la croissance et selon la saison.\n- BFR ≠ trésorerie : trésorerie = fonds de roulement − BFR.\n- **Équilibre** : besoins durables ↔ ressources durables ; jamais d'investissement sur découvert.\n- Exploitation : crédit fournisseurs, découvert, affacturage.\n- Investissement : autofinancement, capital (dilution), emprunt (intérêts, garanties), crédit-bail, financement participatif.",
+      "notions": [
+        "Synthèse financement"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq14-s03-s02",
+      "titre": "Étude de cas : Givre & Glisse",
+      "contenu": "*Givre & Glisse*, loueur fictif de skis en station, réalise 80 % de son chiffre d'affaires de décembre à mars. En novembre, il constitue ses stocks : stocks 60 000 €, créances clients 5 000 €, dettes fournisseurs 20 000 €. Il veut aussi acheter une machine d'entretien des skis de 45 000 €, utilisée 8 ans. Il a dégagé 15 000 € de bénéfices conservés ; son endettement est modéré.",
+      "notions": [
+        "Application à un cas"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq14-s03-c001",
+      "section": "libre-cejm-sq14-s03-s01",
+      "type": "qcm",
+      "question": "Quel couple besoin/solution est inadapté ?",
+      "choix": [
+        "Achat d'un entrepôt / découvert bancaire",
+        "Pic saisonnier de stocks / crédit de campagne",
+        "Nouvelle machine / crédit-bail",
+        "Factures clients en attente / affacturage"
+      ],
+      "bonneReponse": 0,
+      "explication": "Un entrepôt est un besoin durable : il ne se finance pas à court terme.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq14-s03-c002",
+      "section": "libre-cejm-sq14-s03-s02",
+      "type": "exercice",
+      "enonce": "Calcule le BFR de novembre de *Givre & Glisse* et propose un financement pour chacun de ses deux besoins.",
+      "etapes": [
+        "BFR = 60 000 + 5 000 − 20 000 = 45 000 € en novembre, au plus haut avant la saison.",
+        "Besoin saisonnier : crédit de campagne ou découvert autorisé limité à la période, et négociation de délais fournisseurs.",
+        "Machine (8 ans) : besoin durable → autofinancement des 15 000 € + emprunt à moyen/long terme de 30 000 € (endettement modéré), ou crédit-bail."
+      ],
+      "reponse": "BFR de 45 000 € financé à court terme ; machine financée par autofinancement et emprunt (ou crédit-bail).",
+      "difficulte": 3
+    }
+  ]
+}

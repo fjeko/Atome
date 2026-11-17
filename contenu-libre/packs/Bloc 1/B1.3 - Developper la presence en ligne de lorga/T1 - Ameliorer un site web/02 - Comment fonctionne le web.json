@@ -1,0 +1,84 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq1-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – Développer la présence en ligne de l'organisation › Thème 1 – Améliorer un site web",
+  "sequence": null,
+  "seance": "Comment fonctionne le web",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La différence entre Internet et le web, le trajet d'une requête (résolution de noms, HTTP/HTTPS), les ressources statiques et dynamiques, les langages serveur, la pile applicative et l'environnement de développement local.",
+  "notions": [
+    "Web et Internet",
+    "Résolution de noms",
+    "Requête HTTP et HTTPS",
+    "Statique et dynamique",
+    "Pile applicative",
+    "Environnement local"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq1-s02-s01",
+      "titre": "Internet, le web et une requête",
+      "contenu": "- **Internet** est le **réseau** mondial qui relie les machines (infrastructure, protocole IP).\n- Le **web** est **un service** qui fonctionne sur Internet : des pages reliées par des liens, consultées avec un navigateur. La messagerie ou la visio sont d'autres services d'Internet.\n\nQuand tu tapes `https://www.miel-des-cevennes.fr/produits` :\n1. le navigateur demande au **DNS** l'adresse IP de `www.miel-des-cevennes.fr` (**résolution de noms**) ;\n2. il ouvre une connexion vers le serveur (port **443** pour HTTPS, 80 pour HTTP) ;\n3. en HTTPS, une négociation **TLS** chiffre la connexion (certificat du serveur vérifié) ;\n4. il envoie une **requête HTTP** : `GET /produits HTTP/1.1` + en-têtes ;\n5. le serveur répond avec un **code** (`200 OK`, `404 Not Found`, `500 Internal Server Error`, `301` redirection…) et le contenu ;\n6. le navigateur affiche la page et demande les ressources liées (CSS, images, scripts).",
+      "notions": [
+        "Web et Internet",
+        "Résolution de noms",
+        "Requête HTTP et HTTPS"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq1-s02-s02",
+      "titre": "Statique, dynamique et pile applicative",
+      "contenu": "- Ressource **statique** : un fichier envoyé **tel quel** (page HTML fixe, image, CSS).\n- Ressource **dynamique** : **générée à chaque requête** par un programme sur le serveur (PHP, Python, Node.js, C#…), souvent à partir d'une **base de données** : liste des produits en stock, espace client.\n\nLa **pile applicative** d'un site dynamique classique :\n```text\nSystème (Linux) + serveur web (Apache ou Nginx) + langage (PHP) + SGBD (MySQL/MariaDB)\n→ pile « LAMP »\n```\nPour développer, on installe un **environnement local** sur son poste (XAMPP, WampServer, Laragon, ou des conteneurs Docker) : le site est accessible sur `http://localhost`. On ne développe **jamais directement en production**.",
+      "notions": [
+        "Statique et dynamique",
+        "Pile applicative",
+        "Environnement local"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq1-s02-c001",
+      "section": "libre-b1-13-sq1-s02-s01",
+      "type": "qcm",
+      "question": "Quelle affirmation est juste ?",
+      "choix": [
+        "Le web et Internet sont la même chose",
+        "Le web est un service qui utilise le réseau Internet",
+        "Internet est un service du web",
+        "Le web fonctionne sans DNS"
+      ],
+      "bonneReponse": 1,
+      "explication": "Internet est l'infrastructure ; le web est l'un des services qui l'utilisent.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-13-sq1-s02-c002",
+      "section": "libre-b1-13-sq1-s02-s01",
+      "type": "qcm",
+      "question": "Le serveur répond « 404 ». Qu'est-ce que cela signifie ?",
+      "choix": [
+        "Le serveur est en panne",
+        "La ressource demandée n'existe pas à cette adresse",
+        "L'accès est autorisé",
+        "Le site a été déplacé définitivement"
+      ],
+      "bonneReponse": 1,
+      "explication": "4xx = erreur côté demande (404 : introuvable) ; 5xx = erreur du serveur ; 3xx = redirection.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq1-s02-c003",
+      "section": "libre-b1-13-sq1-s02-s02",
+      "type": "question",
+      "recto": "Quelle est la différence entre une ressource statique et une ressource dynamique ?",
+      "verso": "Une ressource statique est envoyée telle quelle ; une ressource dynamique est générée par un programme côté serveur à chaque requête (souvent à partir d'une base de données).",
+      "difficulte": 2
+    }
+  ]
+}

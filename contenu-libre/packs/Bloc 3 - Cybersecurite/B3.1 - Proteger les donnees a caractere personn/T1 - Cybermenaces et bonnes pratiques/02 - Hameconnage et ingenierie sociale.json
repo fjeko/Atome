@@ -1,0 +1,131 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq1-s02",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – Protéger les données à caractère personnel › Thème 1 – Cybermenaces et bonnes pratiques",
+  "sequence": null,
+  "seance": "Hameçonnage et ingénierie sociale",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. L'hameçonnage trompe la victime par un message qui imite un expéditeur de confiance. L'ingénierie sociale exploite les réflexes humains ; on apprend à repérer les indices et à signaler.",
+  "notions": [
+    "Hameçonnage",
+    "Harponnage",
+    "Indices d'hameçonnage",
+    "Faux site",
+    "Ingénierie sociale",
+    "Fraude au président",
+    "Faux support technique",
+    "Signalement"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq1-s02-s01",
+      "titre": "Le principe de l'hameçonnage",
+      "contenu": "L'**hameçonnage** (*phishing*) : un message (courriel, SMS, appel) **imite** une organisation de confiance (banque, transporteur, administration, service informatique) pour pousser la victime à **cliquer**, **saisir** ses identifiants ou ses coordonnées bancaires, ou **ouvrir** une pièce jointe piégée.\n\nVariantes : par SMS (*smishing*), par téléphone (*vishing*), et le **harponnage** (*spear phishing*), un message **personnalisé** qui vise une personne précise (nom, poste, projet en cours).",
+      "notions": [
+        "Hameçonnage",
+        "Harponnage"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s02-s02",
+      "titre": "Reconnaître un message piégé",
+      "contenu": "Indices fréquents :\n- **urgence** ou menace (« votre compte sera fermé dans 24 h ») ;\n- **adresse d'expédition** qui ne correspond pas (`service@banque-securite-client.co`) ;\n- **lien** dont la vraie destination (visible au survol) diffère du texte affiché ;\n- demande d'**identifiants** ou de coordonnées bancaires (un organisme sérieux ne les demande jamais par courriel) ;\n- fautes, formules impersonnelles, pièce jointe inattendue.\n\n**Repérer un faux site** : lire le **nom de domaine** de droite à gauche avant la première barre oblique. `https://www.banque-exemple.fr.connexion-client.net/` appartient à `connexion-client.net`, pas à la banque.\n\nLe **cadenas** (HTTPS) prouve seulement que la connexion est **chiffrée** : un faux site peut parfaitement l'avoir.",
+      "notions": [
+        "Indices d'hameçonnage",
+        "Faux site"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s02-s03",
+      "titre": "Ingénierie sociale et fraudes",
+      "contenu": "L'**ingénierie sociale** manipule les personnes plutôt que les machines : confiance, autorité, urgence, curiosité, peur.\n\nExemples :\n- **fraude au président** : un faux dirigeant demande un virement urgent et confidentiel ;\n- **faux changement de RIB** d'un fournisseur ;\n- **faux support technique** / **faux antivirus** : une fenêtre alarmante annonce une infection et invite à appeler un numéro ou à installer un « nettoyeur » (en réalité un logiciel malveillant).\n\nParade : une **procédure** (double validation des virements, rappel du fournisseur à un numéro connu) et une **culture du doute**.",
+      "notions": [
+        "Ingénierie sociale",
+        "Fraude au président",
+        "Faux support technique"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s02-s04",
+      "titre": "Signaler",
+      "contenu": "En cas de message suspect :\n- ne pas cliquer, ne pas répondre ;\n- le **signaler** au service informatique de l'organisation ;\n- pour le grand public : **signal-spam.fr** (courriels), le **33700** (SMS et appels frauduleux), **PHAROS** (contenus illicites) ;\n- si des identifiants ont été saisis : les **changer immédiatement** et prévenir l'organisme concerné (banque…).",
+      "notions": [
+        "Signalement"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq1-s02-c001",
+      "section": "libre-b3-31-sq1-s02-s01",
+      "type": "qcm",
+      "question": "Un SMS « Votre colis est bloqué, payez 1,99 € de frais ici » avec un lien inconnu est :",
+      "choix": [
+        "un message officiel",
+        "une tentative d'hameçonnage par SMS",
+        "un déni de service",
+        "un rançongiciel"
+      ],
+      "bonneReponse": 1,
+      "explication": "Urgence, petite somme, lien inconnu : signes typiques.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq1-s02-c002",
+      "section": "libre-b3-31-sq1-s02-s02",
+      "type": "qcm",
+      "question": "À quel domaine appartient `https://impots.gouv.fr.verification-dossier.com/login` ?",
+      "choix": [
+        "impots.gouv.fr",
+        "verification-dossier.com",
+        "gouv.fr",
+        "login"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le domaine réel est la fin du nom d'hôte, juste avant la première barre oblique.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s02-c003",
+      "section": "libre-b3-31-sq1-s02-s02",
+      "type": "qcm",
+      "question": "Un site affiche un cadenas dans la barre d'adresse. Que peux-tu en conclure ?",
+      "choix": [
+        "Le site est officiel et fiable",
+        "La connexion est chiffrée, mais le site peut être frauduleux",
+        "Le site ne contient pas de virus",
+        "Le site a été vérifié par l'État"
+      ],
+      "bonneReponse": 1,
+      "explication": "Obtenir un certificat est facile et gratuit, y compris pour un escroc.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s02-c004",
+      "section": "libre-b3-31-sq1-s02-s03",
+      "type": "exercice",
+      "enonce": "La comptable de la société **Brisant Nautique** reçoit un courriel du « directeur » : « Je suis en réunion, fais un virement urgent de 18 400 € vers ce compte, n'en parle à personne. » Analyse et propose la conduite à tenir.",
+      "etapes": [
+        "Indices : urgence, confidentialité demandée, contournement de la procédure, nouveau compte bénéficiaire.",
+        "C'est une fraude au président (ingénierie sociale).",
+        "Ne pas répondre au courriel ; vérifier par un autre canal (appel au numéro habituel du directeur).",
+        "Ne pas faire le virement ; signaler au responsable sécurité et conserver le message comme preuve."
+      ],
+      "reponse": "Fraude au président : vérification hors courriel, aucun virement, signalement.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s02-c005",
+      "section": "libre-b3-31-sq1-s02-s04",
+      "type": "question",
+      "recto": "À quel numéro transfère-t-on gratuitement un SMS frauduleux en France ?",
+      "verso": "Au **33700**.",
+      "difficulte": 1
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-16-sq2-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.6 – Organiser son développement professionnel › Thème 1 – Métiers, portfolio, CV et réseaux professionnels",
+  "sequence": null,
+  "seance": "La lettre de motivation",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Rédiger une lettre (ou un message) de motivation qui complète le CV au lieu de le répéter : structure vous-moi-nous, ton, personnalisation.",
+  "notions": [
+    "Rôle de la lettre de motivation",
+    "Structure vous moi nous",
+    "Erreurs de la lettre"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-16-sq2-s02-s01",
+      "titre": "Une structure efficace",
+      "contenu": "La lettre (ou l'e-mail de candidature) montre **pourquoi toi, pourquoi eux**, et ta capacité à t'exprimer. Elle ne **répète pas** le CV : elle **relie** ton parcours aux besoins de l'organisation.\n\nStructure classique en trois temps :\n1. **Vous** : ce que tu sais de l'organisation et de son besoin (« Votre collectivité modernise ses services en ligne… »).\n2. **Moi** : ce que tu apportes, avec **un ou deux exemples précis** de réalisations.\n3. **Nous** : ce que vous pourriez faire ensemble, et la demande d'entretien.\n\nQuelques lignes, un ton professionnel et sincère, sans formules creuses.",
+      "notions": [
+        "Rôle de la lettre de motivation",
+        "Structure vous moi nous"
+      ]
+    },
+    {
+      "id": "libre-b1-16-sq2-s02-s02",
+      "titre": "Erreurs à éviter",
+      "contenu": "- lettre **générique** envoyée partout (« Madame, Monsieur, votre entreprise… » sans nom ni détail) ;\n- **recopier le CV** en phrases ;\n- parler surtout de ce que **l'entreprise t'apportera** à toi ;\n- fautes, phrases trop longues, ton familier ;\n- se dévaloriser (« je n'ai pas beaucoup d'expérience mais… »).",
+      "notions": [
+        "Erreurs de la lettre"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-16-sq2-s02-c001",
+      "section": "libre-b1-16-sq2-s02-s01",
+      "type": "question",
+      "recto": "Quelle est la structure « vous – moi – nous » d'une lettre de motivation ?",
+      "verso": "Vous : l'organisation et son besoin ; moi : ce que j'apporte, avec des exemples ; nous : la collaboration envisagée et la demande d'entretien.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-16-sq2-s02-c002",
+      "section": "libre-b1-16-sq2-s02-s02",
+      "type": "exercice",
+      "enonce": "Réécris cette phrase pour la rendre efficace : « Je suis motivé et je pense que votre entreprise pourrait m'apporter beaucoup. »",
+      "etapes": [
+        "Remplacer l'adjectif vague par un fait.",
+        "Mettre l'accent sur ce que tu apportes à l'organisation.",
+        "Relier à son besoin."
+      ],
+      "reponse": "Par exemple : « Pendant mon stage, j'ai automatisé l'inventaire de 60 postes ; je souhaite mettre cette rigueur au service de votre équipe support, qui accompagne le déploiement de vos nouveaux sites. »",
+      "difficulte": 2
+    }
+  ]
+}

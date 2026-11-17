@@ -1,0 +1,123 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq2-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 3 – Interfaces graphiques événementielles en C#",
+  "sequence": null,
+  "seance": "Notions d'IHM et ergonomie",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Ce qu'est une interface homme-machine, ses grandes familles, les concepts WIMP et WYSIWYG, et les règles d'ergonomie et d'accessibilité qui rendent une application agréable et utilisable par tous.",
+  "notions": [
+    "Interface homme-machine",
+    "Familles d'IHM",
+    "WIMP et WYSIWYG",
+    "Types d'applications",
+    "Règles ergonomiques",
+    "Focus et ordre de tabulation",
+    "Accessibilité et adaptabilité"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq2-s01-s01",
+      "titre": "Qu'est-ce qu'une IHM ?",
+      "contenu": "L'**IHM** (interface homme-machine) est tout ce qui permet à une personne de **dialoguer** avec un programme : ce qu'elle voit, ce qu'elle tape, ce sur quoi elle clique. Son but : permettre à l'utilisateur d'accomplir sa tâche **efficacement**, **sans erreur** et **avec satisfaction**.\n\nGrandes familles :\n- **interfaces texte** (en ligne de commande) : on tape des commandes, le programme répond par du texte ;\n- **interfaces graphiques** (fenêtres, boutons, menus) ;\n- **interfaces orientées objet** : l'utilisateur manipule directement des objets à l'écran (glisser un fichier dans la corbeille) ;\n- et aujourd'hui : interfaces tactiles, vocales…\n\nTypes d'applications : **application de bureau** (installée sur le poste, comme celle qu'on va construire), **application web** (dans le navigateur), **application mobile**.",
+      "notions": [
+        "Interface homme-machine",
+        "Familles d'IHM",
+        "Types d'applications"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s01-s02",
+      "titre": "WIMP et WYSIWYG",
+      "contenu": "- **WIMP** (*Windows, Icons, Menus, Pointing device*) : le modèle des interfaces graphiques classiques, avec des **fenêtres**, des **icônes**, des **menus** et un **dispositif de pointage** (souris, pavé tactile).\n- **WYSIWYG** (*What You See Is What You Get*, « ce que tu vois est ce que tu obtiens ») : l'écran montre le résultat final tel qu'il sera imprimé ou publié. Un traitement de texte est WYSIWYG ; le **concepteur visuel** de Visual Studio aussi : tu dessines ta fenêtre et elle s'affichera ainsi.",
+      "notions": [
+        "WIMP et WYSIWYG"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s01-s03",
+      "titre": "Les règles d'ergonomie",
+      "contenu": "Quelques règles simples pour une interface ergonomique :\n- **Cohérence** : mêmes couleurs, polices, positions de boutons sur toutes les fenêtres.\n- **Lisibilité** : contraste suffisant, taille de texte confortable, pas plus de 2 ou 3 polices.\n- **Disposition logique** : on lit de haut en bas et de gauche à droite ; les champs sont dans l'ordre où on les remplit ; le bouton de validation est en bas à droite.\n- **Libellés clairs** : chaque champ a une étiquette ; les boutons disent ce qu'ils font (« Enregistrer la réservation » plutôt que « OK »).\n- **Pictogrammes** compréhensibles et accompagnés d'une info-bulle.\n- **Retour d'information** : l'utilisateur sait toujours ce qui se passe (message de confirmation, curseur d'attente).\n- **Prévention des erreurs** : désactiver ce qui n'a pas de sens, proposer des listes plutôt que des saisies libres.\n\nLe **focus** désigne le contrôle qui reçoit les frappes du clavier. L'**ordre de tabulation** (propriété `TabIndex`) doit suivre l'ordre logique de saisie : une secrétaire qui saisit 50 fiches par jour ne veut pas toucher sa souris.",
+      "notions": [
+        "Règles ergonomiques",
+        "Focus et ordre de tabulation"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s01-s04",
+      "titre": "Accessibilité et adaptabilité",
+      "contenu": "- **Accessibilité** : l'application doit être utilisable par les personnes en situation de handicap : navigation complète au **clavier**, compatibilité avec les **lecteurs d'écran** (propriété `AccessibleName`), **contrastes** suffisants, information jamais donnée **par la couleur seule** (un champ en erreur est rouge **et** accompagné d'un message).\n- **Adaptabilité** : l'interface doit rester correcte quand on **redimensionne** la fenêtre ou sur un écran de taille différente. En Windows Forms, les propriétés `Anchor` et `Dock` permettent aux contrôles de suivre les bords de la fenêtre.",
+      "notions": [
+        "Accessibilité et adaptabilité"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq2-s01-c001",
+      "section": "libre-b1-12a-sq2-s01-s01",
+      "type": "qcm",
+      "question": "Quel est le but premier d'une IHM ?",
+      "choix": [
+        "Être la plus colorée possible",
+        "Permettre à l'utilisateur d'accomplir sa tâche efficacement et sans erreur",
+        "Montrer toutes les fonctions du programme sur un seul écran",
+        "Réduire la taille du code"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une IHM se juge à la facilité avec laquelle l'utilisateur atteint son objectif.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq2-s01-c002",
+      "section": "libre-b1-12a-sq2-s01-s02",
+      "type": "question",
+      "recto": "Que signifie WYSIWYG ?",
+      "verso": "*What You See Is What You Get* : ce qu'on voit à l'écran pendant la conception correspond au résultat final.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq2-s01-c003",
+      "section": "libre-b1-12a-sq2-s01-s03",
+      "type": "qcm",
+      "question": "Dans un formulaire d'inscription, la touche Tab fait sauter le curseur du champ « Nom » au bouton « Annuler », puis au champ « Email ». Quel réglage est en cause ?",
+      "choix": [
+        "La couleur des boutons",
+        "L'ordre de tabulation (TabIndex)",
+        "La taille de la fenêtre",
+        "Le pictogramme du bouton"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'ordre de tabulation doit suivre l'ordre logique de saisie des champs.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq2-s01-c004",
+      "section": "libre-b1-12a-sq2-s01-s03",
+      "type": "question",
+      "recto": "Pourquoi vaut-il mieux proposer une liste déroulante qu'une zone de texte libre pour choisir un pays ?",
+      "verso": "Pour éviter les erreurs de saisie (fautes, variantes d'écriture) : l'utilisateur ne peut choisir qu'une valeur valide.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq2-s01-c005",
+      "section": "libre-b1-12a-sq2-s01-s04",
+      "type": "qcm",
+      "question": "Un formulaire signale les champs incorrects uniquement en colorant leur bordure en rouge. Quel problème cela pose-t-il ?",
+      "choix": [
+        "Aucun",
+        "Les personnes daltoniennes ou utilisant un lecteur d'écran ne perçoivent pas l'erreur",
+        "Le rouge ralentit l'application",
+        "Le rouge n'existe pas dans Windows Forms"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'information ne doit jamais passer par la couleur seule : on ajoute un message ou une icône.",
+      "difficulte": 2
+    }
+  ]
+}

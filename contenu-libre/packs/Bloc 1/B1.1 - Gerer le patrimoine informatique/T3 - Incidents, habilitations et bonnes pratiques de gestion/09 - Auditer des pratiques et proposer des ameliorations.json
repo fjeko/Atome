@@ -1,0 +1,84 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq4-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – Gérer le patrimoine informatique › Thème 3 – Incidents, habilitations et bonnes pratiques de gestion des services",
+  "sequence": null,
+  "seance": "Auditer des pratiques et proposer des améliorations",
+  "ordre": 9,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Comparer le fonctionnement réel d'un service informatique aux bonnes pratiques, repérer les écarts et proposer des corrections concrètes.",
+  "notions": [
+    "Démarche d'audit",
+    "Écarts fréquents",
+    "Propositions d'amélioration"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq4-s04-s01",
+      "titre": "La démarche d'audit",
+      "contenu": "**Auditer**, c'est comparer **ce qui se fait réellement** à **ce qui devrait se faire** (le référentiel), puis proposer des améliorations.\n\nDémarche simple :\n1. **Observer** et **collecter** : entretiens, consultation de l'outil de tickets, de l'inventaire, des comptes.\n2. **Comparer** avec les bonnes pratiques.\n3. **Lister les écarts**, en expliquant le **risque** de chacun.\n4. **Proposer** des actions concrètes, **classées par priorité**.\n\nUn écart n'est pas une faute à reprocher : c'est une piste de progrès.",
+      "notions": [
+        "Démarche d'audit"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq4-s04-s02",
+      "titre": "Les écarts fréquents",
+      "contenu": "| Constat | Pourquoi c'est un problème |\n| --- | --- |\n| Compte « technicien » **partagé** par 3 personnes | impossible de savoir qui a fait quoi (traçabilité) |\n| Pannes signalées par **téléphone direct** au technicien, sans ticket | rien n'est mesuré, des demandes se perdent |\n| **Inventaire faux** : le lieu des postes n'est pas mis à jour | on cherche le matériel, statistiques fausses |\n| Aucune **priorité** : on traite dans l'ordre d'arrivée | un incident grave attend derrière une demande mineure |\n| Tickets **clos** sans l'avis de l'utilisateur | on croit le problème réglé alors qu'il ne l'est pas |\n| Aucun **SLA** | personne ne sait ce qui est attendu |",
+      "notions": [
+        "Écarts fréquents"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq4-s04-s03",
+      "titre": "Proposer des améliorations",
+      "contenu": "### Cas : l'agence immobilière Clés en Main (4 agences)\nConstats lors de la visite :\n1. Les agents appellent directement « le neveu du gérant » pour toute panne.\n2. L'inventaire indique 30 postes à l'agence de Saint-Bris, il y en a 22 ; 8 ont été déplacés.\n3. Le compte administrateur de l'outil de parc a toujours son mot de passe d'origine.\n4. Une panne d'imprimante a attendu 3 jours alors que la panne de messagerie a été traitée tout de suite… parce qu'elle était arrivée en premier.\n\nPropositions :\n1. Mettre en place un **centre de services** (portail ou adresse unique) et un **outil de tickets**.\n2. **Corriger l'inventaire** (transferts entre entités, mise à jour des lieux) et instaurer une procédure à chaque déménagement.\n3. **Changer immédiatement** le mot de passe, créer des **comptes nominatifs**.\n4. Introduire la **matrice impact × urgence** et un **SLA** simple.\n\nPriorité : la n°3 d'abord (risque de sécurité), puis 1 et 4, puis 2.",
+      "notions": [
+        "Propositions d'amélioration"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq4-s04-c001",
+      "section": "libre-b1-11-sq4-s04-s01",
+      "type": "question",
+      "recto": "Quelles sont les quatre étapes d'un audit simple des pratiques ?",
+      "verso": "Observer/collecter, comparer au référentiel, lister les écarts avec leurs risques, proposer des actions priorisées.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq4-s04-c002",
+      "section": "libre-b1-11-sq4-s04-s02",
+      "type": "qcm",
+      "question": "Dans une PME, tous les techniciens se connectent à l'outil de tickets avec le compte « support ». Quel principe est surtout bafoué ?",
+      "choix": [
+        "La disponibilité du service",
+        "La traçabilité, faute de comptes nominatifs",
+        "Le calcul de la priorité",
+        "L'escalade fonctionnelle"
+      ],
+      "bonneReponse": 1,
+      "explication": "Avec un compte partagé, on ne peut pas savoir quel technicien a réalisé une action.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq4-s04-c003",
+      "section": "libre-b1-11-sq4-s04-s03",
+      "type": "exercice",
+      "enonce": "Au cabinet comptable Sigma & Associés, tu constates : (a) les tickets sont passés à « Clos » par les techniciens eux-mêmes dès qu'ils pensent avoir réglé le souci ; (b) personne ne sait combien de temps la messagerie peut être indisponible. Pour chaque constat, explique le risque et propose une amélioration.",
+      "etapes": [
+        "(a) Risque : un ticket clos alors que l'utilisateur a toujours le problème ; insatisfaction, statistiques faussées.",
+        "(a) Amélioration : passer d'abord en « Résolu », laisser l'utilisateur valider (ou clôture automatique après un délai), mesurer la satisfaction.",
+        "(b) Risque : aucun engagement, pas de référence pour juger la qualité, conflits.",
+        "(b) Amélioration : rédiger un SLA pour la messagerie avec un objectif de disponibilité, des délais par priorité et un reporting."
+      ],
+      "reponse": "(a) Distinguer « résolu » et « clos » avec validation par l'utilisateur ; (b) établir un SLA avec objectifs et suivi.",
+      "difficulte": 3
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq3-s01",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – Gérer les données › Thème 3 – Bases NoSQL orientées documents",
+  "sequence": null,
+  "seance": "Pourquoi le NoSQL ; JSON",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les bases NoSQL répondent à des besoins que le relationnel couvre mal : données hétérogènes, gros volumes, répartition sur plusieurs serveurs. Les bases orientées documents stockent des documents JSON regroupés en collections.",
+  "notions": [
+    "NoSQL",
+    "Familles NoSQL",
+    "JSON",
+    "Base documentaire",
+    "Collection",
+    "Document"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq3-s01-s01",
+      "titre": "Les limites du relationnel",
+      "contenu": "Le modèle relationnel est excellent pour des données **structurées** et des **transactions** fiables. Mais il devient moins pratique quand :\n- les données ont des **structures variables** (fiches produits avec des caractéristiques différentes selon le type) ;\n- les volumes et le trafic imposent de **répartir** la base sur de nombreux serveurs ;\n- on lit toujours un objet **complet** (une commande avec ses lignes) et les jointures coûtent cher.\n\n**NoSQL** (« *Not only SQL* ») regroupe plusieurs familles :\n\n| Famille | Principe | Exemples |\n| --- | --- | --- |\n| Clé-valeur | une clé → une valeur | Redis |\n| **Documents** | documents JSON/BSON | MongoDB, CouchDB |\n| Colonnes | colonnes regroupées en familles | Cassandra |\n| Graphes | nœuds et relations | Neo4j |",
+      "notions": [
+        "NoSQL",
+        "Familles NoSQL"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s01-s02",
+      "titre": "Le format JSON",
+      "contenu": "**JSON** (*JavaScript Object Notation*) est un format texte de données :\n\n```json\n{\n  \"_id\": \"PL-0042\",\n  \"nom\": \"Monstera deliciosa\",\n  \"prix\": 24.9,\n  \"enStock\": true,\n  \"tags\": [\"intérieur\", \"grandes feuilles\"],\n  \"entretien\": { \"arrosage\": \"hebdomadaire\", \"lumiere\": \"indirecte\" }\n}\n```\n\nTypes : chaîne (`\"…\"`), nombre, booléen (`true`/`false`), `null`, **tableau** `[…]`, **objet** `{ \"clé\": valeur }`. Les objets et tableaux peuvent s'**imbriquer**.\n\nRègles strictes : clés entre guillemets doubles, pas de virgule après le dernier élément, pas de commentaires.",
+      "notions": [
+        "JSON"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s01-s03",
+      "titre": "Base, collection, document",
+      "contenu": "| Relationnel | Documentaire (MongoDB) |\n| --- | --- |\n| base | base |\n| table | **collection** |\n| ligne | **document** |\n| colonne | champ |\n| clé primaire | `_id` (créé automatiquement si absent) |\n| jointure | document **imbriqué** ou référence |\n\nUne collection n'impose **pas de schéma** : deux documents peuvent avoir des champs différents. Attention : « sans schéma » ne veut pas dire « sans conception ». Il faut décider ce qu'on **imbrique** (lu ensemble, appartient au parent) et ce qu'on **référence** (partagé, volumineux, mis à jour séparément).",
+      "notions": [
+        "Base documentaire",
+        "Collection",
+        "Document"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq3-s01-c001",
+      "section": "libre-b2-23-sq3-s01-s01",
+      "type": "qcm",
+      "question": "Dans quelle situation une base orientée documents est-elle intéressante ?",
+      "choix": [
+        "Une comptabilité avec des transactions strictes entre comptes",
+        "Un catalogue de produits aux caractéristiques très variables selon le type",
+        "Une table de 20 lignes jamais modifiée",
+        "Un fichier de configuration local"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les documents acceptent des structures différentes d'un élément à l'autre.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-23-sq3-s01-c002",
+      "section": "libre-b2-23-sq3-s01-s02",
+      "type": "qcm",
+      "question": "Lequel de ces textes est du JSON valide ?",
+      "choix": [
+        "`{ nom: \"Ficus\" }`",
+        "`{ \"nom\": 'Ficus' }`",
+        "`{ \"nom\": \"Ficus\", \"tailles\": [30, 60] }`",
+        "`{ \"nom\": \"Ficus\", }`"
+      ],
+      "bonneReponse": 2,
+      "explication": "Clés et chaînes entre guillemets doubles, pas de virgule finale.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq3-s01-c003",
+      "section": "libre-b2-23-sq3-s01-s03",
+      "type": "question",
+      "recto": "Dans une base documentaire, quand imbriquer un sous-document plutôt que le référencer ?",
+      "verso": "Quand les données sont **lues avec le parent** et lui **appartiennent** (les lignes d'une commande). On référence ce qui est partagé ou évolue indépendamment (le client).",
+      "difficulte": 2
+    }
+  ]
+}

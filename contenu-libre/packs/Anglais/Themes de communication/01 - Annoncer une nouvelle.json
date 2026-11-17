@@ -1,0 +1,179 @@
+{
+  "formatVersion": 1,
+  "id": "libre-ang-t-s01",
+  "matiere": "Anglais",
+  "bloc": "Bloc 5",
+  "partie": "Thèmes de communication",
+  "sequence": null,
+  "seance": "Annoncer une nouvelle",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le vocabulaire pour annoncer une bonne nouvelle, un événement, un changement ou un projet, à l'oral comme à l'écrit.",
+  "notions": [
+    "Annoncer une nouvelle : mise en situation",
+    "Annoncer une nouvelle : verbes",
+    "Annoncer une nouvelle : noms",
+    "Annoncer une nouvelle : adjectifs et adverbes",
+    "Annoncer une nouvelle : expressions et mots de liaison"
+  ],
+  "sections": [
+    {
+      "id": "libre-ang-t-s01-s01",
+      "titre": "En situation",
+      "contenu": "*Dear all,*\n\n*I am delighted to announce that our team **has been awarded** the regional innovation prize. This achievement **reflects** months of hard work. I am also pleased to **let you know** that, starting next month, we **will be moving** to larger offices. Further details **will follow** shortly. Congratulations to everyone!*\n\nTraduction des idées clés : « J'ai le plaisir d'annoncer que notre équipe a reçu le prix régional de l'innovation… à partir du mois prochain, nous déménagerons dans des bureaux plus grands. D'autres précisions suivront prochainement. »\n\nStructure d'une annonce : **la nouvelle** (phrase d'ouverture), **le contexte** ou la raison, **ce qui change** concrètement, **la suite** (date, contact), **remerciements / félicitations**.",
+      "notions": [
+        "Annoncer une nouvelle : mise en situation"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s01-s02",
+      "titre": "Verbes",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **to announce** | annoncer | *The CEO announced a new partnership.* |\n| **to launch** | lancer (un produit, un projet) | *We will launch the app in spring.* |\n| **to celebrate** | fêter, célébrer | *Let's celebrate our tenth anniversary together.* |\n| **to welcome** | accueillir, souhaiter la bienvenue | *Please welcome Lina, our new designer.* |\n| **to postpone** | reporter | *The opening has been postponed to June.* |\n| **to look forward to** | avoir hâte de | *We look forward to seeing you at the event.* |\n| **to congratulate (on)** | féliciter (pour) | *I congratulate you on your promotion.* |",
+      "notions": [
+        "Annoncer une nouvelle : verbes"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s01-s03",
+      "titre": "Noms",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **an announcement** | une annonce | *The announcement was made on Monday.* |\n| **a milestone** | une étape importante | *Reaching 10,000 users is a real milestone.* |\n| **an achievement** | une réussite, un accomplissement | *Winning the contract is a great achievement.* |\n| **a promotion** | une promotion (poste) | *She got a promotion after two years.* |\n| **a move** | un déménagement | *The move to the new office went smoothly.* |\n| **a merger** | une fusion | *The merger of the two firms was approved.* |\n| **a forthcoming event** | un événement à venir | *Here is our list of forthcoming events.* |",
+      "notions": [
+        "Annoncer une nouvelle : noms"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s01-s04",
+      "titre": "Adjectifs et adverbes",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **delighted** | ravi | *We are delighted with the results.* |\n| **thrilled** | enthousiaste, aux anges | *The whole team is thrilled.* |\n| **upcoming** | à venir, prochain | *Don't miss our upcoming webinar.* |\n| **major** | important, majeur | *This is a major change for the company.* |\n| **officially** | officiellement | *The new branch officially opens on 1 April.* |\n| **shortly** | bientôt, sous peu | *More information will be sent shortly.* |",
+      "notions": [
+        "Annoncer une nouvelle : adjectifs et adverbes"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s01-s05",
+      "titre": "Expressions et mots de liaison",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **I am pleased to inform you that…** | j'ai le plaisir de vous informer que… | *I am pleased to inform you that your application was successful.* |\n| **Further details will follow.** | D'autres précisions suivront. | *The date is confirmed; further details will follow.* |\n| **as of / starting from** | à partir de | *As of Monday, the office will open at 8.* |\n| **Well done!** | Bravo ! | *Well done, everyone!* |\n| **on behalf of** | au nom de | *On behalf of the board, I thank you.* |",
+      "notions": [
+        "Annoncer une nouvelle : expressions et mots de liaison"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-ang-t-s01-c001",
+      "section": "libre-ang-t-s01-s02",
+      "type": "question",
+      "recto": "Traduis en français : **to announce**\n\n*The CEO announced a new partnership.*",
+      "verso": "annoncer",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s01-c002",
+      "section": "libre-ang-t-s01-s02",
+      "type": "question",
+      "recto": "Traduis en français : **to postpone**\n\n*The opening has been postponed to June.*",
+      "verso": "reporter",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s01-c003",
+      "section": "libre-ang-t-s01-s02",
+      "type": "question",
+      "recto": "Traduis en anglais : **féliciter (pour)**",
+      "verso": "**to congratulate (on)** — *I congratulate you on your promotion.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s01-c004",
+      "section": "libre-ang-t-s01-s02",
+      "type": "qcm",
+      "question": "Complète : *The event has been ___ because of the strike.*",
+      "choix": [
+        "postponed",
+        "announced",
+        "celebrated",
+        "welcomed"
+      ],
+      "bonneReponse": 0,
+      "explication": "*Postpone* = reporter, ce qui correspond à la cause (une grève).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s01-c005",
+      "section": "libre-ang-t-s01-s03",
+      "type": "question",
+      "recto": "Traduis en français : **a milestone**\n\n*Reaching 10,000 users is a real milestone.*",
+      "verso": "une étape importante",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s01-c006",
+      "section": "libre-ang-t-s01-s03",
+      "type": "question",
+      "recto": "Traduis en anglais : **une fusion**",
+      "verso": "**a merger** — *The merger of the two firms was approved.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s01-c007",
+      "section": "libre-ang-t-s01-s04",
+      "type": "question",
+      "recto": "Traduis en français : **thrilled**\n\n*The whole team is thrilled.*",
+      "verso": "enthousiaste, aux anges",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s01-c008",
+      "section": "libre-ang-t-s01-s04",
+      "type": "question",
+      "recto": "Traduis en français : **shortly**\n\n*More information will be sent shortly.*",
+      "verso": "bientôt, sous peu",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s01-c009",
+      "section": "libre-ang-t-s01-s04",
+      "type": "qcm",
+      "question": "Complète : *We are ___ to announce the birth of our new product.*",
+      "choix": [
+        "delighted",
+        "delightful",
+        "delight",
+        "delighting"
+      ],
+      "bonneReponse": 0,
+      "explication": "*Delighted* (ressenti) + *to* + verbe : « ravis de ».",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s01-c010",
+      "section": "libre-ang-t-s01-s05",
+      "type": "question",
+      "recto": "Traduis en français : **on behalf of**\n\n*On behalf of the board, I thank you.*",
+      "verso": "au nom de",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s01-c011",
+      "section": "libre-ang-t-s01-s05",
+      "type": "question",
+      "recto": "Traduis en anglais : **D'autres précisions suivront.**",
+      "verso": "**Further details will follow.** — *The date is confirmed; further details will follow.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s01-c012",
+      "section": "libre-ang-t-s01-s01",
+      "type": "exercice",
+      "enonce": "Rédige en anglais deux phrases pour annoncer à tes collègues que la formation prévue mardi est reportée au jeudi suivant.",
+      "etapes": [
+        "Ouverture polie : *I would like to inform you that…*",
+        "Verbe *postpone* au passif, date avec *to*."
+      ],
+      "reponse": "*I would like to inform you that Tuesday's training session has been postponed to the following Thursday. Further details will follow shortly.*",
+      "difficulte": 2
+    }
+  ]
+}

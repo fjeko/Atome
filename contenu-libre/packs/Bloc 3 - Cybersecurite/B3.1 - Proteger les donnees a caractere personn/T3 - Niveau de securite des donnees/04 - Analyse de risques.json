@@ -1,0 +1,93 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq3-s04",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – Protéger les données à caractère personnel › Thème 3 – Niveau de sécurité des données",
+  "sequence": null,
+  "seance": "Analyse de risques",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. L'analyse de risques identifie les événements redoutés, évalue leur gravité et leur vraisemblance, et les place sur une cartographie pour décider des mesures. La méthode de référence en France est EBIOS Risk Manager.",
+  "notions": [
+    "EBIOS Risk Manager",
+    "Analyse de risques",
+    "Gravité",
+    "Vraisemblance",
+    "Niveau de risque",
+    "Cartographie des risques",
+    "Risque résiduel"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq3-s04-s01",
+      "titre": "La méthode de référence",
+      "contenu": "**EBIOS Risk Manager** est la méthode d'analyse de risques publiée par l'**ANSSI**. Elle procède par ateliers :\n1. **Cadrage et socle de sécurité** : périmètre, valeurs métier à protéger, événements redoutés.\n2. **Sources de risque** : qui pourrait attaquer et pourquoi.\n3. **Scénarios stratégiques** : chemins d'attaque via l'écosystème (prestataires…).\n4. **Scénarios opérationnels** : modes opératoires techniques.\n5. **Traitement du risque** : mesures et risques résiduels.\n\nD'autres approches existent (ISO 27005), mais toutes reposent sur l'évaluation **gravité × vraisemblance**.",
+      "notions": [
+        "EBIOS Risk Manager",
+        "Analyse de risques"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq3-s04-s02",
+      "titre": "Gravité et vraisemblance",
+      "contenu": "On note chaque risque sur deux échelles (par exemple de 1 à 4) :\n\n| Niveau | Gravité (impact) | Vraisemblance |\n| --- | --- | --- |\n| 1 | négligeable | minime |\n| 2 | limitée | significative |\n| 3 | importante | forte |\n| 4 | critique | maximale |\n\n**Niveau de risque** = gravité × vraisemblance (de 1 à 16). On traite d'abord les risques élevés.\n\nOptions de traitement : **réduire** (mesures), **transférer** (assurance, sous-traitance), **éviter** (renoncer à l'activité), **accepter** (risque faible, décision assumée).",
+      "notions": [
+        "Gravité",
+        "Vraisemblance",
+        "Niveau de risque"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq3-s04-s03",
+      "titre": "Cartographie des risques",
+      "contenu": "La **cartographie** place chaque risque dans une grille gravité (axe vertical) / vraisemblance (axe horizontal) :\n- zone **rouge** (en haut à droite) : inacceptable, à traiter en priorité ;\n- zone **orange** : à réduire ;\n- zone **verte** : acceptable, à surveiller.\n\nAprès les mesures, on réévalue : c'est le **risque résiduel**, qui doit être validé par la direction.",
+      "notions": [
+        "Cartographie des risques",
+        "Risque résiduel"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq3-s04-c001",
+      "section": "libre-b3-31-sq3-s04-s01",
+      "type": "question",
+      "recto": "Quel organisme publie la méthode EBIOS Risk Manager ?",
+      "verso": "L'**ANSSI** (Agence nationale de la sécurité des systèmes d'information).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq3-s04-c002",
+      "section": "libre-b3-31-sq3-s04-s02",
+      "type": "exercice",
+      "enonce": "Évalue et classe : (A) vol d'un portable non chiffré contenant des fiches clients : gravité 3, vraisemblance 3 ; (B) incendie de la salle serveur : gravité 4, vraisemblance 1 ; (C) hameçonnage d'un compte de messagerie : gravité 2, vraisemblance 4.",
+      "etapes": [
+        "A : 3 × 3 = 9.",
+        "B : 4 × 1 = 4.",
+        "C : 2 × 4 = 8.",
+        "Ordre de priorité : A (9), C (8), B (4).",
+        "Mesures : chiffrer les disques (A), MFA et sensibilisation (C), sauvegarde externalisée (B)."
+      ],
+      "reponse": "A = 9, C = 8, B = 4 : traiter A puis C, puis B.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq3-s04-c003",
+      "section": "libre-b3-31-sq3-s04-s03",
+      "type": "qcm",
+      "question": "Qu'est-ce que le risque résiduel ?",
+      "choix": [
+        "Le risque avant toute mesure",
+        "Le risque qui subsiste après la mise en place des mesures",
+        "Un risque sans gravité",
+        "Le risque transféré à l'assureur"
+      ],
+      "bonneReponse": 1,
+      "explication": "Aucune mesure n'annule totalement un risque ; ce qui reste doit être accepté en connaissance de cause.",
+      "difficulte": 2
+    }
+  ]
+}

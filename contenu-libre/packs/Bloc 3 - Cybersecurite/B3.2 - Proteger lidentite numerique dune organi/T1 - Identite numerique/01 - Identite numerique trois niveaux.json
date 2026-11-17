@@ -1,0 +1,88 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq1-s01",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – Protéger l'identité numérique d'une organisation › Thème 1 – Identité numérique",
+  "sequence": null,
+  "seance": "Identité numérique : trois niveaux",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. L'identité numérique d'une personne ou d'une organisation est l'ensemble des traces qu'elle laisse en ligne. Elle se compose de ce qu'on déclare, de ce qu'on fait et de ce que les plateformes calculent ; elle peut différer de l'image perçue par les autres.",
+  "notions": [
+    "Web participatif",
+    "Traces numériques",
+    "Identité déclarative",
+    "Identité agissante",
+    "Identité calculée",
+    "Identité voulue",
+    "Identité perçue",
+    "Liberté d'expression des salariés"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq1-s01-s01",
+      "titre": "Le web participatif",
+      "contenu": "Depuis le milieu des années 2000, le **web participatif** permet à chacun de **publier** : avis, commentaires, réseaux sociaux, vidéos, forums. Une organisation n'est plus la seule à parler d'elle : ses clients, salariés, concurrents et inconnus le font aussi.\n\nChaque action laisse des **traces** : publications, « j'aime », avis, mais aussi données techniques (connexions, géolocalisation). Ces traces ont une **durée de vie** longue : elles sont copiées, archivées, indexées, et difficiles à effacer complètement.",
+      "notions": [
+        "Web participatif",
+        "Traces numériques"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq1-s01-s02",
+      "titre": "Déclarative, agissante, calculée",
+      "contenu": "L'identité numérique se décompose en trois niveaux :\n\n| Niveau | Définition | Exemple pour la brasserie fictive **Houblon Malin** |\n| --- | --- | --- |\n| **Déclarative** | ce que l'on dit de soi | profil de la page, description « brasserie artisanale bio » |\n| **Agissante** | ce que l'on fait, observé par les autres | publications, réponses aux avis, événements organisés |\n| **Calculée** | ce que les plateformes déduisent | nombre d'abonnés, note moyenne 4,3/5, classement dans les résultats |",
+      "notions": [
+        "Identité déclarative",
+        "Identité agissante",
+        "Identité calculée"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq1-s01-s03",
+      "titre": "Identité voulue et identité perçue",
+      "contenu": "- **Identité voulue** : l'image que l'organisation **cherche** à donner (valeurs, ton, visuels).\n- **Identité perçue** : l'image que le public s'en **fait réellement**, à partir de tout ce qu'il voit (y compris ce qu'elle ne maîtrise pas).\n\nUn écart important est un signal d'alerte.\n\nLes **salariés** contribuent à l'identité perçue. Ils disposent de la **liberté d'expression**, mais avec des limites : pas de dénigrement, pas de propos injurieux ou diffamatoires, respect de la **confidentialité** et du devoir de loyauté.",
+      "notions": [
+        "Identité voulue",
+        "Identité perçue",
+        "Liberté d'expression des salariés"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq1-s01-c001",
+      "section": "libre-b3-32-sq1-s01-s01",
+      "type": "question",
+      "recto": "Pourquoi dit-on qu'une trace numérique est difficile à effacer ?",
+      "verso": "Parce qu'elle peut être **copiée**, **archivée** et **indexée** par d'autres (captures, moteurs, sites d'archives) avant qu'on la supprime.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-32-sq1-s01-c002",
+      "section": "libre-b3-32-sq1-s01-s02",
+      "type": "qcm",
+      "question": "La note moyenne de 3,8 étoiles affichée sur une carte en ligne relève de l'identité :",
+      "choix": [
+        "déclarative",
+        "agissante",
+        "calculée",
+        "juridique"
+      ],
+      "bonneReponse": 2,
+      "explication": "Elle est calculée par la plateforme à partir des avis.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq1-s01-c003",
+      "section": "libre-b3-32-sq1-s01-s03",
+      "type": "question",
+      "recto": "Qu'indique un fort écart entre identité voulue et identité perçue ?",
+      "verso": "Que l'image que l'organisation veut donner n'est **pas celle que le public retient** : il faut analyser les causes (avis négatifs, communication inadaptée…) et agir.",
+      "difficulte": 2
+    }
+  ]
+}

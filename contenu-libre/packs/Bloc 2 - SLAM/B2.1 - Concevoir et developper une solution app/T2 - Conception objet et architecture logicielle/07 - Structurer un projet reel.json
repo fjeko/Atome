@@ -1,0 +1,102 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq2-s07",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 2 – Conception objet et architecture logicielle",
+  "sequence": null,
+  "seance": "Structurer un projet réel",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Dans un vrai projet, un paquetage correspond à un dossier et se déclare en tête de chaque fichier. On réorganise le code par refactorisation et on versionne chaque étape.",
+  "notions": [
+    "Déclaration de paquetage",
+    "Arborescence",
+    "Refactorisation",
+    "Gestion de versions"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq2-s07-s01",
+      "titre": "Un paquetage, un dossier",
+      "contenu": "En Java, le paquetage d'une classe se déclare en **première ligne** du fichier, et le fichier doit se trouver dans le **dossier correspondant**.\n\n```java\npackage fr.ateliervert.modele;\n\npublic class Produit { ... }\n```\n\nFichier : `src/fr/ateliervert/modele/Produit.java`.\n\nConventions :\n- noms de paquetages en **minuscules** ;\n- préfixe en **nom de domaine inversé** pour éviter les collisions (`fr.ateliervert`) ;\n- une classe utilisée depuis un autre paquetage doit être `public` et importée.",
+      "notions": [
+        "Déclaration de paquetage",
+        "Arborescence"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s07-s02",
+      "titre": "Refactoriser",
+      "contenu": "**Refactoriser**, c'est **améliorer la structure du code sans changer son comportement**. Exemples :\n- renommer une classe ou une méthode ;\n- déplacer une classe vers un autre paquetage ;\n- extraire une méthode d'un bloc trop long.\n\nLes EDI (Eclipse, IntelliJ, NetBeans) proposent ces opérations dans un menu *Refactor* : ils mettent à jour **toutes les références** (imports, appels) automatiquement, ce qui évite les erreurs d'un rechercher-remplacer manuel.\n\nAprès une refactorisation, on **relance les tests** pour vérifier que rien n'a changé dans le comportement.",
+      "notions": [
+        "Refactorisation"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s07-s03",
+      "titre": "Versionner le projet",
+      "contenu": "Chaque étape de restructuration doit être **enregistrée** dans un gestionnaire de versions (Git) :\n\n```bash\ngit add src/\ngit commit -m \"Déplace les classes métier dans le paquetage modele\"\n```\n\n- Un commit = **une modification cohérente**, avec un message clair.\n- En cas de problème, on revient à une version stable.\n- Le dépôt distant (sur une forge) sert de sauvegarde et de partage.",
+      "notions": [
+        "Gestion de versions"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq2-s07-c001",
+      "section": "libre-b2-21-sq2-s07-s01",
+      "type": "qcm",
+      "question": "La classe `Facture` déclarée `package fr.cyclo.modele;` doit se trouver dans :",
+      "choix": [
+        "src/Facture.java",
+        "src/modele/fr/cyclo/Facture.java",
+        "src/fr/cyclo/modele/Facture.java",
+        "n'importe quel dossier"
+      ],
+      "bonneReponse": 2,
+      "explication": "L'arborescence de dossiers reproduit le nom du paquetage, segment par segment.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq2-s07-c002",
+      "section": "libre-b2-21-sq2-s07-s02",
+      "type": "question",
+      "recto": "Qu'est-ce que refactoriser ?",
+      "verso": "Améliorer la **structure** du code (noms, découpage, organisation) **sans changer ce qu'il fait**.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq2-s07-c003",
+      "section": "libre-b2-21-sq2-s07-s03",
+      "type": "qcm",
+      "question": "Quel message de commit est le plus utile ?",
+      "choix": [
+        "« modif »",
+        "« 15/03 »",
+        "« Extrait la connexion dans la classe Connexion du paquetage dal »",
+        "« encore des changements »"
+      ],
+      "bonneReponse": 2,
+      "explication": "Un bon message dit **ce qui** a changé, pour qu'on puisse retrouver l'étape plus tard.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s07-c004",
+      "section": "libre-b2-21-sq2-s07-s03",
+      "type": "exercice",
+      "enonce": "Une application tient en un seul fichier `App.java` (affichage, calculs, lecture de fichier mélangés). Propose les étapes pour la structurer en MVC sans rien casser.",
+      "etapes": [
+        "Créer les paquetages `modele`, `dal`, `controleur`, `vue` (avec leurs dossiers).",
+        "Extraire les classes métier (données + calculs) vers `modele`, puis compiler et tester.",
+        "Extraire la lecture du fichier vers `dal`, tester.",
+        "Créer un contrôleur qui fait le lien, puis réduire la vue à l'affichage, tester.",
+        "Faire un commit après chaque étape réussie."
+      ],
+      "reponse": "Une restructuration progressive, couche par couche, avec compilation, tests et commit à chaque étape.",
+      "difficulte": 2
+    }
+  ]
+}

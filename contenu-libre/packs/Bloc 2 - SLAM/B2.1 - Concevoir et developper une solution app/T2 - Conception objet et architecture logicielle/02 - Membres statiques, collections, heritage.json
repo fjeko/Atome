@@ -1,0 +1,115 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq2-s02",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 2 – Conception objet et architecture logicielle",
+  "sequence": null,
+  "seance": "Membres statiques, collections, héritage",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Certains membres appartiennent à la classe et non aux objets (static). Un objet peut contenir d'autres objets, seuls ou en collection. L'héritage permet de spécialiser une classe.",
+  "notions": [
+    "Membre statique",
+    "Constante",
+    "Objet membre",
+    "Collection ArrayList",
+    "Héritage",
+    "super",
+    "protected"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq2-s02-s01",
+      "titre": "Membres statiques et constantes",
+      "contenu": "Un membre **`static`** appartient à la **classe**, pas à chaque objet : il est **partagé** par toutes les instances.\n\n```java\npublic class Ticket {\n    private static int compteur = 0;      // partagé\n    public static final double TVA = 0.20; // constante\n    private final int numero;\n\n    public Ticket() {\n        compteur++;\n        numero = compteur;\n    }\n\n    public static int getCompteur() { return compteur; }\n}\n```\n\n- On appelle un membre statique par le **nom de la classe** : `Ticket.getCompteur()`, `Ticket.TVA`.\n- Une **constante** se déclare `static final`, en MAJUSCULES.\n- Une méthode statique **n'a pas de `this`** : elle ne peut pas utiliser directement les attributs d'un objet.",
+      "notions": [
+        "Membre statique",
+        "Constante"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s02-s02",
+      "titre": "Objets membres et collections",
+      "contenu": "Un attribut peut être **un autre objet** : une `Commande` a un `Client`. Il peut aussi être une **collection** d'objets : une commande a plusieurs lignes.\n\n```java\nimport java.util.ArrayList;\n\npublic class Commande {\n    private Client client;                 // objet membre\n    private ArrayList<Ligne> lignes;       // collection\n\n    public Commande(Client client) {\n        this.client = client;\n        this.lignes = new ArrayList<>();   // ne pas oublier !\n    }\n\n    public void ajouter(Ligne l) { lignes.add(l); }\n\n    public double total() {\n        double t = 0;\n        for (Ligne l : lignes) { t += l.montant(); }\n        return t;\n    }\n}\n```\n\nMéthodes utiles d'`ArrayList` : `add`, `get(i)`, `size()`, `remove`, `contains`. Oublier le `new ArrayList<>()` provoque une `NullPointerException` au premier `add`.",
+      "notions": [
+        "Objet membre",
+        "Collection ArrayList"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s02-s03",
+      "titre": "Héritage",
+      "contenu": "L'**héritage** crée une classe **fille** qui reprend tout ce que fait la classe **mère** et le **spécialise**. On l'utilise quand on peut dire « *est un* » : un `Velo` **est un** `Vehicule`.\n\n```java\npublic class Vehicule {\n    protected String immatriculation;\n    public Vehicule(String immat) { this.immatriculation = immat; }\n    public String description() { return \"Véhicule \" + immatriculation; }\n}\n\npublic class VeloElectrique extends Vehicule {\n    private int autonomieKm;\n    public VeloElectrique(String immat, int autonomie) {\n        super(immat);              // appelle le constructeur de la mère\n        this.autonomieKm = autonomie;\n    }\n}\n```\n\n- `extends` : déclare l'héritage (une seule classe mère en Java).\n- `super(...)` : **première instruction** du constructeur de la fille.\n- `protected` : visible par les classes filles (et le paquetage).",
+      "notions": [
+        "Héritage",
+        "super",
+        "protected"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq2-s02-c001",
+      "section": "libre-b2-21-sq2-s02-s01",
+      "type": "qcm",
+      "question": "Après `new Ticket(); new Ticket(); new Ticket();`, que vaut `Ticket.getCompteur()` ?",
+      "choix": [
+        "0",
+        "1",
+        "3",
+        "Erreur de compilation"
+      ],
+      "bonneReponse": 2,
+      "explication": "`compteur` est statique : il est commun à tous les tickets et a été incrémenté trois fois.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s02-c002",
+      "section": "libre-b2-21-sq2-s02-s01",
+      "type": "question",
+      "recto": "Comment déclare-t-on une constante de classe en Java ?",
+      "verso": "Avec `static final`, nommée en majuscules : `public static final double TVA = 0.20;`",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq2-s02-c003",
+      "section": "libre-b2-21-sq2-s02-s02",
+      "type": "qcm",
+      "question": "Un développeur obtient une `NullPointerException` à la ligne `lignes.add(l);`. Cause la plus probable ?",
+      "choix": [
+        "La classe Ligne n'existe pas",
+        "La liste n'a jamais été créée avec new",
+        "ArrayList ne peut contenir que des String",
+        "add n'existe pas sur ArrayList"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un attribut objet non initialisé vaut `null` : il faut `lignes = new ArrayList<>();` dans le constructeur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s02-c004",
+      "section": "libre-b2-21-sq2-s02-s03",
+      "type": "question",
+      "recto": "Quel test simple permet de savoir si l'héritage est justifié ?",
+      "verso": "Le test « **est un** » : si on peut dire « une B est un A », B peut hériter de A. Sinon, c'est plutôt une association (« a un »).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s02-c005",
+      "section": "libre-b2-21-sq2-s02-s03",
+      "type": "exercice",
+      "enonce": "Classe mère `Abonnement(String titulaire, double prixMensuel)`. Écris la classe fille `AbonnementEtudiant` qui ajoute un numéro de carte étudiante et propose une méthode `prixAnnuel()` avec 30 % de réduction.",
+      "etapes": [
+        "`public class AbonnementEtudiant extends Abonnement {`",
+        "Attribut : `private String numCarte;`",
+        "Constructeur : `public AbonnementEtudiant(String t, double p, String numCarte) { super(t, p); this.numCarte = numCarte; }`",
+        "Méthode : `public double prixAnnuel() { return getPrixMensuel() * 12 * 0.7; }` (accès par l'accesseur si l'attribut est privé dans la mère)."
+      ],
+      "reponse": "Une classe `extends Abonnement` qui appelle `super(t, p)` en premier et calcule `prixMensuel × 12 × 0,7`.",
+      "difficulte": 2
+    }
+  ]
+}

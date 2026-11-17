@@ -1,0 +1,116 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq2-s05",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 2 – Conception objet et architecture logicielle",
+  "sequence": null,
+  "seance": "Du diagramme au code",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un diagramme de classes se traduit en code Java avec des règles systématiques ; à l'inverse, la rétroconception reconstruit le diagramme à partir d'un code existant. Certains outils génèrent même le squelette du code.",
+  "notions": [
+    "Traduction diagramme vers code",
+    "Exemple de traduction",
+    "Rétroconception",
+    "Génération de code"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq2-s05-s01",
+      "titre": "Règles de traduction",
+      "contenu": "| Élément UML | Code Java |\n| --- | --- |\n| Classe | `public class X { }` |\n| Attribut `- nom : String` | `private String nom;` |\n| Opération `+ total() : double` | `public double total() { ... }` |\n| Association navigable vers `1` ou `0..1` | attribut objet `private Client client;` |\n| Association navigable vers `*` | collection `private ArrayList<Ligne> lignes;` |\n| Héritage | `extends` |\n| Classe abstraite | `abstract class` |\n| Composition | parties créées et gérées par le tout |\n| Classe-association | classe à part qui référence les deux classes |\n\nLes multiplicités minimales (`1`, `1..*`) se traduisent par des **contrôles** : par exemple, exiger le client dans le constructeur de `Commande`.",
+      "notions": [
+        "Traduction diagramme vers code"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s05-s02",
+      "titre": "Exemple complet",
+      "contenu": "Diagramme : `Atelier 1 ◆—— 0..* Machine`, `Machine` a `- reference : String`, `- heuresUtilisation : int`, `+ utiliser(h : int)`.\n\n```java\npublic class Machine {\n    private String reference;\n    private int heuresUtilisation;\n\n    public Machine(String reference) {\n        this.reference = reference;\n        this.heuresUtilisation = 0;\n    }\n    public void utiliser(int h) {\n        if (h > 0) heuresUtilisation += h;\n    }\n}\n\npublic class Atelier {\n    private String nom;\n    private ArrayList<Machine> machines = new ArrayList<>();\n\n    public Atelier(String nom) { this.nom = nom; }\n\n    public void installerMachine(String ref) {\n        machines.add(new Machine(ref)); // composition : l'atelier crée ses machines\n    }\n}\n```",
+      "notions": [
+        "Exemple de traduction"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s05-s03",
+      "titre": "Rétroconception",
+      "contenu": "La **rétroconception** (*reverse engineering*) consiste à **reconstruire le diagramme** à partir du code existant : utile pour comprendre ou documenter une application dont on hérite.\n\nDémarche :\n1. chaque classe → une boîte, avec ses attributs de **type simple** ;\n2. chaque attribut de type **classe du projet** → une association navigable, multiplicité `0..1` ou `1` ;\n3. chaque **collection** → association vers `*` ;\n4. `extends` → héritage ; `abstract` → italique ;\n5. paramètres et variables locales d'un autre type → dépendance.\n\nLa plupart des EDI et outils UML (par exemple des extensions d'Eclipse ou d'IntelliJ) savent produire un diagramme automatiquement, mais il faut ensuite le **simplifier** pour qu'il reste lisible.",
+      "notions": [
+        "Rétroconception"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq2-s05-s04",
+      "titre": "Génération de code",
+      "contenu": "Les outils de modélisation (Modelio, StarUML, PlantUML avec extensions…) peuvent **générer le squelette** des classes à partir du diagramme : déclarations, attributs, signatures de méthodes.\n\n- Gain de temps et cohérence entre modèle et code.\n- Il reste à écrire le **corps des méthodes** et les contrôles.\n- Si l'on modifie le code ensuite, il faut **mettre à jour** le diagramme (ou le régénérer par rétroconception) pour qu'ils restent synchrones.",
+      "notions": [
+        "Génération de code"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq2-s05-c001",
+      "section": "libre-b2-21-sq2-s05-s01",
+      "type": "qcm",
+      "question": "Une association navigable de `Panier` vers `Article` avec multiplicité `0..*` côté Article donne :",
+      "choix": [
+        "`private Article article;` dans Panier",
+        "`private ArrayList<Article> articles;` dans Panier",
+        "`private Panier panier;` dans Article",
+        "rien dans le code"
+      ],
+      "bonneReponse": 1,
+      "explication": "Multiplicité multiple → collection dans la classe qui connaît l'autre.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq2-s05-c002",
+      "section": "libre-b2-21-sq2-s05-s01",
+      "type": "question",
+      "recto": "Comment traduire en code une multiplicité `1` obligatoire (une commande a exactement un client) ?",
+      "verso": "Par un attribut `Client client` **exigé dans le constructeur** (et non nul), pour qu'une commande ne puisse pas exister sans client.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s05-c003",
+      "section": "libre-b2-21-sq2-s05-s02",
+      "type": "exercice",
+      "enonce": "Traduis en Java : `Bibliotheque 1 ——> 0..* Livre` (navigable vers Livre) ; `Livre` : `- isbn : String`, `- titre : String`, `+ getTitre() : String` ; `Bibliotheque` : `+ ajouter(l : Livre)`, `+ nombre() : int`.",
+      "etapes": [
+        "`public class Livre { private String isbn; private String titre; public Livre(String isbn, String titre) {...} public String getTitre() { return titre; } }`",
+        "`public class Bibliotheque { private ArrayList<Livre> livres = new ArrayList<>();`",
+        "`public void ajouter(Livre l) { livres.add(l); }`",
+        "`public int nombre() { return livres.size(); } }`"
+      ],
+      "reponse": "Livre avec 2 attributs privés et un accesseur ; Bibliotheque avec une `ArrayList<Livre>`, `ajouter` et `nombre`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s05-c004",
+      "section": "libre-b2-21-sq2-s05-s03",
+      "type": "qcm",
+      "question": "En rétroconception, l'attribut `private ArrayList<Seance> seances;` dans `Coach` devient :",
+      "choix": [
+        "Une association navigable de Coach vers Seance, multiplicité * côté Seance",
+        "Un attribut `seances` dans le compartiment de Coach",
+        "Un héritage entre Coach et Seance",
+        "Une dépendance"
+      ],
+      "bonneReponse": 0,
+      "explication": "Une collection d'objets du modèle se représente par une association vers `*`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq2-s05-c005",
+      "section": "libre-b2-21-sq2-s05-s04",
+      "type": "question",
+      "recto": "Que génère en général un outil UML à partir d'un diagramme de classes ?",
+      "verso": "Le **squelette** du code : classes, attributs, signatures de méthodes. Le corps des méthodes reste à écrire.",
+      "difficulte": 1
+    }
+  ]
+}

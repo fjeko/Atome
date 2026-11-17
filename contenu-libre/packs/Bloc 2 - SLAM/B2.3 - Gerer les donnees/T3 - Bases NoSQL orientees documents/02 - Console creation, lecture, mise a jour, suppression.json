@@ -1,0 +1,115 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq3-s02",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – Gérer les données › Thème 3 – Bases NoSQL orientées documents",
+  "sequence": null,
+  "seance": "Console : création, lecture, mise à jour, suppression",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Avec la console de MongoDB (mongosh), on crée une base et une collection, on insère des documents, on les lit, on les modifie avec des opérateurs et on les supprime.",
+  "notions": [
+    "Serveur MongoDB",
+    "Console mongosh",
+    "insertOne",
+    "insertMany",
+    "find",
+    "updateOne",
+    "Opérateur $set",
+    "deleteOne"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq3-s02-s01",
+      "titre": "Démarrer : serveur et console",
+      "contenu": "- Le **serveur** (`mongod`) s'installe comme un service ; il écoute par défaut sur le port **27017**.\n- La **console** `mongosh` permet d'envoyer des commandes en JavaScript.\n\n```javascript\nshow dbs                 // lister les bases\nuse jardinerie           // se placer dans une base (créée à la première écriture)\nshow collections\ndb.plantes.countDocuments()\n```\n\nExemple fil rouge : la jardinerie en ligne **Feuillage & Cie**.",
+      "notions": [
+        "Serveur MongoDB",
+        "Console mongosh"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s02-s02",
+      "titre": "Insérer et lire",
+      "contenu": "```javascript\ndb.plantes.insertOne({ nom: \"Calathea\", prix: 18.5, stock: 12, categorie: \"intérieur\" })\n\ndb.plantes.insertMany([\n  { nom: \"Lavande\", prix: 6.9, stock: 40, categorie: \"extérieur\" },\n  { nom: \"Olivier nain\", prix: 39, stock: 3, categorie: \"extérieur\", rusticite: -8 }\n])\n\ndb.plantes.find()                                   // tous les documents\ndb.plantes.find({ categorie: \"extérieur\" })         // filtre d'égalité\ndb.plantes.find({ categorie: \"extérieur\" }, { nom: 1, prix: 1, _id: 0 })   // projection\ndb.plantes.findOne({ nom: \"Lavande\" })\n```\n\nLe 2e argument de `find` est la **projection** : 1 = afficher, 0 = masquer.",
+      "notions": [
+        "insertOne",
+        "insertMany",
+        "find"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s02-s03",
+      "titre": "Mettre à jour et supprimer",
+      "contenu": "```javascript\ndb.plantes.updateOne({ nom: \"Calathea\" }, { $set: { prix: 16.9 } })\ndb.plantes.updateMany({ categorie: \"extérieur\" }, { $inc: { stock: 10 } })\ndb.plantes.updateOne({ nom: \"Lavande\" }, { $push: { tags: \"mellifère\" } })\ndb.plantes.updateOne({ nom: \"Olivier nain\" }, { $unset: { rusticite: \"\" } })\n\ndb.plantes.deleteOne({ nom: \"Lavande\" })\ndb.plantes.deleteMany({ stock: 0 })\n```\n\nOpérateurs de mise à jour : `$set` (modifier/ajouter un champ), `$inc` (incrémenter), `$unset` (retirer un champ), `$push` (ajouter à un tableau).\n\n**Piège** : `replaceOne` (et un update sans opérateur dans d'anciennes versions) **remplace le document entier** : tous les champs non repris sont perdus. Utilise `$set` pour modifier un seul champ.",
+      "notions": [
+        "updateOne",
+        "Opérateur $set",
+        "deleteOne"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq3-s02-c001",
+      "section": "libre-b2-23-sq3-s02-s01",
+      "type": "qcm",
+      "question": "Que fait `use jardinerie` si la base n'existe pas encore ?",
+      "choix": [
+        "Une erreur",
+        "Elle se place dessus ; la base sera réellement créée à la première insertion",
+        "Elle crée une base vide immédiatement sur le disque",
+        "Elle supprime la base courante"
+      ],
+      "bonneReponse": 1,
+      "explication": "MongoDB crée bases et collections à la volée lors de la première écriture.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-23-sq3-s02-c002",
+      "section": "libre-b2-23-sq3-s02-s02",
+      "type": "qcm",
+      "question": "Quel est l'équivalent de `SELECT nom FROM plantes WHERE categorie = 'intérieur'` ?",
+      "choix": [
+        "`db.plantes.find({ nom: 1 }, { categorie: \"intérieur\" })`",
+        "`db.plantes.find({ categorie: \"intérieur\" }, { nom: 1, _id: 0 })`",
+        "`db.plantes.select(\"nom\").where(\"intérieur\")`",
+        "`db.plantes.findOne({ categorie: \"intérieur\" })`"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le filtre est le premier argument, la projection le second.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq3-s02-c003",
+      "section": "libre-b2-23-sq3-s02-s03",
+      "type": "qcm",
+      "question": "Pour baisser le stock du Calathea de 2 unités, on écrit :",
+      "choix": [
+        "`db.plantes.updateOne({ nom: \"Calathea\" }, { stock: -2 })`",
+        "`db.plantes.updateOne({ nom: \"Calathea\" }, { $inc: { stock: -2 } })`",
+        "`db.plantes.updateOne({ nom: \"Calathea\" }, { $set: { stock: \"-2\" } })`",
+        "`db.plantes.deleteOne({ stock: 2 })`"
+      ],
+      "bonneReponse": 1,
+      "explication": "`$inc` avec une valeur négative décrémente.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq3-s02-c004",
+      "section": "libre-b2-23-sq3-s02-s03",
+      "type": "exercice",
+      "enonce": "Écris les commandes pour : (1) ajouter un « Ficus lyrata » à 29 €, stock 5, catégorie intérieur ; (2) passer son prix à 27 € ; (3) supprimer toutes les plantes de catégorie « saisonnier ».",
+      "etapes": [
+        "(1) `db.plantes.insertOne({ nom: \"Ficus lyrata\", prix: 29, stock: 5, categorie: \"intérieur\" })`",
+        "(2) `db.plantes.updateOne({ nom: \"Ficus lyrata\" }, { $set: { prix: 27 } })`",
+        "(3) `db.plantes.deleteMany({ categorie: \"saisonnier\" })`"
+      ],
+      "reponse": "insertOne, updateOne avec $set, deleteMany avec un filtre.",
+      "difficulte": 2
+    }
+  ]
+}

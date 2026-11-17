@@ -1,0 +1,86 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq2-s03",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – Gérer les données › Thème 2 – Concevoir et faire évoluer une base de données",
+  "sequence": null,
+  "seance": "Construire un MCD correct",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Construire un MCD demande une démarche : recenser les données, déterminer les dépendances, placer entités et associations, puis vérifier la syntaxe et la sémantique. Certains cas classiques reviennent souvent.",
+  "notions": [
+    "Démarche de conception MCD",
+    "Vérifications du MCD",
+    "Cas classiques de modélisation",
+    "Transformer une association en entité"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq2-s03-s01",
+      "titre": "Démarche de construction",
+      "contenu": "1. **Dictionnaire des données** épuré (synonymes, polysèmes, données calculées retirées).\n2. **Dépendances fonctionnelles** entre les données.\n3. Les **identifiants** et ce qu'ils déterminent → **entités** avec leurs propriétés.\n4. Les DF entre identifiants → **associations de type CIF** (x,1).\n5. Les données qui dépendent de **plusieurs** identifiants → propriétés d'**associations n–n** ou ternaires.\n6. **Cardinalités** d'après les règles de gestion.\n7. **Vérifications**.",
+      "notions": [
+        "Démarche de conception MCD"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq2-s03-s02",
+      "titre": "Vérifications syntaxiques et sémantiques",
+      "contenu": "**Syntaxe** : chaque entité a un identifiant ; chaque propriété apparaît **une seule fois** dans le modèle ; propriétés élémentaires ; chaque association relie au moins deux pattes ; cardinalités présentes partout.\n\n**Sémantique** : relis chaque cardinalité comme une phrase (« un client passe au minimum 0 et au maximum n commandes ») et confronte-la aux règles de gestion ; vérifie que chaque propriété dépend de **tout** l'identifiant de son entité ou de son association, et **directement**.",
+      "notions": [
+        "Vérifications du MCD"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq2-s03-s03",
+      "titre": "Cas classiques",
+      "contenu": "- **Commande / produit** : association n–n *Contenir* avec la quantité.\n- **Réservation datée** : si la même personne peut réserver plusieurs fois la même ressource, la date doit faire partie de l'identifiant → on **transforme l'association en entité** RESERVATION (numReservation, date…) reliée par deux CIF.\n- **Historique** (prix, adresse, poste occupé) : entité datée reliée à l'entité principale.\n- **Hiérarchie** (responsable, catégorie parente) : association réflexive.\n- **Types / catégories** : entité de référence (CATEGORIE) plutôt qu'un texte libre répété.",
+      "notions": [
+        "Cas classiques de modélisation",
+        "Transformer une association en entité"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq2-s03-c001",
+      "section": "libre-b2-23-sq2-s03-s01",
+      "type": "question",
+      "recto": "Où placer une donnée qui dépend de deux identifiants à la fois (par ex. la note d'un étudiant dans une matière) ?",
+      "verso": "Dans l'**association** qui relie les deux entités (ÉTUDIANT et MATIÈRE), comme propriété.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq2-s03-c002",
+      "section": "libre-b2-23-sq2-s03-s02",
+      "type": "qcm",
+      "question": "Une propriété `ville` apparaît à la fois dans CLIENT et dans MAGASIN. Est-ce une erreur ?",
+      "choix": [
+        "Oui, une même propriété ne doit figurer qu'une fois : on renomme (villeClient, villeMagasin) ou on crée une entité VILLE",
+        "Non, c'est normal",
+        "Seulement si les deux villes sont identiques",
+        "Non, c'est un héritage"
+      ],
+      "bonneReponse": 0,
+      "explication": "Règle syntaxique : chaque propriété a un nom unique dans le MCD.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq2-s03-c003",
+      "section": "libre-b2-23-sq2-s03-s03",
+      "type": "exercice",
+      "enonce": "Un patient peut prendre plusieurs fois rendez-vous avec le même kiné de la société **Kinéa**, à des dates différentes. On a modélisé `PATIENT ---0,n--- (Rendez-vous: date, heure) ---0,n--- KINE`. Pourquoi est-ce faux et comment corriger ?",
+      "etapes": [
+        "L'association n–n a pour identifiant le couple (patient, kiné) : un seul rendez-vous possible par couple.",
+        "Or un même couple a plusieurs rendez-vous : il faut un identifiant propre.",
+        "Transformer l'association en entité RENDEZVOUS(numRdv, date, heure).",
+        "La relier par deux CIF : RENDEZVOUS (1,1) — PATIENT (0,n) et RENDEZVOUS (1,1) — KINE (0,n)."
+      ],
+      "reponse": "Entité RENDEZVOUS avec identifiant propre, reliée à PATIENT et KINE par des associations (1,1)–(0,n).",
+      "difficulte": 2
+    }
+  ]
+}

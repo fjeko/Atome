@@ -1,0 +1,114 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq1-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 5 – Installer et configurer des postes Windows et Linux",
+  "sequence": null,
+  "seance": "Variables d'environnement et registre",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Créer et modifier des variables d'environnement (dont le chemin de recherche PATH), comprendre l'organisation du registre Windows (clés racines, types de valeurs, ruches) et le sauvegarder avant toute modification.",
+  "notions": [
+    "Variables d'environnement",
+    "Variable PATH",
+    "Registre et clés racines",
+    "Types de valeurs",
+    "Ruches",
+    "Sauvegarde du registre"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq1-s02-s01",
+      "titre": "Les variables d'environnement",
+      "contenu": "Une **variable d'environnement** est une valeur nommée que le système met à disposition de tous les programmes : dossier de l'utilisateur, dossier temporaire, nom du poste…\n```bat\necho %USERNAME%\necho %USERPROFILE%\necho %COMPUTERNAME%\nset\n```\nIl en existe deux portées : **utilisateur** (pour un seul compte) et **système** (pour tous).\n\nLa plus importante : **PATH**, la liste des dossiers où Windows cherche un programme quand on tape son nom. Si l'outil `outilcompta.exe` est dans `C:\\Outils\\Compta`, il faut ajouter ce dossier au PATH pour pouvoir taper `outilcompta` depuis n'importe où.\n\nModification : *Paramètres système avancés > Variables d'environnement*, ou :\n```bat\nsetx ARCHIVES \"D:\\Archives\"\n```\n**Piège** : une console déjà ouverte ne voit pas la nouvelle valeur. Il faut **rouvrir** la console (voire la session).",
+      "notions": [
+        "Variables d'environnement",
+        "Variable PATH"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s02-s02",
+      "titre": "Le registre Windows",
+      "contenu": "Le **registre** est la grande base de données de configuration de Windows et des logiciels. On l'ouvre avec `regedit`. Il est organisé en **clés** (comme des dossiers) contenant des **valeurs**.\n\nLes **clés racines** principales :\n| Clé | Contient |\n| --- | --- |\n| `HKEY_LOCAL_MACHINE` (HKLM) | réglages de la **machine**, communs à tous |\n| `HKEY_CURRENT_USER` (HKCU) | réglages de l'**utilisateur connecté** |\n| `HKEY_USERS` (HKU) | les profils de tous les utilisateurs chargés |\n| `HKEY_CLASSES_ROOT` (HKCR) | associations de fichiers (quel programme ouvre .pdf) |\n| `HKEY_CURRENT_CONFIG` (HKCC) | profil matériel courant |\n\n**Types de valeurs** courants :\n| Type | Contenu |\n| --- | --- |\n| `REG_SZ` | chaîne de texte |\n| `REG_EXPAND_SZ` | chaîne contenant des variables (`%SystemRoot%`) |\n| `REG_MULTI_SZ` | liste de chaînes |\n| `REG_DWORD` | nombre sur 32 bits (souvent 0/1 pour off/on) |\n| `REG_QWORD` | nombre sur 64 bits |\n| `REG_BINARY` | données binaires |",
+      "notions": [
+        "Registre et clés racines",
+        "Types de valeurs"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s02-s03",
+      "titre": "Ruches et sauvegarde du registre",
+      "contenu": "Le registre est stocké dans des fichiers appelés **ruches** (*hives*) :\n- dans `C:\\Windows\\System32\\config` : `SYSTEM`, `SOFTWARE`, `SAM`, `SECURITY`… (partie machine) ;\n- dans chaque profil : `NTUSER.DAT` (partie utilisateur, chargée dans HKCU à l'ouverture de session).\n\nUne erreur dans le registre peut **empêcher Windows de démarrer**. Avant toute modification :\n- **exporter** la clé concernée (*Fichier > Exporter* dans regedit, ou en ligne de commande) ;\n- ou créer un **point de restauration** système ;\n- en VM, prendre un **instantané**.\n```bat\nreg export \"HKCU\\Software\\AtelierBois\" C:\\Sauv\\atelierbois.reg\nreg add \"HKCU\\Software\\AtelierBois\" /v Theme /t REG_SZ /d Sombre /f\nreg import C:\\Sauv\\atelierbois.reg\n```",
+      "notions": [
+        "Ruches",
+        "Sauvegarde du registre"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq1-s02-c001",
+      "section": "libre-b1-12b-sq1-s02-s01",
+      "type": "qcm",
+      "question": "Tu viens d'ajouter un dossier au PATH, mais dans ta console ouverte la commande reste introuvable. Pourquoi ?",
+      "choix": [
+        "Le PATH ne fonctionne qu'après réinstallation de Windows",
+        "Les programmes déjà ouverts gardent l'ancienne valeur : il faut rouvrir la console",
+        "Le dossier doit être sur le disque C:",
+        "Il faut redémarrer le pare-feu"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un processus reçoit une copie des variables à son démarrage ; il ne voit pas les modifications faites ensuite.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq1-s02-c002",
+      "section": "libre-b1-12b-sq1-s02-s01",
+      "type": "question",
+      "recto": "À quoi sert la variable PATH ?",
+      "verso": "Elle liste les dossiers dans lesquels le système cherche un exécutable lorsqu'on tape son nom sans chemin complet.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq1-s02-c003",
+      "section": "libre-b1-12b-sq1-s02-s02",
+      "type": "qcm",
+      "question": "Un réglage doit s'appliquer à tous les utilisateurs de la machine. Dans quelle clé racine se trouve-t-il en général ?",
+      "choix": [
+        "HKEY_CURRENT_USER",
+        "HKEY_LOCAL_MACHINE",
+        "HKEY_CLASSES_ROOT",
+        "HKEY_CURRENT_CONFIG"
+      ],
+      "bonneReponse": 1,
+      "explication": "HKLM contient la configuration de la machine ; HKCU celle de l'utilisateur connecté.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq1-s02-c004",
+      "section": "libre-b1-12b-sq1-s02-s02",
+      "type": "qcm",
+      "question": "Quel type de valeur utiliser pour un interrupteur activé (1) / désactivé (0) ?",
+      "choix": [
+        "REG_SZ",
+        "REG_MULTI_SZ",
+        "REG_DWORD",
+        "REG_BINARY"
+      ],
+      "bonneReponse": 2,
+      "explication": "Un nombre entier 32 bits (REG_DWORD) est le type standard pour ces réglages.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq1-s02-c005",
+      "section": "libre-b1-12b-sq1-s02-s03",
+      "type": "question",
+      "recto": "Quelle précaution prendre avant de modifier le registre ?",
+      "verso": "Sauvegarder : exporter la clé concernée, créer un point de restauration (ou un instantané de la VM).",
+      "difficulte": 1
+    }
+  ]
+}

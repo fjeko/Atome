@@ -1,0 +1,99 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-34-sq3-s02",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.4 – Garantir la sécurité des services et des données face aux cyberattaques › Thème 3 – Menaces et vulnérabilités réseau",
+  "sequence": null,
+  "seance": "Découverte et scan",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La reconnaissance identifie les machines actives et les services exposés. Nmap est l'outil de référence ; savoir lire ses résultats permet de distinguer un port ouvert d'une vulnérabilité exploitable.",
+  "notions": [
+    "Reconnaissance",
+    "Découverte d'hôtes",
+    "Scan de ports",
+    "Nmap",
+    "États des ports",
+    "Port ouvert et vulnérabilité"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-34-sq3-s02-s01",
+      "titre": "Découvrir les hôtes",
+      "contenu": "Première étape : savoir **quelles machines** sont présentes, sur **son** réseau de laboratoire ou dans le périmètre autorisé.\n\n```bash\nip a                         # ma propre adresse et mon réseau (ex. 192.168.56.10/24)\nnmap -sn 192.168.56.0/24     # découverte d'hôtes (sans scan de ports)\n```\n\nAutres sources : table ARP (`ip neigh`), baux du serveur DHCP, interface du switch, annuaire.",
+      "notions": [
+        "Reconnaissance",
+        "Découverte d'hôtes"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq3-s02-s02",
+      "titre": "Scanner les ports et services",
+      "contenu": "```bash\nnmap -sV -p- 192.168.56.20     # tous les ports TCP, avec détection des versions\n```\n\nExemple de sortie :\n\n```text\nPORT     STATE    SERVICE  VERSION\n21/tcp   open     ftp      vsftpd 3.0.3\n22/tcp   open     ssh      OpenSSH 9.2\n23/tcp   open     telnet\n80/tcp   open     http     Apache httpd 2.4.57\n3306/tcp open     mysql    MySQL 8.0\n8443/tcp filtered https-alt\n```\n\nÉtats : **open** (un service répond), **closed** (rien n'écoute, mais la machine répond), **filtered** (un pare-feu bloque, pas de réponse).",
+      "notions": [
+        "Scan de ports",
+        "Nmap",
+        "États des ports"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq3-s02-s03",
+      "titre": "Port ouvert n'est pas vulnérabilité",
+      "contenu": "Un port **ouvert** signifie qu'un service répond. Cela **ne veut pas dire** qu'il est **vulnérable** :\n- un HTTPS à jour bien configuré est ouvert **et** sain ;\n- un service ancien, mal configuré, ou avec un mot de passe par défaut est une **vulnérabilité** potentielle.\n\nPour conclure, il faut identifier la **version**, la comparer aux **avis de sécurité**, vérifier la **configuration** (authentification, chiffrement). Les **scanners de vulnérabilités** (OpenVAS/Greenbone…) automatisent une partie de ce travail, avec des faux positifs à vérifier.",
+      "notions": [
+        "Port ouvert et vulnérabilité"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-34-sq3-s02-c001",
+      "section": "libre-b3-34-sq3-s02-s01",
+      "type": "qcm",
+      "question": "Que fait `nmap -sn 192.168.56.0/24` ?",
+      "choix": [
+        "Il scanne tous les ports de toutes les machines",
+        "Il recherche les hôtes actifs du réseau, sans scanner les ports",
+        "Il attaque les machines",
+        "Il capture le trafic"
+      ],
+      "bonneReponse": 1,
+      "explication": "`-sn` = découverte d'hôtes uniquement.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-34-sq3-s02-c002",
+      "section": "libre-b3-34-sq3-s02-s02",
+      "type": "exercice",
+      "enonce": "Interprète la sortie ci-dessus (serveur web interne de test) et propose des actions.",
+      "etapes": [
+        "21 FTP et 23 Telnet : protocoles en clair → désactiver, remplacer par SFTP et SSH.",
+        "22 SSH : utile, à restreindre au réseau d'administration, authentification par clé.",
+        "80 HTTP : rediriger vers HTTPS et installer un certificat.",
+        "3306 MySQL : ne devrait pas être joignable depuis le réseau → écoute locale et pare-feu.",
+        "8443 filtré : le pare-feu bloque ; vérifier si le service est utile, sinon l'arrêter.",
+        "Vérifier pour chaque version les avis de sécurité (CVE) applicables."
+      ],
+      "reponse": "Fermer FTP/Telnet/MySQL exposés, HTTPS au lieu de HTTP, SSH restreint, versions à vérifier.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq3-s02-c003",
+      "section": "libre-b3-34-sq3-s02-s03",
+      "type": "qcm",
+      "question": "Le port 443 est ouvert sur le serveur web. Que peut-on conclure ?",
+      "choix": [
+        "Le serveur est vulnérable",
+        "Un service HTTPS répond ; sa sécurité dépend de sa version et de sa configuration",
+        "Le pare-feu est désactivé",
+        "Le serveur est piraté"
+      ],
+      "bonneReponse": 1,
+      "explication": "Ouvert ne veut pas dire exploitable.",
+      "difficulte": 2
+    }
+  ]
+}

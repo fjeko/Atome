@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "id": "libre-algo-p1-s05",
+  "matiere": "Algorithmique appliquée",
+  "bloc": "Bloc 6",
+  "partie": "Thème 1 – Fondamentaux de l'algorithmique",
+  "sequence": null,
+  "seance": "Charte de code et bonnes pratiques",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Écrire un code lisible par les autres et par soi-même dans six mois : en-tête, nommage, indentation, commentaires et constantes.",
+  "notions": [
+    "Charte de code",
+    "Lisibilité et constantes"
+  ],
+  "sections": [
+    {
+      "id": "libre-algo-p1-s05-s01",
+      "titre": "Pourquoi une charte de code ?",
+      "contenu": "Un programme est lu bien plus souvent qu'il n'est écrit : par tes collègues, par le correcteur, par toi plus tard. Une **charte de code** fixe des règles communes de présentation. En Python, la référence est le guide **PEP 8**.\n\nLes règles essentielles :\n1. un **en-tête** en haut du fichier : rôle du programme, auteur, date, version ;\n2. une **indentation** de 4 espaces (jamais de mélange avec des tabulations) ;\n3. des **noms parlants** : `nb_etudiants` plutôt que `n`, `prix_ht` plutôt que `p2` ;\n4. une convention de nommage unique : en Python, `snake_case` pour les variables et fonctions, `MAJUSCULES` pour les constantes ;\n5. des **commentaires** qui expliquent le **pourquoi**, pas ce qui est évident ;\n6. des lignes courtes (79 à 99 caractères) et des espaces autour des opérateurs.",
+      "notions": [
+        "Charte de code"
+      ]
+    },
+    {
+      "id": "libre-algo-p1-s05-s02",
+      "titre": "Avant / après : le même programme",
+      "contenu": "**Avant** :\n```python\na=float(input())\nb=float(input())\nc=a*b*1.2\nprint(c)\n```\n\n**Après** :\n```python\n# ---------------------------------------------------------\n# Programme : calcul d'un montant TTC\n# Rôle      : à partir d'un prix HT et d'une quantité,\n#             affiche le montant TTC\n# Version   : 1.0\n# ---------------------------------------------------------\n\nTAUX_TVA = 0.20   # taux normal ; à modifier ici si la loi change\n\nprix_ht = float(input(\"Prix unitaire HT ? \"))\nquantite = float(input(\"Quantité ? \"))\n\nmontant_ttc = prix_ht * quantite * (1 + TAUX_TVA)\nprint(f\"Montant TTC : {montant_ttc:.2f} €\")\n```\n\nCe qui a changé : en-tête, constante nommée au lieu du nombre « magique » 1.2, noms parlants, espaces autour des opérateurs, messages de saisie, affichage formaté (`:.2f` = 2 décimales).",
+      "notions": [
+        "Lisibilité et constantes"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-algo-p1-s05-c001",
+      "section": "libre-algo-p1-s05-s01",
+      "type": "qcm",
+      "question": "Quel nom de variable respecte le mieux les conventions Python ?",
+      "choix": [
+        "`montant_total`",
+        "`MontantTotal`",
+        "`mt`",
+        "`montant total`"
+      ],
+      "bonneReponse": 0,
+      "explication": "`snake_case` pour les variables. `MontantTotal` est réservé aux classes, `mt` n'est pas parlant et l'espace est interdit.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p1-s05-c002",
+      "section": "libre-algo-p1-s05-s01",
+      "type": "question",
+      "recto": "Quelle indentation recommande la charte Python (PEP 8) ?",
+      "verso": "4 espaces par niveau, sans mélanger espaces et tabulations.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p1-s05-c003",
+      "section": "libre-algo-p1-s05-s02",
+      "type": "qcm",
+      "question": "Pourquoi remplacer `1.2` par une constante `TAUX_TVA = 0.20` ?",
+      "choix": [
+        "Pour donner du sens à la valeur et la modifier à un seul endroit",
+        "Pour accélérer le calcul",
+        "Parce que Python refuse les nombres décimaux dans les calculs",
+        "Pour économiser de la mémoire"
+      ],
+      "bonneReponse": 0,
+      "explication": "Un nombre « magique » ne dit pas ce qu'il représente ; s'il apparaît à plusieurs endroits, on risque d'en oublier un.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p1-s05-c004",
+      "section": "libre-algo-p1-s05-s02",
+      "type": "qcm",
+      "question": "Lequel de ces commentaires est le plus utile ?",
+      "choix": [
+        "`# remise fidélité : 3 % après 5 commandes (règle du service commercial)`",
+        "`# on multiplie par 0.97`",
+        "`# ligne 12`",
+        "`# calcul`"
+      ],
+      "bonneReponse": 0,
+      "explication": "Un bon commentaire explique pourquoi on fait les choses ; le code dit déjà comment.",
+      "difficulte": 2
+    }
+  ]
+}

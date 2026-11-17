@@ -1,0 +1,74 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-15-sq2-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.5 – Mettre à disposition des utilisateurs un service informatique › Thème 2 – Environnement de test web et base de données",
+  "sequence": null,
+  "seance": "Administration à distance et clonage",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Administrer un serveur à distance de façon sécurisée avec SSH et des clés, et créer des serveurs supplémentaires par clonage complet ou lié, puis les personnaliser.",
+  "notions": [
+    "SSH",
+    "Authentification par clé",
+    "Durcir l'accès SSH",
+    "Clone complet et clone lié",
+    "Personnaliser un clone"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-15-sq2-s02-s01",
+      "titre": "SSH et clés",
+      "contenu": "**SSH** permet d'ouvrir un terminal **chiffré** sur une machine distante (port 22) :\n```bash\nssh adm.lea@192.168.56.10\n```\nMieux qu'un mot de passe : l'**authentification par clé**. On génère une paire de clés sur son poste ; la **clé publique** est copiée sur le serveur, la **clé privée** reste chez soi (protégée par une phrase de passe).\n```bash\nssh-keygen -t ed25519\nssh-copy-id adm.lea@192.168.56.10\n```\nDurcissement dans `/etc/ssh/sshd_config` puis `sudo systemctl restart ssh` :\n```text\nPermitRootLogin no\nPasswordAuthentication no      # une fois les clés en place et testées\n```",
+      "notions": [
+        "SSH",
+        "Authentification par clé",
+        "Durcir l'accès SSH"
+      ]
+    },
+    {
+      "id": "libre-b1-15-sq2-s02-s02",
+      "titre": "Cloner",
+      "contenu": "Pour obtenir le serveur de base de données, on **clone** le serveur préparé :\n| | Clone complet | Clone lié |\n| --- | --- | --- |\n| Disque | copie intégrale indépendante | ne stocke que les **différences** avec un instantané de l'original |\n| Place | importante | faible |\n| Dépendance | aucune | **dépend** de l'original : le supprimer casse le clone |\n| Usage | serveur durable, à déplacer | tests rapides, maquettes |\n\nLors du clonage, régénérer les **adresses MAC** des cartes. Puis personnaliser : **nom d'hôte**, `/etc/hosts`, **adresse IP**, identifiant machine, **clés SSH** de l'hôte.\n\n**Piège** : oublier de renommer le clone → deux serveurs `srv-web-test` sur le réseau.",
+      "notions": [
+        "Clone complet et clone lié",
+        "Personnaliser un clone"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-15-sq2-s02-c001",
+      "section": "libre-b1-15-sq2-s02-s01",
+      "type": "qcm",
+      "question": "Dans l'authentification SSH par clé, quelle clé est déposée sur le serveur ?",
+      "choix": [
+        "La clé privée",
+        "La clé publique",
+        "Les deux",
+        "Aucune, seul le mot de passe compte"
+      ],
+      "bonneReponse": 1,
+      "explication": "La clé publique va sur le serveur ; la clé privée ne quitte jamais le poste de l'administrateur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-15-sq2-s02-c002",
+      "section": "libre-b1-15-sq2-s02-s02",
+      "type": "qcm",
+      "question": "Tu veux créer rapidement 3 VM de test jetables à partir d'un modèle, en économisant l'espace disque. Quel type de clone ?",
+      "choix": [
+        "Clone lié",
+        "Clone complet",
+        "Export OVA",
+        "Aucun : réinstaller"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le clone lié ne stocke que les différences ; il dépend du modèle, ce qui est acceptable pour des VM temporaires.",
+      "difficulte": 2
+    }
+  ]
+}

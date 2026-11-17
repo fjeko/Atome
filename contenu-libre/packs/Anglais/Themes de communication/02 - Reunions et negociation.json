@@ -1,0 +1,183 @@
+{
+  "formatVersion": 1,
+  "id": "libre-ang-t-s02",
+  "matiere": "Anglais",
+  "bloc": "Bloc 5",
+  "partie": "Thèmes de communication",
+  "sequence": null,
+  "seance": "Réunions et négociation",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Prendre la parole en réunion, présenter des chiffres, défendre sa position, négocier et nuancer.",
+  "notions": [
+    "Réunions et négociation : mise en situation",
+    "Réunions et négociation : verbes",
+    "Réunions et négociation : noms",
+    "Réunions et négociation : adjectifs et adverbes",
+    "Réunions et négociation : expressions et mots de liaison"
+  ],
+  "sections": [
+    {
+      "id": "libre-ang-t-s02-s01",
+      "titre": "En situation",
+      "contenu": "*— Let's get started. The first item on the **agenda** is last year's figures. Sales **rose by** 8%, but our margin **fell slightly**.*\n*— **If I may**, I'd like to **point out** that costs increased sharply in the second half.*\n*— **I see your point**, but we can't **cut** the training budget. **What if** we reduced travel expenses instead?*\n*— That **sounds reasonable**. **Can we agree on** a 10% reduction?*\n\nPrésenter des chiffres : *rise / increase / grow* (augmenter), *fall / drop / decrease* (baisser), *remain stable* ; *by* = de (l'écart), *to* = jusqu'à (la valeur finale) : *Sales rose **by** 5% **to** €2 million.*",
+      "notions": [
+        "Réunions et négociation : mise en situation"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s02-s02",
+      "titre": "Verbes",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **to chair** | présider (une réunion) | *Who is going to chair the meeting?* |\n| **to point out** | faire remarquer, souligner | *He pointed out a mistake in the figures.* |\n| **to negotiate** | négocier | *We negotiated a better price with the supplier.* |\n| **to compromise** | faire un compromis | *Both sides had to compromise.* |\n| **to rise / to fall** | augmenter / baisser | *Profits rose in May but fell in June.* |\n| **to cut** | réduire, couper | *The board wants to cut costs.* |\n| **to restructure** | restructurer | *The company is restructuring its sales department.* |",
+      "notions": [
+        "Réunions et négociation : verbes"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s02-s03",
+      "titre": "Noms",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **an agenda** | un ordre du jour | *Please send the agenda before the meeting.* |\n| **the minutes** | le compte rendu (de réunion) | *Can you take the minutes today?* |\n| **a deal** | un accord, une affaire | *We finally reached a deal.* |\n| **an offer / a counter-offer** | une offre / une contre-proposition | *They rejected our counter-offer.* |\n| **the turnover** | le chiffre d'affaires | *Our turnover reached €3 million.* |\n| **a layoff** | un licenciement (économique) | *The restructuring led to twenty layoffs.* |\n| **a stakeholder** | une partie prenante | *All stakeholders were invited.* |",
+      "notions": [
+        "Réunions et négociation : noms"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s02-s04",
+      "titre": "Adjectifs et adverbes",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **sharply** | fortement, brutalement | *Energy costs increased sharply.* |\n| **slightly** | légèrement | *Sales dropped slightly in March.* |\n| **steady** | régulier, stable | *We have seen steady growth.* |\n| **reasonable** | raisonnable | *Your proposal sounds reasonable.* |\n| **firm** | ferme | *Our final price is firm.* |\n| **annual** | annuel | *The annual report will be published in April.* |",
+      "notions": [
+        "Réunions et négociation : adjectifs et adverbes"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s02-s05",
+      "titre": "Expressions et mots de liaison",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **I see your point, but…** | je comprends votre point de vue, mais… | *I see your point, but the deadline is too short.* |\n| **To some extent** | dans une certaine mesure | *To some extent, you are right.* |\n| **What if we…?** | et si nous… ? | *What if we shared the costs?* |\n| **Let's move on to…** | passons à… | *Let's move on to the next item.* |\n| **On the one hand… on the other hand…** | d'un côté… de l'autre… | *On the one hand it's cheaper; on the other hand it's slower.* |\n| **Can we agree on…?** | pouvons-nous nous mettre d'accord sur… ? | *Can we agree on a delivery date?* |",
+      "notions": [
+        "Réunions et négociation : expressions et mots de liaison"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-ang-t-s02-c001",
+      "section": "libre-ang-t-s02-s02",
+      "type": "question",
+      "recto": "Traduis en français : **to point out**\n\n*He pointed out a mistake in the figures.*",
+      "verso": "faire remarquer, souligner",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s02-c002",
+      "section": "libre-ang-t-s02-s02",
+      "type": "question",
+      "recto": "Traduis en français : **to compromise**\n\n*Both sides had to compromise.*",
+      "verso": "faire un compromis",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s02-c003",
+      "section": "libre-ang-t-s02-s02",
+      "type": "question",
+      "recto": "Traduis en anglais : **augmenter / baisser**",
+      "verso": "**to rise / to fall** — *Profits rose in May but fell in June.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s02-c004",
+      "section": "libre-ang-t-s02-s02",
+      "type": "qcm",
+      "question": "Complète : *Our turnover increased ___ 12% last year.*",
+      "choix": [
+        "by",
+        "of",
+        "at",
+        "with"
+      ],
+      "bonneReponse": 0,
+      "explication": "*By* indique l'écart d'une variation.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s02-c005",
+      "section": "libre-ang-t-s02-s03",
+      "type": "question",
+      "recto": "Traduis en français : **an agenda**\n\n*Please send the agenda before the meeting.*",
+      "verso": "un ordre du jour",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s02-c006",
+      "section": "libre-ang-t-s02-s03",
+      "type": "question",
+      "recto": "Traduis en français : **the minutes**\n\n*Can you take the minutes today?*",
+      "verso": "le compte rendu (de réunion)",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s02-c007",
+      "section": "libre-ang-t-s02-s03",
+      "type": "question",
+      "recto": "Traduis en anglais : **un accord, une affaire**",
+      "verso": "**a deal** — *We finally reached a deal.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s02-c008",
+      "section": "libre-ang-t-s02-s04",
+      "type": "question",
+      "recto": "Traduis en français : **sharply**\n\n*Energy costs increased sharply.*",
+      "verso": "fortement, brutalement",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s02-c009",
+      "section": "libre-ang-t-s02-s04",
+      "type": "question",
+      "recto": "Traduis en anglais : **légèrement**",
+      "verso": "**slightly** — *Sales dropped slightly in March.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s02-c010",
+      "section": "libre-ang-t-s02-s04",
+      "type": "qcm",
+      "question": "Complète : *Prices went up ___: only 1%.*",
+      "choix": [
+        "slightly",
+        "sharply",
+        "steady",
+        "firmly"
+      ],
+      "bonneReponse": 0,
+      "explication": "1 % est une petite hausse : *slightly*.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s02-c011",
+      "section": "libre-ang-t-s02-s05",
+      "type": "question",
+      "recto": "Traduis en français : **To some extent**\n\n*To some extent, you are right.*",
+      "verso": "dans une certaine mesure",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s02-c012",
+      "section": "libre-ang-t-s02-s05",
+      "type": "question",
+      "recto": "Traduis en anglais : **passons à…**",
+      "verso": "**Let's move on to…** — *Let's move on to the next item.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s02-c013",
+      "section": "libre-ang-t-s02-s01",
+      "type": "question",
+      "recto": "Traduis en anglais : « Le chiffre d'affaires a augmenté de 5 % pour atteindre 2 millions d'euros. »",
+      "verso": "*The turnover rose (increased) by 5% to €2 million.*",
+      "difficulte": 2
+    }
+  ]
+}

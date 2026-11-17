@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-m-s08",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Méthodologie de l'épreuve",
+  "sequence": null,
+  "seance": "Comprendre une décision de justice",
+  "ordre": 8,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Lire un arrêt pour en dégager les faits, la procédure, les prétentions, le problème de droit, la solution et sa portée, avec le vocabulaire judiciaire.",
+  "notions": [
+    "Organisation judiciaire et vocabulaire",
+    "Fiche d'arrêt"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-m-s08-s01",
+      "titre": "L'organisation de la justice et le vocabulaire",
+      "contenu": "En matière civile et commerciale, une affaire peut passer par trois niveaux :\n1. **première instance** : tribunal judiciaire (litiges civils), tribunal de commerce (entre commerçants), conseil de prud'hommes (contrat de travail) ;\n2. **appel** : la cour d'appel **rejuge** l'affaire en fait et en droit ;\n3. **pourvoi en cassation** : la Cour de cassation ne rejuge pas les faits ; elle vérifie que **le droit a été correctement appliqué**.\n\n| Mot | Sens |\n|---|---|\n| demandeur / défendeur | celui qui agit en justice / celui contre qui on agit |\n| appelant / intimé | celui qui fait appel / son adversaire |\n| demandeur au pourvoi | celui qui saisit la Cour de cassation |\n| arrêt / jugement | décision d'une cour / d'un tribunal |\n| **rejet** | la Cour de cassation approuve la décision attaquée |\n| **cassation** | elle l'annule ; l'affaire est en général **renvoyée** devant une autre cour d'appel |",
+      "notions": [
+        "Organisation judiciaire et vocabulaire"
+      ]
+    },
+    {
+      "id": "libre-cejm-m-s08-s02",
+      "titre": "Fiche d'arrêt",
+      "contenu": "| Rubrique | Contenu |\n|---|---|\n| **Faits** | ce qui s'est passé, qualifié juridiquement, sans les noms |\n| **Procédure** | qui a saisi quel juge, ce qu'ont décidé les juges précédents |\n| **Prétentions** | ce que demande chaque partie et ses arguments |\n| **Problème de droit** | la question juridique tranchée par la Cour |\n| **Solution** | la réponse (rejet ou cassation) et sa justification |\n| **Portée** | ce que l'arrêt apporte : confirmation, précision ou évolution de la règle |\n\nStructure d'un arrêt de cassation : **visa** (texte appliqué, en cas de cassation), **attendus / motifs** (faits, procédure, moyens du pourvoi), **décision** (« PAR CES MOTIFS, casse et annule… » ou « rejette le pourvoi »).",
+      "notions": [
+        "Fiche d'arrêt"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-m-s08-c001",
+      "section": "libre-cejm-m-s08-s01",
+      "type": "qcm",
+      "question": "Que fait la Cour de cassation ?",
+      "choix": [
+        "Elle vérifie la bonne application du droit, sans rejuger les faits",
+        "Elle rejuge entièrement l'affaire",
+        "Elle juge les litiges entre commerçants en premier",
+        "Elle fixe le montant des dommages-intérêts"
+      ],
+      "bonneReponse": 0,
+      "explication": "C'est le juge du droit. Les faits relèvent des juges du fond (première instance et appel).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-m-s08-c002",
+      "section": "libre-cejm-m-s08-s01",
+      "type": "question",
+      "recto": "Que signifie un « arrêt de rejet » ?",
+      "verso": "La Cour de cassation rejette le pourvoi : la décision de la cour d'appel est maintenue.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-m-s08-c003",
+      "section": "libre-cejm-m-s08-s02",
+      "type": "qcm",
+      "question": "Dans quelle rubrique de la fiche d'arrêt place-t-on « la cour d'appel a condamné la société à payer 5 000 € » ?",
+      "choix": [
+        "Procédure",
+        "Faits",
+        "Problème de droit",
+        "Portée"
+      ],
+      "bonneReponse": 0,
+      "explication": "Ce sont les étapes judiciaires antérieures : la procédure.",
+      "difficulte": 2
+    }
+  ]
+}

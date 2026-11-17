@@ -82,9 +82,16 @@ public static partial class ArbreBibliotheque
     [GeneratedRegex(@"^(B\d+\.\d+(?:\s+Partie\s+[IVX\d]+)?)\s*(?:[–—-]\s*)?(\S.*)$")]
     private static partial Regex DebutCompetence();
 
-    /// <summary>« SQ1 », « SQ 2 », « Séquence 10 »… au début d'un titre.</summary>
-    [GeneratedRegex(@"^(SQ\s?\d+|Séquence\s+\d+)", RegexOptions.IgnoreCase)]
+    /// <summary>« Thème 3 », « SQ1 », « Séquence 10 »… au début d'un titre.</summary>
+    [GeneratedRegex(@"^(Thème\s+\d+|SQ\s?\d+|Séquence\s+\d+)", RegexOptions.IgnoreCase)]
     private static partial Regex DebutSequence();
+
+    /// <summary>Le code « B1.2 » au début d'une compétence (pour le fil d'Ariane).</summary>
+    [GeneratedRegex(@"^B\d+\.\d+")]
+    private static partial Regex CodeCompetence();
+
+    /// <summary>Séparateur compétence › thème dans le champ « partie » des cours libres.</summary>
+    private const string SeparateurTheme = " › ";
 
     /// <summary>Tri « humain » : « Séquence 2 » avant « Séquence 10 », « Partie II » avant « Partie IX » (voir <see cref="Ordre.TriNaturel"/>).</summary>
     public static IComparer<string> OrdreNaturel { get; } = Ordre.TriNaturel.Comparateur;
@@ -119,6 +126,11 @@ public static partial class ArbreBibliotheque
     /// </summary>
     public static (string? Competence, string Reste) DecouperPartie(string partie)
     {
+        // Format des cours libres : « B1.1 – Gérer le patrimoine informatique › Thème 1 – Inventaire… ».
+        int separateur = partie.IndexOf(SeparateurTheme, StringComparison.Ordinal);
+        if (separateur > 0 && CodeCompetence().IsMatch(partie))
+            return (partie[..separateur].Trim(), partie[(separateur + SeparateurTheme.Length)..].Trim());
+
         var correspondance = DebutCompetence().Match(partie.Trim());
         return correspondance.Success
             ? (Regex.Replace(correspondance.Groups[1].Value, @"\s+", " "), correspondance.Groups[2].Value.Trim())
@@ -156,7 +168,7 @@ public static partial class ArbreBibliotheque
         // Compétence puis partie, toutes deux tirées du champ « partie ».
         var (competence, partie) = DecouperPartie(s.Partie);
         if (competence is not null)
-            yield return new NoeudBibliotheque { Cle = competence, Titre = competence, TitreCourt = competence };
+            yield return new NoeudBibliotheque { Cle = competence, Titre = competence, TitreCourt = CompetenceCourte(competence) };
         if (partie.Length > 0)
             yield return new NoeudBibliotheque { Cle = partie, Titre = partie, TitreCourt = Court(partie) };
 
@@ -165,7 +177,14 @@ public static partial class ArbreBibliotheque
             yield return new NoeudBibliotheque { Cle = s.Sequence, Titre = s.Sequence, TitreCourt = Court(s.Sequence) };
     }
 
-    /// <summary>Version courte d'un titre pour le fil d'Ariane : « SQ1 – Calcul matriciel » → « SQ1 ».</summary>
+    /// <summary>« B1.1 – Gérer le patrimoine informatique » → « B1.1 » ; « B1.2 Partie I » reste tel quel.</summary>
+    private static string CompetenceCourte(string competence)
+    {
+        var code = CodeCompetence().Match(competence);
+        return code.Success && competence.Contains('–') ? code.Value : competence;
+    }
+
+    /// <summary>Version courte d'un titre pour le fil d'Ariane : « Thème 2 – Graphes » → « Thème 2 » ; « SQ1 – Calcul matriciel » → « SQ1 ».</summary>
     private static string Court(string titre)
     {
         var correspondance = DebutSequence().Match(titre);

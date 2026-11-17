@@ -1,0 +1,71 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-16-sq1-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.6 – Organiser son développement professionnel › Thème 1 – Métiers, portfolio, CV et réseaux professionnels",
+  "sequence": null,
+  "seance": "Métiers et options",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les domaines d'activité et les métiers accessibles avec le BTS SIO, selon l'option SISR ou SLAM, et les poursuites d'études possibles.",
+  "notions": [
+    "Options SISR et SLAM",
+    "Métiers accessibles",
+    "Poursuites d'études"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-16-sq1-s01-s01",
+      "titre": "Deux options, deux familles de métiers",
+      "contenu": "Le BTS **Services informatiques aux organisations** prépare à deux options :\n| | **SISR** – Solutions d'infrastructure, systèmes et réseaux | **SLAM** – Solutions logicielles et applications métiers |\n| --- | --- | --- |\n| Cœur du métier | installer, administrer, sécuriser serveurs, réseaux, postes | concevoir, développer, maintenir des applications et des bases de données |\n| Exemples de métiers | technicien support et déploiement, administrateur systèmes et réseaux, technicien réseau et télécom, technicien en cybersécurité | développeur d'applications (web, mobile, de bureau), développeur back-end/front-end, intégrateur, testeur, technicien d'études et développement |\n| Outils typiques | Windows Server, Linux, commutateurs, pare-feu, virtualisation | langages (C#, PHP, Java, Python, JavaScript), SQL, frameworks, Git |\n\nLe **bloc 1** est **commun** aux deux options : support, gestion de parc, présence en ligne, projet, mise à disposition de services, développement professionnel.\n\nLes employeurs : **ESN** (entreprises de services du numérique), services informatiques d'entreprises et de collectivités, éditeurs de logiciels, opérateurs, associations, ou travail en indépendant.",
+      "notions": [
+        "Options SISR et SLAM",
+        "Métiers accessibles"
+      ]
+    },
+    {
+      "id": "libre-b1-16-sq1-s01-s02",
+      "titre": "Après le BTS",
+      "contenu": "Le BTS permet une **insertion directe**, mais aussi des poursuites d'études :\n- **licence professionnelle** (un an, souvent en alternance) : développement web, administration réseau, cybersécurité ;\n- **bachelor** ou **BUT** (selon les passerelles) ;\n- écoles d'ingénieurs (admissions parallèles, classes préparatoires ATS) ;\n- **certifications** professionnelles d'éditeurs ou de constructeurs.\nL'**alternance** est très répandue dans ces filières : on se forme en étant payé et en gagnant de l'expérience.",
+      "notions": [
+        "Poursuites d'études"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-16-sq1-s01-c001",
+      "section": "libre-b1-16-sq1-s01-s01",
+      "type": "qcm",
+      "question": "Quelle option du BTS SIO prépare principalement au développement d'applications ?",
+      "choix": [
+        "SISR",
+        "SLAM",
+        "Les deux de la même façon",
+        "Aucune"
+      ],
+      "bonneReponse": 1,
+      "explication": "SLAM = Solutions logicielles et applications métiers.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-16-sq1-s01-c002",
+      "section": "libre-b1-16-sq1-s01-s01",
+      "type": "question",
+      "recto": "Qu'est-ce qu'une ESN ?",
+      "verso": "Une entreprise de services du numérique : elle réalise des prestations informatiques (développement, infogérance, conseil, support) pour d'autres organisations.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-16-sq1-s01-c003",
+      "section": "libre-b1-16-sq1-s01-s02",
+      "type": "question",
+      "recto": "Cite deux poursuites d'études possibles après un BTS SIO.",
+      "verso": "Par exemple : licence professionnelle, bachelor ou BUT, école d'ingénieurs (admission parallèle, prépa ATS), souvent en alternance.",
+      "difficulte": 1
+    }
+  ]
+}

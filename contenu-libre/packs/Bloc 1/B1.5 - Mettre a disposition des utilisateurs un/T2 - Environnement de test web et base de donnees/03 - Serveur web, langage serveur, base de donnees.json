@@ -1,0 +1,67 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-15-sq2-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.5 – Mettre à disposition des utilisateurs un service informatique › Thème 2 – Environnement de test web et base de données",
+  "sequence": null,
+  "seance": "Serveur web, langage serveur, base de données",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Installer et configurer le serveur web, l'interpréteur PHP et le SGBD, consulter les journaux, sécuriser l'installation du SGBD, l'ouvrir aux connexions distantes et utiliser le client en ligne de commande.",
+  "notions": [
+    "Serveur web et PHP",
+    "Journaux",
+    "Installer et sécuriser le SGBD",
+    "Connexions distantes",
+    "Client SQL en ligne de commande"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-15-sq2-s03-s01",
+      "titre": "Serveur web et PHP",
+      "contenu": "Sur `srv-web-test` :\n```bash\nsudo apt install apache2 php libapache2-mod-php php-mysql\nsystemctl status apache2\n```\nLe site par défaut est dans `/var/www/html`. Test : créer `info.php` contenant `<?php phpinfo();` et l'ouvrir dans le navigateur (puis **le supprimer** : il dévoile la configuration).\n\n**Journaux** : premier réflexe en cas de problème.\n```bash\nsudo tail -f /var/log/apache2/error.log    # erreurs (PHP compris)\nsudo tail -f /var/log/apache2/access.log   # requêtes reçues\njournalctl -u apache2 --since today        # journal du service\n```",
+      "notions": [
+        "Serveur web et PHP",
+        "Journaux"
+      ]
+    },
+    {
+      "id": "libre-b1-15-sq2-s03-s02",
+      "titre": "Le SGBD et les connexions distantes",
+      "contenu": "Sur `srv-bdd-test` :\n```bash\nsudo apt install mariadb-server\nsudo mariadb-secure-installation\n```\nLe script de sécurisation : protège le compte root, **supprime les utilisateurs anonymes**, **interdit root à distance**, **supprime la base de test**.\n\nPar défaut, MariaDB n'écoute que **localement** (127.0.0.1). Pour que le serveur web s'y connecte, dans `/etc/mysql/mariadb.conf.d/50-server.cnf` :\n```text\nbind-address = 192.168.56.11      # l'adresse du serveur de base sur le réseau interne\n```\npuis `sudo systemctl restart mariadb`, et ouvrir le port **3306** dans le pare-feu **uniquement depuis le serveur web** :\n```bash\nsudo ufw allow from 192.168.56.10 to any port 3306 proto tcp\n```\n**Client en ligne de commande** :\n```bash\nmariadb -u root -p                                  # en local\nmariadb -h 192.168.56.11 -u app_resa -p resa        # depuis le serveur web\n```",
+      "notions": [
+        "Installer et sécuriser le SGBD",
+        "Connexions distantes",
+        "Client SQL en ligne de commande"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-15-sq2-s03-c001",
+      "section": "libre-b1-15-sq2-s03-s01",
+      "type": "question",
+      "recto": "Où regarder en premier quand une page PHP affiche une page blanche ou une erreur 500 ?",
+      "verso": "Dans le journal d'erreurs du serveur web (`/var/log/apache2/error.log`).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-15-sq2-s03-c002",
+      "section": "libre-b1-15-sq2-s03-s02",
+      "type": "qcm",
+      "question": "Depuis le serveur web, la connexion à la base échoue (« Can't connect »), alors qu'elle fonctionne en local sur le serveur de base. Que vérifies-tu ?",
+      "choix": [
+        "Le mot de passe root",
+        "L'adresse d'écoute (bind-address) du SGBD et le pare-feu sur le port 3306",
+        "La version de PHP",
+        "Le fichier index.html"
+      ],
+      "bonneReponse": 1,
+      "explication": "Par défaut le SGBD n'écoute que sur 127.0.0.1, et le pare-feu peut bloquer le port.",
+      "difficulte": 3
+    }
+  ]
+}

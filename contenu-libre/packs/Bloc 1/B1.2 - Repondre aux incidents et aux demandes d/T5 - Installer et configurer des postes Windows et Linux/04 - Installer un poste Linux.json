@@ -1,0 +1,89 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq1-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 5 – Installer et configurer des postes Windows et Linux",
+  "sequence": null,
+  "seance": "Installer un poste Linux",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Installer une distribution Linux de bureau dans une VM, ajouter les outils invités, faire les mises à jour et comprendre l'élévation de privilèges avec sudo.",
+  "notions": [
+    "Distribution Linux",
+    "Installation en VM",
+    "Outils invités",
+    "Mises à jour",
+    "Élévation de privilèges sudo"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq1-s04-s01",
+      "titre": "Linux et les distributions",
+      "contenu": "**Linux** est un noyau de système d'exploitation libre. Une **distribution** l'assemble avec des logiciels, un environnement de bureau et un gestionnaire de paquets : Ubuntu, Debian, Linux Mint, Fedora…\n\nInstallation dans une VM :\n1. télécharger l'ISO de la distribution (version « LTS » = support long terme, conseillée en entreprise) ;\n2. créer la VM : 2 processeurs, 4 Go de RAM, 25 Go de disque ;\n3. démarrer sur l'ISO, choisir la langue, le clavier, le partitionnement (automatique suffit pour un poste de test) ;\n4. créer le **premier utilisateur** : il pourra administrer la machine via `sudo`.",
+      "notions": [
+        "Distribution Linux",
+        "Installation en VM"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s04-s02",
+      "titre": "Outils invités et mises à jour",
+      "contenu": "Pour une VM confortable (écran redimensionnable, presse-papiers partagé), on installe les **outils invités** (*Additions invité* VirtualBox), souvent disponibles dans les dépôts :\n```bash\nsudo apt install virtualbox-guest-x11\n```\nPuis on met le système à jour :\n```bash\nsudo apt update      # met à jour la LISTE des paquets disponibles\nsudo apt upgrade     # installe les nouvelles versions\n```\n`update` ne met **rien** à jour sur le système : il télécharge seulement le catalogue. C'est `upgrade` qui installe.",
+      "notions": [
+        "Outils invités",
+        "Mises à jour"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s04-s03",
+      "titre": "L'élévation de privilèges avec sudo",
+      "contenu": "Sous Linux, le super-utilisateur s'appelle **root** : il peut tout faire. On évite de travailler en root en permanence. Un utilisateur autorisé utilise **`sudo`** pour exécuter **une** commande avec les droits de root, en tapant **son propre** mot de passe :\n```bash\nsudo apt install htop\nsudo nano /etc/hostname\n```\nQui peut utiliser sudo ? Les membres du groupe **`sudo`** (Debian/Ubuntu), selon la configuration du fichier `/etc/sudoers` (à modifier uniquement avec `visudo`).\n\nIntérêts : pas de mot de passe root partagé, chaque action d'administration est **tracée** (journal) au nom de la personne.",
+      "notions": [
+        "Élévation de privilèges sudo"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq1-s04-c001",
+      "section": "libre-b1-12b-sq1-s04-s01",
+      "type": "question",
+      "recto": "Que signifie « LTS » pour une version de distribution ?",
+      "verso": "*Long Term Support* : version maintenue (mises à jour de sécurité) pendant plusieurs années, adaptée à un usage professionnel.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq1-s04-c002",
+      "section": "libre-b1-12b-sq1-s04-s02",
+      "type": "qcm",
+      "question": "Quelle est la différence entre `apt update` et `apt upgrade` ?",
+      "choix": [
+        "Aucune",
+        "`update` rafraîchit la liste des paquets disponibles ; `upgrade` installe les nouvelles versions",
+        "`update` met à jour le noyau, `upgrade` les applications",
+        "`upgrade` installe une nouvelle distribution"
+      ],
+      "bonneReponse": 1,
+      "explication": "On fait toujours `update` d'abord, pour que `upgrade` connaisse les dernières versions.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq1-s04-c003",
+      "section": "libre-b1-12b-sq1-s04-s03",
+      "type": "qcm",
+      "question": "Un utilisateur obtient « Permission non accordée » en tapant `apt install vlc`. Que manque-t-il ?",
+      "choix": [
+        "Une connexion Internet",
+        "Les droits d'administration : `sudo apt install vlc` (s'il est autorisé)",
+        "Le paquet n'existe pas",
+        "Il faut redémarrer"
+      ],
+      "bonneReponse": 1,
+      "explication": "Installer un logiciel modifie le système : il faut les privilèges root, obtenus avec sudo.",
+      "difficulte": 2
+    }
+  ]
+}

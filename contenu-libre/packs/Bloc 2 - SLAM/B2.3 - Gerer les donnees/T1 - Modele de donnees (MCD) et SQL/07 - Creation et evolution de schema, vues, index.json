@@ -1,0 +1,119 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq1-s07",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – Gérer les données › Thème 1 – Modèle de données (MCD) et SQL",
+  "sequence": null,
+  "seance": "Création et évolution de schéma, vues, index",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le langage de définition crée et modifie les tables, avec leurs clés et contraintes. Les vues enregistrent des requêtes, les index accélèrent les recherches. On pense à l'historisation et à la protection des données personnelles.",
+  "notions": [
+    "CREATE TABLE",
+    "Clé primaire",
+    "Clé composée",
+    "Contraintes",
+    "ALTER TABLE",
+    "DROP TABLE",
+    "Vue",
+    "Index",
+    "Historisation",
+    "Données personnelles en base"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq1-s07-s01",
+      "titre": "CREATE TABLE et contraintes",
+      "contenu": "```sql\nCREATE TABLE exemplaire (\n  id_jeu INT NOT NULL,\n  num_exemplaire INT NOT NULL,\n  etat VARCHAR(20) NOT NULL DEFAULT 'bon',\n  date_achat DATE,\n  PRIMARY KEY (id_jeu, num_exemplaire),                 -- clé composée\n  FOREIGN KEY (id_jeu) REFERENCES jeu(id),\n  CHECK (etat IN ('neuf', 'bon', 'usé', 'incomplet'))\n);\n```\n\nContraintes : `NOT NULL`, `DEFAULT`, `UNIQUE`, `CHECK`, `PRIMARY KEY`, `FOREIGN KEY ... REFERENCES`. Elles protègent la base **même** si l'application oublie un contrôle.",
+      "notions": [
+        "CREATE TABLE",
+        "Clé primaire",
+        "Clé composée",
+        "Contraintes"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq1-s07-s02",
+      "titre": "ALTER et DROP",
+      "contenu": "```sql\nALTER TABLE adherent ADD telephone VARCHAR(15);\nALTER TABLE adherent ADD statut VARCHAR(10) NOT NULL DEFAULT 'actif';\nALTER TABLE jeu MODIFY titre VARCHAR(150) NOT NULL;      -- MySQL (ALTER COLUMN ailleurs)\nALTER TABLE jeu ADD CONSTRAINT fk_editeur FOREIGN KEY (id_editeur) REFERENCES editeur(id);\nDROP TABLE archive_pret;\n```\n\nPiège : ajouter une colonne `NOT NULL` **sans `DEFAULT`** sur une table qui contient déjà des lignes échoue (les lignes existantes n'auraient pas de valeur).",
+      "notions": [
+        "ALTER TABLE",
+        "DROP TABLE"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq1-s07-s03",
+      "titre": "Vues et index",
+      "contenu": "Une **vue** est une **requête enregistrée** sous un nom, qu'on interroge comme une table :\n\n```sql\nCREATE VIEW prets_en_cours AS\nSELECT a.nom, j.titre, p.date_pret\nFROM pret p JOIN adherent a ON a.id = p.id_adherent JOIN jeu j ON j.id = p.id_jeu\nWHERE p.date_retour IS NULL;\n\nSELECT * FROM prets_en_cours WHERE date_pret < '2026-10-01';\n```\n\nIntérêts : simplifier les requêtes fréquentes, **masquer** des colonnes sensibles (donner accès à la vue mais pas à la table).\n\nUn **index** accélère les recherches sur une colonne (comme l'index d'un livre) :\n\n```sql\nCREATE INDEX idx_adherent_nom ON adherent(nom);\n```\n\nContrepartie : les insertions et mises à jour sont un peu plus lentes. On indexe les colonnes souvent utilisées dans `WHERE`, `JOIN` et `ORDER BY`. Les clés primaires sont indexées automatiquement.",
+      "notions": [
+        "Vue",
+        "Index"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq1-s07-s04",
+      "titre": "Historisation et données personnelles",
+      "contenu": "**Historiser** : conserver l'évolution d'une donnée plutôt que l'écraser. Exemple : le tarif d'adhésion change chaque année ; on crée `tarif(annee, montant)` au lieu d'une seule valeur, pour pouvoir recalculer les anciennes factures.\n\n**Données personnelles** (RGPD) dans la conception :\n- ne collecter que le **nécessaire** (minimisation) ;\n- prévoir une **durée de conservation** et une procédure de suppression ou d'**anonymisation** ;\n- limiter l'accès (vues, droits) ;\n- protéger les données sensibles (chiffrement, mots de passe hachés).",
+      "notions": [
+        "Historisation",
+        "Données personnelles en base"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq1-s07-c001",
+      "section": "libre-b2-23-sq1-s07-s01",
+      "type": "qcm",
+      "question": "Comment déclarer une clé primaire composée de deux colonnes ?",
+      "choix": [
+        "`id_jeu INT PRIMARY KEY, num INT PRIMARY KEY`",
+        "`PRIMARY KEY (id_jeu, num)`",
+        "`UNIQUE (id_jeu) AND UNIQUE (num)`",
+        "Impossible en SQL"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une seule clause PRIMARY KEY qui liste les colonnes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq1-s07-c002",
+      "section": "libre-b2-23-sq1-s07-s02",
+      "type": "qcm",
+      "question": "On ajoute la colonne obligatoire `langue` à la table jeu qui contient 300 lignes. Quelle instruction fonctionne ?",
+      "choix": [
+        "`ALTER TABLE jeu ADD langue VARCHAR(5) NOT NULL;`",
+        "`ALTER TABLE jeu ADD langue VARCHAR(5) NOT NULL DEFAULT 'fr';`",
+        "`CREATE TABLE jeu (langue VARCHAR(5));`",
+        "`UPDATE jeu ADD langue;`"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les lignes existantes reçoivent la valeur par défaut.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq1-s07-c003",
+      "section": "libre-b2-23-sq1-s07-s03",
+      "type": "question",
+      "recto": "Citer deux intérêts d'une vue.",
+      "verso": "**Simplifier** des requêtes complexes souvent utilisées, et **restreindre l'accès** (ne montrer que certaines colonnes ou lignes).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq1-s07-c004",
+      "section": "libre-b2-23-sq1-s07-s04",
+      "type": "exercice",
+      "enonce": "Le prix de location d'un jeu change parfois et il faut retrouver le prix appliqué à chaque prêt. Propose une évolution du schéma.",
+      "etapes": [
+        "Ne pas écraser le prix dans `jeu` : créer `tarif_jeu(id_jeu, date_debut, prix)` avec clé `(id_jeu, date_debut)`.",
+        "Ou plus simple : copier le prix appliqué dans la table `pret` (colonne `prix_applique`) au moment du prêt.",
+        "Dans les deux cas, l'historique des prix reste consultable."
+      ],
+      "reponse": "Historisation par table de tarifs datés, ou mémorisation du prix appliqué dans chaque prêt.",
+      "difficulte": 2
+    }
+  ]
+}

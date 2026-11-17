@@ -1,0 +1,100 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-34-sq1-s04",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.4 – Garantir la sécurité des services et des données face aux cyberattaques › Thème 1 – Développement web et RGPD",
+  "sequence": null,
+  "seance": "Cookies",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les cookies et traceurs peuvent être internes ou tiers, techniques ou soumis à consentement. Le développeur implémente un bandeau conforme, conserve le choix pour une durée limitée et n'active les traceurs qu'après accord.",
+  "notions": [
+    "Cookie interne",
+    "Cookie tiers",
+    "Cookies et données personnelles",
+    "Cookies exemptés",
+    "Cookies soumis à consentement",
+    "Bandeau de consentement",
+    "Durée de conservation du choix"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-34-sq1-s04-s01",
+      "titre": "Cookies internes et tiers",
+      "contenu": "Un **cookie** est une courte donnée que le navigateur enregistre sur le poste, pour un domaine précis.\n- **Interne** (*first-party*) : déposé par le site visité (`terre-et-gres.example`) : panier, session, préférences.\n- **Tiers** (*third-party*) : déposé par un autre domaine présent sur la page (régie publicitaire, réseau social, outil d'analyse) : suivi de l'internaute **de site en site**.\n\nUn cookie contient souvent un **identifiant unique** : c'est une **donnée personnelle** dès qu'il permet de reconnaître un terminal, donc une personne.",
+      "notions": [
+        "Cookie interne",
+        "Cookie tiers",
+        "Cookies et données personnelles"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq1-s04-s02",
+      "titre": "Exemptés ou soumis à consentement",
+      "contenu": "| Exemptés de consentement | Soumis à consentement |\n| --- | --- |\n| session d'authentification | publicité ciblée |\n| panier d'achat | partage sur réseaux sociaux (boutons qui tracent) |\n| choix de langue, d'accessibilité | mesure d'audience non exemptée |\n| mémorisation du choix du bandeau | vidéos tierces qui tracent |\n| sécurité (anti-fraude, équilibrage de charge) | profilage |\n\nCertains outils de **mesure d'audience** peuvent être exemptés s'ils sont strictement limités (finalité unique de statistiques, données non recoupées, durée limitée).",
+      "notions": [
+        "Cookies exemptés",
+        "Cookies soumis à consentement"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq1-s04-s03",
+      "titre": "Le bandeau en pratique",
+      "contenu": "Règles d'implémentation :\n1. **aucun** script de traceur soumis à consentement chargé avant le choix ;\n2. boutons **« Tout accepter »** et **« Tout refuser »** de même niveau, plus « Personnaliser » par finalité ;\n3. fermer le bandeau (croix) = **refus** ;\n4. **mémoriser** le choix (cookie technique) : on conserve le choix pour une durée limitée (environ **6 mois** est la référence, la durée de vie des traceurs eux-mêmes étant limitée à **13 mois**) ;\n5. lien permanent « Gérer mes cookies » pour changer d'avis ;\n6. garder une **preuve** du choix (horodatage, version).\n\n```javascript\n// Ne charger l'outil d'audience qu'après consentement\nif (consentement.audience === true) {\n  const s = document.createElement('script');\n  s.src = '/js/audience.js';\n  document.head.appendChild(s);\n}\n```\n\nDes solutions libres de gestion du consentement existent (par ex. tarteaucitron.js).",
+      "notions": [
+        "Bandeau de consentement",
+        "Durée de conservation du choix"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-34-sq1-s04-c001",
+      "section": "libre-b3-34-sq1-s04-s01",
+      "type": "qcm",
+      "question": "Le bouton « Partager » d'un réseau social intégré dans une page dépose un cookie. C'est :",
+      "choix": [
+        "un cookie interne technique",
+        "un cookie tiers, soumis à consentement",
+        "un cookie de session obligatoire",
+        "une donnée anonyme"
+      ],
+      "bonneReponse": 1,
+      "explication": "Il appartient à un autre domaine et peut servir au suivi.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-34-sq1-s04-c002",
+      "section": "libre-b3-34-sq1-s04-s02",
+      "type": "qcm",
+      "question": "Quel cookie peut être déposé sans consentement ?",
+      "choix": [
+        "Un cookie publicitaire",
+        "Le cookie qui mémorise le contenu du panier",
+        "Un pixel de suivi d'un réseau social",
+        "Un cookie de profilage"
+      ],
+      "bonneReponse": 1,
+      "explication": "Il est strictement nécessaire au service demandé par l'utilisateur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq1-s04-c003",
+      "section": "libre-b3-34-sq1-s04-s03",
+      "type": "exercice",
+      "enonce": "Rédige le texte d'un bandeau cookies conforme pour Terre & Grès (mesure d'audience et vidéos intégrées).",
+      "etapes": [
+        "Titre : « Vos choix sur les cookies ».",
+        "Texte : « Avec votre accord, nous utilisons des cookies pour mesurer l'audience du site et afficher des vidéos hébergées par un service tiers. Vous pouvez changer d'avis à tout moment via le lien \"Gérer mes cookies\" en bas de page. »",
+        "Boutons de même taille et couleur : « Tout accepter », « Tout refuser », « Personnaliser ».",
+        "Personnaliser : une case par finalité (Audience, Vidéos), décochées par défaut.",
+        "Lien vers la politique cookies (liste des cookies, durées, émetteurs)."
+      ],
+      "reponse": "Texte clair par finalité, accepter et refuser au même niveau, personnalisation, lien de gestion permanent.",
+      "difficulte": 2
+    }
+  ]
+}

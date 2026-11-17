@@ -1,0 +1,96 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq2-s06",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – Protéger les données à caractère personnel › Thème 2 – Conformité au RGPD",
+  "sequence": null,
+  "seance": "Consentement, cookies, information",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Quand il est la base légale, le consentement doit être libre, spécifique, éclairé et univoque. Les cookies non essentiels exigent un consentement. Les personnes doivent toujours être informées clairement.",
+  "notions": [
+    "Consentement valable",
+    "Cookies",
+    "Bandeau de consentement",
+    "Transparence",
+    "Mention d'information"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq2-s06-s01",
+      "titre": "Un consentement valable",
+      "contenu": "Le **consentement** doit être :\n- **libre** : pas de contrainte ni de conséquence négative en cas de refus (pas de service conditionné à un consentement inutile) ;\n- **spécifique** : un consentement **par finalité** (newsletter ≠ partage avec des partenaires) ;\n- **éclairé** : la personne sait qui traite, pourquoi, et comment retirer son accord ;\n- **univoque** : un **acte positif clair** (case à cocher **non pré-cochée**, bouton).\n\nIl doit pouvoir être **retiré** aussi facilement qu'il a été donné, et l'organisation doit pouvoir **prouver** qu'il a été recueilli.",
+      "notions": [
+        "Consentement valable"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq2-s06-s02",
+      "titre": "Cookies et traceurs",
+      "contenu": "Les **cookies** et autres **traceurs** (pixels, identifiants publicitaires) déposés sur le terminal de l'utilisateur sont soumis à **consentement préalable**, sauf s'ils sont **strictement nécessaires** au service (panier, session de connexion, préférence de langue, certains outils de mesure d'audience configurés pour être exemptés).\n\nExigences pour le bandeau :\n- **aucun** traceur soumis à consentement déposé **avant** le choix ;\n- refuser doit être **aussi simple** qu'accepter (bouton « Tout refuser » au même niveau) ;\n- choix par finalité possible ;\n- le choix est conservé pour une durée limitée (environ 6 mois de référence pour redemander en cas de refus) et peut être modifié à tout moment.",
+      "notions": [
+        "Cookies",
+        "Bandeau de consentement"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq2-s06-s03",
+      "titre": "La mention d'information",
+      "contenu": "Lors de la collecte, la personne doit recevoir une **information** concise, claire et accessible :\n- identité du **responsable** et contact du **DPO** ;\n- **finalités** et **base légale** ;\n- **destinataires** ;\n- **durée** de conservation ;\n- **droits** (accès, rectification, effacement, opposition…) et comment les exercer ;\n- droit d'introduire une **réclamation auprès de la CNIL** ;\n- éventuels **transferts hors UE** ; caractère obligatoire ou facultatif des réponses.",
+      "notions": [
+        "Transparence",
+        "Mention d'information"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq2-s06-c001",
+      "section": "libre-b3-31-sq2-s06-s01",
+      "type": "qcm",
+      "question": "Lequel est un consentement valable ?",
+      "choix": [
+        "Une case « J'accepte de recevoir les offres des partenaires » déjà cochée",
+        "« En continuant à naviguer, vous acceptez tout »",
+        "Une case vide que l'utilisateur coche lui-même pour la newsletter",
+        "Une acceptation globale cachée dans les conditions générales"
+      ],
+      "bonneReponse": 2,
+      "explication": "Seul un acte positif, spécifique et éclairé est valable.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq2-s06-c002",
+      "section": "libre-b3-31-sq2-s06-s02",
+      "type": "qcm",
+      "question": "Un bandeau propose « Tout accepter » en gros bouton et « Paramétrer » en petit lien, sans bouton de refus. Est-ce conforme ?",
+      "choix": [
+        "Oui",
+        "Non, refuser doit être aussi simple qu'accepter",
+        "Oui, si le site est français",
+        "Non, il faut interdire tous les cookies"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'asymétrie entre accepter et refuser rend le consentement non libre.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq2-s06-c003",
+      "section": "libre-b3-31-sq2-s06-s03",
+      "type": "exercice",
+      "enonce": "Rédige la mention d'information du formulaire de contact du gîte **Le Chant du Ruisseau**.",
+      "etapes": [
+        "Responsable : « Les données de ce formulaire sont traitées par SARL Le Chant du Ruisseau (contact : rgpd@chantduruisseau.example) ».",
+        "Finalité et base : « pour répondre à votre demande (base : intérêt légitime / mesures précontractuelles) ».",
+        "Destinataires et durée : « destinées aux seuls gérants, conservées 1 an après le dernier échange ».",
+        "Droits : « vous pouvez y accéder, les rectifier, les effacer ou vous opposer au traitement en écrivant à l'adresse ci-dessus ».",
+        "Réclamation : « vous pouvez adresser une réclamation à la CNIL (cnil.fr) »."
+      ],
+      "reponse": "Mention courte comprenant responsable, finalité, base légale, destinataires, durée, droits et recours à la CNIL.",
+      "difficulte": 2
+    }
+  ]
+}

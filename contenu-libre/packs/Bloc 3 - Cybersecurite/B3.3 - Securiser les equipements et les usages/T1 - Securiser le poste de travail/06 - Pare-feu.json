@@ -1,0 +1,124 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq1-s06",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – Sécuriser les équipements et les usages des utilisateurs › Thème 1 – Sécuriser le poste de travail",
+  "sequence": null,
+  "seance": "Pare-feu",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un pare-feu filtre le trafic entre des zones de confiance différentes selon des règles, avec un refus implicite par défaut. Filtrage de paquets, inspection d'état, NAT, proxy, DMZ et détection d'intrusion sont ses principales fonctions.",
+  "notions": [
+    "Pare-feu",
+    "Zones de confiance",
+    "Refus implicite",
+    "Filtrage de paquets",
+    "Inspection d'état",
+    "NAT",
+    "Proxy",
+    "DMZ",
+    "IDS",
+    "IPS",
+    "Règle de pare-feu Windows",
+    "ufw"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq1-s06-s01",
+      "titre": "Zones et refus implicite",
+      "contenu": "Un **pare-feu** contrôle le trafic qui passe entre des **zones de confiance** : Internet (non fiable), réseau interne (fiable), DMZ (serveurs exposés), Wi-Fi invités…\n\nLes **règles** sont lues **dans l'ordre** ; la première qui correspond s'applique. Une dernière règle de **refus implicite** bloque tout ce qui n'a pas été explicitement autorisé : on n'ouvre que le **nécessaire**.\n\nIl existe des pare-feu **réseau** (boîtier, routeur) et des pare-feu **locaux** (sur le poste : pare-feu Windows Defender, nftables/ufw sous Linux).",
+      "notions": [
+        "Pare-feu",
+        "Zones de confiance",
+        "Refus implicite"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s06-s02",
+      "titre": "Filtrage et inspection d'état",
+      "contenu": "- **Filtrage de paquets** (sans état) : chaque paquet est examiné isolément selon IP source/destination, protocole et port.\n- **Inspection d'état** (*stateful*) : le pare-feu mémorise les **connexions établies** ; les réponses à une connexion sortante autorisée sont acceptées automatiquement. Plus sûr et plus simple à écrire.\n\nExemple de règles (lecture de haut en bas) :\n\n| # | Source | Destination | Port | Action |\n| --- | --- | --- | --- | --- |\n| 1 | LAN | Internet | 80, 443/TCP | autoriser |\n| 2 | LAN | serveur DNS interne | 53 | autoriser |\n| 3 | Internet | serveur web DMZ | 443/TCP | autoriser |\n| 4 | tout | tout | tout | **refuser** |",
+      "notions": [
+        "Filtrage de paquets",
+        "Inspection d'état"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s06-s03",
+      "titre": "NAT, proxy, DMZ, IDS/IPS",
+      "contenu": "- **NAT** : traduit les adresses privées internes en adresse publique ; masque le plan d'adressage interne. Le NAT n'est pas une protection suffisante à lui seul.\n- **Proxy** : intermédiaire pour la navigation web : filtrage d'URL, cache, journalisation, analyse antivirale.\n- **DMZ** (zone démilitarisée) : zone séparée pour les serveurs **accessibles depuis Internet** (web, messagerie) ; si l'un est compromis, l'attaquant n'est pas directement dans le réseau interne.\n- **IDS** (détection d'intrusion) : **alerte** sur un trafic suspect ; **IPS** (prévention) : **bloque** automatiquement.\n- Pare-feu de nouvelle génération : filtrage applicatif, inspection TLS, réputation des adresses.",
+      "notions": [
+        "NAT",
+        "Proxy",
+        "DMZ",
+        "IDS",
+        "IPS"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s06-s04",
+      "titre": "Règle sur le pare-feu du système",
+      "contenu": "Exemples sur un poste ou serveur :\n\n```powershell\n# Windows : autoriser le port 8080 entrant pour un serveur de test, seulement depuis le LAN\nNew-NetFirewallRule -DisplayName \"Test web 8080\" -Direction Inbound -Protocol TCP -LocalPort 8080 -RemoteAddress 192.168.1.0/24 -Action Allow\n```\n\n```bash\n# Linux (ufw)\nsudo ufw default deny incoming\nsudo ufw allow from 192.168.1.0/24 to any port 22 proto tcp\nsudo ufw enable\n```\n\nPiège : une règle « tout ouvrir pour tester » jamais retirée. Nomme clairement chaque règle et supprime-la après le test.",
+      "notions": [
+        "Règle de pare-feu Windows",
+        "ufw"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq1-s06-c001",
+      "section": "libre-b3-33-sq1-s06-s01",
+      "type": "qcm",
+      "question": "Un pare-feu applique « tout ce qui n'est pas autorisé est interdit ». C'est :",
+      "choix": [
+        "le refus implicite (liste blanche)",
+        "le moindre privilège des utilisateurs",
+        "une règle NAT",
+        "une DMZ"
+      ],
+      "bonneReponse": 0,
+      "explication": "Seuls les flux explicitement autorisés passent.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq1-s06-c002",
+      "section": "libre-b3-33-sq1-s06-s02",
+      "type": "exercice",
+      "enonce": "Écris les règles pour : le service comptable (192.168.20.0/24) doit accéder au serveur de gestion 192.168.50.10 en HTTPS ; le Wi-Fi invités (10.10.0.0/24) ne doit accéder qu'à Internet en web ; tout le reste est interdit.",
+      "etapes": [
+        "R1 : source 192.168.20.0/24 → destination 192.168.50.10, TCP 443 → autoriser.",
+        "R2 : source 10.10.0.0/24 → destination réseaux internes (192.168.0.0/16) → refuser (placée avant R3).",
+        "R3 : source 10.10.0.0/24 → Internet, TCP 80 et 443 (+ DNS 53 vers un résolveur autorisé) → autoriser.",
+        "R4 : tout → tout → refuser (refus implicite)."
+      ],
+      "reponse": "Quatre règles ordonnées : accès comptable ciblé, invités isolés du LAN, invités vers le web, refus final.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq1-s06-c003",
+      "section": "libre-b3-33-sq1-s06-s03",
+      "type": "qcm",
+      "question": "Où placer le serveur web public d'une entreprise ?",
+      "choix": [
+        "Dans le réseau des postes utilisateurs",
+        "Dans une DMZ séparée du réseau interne",
+        "Directement sur Internet sans pare-feu",
+        "Sur le poste du directeur"
+      ],
+      "bonneReponse": 1,
+      "explication": "Isoler les serveurs exposés limite les conséquences d'une compromission.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq1-s06-c004",
+      "section": "libre-b3-33-sq1-s06-s04",
+      "type": "question",
+      "recto": "Quel risque présente une règle « autoriser tout » créée pour un test ?",
+      "verso": "Elle est souvent **oubliée** et laisse le poste ou le serveur exposé durablement.",
+      "difficulte": 2
+    }
+  ]
+}

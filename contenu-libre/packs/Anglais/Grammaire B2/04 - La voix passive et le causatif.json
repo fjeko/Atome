@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "id": "libre-ang-g-s04",
+  "matiere": "Anglais",
+  "bloc": "Bloc 5",
+  "partie": "Grammaire B2",
+  "sequence": null,
+  "seance": "La voix passive et le causatif",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Former le passif à tous les temps, savoir quand mentionner l'agent, et exprimer « faire faire » avec have et get.",
+  "notions": [
+    "Formation du passif",
+    "Agent et verbes sans passif",
+    "Structures causatives"
+  ],
+  "sections": [
+    {
+      "id": "libre-ang-g-s04-s01",
+      "titre": "Former le passif",
+      "contenu": "Le passif met en avant **ce qui subit l'action**, quand l'auteur est inconnu, évident ou peu important. Forme : **be** (au temps voulu) + **participe passé**.\n\n| Temps | Actif | Passif |\n|---|---|---|\n| present simple | *They update the software.* | *The software **is updated**.* |\n| present continuous | *They are updating…* | *…**is being updated**.* |\n| past simple | *They updated…* | *…**was updated**.* |\n| present perfect | *They have updated…* | *…**has been updated**.* |\n| future | *They will update…* | *…**will be updated**.* |\n| modal | *They must update…* | *…**must be updated**.* |\n\n**Agent** introduit par **by**, seulement s'il apporte une information : *The app was designed **by** two students.*\n\nQuestions : ***Was** the order **delivered**?* / *When **will** the results **be published**?*\n\n⚠️ Les verbes **intransitifs** (sans complément d'objet : *arrive, happen, sleep, die*) n'ont pas de passif : ~~*The accident was happened*~~.\n\nRegistre **formel** : *It is reported that…*, *Applicants **are requested** to…* — fréquent dans les documents officiels.",
+      "notions": [
+        "Formation du passif",
+        "Agent et verbes sans passif"
+      ]
+    },
+    {
+      "id": "libre-ang-g-s04-s02",
+      "titre": "Le causatif : faire faire",
+      "contenu": "Pour exprimer qu'on **fait réaliser** une tâche par un tiers :\n\n**have / get + objet + participe passé**\n- *I **had** my laptop **repaired**.* — J'ai fait réparer mon ordinateur portable.\n- *We need to **get** the contract **checked** by a lawyer.*\n\nPour dire qu'on **fait faire** une action à une personne :\n- **have + personne + base verbale** : *I'll **have** the intern **prepare** the slides.*\n- **get + personne + to + base** : *She **got** her colleague **to cover** her shift.*\n- **make + personne + base** (obliger) : *The manager **made** us **redo** the tests.*",
+      "notions": [
+        "Structures causatives"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-ang-g-s04-c001",
+      "section": "libre-ang-g-s04-s01",
+      "type": "exercice",
+      "enonce": "Mets au passif : *The IT team is installing new firewalls.*",
+      "etapes": [
+        "Present continuous → *is being* + participe passé.",
+        "L'agent (*the IT team*) est utile ici, on peut le garder."
+      ],
+      "reponse": "*New firewalls are being installed (by the IT team).*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-g-s04-c002",
+      "section": "libre-ang-g-s04-s01",
+      "type": "qcm",
+      "question": "Quelle phrase est incorrecte ?",
+      "choix": [
+        "The meeting was happened yesterday.",
+        "The meeting was cancelled yesterday.",
+        "The report has been sent.",
+        "The files will be deleted."
+      ],
+      "bonneReponse": 0,
+      "explication": "*Happen* est intransitif : *The meeting happened yesterday.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-g-s04-c003",
+      "section": "libre-ang-g-s04-s02",
+      "type": "qcm",
+      "question": "Traduis : « Nous avons fait installer la fibre. »",
+      "choix": [
+        "We had the fibre installed.",
+        "We installed the fibre had.",
+        "We made installed the fibre.",
+        "We had installed the fibre."
+      ],
+      "bonneReponse": 0,
+      "explication": "*Have + objet + participe passé* = faire faire. *We had installed* serait un past perfect (« nous avions installé »).",
+      "difficulte": 3
+    }
+  ]
+}

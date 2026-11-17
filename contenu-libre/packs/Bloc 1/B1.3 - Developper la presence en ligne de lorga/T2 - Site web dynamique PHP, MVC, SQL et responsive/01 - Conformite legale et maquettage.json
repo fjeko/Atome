@@ -1,0 +1,65 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq2-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – Développer la présence en ligne de l'organisation › Thème 2 – Site web dynamique : PHP, MVC, SQL et responsive",
+  "sequence": null,
+  "seance": "Conformité légale et maquettage",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Avant une refonte : vérifier la conformité légale du site existant, puis maquetter la nouvelle version (wireframes, prototypes, pictogrammes) pour la valider avec le client.",
+  "notions": [
+    "Vérifier la conformité d'un site",
+    "Intérêt du maquettage",
+    "Prototype",
+    "Pictogrammes"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq2-s01-s01",
+      "titre": "Vérifier la conformité",
+      "contenu": "Une refonte est l'occasion de corriger les défauts juridiques. Liste de vérification rapide :\n- **mentions légales** complètes (éditeur, directeur de publication, hébergeur) ;\n- **politique de confidentialité** (données collectées, finalités, durées, droits, contact) ;\n- **consentement aux cookies** conforme ;\n- **droits** sur les photos, textes, polices et icônes ;\n- **CGU/CGV** si comptes ou vente.",
+      "notions": [
+        "Vérifier la conformité d'un site"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq2-s01-s02",
+      "titre": "Maquettes, prototypes et pictogrammes",
+      "contenu": "- **Wireframe** : la structure des pages, sans graphisme.\n- **Maquette graphique** : l'apparence finale (couleurs, typographies, images).\n- **Prototype** : une maquette **cliquable** qui simule la navigation (outils de prototypage comme Figma ou Penpot) : le client « essaie » le site avant qu'il existe.\n\nIntérêts : valider **tôt** (une modification coûte peu sur une maquette, beaucoup une fois codée), éviter les malentendus, impliquer les utilisateurs.\n\n**Pictogrammes** : petites icônes qui aident à repérer une fonction (loupe = recherche, panier, enveloppe = contact). Règles : signification **universelle**, **cohérence** de style, accompagnés d'un **texte** ou d'un libellé accessible (`aria-label`), et **libres de droits** (bibliothèques d'icônes sous licence ouverte).",
+      "notions": [
+        "Intérêt du maquettage",
+        "Prototype",
+        "Pictogrammes"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq2-s01-c001",
+      "section": "libre-b1-13-sq2-s01-s01",
+      "type": "question",
+      "recto": "Quels éléments vérifier sur un site existant avant sa refonte, côté juridique ?",
+      "verso": "Mentions légales, politique de confidentialité, consentement aux cookies, droits sur les contenus (images, polices, icônes), CGU/CGV.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-13-sq2-s01-c002",
+      "section": "libre-b1-13-sq2-s01-s02",
+      "type": "qcm",
+      "question": "Quel est l'intérêt principal d'un prototype cliquable ?",
+      "choix": [
+        "Remplacer le code du site",
+        "Faire tester la navigation au client avant le développement",
+        "Améliorer le référencement",
+        "Héberger le site"
+      ],
+      "bonneReponse": 1,
+      "explication": "On détecte les problèmes de parcours avant d'écrire du code.",
+      "difficulte": 2
+    }
+  ]
+}

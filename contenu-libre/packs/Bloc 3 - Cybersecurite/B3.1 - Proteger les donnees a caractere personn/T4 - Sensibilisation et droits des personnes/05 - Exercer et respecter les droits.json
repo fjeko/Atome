@@ -1,0 +1,87 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq4-s05",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – Protéger les données à caractère personnel › Thème 4 – Sensibilisation et droits des personnes",
+  "sequence": null,
+  "seance": "Exercer et respecter les droits",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Chacun peut exercer ses droits sur ses données ; l'organisation doit organiser la réception des demandes, vérifier l'identité de façon proportionnée et répondre dans le délai d'un mois.",
+  "notions": [
+    "Exercice des droits",
+    "Réclamation CNIL",
+    "Obligations face aux demandes",
+    "Vérification d'identité"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq4-s05-s01",
+      "titre": "Comment exercer ses droits",
+      "contenu": "Une personne peut exercer ses droits **par tout moyen** : courrier, e-mail, formulaire, en personne. Il suffit d'adresser la demande au responsable (ou au DPO).\n\nSi l'organisation ne répond pas dans le délai, ou répond mal, la personne peut adresser une **réclamation à la CNIL** (en ligne) et saisir la justice.",
+      "notions": [
+        "Exercice des droits",
+        "Réclamation CNIL"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq4-s05-s02",
+      "titre": "Les obligations de l'organisation",
+      "contenu": "L'organisation doit :\n- **faciliter** l'exercice des droits (adresse dédiée, formulaire) ;\n- **vérifier l'identité** de façon **proportionnée** : pas de copie de pièce d'identité systématique si la demande vient de l'adresse e-mail du compte ;\n- répondre dans **un mois** (+ 2 mois si complexe, en prévenant) ;\n- répondre **gratuitement** (sauf demandes manifestement infondées ou excessives) ;\n- **motiver** un refus et indiquer les voies de recours ;\n- tracer les demandes et réponses.\n\nLimites : le droit à l'effacement ne s'applique pas si la loi impose de conserver (factures) ; la portabilité ne concerne que les données fournies par la personne, traitées par consentement ou contrat, de façon automatisée.",
+      "notions": [
+        "Obligations face aux demandes",
+        "Vérification d'identité"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq4-s05-c001",
+      "section": "libre-b3-31-sq4-s05-s01",
+      "type": "exercice",
+      "enonce": "Rédige la demande d'accès d'une cliente à la boutique en ligne fictive **Pull & Flocon**.",
+      "etapes": [
+        "Objet : « Demande de droit d'accès (article 15 du RGPD) ».",
+        "Identification : nom, adresse e-mail du compte, numéro de client.",
+        "Demande : « Je vous demande de me communiquer l'ensemble des données me concernant, leurs finalités, leurs destinataires, leur durée de conservation et leur source. »",
+        "Délai : « Je vous remercie de me répondre dans le délai d'un mois prévu par le règlement. »",
+        "Signature et date."
+      ],
+      "reponse": "Une demande simple, identifiée, qui cite le droit d'accès et le délai d'un mois.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq4-s05-c002",
+      "section": "libre-b3-31-sq4-s05-s02",
+      "type": "qcm",
+      "question": "Un client demande l'effacement de toutes ses données, y compris ses factures de l'an dernier. Que faire ?",
+      "choix": [
+        "Tout effacer immédiatement",
+        "Effacer ce qui peut l'être et conserver les factures (obligation légale), en l'expliquant au client",
+        "Refuser en bloc",
+        "Ignorer la demande"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'obligation légale de conservation prime sur l'effacement pour ces documents.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq4-s05-c003",
+      "section": "libre-b3-31-sq4-s05-s02",
+      "type": "qcm",
+      "question": "Pour une demande d'accès envoyée depuis l'adresse e-mail du compte client, faut-il exiger une copie de pièce d'identité ?",
+      "choix": [
+        "Oui, toujours",
+        "Non, sauf doute raisonnable sur l'identité",
+        "Oui, avec un justificatif de domicile",
+        "Non, on ne vérifie jamais"
+      ],
+      "bonneReponse": 1,
+      "explication": "La vérification doit être proportionnée.",
+      "difficulte": 1
+    }
+  ]
+}

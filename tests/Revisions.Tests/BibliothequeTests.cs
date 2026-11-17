@@ -34,6 +34,30 @@ public class BibliothequeTests
     public void Une_partie_sans_competence_reste_entiere(string partie) =>
         Assert.Equal((null, partie), ArbreBibliotheque.DecouperPartie(partie));
 
+    [Fact]
+    public void Les_cours_libres_separent_competence_et_theme_avec_un_chevron()
+    {
+        Assert.Equal(("B1.1 – Gérer le patrimoine informatique", "Thème 1 – Inventaire"),
+            ArbreBibliotheque.DecouperPartie("B1.1 – Gérer le patrimoine informatique › Thème 1 – Inventaire"));
+        // Hors compétence, un chevron ne coupe rien.
+        Assert.Equal((null, "Thème 1 › Suite"), ArbreBibliotheque.DecouperPartie("Thème 1 › Suite"));
+    }
+
+    [Fact]
+    public void Les_themes_libres_sont_ranges_dans_l_ordre_avec_un_fil_d_ariane_court()
+    {
+        var racine = ArbreBibliotheque.Construire(
+        [
+            Seance("Bloc 1", Bloc1, "B1.2 – Répondre aux incidents › Thème 10 – Réseau", "S1"),
+            Seance("Bloc 1", Bloc1, "B1.2 – Répondre aux incidents › Thème 2 – C#", "S2"),
+        ]);
+        var competence = Assert.Single(Assert.Single(racine.Enfants).Enfants);
+        Assert.Equal("B1.2 – Répondre aux incidents", competence.Titre);
+        Assert.Equal("B1.2", competence.TitreCourt);
+        Assert.Equal(["Thème 2 – C#", "Thème 10 – Réseau"], competence.Enfants.Select(e => e.Titre));
+        Assert.Equal(["Thème 2", "Thème 10"], competence.Enfants.Select(e => e.TitreCourt));
+    }
+
     // ---- Niveaux ---------------------------------------------------------------------------
 
     [Fact]

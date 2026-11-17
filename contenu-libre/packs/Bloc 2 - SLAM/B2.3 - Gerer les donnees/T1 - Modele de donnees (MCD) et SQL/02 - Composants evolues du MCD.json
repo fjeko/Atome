@@ -1,0 +1,121 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq1-s02",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – Gérer les données › Thème 1 – Modèle de données (MCD) et SQL",
+  "sequence": null,
+  "seance": "Composants évolués du MCD",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Certaines situations demandent des composants plus riches : dépendances fonctionnelles particulières, associations réflexives, héritage, lien identifiant, agrégation. On sait aussi repérer les erreurs d'un MCD et mesurer l'impact d'une évolution.",
+  "notions": [
+    "CIF",
+    "Association réflexive",
+    "CIF sur association",
+    "Héritage dans le MCD",
+    "Traductions de l'héritage",
+    "Lien identifiant",
+    "Entité faible",
+    "Agrégation",
+    "Erreurs syntaxiques",
+    "Erreurs sémantiques",
+    "Évolution de schéma"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq1-s02-s01",
+      "titre": "CIF et associations particulières",
+      "contenu": "- **CIF** (contrainte d'intégrité fonctionnelle) : une association avec une cardinalité **maximale 1** d'un côté : elle traduit une **dépendance fonctionnelle** (un jeu → un éditeur). Elle devient une clé étrangère.\n- **Double CIF** : deux entités en (x,1) des deux côtés (ex. un adhérent a au plus une carte, une carte appartient à un adhérent) : une seule clé étrangère suffit, placée du côté le plus pertinent (souvent côté 1,1), avec une contrainte d'unicité.\n- **Association réflexive** : une entité reliée **à elle-même**, avec des **rôles** : un adhérent *parraine* d'autres adhérents. Traduction : `ADHERENT(numAdherent, nom, #numParrain)`.\n- **CIF sur association** : dans une association ternaire, un couple détermine le troisième élément (ex. pour un tournoi et une équipe, un seul entraîneur) : on la note par une flèche ou une contrainte, et cela simplifie la clé de la table.",
+      "notions": [
+        "CIF",
+        "Association réflexive",
+        "CIF sur association"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq1-s02-s02",
+      "titre": "Héritage (spécialisation)",
+      "contenu": "Quand des entités partagent des propriétés mais en ont aussi de spécifiques, on utilise une **entité générique** et des **entités spécialisées**.\n\nExemple : un `JEU` est soit un `JEU_PLATEAU` (nbPieces), soit un `JEU_CARTES` (nbCartes).\n\nContraintes possibles : **X** (exclusion : au plus un sous-type), **T** (totalité : au moins un), **XT** ou **+** (partition : exactement un).\n\nTrois traductions :\n| Option | Tables | Avantage / inconvénient |\n| --- | --- | --- |\n| Une table par entité | JEU + JEU_PLATEAU(#numJeu, nbPieces) + JEU_CARTES(#numJeu, nbCartes) | fidèle, mais jointures |\n| Tout dans la table mère | JEU(…, type, nbPieces, nbCartes) | simple, mais colonnes vides |\n| Seulement les tables filles | JEU_PLATEAU(numJeu, titre, …, nbPieces), JEU_CARTES(…) | pas de jointure, mais colonnes communes dupliquées |",
+      "notions": [
+        "Héritage dans le MCD",
+        "Traductions de l'héritage"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq1-s02-s03",
+      "titre": "Lien identifiant et agrégation",
+      "contenu": "- **Lien identifiant** (cardinalité notée `(1,1)` entre parenthèses) : une entité **faible** n'est identifiée qu'**avec** l'entité dont elle dépend. Exemple : un `EXEMPLAIRE` est numéroté 1, 2, 3… **dans** un jeu. Clé : `EXEMPLAIRE(#numJeu, numExemplaire, etat)`.\n- **Agrégation** (ou association d'association) : on traite une association comme une entité pour la relier à autre chose. Exemple : l'association *Emprunter* (adhérent, exemplaire, date) est reliée à un `BENEVOLE` qui a enregistré le prêt.",
+      "notions": [
+        "Lien identifiant",
+        "Entité faible",
+        "Agrégation"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq1-s02-s04",
+      "titre": "Erreurs et évolution d'un MCD",
+      "contenu": "**Erreurs syntaxiques** (non-respect des règles de construction) : entité sans identifiant, propriété présente dans deux entités, association reliée à une seule entité sans être réflexive, propriété non élémentaire.\n\n**Erreurs sémantiques** (le modèle ne dit pas ce que dit le métier) : cardinalités inversées, propriété placée dans la mauvaise entité (la date de prêt dans JEU), donnée calculée stockée.\n\n**Faire évoluer** un schéma : pour chaque modification, mesurer les **retombées** : tables à créer ou modifier, données existantes à reprendre, requêtes et écrans à adapter.",
+      "notions": [
+        "Erreurs syntaxiques",
+        "Erreurs sémantiques",
+        "Évolution de schéma"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq1-s02-c001",
+      "section": "libre-b2-23-sq1-s02-s01",
+      "type": "qcm",
+      "question": "Un salarié peut avoir un responsable, qui est lui-même un salarié. Comment le modéliser ?",
+      "choix": [
+        "Deux entités SALARIE et RESPONSABLE sans lien",
+        "Une association réflexive sur SALARIE avec les rôles « encadre » / « est encadré par »",
+        "Une propriété texte « nom du responsable »",
+        "Une association ternaire"
+      ],
+      "bonneReponse": 1,
+      "explication": "Traduction : SALARIE(matricule, nom, #matriculeResponsable).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq1-s02-c002",
+      "section": "libre-b2-23-sq1-s02-s02",
+      "type": "question",
+      "recto": "Que signifie la contrainte de partition (XT) sur un héritage ?",
+      "verso": "Chaque occurrence générique appartient à **exactement un** sous-type (ni zéro, ni deux).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq1-s02-c003",
+      "section": "libre-b2-23-sq1-s02-s03",
+      "type": "qcm",
+      "question": "Les salles d'un bâtiment sont numérotées 1, 2, 3 dans chaque bâtiment. Clé de SALLE ?",
+      "choix": [
+        "numSalle seul",
+        "(#numBatiment, numSalle)",
+        "numBatiment seul",
+        "Un identifiant automatique obligatoire"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le numéro de salle n'est unique qu'à l'intérieur d'un bâtiment : lien identifiant.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq1-s02-c004",
+      "section": "libre-b2-23-sq1-s02-s04",
+      "type": "exercice",
+      "enonce": "Trouve les erreurs : `JEU(numJeu, titre, datePret)` ; `ADHERENT(nom, ville)` sans identifiant ; `ADHERENT ---1,1--- (Emprunter) ---0,n--- JEU`.",
+      "etapes": [
+        "`datePret` dans JEU : un jeu est prêté plusieurs fois → la date appartient à l'association Emprunter (erreur sémantique).",
+        "ADHERENT sans identifiant : erreur syntaxique → ajouter `numAdherent`.",
+        "`1,1` côté ADHERENT signifie qu'un adhérent emprunte exactement un jeu dans toute sa vie : cardinalité fausse → `0,n`."
+      ],
+      "reponse": "Déplacer datePret dans Emprunter, ajouter un identifiant à ADHERENT, corriger la cardinalité en 0,n.",
+      "difficulte": 2
+    }
+  ]
+}

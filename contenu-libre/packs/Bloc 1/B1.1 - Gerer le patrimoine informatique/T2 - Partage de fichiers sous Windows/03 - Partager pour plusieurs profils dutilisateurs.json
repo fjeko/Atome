@@ -1,0 +1,99 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq2-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – Gérer le patrimoine informatique › Thème 2 – Partage de fichiers sous Windows",
+  "sequence": null,
+  "seance": "Partager pour plusieurs profils d'utilisateurs",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Traduire un besoin exprimé en comptes, groupes et autorisations de partage, en tenant compte du cumul des droits et de la priorité du refus.",
+  "notions": [
+    "Cumul des droits",
+    "Priorité du refus",
+    "Traduire un besoin en habilitations"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq2-s03-s01",
+      "titre": "Le cumul des droits",
+      "contenu": "Un utilisateur peut appartenir à **plusieurs groupes**. Ses droits sur un partage sont alors **cumulés** : il obtient **le plus permissif** des droits « autorisés ».\n\nExemple : Léa est dans *Benevoles* (Lecture) et dans *Bureau* (Modifier) → sur le partage, Léa a **Modifier**.\n\nC'est logique : chaque groupe lui « ajoute » des possibilités.",
+      "notions": [
+        "Cumul des droits"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq2-s03-s02",
+      "titre": "Le refus l'emporte",
+      "contenu": "Il y a une exception au cumul : un **refus explicite** l'emporte **toujours** sur une autorisation.\n\nExemple : Léa est dans *Bureau* (Modifier autorisé) et dans *Stagiaires* (Modifier **refusé**) → Léa **ne peut pas** modifier, même si un autre groupe le lui permet.\n\nConseils :\n- utilise le refus **rarement**, pour des exceptions précises ;\n- un compte **absent** de la liste n'a de toute façon **aucun droit** (pas besoin de le refuser) ;\n- attention à refuser quelque chose à « Tout le monde » : cela bloque aussi les administrateurs !",
+      "notions": [
+        "Priorité du refus"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq2-s03-s03",
+      "titre": "Du besoin au tableau d'habilitations",
+      "contenu": "Méthode pour passer d'un besoin écrit à une configuration :\n1. **Lister les profils** (fonctions) décrits dans le besoin ;\n2. **Créer un groupe par profil** ;\n3. **Lister les dossiers** à partager ;\n4. **Remplir un tableau** groupe × dossier ;\n5. **Créer** comptes, groupes, partages, puis **tester** chaque profil.\n\n### Cas : la Ressourcerie du Bocage\n« Les vendeurs consultent le catalogue. Les valoristes (qui réparent les objets) mettent à jour le catalogue. La gérante gère tout, y compris les droits. Le dossier Paie n'est accessible qu'à la gérante, en modification. »\n\n| | Catalogue | Paie |\n| --- | --- | --- |\n| G_Vendeurs | Lecture | — |\n| G_Valoristes | Modifier | — |\n| G_Gerance | Contrôle total | Modifier |\n\n« — » = aucun droit (le groupe n'est pas ajouté).",
+      "notions": [
+        "Traduire un besoin en habilitations"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq2-s03-c001",
+      "section": "libre-b1-11-sq2-s03-s01",
+      "type": "qcm",
+      "question": "Sur le partage « Planning », Benevoles = Lecture, Animateurs = Modifier, Bureau = Contrôle total. Hugo est membre de Benevoles et d'Animateurs. Quel est son droit effectif ?",
+      "choix": [
+        "Lecture",
+        "Modifier",
+        "Contrôle total",
+        "Aucun accès, car les droits se contredisent"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les autorisations se cumulent : Lecture + Modifier = Modifier.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq2-s03-c002",
+      "section": "libre-b1-11-sq2-s03-s02",
+      "type": "qcm",
+      "question": "Sur un partage, le groupe Personnel a Modifier (autorisé), le groupe Intérimaires a Modifier (refusé). Nadia appartient aux deux groupes. Que peut-elle faire ?",
+      "choix": [
+        "Modifier, car elle est dans Personnel",
+        "Seulement lire (si la Lecture n'est pas refusée), car le refus de Modifier l'emporte",
+        "Contrôle total",
+        "Rien du tout, dans tous les cas"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le refus de Modifier bloque la modification. La Lecture, elle, reste autorisée via Personnel tant qu'elle n'est pas refusée.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq2-s03-c003",
+      "section": "libre-b1-11-sq2-s03-s02",
+      "type": "question",
+      "recto": "Faut-il « refuser » l'accès à un utilisateur qui ne doit rien voir et qui n'appartient à aucun groupe autorisé ?",
+      "verso": "Non : sans autorisation, il n'a déjà aucun accès. Le refus sert seulement pour des exceptions face à une autorisation venant d'un autre groupe.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq2-s03-c004",
+      "section": "libre-b1-11-sq2-s03-s03",
+      "type": "exercice",
+      "enonce": "Le centre social Arc-en-Ciel exprime ce besoin : « Les animateurs déposent et modifient leurs fiches d'activités. Les agents d'accueil les consultent. La directrice gère tout. » Propose le tableau d'habilitations pour le partage « Activites ».",
+      "etapes": [
+        "Profils repérés : animateurs, agents d'accueil, directrice → trois groupes : G_Animateurs, G_Accueil, G_Direction.",
+        "Animateurs : créer et modifier → Modifier.",
+        "Accueil : consulter → Lecture.",
+        "Directrice : tout, y compris les droits → Contrôle total."
+      ],
+      "reponse": "Activites : G_Animateurs = Modifier ; G_Accueil = Lecture ; G_Direction = Contrôle total.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq3-s05",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – Concevoir et développer une solution applicative › Thème 3 – POO avancée et diagrammes dynamiques",
+  "sequence": null,
+  "seance": "Diagramme de séquences",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le diagramme de séquences montre les messages échangés entre un acteur et des objets, dans l'ordre chronologique, pour réaliser un scénario. Chaque message correspond à un appel de méthode.",
+  "notions": [
+    "Ligne de vie",
+    "Message",
+    "Acteur",
+    "Message et méthode",
+    "Fragment alt",
+    "Fragment loop",
+    "Fragment opt"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq3-s05-s01",
+      "titre": "Lignes de vie et messages",
+      "contenu": "Le **diagramme de séquences** représente un scénario dans le **temps** (de haut en bas) :\n- en haut : l'**acteur** et les **objets** (`:Caisse`, `p:Panier`) ;\n- sous chacun, une **ligne de vie** verticale en pointillés ;\n- des **messages** : flèches horizontales d'une ligne de vie à une autre ;\n- des **rectangles d'activation** : période où l'objet travaille.\n\n| Flèche | Sens |\n| --- | --- |\n| pleine, pointe pleine | message **synchrone** (on attend la réponse) |\n| pointe ouverte | message **asynchrone** |\n| pointillée | **retour** |",
+      "notions": [
+        "Ligne de vie",
+        "Message",
+        "Acteur"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s05-s02",
+      "titre": "Correspondance avec le code",
+      "contenu": "Un message reçu par un objet correspond à **une méthode de sa classe**. Le diagramme de séquences permet donc de **découvrir les méthodes** à écrire et de vérifier le diagramme de classes.\n\nExemple : caisse du magasin bio **Grain d'Ici**.\n\n```text\nCaissier        :Caisse            :Panier          :Produit\n   | scanner(code) |                  |                 |\n   |-------------->| ajouter(code)    |                 |\n   |               |----------------->| getPrix()       |\n   |               |                  |---------------->|\n   |               |                  |<- - - prix - - -|\n   |<- - total - - |<- - - - - - - - -|                 |\n```\n\nOn en déduit : `Caisse.scanner(code)`, `Panier.ajouter(code)`, `Produit.getPrix()`. Pour que Caisse appelle Panier, Caisse doit **connaître** un panier (association navigable).",
+      "notions": [
+        "Message et méthode"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s05-s03",
+      "titre": "Fragments combinés",
+      "contenu": "Pour représenter conditions et répétitions, on encadre une partie du diagramme par un **fragment** :\n- `alt [condition] / [sinon]` : alternative (si / sinon) ;\n- `opt [condition]` : partie optionnelle (si, sans sinon) ;\n- `loop [pour chaque article]` : boucle.",
+      "notions": [
+        "Fragment alt",
+        "Fragment loop",
+        "Fragment opt"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq3-s05-c001",
+      "section": "libre-b2-21-sq3-s05-s01",
+      "type": "qcm",
+      "question": "Dans un diagramme de séquences, dans quel sens s'écoule le temps ?",
+      "choix": [
+        "De gauche à droite",
+        "De haut en bas",
+        "De bas en haut",
+        "Il n'y a pas de notion de temps"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les messages sont ordonnés verticalement : le premier est en haut.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq3-s05-c002",
+      "section": "libre-b2-21-sq3-s05-s02",
+      "type": "qcm",
+      "question": "Un message `calculerRemise()` arrive sur la ligne de vie `:Client`. Que doit-on avoir dans le code ?",
+      "choix": [
+        "Une méthode `calculerRemise()` dans la classe qui envoie le message",
+        "Une méthode `calculerRemise()` dans la classe Client",
+        "Un attribut `calculerRemise` dans Client",
+        "Rien, c'est un commentaire"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le message reçu correspond à une méthode de la classe **receveuse**.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq3-s05-c003",
+      "section": "libre-b2-21-sq3-s05-s03",
+      "type": "exercice",
+      "enonce": "Décris le diagramme de séquences du scénario « l'adhérent emprunte un livre » : l'adhérent demande l'emprunt au `:Comptoir`, qui vérifie auprès de `a:Adherent` qu'il a moins de 5 emprunts ; si oui, le comptoir crée un `:Emprunt` et répond « OK », sinon « Refus ».",
+      "etapes": [
+        "Lignes de vie : Adhérent (acteur), `:Comptoir`, `a:Adherent`, `:Emprunt`.",
+        "Adhérent → Comptoir : `emprunter(isbn)`.",
+        "Comptoir → a : `nbEmprunts()` ; retour pointillé : n.",
+        "Fragment `alt [n < 5]` : Comptoir → `«create» :Emprunt` puis retour « OK » vers l'adhérent ; `[sinon]` : retour « Refus »."
+      ],
+      "reponse": "Méthodes déduites : `Comptoir.emprunter(isbn)`, `Adherent.nbEmprunts()`, constructeur `Emprunt(...)` ; un fragment alt.",
+      "difficulte": 2
+    }
+  ]
+}

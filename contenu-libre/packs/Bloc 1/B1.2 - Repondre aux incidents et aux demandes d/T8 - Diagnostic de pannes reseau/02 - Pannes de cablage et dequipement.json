@@ -1,0 +1,69 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq3-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 8 – Diagnostic de pannes réseau",
+  "sequence": null,
+  "seance": "Pannes de câblage et d'équipement",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les schémas de câblage des prises RJ45 (T568A et T568B), le rôle des paires, câbles droits et croisés, et les pannes physiques typiques : câble inadapté ou abîmé, équipement hors service.",
+  "notions": [
+    "Normes de câblage T568A T568B",
+    "Câble droit et croisé",
+    "Pannes physiques"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq3-s02-s01",
+      "titre": "Câblage des prises RJ45",
+      "contenu": "Une prise RJ45 a 8 broches. Deux normes définissent l'ordre des couleurs :\n| Broche | T568A | T568B |\n| --- | --- | --- |\n| 1 | blanc-vert | blanc-orange |\n| 2 | vert | orange |\n| 3 | blanc-orange | blanc-vert |\n| 4 | bleu | bleu |\n| 5 | blanc-bleu | blanc-bleu |\n| 6 | orange | vert |\n| 7 | blanc-marron | blanc-marron |\n| 8 | marron | marron |\nLes deux normes échangent simplement les paires **orange** et **verte**.\n\nEn Fast Ethernet (100 Mbit/s), les broches **1-2** servent à l'**émission** et **3-6** à la **réception**. En Gigabit, les 4 paires sont utilisées dans les deux sens.\n\n- **Câble droit** : même norme aux deux bouts → pour relier un poste à un commutateur.\n- **Câble croisé** : T568A d'un côté, T568B de l'autre → historiquement pour relier deux équipements de même type (deux PC, deux switchs).\nAujourd'hui, la plupart des équipements détectent et corrigent automatiquement (**Auto-MDIX**) ; mais sur du matériel ancien, un câble inadapté = pas de lien.",
+      "notions": [
+        "Normes de câblage T568A T568B",
+        "Câble droit et croisé"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq3-s02-s02",
+      "titre": "Les pannes physiques",
+      "contenu": "Indices et causes typiques :\n| Symptôme | Cause possible | Vérification |\n| --- | --- | --- |\n| voyant du port **éteint** | câble débranché, coupé, mal serti ; port désactivé ; équipement éteint | changer de câble, tester un autre port, testeur de câble |\n| icône réseau « câble débranché » | même chose côté poste | reconnecter, changer le cordon |\n| lien à **10/100** au lieu de 1000 | une paire abîmée ou câble de catégorie insuffisante | testeur, changer le cordon |\n| tous les postes d'un switch coupés | **commutateur** hors service, alimentation | voyants, redémarrage, escalade |\n| coupures aléatoires | faux contact, câble écrasé sous un bureau, perturbations | testeur, cheminement du câble |\n\nRéflexe : **commencer par le plus simple** (le câble, le voyant) avant de toucher à la configuration.",
+      "notions": [
+        "Pannes physiques"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq3-s02-c001",
+      "section": "libre-b1-12b-sq3-s02-s01",
+      "type": "qcm",
+      "question": "Un câble a la norme T568B à un bout et T568A à l'autre. C'est un câble…",
+      "choix": [
+        "droit",
+        "croisé",
+        "défectueux obligatoirement",
+        "de console"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les paires orange et verte sont inversées entre les deux bouts : câble croisé.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq3-s02-c002",
+      "section": "libre-b1-12b-sq3-s02-s02",
+      "type": "exercice",
+      "enonce": "Un poste n'a plus de réseau depuis qu'on a déménagé son bureau. Son voyant de carte réseau est éteint. Ses voisins fonctionnent. Propose les vérifications dans l'ordre.",
+      "etapes": [
+        "Un seul poste touché et voyant éteint : piste physique.",
+        "Vérifier que le cordon est bien branché aux deux bouts (poste et prise murale).",
+        "Changer le cordon.",
+        "Tester la prise murale avec un autre poste ou un testeur ; vérifier dans la baie que la prise est brassée sur un port actif."
+      ],
+      "reponse": "Cordon (branchement puis remplacement) → prise murale → brassage dans la baie ; on ne touche à la configuration qu'ensuite.",
+      "difficulte": 2
+    }
+  ]
+}

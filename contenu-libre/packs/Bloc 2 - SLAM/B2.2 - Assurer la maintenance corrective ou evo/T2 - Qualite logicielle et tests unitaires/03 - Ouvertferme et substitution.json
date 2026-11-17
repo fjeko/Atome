@@ -1,0 +1,100 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-22-sq2-s03",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.2 – Assurer la maintenance corrective ou évolutive d'une solution applicative › Thème 2 – Qualité logicielle et tests unitaires",
+  "sequence": null,
+  "seance": "Ouvert/fermé et substitution",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une classe doit pouvoir être étendue sans être modifiée (ouvert/fermé), et une classe fille doit pouvoir remplacer sa mère sans surprise (substitution de Liskov).",
+  "notions": [
+    "Ouvert/fermé",
+    "Substitution de Liskov",
+    "Refactoriser selon OCP"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-22-sq2-s03-s01",
+      "titre": "Ouvert/fermé (OCP)",
+      "contenu": "**O – Open/Closed Principle** : une entité doit être **ouverte à l'extension** mais **fermée à la modification**. Pour ajouter un comportement, on **ajoute** du code au lieu de modifier du code existant (et déjà testé).\n\n```csharp\n// Viole OCP : chaque nouveau mode de livraison oblige à modifier la méthode\ndecimal Frais(string mode) {\n    if (mode == \"relais\") return 3.9m;\n    else if (mode == \"domicile\") return 6.5m;\n    // ajout d'un nouveau mode = modification ici\n}\n```\n\nVersion ouverte à l'extension :\n\n```csharp\npublic interface ILivraison { decimal Frais(); }\npublic class Relais : ILivraison { public decimal Frais() => 3.9m; }\npublic class Domicile : ILivraison { public decimal Frais() => 6.5m; }\n// Nouveau mode = nouvelle classe, rien à modifier\npublic class Casier : ILivraison { public decimal Frais() => 2.5m; }\n```\n\nOCP ne veut pas dire « héritage partout » : il s'appuie surtout sur les **interfaces** et le **polymorphisme**.",
+      "notions": [
+        "Ouvert/fermé"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq2-s03-s02",
+      "titre": "Substitution de Liskov (LSP)",
+      "contenu": "**L – Liskov Substitution Principle** : partout où on utilise un objet de la classe **mère**, on doit pouvoir utiliser un objet d'une classe **fille** **sans changer le comportement attendu**.\n\nExemple classique de violation :\n\n```java\nclass Oiseau { void voler() { ... } }\nclass Manchot extends Oiseau {\n    @Override void voler() { throw new UnsupportedOperationException(); }\n}\n```\n\nUn code qui fait voler une liste d'`Oiseau` plante dès qu'il rencontre un manchot. La hiérarchie est mal pensée : il faudrait par exemple une interface `Volant` implémentée seulement par les oiseaux qui volent.\n\nSignes de violation : méthode redéfinie qui lève une exception « non supporté », qui ne fait rien, ou qui exige des conditions plus strictes que la mère.",
+      "notions": [
+        "Substitution de Liskov"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq2-s03-s03",
+      "titre": "Exercice",
+      "contenu": "Démarche : repère le `switch` sur un type → crée une interface avec la méthode concernée → une classe par cas → remplace le `switch` par un appel polymorphe.",
+      "notions": [
+        "Refactoriser selon OCP"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-22-sq2-s03-c001",
+      "section": "libre-b2-22-sq2-s03-s01",
+      "type": "qcm",
+      "question": "Quel signe indique souvent une violation d'OCP ?",
+      "choix": [
+        "Une classe qui implémente une interface",
+        "Une longue suite de if/else ou switch sur un type, à modifier à chaque nouveau cas",
+        "Une méthode statique",
+        "Un constructeur avec paramètres"
+      ],
+      "bonneReponse": 1,
+      "explication": "Chaque nouveau cas oblige à rouvrir la méthode : il vaut mieux une interface et une classe par cas.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq2-s03-c002",
+      "section": "libre-b2-22-sq2-s03-s02",
+      "type": "qcm",
+      "question": "Une classe `CompteBloque` hérite de `Compte` et sa méthode `retirer()` lève toujours une exception. Quel principe est violé ?",
+      "choix": [
+        "Responsabilité unique",
+        "Substitution de Liskov",
+        "DRY",
+        "KISS"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un `CompteBloque` ne peut pas remplacer un `Compte` sans casser le code appelant.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq2-s03-c003",
+      "section": "libre-b2-22-sq2-s03-s02",
+      "type": "question",
+      "recto": "Énonce le principe de substitution de Liskov avec tes mots.",
+      "verso": "Une classe fille doit pouvoir **remplacer** sa classe mère partout **sans surprise** : même contrat, pas de comportement qui casse le code appelant.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq2-s03-c004",
+      "section": "libre-b2-22-sq2-s03-s03",
+      "type": "exercice",
+      "enonce": "Méthode `double prime(String poste, double salaire)` : « vendeur » → 10 % du salaire, « caissier » → 50 €, « responsable » → 15 % du salaire. Refactorise selon OCP.",
+      "etapes": [
+        "Créer `interface CalculPrime { double prime(double salaire); }`.",
+        "`class PrimeVendeur implements CalculPrime { public double prime(double s) { return s * 0.10; } }`",
+        "`class PrimeCaissier implements CalculPrime { public double prime(double s) { return 50; } }`",
+        "`class PrimeResponsable implements CalculPrime { public double prime(double s) { return s * 0.15; } }`",
+        "Chaque employé reçoit son `CalculPrime` ; un nouveau poste = une nouvelle classe, sans modifier les autres."
+      ],
+      "reponse": "Une interface et trois implémentations remplacent le `switch`.",
+      "difficulte": 3
+    }
+  ]
+}

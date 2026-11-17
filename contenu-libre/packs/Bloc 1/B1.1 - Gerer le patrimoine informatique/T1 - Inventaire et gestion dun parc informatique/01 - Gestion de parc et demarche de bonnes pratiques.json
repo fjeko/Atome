@@ -1,0 +1,138 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq1-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – Gérer le patrimoine informatique › Thème 1 – Inventaire et gestion d'un parc informatique",
+  "sequence": null,
+  "seance": "Gestion de parc et démarche de bonnes pratiques",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Ce qu'est la gestion d'un parc informatique, à quoi elle sert, et comment elle s'inscrit dans une démarche de gestion des services (ITIL, niveaux de support, escalade).",
+  "notions": [
+    "Gestion de parc",
+    "Cycle de vie d'un équipement",
+    "ITIL et gestion des services",
+    "Niveaux de support et escalade"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq1-s01-s01",
+      "titre": "Qu'est-ce qu'un parc informatique ?",
+      "contenu": "Le **parc informatique** d'une organisation, c'est l'ensemble de ses ressources numériques : ordinateurs fixes et portables, écrans, imprimantes, serveurs, équipements réseau (switchs, bornes Wi-Fi, routeurs), téléphones, mais aussi **les logiciels et leurs licences**.\n\n**Gérer le parc**, c'est :\n- **recenser** : savoir ce qu'on possède et où cela se trouve ;\n- **suivre** : qui utilise quoi, depuis quand, sous quelle garantie ;\n- **maintenir** : réparer, mettre à jour, remplacer une pièce ;\n- **faire évoluer** : prévoir les renouvellements et les achats.\n\n### Mini-cas : la jardinerie Pousse-Verte\nLa jardinerie Pousse-Verte (3 magasins, 38 salariés) a acheté des ordinateurs au fil des années sans rien noter. Résultat : personne ne sait combien de licences de traitement de texte sont réellement utilisées, deux portables « disparus » sont en fait dans un placard, et une caisse tombe en panne alors que sa garantie était… expirée depuis 2 mois sans que personne ne l'ait vu venir.\n\nUne gestion de parc aurait permis de répondre en quelques clics à : *combien de postes ? lesquels sous garantie ? quels logiciels installés ?*\n\n### Pourquoi c'est utile\n| Enjeu | Exemple |\n| --- | --- |\n| Financier | ne pas racheter un logiciel déjà payé |\n| Juridique | prouver qu'on respecte les licences |\n| Sécurité | repérer un poste sans mises à jour |\n| Support | connaître la machine d'un utilisateur qui appelle |",
+      "notions": [
+        "Gestion de parc"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq1-s01-s02",
+      "titre": "Le cycle de vie d'un équipement",
+      "contenu": "Un équipement traverse plusieurs étapes, et la gestion de parc les suit toutes :\n\n1. **Expression du besoin** : un nouveau commercial arrive, il lui faut un portable.\n2. **Achat** : choix du modèle, commande, réception, numéro de série noté.\n3. **Mise en service** : installation, affectation à un utilisateur et à un lieu.\n4. **Exploitation et maintenance** : mises à jour, réparations, déplacements.\n5. **Fin de vie** : retrait, effacement sécurisé des données, recyclage (filière DEEE) ou don.\n\nÀ chaque étape, on met à jour la fiche de l'équipement : **qui**, **où**, **dans quel état**, **sous quelle garantie**.\n\n> Un équipement qu'on oublie de « sortir » de l'inventaire fausse les statistiques ; un équipement jeté sans effacement de son disque peut provoquer une fuite de données.",
+      "notions": [
+        "Cycle de vie d'un équipement"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq1-s01-s03",
+      "titre": "ITIL et la gestion des services",
+      "contenu": "Gérer un parc ne se fait pas « au feeling ». Beaucoup d'organisations s'appuient sur **ITIL** (*Information Technology Infrastructure Library*), un **recueil de bonnes pratiques** pour la gestion des services informatiques (en anglais *ITSM*, *IT Service Management*).\n\nL'idée centrale : le service informatique ne fournit pas « des machines », il fournit des **services** aux utilisateurs (pouvoir imprimer, accéder à ses fichiers, utiliser la messagerie…). On mesure donc la qualité du point de vue de l'utilisateur.\n\nDans cette logique, la gestion de parc est une **pratique** parmi d'autres (gestion des actifs, des configurations) : sans inventaire fiable, impossible de bien gérer les incidents ou les changements.\n\n**Attention** : ITIL n'est ni un logiciel ni une loi. C'est un ensemble de recommandations qu'on adapte à sa taille.",
+      "notions": [
+        "ITIL et gestion des services"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq1-s01-s04",
+      "titre": "Niveaux de support et escalade",
+      "contenu": "Quand un utilisateur a un problème, il contacte le **support**. Celui-ci est souvent organisé en niveaux :\n\n| Niveau | Qui ? | Exemples |\n| --- | --- | --- |\n| **Niveau 1** | technicien de support, premier contact | mot de passe oublié, imprimante bloquée, souris HS |\n| **Niveau 2** | technicien plus spécialisé (système, réseau) | serveur de fichiers inaccessible, bug d'une application métier |\n| **Niveau 3** | experts, éditeur, constructeur | défaut d'un logiciel, panne matérielle sous garantie |\n\n**L'escalade** consiste à transmettre un ticket au niveau supérieur quand le niveau actuel ne peut pas le résoudre (manque de compétences, de droits ou de temps).\n\n### Mini-cas\nÀ la mairie de Valcourt-sur-Ombre, Inès (niveau 1) reçoit un appel : « Je n'arrive plus à ouvrir le logiciel d'état civil ». Elle vérifie le poste, redémarre l'application, rien n'y fait ; d'autres agents ont le même souci. Elle **escalade** au niveau 2, qui découvre que le serveur de l'application est saturé.\n\nTon futur rôle de technicien en BTS SIO se situe souvent au **niveau 1 ou 2**.",
+      "notions": [
+        "Niveaux de support et escalade"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq1-s01-c001",
+      "section": "libre-b1-11-sq1-s01-s01",
+      "type": "question",
+      "recto": "Cite les quatre actions qui résument la gestion de parc.",
+      "verso": "**Recenser**, **suivre**, **maintenir** et **faire évoluer** les équipements et les logiciels de l'organisation.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s01-c002",
+      "section": "libre-b1-11-sq1-s01-s01",
+      "type": "qcm",
+      "question": "Lequel de ces éléments fait aussi partie du parc informatique ?",
+      "choix": [
+        "Le mobilier de bureau",
+        "Les licences des logiciels installés",
+        "Les fournitures papier",
+        "Les véhicules de service"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le parc ne se limite pas au matériel : les logiciels et leurs licences en font partie, car ils ont un coût et des obligations légales.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s01-c003",
+      "section": "libre-b1-11-sq1-s01-s02",
+      "type": "question",
+      "recto": "Pourquoi faut-il effacer de façon sécurisée le disque d'un poste en fin de vie ?",
+      "verso": "Parce qu'il peut contenir des données de l'organisation (fichiers, mots de passe enregistrés, données personnelles) qu'un tiers pourrait récupérer.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s01-c004",
+      "section": "libre-b1-11-sq1-s01-s02",
+      "type": "exercice",
+      "enonce": "Remets dans l'ordre les étapes du cycle de vie d'un équipement : fin de vie, achat, exploitation et maintenance, expression du besoin, mise en service.",
+      "etapes": [
+        "On part toujours du besoin : quelqu'un a besoin d'un équipement.",
+        "Vient ensuite l'achat, puis l'installation et l'affectation (mise en service).",
+        "L'équipement est ensuite utilisé et entretenu, jusqu'à son retrait."
+      ],
+      "reponse": "Expression du besoin → achat → mise en service → exploitation et maintenance → fin de vie.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s01-c005",
+      "section": "libre-b1-11-sq1-s01-s03",
+      "type": "qcm",
+      "question": "ITIL, c'est…",
+      "choix": [
+        "Un logiciel de gestion de tickets",
+        "Un ensemble de bonnes pratiques pour gérer les services informatiques",
+        "Une norme obligatoire pour toutes les entreprises",
+        "Un protocole réseau"
+      ],
+      "bonneReponse": 1,
+      "explication": "ITIL est un référentiel de bonnes pratiques. Des logiciels s'en inspirent, mais ITIL lui-même n'est pas un logiciel, ni une obligation légale.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s01-c006",
+      "section": "libre-b1-11-sq1-s01-s04",
+      "type": "question",
+      "recto": "Qu'est-ce que l'escalade d'un ticket ?",
+      "verso": "Le transfert d'un ticket vers un niveau de support supérieur (plus spécialisé) quand le niveau actuel ne peut pas le résoudre.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s01-c007",
+      "section": "libre-b1-11-sq1-s01-s04",
+      "type": "qcm",
+      "question": "Un utilisateur a oublié son mot de passe de session. Quel niveau traite normalement la demande ?",
+      "choix": [
+        "Niveau 1",
+        "Niveau 2",
+        "Niveau 3",
+        "Le constructeur du poste"
+      ],
+      "bonneReponse": 0,
+      "explication": "C'est une demande simple et fréquente : le niveau 1 la traite directement, sans escalade.",
+      "difficulte": 2
+    }
+  ]
+}

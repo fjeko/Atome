@@ -1,0 +1,64 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-16-sq3-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.6 – Organiser son développement professionnel › Thème 2 – Veille technologique et autoformation",
+  "sequence": null,
+  "seance": "Pourquoi et comment faire de la veille",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Définition et intérêt de la veille technologique, et comment la structurer : thème, questions, sources, fréquence, puis collecte, tri, enregistrement et restitution.",
+  "notions": [
+    "Définition de la veille",
+    "Intérêt de la veille",
+    "Structurer sa veille",
+    "Cycle de veille"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-16-sq3-s01-s01",
+      "titre": "Qu'est-ce que la veille ?",
+      "contenu": "La **veille technologique** consiste à **surveiller de façon organisée et régulière** les évolutions d'un domaine (technologies, menaces, réglementation, produits) pour **anticiper** et **décider**.\n\nPourquoi c'est indispensable en informatique :\n- les technologies évoluent très vite (une version de langage, une faille critique, une nouvelle loi) ;\n- elle permet de **conseiller** son organisation (« cette version arrive en fin de support ») ;\n- elle entretient **tes compétences** et ton employabilité ;\n- en BTS SIO, elle est **présentée** dans ton portfolio.\n\nCe n'est pas « lire des actualités au hasard » : c'est une démarche **ciblée**.",
+      "notions": [
+        "Définition de la veille",
+        "Intérêt de la veille"
+      ]
+    },
+    {
+      "id": "libre-b1-16-sq3-s01-s02",
+      "titre": "Structurer sa veille",
+      "contenu": "Avant de commencer, on définit :\n- un **thème** précis (« l'authentification sans mot de passe », pas « la sécurité ») ;\n- des **questions** (où en est la technologie ? qui l'adopte ? quels risques ?) ;\n- des **sources** variées ;\n- une **fréquence** (15 minutes par jour, une heure par semaine) et des **outils**.\n\nLe **cycle de veille** :\n1. **collecter** (agrégateur de flux, alertes) ;\n2. **trier et vérifier** (fiabilité, pertinence) ;\n3. **enregistrer** et classer (notes, marque-pages, étiquettes) ;\n4. **analyser** et **restituer** (note de synthèse, article de portfolio, présentation) ;\n5. **réajuster** les sources et les questions.\n\n**Piège** : accumuler des centaines d'articles sans jamais les exploiter.",
+      "notions": [
+        "Structurer sa veille",
+        "Cycle de veille"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-16-sq3-s01-c001",
+      "section": "libre-b1-16-sq3-s01-s01",
+      "type": "question",
+      "recto": "Qu'est-ce que la veille technologique ?",
+      "verso": "La surveillance organisée et régulière des évolutions d'un domaine technique pour anticiper, décider et maintenir ses compétences.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-16-sq3-s01-c002",
+      "section": "libre-b1-16-sq3-s01-s02",
+      "type": "exercice",
+      "enonce": "Construis un plan de veille sur le sujet « les rançongiciels visant les collectivités » : questions, trois types de sources, fréquence, restitution.",
+      "etapes": [
+        "Questions : modes d'attaque récents ? collectivités touchées ? mesures recommandées ?",
+        "Sources : sites officiels de cybersécurité (alertes et guides), presse spécialisée, retours d'expérience publiés par des collectivités.",
+        "Fréquence : 20 minutes deux fois par semaine, via un agrégateur de flux.",
+        "Restitution : une note de synthèse mensuelle et un article dans le portfolio."
+      ],
+      "reponse": "Un sujet précis, 3 questions, des sources officielles et spécialisées, un rythme régulier et une restitution écrite.",
+      "difficulte": 2
+    }
+  ]
+}

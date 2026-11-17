@@ -1,0 +1,114 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq02-s02",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 1 – Agents économiques et marchés",
+  "sequence": null,
+  "seance": "Limites et défaillances des marchés",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les marchés ne fonctionnent pas toujours bien : barrières à l'entrée, asymétries d'information et externalités justifient l'intervention publique.",
+  "notions": [
+    "Barrières à l'entrée",
+    "Asymétrie d'information : sélection adverse et aléa moral",
+    "Externalités",
+    "Coût social et intervention publique"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq02-s02-s01",
+      "titre": "Les barrières à l'entrée",
+      "contenu": "Une **barrière à l'entrée** empêche ou décourage de nouveaux concurrents d'entrer sur un marché :\n- **naturelles** : coûts fixes énormes (construire un réseau ferré, une usine de semi-conducteurs), économies d'échelle des entreprises en place ;\n- **artificielles** (créées volontairement) : brevets, licences exigées par l'État, contrats d'exclusivité, guerre des prix, image de marque très forte.\n\nConséquence : moins de concurrence, donc des prix plus élevés ou moins d'innovation.",
+      "notions": [
+        "Barrières à l'entrée"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq02-s02-s02",
+      "titre": "Les asymétries d'information",
+      "contenu": "Il y a **asymétrie d'information** quand une partie à l'échange en sait plus que l'autre.\n\n- **Sélection adverse** (problème **avant** le contrat) : l'acheteur ne peut pas distinguer les bons produits des mauvais. Exemple : sur le marché des voitures d'occasion, le vendeur connaît les défauts ; méfiants, les acheteurs proposent un prix moyen, et les propriétaires de bonnes voitures renoncent à vendre.\n- **Aléa moral** (problème **après** le contrat) : une fois le contrat signé, une partie change de comportement sans que l'autre puisse le vérifier. Exemple : un assuré tous risques devient moins prudent avec son téléphone.\n\nSolutions : garanties, labels, avis vérifiés, franchises d'assurance, obligation légale d'information.",
+      "notions": [
+        "Asymétrie d'information : sélection adverse et aléa moral"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq02-s02-s03",
+      "titre": "Les externalités",
+      "contenu": "Une **externalité** est l'effet (positif ou négatif) de l'activité d'un agent sur un autre, **sans compensation par le marché** (personne ne paie ni n'est payé pour cet effet).\n\n- **Négative** : une usine pollue une rivière ; les pêcheurs en aval subissent un dommage sans être indemnisés.\n- **Positive** : un apiculteur installe ses ruches ; les vergers voisins sont mieux pollinisés gratuitement.\n\nLe **coût social** = coût privé supporté par le producteur + coût des externalités négatives supporté par la société. Le marché, qui ne voit que le coût privé, conduit à **trop** produire ce qui pollue et **pas assez** ce qui bénéficie aux autres.\n\n### L'intervention publique\n- **réglementer** (normes d'émission, interdictions) ;\n- **taxer** les externalités négatives (principe pollueur-payeur, taxe carbone) ;\n- **subventionner** les externalités positives (aides à la rénovation, à la recherche) ;\n- créer un **marché de droits à polluer** (quotas échangeables).",
+      "notions": [
+        "Externalités",
+        "Coût social et intervention publique"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq02-s02-c001",
+      "section": "libre-cejm-sq02-s02-s01",
+      "type": "qcm",
+      "question": "Un brevet qui empêche les concurrents de copier un médicament est une barrière…",
+      "choix": [
+        "Artificielle (légale)",
+        "Naturelle",
+        "Inexistante",
+        "Écologique"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le brevet est un droit accordé par la loi : il ne vient pas des caractéristiques techniques du marché.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq02-s02-c002",
+      "section": "libre-cejm-sq02-s02-s02",
+      "type": "qcm",
+      "question": "Après avoir obtenu un prêt pour un projet prudent, une entreprise l'utilise pour un projet beaucoup plus risqué. C'est…",
+      "choix": [
+        "De l'aléa moral",
+        "De la sélection adverse",
+        "Une externalité positive",
+        "Une barrière à l'entrée"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le comportement change après la signature du contrat, sans que la banque puisse le contrôler.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq02-s02-c003",
+      "section": "libre-cejm-sq02-s02-s02",
+      "type": "question",
+      "recto": "Pourquoi une garantie de deux ans réduit-elle la sélection adverse ?",
+      "verso": "Elle signale la qualité du produit avant l'achat et protège l'acheteur : il n'a plus besoin de se méfier de tous les vendeurs.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-cejm-sq02-s02-c004",
+      "section": "libre-cejm-sq02-s02-s03",
+      "type": "qcm",
+      "question": "Un restaurant installe une terrasse bruyante qui gêne les riverains, sans les dédommager. C'est…",
+      "choix": [
+        "Une externalité négative",
+        "Une externalité positive",
+        "Un aléa moral",
+        "Une barrière à l'entrée"
+      ],
+      "bonneReponse": 0,
+      "explication": "Un effet nuisible sur des tiers, non compensé par le marché.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq02-s02-c005",
+      "section": "libre-cejm-sq02-s02-s03",
+      "type": "exercice",
+      "enonce": "Propose deux interventions publiques pour réduire la pollution d'un secteur et donne un avantage de chacune.",
+      "etapes": [
+        "Une taxe sur les émissions : elle incite à polluer moins et rapporte des recettes.",
+        "Une norme d'émission maximale : elle est simple à contrôler et efficace rapidement."
+      ],
+      "reponse": "Taxe pollueur-payeur (incitation + recettes) et norme réglementaire (effet direct) ; on peut aussi citer les quotas échangeables ou les subventions aux technologies propres.",
+      "difficulte": 2
+    }
+  ]
+}

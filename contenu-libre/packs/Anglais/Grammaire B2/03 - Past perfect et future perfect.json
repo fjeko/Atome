@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "id": "libre-ang-g-s03",
+  "matiere": "Anglais",
+  "bloc": "Bloc 5",
+  "partie": "Grammaire B2",
+  "sequence": null,
+  "seance": "Past perfect et future perfect",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les formes parfaites situent une action avant un repère : dans le passé (past perfect) ou dans le futur (future perfect et sa forme continue).",
+  "notions": [
+    "Past perfect",
+    "Future perfect",
+    "Future perfect continuous"
+  ],
+  "sections": [
+    {
+      "id": "libre-ang-g-s03-s01",
+      "titre": "Past perfect : l'antériorité dans le passé",
+      "contenu": "**had + participe passé** : une action **antérieure** à une autre action passée (le « plus-que-parfait »).\n\n- *When I arrived, the meeting **had** already **started**.* — Quand je suis arrivé, la réunion avait déjà commencé.\n- *She realised she **had forgotten** her badge.*\n\nComparer : *When I arrived, the meeting **started**.* (elle commence à mon arrivée) / *had started* (elle avait commencé avant).\n\nRepères : *already, before, by the time, after, when*.",
+      "notions": [
+        "Past perfect"
+      ]
+    },
+    {
+      "id": "libre-ang-g-s03-s02",
+      "titre": "Future perfect et future perfect continuous",
+      "contenu": "**will have + participe passé** : une action qui sera **terminée avant** un moment futur.\n- ***By** Friday, we **will have tested** all the features.* — D'ici vendredi, nous aurons testé toutes les fonctionnalités.\n\n**will have been + V-ing** : la **durée** d'une action jusqu'à un moment futur.\n- *By June, I **will have been studying** for this BTS **for** two years.* — En juin, cela fera deux ans que je prépare ce BTS.\n\nRepères : ***by*** (au plus tard), ***by the time*** (d'ici à ce que), *in* + date, *for* + durée.",
+      "notions": [
+        "Future perfect",
+        "Future perfect continuous"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-ang-g-s03-c001",
+      "section": "libre-ang-g-s03-s01",
+      "type": "qcm",
+      "question": "Complète : *By the time the firefighters arrived, the fire ___ out.*",
+      "choix": [
+        "had gone",
+        "has gone",
+        "goes",
+        "will go"
+      ],
+      "bonneReponse": 0,
+      "explication": "Action terminée avant un autre moment passé : past perfect.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-g-s03-c002",
+      "section": "libre-ang-g-s03-s02",
+      "type": "qcm",
+      "question": "Complète : *By 2030, the company ___ its carbon emissions by half.*",
+      "choix": [
+        "will have reduced",
+        "will reduce since",
+        "has reduced",
+        "had reduced"
+      ],
+      "bonneReponse": 0,
+      "explication": "Action achevée avant un repère futur (*by 2030*) : future perfect.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-g-s03-c003",
+      "section": "libre-ang-g-s03-s02",
+      "type": "exercice",
+      "enonce": "Traduis : « En septembre, cela fera cinq ans que je travaille dans l'informatique. »",
+      "etapes": [
+        "Durée jusqu'à un repère futur → future perfect continuous.",
+        "« Cela fera… que » → *will have been + V-ing + for*."
+      ],
+      "reponse": "*In September, I will have been working in IT for five years.*",
+      "difficulte": 3
+    }
+  ]
+}

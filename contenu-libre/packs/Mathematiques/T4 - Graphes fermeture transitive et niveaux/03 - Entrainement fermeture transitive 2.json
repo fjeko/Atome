@@ -1,0 +1,84 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq2-s06",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "Thème 4 – Graphes : fermeture transitive et niveaux",
+  "sequence": null,
+  "seance": "Entraînement fermeture transitive 2",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Fermeture transitive d'un graphe avec circuits, par le calcul puis par le dessin, et vérification de la cohérence des deux méthodes.",
+  "notions": [
+    "Fermeture d'un graphe avec circuit",
+    "Méthode graphique",
+    "Interprétation de la fermeture"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq2-s06-s01",
+      "titre": "Graphe avec circuit : le calcul",
+      "contenu": "On reprend le tournoi : $T = \\begin{pmatrix}0 & 1 & 1 & 0\\\\0 & 0 & 1 & 1\\\\0 & 0 & 0 & 1\\\\1 & 0 & 0 & 0\\end{pmatrix}$ et $T^{[2]} = \\begin{pmatrix}0 & 0 & 1 & 1\\\\1 & 0 & 0 & 1\\\\1 & 0 & 0 & 0\\\\0 & 1 & 1 & 0\\end{pmatrix}$.\n\n**Cumul après 2 étapes** $T \\oplus T^{[2]}$ : $\\begin{pmatrix}0 & 1 & 1 & 1\\\\1 & 0 & 1 & 1\\\\1 & 0 & 0 & 1\\\\1 & 1 & 1 & 0\\end{pmatrix}$\n\n**$T^{[3]}$** (ligne $X$ de $T^{[2]}$ → OU des lignes de $T$ correspondantes) :\n- A : $T^{[2]}$ a des 1 en C et D → ligne C OU ligne D = $(1, 0, 0, 1)$ ;\n- B : A et D → $(1, 1, 1, 0)$ ;\n- C : A → $(0, 1, 1, 0)$ ;\n- D : B et C → $(0, 0, 1, 1)$.\n\n**Cumul après 3 étapes** : toutes les cases valent 1. Le cumul ne peut plus augmenter : on s'arrête.\n\n$$\\hat{T} = \\begin{pmatrix}1 & 1 & 1 & 1\\\\1 & 1 & 1 & 1\\\\1 & 1 & 1 & 1\\\\1 & 1 & 1 & 1\\end{pmatrix}$$\n\nChaque joueur est relié à tous les autres par une chaîne de victoires, et chacun est sur un circuit (diagonale pleine).",
+      "notions": [
+        "Fermeture d'un graphe avec circuit"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s06-s02",
+      "titre": "La méthode graphique sur le même exemple",
+      "contenu": "Sur le dessin du tournoi, prenons C : C → D, puis D → A, puis A → B. Donc C atteint D, A, B, et revient sur C par $C \\to D \\to A \\to C$. On ajoute les arcs $C \\to A$, $C \\to B$ et une boucle sur C.\n\nOn fait de même pour chaque sommet. On retrouve 16 arcs, ce qui correspond aux 16 coefficients égaux à 1 de $\\hat{T}$. ✔️\n\n**Vérification croisée** : compte les arcs du graphe complété et les 1 de la matrice calculée. S'ils diffèrent, une des deux méthodes contient une erreur (souvent une boucle oubliée).",
+      "notions": [
+        "Méthode graphique"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s06-s03",
+      "titre": "Les questions classiques",
+      "contenu": "- « Le graphe possède-t-il un circuit ? » → regarde la **diagonale** de $\\hat{M}$.\n- « Quels sommets sont sur un circuit ? » → ceux dont le coefficient diagonal vaut 1.\n- « Depuis X, quels sommets peut-on atteindre ? » → les 1 de la **ligne** X de $\\hat{M}$.\n- « Quels sommets permettent d'atteindre Y ? » → les 1 de la **colonne** Y.\n- « Le graphe est-il fortement connexe (tout sommet atteint tous les autres) ? » → $\\hat{M}$ est remplie de 1.",
+      "notions": [
+        "Interprétation de la fermeture"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq2-s06-c001",
+      "section": "libre-maths-sq2-s06-s01",
+      "type": "exercice",
+      "enonce": "Calcule la fermeture transitive du graphe $1 \\to 2$, $2 \\to 1$, $2 \\to 3$.",
+      "etapes": [
+        "$M = \\begin{pmatrix}0 & 1 & 0\\\\1 & 0 & 1\\\\0 & 0 & 0\\end{pmatrix}$",
+        "$M^{[2]}$ : ligne 1 = ligne 2 = $(1,0,1)$ ; ligne 2 = ligne 1 OU ligne 3 = $(0,1,0)$ ; ligne 3 nulle.",
+        "Cumul : $\\begin{pmatrix}1 & 1 & 1\\\\1 & 1 & 1\\\\0 & 0 & 0\\end{pmatrix}$.",
+        "$M^{[3]}$ : ligne 1 = OU des lignes 1 et 3 de $M$ = $(0,1,0)$ ; ligne 2 = ligne 2 de $M$ = $(1,0,1)$. Rien de nouveau, on s'arrête."
+      ],
+      "reponse": "$\\hat{M} = \\begin{pmatrix}1 & 1 & 1\\\\1 & 1 & 1\\\\0 & 0 & 0\\end{pmatrix}$ (boucles sur 1 et 2 à cause du circuit $1 \\to 2 \\to 1$).",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-maths-sq2-s06-c002",
+      "section": "libre-maths-sq2-s06-s02",
+      "type": "qcm",
+      "question": "Avec la méthode graphique, tu trouves 14 arcs ; avec le calcul, 16 coefficients égaux à 1. Quelle est l'explication la plus probable ?",
+      "choix": [
+        "Deux boucles ont été oubliées sur le dessin",
+        "Le calcul est forcément faux",
+        "Il faut ajouter les arcs du graphe initial au résultat",
+        "Les deux sont justes, ils ne mesurent pas la même chose"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les boucles (retour d'un sommet sur lui-même par un circuit) sont l'oubli le plus courant de la méthode graphique.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s06-c003",
+      "section": "libre-maths-sq2-s06-s03",
+      "type": "question",
+      "recto": "Comment savoir, avec la matrice de fermeture $\\hat{M}$, si le sommet 3 appartient à un circuit ?",
+      "verso": "Si le coefficient diagonal $\\hat{m}_{3,3}$ vaut 1.",
+      "difficulte": 1
+    }
+  ]
+}

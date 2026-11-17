@@ -1,0 +1,77 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq3-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – Développer la présence en ligne de l'organisation › Thème 3 – Sites CMS, conformité légale et référencement",
+  "sequence": null,
+  "seance": "Extensions et commerce en ligne",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Étendre un CMS sans coder : extension de boutique en ligne, import de produits par fichier tabulé, menus de gestion, indicateurs d'aide à la décision, et maintenance des extensions avec leurs risques.",
+  "notions": [
+    "Extension de commerce en ligne",
+    "Import de produits par CSV",
+    "Indicateurs d'aide à la décision",
+    "Maintenance et risques des extensions"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq3-s03-s01",
+      "titre": "Une boutique en ligne avec une extension",
+      "contenu": "### Cas : la coutellerie artisanale Lame d'Aubrac\nUne extension de commerce (comme WooCommerce pour WordPress) ajoute : produits, panier, commande, paiement, livraison, taxes, et un **menu de gestion** des commandes et des stocks dans le back-office.\n\nPour ne pas saisir 80 produits à la main, on les **importe depuis un fichier CSV** :\n```csv\nsku;nom;prix;stock;categorie;description\nLA-001;Couteau pliant manche genévrier;89,00;12;Couteaux pliants;Lame inox 11 cm\nLA-002;Couteau de table (lot de 6);210,00;5;Arts de la table;Manche corne\n```\nPréparer le fichier avec soin :\n- **en-têtes** correspondant aux champs attendus (ou correspondance faite dans l'assistant) ;\n- **séparateur** et **séparateur décimal** cohérents avec ce que l'outil attend ;\n- **encodage UTF-8** (sinon « Gen�vrier ») ;\n- une **référence unique** (SKU) par produit, pour pouvoir mettre à jour plus tard sans créer de doublons.\nTester d'abord avec **2 ou 3 lignes**.",
+      "notions": [
+        "Extension de commerce en ligne",
+        "Import de produits par CSV"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq3-s03-s02",
+      "titre": "Indicateurs et maintenance",
+      "contenu": "L'extension fournit des **tableaux de bord** : chiffre d'affaires par période, produits les plus vendus, panier moyen, stocks faibles. Ce sont des **indicateurs d'aide à la décision** : relancer la fabrication d'un modèle, faire une promotion.\n$$\\text{Panier moyen} = \\frac{\\text{chiffre d'affaires}}{\\text{nombre de commandes}}$$\n\n**Risques des extensions** :\n- **sécurité** : une extension vulnérable ouvre le site entier ;\n- **performances** : chaque extension ajoute du code et des requêtes ;\n- **compatibilité** : conflit entre extensions ou après une mise à jour du CMS ;\n- **abandon** par son auteur.\nBonnes pratiques : n'installer que le nécessaire, choisir des extensions **maintenues** (date de dernière mise à jour, nombre d'utilisateurs, avis), **mettre à jour** régulièrement après **sauvegarde**, supprimer celles qu'on n'utilise plus, tester sur un site de préproduction.",
+      "notions": [
+        "Indicateurs d'aide à la décision",
+        "Maintenance et risques des extensions"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq3-s03-c001",
+      "section": "libre-b1-13-sq3-s03-s01",
+      "type": "qcm",
+      "question": "Après import, les noms de produits affichent « Gen�vrier ». Que faut-il corriger ?",
+      "choix": [
+        "Le séparateur",
+        "L'encodage du fichier, à enregistrer en UTF-8",
+        "Le prix",
+        "Le thème"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les caractères accentués mal affichés trahissent un problème d'encodage.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq3-s03-c002",
+      "section": "libre-b1-13-sq3-s03-s02",
+      "type": "exercice",
+      "enonce": "En mars, la coutellerie a réalisé 7 380 € de chiffre d'affaires avec 41 commandes. Calcule le panier moyen.",
+      "etapes": [
+        "Panier moyen = CA / nombre de commandes.",
+        "7 380 / 41 = 180."
+      ],
+      "reponse": "180 € par commande.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq3-s03-c003",
+      "section": "libre-b1-13-sq3-s03-s02",
+      "type": "question",
+      "recto": "Donne trois bonnes pratiques pour gérer les extensions d'un CMS.",
+      "verso": "Installer seulement le nécessaire, choisir des extensions maintenues, mettre à jour après sauvegarde, supprimer les inutilisées, tester en préproduction.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq4-s04",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – Sécuriser les équipements et les usages des utilisateurs › Thème 3 – Audit et sécurité réseau",
+  "sequence": null,
+  "seance": "VPN",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un réseau privé virtuel établit un tunnel chiffré au travers d'un réseau peu fiable. On distingue le VPN d'accès distant et le VPN site à site, avec plusieurs protocoles. Un VPN grand public n'apporte pas l'anonymat total.",
+  "notions": [
+    "VPN",
+    "Tunnel",
+    "Protection contre le rejeu",
+    "VPN d'accès distant",
+    "VPN site à site",
+    "IPsec",
+    "OpenVPN",
+    "WireGuard",
+    "Serveur VPN",
+    "VPN grand public",
+    "Limites du VPN"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq4-s04-s01",
+      "titre": "Risques des liaisons distantes et objectifs",
+      "contenu": "Relier un salarié ou un site distant à travers **Internet** expose les échanges à l'écoute, à la modification et à l'usurpation.\n\nUn **VPN** (*Virtual Private Network*) crée un **tunnel** : les paquets sont **encapsulés** et **chiffrés** entre deux extrémités. Objectifs :\n- **confidentialité** (chiffrement) ;\n- **intégrité** (contrôle des paquets) ;\n- **authentification** des extrémités (certificats, clés, identifiants + MFA) ;\n- **protection contre le rejeu** : un paquet capturé puis renvoyé est rejeté (numéros de séquence).",
+      "notions": [
+        "VPN",
+        "Tunnel",
+        "Protection contre le rejeu"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq4-s04-s02",
+      "titre": "Accès distant ou site à site",
+      "contenu": "| | **Accès distant** (nomade) | **Site à site** |\n| --- | --- | --- |\n| Relie | un **utilisateur** (son poste) au réseau de l'organisation | deux **réseaux** (siège et agence) |\n| Client | logiciel VPN sur le poste | aucun : les deux passerelles (pare-feu/routeurs) gèrent le tunnel |\n| Usage | télétravail, déplacements | agences, entrepôt, datacenter |\n| Disponibilité | à la demande | permanente |",
+      "notions": [
+        "VPN d'accès distant",
+        "VPN site à site"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq4-s04-s03",
+      "titre": "Protocoles et déploiement",
+      "contenu": "| Protocole | Particularité |\n| --- | --- |\n| **IPsec** (IKEv2) | standard, très répandu en site à site, couche 3 |\n| **OpenVPN** | libre, basé sur TLS, souple |\n| **WireGuard** | moderne, code réduit, rapide |\n| SSL/TLS VPN | accès par navigateur ou client léger |\n| PPTP | **obsolète**, à proscrire |\n\n**Déploiement** : un **serveur/passerelle VPN** (souvent le pare-feu) ; authentification forte (certificats, MFA) ; règles de filtrage **après** le tunnel (le VPN n'ouvre pas tout le réseau) ; journalisation ; mises à jour (les passerelles VPN sont des cibles prioritaires).",
+      "notions": [
+        "IPsec",
+        "OpenVPN",
+        "WireGuard",
+        "Serveur VPN"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq4-s04-s04",
+      "titre": "Usage privé : anonymat et limites",
+      "contenu": "Les VPN **grand public** promettent l'« anonymat ». En réalité :\n- ils masquent ton trafic à ton **fournisseur d'accès** et au **Wi-Fi** local, et ton IP aux sites visités ;\n- mais le **fournisseur VPN** voit tout ce que voyait ton FAI : il faut lui faire confiance (journaux, juridiction) ;\n- les **cookies**, comptes connectés et empreinte du navigateur t'identifient toujours ;\n- un VPN **ne protège pas** des logiciels malveillants, de l'hameçonnage ou d'un site piégé ;\n- un VPN gratuit peut revendre tes données.",
+      "notions": [
+        "VPN grand public",
+        "Limites du VPN"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq4-s04-c001",
+      "section": "libre-b3-33-sq4-s04-s01",
+      "type": "qcm",
+      "question": "Qu'est-ce qu'une attaque par rejeu ?",
+      "choix": [
+        "Saturer le VPN de connexions",
+        "Renvoyer un message légitime capturé pour qu'il soit accepté une seconde fois",
+        "Deviner la clé du VPN",
+        "Couper la connexion Internet"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les VPN numérotent les paquets pour rejeter les doublons.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq4-s04-c002",
+      "section": "libre-b3-33-sq4-s04-s02",
+      "type": "qcm",
+      "question": "Une agence de 15 personnes doit accéder en permanence aux serveurs du siège. Quel VPN ?",
+      "choix": [
+        "Un VPN d'accès distant installé sur chaque poste",
+        "Un VPN site à site entre les deux pare-feu",
+        "Aucun, Internet suffit",
+        "Un VPN grand public"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le site à site relie les deux réseaux de façon transparente pour les utilisateurs.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq4-s04-c003",
+      "section": "libre-b3-33-sq4-s04-s03",
+      "type": "qcm",
+      "question": "Quel protocole VPN est obsolète ?",
+      "choix": [
+        "WireGuard",
+        "IPsec IKEv2",
+        "PPTP",
+        "OpenVPN"
+      ],
+      "bonneReponse": 2,
+      "explication": "PPTP a des faiblesses cryptographiques connues.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-33-sq4-s04-c004",
+      "section": "libre-b3-33-sq4-s04-s04",
+      "type": "question",
+      "recto": "Un VPN protège-t-il contre un logiciel malveillant téléchargé ?",
+      "verso": "Non : il chiffre le transport, mais un fichier piégé arrive **dans le tunnel** comme le reste ; il faut antivirus, mises à jour et prudence.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq05-s03",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 3 – L'entreprise : finalités, création et performance",
+  "sequence": null,
+  "seance": "Synthèse et étude de cas (finalités)",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif des finalités et des parties prenantes, puis analyse d'une entreprise fictive.",
+  "notions": [
+    "Synthèse finalités",
+    "Application à un cas"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq05-s03-s01",
+      "titre": "L'essentiel",
+      "contenu": "- Finalités : **économique** (profit, pérennité), **sociale** (salariés), **sociétale** (société, environnement), interdépendantes.\n- Finalité ≠ objectif (précis, chiffré, daté).\n- **RSE** : démarche volontaire, ISO 26000 ; **société à mission** : raison d'être statutaire contrôlée.\n- Parties prenantes : internes/externes, primaires/secondaires, sans oublier les silencieuses ; attentes parfois conflictuelles.",
+      "notions": [
+        "Synthèse finalités"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq05-s03-s02",
+      "titre": "Étude de cas : Terres d'Ici",
+      "contenu": "*Terres d'Ici*, société fictive de 40 salariés, transforme des légumes de producteurs locaux en plats cuisinés. Elle s'est fixé : « augmenter la part de producteurs à moins de 50 km à 90 % d'ici 2028 », « zéro accident du travail », « une marge de 6 % ». Une ONG lui reproche l'usage d'emballages plastiques. La banque conditionne un nouveau prêt à l'amélioration de la rentabilité.",
+      "notions": [
+        "Application à un cas"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq05-s03-c001",
+      "section": "libre-cejm-sq05-s03-s01",
+      "type": "qcm",
+      "question": "Quelle erreur est fréquente ?",
+      "choix": [
+        "Réduire la finalité de l'entreprise au seul profit",
+        "Classer les salariés comme partie prenante interne",
+        "Considérer les clients comme partie prenante primaire",
+        "Distinguer finalité et objectif"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le profit est une finalité parmi d'autres.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq05-s03-c002",
+      "section": "libre-cejm-sq05-s03-s02",
+      "type": "exercice",
+      "enonce": "Identifie les finalités de *Terres d'Ici* à travers ses objectifs, puis classe trois parties prenantes.",
+      "etapes": [
+        "Producteurs locaux à 90 % : finalité sociétale (territoire) ; zéro accident : finalité sociale ; marge de 6 % : finalité économique.",
+        "Salariés : internes, primaires. Producteurs et banque : externes, primaires. ONG : externe, secondaire."
+      ],
+      "reponse": "Trois finalités présentes ; tension possible entre l'ONG (emballages) et la banque (rentabilité).",
+      "difficulte": 3
+    }
+  ]
+}

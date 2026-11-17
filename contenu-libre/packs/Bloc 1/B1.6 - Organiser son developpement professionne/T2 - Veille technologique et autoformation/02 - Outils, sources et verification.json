@@ -1,0 +1,72 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-16-sq3-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.6 – Organiser son développement professionnel › Thème 2 – Veille technologique et autoformation",
+  "sequence": null,
+  "seance": "Outils, sources et vérification",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les outils de veille (agrégateurs, alertes, réseaux), la diversité des sources et la vérification de leur fiabilité : auteur, date, recoupement, intérêt.",
+  "notions": [
+    "Outils de veille",
+    "Types de sources",
+    "Vérifier la fiabilité d'une source",
+    "Note de veille"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-16-sq3-s02-s01",
+      "titre": "Outils et sources",
+      "contenu": "**Outils** :\n- **agrégateur de flux RSS** : il rassemble en un seul endroit les nouveaux articles de dizaines de sites ;\n- **alertes** de moteurs de recherche sur des mots-clés ;\n- **lettres d'information** spécialisées ;\n- **réseaux sociaux** professionnels et communautés techniques, en suivant des experts ;\n- **podcasts**, vidéos de conférences ;\n- un outil de **prise de notes** pour enregistrer et classer.\n\n**Sources** à varier :\n| Type | Exemple |\n| --- | --- |\n| institutionnelles | agences nationales de cybersécurité, autorité de protection des données |\n| éditeurs et constructeurs | blogs techniques, notes de version, avis de sécurité |\n| presse spécialisée | sites d'actualité informatique |\n| communautés | forums, dépôts de code, conférences |",
+      "notions": [
+        "Outils de veille",
+        "Types de sources"
+      ]
+    },
+    {
+      "id": "libre-b1-16-sq3-s02-s02",
+      "titre": "Vérifier la fiabilité",
+      "contenu": "Avant d'utiliser une information, on vérifie :\n- **qui** : l'auteur ou l'organisme est-il identifiable et compétent ?\n- **quand** : la **date** de publication (une info de 2019 sur une faille peut être dépassée) ;\n- **quoi** : les faits sont-ils **sourcés** ? s'agit-il d'un contenu publicitaire ?\n- **recoupement** : d'autres sources fiables disent-elles la même chose ?\n- **pourquoi** : quel est l'intérêt de l'auteur (vendre, informer, militer) ?\n\nUne **note de veille** courte : titre, date, sources, résumé des faits, **analyse** (impact pour l'organisation), recommandation.",
+      "notions": [
+        "Vérifier la fiabilité d'une source",
+        "Note de veille"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-16-sq3-s02-c001",
+      "section": "libre-b1-16-sq3-s02-s01",
+      "type": "qcm",
+      "question": "À quoi sert un agrégateur de flux RSS ?",
+      "choix": [
+        "À héberger un site web",
+        "À regrouper en un seul endroit les nouvelles publications de nombreux sites suivis",
+        "À chiffrer ses e-mails",
+        "À créer des sauvegardes"
+      ],
+      "bonneReponse": 1,
+      "explication": "Il évite de visiter chaque site un par un.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-16-sq3-s02-c002",
+      "section": "libre-b1-16-sq3-s02-s02",
+      "type": "qcm",
+      "question": "Un article affirme qu'un logiciel « n'aura plus jamais de mises à jour ». Que fais-tu avant de l'annoncer à ton responsable ?",
+      "choix": [
+        "Je transmets immédiatement",
+        "Je vérifie la date, l'auteur, et je recoupe avec la source officielle de l'éditeur",
+        "Je le partage sur les réseaux sociaux",
+        "Je l'ignore"
+      ],
+      "bonneReponse": 1,
+      "explication": "On vérifie l'origine et on recoupe avec une source fiable (ici l'éditeur lui-même).",
+      "difficulte": 2
+    }
+  ]
+}

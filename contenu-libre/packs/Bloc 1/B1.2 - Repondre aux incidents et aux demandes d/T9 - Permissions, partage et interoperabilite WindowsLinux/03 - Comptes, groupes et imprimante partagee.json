@@ -1,0 +1,84 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq4-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 9 – Permissions, partage et interopérabilité Windows/Linux",
+  "sequence": null,
+  "seance": "Comptes, groupes et imprimante partagée",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Mettre en place comptes, groupes et unités dans l'annuaire, puis installer, partager, publier et déployer une imprimante par GPO, avec les autorisations d'impression, des instantanés avant modification et un compte rendu de tests.",
+  "notions": [
+    "Mise en place dans l'annuaire",
+    "Installer et partager une imprimante",
+    "Autorisations d'imprimer",
+    "Publier et déployer par GPO",
+    "Instantané avant modification",
+    "Compte rendu de tests"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq4-s03-s01",
+      "titre": "Préparer l'annuaire",
+      "contenu": "Avant toute modification sur une maquette en VM : **instantané** du serveur. En cas d'erreur, retour arrière en une minute.\n\nPuis, dans l'annuaire :\n1. les **UO** (par service) ;\n2. les **comptes** nominatifs dans leurs UO ;\n3. les **groupes globaux** par fonction et **domaine local** par ressource (AGDLP).\n```powershell\nNew-ADOrganizationalUnit -Name \"Etudes\" -Path \"DC=hydro,DC=local\"\nNew-ADGroup -Name G_Ingenieurs -GroupScope Global -Path \"OU=Groupes,DC=hydro,DC=local\"\nNew-ADGroup -Name DL_Imp_Etudes -GroupScope DomainLocal -Path \"OU=Groupes,DC=hydro,DC=local\"\nAdd-ADGroupMember DL_Imp_Etudes -Members G_Ingenieurs\n```",
+      "notions": [
+        "Mise en place dans l'annuaire",
+        "Instantané avant modification"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq4-s03-s02",
+      "titre": "Installer et partager une imprimante",
+      "contenu": "Sur le serveur d'impression (rôle *Services d'impression*, console **Gestion de l'impression**) :\n1. donner à l'imprimante une **adresse IP fixe** (réservation) ;\n2. ajouter l'imprimante avec un **port TCP/IP** vers cette adresse, installer le **pilote** ;\n3. **partager** l'imprimante (nom de partage court : `IMP-ETUDES`) ;\n4. régler l'onglet **Sécurité** :\n| Autorisation | Usage |\n| --- | --- |\n| Imprimer | envoyer des documents |\n| Gérer les documents | suspendre, annuler les travaux des autres |\n| Gérer cette imprimante | modifier la configuration, les autorisations |\nPar défaut, *Tout le monde* peut imprimer : on remplace par le groupe domaine local concerné (`DL_Imp_Etudes` : Imprimer).",
+      "notions": [
+        "Installer et partager une imprimante",
+        "Autorisations d'imprimer"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq4-s03-s03",
+      "titre": "Publier, déployer et tester",
+      "contenu": "- **Publier** dans l'annuaire : l'imprimante devient **recherchable** par les utilisateurs (*Ajouter une imprimante > rechercher dans l'annuaire*).\n- **Déployer par GPO** : elle s'installe **automatiquement** sur les postes. Dans une GPO liée à l'UO des utilisateurs : *Configuration utilisateur > Préférences > Paramètres du Panneau de configuration > Imprimantes > Nouvelle imprimante partagée* : `\\\\SRV-IMP\\IMP-ETUDES` (ciblage possible par groupe).\n\n**Compte rendu de tests** :\n| Test | Compte | Attendu | Obtenu |\n| --- | --- | --- | --- |\n| l'imprimante apparaît à l'ouverture de session | ingénieur | oui | oui |\n| impression d'une page | ingénieur | réussie | réussie |\n| impression | comptable | refusée | refusée |\n| annulation du travail d'un autre | ingénieur | refusée | refusée |",
+      "notions": [
+        "Publier et déployer par GPO",
+        "Compte rendu de tests"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq4-s03-c001",
+      "section": "libre-b1-12b-sq4-s03-s01",
+      "type": "question",
+      "recto": "Pourquoi prendre un instantané du serveur de maquette avant de modifier l'annuaire ?",
+      "verso": "Pour pouvoir revenir rapidement à l'état précédent en cas d'erreur.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq4-s03-c002",
+      "section": "libre-b1-12b-sq4-s03-s02",
+      "type": "qcm",
+      "question": "Un utilisateur doit pouvoir annuler les impressions bloquées de ses collègues, sans modifier la configuration de l'imprimante. Quelle autorisation ?",
+      "choix": [
+        "Imprimer",
+        "Gérer les documents",
+        "Gérer cette imprimante",
+        "Contrôle total NTFS"
+      ],
+      "bonneReponse": 1,
+      "explication": "« Gérer les documents » agit sur la file d'attente, pas sur les réglages.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq4-s03-c003",
+      "section": "libre-b1-12b-sq4-s03-s03",
+      "type": "question",
+      "recto": "Quelle différence entre publier une imprimante dans l'annuaire et la déployer par GPO ?",
+      "verso": "Publier la rend recherchable (l'utilisateur l'ajoute lui-même) ; la déployer par GPO l'installe automatiquement sur les sessions ou postes ciblés.",
+      "difficulte": 2
+    }
+  ]
+}

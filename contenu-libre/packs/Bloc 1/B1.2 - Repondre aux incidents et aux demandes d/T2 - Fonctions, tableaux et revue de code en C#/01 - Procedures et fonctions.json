@@ -1,0 +1,148 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq1-s08",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 2 – Fonctions, tableaux et revue de code en C#",
+  "sequence": null,
+  "seance": "Procédures et fonctions",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Découper un programme en modules : procédures (qui agissent) et fonctions (qui renvoient une valeur), paramètres, return, variables locales, constantes, et choix entre fonction et procédure.",
+  "notions": [
+    "Intérêt des modules",
+    "Procédure",
+    "Fonction et return",
+    "Variables locales et globales",
+    "Constantes",
+    "Choisir fonction ou procédure"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq1-s08-s01",
+      "titre": "Pourquoi découper en modules ?",
+      "contenu": "Quand le même morceau de code apparaît à plusieurs endroits, ou quand `Main` fait 200 lignes, le programme devient illisible et une correction doit être faite… partout.\n\nUn **module** (en C# : une **méthode**) est un bloc de code **nommé**, qu'on écrit **une fois** et qu'on **appelle** autant de fois qu'on veut.\n\nAvantages :\n- **pas de répétition** : une correction se fait à un seul endroit ;\n- **lisibilité** : `Main` se lit comme un sommaire ;\n- **tests** plus faciles : on vérifie chaque module séparément ;\n- **réutilisation** dans d'autres programmes.",
+      "notions": [
+        "Intérêt des modules"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s08-s02",
+      "titre": "Procédures",
+      "contenu": "Une **procédure** réalise une action et **ne renvoie rien** : son type de retour est `void`.\n```csharp\nstatic void AfficherBandeau(string titre)\n{\n    Console.WriteLine(\"==============================\");\n    Console.WriteLine($\"   {titre}\");\n    Console.WriteLine(\"==============================\");\n}\n\nstatic void Main(string[] args)\n{\n    AfficherBandeau(\"Bibliothèque de Montfleury\");\n    // ...\n    AfficherBandeau(\"Fin de session\");\n}\n```\n`titre` est un **paramètre** : une valeur transmise à la procédure lors de l'appel. La valeur donnée à l'appel (`\"Fin de session\"`) s'appelle l'**argument**.",
+      "notions": [
+        "Procédure"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s08-s03",
+      "titre": "Fonctions et return",
+      "contenu": "Une **fonction** calcule et **renvoie une valeur** avec `return`. Son type de retour est celui de la valeur renvoyée.\n```csharp\nstatic double CalculerPenalite(int joursRetard)\n{\n    const double TarifJour = 0.15;\n    if (joursRetard <= 0)\n        return 0;\n    return joursRetard * TarifJour;\n}\n\n// Appel : on récupère la valeur\ndouble p = CalculerPenalite(12);   // 1.8\n```\n- `return` **termine** immédiatement la fonction.\n- **Tous les chemins** doivent mener à un `return`, sinon le compilateur refuse : *« tous les chemins de code ne retournent pas nécessairement une valeur »*.",
+      "notions": [
+        "Fonction et return"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s08-s04",
+      "titre": "Variables locales, globales et constantes",
+      "contenu": "- Une variable **locale** est déclarée **dans** une méthode : elle n'existe que pendant son exécution, et les autres méthodes ne la voient pas.\n- Une variable « **globale** » (en C#, un **champ** `static` de la classe) est visible par toutes les méthodes de la classe.\n\nPréfère **les locales et les paramètres** : une globale peut être modifiée de partout, ce qui rend les erreurs très difficiles à retrouver.\n\nUne **constante** est une valeur qui **ne change jamais** pendant l'exécution :\n```csharp\nconst int NbMaxEmprunts = 5;\nconst double TauxTva = 0.20;\n```\nAvantages : pas de « nombre magique » au milieu du code, et si la règle change, on modifie **une seule ligne**.",
+      "notions": [
+        "Variables locales et globales",
+        "Constantes"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s08-s05",
+      "titre": "Fonction ou procédure ?",
+      "contenu": "| Besoin | Choix |\n| --- | --- |\n| obtenir un **résultat** pour s'en servir ensuite (calcul, test, conversion) | **fonction** |\n| **faire** quelque chose (afficher, enregistrer) sans résultat à exploiter | **procédure** |\n\nBonne pratique : une fonction de calcul **ne fait pas d'affichage** ; elle renvoie la valeur, et c'est l'appelant qui décide quoi en faire. Ainsi, la même fonction sert dans une application console comme dans une application graphique.",
+      "notions": [
+        "Choisir fonction ou procédure"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq1-s08-c001",
+      "section": "libre-b1-12a-sq1-s08-s01",
+      "type": "question",
+      "recto": "Donne deux avantages du découpage d'un programme en modules.",
+      "verso": "Par exemple : éviter la répétition de code (une seule correction), améliorer la lisibilité, faciliter les tests, réutiliser le code.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq1-s08-c002",
+      "section": "libre-b1-12a-sq1-s08-s02",
+      "type": "qcm",
+      "question": "Que signifie le mot-clé `void` devant une méthode ?",
+      "choix": [
+        "Qu'elle n'a pas de paramètre",
+        "Qu'elle ne renvoie aucune valeur",
+        "Qu'elle est vide",
+        "Qu'elle ne peut être appelée qu'une fois"
+      ],
+      "bonneReponse": 1,
+      "explication": "`void` indique l'absence de valeur de retour : c'est une procédure.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq1-s08-c003",
+      "section": "libre-b1-12a-sq1-s08-s03",
+      "type": "qcm",
+      "question": "Pourquoi cette fonction ne compile-t-elle pas ?\n```csharp\nstatic string Niveau(int points)\n{\n    if (points >= 100) return \"Or\";\n    else if (points >= 50) return \"Argent\";\n}\n```",
+      "choix": [
+        "Le type `string` est interdit pour une fonction",
+        "Si points < 50, aucun `return` n'est atteint",
+        "Il faut un `switch`",
+        "Il manque `void`"
+      ],
+      "bonneReponse": 1,
+      "explication": "Tous les chemins doivent renvoyer une valeur : il faut un `else return \"Bronze\";` (ou un `return` final).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s08-c004",
+      "section": "libre-b1-12a-sq1-s08-s03",
+      "type": "exercice",
+      "enonce": "Écris une fonction `EstMajeur` qui reçoit un âge et renvoie `true` si l'âge est supérieur ou égal à 18.",
+      "etapes": [
+        "Type de retour : `bool`.",
+        "Paramètre : `int age`.",
+        "La comparaison `age >= 18` est déjà un booléen : on peut la renvoyer directement."
+      ],
+      "reponse": "```csharp\nstatic bool EstMajeur(int age)\n{\n    return age >= 18;\n}\n```",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s08-c005",
+      "section": "libre-b1-12a-sq1-s08-s04",
+      "type": "qcm",
+      "question": "Pourquoi limiter l'usage des variables globales ?",
+      "choix": [
+        "Elles sont plus lentes",
+        "Elles peuvent être modifiées par n'importe quelle méthode, ce qui complique la recherche d'erreurs",
+        "Elles ne peuvent pas contenir de nombres",
+        "Le C# les interdit"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une globale crée des dépendances cachées entre méthodes. On préfère transmettre les données par paramètres.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s08-c006",
+      "section": "libre-b1-12a-sq1-s08-s05",
+      "type": "qcm",
+      "question": "Tu dois coder « calculer le montant d'une cotisation selon l'âge ». Quel est le meilleur choix ?",
+      "choix": [
+        "Une procédure qui affiche le montant",
+        "Une fonction qui renvoie le montant",
+        "Une variable globale",
+        "Un `switch` dans `Main`"
+      ],
+      "bonneReponse": 1,
+      "explication": "On obtient un résultat réutilisable : c'est une fonction. L'affichage se fait à part.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-22-sq2-s06",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.2 – Assurer la maintenance corrective ou évolutive d'une solution applicative › Thème 2 – Qualité logicielle et tests unitaires",
+  "sequence": null,
+  "seance": "Tests unitaires",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un test unitaire vérifie une petite unité de code de façon automatique et indépendante. On teste surtout la couche modèle, avec des cas nominaux, limites et d'erreur.",
+  "notions": [
+    "Test unitaire",
+    "Test fonctionnel",
+    "Framework de test",
+    "Arrange Act Assert",
+    "Indépendance des tests",
+    "Automatisation"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-22-sq2-s06-s01",
+      "titre": "Unitaire ou fonctionnel ?",
+      "contenu": "| | Test unitaire | Test fonctionnel |\n| --- | --- | --- |\n| Cible | une méthode, une classe | une fonctionnalité complète |\n| Point de vue | développeur | utilisateur |\n| Exécution | automatique, en millisecondes | souvent manuel ou via l'interface |\n| Exemple | `CalculerFrais(2.5)` renvoie 6 | « Commander un article » de bout en bout |\n\nLes deux sont complémentaires.",
+      "notions": [
+        "Test unitaire",
+        "Test fonctionnel"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq2-s06-s02",
+      "titre": "Écrire des tests en C#",
+      "contenu": "Dans Visual Studio, on crée un **projet de test** (MSTest, xUnit ou NUnit) qui référence le projet à tester.\n\n```csharp\n[TestClass]\npublic class FraisPortTests\n{\n    [TestMethod]\n    public void Frais_Gratuits_AuDela_De_50()\n    {\n        // Arrange : préparer\n        var calc = new FraisPort();\n        // Act : exécuter\n        decimal frais = calc.Calculer(montant: 60m);\n        // Assert : vérifier\n        Assert.AreEqual(0m, frais);\n    }\n\n    [TestMethod]\n    public void Montant_Negatif_Refuse()\n    {\n        var calc = new FraisPort();\n        Assert.ThrowsException<ArgumentException>(() => calc.Calculer(-1m));\n    }\n}\n```\n\nStructure **AAA** : *Arrange* (préparer), *Act* (agir), *Assert* (vérifier). Un nom de test explicite dit ce qui est vérifié.",
+      "notions": [
+        "Framework de test",
+        "Arrange Act Assert"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq2-s06-s03",
+      "titre": "Bonnes pratiques",
+      "contenu": "- Chaque test est **indépendant** : il ne dépend ni d'un autre test, ni de l'ordre d'exécution.\n- Il ne dépend pas d'une **ressource externe** (base, réseau, date du jour) : on utilise des doublures (faux DAO en mémoire, date fournie en paramètre).\n- Chaque test contient au moins une **assertion pertinente**.\n- On teste les cas **nominaux**, **limites** et **d'erreur**.\n\nL'intérêt de l'**automatisation** : on relance des centaines de tests en quelques secondes à chaque modification, et même automatiquement à chaque `push` (intégration continue).",
+      "notions": [
+        "Indépendance des tests",
+        "Automatisation"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-22-sq2-s06-c001",
+      "section": "libre-b2-22-sq2-s06-s01",
+      "type": "qcm",
+      "question": "Lequel est un test unitaire ?",
+      "choix": [
+        "Un testeur passe une commande complète sur le site",
+        "Une méthode automatique vérifie que `Remise(200)` renvoie 10",
+        "Un client valide la maquette",
+        "On mesure le temps de chargement de la page d'accueil"
+      ],
+      "bonneReponse": 1,
+      "explication": "Il cible une seule méthode, de façon automatique.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-22-sq2-s06-c002",
+      "section": "libre-b2-22-sq2-s06-s02",
+      "type": "question",
+      "recto": "Que signifient les trois A d'un test ?",
+      "verso": "**Arrange** (préparer les données), **Act** (appeler la méthode), **Assert** (vérifier le résultat).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-22-sq2-s06-c003",
+      "section": "libre-b2-22-sq2-s06-s03",
+      "type": "qcm",
+      "question": "Un test passe le matin et échoue le soir sans modification du code. Cause la plus probable ?",
+      "choix": [
+        "Le framework est défectueux",
+        "Le test dépend de l'heure ou d'une ressource externe",
+        "Le test n'a pas d'assertion",
+        "La machine est trop lente"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un test doit être déterministe : on fournit la date ou l'heure en paramètre plutôt que d'utiliser l'horloge.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq2-s06-c004",
+      "section": "libre-b2-22-sq2-s06-s03",
+      "type": "exercice",
+      "enonce": "`CalculerFrais(decimal montant)` : montant < 0 → exception ; montant < 50 → 4,90 ; montant ≥ 50 → 0. Liste les tests (nom, entrée, attendu).",
+      "etapes": [
+        "`Montant_Negatif_Exception` : -1 → ArgumentException.",
+        "`Montant_Nul_Payant` : 0 → 4,90.",
+        "`Juste_Sous_Le_Seuil` : 49,99 → 4,90.",
+        "`Seuil_Exact_Gratuit` : 50 → 0.",
+        "`Au_Dessus_Du_Seuil` : 120 → 0."
+      ],
+      "reponse": "Cinq tests couvrant l'erreur, la limite basse, les deux côtés du seuil et un cas nominal.",
+      "difficulte": 2
+    }
+  ]
+}

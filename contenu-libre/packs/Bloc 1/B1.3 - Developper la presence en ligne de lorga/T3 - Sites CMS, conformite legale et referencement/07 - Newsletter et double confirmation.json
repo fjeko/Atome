@@ -1,0 +1,65 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq4-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – Développer la présence en ligne de l'organisation › Thème 3 – Sites CMS, conformité légale et référencement",
+  "sequence": null,
+  "seance": "Newsletter et double confirmation",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. L'emailing au service d'une organisation : intérêt, plateformes, listes et campagnes, formulaire d'inscription et double confirmation.",
+  "notions": [
+    "Intérêt de l'emailing",
+    "Plateformes d'emailing",
+    "Listes et campagnes",
+    "Double confirmation"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq4-s03-s01",
+      "titre": "Emailing : intérêt et outils",
+      "contenu": "L'**emailing** (lettre d'information) permet de garder le contact : nouveautés, événements, offres. Peu coûteux, mesurable (taux d'ouverture, de clics).\n\nOn utilise une **plateforme d'emailing** plutôt que sa propre messagerie : gestion des **listes** de contacts, modèles de messages, envoi en masse sans être classé en indésirable, **lien de désinscription** automatique, statistiques. Choisir de préférence une plateforme dont les données restent dans l'Union européenne.\n\nVocabulaire : une **liste** (ou audience) = un ensemble de contacts abonnés ; une **campagne** = un envoi donné à une liste.",
+      "notions": [
+        "Intérêt de l'emailing",
+        "Plateformes d'emailing",
+        "Listes et campagnes"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq4-s03-s02",
+      "titre": "La double confirmation",
+      "contenu": "**Double confirmation** (*double opt-in*) :\n1. la personne saisit son adresse dans le formulaire ;\n2. elle reçoit un e-mail « Confirmez votre inscription » avec un lien ;\n3. elle n'est **ajoutée à la liste** qu'après avoir cliqué.\n\nIntérêts : on prouve que **le propriétaire de l'adresse** a bien consenti (pas quelqu'un qui a tapé l'adresse d'un autre), on évite les adresses fausses ou mal saisies, et on améliore la réputation d'envoi. La plateforme garde la **preuve** (date et heure de confirmation).",
+      "notions": [
+        "Double confirmation"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq4-s03-c001",
+      "section": "libre-b1-13-sq4-s03-s01",
+      "type": "question",
+      "recto": "Quelle différence entre une liste et une campagne d'emailing ?",
+      "verso": "La liste est l'ensemble des contacts abonnés ; la campagne est un envoi particulier adressé à une liste.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-13-sq4-s03-c002",
+      "section": "libre-b1-13-sq4-s03-s02",
+      "type": "qcm",
+      "question": "Quel est le principal intérêt de la double confirmation ?",
+      "choix": [
+        "Envoyer deux fois chaque newsletter",
+        "S'assurer que le titulaire de l'adresse a lui-même confirmé son inscription",
+        "Éviter d'afficher un lien de désinscription",
+        "Augmenter le nombre d'abonnés sans leur accord"
+      ],
+      "bonneReponse": 1,
+      "explication": "Elle garantit et prouve le consentement du vrai titulaire de l'adresse.",
+      "difficulte": 2
+    }
+  ]
+}

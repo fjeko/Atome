@@ -1,0 +1,69 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq3-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 4 – Programmation orientée objet en C#",
+  "sequence": null,
+  "seance": "Interface liée à des objets",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Relier une liste d'objets à un contrôle d'affichage, adapter l'interface à la hiérarchie de classes et créer le bon type d'objet selon la saisie de l'utilisateur.",
+  "notions": [
+    "Liaison liste et contrôle",
+    "Adapter l'interface à la hiérarchie",
+    "Créer le bon type d'objet"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq3-s04-s01",
+      "titre": "Lier une liste d'objets à un contrôle",
+      "contenu": "Une `ListBox` ou une `ComboBox` peut afficher directement des **objets** (elle utilise leur `ToString()`). Avec la **liaison de données** :\n```csharp\nprivate BindingList<Velo> flotte = new BindingList<Velo>();\n\nprivate void FrmFlotte_Load(object sender, EventArgs e)\n{\n    lstFlotte.DataSource = flotte;   // la liste affiche la collection\n}\n\nprivate void btnAjouter_Click(object sender, EventArgs e)\n{\n    flotte.Add(new Velo(txtRef.Text, (double)numTarif.Value));\n    // BindingList prévient le contrôle : l'affichage se met à jour tout seul\n}\n\nprivate void lstFlotte_SelectedIndexChanged(object sender, EventArgs e)\n{\n    if (lstFlotte.SelectedItem is Velo v)\n        lblDetail.Text = $\"2 jours : {v.PrixLocation(2)} €\";\n}\n```\n- `SelectedItem` renvoie **l'objet** sélectionné, pas seulement son texte.\n- `BindingList<T>` (au lieu de `List<T>`) notifie le contrôle à chaque ajout ou suppression.",
+      "notions": [
+        "Liaison liste et contrôle"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s04-s02",
+      "titre": "Adapter l'interface et créer le bon objet",
+      "contenu": "Quand il existe plusieurs classes filles, l'interface doit **s'adapter** : un champ « autonomie » n'a de sens que pour un vélo électrique.\n```csharp\nprivate void rdbElectrique_CheckedChanged(object sender, EventArgs e)\n{\n    numAutonomie.Enabled = rdbElectrique.Checked;\n}\n\nprivate void btnAjouter_Click(object sender, EventArgs e)\n{\n    Velo nouveau;\n    if (rdbElectrique.Checked)\n        nouveau = new VeloElectrique(txtRef.Text, (double)numTarif.Value, (int)numAutonomie.Value);\n    else\n        nouveau = new Velo(txtRef.Text, (double)numTarif.Value);\n    flotte.Add(nouveau);   // la liste accepte les deux types (polymorphisme)\n}\n```\nOn crée **le bon type d'objet selon le choix** de l'utilisateur, puis on le range dans une collection du type **mère**.\n\nÀ l'inverse, pour **afficher** les détails d'un élément sélectionné, on teste son type avec `is` pour montrer ou cacher les champs spécifiques.",
+      "notions": [
+        "Adapter l'interface à la hiérarchie",
+        "Créer le bon type d'objet"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq3-s04-c001",
+      "section": "libre-b1-12a-sq3-s04-s01",
+      "type": "qcm",
+      "question": "Avec une `List<T>` classique liée à `DataSource`, un ajout ne s'affiche pas. Pourquoi ?",
+      "choix": [
+        "Les listes ne peuvent pas être liées",
+        "`List<T>` ne prévient pas le contrôle de ses changements, contrairement à `BindingList<T>`",
+        "Il faut redémarrer l'application",
+        "`ToString` n'est pas redéfini"
+      ],
+      "bonneReponse": 1,
+      "explication": "`BindingList<T>` émet des notifications de changement ; avec `List<T>`, il faut relier à nouveau la source.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq3-s04-c002",
+      "section": "libre-b1-12a-sq3-s04-s02",
+      "type": "exercice",
+      "enonce": "Une médiathèque gère des `Document` avec deux filles : `Livre` (nombre de pages) et `Dvd` (durée en minutes). Décris comment l'interface d'ajout doit s'adapter et quel objet créer.",
+      "etapes": [
+        "Deux boutons radio : Livre / DVD.",
+        "Si Livre est coché : activer le champ « pages », désactiver « durée » ; inversement pour DVD.",
+        "Au clic sur Ajouter : `new Livre(...)` ou `new Dvd(...)` selon le bouton coché.",
+        "Ajouter l'objet dans une `BindingList<Document>`."
+      ],
+      "reponse": "Champs spécifiques activés selon le type choisi, création de l'objet de la bonne classe fille, stockage dans une collection de la classe mère.",
+      "difficulte": 2
+    }
+  ]
+}

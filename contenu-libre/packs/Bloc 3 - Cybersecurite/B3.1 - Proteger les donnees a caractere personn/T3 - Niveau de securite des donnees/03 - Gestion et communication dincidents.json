@@ -1,0 +1,100 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq3-s03",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – Protéger les données à caractère personnel › Thème 3 – Niveau de sécurité des données",
+  "sequence": null,
+  "seance": "Gestion et communication d'incidents",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un incident de sécurité se gère selon une démarche structurée (norme ISO/IEC 27035) : préparer, détecter, analyser, contenir, éradiquer, restaurer, tirer les leçons. La communication interne et externe fait partie de la réponse.",
+  "notions": [
+    "Gestion des incidents",
+    "ISO 27035",
+    "Plan de réponse à incident",
+    "Communication de crise"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq3-s03-s01",
+      "titre": "Le cycle de gestion des incidents",
+      "contenu": "La norme **ISO/IEC 27035** décrit la gestion des incidents de sécurité. On retient les phases :\n1. **Préparer** : procédures, contacts, outils, sauvegardes, exercices.\n2. **Détecter et signaler** : alertes, utilisateurs qui signalent.\n3. **Évaluer et décider** : est-ce un incident ? quelle gravité ?\n4. **Répondre** : **contenir** (isoler), **éradiquer** (supprimer la cause), **restaurer** (revenir à la normale).\n5. **Tirer les leçons** : retour d'expérience, amélioration.",
+      "notions": [
+        "Gestion des incidents",
+        "ISO 27035"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq3-s03-s02",
+      "titre": "Le plan de réponse",
+      "contenu": "Le **plan de réponse** est préparé **à froid** et contient :\n- les **rôles** : qui décide, qui agit techniquement, qui communique ;\n- la **liste de contacts** : prestataires, assureur, CNIL, ANSSI/CERT, forces de l'ordre, Cybermalveillance.gouv.fr ;\n- les **procédures** par type d'incident (rançongiciel, fuite, DDoS) ;\n- les moyens de **fonctionner en mode dégradé** (procédures papier, téléphones) ;\n- l'emplacement des **sauvegardes** et la procédure de restauration ;\n- un **journal** pour noter chaque action horodatée.",
+      "notions": [
+        "Plan de réponse à incident"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq3-s03-s03",
+      "titre": "Communiquer pendant et après",
+      "contenu": "**Pendant** :\n- en **interne** : consignes claires aux salariés (ne pas allumer les postes, ne pas parler aux médias), par un canal non compromis (téléphone, SMS) ;\n- en **externe** : clients, partenaires, autorités (CNIL sous 72 h si violation de données), éventuellement la presse ; un **porte-parole unique**, des messages factuels, sans minimiser ni spéculer.\n\n**Après** : informer de la résolution, des mesures prises, et remercier. Une communication transparente préserve la confiance.",
+      "notions": [
+        "Communication de crise"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq3-s03-c001",
+      "section": "libre-b3-31-sq3-s03-s01",
+      "type": "qcm",
+      "question": "Quelle phase vient juste après la détection d'un incident ?",
+      "choix": [
+        "Le retour d'expérience",
+        "L'évaluation (est-ce un incident, quelle gravité ?)",
+        "La restauration",
+        "La préparation"
+      ],
+      "bonneReponse": 1,
+      "explication": "On qualifie avant d'agir pour adapter la réponse.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq3-s03-c002",
+      "section": "libre-b3-31-sq3-s03-s02",
+      "type": "question",
+      "recto": "Pourquoi tenir un journal horodaté pendant un incident ?",
+      "verso": "Pour garder la **trace** des faits et des décisions (enquête, plainte, notification CNIL, retour d'expérience).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq3-s03-c003",
+      "section": "libre-b3-31-sq3-s03-s03",
+      "type": "exercice",
+      "enonce": "La médiathèque intercommunale fictive **Les Trois Rives** a subi une fuite des e-mails de ses lecteurs. Rédige les trois points clés du message aux lecteurs.",
+      "etapes": [
+        "Ce qui s'est passé : « Le 12 novembre, un accès non autorisé a permis de copier les adresses e-mail des lecteurs. Aucun mot de passe ni donnée bancaire n'est concerné. »",
+        "Ce que nous avons fait : « Nous avons bloqué l'accès, corrigé la faille et informé la CNIL. »",
+        "Ce que vous pouvez faire : « Méfiez-vous des messages se présentant comme la médiathèque ; nous ne vous demanderons jamais votre mot de passe. Contact : dpo@... »"
+      ],
+      "reponse": "Message factuel : les faits, les mesures prises, les conseils et un contact.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq3-s03-c004",
+      "section": "libre-b3-31-sq3-s03-s03",
+      "type": "qcm",
+      "question": "Pendant un rançongiciel, comment transmettre les consignes aux salariés ?",
+      "choix": [
+        "Par la messagerie interne habituelle",
+        "Par un canal indépendant du SI touché (téléphone, SMS, affichage)",
+        "Ne rien dire pour éviter la panique",
+        "Par les réseaux sociaux publics"
+      ],
+      "bonneReponse": 1,
+      "explication": "La messagerie peut être compromise ou indisponible.",
+      "difficulte": 2
+    }
+  ]
+}

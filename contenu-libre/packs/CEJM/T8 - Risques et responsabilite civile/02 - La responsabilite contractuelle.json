@@ -1,0 +1,78 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq12-s02",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 8 – Risques et responsabilité civile",
+  "sequence": null,
+  "seance": "La responsabilité contractuelle",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Quand un contrat n'est pas exécuté, le créancier peut obtenir réparation à trois conditions : inexécution, dommage, lien de causalité.",
+  "notions": [
+    "Conditions de la responsabilité contractuelle",
+    "Obligation de moyens et de résultat",
+    "Causes d'exonération"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq12-s02-s01",
+      "titre": "Les conditions",
+      "contenu": "La **responsabilité contractuelle** (art. 1231-1) suppose un **contrat valable** entre le responsable (le **débiteur**) et la victime (le **créancier**), et trois conditions :\n1. un **fait générateur** : l'**inexécution** (totale, partielle, tardive ou défectueuse) d'une obligation du contrat ;\n2. un **dommage** : matériel (perte d'argent, manque à gagner), corporel ou moral ; il doit être certain et, en principe, **prévisible** lors du contrat ;\n3. un **lien de causalité** entre l'inexécution et le dommage.",
+      "notions": [
+        "Conditions de la responsabilité contractuelle"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq12-s02-s02",
+      "titre": "Obligation de moyens ou de résultat",
+      "contenu": "- **Obligation de résultat** : le débiteur promet un résultat précis (livrer à une date, transporter un colis intact). Si le résultat n'est pas atteint, sa responsabilité est **présumée** : le créancier n'a pas à prouver de faute.\n- **Obligation de moyens** : le débiteur promet de **faire de son mieux** (un médecin, un avocat, un consultant). Le créancier doit **prouver une faute** (négligence, imprudence).\n\nExemple : un hébergeur web qui garantit « 99,9 % de disponibilité » s'engage à un résultat ; un consultant en référencement qui promet « d'améliorer la visibilité » s'engage à des moyens.\n\n**Exonération** : le débiteur peut échapper à sa responsabilité en prouvant une **force majeure** (événement imprévisible, irrésistible, extérieur), ou le fait du créancier.",
+      "notions": [
+        "Obligation de moyens et de résultat",
+        "Causes d'exonération"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq12-s02-c001",
+      "section": "libre-cejm-sq12-s02-s01",
+      "type": "qcm",
+      "question": "Quelle situation relève de la responsabilité contractuelle ?",
+      "choix": [
+        "Un traiteur livre un buffet avarié pour un mariage",
+        "Un passant est blessé par une enseigne qui tombe",
+        "Un cycliste renverse un piéton",
+        "Un voisin fait du bruit la nuit"
+      ],
+      "bonneReponse": 0,
+      "explication": "Seul le premier cas oppose deux parties liées par un contrat, mal exécuté.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq12-s02-c002",
+      "section": "libre-cejm-sq12-s02-s02",
+      "type": "qcm",
+      "question": "Un transporteur livre un colis cassé. Le client doit-il prouver une faute du transporteur ?",
+      "choix": [
+        "Non, c'est une obligation de résultat : la faute est présumée",
+        "Oui, c'est une obligation de moyens",
+        "Oui, toujours",
+        "Non, car le transport est gratuit"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le transporteur s'engage à livrer intact : l'échec suffit à engager sa responsabilité, sauf force majeure.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq12-s02-c003",
+      "section": "libre-cejm-sq12-s02-s02",
+      "type": "question",
+      "recto": "Quelles sont les trois caractéristiques de la force majeure ?",
+      "verso": "Un événement imprévisible lors de la conclusion du contrat, irrésistible (impossible à surmonter) et échappant au contrôle du débiteur (extérieur).",
+      "difficulte": 2
+    }
+  ]
+}

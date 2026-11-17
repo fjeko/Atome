@@ -167,7 +167,7 @@ figé, codes et chiffre de contrôle, calcul matriciel, déterminisme des TD, v�
 - **Planning** : la proposition de ton organisme de formation en frises par matière (import direct d'un fichier Excel, voir l'aide).
   Dates modifiables (gardées dans la base, le fichier n'est jamais modifié),
   interrupteur général et par matière, quiz masquables. Sans planning, l'application suit l'ordre du cours.
-- **Bibliothèque en tuiles** : matière → compétence (B1.2…) → séquence (SQ1…) → séances, avec fil
+- **Bibliothèque en tuiles** : matière → compétence (B1.2…) → thème ou séquence (Thème 1, SQ1…) → séances, avec fil
   d'Ariane, recherche, nombre de cartes à revoir et barre de maîtrise sur chaque tuile.
 - **Lecture** : le cours section par section (Markdown, LaTeX, code coloré), PDF d'origine à la bonne page.
 - **Session** : cartes question, QCM (choix mélangés) et exercice pas à pas ; sur une carte question,

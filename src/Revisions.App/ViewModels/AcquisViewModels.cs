@@ -282,9 +282,9 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
         PoserQuestionRessenti();
     }
 
-    /// <summary>Début d'un titre qui montre un vrai ordre dans le cours : « B1.2 », « SQ3 », « Séquence 05 ».</summary>
+    /// <summary>Début d'un titre qui montre un vrai ordre dans le cours : « B1.2 », « Thème 3 », « SQ3 ».</summary>
     private static readonly System.Text.RegularExpressions.Regex Numerote =
-        new(@"^(B\d+\.\d+|SQ\s?\d+|S[ée]quence\s+\d+)", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+        new(@"^(B\d+\.\d+|Th[èe]me\s+\d+|SQ\s?\d+|S[ée]quence\s+\d+)", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
 
     /// <summary>
     /// « Un peu » : l'étudiant dit ce qu'il a vu.

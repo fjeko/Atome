@@ -1,0 +1,95 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-34-sq2-s01",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.4 – Garantir la sécurité des services et des données face aux cyberattaques › Thème 2 – Sécuriser les serveurs web",
+  "sequence": null,
+  "seance": "Sécuriser l'infrastructure",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un serveur web s'inscrit dans une infrastructure qui est elle-même une cible. On remplace les protocoles non sécurisés, on segmente le réseau, on chiffre les échanges et on ajoute détection d'intrusion et antivirus.",
+  "notions": [
+    "Protocoles non sécurisés",
+    "Protocoles sécurisés",
+    "Segmentation",
+    "VLAN",
+    "DMZ web",
+    "Chiffrement des flux",
+    "IDS et IPS",
+    "Antivirus serveur"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-34-sq2-s01-s01",
+      "titre": "Protocoles historiques non sécurisés",
+      "contenu": "Beaucoup de protocoles anciens transmettent tout **en clair** :\n\n| Non sécurisé | Remplaçant sécurisé |\n| --- | --- |\n| Telnet (23) | **SSH** (22) |\n| FTP (21) | **SFTP** (via SSH) ou FTPS |\n| HTTP (80) | **HTTPS** (443) |\n| SMTP/POP/IMAP sans TLS | versions avec **TLS** (465/587, 995, 993) |\n| SNMP v1/v2c | **SNMPv3** (authentification, chiffrement) |\n| LDAP (389) | **LDAPS** / StartTLS |\n\nSur un serveur web, on **désactive** les services en clair inutiles.",
+      "notions": [
+        "Protocoles non sécurisés",
+        "Protocoles sécurisés"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq2-s01-s02",
+      "titre": "Segmenter l'infrastructure",
+      "contenu": "- **VLAN** : séparer logiquement les réseaux sur les mêmes switchs (serveurs, utilisateurs, administration).\n- **Routeurs et pare-feu** entre les segments, avec des règles **strictes**.\n- Architecture typique : le **serveur web** en **DMZ**, la **base de données** dans une zone interne, accessible **uniquement** depuis le serveur web sur son port (3306/5432), l'**administration** depuis un réseau dédié.\n\n```text\nInternet → [Pare-feu] → DMZ (serveur web :443)\n                      → Zone données (BDD :3306, seulement depuis le web)\n                      → Réseau d'administration (SSH vers les serveurs)\n```",
+      "notions": [
+        "Segmentation",
+        "VLAN",
+        "DMZ web"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq2-s01-s03",
+      "titre": "Chiffrement, VPN, IDS/IPS, antivirus",
+      "contenu": "- **Chiffrer** les flux : HTTPS côté visiteurs, TLS entre serveur web et base si elles sont sur des machines distinctes, **VPN** pour l'administration à distance et les liaisons entre sites.\n- **IDS/IPS** : détectent (et bloquent) des attaques connues dans le trafic (scans, exploitation de failles) ; un **pare-feu applicatif web** (WAF) filtre spécifiquement les requêtes HTTP malveillantes (injections).\n- **Antivirus** sur les serveurs qui reçoivent des fichiers (téléversements, messagerie).",
+      "notions": [
+        "Chiffrement des flux",
+        "IDS et IPS",
+        "Antivirus serveur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-34-sq2-s01-c001",
+      "section": "libre-b3-34-sq2-s01-s01",
+      "type": "qcm",
+      "question": "Quel protocole remplace FTP pour un transfert sécurisé vers un serveur Linux ?",
+      "choix": [
+        "Telnet",
+        "HTTP",
+        "SFTP",
+        "SNMPv1"
+      ],
+      "bonneReponse": 2,
+      "explication": "SFTP passe par SSH et chiffre identifiants et contenus.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-34-sq2-s01-c002",
+      "section": "libre-b3-34-sq2-s01-s02",
+      "type": "qcm",
+      "question": "Depuis où la base de données d'un site doit-elle être accessible ?",
+      "choix": [
+        "Depuis Internet, pour les sauvegardes",
+        "Depuis tous les postes du réseau",
+        "Uniquement depuis le serveur web (et l'administration)",
+        "Depuis n'importe quel serveur de la DMZ"
+      ],
+      "bonneReponse": 2,
+      "explication": "Moindre privilège sur les flux : seule l'application a besoin de la base.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq2-s01-c003",
+      "section": "libre-b3-34-sq2-s01-s03",
+      "type": "question",
+      "recto": "Quelle différence entre un IDS et un IPS ?",
+      "verso": "L'**IDS** détecte et **alerte** ; l'**IPS** détecte et **bloque** automatiquement.",
+      "difficulte": 2
+    }
+  ]
+}

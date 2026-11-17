@@ -1,0 +1,123 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq3-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – Gérer le patrimoine informatique › Thème 3 – Incidents, habilitations et bonnes pratiques de gestion des services",
+  "sequence": null,
+  "seance": "Niveaux de support et cycle de vie d'un ticket",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Ce qu'est un incident, comment le support est organisé en niveaux, et les étapes de la vie d'un ticket, de l'ouverture à la clôture, avec la priorité calculée à partir de l'urgence et de l'impact.",
+  "notions": [
+    "Incident demande problème",
+    "Niveaux de support",
+    "Cycle de vie d'un ticket",
+    "Urgence impact priorité"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq3-s01-s01",
+      "titre": "Incident, demande, problème",
+      "contenu": "Dans un outil de gestion de tickets, on distingue :\n- **Incident** : une **interruption ou une dégradation** imprévue d'un service. *« L'imprimante du 2e étage n'imprime plus. »*\n- **Demande** (de service) : une **requête normale**, rien n'est cassé. *« Je voudrais un deuxième écran. »*, *« Peux-tu créer le compte du nouveau stagiaire ? »*\n- **Problème** : la **cause inconnue** d'un ou de plusieurs incidents, qu'on cherche à identifier pour éviter qu'ils reviennent. *« Le Wi-Fi coupe tous les jours vers 14 h : pourquoi ? »*",
+      "notions": [
+        "Incident demande problème"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq3-s01-s02",
+      "titre": "Les niveaux de support",
+      "contenu": "| Niveau | Rôle |\n| --- | --- |\n| **N1** | accueil, enregistrement du ticket, résolution des cas simples et connus (procédures) |\n| **N2** | technicien spécialisé : diagnostic approfondi (système, réseau, applications) |\n| **N3** | expert interne, éditeur, constructeur : bugs, pannes matérielles complexes |\n\nSi un niveau ne peut pas résoudre, il **escalade** vers le suivant, en transmettant **tout ce qu'il a déjà vérifié** (pour éviter que l'utilisateur doive tout réexpliquer).",
+      "notions": [
+        "Niveaux de support"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq3-s01-s03",
+      "titre": "Le cycle de vie d'un ticket",
+      "contenu": "Un ticket passe par plusieurs **statuts** (les noms varient selon l'outil) :\n\n1. **Nouveau** : le ticket vient d'être créé (par l'utilisateur ou le N1) ;\n2. **En cours (attribué)** : un technicien ou un groupe le prend en charge ;\n3. **En attente** : on attend quelque chose (une pièce, une réponse de l'utilisateur) ;\n4. **Résolu** : le technicien a apporté une solution ;\n5. **Clos** : l'utilisateur a **confirmé** (ou le délai de validation est passé). Le ticket est archivé.\n\nLa différence entre **résolu** et **clos** est importante : c'est l'utilisateur qui valide que la solution lui convient.",
+      "notions": [
+        "Cycle de vie d'un ticket"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq3-s01-s04",
+      "titre": "Urgence, impact et priorité",
+      "contenu": "Tous les tickets ne se traitent pas dans l'ordre d'arrivée. On calcule une **priorité** à partir de deux critères :\n- **Impact** : **combien** de personnes ou quelle **importance** pour l'activité ? (un poste, un service, toute l'organisation)\n- **Urgence** : **en combien de temps** la situation devient-elle grave ? (peut attendre la semaine, bloque le travail maintenant)\n\n| Impact \\ Urgence | Basse | Moyenne | Haute |\n| --- | --- | --- | --- |\n| **Faible** | Très basse | Basse | Moyenne |\n| **Moyen** | Basse | Moyenne | Haute |\n| **Fort** | Moyenne | Haute | Très haute |\n\nExemple : la caisse unique d'une boutique ne marche plus un samedi → impact fort (plus aucune vente), urgence haute → priorité **très haute**.",
+      "notions": [
+        "Urgence impact priorité"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq3-s01-c001",
+      "section": "libre-b1-11-sq3-s01-s01",
+      "type": "qcm",
+      "question": "« Pourrais-tu installer le logiciel de retouche photo sur mon poste ? » est…",
+      "choix": [
+        "un incident",
+        "une demande",
+        "un problème",
+        "une escalade"
+      ],
+      "bonneReponse": 1,
+      "explication": "Rien n'est en panne : c'est une requête de service, donc une demande.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq3-s01-c002",
+      "section": "libre-b1-11-sq3-s01-s01",
+      "type": "qcm",
+      "question": "Depuis trois semaines, plusieurs utilisateurs signalent des coupures de la messagerie le lundi matin. Le technicien veut trouver la cause commune. Il traite…",
+      "choix": [
+        "une demande",
+        "un incident isolé",
+        "un problème",
+        "un changement"
+      ],
+      "bonneReponse": 2,
+      "explication": "La recherche de la cause racine d'incidents répétés relève de la gestion des problèmes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq3-s01-c003",
+      "section": "libre-b1-11-sq3-s01-s02",
+      "type": "question",
+      "recto": "Que doit contenir un ticket au moment où le N1 l'escalade au N2 ?",
+      "verso": "La description du problème, les informations sur l'utilisateur et le matériel, et tout ce qui a déjà été testé ou essayé.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq3-s01-c004",
+      "section": "libre-b1-11-sq3-s01-s03",
+      "type": "exercice",
+      "enonce": "Remets dans l'ordre les statuts : Clos, Nouveau, Résolu, En cours.",
+      "etapes": [
+        "Le ticket est créé : Nouveau.",
+        "Un technicien le prend : En cours.",
+        "Une solution est appliquée : Résolu.",
+        "L'utilisateur valide : Clos."
+      ],
+      "reponse": "Nouveau → En cours → Résolu → Clos (avec éventuellement « En attente » entre En cours et Résolu).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq3-s01-c005",
+      "section": "libre-b1-11-sq3-s01-s04",
+      "type": "qcm",
+      "question": "Un seul utilisateur ne peut plus changer son fond d'écran. Impact et urgence sont faibles. Quelle priorité ?",
+      "choix": [
+        "Très haute",
+        "Haute",
+        "Moyenne",
+        "Très basse"
+      ],
+      "bonneReponse": 3,
+      "explication": "Impact faible × urgence basse donne la priorité la plus basse de la matrice.",
+      "difficulte": 2
+    }
+  ]
+}

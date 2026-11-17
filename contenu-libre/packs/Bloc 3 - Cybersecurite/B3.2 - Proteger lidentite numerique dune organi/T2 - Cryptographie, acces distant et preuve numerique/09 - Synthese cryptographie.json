@@ -1,0 +1,81 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq2-s09",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – Protéger l'identité numérique d'une organisation › Thème 2 – Cryptographie, accès distant et preuve numérique",
+  "sequence": null,
+  "seance": "Synthèse : cryptographie",
+  "ordre": 9,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif : vocabulaire, chiffres classiques, symétrique et asymétrique, certificats et TLS, chiffrement de fichiers et disques, SSH et preuve électronique ; signature et gestion des clés en rappel.",
+  "notions": [
+    "Récapitulatif cryptographie",
+    "Choix d'une méthode de chiffrement"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq2-s09-s01",
+      "titre": "L'essentiel",
+      "contenu": "| Besoin | Solution |\n| --- | --- |\n| confidentialité de gros volumes | symétrique (AES) |\n| échanger une clé, signer | asymétrique (RSA, courbes elliptiques) |\n| intégrité | hachage (SHA-256), MAC |\n| prouver l'identité d'un serveur | certificat + AC |\n| navigation sécurisée | TLS 1.2/1.3 (HTTPS) |\n| administration à distance | SSH (pas Telnet) |\n| vol de portable | chiffrement de disque + TPM |\n| envoi d'un fichier sensible | fichier chiffré + clé par un autre canal |\n\n**Rappels** : la **signature numérique** utilise la clé **privée** de l'expéditeur pour signer l'empreinte du message ; tout le monde vérifie avec sa clé **publique**. La **gestion des clés** (génération, stockage, sauvegarde, révocation, renouvellement) est aussi importante que l'algorithme. Certaines données (santé, défense, paiement) sont soumises à des **obligations réglementaires** de chiffrement.",
+      "notions": [
+        "Récapitulatif cryptographie"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s09-s02",
+      "titre": "Choisir une méthode",
+      "contenu": "Face à un scénario, identifie : **quoi** protéger (fichier, disque, flux), **contre quoi** (vol, interception, modification), **entre qui** (soi-même, un partenaire, le public).",
+      "notions": [
+        "Choix d'une méthode de chiffrement"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq2-s09-c001",
+      "section": "libre-b3-32-sq2-s09-s01",
+      "type": "qcm",
+      "question": "Pour signer un message, quelle clé l'expéditeur utilise-t-il ?",
+      "choix": [
+        "Sa clé privée",
+        "Sa clé publique",
+        "La clé publique du destinataire",
+        "Une clé symétrique partagée"
+      ],
+      "bonneReponse": 0,
+      "explication": "On signe avec sa clé privée ; chacun vérifie avec la clé publique correspondante.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s09-c002",
+      "section": "libre-b3-32-sq2-s09-s01",
+      "type": "qcm",
+      "question": "Quelle affirmation est fausse ?",
+      "choix": [
+        "AES est un algorithme symétrique",
+        "Le hachage n'est pas réversible",
+        "Un algorithme secret est plus sûr qu'un algorithme public",
+        "TLS combine asymétrique et symétrique"
+      ],
+      "bonneReponse": 2,
+      "explication": "Principe de Kerckhoffs : la sécurité repose sur la clé.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s09-c003",
+      "section": "libre-b3-32-sq2-s09-s02",
+      "type": "exercice",
+      "enonce": "Le laboratoire d'analyses fictif **BioNord** : (1) des techniciens emportent des portables en déplacement ; (2) il envoie des résultats à des médecins ; (3) les administrateurs gèrent les serveurs à distance. Propose une solution pour chaque cas.",
+      "etapes": [
+        "(1) Vol de portable : chiffrement complet du disque (BitLocker avec TPM + PIN), clés de récupération stockées centralement.",
+        "(2) Envoi de résultats : messagerie sécurisée de santé ou fichier chiffré, mot de passe transmis par un autre canal ; idéalement signature pour l'authenticité.",
+        "(3) Administration : SSH avec authentification par clé (Telnet interdit), via VPN, comptes nominatifs."
+      ],
+      "reponse": "Disque chiffré pour les portables, échange chiffré/signé pour les résultats, SSH par clé pour l'administration.",
+      "difficulte": 3
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq2-s10",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 7 – Annuaire de domaine, VLAN et déploiement de postes",
+  "sequence": null,
+  "seance": "VLAN et simulation",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Segmenter un réseau avec des VLAN, affecter des ports, relier des commutateurs par un lien d'agrégation, router entre VLAN, et tester dans un simulateur ainsi que sur un poste Linux à adresse statique.",
+  "notions": [
+    "Intérêt des VLAN",
+    "Ports d'accès",
+    "Lien trunk 802.1Q",
+    "Routage inter-VLAN",
+    "Simulateur réseau",
+    "IP statique sous Linux",
+    "Tests de connectivité et de noms"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq2-s10-s01",
+      "titre": "Pourquoi des VLAN ?",
+      "contenu": "Un **VLAN** (réseau local virtuel) découpe **un même commutateur physique** en **plusieurs réseaux logiques** isolés. Les machines de deux VLAN différents ne se voient pas directement, même branchées sur le même switch.\n\nIntérêts :\n- **sécurité** : le Wi-Fi invités ne voit pas les serveurs ;\n- **performances** : la diffusion (broadcast) reste confinée à son VLAN ;\n- **souplesse** : changer un poste de réseau se fait par configuration, sans recâbler.\n\nAffectation **par port** : chaque port d'accès appartient à **un** VLAN. Exemple au lycée agricole fictif des Coteaux :\n| VLAN | Nom | Réseau | Ports |\n| --- | --- | --- | --- |\n| 10 | ADMIN | 192.168.10.0/24 | 1 à 8 |\n| 20 | PEDAGO | 192.168.20.0/24 | 9 à 20 |\n| 30 | INVITES | 192.168.30.0/24 | 21 à 24 |\n\nConfiguration type (syntaxe de commutateur courante) :\n```text\nSwitch(config)# vlan 20\nSwitch(config-vlan)# name PEDAGO\nSwitch(config)# interface range fastEthernet 0/9 - 20\nSwitch(config-if-range)# switchport mode access\nSwitch(config-if-range)# switchport access vlan 20\n```",
+      "notions": [
+        "Intérêt des VLAN",
+        "Ports d'accès"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s10-s02",
+      "titre": "Trunk et routage inter-VLAN",
+      "contenu": "Quand plusieurs commutateurs portent les mêmes VLAN, on les relie par un **lien d'agrégation** (*trunk*) qui transporte **tous les VLAN** sur un seul câble. Chaque trame y reçoit une **étiquette** (norme **IEEE 802.1Q**) indiquant son numéro de VLAN.\n```text\nSwitch(config)# interface gigabitEthernet 0/1\nSwitch(config-if)# switchport mode trunk\n```\nPour faire communiquer les VLAN (selon des règles), il faut du **routage inter-VLAN** :\n- un **routeur** avec une sous-interface par VLAN sur un lien trunk (« routeur sur un bâton ») ;\n- ou un **commutateur de niveau 3** qui route lui-même.\nChaque VLAN a sa **passerelle** (ex. 192.168.20.254 pour le VLAN 20).",
+      "notions": [
+        "Lien trunk 802.1Q",
+        "Routage inter-VLAN"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s10-s03",
+      "titre": "Simuler, adresser et tester",
+      "contenu": "Un **simulateur réseau** (Packet Tracer, GNS3…) permet de construire et configurer des équipements virtuels, puis de suivre les paquets en **mode simulation**, sans matériel.\n\nSur un serveur Linux, on fixe souvent une **adresse statique**. Sous Ubuntu avec **netplan** (`/etc/netplan/01-reseau.yaml`) :\n```yaml\nnetwork:\n  version: 2\n  ethernets:\n    enp0s3:\n      addresses: [192.168.20.10/24]\n      routes:\n        - to: default\n          via: 192.168.20.254\n      nameservers:\n        addresses: [192.168.10.5]\n```\npuis `sudo netplan apply`. (Sous Debian, on utilise le fichier `/etc/network/interfaces`.)\n\nTests :\n```bash\nip a                     # voir l'adresse\nip route                 # voir la passerelle\nping -c 4 192.168.20.254 # joindre la passerelle\nping -c 4 192.168.10.5   # joindre un autre VLAN (routage)\nnslookup srv-fichiers.coteaux.local   # tester la résolution de noms\n```",
+      "notions": [
+        "Simulateur réseau",
+        "IP statique sous Linux",
+        "Tests de connectivité et de noms"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq2-s10-c001",
+      "section": "libre-b1-12b-sq2-s10-s01",
+      "type": "qcm",
+      "question": "Deux postes sont branchés sur le même commutateur, l'un dans le VLAN 10, l'autre dans le VLAN 20. Peuvent-ils communiquer directement ?",
+      "choix": [
+        "Oui, ils sont sur le même switch",
+        "Non, il faut passer par un routeur (ou un commutateur de niveau 3)",
+        "Oui, si leurs câbles sont de même catégorie",
+        "Seulement en Wi-Fi"
+      ],
+      "bonneReponse": 1,
+      "explication": "Chaque VLAN est un réseau distinct : la communication entre VLAN nécessite du routage.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s10-c002",
+      "section": "libre-b1-12b-sq2-s10-s02",
+      "type": "question",
+      "recto": "Qu'est-ce qu'un lien trunk ?",
+      "verso": "Un lien entre équipements qui transporte plusieurs VLAN, en marquant chaque trame avec son numéro de VLAN (étiquette 802.1Q).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s10-c003",
+      "section": "libre-b1-12b-sq2-s10-s03",
+      "type": "exercice",
+      "enonce": "Un serveur Linux du VLAN 20 joint sa passerelle mais pas un serveur du VLAN 10 (192.168.10.5). Le ping vers 192.168.10.5 depuis la passerelle fonctionne. Quelles vérifications fais-tu sur le serveur ?",
+      "etapes": [
+        "Vérifier la route par défaut : `ip route` doit montrer `default via 192.168.20.254`.",
+        "Vérifier le masque de son adresse (un masque trop large lui ferait croire que 192.168.10.5 est local).",
+        "Vérifier un éventuel pare-feu local."
+      ],
+      "reponse": "Contrôler la passerelle par défaut et le masque (puis le pare-feu) : le routeur fonctionne, le problème est donc sur la configuration du serveur.",
+      "difficulte": 2
+    }
+  ]
+}

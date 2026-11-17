@@ -1,0 +1,61 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-15-sq2-s08",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.5 – Mettre à disposition des utilisateurs un service informatique › Thème 2 – Environnement de test web et base de données",
+  "sequence": null,
+  "seance": "Synthèse : environnement de test",
+  "ordre": 8,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif de la construction d'un environnement de test web et base de données, avec les erreurs les plus fréquentes.",
+  "notions": [
+    "Étapes de construction",
+    "Erreurs fréquentes"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-15-sq2-s08-s01",
+      "titre": "Les étapes",
+      "contenu": "1. Serveur Linux minimal, compte de gestion, mises à jour.\n2. SSH par clé, root interdit à distance.\n3. Clonage et personnalisation (nom, IP, identifiants).\n4. Serveur web + PHP ; SGBD sécurisé, écoute et pare-feu restreints.\n5. DNS (A, CNAME) et adresses statiques.\n6. Déploiement des fichiers (scp/rsync) et de la base (script SQL), export de sauvegarde.\n7. Habilitations : compte SQL limité, droits des fichiers minimaux.\n8. Tests positifs et négatifs, compte rendu.",
+      "notions": [
+        "Étapes de construction"
+      ]
+    },
+    {
+      "id": "libre-b1-15-sq2-s08-s02",
+      "titre": "Erreurs fréquentes",
+      "contenu": "| Erreur | Conséquence | Bonne pratique |\n| --- | --- | --- |\n| base ouverte à tous (`'%'`, 3306 ouvert) | données exposées | hôte précis, pare-feu restreint |\n| compte SQL avec tous les privilèges | une faille web = base détruite | droits minimaux sur une base |\n| clone non renommé | conflits de noms et d'adresses | personnaliser chaque clone |\n| `chmod 777` | code modifiable par tous | propriétaire, groupe, droits minimaux |\n| `bind-address` resté à 127.0.0.1 | connexion distante impossible | écouter sur l'interface interne |\n| `info.php` laissé en place | configuration dévoilée | supprimer après test |",
+      "notions": [
+        "Erreurs fréquentes"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-15-sq2-s08-c001",
+      "section": "libre-b1-15-sq2-s08-s01",
+      "type": "question",
+      "recto": "Cite quatre étapes de la construction d'un environnement de test web/base de données.",
+      "verso": "Par exemple : installation du serveur, accès SSH sécurisé, clonage personnalisé, pile web, SGBD sécurisé, DNS, déploiement, habilitations, tests.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-15-sq2-s08-c002",
+      "section": "libre-b1-15-sq2-s08-s02",
+      "type": "qcm",
+      "question": "Après clonage du serveur web pour créer le serveur de base, les deux machines répondent au même nom. Qu'a-t-on oublié ?",
+      "choix": [
+        "D'installer MariaDB",
+        "De personnaliser le clone (nom d'hôte, /etc/hosts, IP)",
+        "De créer un CNAME",
+        "D'exporter la base"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un clone garde l'identité de l'original tant qu'on ne la modifie pas.",
+      "difficulte": 2
+    }
+  ]
+}

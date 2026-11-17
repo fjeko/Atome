@@ -1,0 +1,127 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq3-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 – Répondre aux incidents et aux demandes d'assistance et d'évolution › Thème 4 – Programmation orientée objet en C#",
+  "sequence": null,
+  "seance": "Héritage et polymorphisme",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Réutiliser et spécialiser des classes : héritage, appel du constructeur parent, surcharge et redéfinition, polymorphisme, classes et méthodes abstraites, test de type à l'exécution.",
+  "notions": [
+    "Héritage",
+    "Constructeur de la classe fille",
+    "Surcharge",
+    "Redéfinition virtual override",
+    "Polymorphisme",
+    "Classe et méthode abstraites",
+    "Test de type"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq3-s02-s01",
+      "titre": "L'héritage",
+      "contenu": "L'**héritage** permet de créer une classe **fille** qui **reprend** tout ce que possède une classe **mère**, et **ajoute** ou **spécialise** des éléments. Relation « **est un** » : un vélo électrique **est un** vélo.\n\n### Cas : la flotte de la société de location Roue Libre\n```csharp\npublic class Velo\n{\n    protected string reference;\n    protected double tarifJour;\n\n    public Velo(string reference, double tarifJour)\n    {\n        this.reference = reference;\n        this.tarifJour = tarifJour;\n    }\n\n    public virtual double PrixLocation(int jours) => tarifJour * jours;\n}\n\npublic class VeloElectrique : Velo\n{\n    private int autonomieKm;\n\n    public VeloElectrique(string reference, double tarifJour, int autonomieKm)\n        : base(reference, tarifJour)    // appelle le constructeur de Velo\n    {\n        this.autonomieKm = autonomieKm;\n    }\n}\n```\n- `: Velo` indique l'héritage.\n- `: base(...)` transmet les paramètres au **constructeur de la mère**.\n- Les attributs `protected` sont accessibles dans la fille.",
+      "notions": [
+        "Héritage",
+        "Constructeur de la classe fille"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s02-s02",
+      "titre": "Surcharge et redéfinition",
+      "contenu": "Deux notions souvent confondues :\n- **Surcharge** (*overload*) : **plusieurs méthodes de même nom** dans la même classe, avec des **paramètres différents**.\n```csharp\npublic double PrixLocation(int jours) => tarifJour * jours;\npublic double PrixLocation(int jours, double remise) => tarifJour * jours * (1 - remise);\n```\n- **Redéfinition** (*override*) : la classe fille **réécrit** une méthode **héritée**, avec **la même signature**. La méthode de la mère doit être `virtual`, celle de la fille `override`.\n```csharp\n// dans VeloElectrique\npublic override double PrixLocation(int jours)\n{\n    return base.PrixLocation(jours) + 4 * jours;  // supplément batterie de 4 €/jour\n}\n```\n**Piège** : oublier `override` (ou `virtual` dans la mère). Le compilateur avertit alors que la méthode « masque » celle de la mère, et le polymorphisme ne fonctionne pas.",
+      "notions": [
+        "Surcharge",
+        "Redéfinition virtual override"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s02-s03",
+      "titre": "Polymorphisme et test de type",
+      "contenu": "Le **polymorphisme** : une variable de type **mère** peut contenir un objet **fille**, et c'est la méthode **de l'objet réel** qui s'exécute.\n```csharp\nList<Velo> flotte = new List<Velo>\n{\n    new Velo(\"V-01\", 12),\n    new VeloElectrique(\"VE-07\", 18, 70),\n};\nforeach (Velo v in flotte)\n{\n    Console.WriteLine(v.PrixLocation(2));   // 24 puis 36 + 8 = 44\n}\n```\nLe même appel `v.PrixLocation(2)` donne des résultats différents selon le type réel : pas besoin de `if` sur le type !\n\nSi on a vraiment besoin de connaître le type à l'exécution, on utilise `is` :\n```csharp\nif (v is VeloElectrique ve)\n    Console.WriteLine(\"Penser à recharger la batterie\");\n```",
+      "notions": [
+        "Polymorphisme",
+        "Test de type"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s02-s04",
+      "titre": "Classes et méthodes abstraites",
+      "contenu": "Parfois, la classe mère est trop **générale** pour être instanciée : un « véhicule » tout court n'existe pas dans la flotte, seulement des vélos, des trottinettes… On la déclare **abstraite** :\n```csharp\npublic abstract class Vehicule\n{\n    public string Reference { get; }\n    protected Vehicule(string reference) { Reference = reference; }\n\n    // Méthode abstraite : pas de corps, chaque fille DOIT la redéfinir\n    public abstract double PrixLocation(int jours);\n}\n\npublic class Trottinette : Vehicule\n{\n    public Trottinette(string r) : base(r) { }\n    public override double PrixLocation(int jours) => 9.5 * jours;\n}\n```\n- `new Vehicule(\"X\")` est **interdit**.\n- Une classe fille qui ne redéfinit pas toutes les méthodes abstraites doit elle-même être abstraite.",
+      "notions": [
+        "Classe et méthode abstraites"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq3-s02-c001",
+      "section": "libre-b1-12a-sq3-s02-s01",
+      "type": "qcm",
+      "question": "Quel test permet de vérifier qu'un héritage est pertinent ?",
+      "choix": [
+        "Les deux classes ont le même nombre d'attributs",
+        "On peut dire « une fille EST UN(E) mère » (un vélo électrique est un vélo)",
+        "Les deux classes sont dans le même fichier",
+        "La fille a un constructeur"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'héritage traduit une relation « est un ». Si la phrase n'a pas de sens, il faut une autre relation (par exemple « a un »).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq3-s02-c002",
+      "section": "libre-b1-12a-sq3-s02-s02",
+      "type": "qcm",
+      "question": "Dans la même classe, `Afficher()` et `Afficher(string format)` coexistent. C'est…",
+      "choix": [
+        "une redéfinition",
+        "une surcharge",
+        "un héritage",
+        "une erreur de compilation"
+      ],
+      "bonneReponse": 1,
+      "explication": "Même nom, paramètres différents, même classe : surcharge.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq3-s02-c003",
+      "section": "libre-b1-12a-sq3-s02-s02",
+      "type": "exercice",
+      "enonce": "Un vélo électrique a un tarif de 18 €/jour. Combien coûte une location de 3 jours avec la redéfinition ci-dessus ?",
+      "etapes": [
+        "`base.PrixLocation(3)` = 18 × 3 = 54.",
+        "Supplément batterie : 4 × 3 = 12."
+      ],
+      "reponse": "54 + 12 = 66 €.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq3-s02-c004",
+      "section": "libre-b1-12a-sq3-s02-s03",
+      "type": "qcm",
+      "question": "`Velo v = new VeloElectrique(\"VE-02\", 18, 60);` Quelle méthode exécute `v.PrixLocation(1)` (avec virtual/override corrects) ?",
+      "choix": [
+        "Celle de `Velo`, car la variable est de type Velo",
+        "Celle de `VeloElectrique`, car l'objet réel est un vélo électrique",
+        "Les deux, l'une après l'autre",
+        "Aucune : erreur de compilation"
+      ],
+      "bonneReponse": 1,
+      "explication": "Grâce à `virtual`/`override`, c'est le type réel de l'objet qui détermine la méthode appelée : 18 + 4 = 22 €.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b1-12a-sq3-s02-c005",
+      "section": "libre-b1-12a-sq3-s02-s04",
+      "type": "question",
+      "recto": "Qu'est-ce qu'une méthode abstraite ?",
+      "verso": "Une méthode déclarée sans corps dans une classe abstraite ; chaque classe fille concrète est obligée de la redéfinir (`override`).",
+      "difficulte": 2
+    }
+  ]
+}

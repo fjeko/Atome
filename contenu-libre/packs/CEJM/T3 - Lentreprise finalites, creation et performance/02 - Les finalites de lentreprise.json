@@ -1,0 +1,112 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq05-s01",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Thème 3 – L'entreprise : finalités, création et performance",
+  "sequence": null,
+  "seance": "Les finalités de l'entreprise",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une entreprise ne vise pas que le profit : finalités économique, sociale et sociétale, objectifs qui en découlent, responsabilité sociétale et société à mission.",
+  "notions": [
+    "Finalités économique, sociale et sociétale",
+    "Déterminants des finalités",
+    "Finalité et objectif",
+    "Responsabilité sociétale des entreprises",
+    "Société à mission"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq05-s01-s01",
+      "titre": "Trois finalités liées",
+      "contenu": "La **finalité** est la raison d'être d'une organisation, son but à long terme.\n\n| Finalité | Contenu | Exemple pour une entreprise fictive de vêtements |\n|---|---|---|\n| **économique** | réaliser un profit, assurer sa **pérennité**, croître | dégager un bénéfice pour investir |\n| **sociale** | répondre aux attentes de ses **salariés** (emploi, salaire, conditions de travail, formation) | maintenir les emplois de l'atelier |\n| **sociétale** | contribuer au bien-être de la **société** et respecter l'environnement | utiliser du coton recyclé, soutenir l'insertion |\n\nCes finalités sont **interdépendantes** : sans profit, pas d'emplois durables ; sans salariés motivés, pas de performance ; une mauvaise image environnementale fait fuir les clients.\n\nUne autre lecture voit la finalité première de l'entreprise comme la **création et la conservation d'une clientèle** : sans clients satisfaits, pas de profit.\n\n**Déterminants** : les valeurs des **dirigeants**, le **statut** (une coopérative n'a pas les mêmes priorités qu'une société cotée), le **contexte** (attentes de la société, réglementation).",
+      "notions": [
+        "Finalités économique, sociale et sociétale",
+        "Déterminants des finalités"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq05-s01-s02",
+      "titre": "Des finalités aux objectifs",
+      "contenu": "Une finalité est générale ; un **objectif** est un résultat **précis, mesurable et daté** qui la rend concrète. Les objectifs doivent être **cohérents** entre eux et avec la finalité.\n\n| Finalité | Objectif possible |\n|---|---|\n| pérennité | atteindre 5 % de marge nette d'ici deux ans |\n| sociale | former 100 % des salariés à la cybersécurité cette année |\n| sociétale | passer à 80 % d'emballages recyclables avant fin 2027 |\n\nOn reconnaît un bon objectif à la méthode **SMART** : spécifique, mesurable, atteignable, réaliste, temporellement défini.",
+      "notions": [
+        "Finalité et objectif"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq05-s01-s03",
+      "titre": "Responsabilité sociétale et société à mission",
+      "contenu": "La **responsabilité sociétale des entreprises (RSE)** est l'intégration **volontaire** des préoccupations sociales et environnementales dans l'activité et les relations avec les parties prenantes. La norme internationale de référence est l'**ISO 26000** (lignes directrices, sans certification).\n\nDémarche : diagnostic → engagements → actions (achats responsables, réduction des déchets, égalité professionnelle) → mesure et communication (rapport extra-financier).\n\n| Avantages | Contraintes |\n|---|---|\n| image, attractivité pour les talents, fidélité des clients | coûts (investissements, audits) |\n| économies (énergie, matières) | effets parfois à long terme |\n| anticipation de la réglementation | risque d'accusation d'« écoblanchiment » si les actes ne suivent pas |\n\nLa **société à mission** (loi PACTE de 2019) inscrit dans ses statuts une **raison d'être** et des objectifs sociaux et environnementaux, contrôlés par un comité de mission et un organisme indépendant : c'est l'engagement le plus fort.",
+      "notions": [
+        "Responsabilité sociétale des entreprises",
+        "Société à mission"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq05-s01-c001",
+      "section": "libre-cejm-sq05-s01-s01",
+      "type": "qcm",
+      "question": "« Réduire de 30 % nos émissions de CO2 d'ici 2030 » traduit surtout une finalité…",
+      "choix": [
+        "Sociétale",
+        "Économique",
+        "Sociale",
+        "Commerciale"
+      ],
+      "bonneReponse": 0,
+      "explication": "Elle concerne l'environnement et la société dans son ensemble.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq05-s01-c002",
+      "section": "libre-cejm-sq05-s01-s01",
+      "type": "question",
+      "recto": "Pourquoi dit-on que les finalités sont interdépendantes ?",
+      "verso": "Parce qu'elles se renforcent : le profit finance les emplois et les actions sociétales, et ces actions améliorent l'image et la performance.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq05-s01-c003",
+      "section": "libre-cejm-sq05-s01-s02",
+      "type": "qcm",
+      "question": "Lequel est un objectif et non une finalité ?",
+      "choix": [
+        "Augmenter le chiffre d'affaires de 8 % en 2027",
+        "Être une entreprise responsable",
+        "Assurer la pérennité",
+        "Satisfaire les salariés"
+      ],
+      "bonneReponse": 0,
+      "explication": "Il est chiffré et daté : c'est un objectif.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq05-s01-c004",
+      "section": "libre-cejm-sq05-s01-s03",
+      "type": "qcm",
+      "question": "Quelle démarche représente l'engagement le plus fort et contrôlé ?",
+      "choix": [
+        "Devenir société à mission",
+        "Publier un message sur les réseaux sociaux",
+        "Afficher un logo vert",
+        "Organiser une journée de sensibilisation"
+      ],
+      "bonneReponse": 0,
+      "explication": "La mission est inscrite dans les statuts et vérifiée par un organisme indépendant.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq05-s01-c005",
+      "section": "libre-cejm-sq05-s01-s03",
+      "type": "question",
+      "recto": "Qu'est-ce que l'écoblanchiment ?",
+      "verso": "Une communication qui donne une image responsable à une entreprise sans actions réelles correspondantes.",
+      "difficulte": 1
+    }
+  ]
+}

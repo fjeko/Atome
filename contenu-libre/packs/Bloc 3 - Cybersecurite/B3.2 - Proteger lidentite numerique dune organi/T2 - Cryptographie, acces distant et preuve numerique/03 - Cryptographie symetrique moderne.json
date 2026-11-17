@@ -1,0 +1,100 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq2-s03",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – Protéger l'identité numérique d'une organisation › Thème 2 – Cryptographie, accès distant et preuve numérique",
+  "sequence": null,
+  "seance": "Cryptographie symétrique moderne",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. En cryptographie symétrique, la même clé chiffre et déchiffre. Les algorithmes modernes, publics et éprouvés, chiffrent par blocs ou par flot. AES est la référence actuelle.",
+  "notions": [
+    "Principe de Kerckhoffs",
+    "Chiffrement symétrique",
+    "Clé secrète partagée",
+    "Chiffrement par bloc",
+    "Chiffrement par flot",
+    "Réseau de Feistel",
+    "DES",
+    "AES"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq2-s03-s01",
+      "titre": "Principe de Kerckhoffs",
+      "contenu": "**Principe de Kerckhoffs** (énoncé au XIXᵉ siècle) : un système de chiffrement est sûr si tout repose **uniquement sur le secret de la clé**, pas sur le secret de l'algorithme.\n\nConséquences :\n- les bons algorithmes sont **publics**, étudiés par des milliers de chercheurs ;\n- un algorithme « maison » gardé secret est **dangereux** : il n'a pas été éprouvé et finit par être découvert (rétro-ingénierie).",
+      "notions": [
+        "Principe de Kerckhoffs"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s03-s02",
+      "titre": "Chiffrement symétrique",
+      "contenu": "En **chiffrement symétrique**, **la même clé** sert à chiffrer et à déchiffrer. Les deux interlocuteurs doivent la **partager** secrètement.\n\nAvantages : **très rapide**, adapté aux gros volumes (disques, flux vidéo).\nDifficulté : l'**échange de la clé** (comment la transmettre sans qu'elle soit interceptée ?) et le **nombre de clés** : pour $n$ personnes qui veulent toutes communiquer deux à deux, il faut $\\frac{n(n-1)}{2}$ clés.",
+      "notions": [
+        "Chiffrement symétrique",
+        "Clé secrète partagée"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s03-s03",
+      "titre": "Bloc, flot, Feistel, AES",
+      "contenu": "- **Par bloc** : le message est découpé en blocs de taille fixe (128 bits pour AES), chiffrés avec la clé ; un **mode opératoire** (GCM, CBC…) enchaîne les blocs. On évite le mode ECB qui chiffre deux blocs identiques de la même façon.\n- **Par flot** : on génère une suite pseudo-aléatoire à partir de la clé, combinée bit à bit (XOR) avec le message (ChaCha20).\n- **Réseau de Feistel** : structure qui répète plusieurs **tours** ; à chaque tour, une moitié du bloc est transformée avec une sous-clé puis combinée à l'autre moitié. Avantage : le déchiffrement utilise la même structure.\n\n| Algorithme | Statut |\n| --- | --- |\n| **DES** (1977, Feistel, clé de 56 bits) | **obsolète** : clé trop courte, cassable par force brute |\n| 3DES | en fin de vie |\n| **AES** (2001, clés de 128, 192 ou 256 bits) | **référence actuelle** |",
+      "notions": [
+        "Chiffrement par bloc",
+        "Chiffrement par flot",
+        "Réseau de Feistel",
+        "DES",
+        "AES"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq2-s03-c001",
+      "section": "libre-b3-32-sq2-s03-s01",
+      "type": "qcm",
+      "question": "Une start-up vante son « algorithme de chiffrement secret, donc inviolable ». Qu'en penser ?",
+      "choix": [
+        "C'est plus sûr qu'AES",
+        "C'est un mauvais signe : la sécurité doit reposer sur la clé, avec un algorithme public éprouvé",
+        "C'est obligatoire légalement",
+        "C'est équivalent"
+      ],
+      "bonneReponse": 1,
+      "explication": "Principe de Kerckhoffs : le secret de l'algorithme n'est pas une garantie.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s03-c002",
+      "section": "libre-b3-32-sq2-s03-s02",
+      "type": "exercice",
+      "enonce": "Une équipe de 20 personnes veut que chaque paire puisse échanger en privé avec du chiffrement symétrique seul. Combien de clés faut-il ?",
+      "etapes": [
+        "Une clé par paire de personnes.",
+        "Nombre de paires : $\\frac{n(n-1)}{2}$ avec $n = 20$.",
+        "$\\frac{20 \\times 19}{2} = 190$."
+      ],
+      "reponse": "190 clés.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s03-c003",
+      "section": "libre-b3-32-sq2-s03-s03",
+      "type": "qcm",
+      "question": "Quel algorithme symétrique est aujourd'hui la référence ?",
+      "choix": [
+        "DES",
+        "AES",
+        "RSA",
+        "MD5"
+      ],
+      "bonneReponse": 1,
+      "explication": "DES est obsolète, RSA est asymétrique, MD5 est une fonction de hachage (obsolète).",
+      "difficulte": 1
+    }
+  ]
+}
