@@ -5,7 +5,7 @@
   "bloc": "Bloc 7",
   "partie": "Méthodologie de l'épreuve",
   "sequence": null,
-  "seance": "Préparer l'épreuve",
+  "seance": "S1 – Préparer l'épreuve",
   "ordre": 1,
   "source": {
     "fichier": null
@@ -56,14 +56,6 @@
       ],
       "bonneReponse": 0,
       "explication": "Les connaissances servent à analyser et à justifier ; la paraphrase et l'opinion non argumentée rapportent peu.",
-      "difficulte": 1
-    },
-    {
-      "id": "libre-cejm-m-s01-c002",
-      "section": "libre-cejm-m-s01-s02",
-      "type": "question",
-      "recto": "Sur quoi s'appuie l'écrit de CEJM ?",
-      "verso": "Sur une situation d'organisation et un dossier documentaire (textes, chiffres, graphiques, documents juridiques), avec des questions guidées et une question d'argumentation.",
       "difficulte": 1
     },
     {

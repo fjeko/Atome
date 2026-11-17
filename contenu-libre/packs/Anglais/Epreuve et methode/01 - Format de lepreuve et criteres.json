@@ -5,7 +5,7 @@
   "bloc": "Bloc 5",
   "partie": "Épreuve et méthode",
   "sequence": null,
-  "seance": "Format de l'épreuve et critères",
+  "seance": "S1 – Format de l'épreuve et critères",
   "ordre": 1,
   "source": {
     "fichier": null
@@ -36,29 +36,6 @@
     }
   ],
   "cartes": [
-    {
-      "id": "libre-ang-m-s01-c001",
-      "section": "libre-ang-m-s01-s01",
-      "type": "qcm",
-      "question": "Dans quelle langue rédige-t-on le compte rendu du document écrit ?",
-      "choix": [
-        "En français",
-        "En anglais",
-        "Au choix",
-        "Dans les deux langues"
-      ],
-      "bonneReponse": 0,
-      "explication": "Le compte rendu vérifie que tu as compris le document ; il s'écrit en français. Le courriel, lui, s'écrit en anglais.",
-      "difficulte": 1
-    },
-    {
-      "id": "libre-ang-m-s01-c002",
-      "section": "libre-ang-m-s01-s01",
-      "type": "question",
-      "recto": "Quels sont les deux exercices de l'écrit ?",
-      "verso": "Un compte rendu en français d'un document en anglais, et la rédaction d'un courriel (ou texte court) en anglais.",
-      "difficulte": 1
-    },
     {
       "id": "libre-ang-m-s01-c003",
       "section": "libre-ang-m-s01-s02",
