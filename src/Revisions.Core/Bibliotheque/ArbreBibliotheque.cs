@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace Revisions.Core.Bibliotheque;
@@ -85,8 +84,8 @@ public static partial class ArbreBibliotheque
     [GeneratedRegex(@"^(SQ\s?\d+|Séquence\s+\d+)", RegexOptions.IgnoreCase)]
     private static partial Regex DebutSequence();
 
-    /// <summary>Tri « humain » : « Séquence 2 » avant « Séquence 10 ».</summary>
-    public static IComparer<string> OrdreNaturel { get; } = new ComparateurNaturel();
+    /// <summary>Tri « humain » : « Séquence 2 » avant « Séquence 10 », « Partie II » avant « Partie IX » (voir <see cref="Ordre.TriNaturel"/>).</summary>
+    public static IComparer<string> OrdreNaturel { get; } = Ordre.TriNaturel.Comparateur;
 
     /// <summary>Construit l'arbre complet. La racine représente toute la bibliothèque.</summary>
     public static NoeudBibliotheque Construire(IEnumerable<ResumeSeance> seances)
@@ -187,40 +186,5 @@ public static partial class ArbreBibliotheque
             noeud = suivant;
         }
         return chemin;
-    }
-
-    /// <summary>Compare deux textes en traitant les suites de chiffres comme des nombres.</summary>
-    private sealed class ComparateurNaturel : IComparer<string>
-    {
-        public int Compare(string? a, string? b)
-        {
-            a ??= "";
-            b ??= "";
-            int i = 0, j = 0;
-            while (i < a.Length && j < b.Length)
-            {
-                if (char.IsDigit(a[i]) && char.IsDigit(b[j]))
-                {
-                    // Deux nombres : on les lit en entier et on compare leur valeur.
-                    int debutA = i, debutB = j;
-                    while (i < a.Length && char.IsDigit(a[i])) i++;
-                    while (j < b.Length && char.IsDigit(b[j])) j++;
-                    string nombreA = a[debutA..i].TrimStart('0'), nombreB = b[debutB..j].TrimStart('0');
-                    int parNombre = nombreA.Length != nombreB.Length
-                        ? nombreA.Length.CompareTo(nombreB.Length)
-                        : string.CompareOrdinal(nombreA, nombreB);
-                    if (parNombre != 0) return parNombre;
-                }
-                else
-                {
-                    // Deux lettres : comparaison française, sans tenir compte de la casse.
-                    int parLettre = string.Compare(a, i, b, j, 1, CultureInfo.GetCultureInfo("fr-FR"), CompareOptions.IgnoreCase);
-                    if (parLettre != 0) return parLettre;
-                    i++;
-                    j++;
-                }
-            }
-            return (a.Length - i).CompareTo(b.Length - j);
-        }
     }
 }
