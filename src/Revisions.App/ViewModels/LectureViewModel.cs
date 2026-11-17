@@ -31,6 +31,9 @@ public partial class LectureViewModel : ObservableObject
     public bool DansUneFenetre { get; }
     public bool PeutReviser { get; }
 
+    /// <summary>Libellé du bouton : « Voir le PDF » pour un PDF, « Voir le cours d'origine » sinon.</summary>
+    public string LibelleSource => Path.GetExtension(_seance.SourceFichier).Equals(".pdf", StringComparison.OrdinalIgnoreCase) ? "Voir le PDF" : "Voir le cours d'origine";
+
     /// <summary>Section affichée (liée à la sélection du sommaire).</summary>
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(Position))]
@@ -149,9 +152,14 @@ public partial class LectureViewModel : ObservableObject
         {
             new FenetrePdf(dossierCours!, _seance.SourceFichier, page, _etat.EstSombre) { Owner = Application.Current.MainWindow }.Show();
         }
+        else if (Path.GetExtension(chemin).Equals(".md", StringComparison.OrdinalIgnoreCase))
+        {
+            // Cours en Markdown : affiché dans une fenêtre d'Atome, avec le même rendu que la lecture.
+            new FenetreCoursOrigine(chemin) { Owner = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w.IsActive) ?? Application.Current.MainWindow }.Show();
+        }
         else
         {
-            // Autre type de fichier (.md, .docx…) : on laisse Windows l'ouvrir avec le programme habituel.
+            // Autre type de fichier (.docx…) : on laisse Windows l'ouvrir avec le programme habituel.
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(chemin) { UseShellExecute = true });
         }
     }
