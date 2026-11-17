@@ -23,7 +23,7 @@
             <Button DockPanel.Dock="Right" Content="Voir le PDF" Command="{Binding VoirPdfCommand}" Padding="16,7" Margin="0,0,10,0"
                     VerticalAlignment="Center" ToolTip="Ouvrir le document d'origine à la page de cette section" />
             <Button DockPanel.Dock="Right" Command="{Binding SignalerCommand}" Background="Transparent" BorderThickness="0"
-                    Padding="8,4" Margin="0,0,6,0" VerticalAlignment="Center" ToolTip="Signaler une erreur dans cette section">
+                    Padding="8,4" Margin="0,0,6,0" VerticalAlignment="Center" ToolTip="Signaler une erreur : tu as repéré une faute ou une erreur dans cette section ? Dis-le-nous">
                 <TextBlock Text="&#xE7C1;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="16" Opacity="0.65" />
             </Button>
             <TextBlock DockPanel.Dock="Right" Text="{Binding MessageSignalement}" Style="{StaticResource Discret}" FontSize="12"

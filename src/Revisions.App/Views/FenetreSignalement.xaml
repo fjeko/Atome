@@ -5,7 +5,9 @@
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
     <StackPanel Margin="24,20,24,20">
         <TextBlock Text="Signaler une erreur" Style="{StaticResource SousTitre}" />
-        <TextBlock Text="{Binding Cible}" Style="{StaticResource Discret}" FontSize="12" Margin="0,2,0,12" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+        <TextBlock Text="{Binding Cible}" Style="{StaticResource Discret}" FontSize="12" Margin="0,2,0,8" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+        <TextBlock Style="{StaticResource Discret}" Margin="0,0,0,12"
+                   Text="Les cours ont été mis en cartes par une IA, donc des erreurs sont possibles. Ton signalement est gardé sur ton PC avec le texte que tu vois ; tu pourras l'envoyer plus tard (Réglages › Mes signalements) pour que le cours soit corrigé." />
 
         <TextBlock Text="Qu'est-ce qui ne va pas ?" Margin="0,0,0,4" />
         <ItemsControl ItemsSource="{Binding Motifs}">

@@ -19,7 +19,7 @@
             <TextBlock DockPanel.Dock="Right" Text="{Binding Compteur}" FontWeight="SemiBold" VerticalAlignment="Center" />
             <!-- Signalement discret : un petit drapeau (touche S). -->
             <Button DockPanel.Dock="Right" Command="{Binding SignalerCommand}" Background="Transparent" BorderThickness="0"
-                    Padding="8,4" Margin="0,0,8,0" VerticalAlignment="Center" ToolTip="Signaler une erreur dans cette carte (S)">
+                    Padding="8,4" Margin="0,0,8,0" VerticalAlignment="Center" ToolTip="Signaler une erreur : tu as repéré une faute ou une réponse fausse dans cette carte ? Dis-le-nous (touche S)">
                 <TextBlock Text="&#xE7C1;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="16" Opacity="0.65" />
             </Button>
             <TextBlock DockPanel.Dock="Right" Text="{Binding MessageSignalement}" Style="{StaticResource Discret}" FontSize="12"
