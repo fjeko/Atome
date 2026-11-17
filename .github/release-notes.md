@@ -17,10 +17,9 @@ Le code est entièrement visible dans ce dépôt si tu veux vérifier.
 Atome est livré avec **440 cours libres**, basés sur le référentiel officiel du programme de 1ère année de BTS SIO option SLAM, pour commencer tout de suite (voir « Nouveautés »). Pour réviser tes propres cours, lis la section « Créer ses propres packs » du README ; le pack d’exemple (`samples/exemple.json`) permet aussi d’essayer l’application.
 
 ## Nouveautés
-- **Cours libres** : 440 cours originaux (licence CC BY-SA 4.0) livrés avec Atome ; proposés au premier lancement, interrupteur dans les Réglages.
-- **Mise à jour automatique** : Atome propose lui-même les nouvelles versions. **C'est la dernière installation à faire à la main** : les prochaines se feront depuis l'application.
-- **Signalement d'erreurs** : si quelque chose plante, tu peux envoyer le rapport en un clic.
-- **TD en groupe** : le même TD à plusieurs, chacun sur son PC, avec un code à partager.
-- **Planning** : import direct de l'Excel de planning de l'organisme de formation.
-- **Démarrage** : un accueil qui règle les premières cartes sur ton niveau.
-- **Partage** : export et import de ton contenu dans un seul fichier `.atome`.
+- **Choisis ta révision** : sur l'accueil, la « Session du jour » (recommandée) ou « Autre révision… » : une matière, une partie, tes points faibles, ce que tu viens de lire, ou la préparation du prochain devoir. Chaque choix affiche son nombre de cartes et une durée estimée.
+- **Cartes expliquées** : le motif de chaque carte (pourquoi elle est proposée) et le chemin « Matière › Partie › Séance » s'affichent au-dessus.
+- **Cours non lus** : Atome ne propose plus de nouvelles cartes d'un cours que tu n'as pas ouvert (réglage disponible), avec un bloc « À lire pour débloquer » sur l'accueil.
+- **« Encore 5 cartes »** : tu peux continuer par paquets de 5 même quand la limite du jour est atteinte.
+- **Collections** : affiche et révise seulement les packs que tu choisis (cours libres, mes packs, contenu importé). Ta progression est conservée quand tu masques une collection.
+- **Cours libres** : nettoyage des cartes d'organisation d'épreuve.
