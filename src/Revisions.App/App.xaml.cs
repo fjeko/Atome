@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Net.Http;
+using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Revisions.App.Services;
 using Revisions.App.ViewModels;
@@ -130,6 +131,22 @@ public partial class App : Application
         return true;
     }
 
+    /// <summary>
+    /// Rend la place d'instance unique juste avant de lancer l'installateur d'une mise à jour :
+    /// l'Atome relancé à la fin de l'installation doit pouvoir démarrer (et l'installateur, qui guette
+    /// ce Mutex, sait ainsi qu'Atome est fermé).
+    /// </summary>
+    internal void LibererInstanceUnique()
+    {
+        try { _mutex?.ReleaseMutex(); }
+        catch (ApplicationException) { } // pas propriétaire : rien à rendre
+        _mutex?.Dispose();
+        _mutex = null;
+    }
+
+    /// <summary>Reprend la place d'instance unique si l'installateur n'a finalement pas pu être lancé.</summary>
+    internal void ReprendreInstanceUnique() => _mutex ??= new Mutex(initiallyOwned: true, NomMutex, out _);
+
     protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
@@ -173,6 +190,16 @@ public partial class App : Application
             services.AddSingleton(new Fsrs());
             services.AddSingleton<Planificateur>();
             services.AddSingleton<EtatApplication>();
+            // Mises à jour : un seul client HTTP pour toute l'application (les délais sont gérés requête par requête).
+            services.AddSingleton(_ => new HttpClient(new SocketsHttpHandler
+            {
+                AutomaticDecompression = System.Net.DecompressionMethods.All,
+                ConnectTimeout = TimeSpan.FromSeconds(8),
+            }) { Timeout = Timeout.InfiniteTimeSpan });
+            services.AddSingleton(s => new Revisions.Core.MisesAJour.ServiceMiseAJour(
+                s.GetRequiredService<HttpClient>(), s.GetRequiredService<DepotProfil>(),
+                s.GetRequiredService<TimeProvider>(), InfosApplication.Version));
+            services.AddSingleton<ServiceInstallation>();
             services.AddSingleton<MainViewModel>();
             services.AddTransient<PartageViewModel>();
             Services = services.BuildServiceProvider();
@@ -185,7 +212,7 @@ public partial class App : Application
             Journal.Etape("Fenêtre créée");
             MainWindow.Show();
             Journal.Etape("Fenêtre affichée");
-            await principal.DemarrerAsync();
+            await principal.DemarrerAsync(); // lance aussi la vérification des mises à jour, en tâche de fond
 #if DEBUG
             OuvrirEcranDeTest(principal, e.Args);
 #endif

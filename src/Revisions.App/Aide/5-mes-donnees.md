@@ -1,6 +1,7 @@
 # Mes données et les sauvegardes
 
-Tout reste sur ton ordinateur. L'application fonctionne sans Internet et n'envoie rien nulle part.
+Tout reste sur ton ordinateur. L'application fonctionne sans Internet et n'envoie jamais tes données.
+Sa seule connexion : demander à GitHub, une fois par jour au plus, s'il existe une nouvelle version (voir la page **Mises à jour** ; tu peux la désactiver dans **Réglages**).
 
 ### Où sont mes données ?
 

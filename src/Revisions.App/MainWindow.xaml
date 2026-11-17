@@ -107,13 +107,64 @@
             </ContentControl.Style>
         </ContentControl>
 
-        <!-- Bandeau d'information (résultat d'un import). -->
-        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource Carte}" Padding="14,8" Margin="28,0,28,14"
-                Visibility="{Binding Bandeau, Converter={StaticResource VisibleSi}}">
-            <DockPanel>
-                <Button DockPanel.Dock="Right" Content="OK" Command="{Binding FermerBandeauCommand}" Padding="14,4" />
-                <TextBlock Text="{Binding Bandeau}" VerticalAlignment="Center" TextWrapping="Wrap" />
-            </DockPanel>
-        </Border>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <!-- Bandeau « nouvelle version disponible » : jamais pendant une session (voir MiseAJourVisible). -->
+            <Border Style="{StaticResource Carte}" Padding="18,12" Margin="28,0,28,14"
+                    Visibility="{Binding MiseAJourVisible, Converter={StaticResource VisibleSi}}">
+                <DockPanel DataContext="{Binding MiseAJour}">
+                    <!-- Pictogramme « téléchargement » de la police d'icônes de Windows. -->
+                    <TextBlock DockPanel.Dock="Left" Text="&#xE896;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="22"
+                               Foreground="{DynamicResource AccentFillColorDefaultBrush}" VerticalAlignment="Top" Margin="0,2,14,0" />
+
+                    <!-- Boutons à droite : les trois choix, ou « Annuler » pendant le téléchargement. -->
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="14,0,0,0">
+                        <StackPanel Orientation="Horizontal" Visibility="{Binding ChoixVisibles, Converter={StaticResource VisibleSi}}">
+                            <Button Content="{Binding TexteBoutonPrincipal}" Command="{Binding MettreAJourCommand}"
+                                    Style="{DynamicResource AccentButtonStyle}" Padding="16,6" />
+                            <Button Content="Plus tard" Command="{Binding PlusTardCommand}" Padding="14,6" Margin="8,0,0,0"
+                                    ToolTip="La proposition reviendra au prochain lancement d'Atome." />
+                            <Button Content="Ignorer cette version" Command="{Binding IgnorerCommand}" Padding="14,6" Margin="8,0,0,0"
+                                    ToolTip="Cette version ne sera plus proposée. Les suivantes, si." />
+                        </StackPanel>
+                        <Button Content="Annuler" Command="{Binding AnnulerCommand}" Padding="14,6"
+                                Visibility="{Binding EnTelechargement, Converter={StaticResource VisibleSi}}" />
+                        <Button Content="Installer maintenant" Command="{Binding InstallerCommand}" Style="{DynamicResource AccentButtonStyle}" Padding="16,6"
+                                Visibility="{Binding PretAInstaller, Converter={StaticResource VisibleSi}}" />
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock FontSize="15" FontWeight="SemiBold" TextWrapping="Wrap">
+                            <Run Text="{Binding Titre, Mode=OneWay}" />
+                            <Run Text="{Binding SousTitre, Mode=OneWay}" FontWeight="Normal" FontSize="13"
+                                 Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                        </TextBlock>
+                        <!-- Résumé des notes de version (texte simple, quelques lignes). -->
+                        <ItemsControl ItemsSource="{Binding Notes}" Margin="0,4,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" Style="{StaticResource Discret}" FontSize="12.5" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBlock FontSize="12.5" Margin="0,4,0,0">
+                            <Hyperlink Command="{Binding OuvrirPageReleaseCommand}">Voir toutes les nouveautés</Hyperlink>
+                        </TextBlock>
+                        <ProgressBar Value="{Binding Progression, Mode=OneWay}" Maximum="1" Height="6" Margin="0,8,0,0"
+                                     Visibility="{Binding EnTelechargement, Converter={StaticResource VisibleSi}}" />
+                        <TextBlock Text="{Binding Message}" TextWrapping="Wrap" FontSize="12.5" Margin="0,6,0,0"
+                                   Visibility="{Binding Message, Converter={StaticResource VisibleSi}}" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <!-- Bandeau d'information (résultat d'un import). -->
+            <Border Style="{StaticResource Carte}" Padding="14,8" Margin="28,0,28,14"
+                    Visibility="{Binding Bandeau, Converter={StaticResource VisibleSi}}">
+                <DockPanel>
+                    <Button DockPanel.Dock="Right" Content="OK" Command="{Binding FermerBandeauCommand}" Padding="14,4" />
+                    <TextBlock Text="{Binding Bandeau}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                </DockPanel>
+            </Border>
+        </StackPanel>
     </Grid>
 </Window>

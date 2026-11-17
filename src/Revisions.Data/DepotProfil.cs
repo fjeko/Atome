@@ -1,6 +1,7 @@
 using System.Globalization;
 using Dapper;
 using Revisions.Core.Apparence;
+using Revisions.Core.MisesAJour;
 using Revisions.Core.Modeles;
 using Revisions.Core.Planification;
 
@@ -28,7 +29,7 @@ public sealed class MaitriseMatiere
 public sealed record PointFaible(string SectionId, string Titre, string Matiere, string Seance, int Cartes, double RappelMoyen, int Oublis);
 
 /// <summary>Profil (XP), réglages et chiffres pour l'accueil et les statistiques.</summary>
-public sealed class DepotProfil(BaseDeDonnees baseDeDonnees)
+public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeur
 {
     // ---- XP ------------------------------------------------------------------------------
 
@@ -92,6 +93,8 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees)
             // Jamais choisi (premier lancement) : Crépuscule.
             Theme = valeurs.TryGetValue("theme", out var cleTheme) ? Themes.Trouver(cleTheme).Cle : "crepuscule",
             CouleurAccent = Couleur.TryParse(valeurs.GetValueOrDefault("couleur_accent"), out var accent) ? accent.Hex : null,
+            // Activé tant qu'on ne l'a pas explicitement désactivé.
+            VerifierMisesAJour = valeurs.GetValueOrDefault("verifier_mises_a_jour") != "0",
         };
     }
 
@@ -107,6 +110,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees)
         EcrireValeur("dossier_cours", r.DossierCours);
         EcrireValeur("theme", r.Theme);
         EcrireValeur("couleur_accent", r.CouleurAccent);
+        EcrireValeur("verifier_mises_a_jour", r.VerifierMisesAJour ? "1" : "0");
     }
 
     /// <summary>Jour où le mode reprise a commencé, ou null s'il n'est pas actif.</summary>

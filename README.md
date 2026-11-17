@@ -42,7 +42,8 @@ révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je
 - Un **pack d'exemple** est inclus ([`samples/exemple.json`](samples/exemple.json)) pour essayer l'application.
 - Pour fabriquer tes propres packs à partir de tes PDF, il suffit de les donner à Claude avec un prompt
   prêt à l'emploi : voir [Créer ses propres packs](#créer-ses-propres-packs).
-- L'application fonctionne **hors ligne**, sans compte, et tes données restent sur ton PC.
+- L'application fonctionne **hors ligne**, sans compte, et tes données restent sur ton PC. Sa seule connexion :
+  demander à GitHub, une fois par jour au plus, s'il existe une nouvelle version (désactivable dans les Réglages).
 
 ## Télécharger et installer
 
@@ -54,6 +55,14 @@ révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je
 4. Prérequis : Windows 10/11 et le **WebView2 Runtime** (déjà inclus dans Windows 11).
 
 Pour essayer : **Bibliothèque** → importer `samples/exemple.json`.
+
+### Mises à jour
+
+Installé avec le setup, Atome vérifie au démarrage (une fois par jour au plus) s'il existe une nouvelle version
+et la propose dans un bandeau : **Mettre à jour**, **Plus tard** ou **Ignorer cette version**. La mise à jour
+télécharge `Atome-Setup-x.y.z.exe`, vérifie son empreinte SHA-256 (fichier `.sha256` publié avec la Release),
+sauvegarde la base, puis installe et relance Atome. Tes données ne sont jamais touchées. En version portable,
+le bandeau propose seulement le lien de téléchargement. Détails dans l'Aide, page **Mises à jour**.
 
 ## Créer ses propres packs
 
@@ -117,7 +126,7 @@ devoirs, avancement avant une échéance, dates personnelles, migration).
   on peut **écrire sa réponse** pour la comparer à la bonne avant de se noter.
 - **Statistiques** : régularité, réussite par matière, points faibles avec session ciblée.
 - **Réglages** : rythme, reprise, **thèmes** (clair, sombre, six thèmes colorés) et **couleur d'accent**.
-- **Aide** : fonctionnement, raccourcis, ajout de cours, création d'un pack avec Claude (prompt à copier), données, signalement d'erreurs.
+- **Aide** : fonctionnement, raccourcis, ajout de cours, création d'un pack avec Claude (prompt à copier), données, signalement d'erreurs, mises à jour.
 - **Signaler une erreur** : un petit drapeau sur chaque carte (session, fin de session) et chaque section en lecture, touche **S** en session. L'écran **Mes signalements** (Réglages) liste les signalements et les exporte en `signalements-<prénom>-<date>.json`, pour corriger les packs en lot (le texte vu au moment du signalement est conservé). Code : `Revisions.Core/Signalements`, `Revisions.Data/DepotSignalements.cs`.
 
 ## Organisation du code
@@ -128,7 +137,8 @@ app/
     Revisions.Core/     Cœur métier, sans interface ni base : modèles, validation des packs,
                         FSRS, construction des sessions, gamification, niveaux de la bibliothèque
                         (Bibliotheque/), couleurs et thèmes (Apparence/), ordre du cours (Ordre/),
-                        planning (Planning/). Entièrement testable.
+                        planning (Planning/), mises à jour (MisesAJour/ : SemVer, API GitHub,
+                        SHA-256, client HTTP injecté). Entièrement testable.
     Revisions.Data/     SQLite (Microsoft.Data.Sqlite + Dapper) : schéma, import, requêtes.
     Revisions.App/      Interface WPF en MVVM (CommunityToolkit.Mvvm) + rendu WebView2.
       ViewModels/       Un ViewModel par écran : toute la logique d'affichage.
@@ -153,6 +163,7 @@ Sens des dépendances : `App → Data → Core`. Le Core ne dépend de rien.
 | Base de données | SQLite, SQL écrit à la main | Simple, un seul fichier, et le SQL reste visible |
 | Interface | WPF, MVVM, thème Fluent clair/sombre | Standard, testable, look Windows 11 |
 | Validation des packs | Parcours manuel du JSON (`Core/Packs/LecteurPack.cs`) | Messages d'erreur précis : champ et carte en cause |
+| Mises à jour | API GitHub `releases/latest`, setup Inno `/SILENT`, SHA-256 obligatoire (`Core/MisesAJour/`) | Pas de serveur à moi, pas de bibliothèque en plus, intégrité vérifiée avant tout lancement |
 
 ## Où sont mes données ?
 

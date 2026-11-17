@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
 using Revisions.App.Services;
 using Revisions.Core.Apparence;
+using Revisions.Core.MisesAJour;
 using Revisions.Data;
 
 namespace Revisions.App.ViewModels;
@@ -70,10 +71,46 @@ public partial class ReglagesViewModel : ObservableObject
     [RelayCommand]
     private void AllerSignalements() => _main.AllerSignalements();
 
-    public ReglagesViewModel(EtatApplication etat, PartageViewModel partage, MainViewModel main)
+    // ---- Mises à jour --------------------------------------------------------------------------
+
+    private readonly ServiceMiseAJour _miseAJour;
+
+    /// <summary>« Vérifier les mises à jour au démarrage » (activé par défaut).</summary>
+    [ObservableProperty] private bool _verifierMisesAJour;
+
+    /// <summary>Résultat de « Vérifier maintenant ».</summary>
+    [ObservableProperty] private string? _messageMiseAJour;
+
+    public string VersionInstallee => $"Version {InfosApplication.Version}" + InfosApplication.Mode switch
+    {
+        ModeInstallation.Installee => " (installée avec le setup : mise à jour automatique possible)",
+        ModeInstallation.Portable => " (portable : les nouvelles versions se téléchargent à la main)",
+        _ => " (version de développement : pas de mise à jour automatique)",
+    };
+
+    /// <summary>Contacte GitHub tout de suite, même si une version a été ignorée.</summary>
+    [RelayCommand]
+    private async Task VerifierMaintenantAsync()
+    {
+        MessageMiseAJour = "Vérification…";
+        var resultat = await _miseAJour.VerifierAsync(manuelle: true);
+        Journal.Info("Mise à jour", $"Vérification manuelle : {resultat.Issue}" + (resultat.Detail is { } d ? $". {d}" : ""));
+        MessageMiseAJour = resultat.Issue switch
+        {
+            IssueVerification.NouvelleVersion => $"La version {resultat.Release!.Version} est disponible : regarde le bandeau en bas de la fenêtre.",
+            IssueVerification.AJour => $"Atome est à jour (version {_miseAJour.VersionActuelle}).",
+            IssueVerification.AucuneRelease => "Aucune version n'est encore publiée sur GitHub.",
+            IssueVerification.QuotaDepasse => "GitHub limite le nombre de vérifications depuis ta connexion. Réessaie dans une heure.",
+            _ => "Impossible de joindre GitHub. Vérifie ta connexion à Internet, puis réessaie.",
+        };
+        if (resultat.AProposer) _main.Proposer(resultat.Release!, immediatement: true);
+    }
+
+    public ReglagesViewModel(EtatApplication etat, PartageViewModel partage, MainViewModel main, ServiceMiseAJour miseAJour)
     {
         _main = main;
         _etat = etat;
+        _miseAJour = miseAJour;
         Partage = partage;
         _ = partage.EstimerAsync(); // taille des documents, calculée en arrière-plan
         var r = etat.Reglages;
@@ -87,6 +124,7 @@ public partial class ReglagesViewModel : ObservableObject
         _dossierPacks = r.DossierPacks ?? "";
         _dossierCours = r.DossierCours ?? "";
         _accentLibre = r.CouleurAccent ?? "";
+        _verifierMisesAJour = r.VerifierMisesAJour;
 #pragma warning restore MVVMTK0034
         _cleTheme = r.Theme;
         _couleurAccent = r.CouleurAccent;
@@ -115,7 +153,7 @@ public partial class ReglagesViewModel : ObservableObject
     {
         base.OnPropertyChanged(e);
         // Le champ libre et son message d'erreur ne s'enregistrent pas tels quels (voir OnAccentLibreChanged).
-        if (!_initialise || e.PropertyName is nameof(AccentLibre) or nameof(ErreurAccent)) return;
+        if (!_initialise || e.PropertyName is nameof(AccentLibre) or nameof(ErreurAccent) or nameof(MessageMiseAJour)) return;
         Enregistrer();
     }
 
@@ -132,6 +170,7 @@ public partial class ReglagesViewModel : ObservableObject
         r.DossierCours = DossierCours.Length == 0 ? null : DossierCours;
         r.Theme = _cleTheme;
         r.CouleurAccent = _couleurAccent;
+        r.VerifierMisesAJour = VerifierMisesAJour;
         _etat.Enregistrer(); // enregistre et applique le thème immédiatement
     }
 

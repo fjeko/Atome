@@ -189,6 +189,19 @@
 
             <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
                 <StackPanel>
+                    <TextBlock Text="Mises à jour" Style="{StaticResource SousTitre}" />
+                    <TextBlock Text="{Binding VersionInstallee}" Style="{StaticResource Discret}" Margin="0,4,0,0" />
+                    <CheckBox Content="Vérifier les mises à jour au démarrage" IsChecked="{Binding VerifierMisesAJour}" Margin="0,12,0,0" />
+                    <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="0,4,0,0"
+                               Text="Une fois par jour au plus, Atome demande à GitHub (api.github.com) le numéro de la dernière version. C'est la seule fois où Atome se connecte à Internet. Rien d'autre n'est envoyé : ni tes données, ni ton nom." />
+                    <Button Content="Vérifier maintenant" Command="{Binding VerifierMaintenantCommand}" Padding="16,7" Margin="0,12,0,0" HorizontalAlignment="Left" />
+                    <TextBlock Text="{Binding MessageMiseAJour}" Style="{StaticResource Discret}" Margin="0,8,0,0"
+                               Visibility="{Binding MessageMiseAJour, Converter={StaticResource VisibleSi}}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+                <StackPanel>
                     <TextBlock Text="Dossiers" Style="{StaticResource SousTitre}" />
 
                     <TextBlock Text="Dossier des packs" Style="{StaticResource Libelle}" />

@@ -44,9 +44,14 @@ jobs:
           $tag = "${{ github.ref_name }}"
           $version = $tag.TrimStart("v")
           $options = @()
+          # Attention : une pre-release n'est jamais proposee par la mise a jour d'Atome (API releases/latest).
           if ($version.StartsWith("0.")) { $options += "--prerelease" }
+          # Le .sha256 (fabrique par creer-setup.ps1) est obligatoire : sans lui, Atome refuse la mise a jour automatique.
+          $empreinte = "installateur/sortie/Atome-Setup-$version.exe.sha256"
+          if (-not (Test-Path $empreinte)) { throw "Empreinte SHA-256 manquante : $empreinte" }
           gh release create $tag `
             "installateur/sortie/Atome-Setup-$version.exe" `
+            $empreinte `
             "installateur/sortie/Atome-portable.zip" `
             --title "Atome $version" `
             --notes-file .github/release-notes.md `

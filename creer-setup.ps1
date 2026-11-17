@@ -39,7 +39,16 @@ Write-Host "Creation de l'installateur..."
 & $iscc "/DVersion=$Version" (Join-Path $racine "installateur\atome.iss")
 if ($LASTEXITCODE -ne 0) { throw "Inno Setup a echoue." }
 
-Write-Host "Termine : $(Join-Path $racine "installateur\sortie\Atome-Setup-$Version.exe")"
+$setup = Join-Path $racine "installateur\sortie\Atome-Setup-$Version.exe"
+Write-Host "Termine : $setup"
+
+# Empreinte SHA-256 du setup, au format de sha256sum ("empreinte  nom"), publiee avec la Release.
+# Atome refuse d'installer une mise a jour si ce fichier manque ou ne correspond pas.
+# Ecrite en ASCII sans BOM (identique avec Windows PowerShell 5.1 et PowerShell 7).
+$empreinte = (Get-FileHash $setup -Algorithm SHA256).Hash.ToLowerInvariant()
+$ligne = "$empreinte  Atome-Setup-$Version.exe`n"
+[System.IO.File]::WriteAllText("$setup.sha256", $ligne, (New-Object System.Text.UTF8Encoding($false)))
+Write-Host "Empreinte : $setup.sha256 ($empreinte)"
 
 # Version portable : le meme dossier, sans les fichiers de debogage (.pdb), en ZIP.
 $zip = Join-Path $racine "installateur\sortie\Atome-portable.zip"

@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using Revisions.App.Services;
 using Revisions.App.Views;
+using Revisions.Core.MisesAJour;
 using Revisions.Core.Sessions;
 using Revisions.Data;
 
@@ -36,6 +37,21 @@ public partial class MainViewModel(
     [ObservableProperty]
     private string? _bandeau;
 
+    /// <summary>Bandeau « nouvelle version disponible » (null s'il n'y a rien à proposer).</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(MiseAJourVisible))]
+    private MiseAJourViewModel? _miseAJour;
+
+    /// <summary>Le bandeau de mise à jour n'apparaît jamais pendant une session, une lecture ou un questionnaire.</summary>
+    public bool MiseAJourVisible => MiseAJour is not null && NavigationVisible;
+
+    partial void OnNavigationVisibleChanged(bool value) => OnPropertyChanged(nameof(MiseAJourVisible));
+
+    /// <summary>Proposition trouvée au démarrage, qui attend que l'accueil soit affiché.</summary>
+    private MiseAJourViewModel? _propositionEnAttente;
+
+    private bool _verificationLancee;
+
     /// <summary>Crée un ViewModel en lui fournissant ses dépendances (et d'éventuels paramètres).</summary>
     private T Creer<T>(params object[] parametres) => ActivatorUtilities.CreateInstance<T>(services, parametres);
 
@@ -52,6 +68,73 @@ public partial class MainViewModel(
         }
         NavigationVisible = rubrique is not null;
         VueCourante = vue;
+        if (vue is AccueilViewModel && _propositionEnAttente is not null)
+        {
+            MiseAJour = _propositionEnAttente;
+            _propositionEnAttente = null;
+        }
+    }
+
+    // ---- Mises à jour ------------------------------------------------------------------------
+
+    /// <summary>
+    /// Au lancement, en tâche de fond : bilan de la dernière installation, puis vérification (une fois par 24 h
+    /// au plus, si le réglage est activé). Les problèmes réseau ne s'affichent pas : une ligne dans le journal suffit.
+    /// </summary>
+    public async Task VerifierMisesAJourAuDemarrageAsync()
+    {
+        if (_verificationLancee) return; // une seule fois par lancement
+        _verificationLancee = true;
+        try
+        {
+            var service = services.GetRequiredService<ServiceMiseAJour>();
+            // Installateur d'une mise à jour précédente (installée ou abandonnée) : plus utile.
+            await Task.Run(ServiceInstallation.NettoyerTelechargements);
+            if (service.BilanInstallationPrecedente() is { } bilan)
+            {
+                Journal.Info("Mise à jour", $"Installation de la version {bilan.Version} : {bilan.Bilan}.");
+                string texte = bilan.Bilan == BilanInstallation.Reussie
+                    ? $"Atome a été mis à jour en version {InfosApplication.Version}. Tes données sont intactes."
+                    : $"La mise à jour vers la version {bilan.Version} n'a pas pu s'installer. Tu peux la télécharger à la main : voir l'Aide, rubrique « Mises à jour ».";
+                // On garde le message de l'import des packs s'il y en a un.
+                Bandeau = Bandeau is { Length: > 0 } import ? import + " " + texte : texte;
+            }
+
+            if (!etat.Reglages.VerifierMisesAJour) return;
+            // On laisse d'abord l'interface respirer : cette vérification n'est jamais urgente.
+            await Task.Delay(TimeSpan.FromSeconds(2));
+            var resultat = await service.VerifierAsync(manuelle: false);
+            if (!resultat.DepuisMemoire)
+                Journal.Info("Mise à jour", $"Vérification : {resultat.Issue}" +
+                                            (resultat.Release is { } r ? $" (dernière version : {r.Version})" : "") +
+                                            (resultat.Detail is { } d ? $". {d}" : ""));
+            if (resultat.AProposer) Proposer(resultat.Release!, immediatement: false);
+        }
+        catch (Exception exception)
+        {
+            // Jamais d'erreur visible pour une vérification de fond.
+            Journal.Erreur("Mise à jour", exception);
+        }
+    }
+
+    /// <summary>
+    /// Affiche le bandeau de mise à jour. Au démarrage, il attend l'accueil (jamais au milieu d'une révision) ;
+    /// depuis « Vérifier maintenant », il s'affiche tout de suite.
+    /// </summary>
+    public void Proposer(ReleaseGitHub release, bool immediatement)
+    {
+        // Un téléchargement déjà en cours pour la même version : on garde le bandeau tel quel.
+        if (MiseAJour?.Release.Version == release.Version) return;
+        var proposition = new MiseAJourViewModel(release,
+            services.GetRequiredService<ServiceMiseAJour>(), services.GetRequiredService<ServiceInstallation>(),
+            peutQuitterMaintenant: () => NavigationVisible);
+        proposition.Ferme += () =>
+        {
+            if (MiseAJour == proposition) MiseAJour = null;
+        };
+
+        if (immediatement || VueCourante is AccueilViewModel) MiseAJour = proposition;
+        else _propositionEnAttente = proposition;
     }
 
     /// <summary>Appelée quand l'utilisateur clique sur une rubrique de la barre de gauche.</summary>
@@ -156,6 +239,8 @@ public partial class MainViewModel(
                 return resultatsImport;
             });
             Journal.Etape("Import terminé");
+            // Mises à jour : en tâche de fond, sans attendre (ni le rapport d'import qui peut s'ouvrir juste après).
+            _ = VerifierMisesAJourAuDemarrageAsync();
             AnnoncerImport(resultats, afficherRapportSiRien: false);
             // L'accueil a été calculé avant l'import : on le rafraîchit si des packs sont arrivés.
             if (VueCourante is AccueilViewModel && (planningArrive || resultats.Any(r => r.Statut is StatutImport.Importe or StatutImport.MisAJour)))
@@ -169,6 +254,7 @@ public partial class MainViewModel(
         {
             Journal.Erreur("Démarrage", exception);
             Bandeau = "L'import automatique des packs a échoué : " + exception.Message;
+            _ = VerifierMisesAJourAuDemarrageAsync();
         }
     }
 

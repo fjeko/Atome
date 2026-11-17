@@ -113,4 +113,6 @@ public sealed class Reglages
     public string Theme { get; set; } = "crepuscule";
     /// <summary>Couleur d'accent choisie, au format « #RRGGBB », ou null pour celle du thème.</summary>
     public string? CouleurAccent { get; set; }
+    /// <summary>Vérifier au démarrage (une fois par jour au plus) s'il existe une nouvelle version sur GitHub.</summary>
+    public bool VerifierMisesAJour { get; set; } = true;
 }

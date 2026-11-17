@@ -27,6 +27,20 @@ public static class Journal
         catch (IOException) { }
     }
 
+    /// <summary>Note une information sur une seule ligne (par exemple : « GitHub injoignable »).</summary>
+    public static void Info(string contexte, string message)
+    {
+        try
+        {
+            lock (Verrou)
+            {
+                Directory.CreateDirectory(BaseDeDonnees.DossierDonnees);
+                File.AppendAllText(Chemin, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [{contexte}] {message.ReplaceLineEndings(" ")}\n");
+            }
+        }
+        catch (IOException) { }
+    }
+
     public static void Erreur(string contexte, Exception exception)
     {
         try

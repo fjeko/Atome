@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!-- Les tests peuvent appeler les méthodes « internal » (détails de la logique de mise à jour). -->
+    <InternalsVisibleTo Include="Revisions.Tests" />
+  </ItemGroup>
+
 </Project>

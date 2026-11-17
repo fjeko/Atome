@@ -4,6 +4,8 @@ Application Windows de révision pour le BTS SIO.
 Télécharge **Atome-Setup-x.y.z.exe**, lance-le et suis l'assistant. Rien d'autre à installer.
 Une version sans installation est aussi disponible : **Atome-portable.zip** (décompresse, puis ouvre `Atome.exe`).
 Pour mettre à jour, installe la nouvelle version par-dessus : tes données sont conservées.
+Si Atome a été installé avec le setup, il propose lui-même les nouvelles versions (bandeau en bas de l'accueil).
+`Atome-Setup-x.y.z.exe.sha256` est l'empreinte de sécurité du setup : Atome la vérifie avant d'installer.
 
 ## Windows affiche un avertissement ?
 L'application n'est pas encore signée numériquement, donc Windows se méfie. C'est normal.
