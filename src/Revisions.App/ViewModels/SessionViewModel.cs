@@ -190,7 +190,7 @@ public partial class SessionViewModel : ObservableObject
         RateVisible = !qcm;
         Consigne = !_reponseVisible
             ? (qcm ? "Choisis une réponse (clic ou touches A à E)"
-                : SaisieVisible ? "Réponds de tête ou par écrit, puis appuie sur Espace"
+                : SaisieVisible ? "Réponds de tête puis Espace, ou écris ta réponse puis Entrée"
                 : "Réponds de tête, puis appuie sur Espace")
             : mauvaisChoix ? "Ce n'est pas grave : la carte reviendra bientôt."
             : "Comment ça s'est passé ? (touches 1 à 4)";
@@ -271,6 +271,19 @@ public partial class SessionViewModel : ObservableObject
     public void DemanderSaisie()
     {
         if (SaisieVisible) SaisieDemandee?.Invoke();
+    }
+
+    /// <summary>
+    /// Touche pressée dans la zone de réponse écrite. Renvoie vrai si elle est consommée (la zone ne doit pas la traiter).
+    /// Entrée ou Ctrl+Entrée révèle ; Maj+Entrée laisse la zone faire un saut de ligne ;
+    /// Espace révèle seulement tant que rien n'est écrit (ensuite, c'est un espace dans le texte).
+    /// </summary>
+    public bool ToucheDansSaisie(string touche, bool maj, bool ctrl)
+    {
+        if (!SaisieVisible || !RevelerVisible) return false;
+        bool revele = touche == "Enter" ? (ctrl || !maj) : touche == " " && string.IsNullOrEmpty(ReponseSaisie);
+        if (revele) Reveler();
+        return revele;
     }
 
     [RelayCommand]

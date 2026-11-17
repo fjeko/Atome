@@ -13,12 +13,13 @@ Une session peut se faire entièrement au clavier.
 
 ### Écrire sa réponse (cartes « question »)
 
-La zone de texte sous la carte est facultative. Quand le curseur est dedans, les touches écrivent du texte au lieu de servir de raccourcis.
+La zone de texte sous la carte est facultative. Zone vide, **Espace** voit la réponse comme d'habitude ; dès que tu as écrit quelque chose, les touches écrivent du texte et c'est **Entrée** qui valide.
 
 | Touche | Action |
 | --- | --- |
 | **Tab** | entrer dans la zone pour écrire |
-| **Ctrl + Entrée** | voir la réponse et la comparer à la tienne |
+| **Entrée** (ou **Ctrl + Entrée**) | voir la réponse et la comparer à la tienne |
+| **Maj + Entrée** | saut de ligne dans ta réponse |
 | **Échap** | sortir de la zone (ton texte est gardé) |
 
 ### En lecture

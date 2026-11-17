@@ -29,18 +29,16 @@
 
         <StackPanel Grid.Row="3">
             <!-- Réponse écrite, facultative (cartes « question »). Quand le curseur est dans la zone,
-                 Espace et 1-4 écrivent du texte : on révèle avec Ctrl+Entrée, on sort avec Échap. -->
+                 Espace (une fois du texte écrit) et 1-4 écrivent du texte : on révèle avec Entrée, on sort avec Échap. -->
             <StackPanel Margin="0,10,0,0" Visibility="{Binding SaisieVisible, Converter={StaticResource VisibleSi}}">
                 <TextBox x:Name="ZoneSaisie" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="36" MaxHeight="96"
                          VerticalScrollBarVisibility="Auto" FontSize="15"
                          Text="{Binding ReponseSaisie, UpdateSourceTrigger=PropertyChanged}"
-                         ToolTip="Écris ta réponse si tu veux la comparer à la bonne (facultatif)">
-                    <TextBox.InputBindings>
-                        <KeyBinding Key="Enter" Modifiers="Control" Command="{Binding RevelerCommand}" />
-                    </TextBox.InputBindings>
+                         ToolTip="Écris ta réponse si tu veux la comparer à la bonne (facultatif)"
+                         PreviewKeyDown="ZoneSaisie_PreviewKeyDown">
                 </TextBox>
                 <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="2,4,0,0"
-                           Text="Facultatif : écris ta réponse pour la comparer (Tab pour écrire, Ctrl+Entrée pour voir la réponse, Échap pour sortir)." />
+                           Text="Facultatif : écris ta réponse pour la comparer (Tab pour écrire, Entrée pour voir la réponse, Maj+Entrée pour un saut de ligne, Échap pour sortir)." />
             </StackPanel>
 
             <!-- Encouragement (objectif du jour atteint). -->

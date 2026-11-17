@@ -47,6 +47,16 @@ public partial class VueSession : UserControl
         Focus();
     }
 
+    /// <summary>Entrée (ou Ctrl+Entrée) révèle la réponse, Espace aussi tant que la zone est vide ; Maj+Entrée saute une ligne.</summary>
+    private void ZoneSaisie_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (DataContext is not SessionViewModel session) return;
+        var mod = Keyboard.Modifiers;
+        string? touche = e.Key switch { Key.Enter => "Enter", Key.Space => " ", _ => null };
+        if (touche is not null && session.ToucheDansSaisie(touche, maj: (mod & ModifierKeys.Shift) != 0, ctrl: (mod & ModifierKeys.Control) != 0))
+            e.Handled = true;
+    }
+
     protected override void OnPreviewKeyDown(KeyEventArgs e)
     {
         base.OnPreviewKeyDown(e);
