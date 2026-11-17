@@ -1,0 +1,65 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-15-sq1-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.5 – SQ1 – Mettre à disposition un service d'impression",
+  "sequence": null,
+  "seance": "S03 – Restreindre et déployer",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Limiter l'impression à un public avec le modèle de groupes imbriqués, déployer l'imprimante par stratégie de groupe, forcer et vérifier l'application, puis faire évoluer les droits.",
+  "notions": [
+    "Restreindre par groupes imbriqués",
+    "Déployer par GPO",
+    "Forcer et vérifier les stratégies",
+    "Faire évoluer les droits"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-15-sq1-s03-s01",
+      "titre": "Restreindre avec AGDLP",
+      "contenu": "On veut que **seuls** le secrétariat et la direction impriment en couleur.\n```text\nComptes → G_Secretariat, G_Direction → DL_Imp_SecrCouleur → « Imprimer » sur SECR-COULEUR\n```\nDans l'onglet *Sécurité* de l'imprimante : **retirer** *Tout le monde* (ou *Utilisateurs*), **ajouter** `DL_Imp_SecrCouleur` avec *Imprimer* ; laisser *Gérer les documents* au groupe des techniciens.\n\n**Faire évoluer** : quand le responsable pédagogique doit aussi imprimer en couleur, on ajoute son groupe global (G_Pedagogie) dans `DL_Imp_SecrCouleur` : rien à changer sur l'imprimante.\n\n**Piège** : donner les droits à des **utilisateurs** nommés : ingérable à chaque arrivée ou départ.",
+      "notions": [
+        "Restreindre par groupes imbriqués",
+        "Faire évoluer les droits"
+      ]
+    },
+    {
+      "id": "libre-b1-15-sq1-s03-s02",
+      "titre": "Déployer et vérifier",
+      "contenu": "**Déployer** par GPO (liée à l'UO des utilisateurs concernés) : *Configuration utilisateur > Préférences > Paramètres du Panneau de configuration > Imprimantes > Nouvelle imprimante partagée* → `\\\\SRV-IMPRESSION\\SECR-COULEUR`, action *Mettre à jour*, ciblage au niveau de l'élément sur le groupe G_Secretariat (option : définir comme imprimante par défaut).\n\nSur le poste, **avant de tester** :\n```bat\ngpupdate /force\ngpresult /r\n```\nPuis se connecter avec un compte du secrétariat (l'imprimante apparaît, l'impression passe) et un compte d'un autre service (l'imprimante n'apparaît pas ; une connexion manuelle échoue à l'impression : accès refusé).\n\n**Piège** : tester sans actualiser les stratégies, ou avec une session ouverte avant l'ajout au groupe.",
+      "notions": [
+        "Déployer par GPO",
+        "Forcer et vérifier les stratégies"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-15-sq1-s03-c001",
+      "section": "libre-b1-15-sq1-s03-s01",
+      "type": "qcm",
+      "question": "Un nouveau secrétaire arrive. Avec AGDLP correctement mis en place, que fais-tu pour qu'il puisse imprimer en couleur ?",
+      "choix": [
+        "Ajouter son compte dans l'onglet Sécurité de l'imprimante",
+        "L'ajouter au groupe global G_Secretariat",
+        "Lui donner « Gérer cette imprimante »",
+        "Créer une nouvelle imprimante pour lui"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le compte hérite des droits via G_Secretariat → DL_Imp_SecrCouleur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-15-sq1-s03-c002",
+      "section": "libre-b1-15-sq1-s03-s02",
+      "type": "question",
+      "recto": "Pourquoi lancer `gpupdate /force` puis rouvrir la session avant de tester un déploiement d'imprimante ?",
+      "verso": "Pour que la nouvelle GPO soit appliquée et que les appartenances aux groupes (lues à l'ouverture de session) soient à jour ; sinon on teste l'ancienne configuration.",
+      "difficulte": 2
+    }
+  ]
+}

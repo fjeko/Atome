@@ -1,0 +1,103 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq1-s01",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ1 – Cybermenaces et bonnes pratiques",
+  "sequence": null,
+  "seance": "S01 – Panorama de la cybercriminalité et du cyberrisque",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une cybermenace est une action malveillante qui vise un système d'information ou ses utilisateurs. Toute organisation, même petite, est exposée ; le cyberrisque se mesure par ses coûts visibles et invisibles.",
+  "notions": [
+    "Cybermenace",
+    "Cybercriminalité",
+    "Atteintes aux biens et aux personnes",
+    "Typologie des menaces",
+    "Motivations des attaquants",
+    "Cyberrisque",
+    "Coûts visibles et invisibles",
+    "Perception du risque"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq1-s01-s01",
+      "titre": "Cybermenace et cybercriminalité",
+      "contenu": "Une **cybermenace** est une action potentielle, menée via le numérique, qui peut nuire à un système d'information (SI), à ses données ou à ses utilisateurs.\n\nLa **cybercriminalité** désigne l'ensemble des délits qui s'appuient sur les réseaux et systèmes informatiques. On distingue :\n- les **atteintes aux biens** : vol de données, fraude bancaire, extorsion par rançongiciel, sabotage ;\n- les **atteintes aux personnes** : usurpation d'identité, harcèlement en ligne, diffusion de contenus illicites, atteinte à la vie privée.\n\nEn France, des plateformes publiques comme **Cybermalveillance.gouv.fr** (assistance aux victimes) et l'**ANSSI** (agence nationale de la sécurité des systèmes d'information) publient des typologies de menaces et des conseils.",
+      "notions": [
+        "Cybermenace",
+        "Cybercriminalité",
+        "Atteintes aux biens et aux personnes"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s01-s02",
+      "titre": "Typologie des menaces et motivations",
+      "contenu": "Les menaces se classent souvent selon l'objectif de l'attaquant :\n\n| Objectif | Exemples |\n| --- | --- |\n| **Lucratif** (le plus fréquent) | rançongiciel, fraude au virement, vol de cartes bancaires |\n| **Espionnage** | vol de secrets industriels ou d'État |\n| **Déstabilisation** | défiguration de site, déni de service, fuite organisée |\n| **Sabotage** | destruction de données ou d'équipements |\n\nLes attaquants vont de l'amateur isolé aux groupes criminels organisés et aux services étatiques.",
+      "notions": [
+        "Typologie des menaces",
+        "Motivations des attaquants"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s01-s03",
+      "titre": "Cyberrisque et coûts",
+      "contenu": "Le **cyberrisque** combine la **probabilité** qu'une menace se réalise et la **gravité** de ses conséquences.\n\nCoûts d'un incident :\n- **visibles** : arrêt de production, remplacement de matériel, prestataires de remédiation, éventuelle amende ;\n- **invisibles** : perte de clients et de **réputation**, baisse de motivation des équipes, temps passé, données perdues définitivement, hausse de la prime d'assurance.\n\nBeaucoup de petites structures pensent « nous sommes trop petits pour intéresser un pirate ». C'est faux : la plupart des attaques sont **automatisées** et visent toutes les cibles vulnérables, sans distinction de taille.",
+      "notions": [
+        "Cyberrisque",
+        "Coûts visibles et invisibles",
+        "Perception du risque"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq1-s01-c001",
+      "section": "libre-b3-31-sq1-s01-s01",
+      "type": "qcm",
+      "question": "Une usurpation d'identité sur un réseau social relève plutôt :",
+      "choix": [
+        "d'une atteinte aux biens",
+        "d'une atteinte aux personnes",
+        "d'un déni de service",
+        "d'une simple erreur technique"
+      ],
+      "bonneReponse": 1,
+      "explication": "Elle vise la personne, son image et sa réputation.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq1-s01-c002",
+      "section": "libre-b3-31-sq1-s01-s02",
+      "type": "question",
+      "recto": "Quelle est la motivation la plus fréquente des cyberattaques ?",
+      "verso": "L'**appât du gain** (cybercriminalité lucrative : rançongiciels, fraudes, revente de données).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq1-s01-c003",
+      "section": "libre-b3-31-sq1-s01-s03",
+      "type": "qcm",
+      "question": "Lequel est un coût « invisible » d'une cyberattaque ?",
+      "choix": [
+        "La facture du prestataire de restauration",
+        "L'achat d'un nouveau serveur",
+        "La perte de confiance des clients",
+        "Les heures supplémentaires payées"
+      ],
+      "bonneReponse": 2,
+      "explication": "La réputation dégradée ne figure sur aucune facture mais pèse longtemps.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s01-c004",
+      "section": "libre-b3-31-sq1-s01-s03",
+      "type": "question",
+      "recto": "Pourquoi une petite entreprise est-elle une cible réaliste ?",
+      "verso": "Parce que la plupart des attaques sont **automatisées** et touchent toute cible vulnérable ; les petites structures sont souvent moins protégées.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq1-s05",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – SQ1 – Sécuriser le poste de travail",
+  "sequence": null,
+  "seance": "S05 – Antivirus",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un antivirus détecte et bloque les codes malveillants par signatures, analyse heuristique et analyse comportementale, en temps réel. On compare les solutions selon des critères objectifs.",
+  "notions": [
+    "Code malveillant",
+    "Charge utile",
+    "Détection par signature",
+    "Détection heuristique",
+    "Détection comportementale",
+    "Analyse en temps réel",
+    "Critères de choix d'un antivirus"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq1-s05-s01",
+      "titre": "Les codes malveillants",
+      "contenu": "Un **code malveillant** (*malware*) est un programme conçu pour nuire : virus, ver, cheval de Troie, rançongiciel, logiciel espion, enregistreur de frappe, porte dérobée, mineur de cryptomonnaie.\n\nIl a un **vecteur** d'entrée (pièce jointe, téléchargement, clé USB, faille) et une **charge utile** (ce qu'il fait : chiffrer, voler, espionner).",
+      "notions": [
+        "Code malveillant",
+        "Charge utile"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s05-s02",
+      "titre": "Méthodes de détection",
+      "contenu": "| Méthode | Principe | Limite |\n| --- | --- | --- |\n| **Signature** | comparer le fichier à une base d'empreintes de codes connus | inefficace sur un code nouveau ou modifié |\n| **Heuristique** | analyser le code à la recherche d'instructions suspectes | faux positifs possibles |\n| **Comportementale** | surveiller ce que fait le programme (chiffre des centaines de fichiers ? modifie le registre de démarrage ?) | réagit pendant l'exécution |\n\nL'**analyse en temps réel** examine chaque fichier ouvert, téléchargé ou exécuté, en plus des analyses planifiées.\n\nLes solutions modernes de type **EDR** ajoutent la surveillance centralisée, l'investigation et l'isolement à distance d'un poste.",
+      "notions": [
+        "Détection par signature",
+        "Détection heuristique",
+        "Détection comportementale",
+        "Analyse en temps réel"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s05-s03",
+      "titre": "Comparer des solutions",
+      "contenu": "Critères :\n- **efficacité** de détection (résultats de laboratoires indépendants) ;\n- taux de **faux positifs** ;\n- **impact** sur les performances ;\n- **console centralisée** (déploiement, alertes, rapports) ;\n- fonctions : EDR, pare-feu, contrôle des périphériques, protection web ;\n- **compatibilité** (Windows, macOS, Linux, mobiles) ;\n- **coût** par poste et support, localisation des données (RGPD).\n\nPour un petit parc Windows, l'antivirus intégré (Microsoft Defender) bien configuré et à jour est déjà une bonne base.",
+      "notions": [
+        "Critères de choix d'un antivirus"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq1-s05-c001",
+      "section": "libre-b3-33-sq1-s05-s01",
+      "type": "question",
+      "recto": "Qu'est-ce que la charge utile d'un logiciel malveillant ?",
+      "verso": "L'**action nuisible** qu'il réalise une fois installé (chiffrer, voler des données, ouvrir un accès…).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-33-sq1-s05-c002",
+      "section": "libre-b3-33-sq1-s05-s02",
+      "type": "qcm",
+      "question": "Un rançongiciel inédit (aucune signature connue) est arrêté parce qu'il chiffrait des fichiers en masse. Quelle détection a fonctionné ?",
+      "choix": [
+        "Par signature",
+        "Comportementale",
+        "Par liste blanche d'adresses IP",
+        "Par pare-feu"
+      ],
+      "bonneReponse": 1,
+      "explication": "C'est son comportement qui l'a trahi.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq1-s05-c003",
+      "section": "libre-b3-33-sq1-s05-s03",
+      "type": "exercice",
+      "enonce": "Le collège fictif **Jean-Rostand-des-Pins** (180 postes Windows) hésite entre l'antivirus intégré géré centralement et une solution EDR payante. Propose 4 critères et une méthode de décision.",
+      "etapes": [
+        "Critères : efficacité (tests indépendants), console centralisée et alertes, impact sur les vieux postes, coût total (licences + temps d'administration).",
+        "Ajouter : capacité d'isoler un poste à distance (EDR), compatibilité avec les logiciels pédagogiques.",
+        "Méthode : grille de notation pondérée (par ex. efficacité 30 %, administration 25 %, coût 25 %, performance 20 %).",
+        "Tester les deux sur un groupe pilote de postes pendant quelques semaines avant de décider."
+      ],
+      "reponse": "Grille pondérée sur critères objectifs + test pilote.",
+      "difficulte": 2
+    }
+  ]
+}

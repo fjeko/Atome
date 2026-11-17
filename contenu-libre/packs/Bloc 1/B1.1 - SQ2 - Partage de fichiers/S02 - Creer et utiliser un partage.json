@@ -1,0 +1,143 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq2-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – SQ2 – Partage de fichiers sous Windows",
+  "sequence": null,
+  "seance": "S02 – Créer et utiliser un partage",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les conditions pour partager un dossier sous Windows, les autorisations de partage, le chemin UNC, les lecteurs réseau et les partages administratifs cachés.",
+  "notions": [
+    "Conditions d'un partage",
+    "Autorisations de partage",
+    "Chemin UNC",
+    "Lecteur réseau",
+    "Partages administratifs masqués",
+    "VM de test"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq2-s02-s01",
+      "titre": "Les conditions pour partager",
+      "contenu": "Sous Windows, on peut **partager un dossier** à travers le réseau grâce au protocole **SMB**. Pour que ça marche, il faut :\n\n1. être **administrateur** de la machine (créer un partage modifie la configuration) ;\n2. que le service **Serveur** (*LanmanServer*) soit **démarré** : c'est lui qui répond aux demandes SMB ;\n3. que le **profil réseau** soit **privé** : en profil **public** (café, gare), Windows bloque la découverte du réseau et le partage pour te protéger ;\n4. que le **pare-feu** autorise le « partage de fichiers et d'imprimantes ».\n\n**Piège** : tout est bien configuré mais personne ne voit le partage… le réseau est resté en « public ».",
+      "notions": [
+        "Conditions d'un partage"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq2-s02-s02",
+      "titre": "Les autorisations de partage",
+      "contenu": "Quand tu partages un dossier (*Propriétés > Partage > Partage avancé > Autorisations*), tu choisis pour chaque groupe :\n\n| Autorisation | Permet |\n| --- | --- |\n| **Lecture** | voir les fichiers, les ouvrir, les copier chez soi |\n| **Modifier** | lecture + créer, modifier, supprimer des fichiers |\n| **Contrôle total** | modifier + changer les autorisations du partage |\n\nChaque autorisation peut être **autorisée** ou **refusée**.\n\nPar défaut, Windows propose « Tout le monde : Lecture ». À ajuster selon le besoin !",
+      "notions": [
+        "Autorisations de partage"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq2-s02-s03",
+      "titre": "Accéder au partage : UNC et lecteur réseau",
+      "contenu": "Pour atteindre un partage, on utilise un **chemin UNC** (*Universal Naming Convention*) :\n```text\n\\\\NOM-DU-SERVEUR\\NomDuPartage\\sous-dossier\n\\\\192.168.10.5\\Matchs\n```\nDeux barres obliques inversées, puis le nom (ou l'adresse IP) de la machine, puis le nom du partage.\n\nPour plus de confort, on **connecte un lecteur réseau** : le partage apparaît comme une lettre (Z:, M:…) dans l'explorateur.\n```bat\nnet use M: \\\\SRV-CLUB\\Matchs /persistent:yes\n```\n\n**Piège de test** : Windows garde en mémoire la connexion ouverte avec un compte. Si tu testes ensuite avec un autre compte sans fermer la première connexion (`net use * /delete`), tu crois tester le second compte mais c'est le premier qui est utilisé.",
+      "notions": [
+        "Chemin UNC",
+        "Lecteur réseau"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq2-s02-s04",
+      "titre": "Les partages administratifs masqués",
+      "contenu": "Un partage dont le nom **se termine par `$`** est **masqué** : il n'apparaît pas quand on parcourt le réseau, mais il reste accessible si on connaît son nom.\n\nWindows crée automatiquement des **partages administratifs** :\n- `C$` : la racine du disque C: ;\n- `ADMIN$` : le dossier Windows ;\n- `IPC$` : communication entre processus.\n\nIls sont réservés aux **administrateurs** et servent à la maintenance à distance (`\\\\PC-ACCUEIL\\C$`).\n\nLa commande `net share` liste les partages d'une machine.\n\n⚠️ « Masqué » ne veut pas dire « protégé » : la sécurité repose sur les autorisations, pas sur le fait que le nom soit caché.",
+      "notions": [
+        "Partages administratifs masqués"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq2-s02-s05",
+      "titre": "Tester avec une machine virtuelle",
+      "contenu": "Pour vérifier un partage sans déranger personne, on utilise une **VM comme poste client** :\n- l'**hôte** (ou une VM serveur) héberge le partage ;\n- la **VM cliente** se connecte avec chacun des comptes à tester.\n\nConseils :\n- mets la carte réseau de la VM en mode **réseau interne** ou **pont** pour qu'elle voie le serveur ;\n- prends un **instantané** avant les essais ;\n- teste chaque compte **dans une session propre** (déconnexion, ou `net use * /delete`) ;\n- note les résultats dans un tableau « compte / action / résultat attendu / résultat obtenu ».",
+      "notions": [
+        "VM de test"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq2-s02-c001",
+      "section": "libre-b1-11-sq2-s02-s01",
+      "type": "qcm",
+      "question": "Un partage a été créé mais les autres postes n'y accèdent pas. Le service Serveur tourne. Que vérifies-tu ensuite ?",
+      "choix": [
+        "La résolution de l'écran",
+        "Que le profil réseau est bien « privé » et que le pare-feu autorise le partage",
+        "Que le dossier fait moins de 1 Go",
+        "Que l'utilisateur a redémarré sa box"
+      ],
+      "bonneReponse": 1,
+      "explication": "En profil public, Windows bloque le partage de fichiers. C'est la cause la plus fréquente.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq2-s02-c002",
+      "section": "libre-b1-11-sq2-s02-s02",
+      "type": "qcm",
+      "question": "Parmi les autorisations de partage, laquelle autorise la suppression de fichiers mais pas la modification des autorisations ?",
+      "choix": [
+        "Lecture",
+        "Modifier",
+        "Contrôle total",
+        "Aucune"
+      ],
+      "bonneReponse": 1,
+      "explication": "« Modifier » permet de créer, modifier et supprimer. Seul « Contrôle total » permet en plus de changer les autorisations.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq2-s02-c003",
+      "section": "libre-b1-11-sq2-s02-s03",
+      "type": "question",
+      "recto": "Écris le chemin UNC du partage « Factures » situé sur la machine SRV-COMPTA.",
+      "verso": "`\\\\SRV-COMPTA\\Factures`",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq2-s02-c004",
+      "section": "libre-b1-11-sq2-s02-s03",
+      "type": "qcm",
+      "question": "Tu testes l'accès d'un utilisateur « lecture seule » et tu arrives à écrire. Tu t'étais connecté juste avant avec le compte du secrétaire. Quelle est la cause probable ?",
+      "choix": [
+        "Les autorisations de partage ne fonctionnent pas",
+        "La connexion précédente (avec le compte du secrétaire) est toujours utilisée",
+        "Le pare-feu est désactivé",
+        "Le chemin UNC est mal écrit"
+      ],
+      "bonneReponse": 1,
+      "explication": "Windows réutilise la session SMB déjà ouverte vers ce serveur. Il faut la supprimer (`net use * /delete`) ou se déconnecter avant de tester un autre compte.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq2-s02-c005",
+      "section": "libre-b1-11-sq2-s02-s04",
+      "type": "qcm",
+      "question": "Comment créer un partage qui n'apparaît pas dans la liste des partages visibles sur le réseau ?",
+      "choix": [
+        "Le nommer en majuscules",
+        "Terminer son nom par le caractère $",
+        "Lui donner l'autorisation Lecture",
+        "Le placer dans C:\\Windows"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le suffixe $ masque le partage. Mais il reste accessible à qui connaît son nom : il faut quand même des autorisations correctes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq2-s02-c006",
+      "section": "libre-b1-11-sq2-s02-s05",
+      "type": "question",
+      "recto": "Pourquoi faut-il tester chaque compte dans une session propre ?",
+      "verso": "Parce que Windows réutilise une connexion déjà ouverte vers le serveur : sinon, on teste en réalité le compte précédent.",
+      "difficulte": 2
+    }
+  ]
+}

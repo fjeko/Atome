@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-m-s07",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Méthodologie de l'épreuve",
+  "sequence": null,
+  "seance": "S7 – Analyser un contrat",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Lire un extrait de contrat avec méthode : parties et objet, validité, classement, obligations de chacun, clauses particulières et sanctions.",
+  "notions": [
+    "Grille d'analyse d'un contrat",
+    "Application à un contrat"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-m-s07-s01",
+      "titre": "La grille d'analyse",
+      "contenu": "| Question | Où regarder |\n|---|---|\n| Qui sont les **parties** ? Quelle qualité (professionnel, consommateur, salarié) ? | en-tête, signatures |\n| Quel est l'**objet** (ce qui est promis) et le **prix** ? | articles « objet », « prix » |\n| Le contrat est-il **valable** (consentement, capacité, contenu licite et certain) ? | ensemble du contrat |\n| Comment le **classer** (onéreux, synallagmatique, successif, d'adhésion…) ? | nature des obligations |\n| Quelles **obligations** pour chaque partie ? | articles « obligations » |\n| Quelles **clauses particulières** (pénale, limitative, résiliation, confidentialité) ? | articles spécifiques |\n| Quelles **sanctions** en cas d'inexécution ? | clauses de résiliation, pénalités |",
+      "notions": [
+        "Grille d'analyse d'un contrat"
+      ]
+    },
+    {
+      "id": "libre-cejm-m-s07-s02",
+      "titre": "Exemple : contrat de maintenance",
+      "contenu": "*Extrait inventé* :\n> **Entre** la SARL *Pixelune* (prestataire) **et** l'association *Les Amis du Jardin* (client).\n> **Art. 2** – Le prestataire assure la maintenance du site web du client et corrige toute panne bloquante sous 48 heures ouvrées.\n> **Art. 4** – Prix : 90 € HT par mois, payables le 5 de chaque mois.\n> **Art. 6** – Tout retard d'intervention au-delà de 48 heures donne lieu à une pénalité forfaitaire de 30 € par jour.\n> **Art. 8** – Le contrat est conclu pour un an et reconduit tacitement, sauf résiliation par lettre recommandée un mois avant l'échéance.\n\nAnalyse :\n- parties : deux personnes morales ; objet : maintenance (prestation de services) ; prix : 90 € HT/mois ;\n- classement : **synallagmatique** (obligations réciproques), **à titre onéreux**, **à exécution successive** (sur la durée) ;\n- art. 6 : **clause pénale** (somme forfaitaire fixée à l'avance) ;\n- art. 8 : **clause de reconduction tacite** et modalités de **résiliation**.",
+      "notions": [
+        "Application à un contrat"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-m-s07-c001",
+      "section": "libre-cejm-m-s07-s01",
+      "type": "question",
+      "recto": "Quels sont les éléments à identifier en premier dans un contrat ?",
+      "verso": "Les parties (et leur qualité), l'objet et le prix.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-m-s07-c002",
+      "section": "libre-cejm-m-s07-s02",
+      "type": "qcm",
+      "question": "L'article 6 de l'extrait (30 € par jour de retard) est…",
+      "choix": [
+        "Une clause pénale",
+        "Une clause limitative de responsabilité",
+        "Une condition suspensive",
+        "Une clause de non-concurrence"
+      ],
+      "bonneReponse": 0,
+      "explication": "Une somme forfaitaire fixée à l'avance pour sanctionner une inexécution : c'est une clause pénale.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-m-s07-c003",
+      "section": "libre-cejm-m-s07-s02",
+      "type": "qcm",
+      "question": "Pourquoi ce contrat est-il « à exécution successive » ?",
+      "choix": [
+        "Ses obligations s'exécutent dans la durée, mois après mois",
+        "Il est signé en plusieurs fois",
+        "Il dépend d'un événement futur",
+        "Il est exécuté en un seul instant"
+      ],
+      "bonneReponse": 0,
+      "explication": "Un contrat instantané s'exécute en une fois (une vente au comptant) ; ici la maintenance dure un an.",
+      "difficulte": 2
+    }
+  ]
+}

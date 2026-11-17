@@ -1,0 +1,134 @@
+{
+  "formatVersion": 1,
+  "id": "libre-algo-p3-s01",
+  "matiere": "Algorithmique appliquée",
+  "bloc": "Bloc 6",
+  "partie": "Partie 3 – Modules",
+  "sequence": null,
+  "seance": "S1 – Utiliser des fonctions existantes",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Lire la signature d'une fonction, l'appeler avec les bons arguments, récupérer sa valeur de retour et se servir de l'aide d'une bibliothèque.",
+  "notions": [
+    "Fonction et procédure",
+    "Signature d'une fonction",
+    "Appel correct et aide",
+    "Bibliothèques standard",
+    "Utiliser la valeur de retour"
+  ],
+  "sections": [
+    {
+      "id": "libre-algo-p3-s01-s01",
+      "titre": "Fonction ou procédure ?",
+      "contenu": "Un **module** (ou sous-programme) est un bloc de code nommé qu'on peut appeler autant de fois qu'on veut. Il en existe deux sortes :\n\n| | Fonction | Procédure |\n|---|---|---|\n| rôle | **calcule et renvoie** une valeur | **agit** (affiche, modifie…) sans rien renvoyer |\n| exemple | `len(\"abc\")` renvoie 3 | `print(\"abc\")` affiche |\n| usage | dans une expression : `n = len(t) + 1` | comme une instruction seule |\n\nEn Python, les deux s'écrivent avec `def` ; une procédure est simplement une fonction qui ne renvoie rien (elle renvoie en fait `None`).\n\n**Critère de choix** : si l'appelant a besoin d'un résultat pour continuer son calcul → fonction. Si l'on veut seulement produire un effet → procédure.",
+      "notions": [
+        "Fonction et procédure"
+      ]
+    },
+    {
+      "id": "libre-algo-p3-s01-s02",
+      "titre": "Lire une signature",
+      "contenu": "La **signature** d'un module indique comment l'appeler : son **nom**, ses **paramètres** (nombre, ordre, type) et le **type de retour**.\n\n```text\nFONCTION arrondir(nombre : réel, decimales : entier) : réel\n```\n\nEn Python, l'aide (`help(round)`) affiche :\n```text\nround(number, ndigits=None)\n```\n- `number` : obligatoire ;\n- `ndigits=None` : **facultatif**, avec une valeur par défaut. Sans lui, `round` renvoie un entier.\n\nD'autres signatures utiles :\n\n| Signature | Exemple d'appel | Résultat |\n|---|---|---|\n| `math.sqrt(x)` | `math.sqrt(49)` | `7.0` |\n| `random.randint(a, b)` | `random.randint(1, 6)` | entier entre 1 et 6 **inclus** |\n| `max(a, b, ...)` | `max(4, 9, 2)` | `9` |\n| `str.replace(old, new)` | `\"a-b\".replace(\"-\", \"/\")` | `\"a/b\"` |\n\nUn **appel correct** respecte le nombre, l'ordre et le type des arguments. `random.randint(6)` provoque une `TypeError` : il manque un argument.",
+      "notions": [
+        "Signature d'une fonction",
+        "Appel correct et aide"
+      ]
+    },
+    {
+      "id": "libre-algo-p3-s01-s03",
+      "titre": "Importer une bibliothèque",
+      "contenu": "Les fonctions qui ne sont pas « intégrées » se trouvent dans des **modules de la bibliothèque standard**, qu'on importe :\n\n```python\nimport math                 # on écrit ensuite math.sqrt(…)\nfrom random import randint  # on écrit directement randint(…)\n\nprint(math.pi)              # 3.141592653589793\nprint(math.floor(4.7))      # 4 (arrondi inférieur)\nde = randint(1, 6)          # lancer de dé\n```\n\nBibliothèques utiles : `math` (calcul), `random` (hasard), `datetime` (dates), `statistics` (moyenne, médiane).\n\nAvant d'utiliser une fonction inconnue : lis sa **signature** et sa **documentation** (`help(...)` ou la documentation en ligne de Python), puis teste-la sur un exemple simple dans la console.",
+      "notions": [
+        "Bibliothèques standard"
+      ]
+    },
+    {
+      "id": "libre-algo-p3-s01-s04",
+      "titre": "Récupérer la valeur renvoyée",
+      "contenu": "Une fonction renvoie une valeur : **il faut l'utiliser**, sinon elle est perdue.\n\n```python\nnom = \"  Lina  \"\nnom.strip()          # renvoie \"Lina\"… mais on ne la garde pas !\nprint(nom)           # \"  Lina  \" : nom n'a pas changé\nnom = nom.strip()    # correct : on range la valeur renvoyée\n```\n\nLes chaînes ne sont jamais modifiées par leurs méthodes : `strip`, `upper`, `replace` **renvoient une nouvelle chaîne**. Les listes, elles, ont des méthodes qui modifient sur place (`append`, `sort`) et renvoient `None`.",
+      "notions": [
+        "Utiliser la valeur de retour"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-algo-p3-s01-c001",
+      "section": "libre-algo-p3-s01-s01",
+      "type": "qcm",
+      "question": "Un module doit vérifier si un mot de passe fait au moins 12 caractères. Fonction ou procédure ?",
+      "choix": [
+        "Fonction booléenne : elle renvoie Vrai ou Faux",
+        "Procédure : elle affiche le résultat",
+        "Ni l'une ni l'autre",
+        "Procédure, car elle ne modifie rien"
+      ],
+      "bonneReponse": 0,
+      "explication": "L'appelant a besoin du résultat (pour redemander, refuser…) : une fonction qui renvoie un booléen est plus réutilisable qu'un affichage.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p3-s01-c002",
+      "section": "libre-algo-p3-s01-s01",
+      "type": "question",
+      "recto": "Que renvoie en Python une fonction qui ne contient aucun `return` ?",
+      "verso": "`None` : c'est en pratique une procédure.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p3-s01-c003",
+      "section": "libre-algo-p3-s01-s02",
+      "type": "qcm",
+      "question": "La signature est `FONCTION remise(prix : réel, taux : réel) : réel`. Quel appel est correct ?",
+      "choix": [
+        "`total ← remise(80.0, 0.1)`",
+        "`remise(80.0)`",
+        "`total ← remise(\"80\", 0.1)`",
+        "`remise ← total(80.0, 0.1)`"
+      ],
+      "bonneReponse": 0,
+      "explication": "Deux réels dans l'ordre prix puis taux, et on récupère la valeur renvoyée.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p3-s01-c004",
+      "section": "libre-algo-p3-s01-s02",
+      "type": "question",
+      "recto": "Que signifie `ndigits=None` dans la signature `round(number, ndigits=None)` ?",
+      "verso": "Que le paramètre `ndigits` est facultatif : s'il est omis, il vaut `None` par défaut.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p3-s01-c005",
+      "section": "libre-algo-p3-s01-s03",
+      "type": "qcm",
+      "question": "Après `import math`, quelle écriture permet de calculer une racine carrée ?",
+      "choix": [
+        "`math.sqrt(16)`",
+        "`sqrt(16)`",
+        "`math(16).sqrt`",
+        "`import sqrt(16)`"
+      ],
+      "bonneReponse": 0,
+      "explication": "Avec `import math`, on préfixe par le nom du module. `sqrt(16)` seul marcherait après `from math import sqrt`.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p3-s01-c006",
+      "section": "libre-algo-p3-s01-s04",
+      "type": "qcm",
+      "question": "Que vaut `t` après `t = [3, 1, 2]` puis `t = t.sort()` ?",
+      "choix": [
+        "None",
+        "[1, 2, 3]",
+        "[3, 1, 2]",
+        "Erreur"
+      ],
+      "bonneReponse": 0,
+      "explication": "`sort` trie sur place et renvoie `None` ; on a écrasé la liste. Il fallait écrire `t.sort()` seul, ou `t = sorted(t)`.",
+      "difficulte": 3
+    }
+  ]
+}

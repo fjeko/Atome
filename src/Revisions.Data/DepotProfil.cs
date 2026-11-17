@@ -89,6 +89,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
                 : defaut.RetentionCible,
             DossierPacks = valeurs.GetValueOrDefault("dossier_packs"),
             DossierCours = valeurs.GetValueOrDefault("dossier_cours"),
+            CoursLibres = valeurs.GetValueOrDefault("cours_libres") switch { "1" => true, "0" => false, _ => null },
             // Une valeur abîmée ou inconnue retombe sur un choix sûr plutôt que de faire planter l'affichage.
             // Jamais choisi (premier lancement) : Crépuscule.
             Theme = valeurs.TryGetValue("theme", out var cleTheme) ? Themes.Trouver(cleTheme).Cle : "crepuscule",
@@ -108,6 +109,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
         EcrireValeur("retention_cible", r.RetentionCible.ToString(CultureInfo.InvariantCulture));
         EcrireValeur("dossier_packs", r.DossierPacks);
         EcrireValeur("dossier_cours", r.DossierCours);
+        EcrireValeur("cours_libres", r.CoursLibres is { } libres ? (libres ? "1" : "0") : null);
         EcrireValeur("theme", r.Theme);
         EcrireValeur("couleur_accent", r.CouleurAccent);
         EcrireValeur("verifier_mises_a_jour", r.VerifierMisesAJour ? "1" : "0");
@@ -192,7 +194,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
             JOIN carte c ON c.id = r.carte_id
             JOIN pack p ON p.id = c.pack_id
             JOIN matiere m ON m.id = p.matiere_id
-            WHERE r.jour >= @depuis AND r.stabilite_avant IS NOT NULL
+            WHERE r.jour >= @depuis AND r.stabilite_avant IS NOT NULL AND p.masque = 0
             GROUP BY m.nom ORDER BY m.nom
             """, new { depuis = BaseDeDonnees.Iso(depuis) }).ToList();
     }

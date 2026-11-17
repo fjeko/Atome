@@ -31,6 +31,9 @@ public partial class LectureViewModel : ObservableObject
     public bool DansUneFenetre { get; }
     public bool PeutReviser { get; }
 
+    /// <summary>Les cours libres n'ont pas de document d'origine : le bouton PDF est alors masqué.</summary>
+    public bool ADocumentSource => _seance.SourceFichier.Length > 0;
+
     /// <summary>Libellé du bouton : « Voir le PDF » pour un PDF, « Voir le cours d'origine » sinon.</summary>
     public string LibelleSource => Path.GetExtension(_seance.SourceFichier).Equals(".pdf", StringComparison.OrdinalIgnoreCase) ? "Voir le PDF" : "Voir le cours d'origine";
 

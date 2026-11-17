@@ -1,0 +1,110 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq1-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ1 – Installer et configurer de nouveaux postes",
+  "sequence": null,
+  "seance": "S03 – Stratégies de groupe locales",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Imposer des réglages sur un poste avec les stratégies de groupe locales : configuration ordinateur ou utilisateur, ordre d'application, vérification et rafraîchissement, avec deux exemples concrets.",
+  "notions": [
+    "Stratégie de groupe locale",
+    "Configuration ordinateur et utilisateur",
+    "Ordre d'application",
+    "Vérifier et rafraîchir",
+    "Exemples de stratégies"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq1-s03-s01",
+      "titre": "Qu'est-ce qu'une stratégie de groupe ?",
+      "contenu": "Une **stratégie de groupe** (GPO, *Group Policy Object*) est un ensemble de réglages **imposés** : l'utilisateur ne peut pas les modifier. Elle écrit en fait des valeurs dans le registre, mais de façon contrôlée et documentée.\n\nSur un poste isolé, on utilise la **stratégie locale** avec l'éditeur `gpedit.msc` (éditions Professionnel et supérieures). Deux grandes branches :\n- **Configuration ordinateur** : s'applique à la **machine**, quel que soit l'utilisateur (au démarrage) ;\n- **Configuration utilisateur** : s'applique aux **utilisateurs** (à l'ouverture de session).\n\nDans un réseau d'entreprise, on utilise plutôt des GPO **de domaine**, gérées de façon centralisée sur le serveur (vu plus tard). Ne confonds pas les deux : la locale ne concerne que **ce poste**.",
+      "notions": [
+        "Stratégie de groupe locale",
+        "Configuration ordinateur et utilisateur"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s03-s02",
+      "titre": "Ordre d'application",
+      "contenu": "Plusieurs stratégies peuvent s'appliquer. Elles sont traitées dans un ordre, et **la dernière appliquée gagne** en cas de conflit.\n\n1. **Stratégie locale** du poste ;\n2. GPO liées au **site** (réseau) ;\n3. GPO liées au **domaine** ;\n4. GPO liées aux **unités d'organisation**, de la plus haute à la plus proche de l'objet.\n\nMoyen mnémotechnique : **L-S-D-UO**. Conséquence : une GPO de domaine **l'emporte** sur la stratégie locale.\n\nWindows permet aussi plusieurs stratégies locales : une générale, une pour les **administrateurs** ou **non-administrateurs**, et une **par utilisateur** ; la plus spécifique s'applique en dernier.",
+      "notions": [
+        "Ordre d'application"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s03-s03",
+      "titre": "Vérifier et rafraîchir",
+      "contenu": "Les stratégies sont appliquées au démarrage, à l'ouverture de session, puis périodiquement. Pour **forcer** l'application immédiate :\n```bat\ngpupdate /force\n```\nPour **vérifier** ce qui s'applique réellement :\n```bat\ngpresult /r\ngpresult /h C:\\Temp\\rapport-gpo.html\n```\nOn peut aussi utiliser `rsop.msc` (jeu de stratégies résultant). Et surtout : **tester** en ouvrant une session avec un compte concerné.",
+      "notions": [
+        "Vérifier et rafraîchir"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s03-s04",
+      "titre": "Deux exemples concrets",
+      "contenu": "**Restreindre l'accès au Panneau de configuration** pour les utilisateurs :\n*Configuration utilisateur > Modèles d'administration > Panneau de configuration > Interdire l'accès au Panneau de configuration et à l'application Paramètres du PC* → **Activé**.\n\n**Imposer une politique de mots de passe** sur le poste :\n*Configuration ordinateur > Paramètres Windows > Paramètres de sécurité > Stratégies de comptes > Stratégie de mot de passe* :\n| Paramètre | Exemple de valeur |\n| --- | --- |\n| Longueur minimale | 12 caractères |\n| Doit respecter des exigences de complexité | Activé |\n| Conserver l'historique des mots de passe | 5 |\n| Durée de vie maximale | selon la politique de l'organisation |\n\nAprès `gpupdate /force`, on vérifie : tenter d'ouvrir le Panneau avec un compte standard (refus attendu), tenter de définir un mot de passe trop court (refus attendu).",
+      "notions": [
+        "Exemples de stratégies"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq1-s03-c001",
+      "section": "libre-b1-12b-sq1-s03-s01",
+      "type": "qcm",
+      "question": "Une stratégie doit empêcher l'usage des clés USB sur un poste, quel que soit l'utilisateur. Dans quelle branche la configurer ?",
+      "choix": [
+        "Configuration utilisateur",
+        "Configuration ordinateur",
+        "Les deux obligatoirement",
+        "Dans le PATH"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le réglage concerne la machine pour tous ses utilisateurs : Configuration ordinateur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq1-s03-c002",
+      "section": "libre-b1-12b-sq1-s03-s02",
+      "type": "qcm",
+      "question": "La stratégie locale autorise le Panneau de configuration ; une GPO du domaine l'interdit. Que se passe-t-il ?",
+      "choix": [
+        "Le Panneau reste autorisé, car la locale est prioritaire",
+        "Il est interdit, car la GPO de domaine s'applique après la locale",
+        "Les deux s'annulent : réglage par défaut",
+        "Windows affiche une erreur"
+      ],
+      "bonneReponse": 1,
+      "explication": "Ordre L-S-D-UO : la dernière appliquée gagne, et la locale est la première.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b1-12b-sq1-s03-c003",
+      "section": "libre-b1-12b-sq1-s03-s03",
+      "type": "question",
+      "recto": "Quelle commande force l'application immédiate des stratégies de groupe ?",
+      "verso": "`gpupdate /force`",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq1-s03-c004",
+      "section": "libre-b1-12b-sq1-s03-s04",
+      "type": "exercice",
+      "enonce": "À l'agence de voyage Cap Horizon, on veut que les comptes standard ne puissent pas modifier les paramètres du PC, et que les mots de passe fassent au moins 10 caractères. Indique la branche de chaque réglage et comment vérifier.",
+      "etapes": [
+        "Paramètres du PC : Configuration utilisateur > Modèles d'administration > Panneau de configuration > Interdire l'accès… = Activé.",
+        "Mots de passe : Configuration ordinateur > Paramètres Windows > Paramètres de sécurité > Stratégies de comptes > Stratégie de mot de passe > Longueur minimale = 10.",
+        "Appliquer avec `gpupdate /force`, contrôler avec `gpresult /r`.",
+        "Tester avec un compte standard : ouverture des paramètres refusée, mot de passe de 8 caractères refusé."
+      ],
+      "reponse": "Le premier réglage est dans Configuration utilisateur, le second dans Configuration ordinateur ; on vérifie avec gpresult et des essais réels.",
+      "difficulte": 2
+    }
+  ]
+}

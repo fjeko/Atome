@@ -1,0 +1,111 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq3-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie I – SQ3 – Programmation orientée objet en C#",
+  "sequence": null,
+  "seance": "S03 – Collections, tri, affichage et sérialisation",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Gérer des ensembles d'objets avec les listes génériques, les trier selon un critère, définir leur affichage texte et les sauvegarder dans un fichier par sérialisation.",
+  "notions": [
+    "Listes génériques",
+    "Parcours et modification d'une collection",
+    "Tri personnalisé",
+    "Redéfinition de ToString",
+    "Sérialisation"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq3-s03-s01",
+      "titre": "Les listes génériques",
+      "contenu": "Contrairement à un tableau, une `List<T>` a une **taille variable** :\n```csharp\nList<Adherent> adherents = new List<Adherent>();\nadherents.Add(new Adherent(\"Lina Moreau\", 2019));\nadherents.Add(new Adherent(\"Paul Girard\", 2024));\n\nint nb = adherents.Count;            // nombre d'éléments\nAdherent premier = adherents[0];\nadherents.RemoveAt(1);               // supprime par indice\nadherents.Remove(premier);           // supprime un objet précis\nbool existe = adherents.Contains(premier);\n```\n`T` est le **type des éléments** : une `List<Adherent>` ne peut contenir que des adhérents (le compilateur le vérifie, c'est le sens de « générique »).\n\n**Piège** : modifier une liste **pendant** qu'on la parcourt avec `foreach` provoque une exception (`InvalidOperationException`). Solutions : parcourir **à l'envers** avec `for`, ou utiliser `RemoveAll` :\n```csharp\nadherents.RemoveAll(a => a.AnneeInscription < 2015);\n```",
+      "notions": [
+        "Listes génériques",
+        "Parcours et modification d'une collection"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s03-s02",
+      "titre": "Trier selon un critère",
+      "contenu": "`liste.Sort()` sait trier des nombres ou des chaînes, mais comment trier des **adhérents** ? Il faut lui dire **comment comparer deux objets**.\n```csharp\n// Tri par nom (ordre alphabétique)\nadherents.Sort((a, b) => a.Nom.CompareTo(b.Nom));\n\n// Tri par nombre d'emprunts décroissant\nadherents.Sort((a, b) => b.NbEmprunts.CompareTo(a.NbEmprunts));\n```\n`x.CompareTo(y)` renvoie un nombre **négatif** si x vient avant y, **0** s'ils sont égaux, **positif** si x vient après.\n\nAutre possibilité : faire implémenter à la classe l'interface `IComparable<Adherent>` pour définir son ordre « naturel ».",
+      "notions": [
+        "Tri personnalisé"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s03-s03",
+      "titre": "Afficher un objet : ToString",
+      "contenu": "Tout objet hérite de la méthode `ToString()`. Par défaut, elle renvoie le nom de la classe (`Bibliotheque.Adherent`), ce qui est inutile. On la **redéfinit** :\n```csharp\npublic override string ToString()\n{\n    return $\"{Nom} (inscrit en {AnneeInscription}) – {NbEmprunts} prêt(s)\";\n}\n```\nC'est cette méthode qu'utilisent `Console.WriteLine(objet)`, l'interpolation `$\"{objet}\"` et les contrôles comme `ListBox` pour afficher l'objet.",
+      "notions": [
+        "Redéfinition de ToString"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s03-s04",
+      "titre": "Sauvegarder par sérialisation",
+      "contenu": "Quand l'application se ferme, les objets en mémoire **disparaissent**. Pour les retrouver, on les **sérialise** : on les transforme en un format texte ou binaire qu'on écrit dans un fichier. Au démarrage, on **désérialise** pour reconstruire les objets.\n\nAvec JSON (`System.Text.Json`) :\n```csharp\nusing System.Text.Json;\n\n// Sauvegarde\nstring json = JsonSerializer.Serialize(adherents, new JsonSerializerOptions { WriteIndented = true });\nFile.WriteAllText(\"adherents.json\", json);\n\n// Chargement\nif (File.Exists(\"adherents.json\"))\n{\n    string contenu = File.ReadAllText(\"adherents.json\");\n    adherents = JsonSerializer.Deserialize<List<Adherent>>(contenu);\n}\n```\nPar défaut, le sérialiseur JSON enregistre les **propriétés publiques** : les attributs privés sans propriété ne sont pas sauvegardés.",
+      "notions": [
+        "Sérialisation"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq3-s03-c001",
+      "section": "libre-b1-12a-sq3-s03-s01",
+      "type": "qcm",
+      "question": "Ce code lève une exception. Pourquoi ?\n```csharp\nforeach (Adherent a in adherents)\n    if (a.NbEmprunts == 0) adherents.Remove(a);\n```",
+      "choix": [
+        "`Remove` n'existe pas sur une liste",
+        "On modifie la liste pendant son parcours par foreach",
+        "NbEmprunts est privé",
+        "Une liste ne peut pas contenir d'objets"
+      ],
+      "bonneReponse": 1,
+      "explication": "`foreach` interdit de modifier la collection parcourue. On utilise `RemoveAll` ou une boucle `for` à l'envers.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq3-s03-c002",
+      "section": "libre-b1-12a-sq3-s03-s02",
+      "type": "qcm",
+      "question": "Que renvoie `5.CompareTo(9)` ?",
+      "choix": [
+        "Un nombre négatif",
+        "0",
+        "Un nombre positif",
+        "true"
+      ],
+      "bonneReponse": 0,
+      "explication": "5 vient avant 9 : le résultat est négatif.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq3-s03-c003",
+      "section": "libre-b1-12a-sq3-s03-s03",
+      "type": "question",
+      "recto": "Pourquoi redéfinir `ToString()` dans une classe métier ?",
+      "verso": "Pour obtenir un affichage texte lisible de l'objet, utilisé automatiquement par les affichages et les listes (sinon on voit seulement le nom de la classe).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq3-s03-c004",
+      "section": "libre-b1-12a-sq3-s03-s04",
+      "type": "qcm",
+      "question": "Qu'est-ce que la sérialisation ?",
+      "choix": [
+        "Trier une liste d'objets",
+        "Transformer des objets en un format enregistrable (JSON, XML, binaire) pour les sauvegarder ou les transmettre",
+        "Numéroter les objets",
+        "Chiffrer un fichier"
+      ],
+      "bonneReponse": 1,
+      "explication": "La sérialisation permet la persistance : les objets survivent à la fermeture de l'application.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-22-sq2-s05",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.2 – SQ2 – Qualité logicielle et tests unitaires",
+  "sequence": null,
+  "seance": "S05 – Nettoyer une application",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Appliquer les principes sur une vraie application : repérer les défauts avec l'analyseur et la relecture, refactoriser par petites étapes et vérifier par les tests que le comportement est inchangé.",
+  "notions": [
+    "Démarche de refactorisation",
+    "Extraire une méthode",
+    "Indicateurs de qualité"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-22-sq2-s05-s01",
+      "titre": "Démarche de nettoyage",
+      "contenu": "1. **Sécuriser** : s'assurer qu'il existe des tests (sinon en écrire sur le comportement actuel).\n2. **Repérer** : signalements de l'analyseur, duplications, méthodes longues, classes fourre-tout.\n3. **Prioriser** : d'abord ce qui est risqué ou souvent modifié.\n4. **Refactoriser par petites étapes** : renommer, extraire une méthode, extraire une classe, introduire une interface.\n5. **Relancer les tests** après chaque étape, puis **committer**.\n\nOn ne mélange pas nettoyage et nouvelle fonctionnalité dans le même commit.",
+      "notions": [
+        "Démarche de refactorisation"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq2-s05-s02",
+      "titre": "Exemple de refactorisation",
+      "contenu": "Avant :\n\n```csharp\npublic void Valider(Commande c)\n{\n    if (c.Lignes.Count == 0) throw new Exception(\"Vide\");\n    decimal t = 0;\n    foreach (var l in c.Lignes) t += l.Prix * l.Quantite;\n    if (c.Client.Fidele) t = t * 0.95m;\n    c.Total = t;\n    using var cnx = new MySqlConnection(\"server=...\");  // SQL dans le métier\n    // ... INSERT ...\n}\n```\n\nAprès :\n\n```csharp\npublic void Valider(Commande c)\n{\n    VerifierNonVide(c);\n    c.Total = calculateur.Total(c);   // calcul isolé et testable\n    dao.Enregistrer(c);               // accès aux données injecté\n}\n```\n\nChaque morceau a un nom clair et une seule responsabilité.",
+      "notions": [
+        "Extraire une méthode"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq2-s05-s03",
+      "titre": "Mesurer l'amélioration",
+      "contenu": "Après nettoyage, compare les **indicateurs** : nombre de signalements de l'analyseur, complexité des méthodes, duplication, couverture de tests. Ils doivent s'améliorer **sans** régression fonctionnelle (tous les tests au vert).",
+      "notions": [
+        "Indicateurs de qualité"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-22-sq2-s05-c001",
+      "section": "libre-b2-22-sq2-s05-s01",
+      "type": "question",
+      "recto": "Pourquoi faut-il des tests avant de refactoriser ?",
+      "verso": "Parce que la refactorisation ne doit **pas changer le comportement** : les tests permettent de le vérifier après chaque étape.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq2-s05-c002",
+      "section": "libre-b2-22-sq2-s05-s02",
+      "type": "exercice",
+      "enonce": "Une méthode de 80 lignes vérifie un formulaire d'inscription, calcule l'âge, choisit la catégorie et enregistre en base. Propose un découpage.",
+      "etapes": [
+        "`VerifierSaisie(formulaire)` : champs obligatoires et formats.",
+        "`CalculerAge(dateNaissance)` : méthode pure, facile à tester.",
+        "`ChoisirCategorie(age)` : règle métier isolée.",
+        "`inscriptionDAO.Enregistrer(inscription)` : accès aux données dans la DAL.",
+        "La méthode d'origine ne fait plus qu'enchaîner ces appels."
+      ],
+      "reponse": "Quatre méthodes ou classes à responsabilité unique, appelées par une méthode courte et lisible.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq2-s05-c003",
+      "section": "libre-b2-22-sq2-s05-s03",
+      "type": "qcm",
+      "question": "Quel résultat montre une refactorisation réussie ?",
+      "choix": [
+        "Plus de lignes de code",
+        "Moins de signalements et de duplication, avec tous les tests toujours au vert",
+        "Des tests désactivés",
+        "Une nouvelle fonctionnalité"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le comportement est identique et la qualité mesurée s'améliore.",
+      "difficulte": 1
+    }
+  ]
+}

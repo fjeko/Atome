@@ -1,0 +1,63 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-15-sq3-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.5 – SQ3 – Déployer une solution de gestion de parc dans un nouvel environnement",
+  "sequence": null,
+  "seance": "S01 – Préparer les serveurs à partir de modèles",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Gagner du temps en réutilisant des modèles de serveurs préparés : clonage, personnalisation de chaque clone et ordre de démarrage selon les dépendances.",
+  "notions": [
+    "Modèles de serveurs",
+    "Personnaliser un clone",
+    "Dépendances au démarrage"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-15-sq3-s01-s01",
+      "titre": "Modèles et clones",
+      "contenu": "Pour déployer une application de gestion de parc (par exemple GLPI) chez un client, on part de **modèles** déjà préparés : un serveur Linux à jour, durci, avec le compte d'administration. On les **clone** pour créer :\n- `srv-glpi-web` (serveur web + PHP) ;\n- `srv-glpi-bdd` (MariaDB).\n\nChaque clone doit être **personnalisé** :\n```bash\nsudo hostnamectl set-hostname srv-glpi-web\nsudo nano /etc/hosts                     # remplacer l'ancien nom\nsudo rm /etc/machine-id && sudo systemd-machine-id-setup\nsudo rm /etc/ssh/ssh_host_* && sudo dpkg-reconfigure openssh-server\n# adresse IP statique propre au clone (netplan ou /etc/network/interfaces)\n```\n**Piège** : oublier de changer le nom ou l'adresse : deux serveurs identiques sur le réseau.",
+      "notions": [
+        "Modèles de serveurs",
+        "Personnaliser un clone"
+      ]
+    },
+    {
+      "id": "libre-b1-15-sq3-s01-s02",
+      "titre": "Ordre de démarrage",
+      "contenu": "L'application web dépend de la base : si `srv-glpi-web` démarre avant `srv-glpi-bdd`, l'application affiche une erreur de connexion à la base. De même, tout dépend du **DNS**.\n\nOn définit l'**ordre de démarrage** des VM dans l'hyperviseur (avec délais) :\n1. contrôleur de domaine / DNS ;\n2. serveur de base de données ;\n3. serveur web ;\n4. postes et services clients.\nEt l'arrêt dans l'ordre inverse.",
+      "notions": [
+        "Dépendances au démarrage"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-15-sq3-s01-c001",
+      "section": "libre-b1-15-sq3-s01-s01",
+      "type": "question",
+      "recto": "Quels éléments faut-il changer sur un clone de serveur Linux ?",
+      "verso": "Le nom d'hôte (et /etc/hosts), l'adresse IP, l'identifiant machine, les clés SSH de l'hôte, et éventuellement les mots de passe propres au serveur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-15-sq3-s01-c002",
+      "section": "libre-b1-15-sq3-s01-s02",
+      "type": "qcm",
+      "question": "Après une coupure de courant, l'application de gestion de parc affiche « impossible de se connecter à la base » alors que tout semble allumé. Cause probable ?",
+      "choix": [
+        "La base a été effacée",
+        "Le serveur web a démarré avant que la base de données soit disponible",
+        "Le DNS n'existe pas",
+        "Les postes sont trop nombreux"
+      ],
+      "bonneReponse": 1,
+      "explication": "Respecter l'ordre de démarrage (DNS, base, web) évite ces erreurs ; un redémarrage du service web suffit souvent.",
+      "difficulte": 2
+    }
+  ]
+}

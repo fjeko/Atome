@@ -109,6 +109,8 @@ public sealed class Reglages
     public double RetentionCible { get; set; } = 0.9;
     public string? DossierPacks { get; set; }
     public string? DossierCours { get; set; }
+    /// <summary>Cours libres intégrés : null = pas encore décidé, vrai = chargés, faux = masqués.</summary>
+    public bool? CoursLibres { get; set; }
     /// <summary>Clé du thème choisi : « systeme », « clair », « sombre », « ocean »… (voir Apparence.Themes).</summary>
     public string Theme { get; set; } = "crepuscule";
     /// <summary>Couleur d'accent choisie, au format « #RRGGBB », ou null pour celle du thème.</summary>

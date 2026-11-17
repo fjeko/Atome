@@ -39,4 +39,11 @@
     <Content Include="Web\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
+  <!-- Cours libres (CC BY-SA 4.0) livrés avec Atome : copiés dans « contenu-libre » à côté de l'exécutable
+       (build, publier.ps1, setup Inno et ZIP portable partent tous du dossier de publication). -->
+  <ItemGroup>
+    <Content Include="..\..\contenu-libre\**\*" Link="contenu-libre\%(RecursiveDir)%(Filename)%(Extension)"
+             CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

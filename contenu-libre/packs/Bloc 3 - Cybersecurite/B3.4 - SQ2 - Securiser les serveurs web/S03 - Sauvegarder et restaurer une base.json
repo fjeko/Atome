@@ -1,0 +1,117 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-34-sq2-s03",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.4 – SQ2 – Sécuriser les serveurs web",
+  "sequence": null,
+  "seance": "S03 – Sauvegarder et restaurer une base",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une stratégie de sauvegarde fixe le nombre de copies, les supports, la copie hors site, la fréquence et la durée de conservation. On exporte la base en ligne de commande, on transfère la copie de façon sécurisée, on planifie, et surtout on teste la restauration.",
+  "notions": [
+    "Stratégie de sauvegarde",
+    "RPO",
+    "mysqldump",
+    "Restauration de base",
+    "Copie sécurisée",
+    "Planification cron",
+    "Test de restauration"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-34-sq2-s03-s01",
+      "titre": "Principes",
+      "contenu": "Règle **3-2-1** : 3 copies, 2 supports différents, 1 hors site (idéalement une **hors ligne** ou **immuable**, contre les rançongiciels).\n\nQuestions de la stratégie :\n- **quoi** : base, fichiers téléversés, configuration, certificats ;\n- **quand** : fréquence liée à la **perte de données acceptable** (**RPO** : si on accepte de perdre au plus 24 h de données, une sauvegarde par jour au minimum) ;\n- **combien de temps** : rétention (7 quotidiennes, 4 hebdomadaires, 12 mensuelles…), en cohérence avec les durées RGPD ;\n- **où** : pas sur le même serveur ni le même disque ;\n- **protection** : sauvegardes **chiffrées**, accès restreint.",
+      "notions": [
+        "Stratégie de sauvegarde",
+        "RPO"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq2-s03-s02",
+      "titre": "Exporter en ligne de commande",
+      "contenu": "```bash\n# Export cohérent d'une base InnoDB, compressé\nmysqldump --single-transaction --routines -u sauvegarde -p'***' boutique | gzip > /srv/backup/boutique_$(date +%F).sql.gz\n\n# Restauration (sur un serveur de test d'abord !)\ngunzip < boutique_2026-11-17.sql.gz | mysql -u admin -p boutique_test\n```\n\nLe compte `sauvegarde` n'a que les droits nécessaires (`SELECT`, `LOCK TABLES`, `SHOW VIEW`, `TRIGGER`…). Pour PostgreSQL : `pg_dump` et `pg_restore`.\n\nMettre le mot de passe dans la ligne de commande l'expose (historique, liste des processus) : on préfère un fichier d'options protégé (`~/.my.cnf` en droits 600).",
+      "notions": [
+        "mysqldump",
+        "Restauration de base"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq2-s03-s03",
+      "titre": "Copie sécurisée et planification",
+      "contenu": "Transférer la sauvegarde hors du serveur, **de façon chiffrée** :\n\n```bash\nscp /srv/backup/boutique_2026-11-17.sql.gz backup@stockage.interne:/sauvegardes/   # SSH\n# ou rsync -e ssh, ou un outil chiffrant (restic, borg)\n```\n\nPlanifier avec **cron** (`crontab -e`) :\n\n```text\n# Tous les jours à 2 h 30 : export, compression, envoi, purge des copies locales de plus de 7 jours\n30 2 * * * /usr/local/bin/sauvegarde_boutique.sh >> /var/log/sauvegarde.log 2>&1\n```\n\nLe script doit **vérifier** le succès de chaque étape et **alerter** en cas d'échec.",
+      "notions": [
+        "Copie sécurisée",
+        "Planification cron"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq2-s03-s04",
+      "titre": "Tester la restauration",
+      "contenu": "Une sauvegarde **jamais restaurée** n'est qu'un espoir. Régulièrement (par ex. chaque mois) :\n1. restaurer sur un **serveur de test** ;\n2. vérifier : nombre de lignes des tables principales, dernière commande présente, application fonctionnelle ;\n3. **chronométrer** la restauration (utile pour le plan de reprise) ;\n4. consigner le résultat.",
+      "notions": [
+        "Test de restauration"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-34-sq2-s03-c001",
+      "section": "libre-b3-34-sq2-s03-s01",
+      "type": "qcm",
+      "question": "Les sauvegardes de la base sont stockées dans `/var/backups` sur le serveur web. Quel est le problème ?",
+      "choix": [
+        "Aucun",
+        "Une panne, un vol ou un rançongiciel sur le serveur détruit aussi les sauvegardes",
+        "Le dossier est trop petit",
+        "Les sauvegardes doivent être en PDF"
+      ],
+      "bonneReponse": 1,
+      "explication": "Il faut au moins une copie sur un autre support, hors site.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq2-s03-c002",
+      "section": "libre-b3-34-sq2-s03-s02",
+      "type": "question",
+      "recto": "Pourquoi utiliser l'option `--single-transaction` avec mysqldump sur une base InnoDB ?",
+      "verso": "Pour obtenir une **copie cohérente** de la base à un instant donné, sans bloquer les écritures pendant l'export.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq2-s03-c003",
+      "section": "libre-b3-34-sq2-s03-s03",
+      "type": "exercice",
+      "enonce": "Écris un script de sauvegarde quotidienne de la base `boutique` : export compressé daté, copie vers `stockage.interne` en SSH, suppression des copies locales de plus de 7 jours, message en cas d'échec.",
+      "etapes": [
+        "En-tête et arrêt à la première erreur : `#!/bin/bash` puis `set -euo pipefail`.",
+        "Variables : `F=/srv/backup/boutique_$(date +%F).sql.gz`.",
+        "Export (identifiants dans ~/.my.cnf) : `mysqldump --single-transaction boutique | gzip > \"$F\"`.",
+        "Copie : `scp \"$F\" backup@stockage.interne:/sauvegardes/`.",
+        "Purge : `find /srv/backup -name 'boutique_*.sql.gz' -mtime +7 -delete`.",
+        "Alerte : `trap 'echo \"Échec sauvegarde $(date)\" | mail -s \"SAUVEGARDE KO\" admin@exemple.test' ERR`.",
+        "Planifier avec cron à 2 h 30."
+      ],
+      "reponse": "Script bash avec set -euo pipefail, mysqldump | gzip, scp, find -mtime +7 -delete, trap ERR pour l'alerte, lancé par cron.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b3-34-sq2-s03-c004",
+      "section": "libre-b3-34-sq2-s03-s04",
+      "type": "qcm",
+      "question": "Quelle est la seule façon de savoir qu'une sauvegarde est utilisable ?",
+      "choix": [
+        "Vérifier que le fichier existe",
+        "Regarder sa taille",
+        "La restaurer effectivement sur un environnement de test et vérifier les données",
+        "Faire confiance au script"
+      ],
+      "bonneReponse": 2,
+      "explication": "Seule une restauration réelle prouve la validité.",
+      "difficulte": 1
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq2-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – SQ2 – Refonte d'un site web dynamique (PHP, MVC, SQL, responsive)",
+  "sequence": null,
+  "seance": "S03 – SQL : projection, restriction, jointure",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les bases de données relationnelles (tables, enregistrements, champs, clés primaires et étrangères, intégrité référentielle) et les requêtes SQL de sélection : projection, restriction, motifs et jointures.",
+  "notions": [
+    "Avantages d'une base de données",
+    "Table enregistrement champ",
+    "Clés primaire étrangère composée",
+    "Intégrité référentielle",
+    "Projection",
+    "Restriction et motifs",
+    "Jointure"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq2-s03-s01",
+      "titre": "Le modèle relationnel",
+      "contenu": "Une **base de données relationnelle** range les informations dans des **tables** liées. Avantages par rapport à un tableur : pas de doublons, données cohérentes, accès simultané de nombreux utilisateurs, requêtes puissantes, sécurité.\n\nVocabulaire : une **table** (JEU), des **champs**/colonnes (titre, age_min), des **enregistrements**/lignes (un jeu précis).\n\nSchéma de la ludothèque :\n```text\nCATEGORIE (id_categorie, libelle)\nJEU (id_jeu, titre, age_min, duree, #id_categorie)\nADHERENT (id_adherent, nom, prenom, ville)\nEMPRUNT (#id_jeu, #id_adherent, date_emprunt, date_retour)\n```\n- **Clé primaire** (soulignée) : identifie **chaque ligne de façon unique** (`id_jeu`).\n- **Clé étrangère** (`#`) : référence la clé primaire d'une autre table (`JEU.id_categorie` → `CATEGORIE.id_categorie`).\n- **Clé composée** : clé primaire faite de plusieurs champs (`EMPRUNT` : `id_jeu` + `id_adherent` + `date_emprunt`).\n- **Intégrité référentielle** : une clé étrangère doit pointer vers une ligne **existante** : impossible d'enregistrer un jeu dans une catégorie 99 qui n'existe pas, ou de supprimer une catégorie encore utilisée.",
+      "notions": [
+        "Avantages d'une base de données",
+        "Table enregistrement champ",
+        "Clés primaire étrangère composée",
+        "Intégrité référentielle"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq2-s03-s02",
+      "titre": "Projection et restriction",
+      "contenu": "**Projection** : sélectionner les **colonnes** voulues.\n```sql\nSELECT titre, duree FROM JEU;\n```\n**Restriction** : choisir les **lignes** avec `WHERE`.\n```sql\nSELECT titre FROM JEU WHERE age_min <= 8 AND duree < 45;\nSELECT nom FROM ADHERENT WHERE ville IN ('Albi', 'Gaillac');\nSELECT titre FROM JEU WHERE duree BETWEEN 20 AND 40;\nSELECT titre FROM JEU WHERE titre LIKE 'Ca%';      -- commence par « Ca »\nSELECT titre FROM JEU WHERE titre LIKE '%ville%';  -- contient « ville »\nSELECT nom FROM ADHERENT WHERE ville IS NULL;      -- ville non renseignée\nSELECT titre FROM JEU ORDER BY duree DESC;\n```\nDans `LIKE`, `%` = n'importe quelle suite de caractères, `_` = un seul caractère.",
+      "notions": [
+        "Projection",
+        "Restriction et motifs"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq2-s03-s03",
+      "titre": "La jointure",
+      "contenu": "Pour combiner des informations de plusieurs tables, on fait une **jointure** sur la clé étrangère :\n```sql\nSELECT JEU.titre, CATEGORIE.libelle\nFROM JEU\nINNER JOIN CATEGORIE ON JEU.id_categorie = CATEGORIE.id_categorie\nWHERE CATEGORIE.libelle = 'Coopératif';\n```\nTrois tables :\n```sql\nSELECT A.nom, J.titre, E.date_emprunt\nFROM EMPRUNT E\nINNER JOIN ADHERENT A ON E.id_adherent = A.id_adherent\nINNER JOIN JEU J ON E.id_jeu = J.id_jeu\nWHERE E.date_retour IS NULL;      -- emprunts en cours\n```\n**Piège** : oublier la condition de jointure (`ON`). On obtient alors le **produit cartésien** : chaque ligne d'une table combinée avec **toutes** les lignes de l'autre (40 jeux × 6 catégories = 240 lignes absurdes).",
+      "notions": [
+        "Jointure"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq2-s03-c001",
+      "section": "libre-b1-13-sq2-s03-s01",
+      "type": "qcm",
+      "question": "Dans la table JEU, `id_categorie` est…",
+      "choix": [
+        "la clé primaire de JEU",
+        "une clé étrangère qui référence CATEGORIE",
+        "une clé composée",
+        "un enregistrement"
+      ],
+      "bonneReponse": 1,
+      "explication": "Elle fait le lien vers la clé primaire de la table CATEGORIE.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq2-s03-c002",
+      "section": "libre-b1-13-sq2-s03-s02",
+      "type": "exercice",
+      "enonce": "Écris la requête qui affiche le titre et l'âge minimum des jeux dont le titre se termine par « s », triés par titre.",
+      "etapes": [
+        "Projection : titre, age_min.",
+        "Restriction : `titre LIKE '%s'`.",
+        "Tri : `ORDER BY titre`."
+      ],
+      "reponse": "`SELECT titre, age_min FROM JEU WHERE titre LIKE '%s' ORDER BY titre;`",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq2-s03-c003",
+      "section": "libre-b1-13-sq2-s03-s03",
+      "type": "exercice",
+      "enonce": "Écris la requête qui liste le nom des adhérents ayant emprunté le jeu « Azul ».",
+      "etapes": [
+        "Tables nécessaires : ADHERENT (nom), EMPRUNT (lien), JEU (titre).",
+        "Jointure EMPRUNT–ADHERENT sur id_adherent, EMPRUNT–JEU sur id_jeu.",
+        "Restriction sur le titre.",
+        "`DISTINCT` évite les doublons si quelqu'un l'a emprunté plusieurs fois."
+      ],
+      "reponse": "```sql\nSELECT DISTINCT A.nom\nFROM EMPRUNT E\nINNER JOIN ADHERENT A ON E.id_adherent = A.id_adherent\nINNER JOIN JEU J ON E.id_jeu = J.id_jeu\nWHERE J.titre = 'Azul';\n```",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b1-13-sq2-s03-c004",
+      "section": "libre-b1-13-sq2-s03-s03",
+      "type": "qcm",
+      "question": "Une requête sur JEU (40 lignes) et CATEGORIE (6 lignes) renvoie 240 lignes. Que s'est-il passé ?",
+      "choix": [
+        "La base est corrompue",
+        "La condition de jointure a été oubliée : produit cartésien",
+        "Il y a 240 jeux",
+        "Le tri est faux"
+      ],
+      "bonneReponse": 1,
+      "explication": "40 × 6 = 240 : chaque jeu est associé à chaque catégorie.",
+      "difficulte": 2
+    }
+  ]
+}

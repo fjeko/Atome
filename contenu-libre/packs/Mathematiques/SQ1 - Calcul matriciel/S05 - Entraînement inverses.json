@@ -1,0 +1,126 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq1-s05",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "SQ1 – Calcul matriciel",
+  "sequence": null,
+  "seance": "S5 – Entraînement inverses",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Déterminer des inverses de trois façons : vérification d'un produit, déduction depuis une relation, et calculatrice ; reconnaître une matrice non inversible.",
+  "notions": [
+    "Inverse à la calculatrice",
+    "Vérification par le produit",
+    "Inverse à partir d'une relation A × B = k·I",
+    "Matrice non inversible"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq1-s05-s01",
+      "titre": "Avec la calculatrice",
+      "contenu": "Pour les matrices de taille 3 ou plus, on utilise la calculatrice (ou un tableur). La démarche est la même sur tous les modèles :\n\n1. Ouvrir le menu **matrices** et **définir** la matrice (dimension, puis coefficients ligne par ligne).\n2. Revenir à l'écran de calcul, rappeler la matrice, appuyer sur la touche **$x^{-1}$**.\n3. Lire le résultat. S'il est décimal, utiliser la conversion en **fraction** quand c'est possible, sinon arrondir **à la fin**.\n\nSi la calculatrice affiche une erreur (du type « matrice singulière »), la matrice **n'est pas inversible**.\n\nAu tableur : la fonction `INVERSEMAT` (ou `MINVERSE`) renvoie l'inverse d'une plage carrée.\n\n⚠️ Arrondir les coefficients de l'inverse trop tôt fausse les calculs suivants. Garde les valeurs exactes jusqu'au bout.",
+      "notions": [
+        "Inverse à la calculatrice"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s05-s02",
+      "titre": "Vérifier sur une 3 × 3",
+      "contenu": "Le principe ne change pas avec la taille : on calcule le produit et on cherche $I_3$.\n\n$A = \\begin{pmatrix}1 & 1 & 0\\\\0 & 1 & 1\\\\0 & 0 & 1\\end{pmatrix}$ et $B = \\begin{pmatrix}1 & -1 & 1\\\\0 & 1 & -1\\\\0 & 0 & 1\\end{pmatrix}$.\n\n- Ligne 1 de $A$ $(1, 1, 0)$ : avec les colonnes de $B$ → $1$, $-1 + 1 = 0$, $1 - 1 = 0$.\n- Ligne 2 $(0, 1, 1)$ → $0$, $1$, $-1 + 1 = 0$.\n- Ligne 3 $(0, 0, 1)$ → $0$, $0$, $1$.\n\nOn obtient $I_3$ : $B = A^{-1}$. Organise ton brouillon ligne par ligne pour ne rien oublier : 9 coefficients à calculer.",
+      "notions": [
+        "Vérification par le produit"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s05-s03",
+      "titre": "Déduire l'inverse d'une relation",
+      "contenu": "Deux formes reviennent souvent.\n\n**Forme 1 : un produit donné.** $A = \\begin{pmatrix}3 & 1\\\\2 & 2\\end{pmatrix}$ et $B = \\begin{pmatrix}2 & -1\\\\-2 & 3\\end{pmatrix}$.\n\n$$AB = \\begin{pmatrix}6 - 2 & -3 + 3\\\\4 - 4 & -2 + 6\\end{pmatrix} = 4I_2 \\quad\\Rightarrow\\quad A^{-1} = \\frac{1}{4}B = \\begin{pmatrix}0{,}5 & -0{,}25\\\\-0{,}5 & 0{,}75\\end{pmatrix}$$\n\n**Forme 2 : une égalité avec des puissances.** $M = \\begin{pmatrix}1 & 2\\\\3 & 4\\end{pmatrix}$ vérifie $M^2 = 5M + 2I$.\n\n1. $M^2 - 5M = 2I$\n2. $M(M - 5I) = 2I$ (mise en facteur à gauche)\n3. $M^{-1} = \\frac{1}{2}(M - 5I) = \\frac{1}{2}\\begin{pmatrix}-4 & 2\\\\3 & -1\\end{pmatrix} = \\begin{pmatrix}-2 & 1\\\\1{,}5 & -0{,}5\\end{pmatrix}$\n\nContrôle : $M \\times M^{-1}$ doit donner $I_2$. Ligne 1 : $-2 + 3 = 1$ et $1 - 1 = 0$. ✔️",
+      "notions": [
+        "Inverse à partir d'une relation A × B = k·I"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s05-s04",
+      "titre": "Reconnaître une matrice non inversible",
+      "contenu": "$N = \\begin{pmatrix}2 & 6\\\\1 & 3\\end{pmatrix}$ : la calculatrice refuse de l'inverser. Pourquoi ?\n\nObserve que la 2e colonne vaut 3 fois la 1re. Alors $N \\times \\begin{pmatrix}3\\\\-1\\end{pmatrix} = \\begin{pmatrix}6 - 6\\\\3 - 3\\end{pmatrix} = \\begin{pmatrix}0\\\\0\\end{pmatrix}$.\n\nSi $N^{-1}$ existait, en multipliant à gauche par $N^{-1}$ on obtiendrait $\\begin{pmatrix}3\\\\-1\\end{pmatrix} = \\begin{pmatrix}0\\\\0\\end{pmatrix}$, ce qui est absurde. Donc $N$ n'est pas inversible.\n\nÀ retenir : quand une ligne (ou une colonne) est un multiple d'une autre, ou une combinaison d'autres, la matrice n'est pas inversible. Dans un problème, cela signifie que le système n'a pas une solution unique.",
+      "notions": [
+        "Matrice non inversible"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq1-s05-c001",
+      "section": "libre-maths-sq1-s05-s01",
+      "type": "qcm",
+      "question": "La calculatrice affiche une erreur quand tu demandes l'inverse d'une matrice carrée. Qu'en conclus-tu ?",
+      "choix": [
+        "La matrice n'est pas inversible",
+        "Il faut arrondir les coefficients",
+        "Il faut inverser chaque coefficient à la main",
+        "L'inverse vaut la matrice nulle"
+      ],
+      "bonneReponse": 0,
+      "explication": "Une matrice carrée sans inverse provoque une erreur de calcul. Elle n'a pas d'inverse ; ce n'est pas une panne de saisie (si la saisie est juste).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s05-c002",
+      "section": "libre-maths-sq1-s05-s02",
+      "type": "exercice",
+      "enonce": "Montre que $C = \\begin{pmatrix}1 & 0 & 2\\\\0 & 1 & 0\\\\0 & 0 & 1\\end{pmatrix}$ a pour inverse $D = \\begin{pmatrix}1 & 0 & -2\\\\0 & 1 & 0\\\\0 & 0 & 1\\end{pmatrix}$.",
+      "etapes": [
+        "Ligne 1 de $C$ $(1, 0, 2)$ : colonne 1 → 1 ; colonne 2 → 0 ; colonne 3 → $-2 + 2 = 0$.",
+        "Ligne 2 $(0, 1, 0)$ : donne $(0, 1, 0)$.",
+        "Ligne 3 $(0, 0, 1)$ : donne $(0, 0, 1)$."
+      ],
+      "reponse": "$C \\times D = I_3$, donc $D = C^{-1}$.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s05-c003",
+      "section": "libre-maths-sq1-s05-s03",
+      "type": "exercice",
+      "enonce": "Vérifie que $N = \\begin{pmatrix}3 & 1\\\\1 & 1\\end{pmatrix}$ et $R = \\begin{pmatrix}1 & -1\\\\-1 & 3\\end{pmatrix}$ vérifient $NR = 2I$, puis donne $N^{-1}$.",
+      "etapes": [
+        "(1,1) : $3 - 1 = 2$ ; (1,2) : $-3 + 3 = 0$ ; (2,1) : $1 - 1 = 0$ ; (2,2) : $-1 + 3 = 2$.",
+        "Donc $NR = 2I$, puis $N^{-1} = \\frac{1}{2}R$."
+      ],
+      "reponse": "$N^{-1} = \\begin{pmatrix}0{,}5 & -0{,}5\\\\-0{,}5 & 1{,}5\\end{pmatrix}$",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s05-c004",
+      "section": "libre-maths-sq1-s05-s03",
+      "type": "qcm",
+      "question": "On sait que $A^2 + 2A = 3I$. Que vaut $A^{-1}$ ?",
+      "choix": [
+        "$\\frac{1}{3}(A + 2I)$",
+        "$A + 2I$",
+        "$3(A + 2I)$",
+        "$\\frac{1}{3}(A + 2)$"
+      ],
+      "bonneReponse": 0,
+      "explication": "$A(A + 2I) = 3I$, donc $A \\cdot \\frac{1}{3}(A + 2I) = I$. On écrit $2I$ et non 2 : on n'additionne pas un nombre et une matrice.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-maths-sq1-s05-c005",
+      "section": "libre-maths-sq1-s05-s04",
+      "type": "qcm",
+      "question": "Laquelle de ces matrices n'est pas inversible ?",
+      "choix": [
+        "$\\begin{pmatrix}1 & 4\\\\2 & 8\\end{pmatrix}$",
+        "$\\begin{pmatrix}1 & 0\\\\0 & 1\\end{pmatrix}$",
+        "$\\begin{pmatrix}2 & 1\\\\1 & 1\\end{pmatrix}$",
+        "$\\begin{pmatrix}0 & 1\\\\1 & 0\\end{pmatrix}$"
+      ],
+      "bonneReponse": 0,
+      "explication": "Dans la première, la ligne 2 est le double de la ligne 1 : elle n'est pas inversible. Les autres le sont.",
+      "difficulte": 2
+    }
+  ]
+}

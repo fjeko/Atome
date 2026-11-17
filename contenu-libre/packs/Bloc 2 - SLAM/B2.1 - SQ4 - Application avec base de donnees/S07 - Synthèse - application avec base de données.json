@@ -1,0 +1,75 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq4-s07",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – SQ4 – Application de bureau avec base de données",
+  "sequence": null,
+  "seance": "S07 – Synthèse : application avec base de données",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif : intergiciels et chaîne de connexion, compte applicatif à privilèges réduits, mots de passe hachés, singleton, requêtes paramétrées, couches MVC et liaison de données.",
+  "notions": [
+    "Récapitulatif accès aux données",
+    "Exercice de synthèse accès aux données"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq4-s07-s01",
+      "titre": "Les règles d'or",
+      "contenu": "| Thème | Règle |\n| --- | --- |\n| Connexion | chaîne hors du code versionné, `using` pour fermer |\n| Compte SQL | dédié, moindre privilège |\n| Mots de passe | hachés avec bcrypt/Argon2, salés |\n| Requêtes | toujours paramétrées |\n| Architecture | SQL uniquement dans la DAL |\n| Vue | pas de logique métier dans les événements |\n| Singleton | constructeur privé, instance statique, verrou |",
+      "notions": [
+        "Récapitulatif accès aux données"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq4-s07-s02",
+      "titre": "Exercice de synthèse",
+      "contenu": "Méthode : pars toujours du besoin (cas d'utilisation), puis descends couche par couche : modèle, DAL, contrôleur, vue.",
+      "notions": [
+        "Exercice de synthèse accès aux données"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq4-s07-c001",
+      "section": "libre-b2-21-sq4-s07-s01",
+      "type": "qcm",
+      "question": "Quelle pratique est correcte ?",
+      "choix": [
+        "Se connecter en root pour éviter les problèmes de droits",
+        "Stocker les mots de passe en SHA-1 sans sel",
+        "Utiliser une requête paramétrée pour chaque valeur saisie",
+        "Écrire le SQL dans le gestionnaire du bouton"
+      ],
+      "bonneReponse": 2,
+      "explication": "Les trois autres sont des erreurs classiques de sécurité ou d'architecture.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq4-s07-c002",
+      "section": "libre-b2-21-sq4-s07-s01",
+      "type": "question",
+      "recto": "Citer trois erreurs fréquentes dans une application avec base de données.",
+      "verso": "Concaténer les saisies dans le SQL ; mot de passe en clair (ou compte avec tous les droits) ; connexion jamais fermée (ou logique métier dans les événements).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq4-s07-c003",
+      "section": "libre-b2-21-sq4-s07-s02",
+      "type": "exercice",
+      "enonce": "L'association **Jardins Partagés** veut lister ses parcelles (numéro, surface, jardinier) dans une grille et filtrer par nom de jardinier saisi. Décris la classe métier, la méthode DAO et l'appel depuis la vue.",
+      "etapes": [
+        "Modèle : `public class Parcelle { public int Numero { get; set; } public double Surface { get; set; } public string Jardinier { get; set; } = \"\"; }`",
+        "DAO : `List<Parcelle> ParJardinier(string nom)` avec `SELECT numero, surface, jardinier FROM parcelle WHERE jardinier LIKE @nom` et `AddWithValue(\"@nom\", \"%\" + nom + \"%\")`.",
+        "Contrôleur : `GetParcelles(string filtre) => dao.ParJardinier(filtre);`",
+        "Vue : sur clic « Filtrer », `dgvParcelles.DataSource = controleur.GetParcelles(txtFiltre.Text);`"
+      ],
+      "reponse": "Classe à propriétés automatiques, requête LIKE paramétrée (le `%` ajouté côté C#), vue qui passe par le contrôleur.",
+      "difficulte": 3
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq1-s01",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – SQ1 – Schéma de données (MCD) et langage SQL",
+  "sequence": null,
+  "seance": "S01 – Lire et construire un MCD",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le MCD (modèle conceptuel de données de la méthode Merise) structure l'information d'un domaine en entités, associations et cardinalités. On sait le lire, le construire et le traduire en modèle relationnel.",
+  "notions": [
+    "Dictionnaire des données",
+    "Règles de gestion",
+    "Entité",
+    "Identifiant",
+    "Propriété",
+    "Association",
+    "Cardinalités",
+    "Passage au relationnel",
+    "Clé étrangère"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq1-s01-s01",
+      "titre": "Recenser l'information",
+      "contenu": "Avant de dessiner, on **recense** les informations à mémoriser et les **règles de gestion** (contraintes du métier).\n\nCas : la ludothèque **La Toupie** prête des jeux de société à ses adhérents.\n\nRègles de gestion :\n- RG1 : un jeu est édité par un seul éditeur ; un éditeur publie plusieurs jeux.\n- RG2 : un adhérent peut emprunter plusieurs jeux ; un jeu peut être emprunté plusieurs fois au fil du temps.\n- RG3 : chaque prêt a une date de prêt et une date de retour.\n\nLe **dictionnaire des données** liste chaque information : nom, signification, type, contraintes. On élimine les **synonymes** (deux noms pour la même chose), les **polysèmes** (un nom pour deux choses) et les **données calculées** (l'âge se calcule à partir de la date de naissance).",
+      "notions": [
+        "Dictionnaire des données",
+        "Règles de gestion"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq1-s01-s02",
+      "titre": "Entités, identifiants, propriétés",
+      "contenu": "- **Entité** : objet du domaine dont on garde des informations (Jeu, Adhérent, Éditeur). Rectangle avec un nom au singulier.\n- **Propriété** : information élémentaire de l'entité (titre, âge minimum).\n- **Identifiant** : propriété (souligné) qui distingue **chaque occurrence** de façon unique : `numJeu`.\n\n```text\n+------------------+\n| JEU              |\n+------------------+\n| numJeu (souligné)|\n| titre            |\n| ageMin           |\n| dureeMinutes     |\n+------------------+\n```\n\nUne propriété doit être **élémentaire** (pas de liste « jeux préférés » dans Adhérent) et dépendre de l'identifiant.",
+      "notions": [
+        "Entité",
+        "Identifiant",
+        "Propriété"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq1-s01-s03",
+      "titre": "Associations et cardinalités",
+      "contenu": "Une **association** relie des entités (ovale avec un verbe : *Éditer*, *Emprunter*). Elle peut porter des propriétés (la date de prêt).\n\nLes **cardinalités** (min, max) s'écrivent **près de l'entité** et répondent à la question : « **une** occurrence de cette entité participe à combien d'occurrences de l'association, au minimum et au maximum ? »\n\n```text\nEDITEUR ---1,n--- (Éditer) ---1,1--- JEU\n```\n\n- Côté JEU `1,1` : un jeu est édité par **un et un seul** éditeur.\n- Côté EDITEUR `1,n` : un éditeur édite **au moins un** jeu.\n\nValeurs usuelles : `0,1`, `1,1`, `0,n`, `1,n`. Le minimum 0 signifie « peut ne pas participer ».\n\nAttention : en Merise, la cardinalité se lit **du côté de l'entité dont on parle** ; c'est l'inverse de la lecture des multiplicités UML.",
+      "notions": [
+        "Association",
+        "Cardinalités"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq1-s01-s04",
+      "titre": "Du MCD au modèle relationnel",
+      "contenu": "Règles de base :\n1. Chaque **entité** devient une **table** ; l'identifiant devient **clé primaire**.\n2. Association avec un côté **(0,1) ou (1,1)** (une **dépendance fonctionnelle**) : on ajoute une **clé étrangère** dans la table du côté (x,1), qui référence l'autre table.\n3. Association **(x,n)–(x,n)** : elle donne une **table** de liaison ; sa clé primaire assemble les identifiants des entités reliées, et elle reçoit aussi les propriétés de l'association.\n\nPour La Toupie :\n\n```text\nEDITEUR(numEditeur, nom, pays)\nJEU(numJeu, titre, ageMin, dureeMinutes, #numEditeur)\nADHERENT(numAdherent, nom, prenom, ville, dateAdhesion)\nEMPRUNTER(#numJeu, #numAdherent, datePret, dateRetour)\n```\n\n(clé primaire soulignée, clé étrangère précédée de `#`.)\n\nIci, un même adhérent peut emprunter plusieurs fois le même jeu : il faudrait ajouter `datePret` à la clé, ou créer une entité PRET avec son propre identifiant.",
+      "notions": [
+        "Passage au relationnel",
+        "Clé étrangère"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq1-s01-c001",
+      "section": "libre-b2-23-sq1-s01-s01",
+      "type": "qcm",
+      "question": "Faut-il mémoriser « nombre de prêts en cours » d'un adhérent dans le MCD ?",
+      "choix": [
+        "Oui, c'est une information importante",
+        "Non, c'est une donnée calculée à partir des prêts",
+        "Oui, comme identifiant",
+        "Seulement s'il y a plus de 10 prêts"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une donnée calculable n'est pas stockée : elle risquerait de devenir incohérente.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq1-s01-c002",
+      "section": "libre-b2-23-sq1-s01-s02",
+      "type": "question",
+      "recto": "Quel rôle joue l'identifiant d'une entité ?",
+      "verso": "Il **distingue de façon unique** chaque occurrence de l'entité (deux jeux ne peuvent pas avoir le même numéro).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-23-sq1-s01-c003",
+      "section": "libre-b2-23-sq1-s01-s03",
+      "type": "qcm",
+      "question": "`ADHERENT ---0,n--- (Emprunter) ---0,n--- JEU`. Que signifie le 0,n côté ADHERENT ?",
+      "choix": [
+        "Un adhérent peut n'avoir jamais emprunté, ou avoir emprunté plusieurs fois",
+        "Un jeu peut être emprunté par 0 ou n adhérents",
+        "Il y a au plus n adhérents",
+        "Un adhérent emprunte obligatoirement"
+      ],
+      "bonneReponse": 0,
+      "explication": "La cardinalité près d'ADHERENT parle d'un adhérent : 0 au minimum, plusieurs au maximum.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq1-s01-c004",
+      "section": "libre-b2-23-sq1-s01-s04",
+      "type": "exercice",
+      "enonce": "Traduis en relationnel : `CLASSE (codeClasse, niveau) ---1,n--- (Appartenir) ---1,1--- ELEVE (numEleve, nom)` et `ELEVE ---0,n--- (Pratiquer) ---0,n--- SPORT (codeSport, libelle)`.",
+      "etapes": [
+        "Entités → tables : CLASSE(codeClasse, niveau), ELEVE(numEleve, nom), SPORT(codeSport, libelle).",
+        "Appartenir est (1,1) côté ELEVE : clé étrangère dans ELEVE → ELEVE(numEleve, nom, #codeClasse).",
+        "Pratiquer est (0,n)–(0,n) : nouvelle table PRATIQUER(#numEleve, #codeSport) avec clé primaire composée."
+      ],
+      "reponse": "CLASSE(codeClasse, niveau) ; ELEVE(numEleve, nom, #codeClasse) ; SPORT(codeSport, libelle) ; PRATIQUER(#numEleve, #codeSport).",
+      "difficulte": 2
+    }
+  ]
+}

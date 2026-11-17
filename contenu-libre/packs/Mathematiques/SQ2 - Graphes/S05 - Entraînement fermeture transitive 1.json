@@ -1,0 +1,101 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq2-s05",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "SQ2 – Graphes",
+  "sequence": null,
+  "seance": "S5 – Entraînement fermeture transitive 1",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Calculer pas à pas les puissances booléennes et leur cumul sur un graphe sans circuit, et comparer avec les puissances ordinaires.",
+  "notions": [
+    "Calcul des puissances booléennes",
+    "Cumul et arrêt",
+    "Puissance ordinaire vs booléenne",
+    "Interprétation de la fermeture"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq2-s05-s01",
+      "titre": "Un graphe sans circuit, pas à pas",
+      "contenu": "Graphe à 5 sommets : $1 \\to 2$, $1 \\to 3$, $2 \\to 4$, $3 \\to 4$, $4 \\to 5$.\n\n$$M = \\begin{pmatrix}0 & 1 & 1 & 0 & 0\\\\0 & 0 & 0 & 1 & 0\\\\0 & 0 & 0 & 1 & 0\\\\0 & 0 & 0 & 0 & 1\\\\0 & 0 & 0 & 0 & 0\\end{pmatrix}$$\n\n**$M^{[2]}$** (ligne $X$ = OU des lignes des successeurs de $X$) :\n- ligne 1 : lignes 2 OU 3 = $(0,0,0,1,0)$ ;\n- lignes 2 et 3 : ligne 4 = $(0,0,0,0,1)$ ;\n- lignes 4 et 5 : nulles (ligne 5 et rien).\n\n**$M^{[3]}$** : ligne 1 → ligne 4 de $M$ = $(0,0,0,0,1)$ ; toutes les autres lignes nulles.\n\n**$M^{[4]}$** : ligne 1 → ligne 5 de $M$ = nulle. **Puissance nulle : on s'arrête.**\n\n**Cumul** :\n\n$$\\hat{M} = M \\oplus M^{[2]} \\oplus M^{[3]} = \\begin{pmatrix}0 & 1 & 1 & 1 & 1\\\\0 & 0 & 0 & 1 & 1\\\\0 & 0 & 0 & 1 & 1\\\\0 & 0 & 0 & 0 & 1\\\\0 & 0 & 0 & 0 & 0\\end{pmatrix}$$\n\nDiagonale nulle : pas de circuit, ce qui est cohérent.",
+      "notions": [
+        "Calcul des puissances booléennes",
+        "Cumul et arrêt"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s05-s02",
+      "titre": "Booléen ou ordinaire : bien faire la différence",
+      "contenu": "Pour le même graphe, la puissance **ordinaire** donne $(M^2)_{1,4} = 2$ (deux chemins : $1 \\to 2 \\to 4$ et $1 \\to 3 \\to 4$), alors que $(M^{[2]})_{1,4} = 1$.\n\n| Question posée | Outil |\n|---|---|\n| « Combien de chemins de longueur $p$ ? » | puissance ordinaire $M^p$ |\n| « Existe-t-il un chemin de longueur $p$ ? » | puissance booléenne $M^{[p]}$ (ou $M^p$ et on regarde si c'est non nul) |\n| « Peut-on aller de X à Y ? » | fermeture transitive $\\hat{M}$ |",
+      "notions": [
+        "Puissance ordinaire vs booléenne"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s05-s03",
+      "titre": "Lire la fermeture pour répondre à une question",
+      "contenu": "Avec $\\hat{M}$ du graphe à 5 sommets :\n- depuis le sommet 1, on atteint 2, 3, 4 et 5 (ligne 1) : c'est un **point de départ** universel ;\n- le sommet 5 est atteint par tous les autres (colonne 5) : c'est un **point d'arrivée** universel ;\n- on ne peut pas aller de 2 à 3 (coefficient nul).\n\nRédige toujours avec le vocabulaire : « Le coefficient $(2, 3)$ de la matrice de fermeture est nul, donc il n'existe aucun chemin de 2 vers 3. »",
+      "notions": [
+        "Interprétation de la fermeture"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq2-s05-c001",
+      "section": "libre-maths-sq2-s05-s01",
+      "type": "exercice",
+      "enonce": "Calcule la fermeture transitive du graphe $1 \\to 2$, $2 \\to 3$ (3 sommets).",
+      "etapes": [
+        "$M = \\begin{pmatrix}0 & 1 & 0\\\\0 & 0 & 1\\\\0 & 0 & 0\\end{pmatrix}$",
+        "$M^{[2]}$ : ligne 1 = ligne 2 de $M$ = $(0,0,1)$ ; les autres sont nulles.",
+        "$M^{[3]}$ : ligne 1 = ligne 3 de $M$ = nulle. On s'arrête.",
+        "Cumul : $M \\oplus M^{[2]}$."
+      ],
+      "reponse": "$\\hat{M} = \\begin{pmatrix}0 & 1 & 1\\\\0 & 0 & 1\\\\0 & 0 & 0\\end{pmatrix}$ : on ajoute l'arc $1 \\to 3$.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s05-c002",
+      "section": "libre-maths-sq2-s05-s01",
+      "type": "qcm",
+      "question": "Lors du calcul de la fermeture, tu trouves $M^{[4]}$ entièrement nulle. Que fais-tu ?",
+      "choix": [
+        "Je m'arrête et je cumule $M$, $M^{[2]}$ et $M^{[3]}$",
+        "Je continue jusqu'à $M^{[n]}$ obligatoirement",
+        "Je garde seulement $M^{[3]}$",
+        "Je recommence avec le produit ordinaire"
+      ],
+      "bonneReponse": 0,
+      "explication": "Si aucun chemin de longueur 4 n'existe, aucun chemin plus long non plus : le cumul est complet.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s05-c003",
+      "section": "libre-maths-sq2-s05-s02",
+      "type": "qcm",
+      "question": "On te demande : « Depuis la page Accueil, peut-on atteindre la page Contact, en un ou plusieurs clics ? ». Quel outil utilises-tu ?",
+      "choix": [
+        "La fermeture transitive",
+        "La puissance ordinaire $M^2$",
+        "La trace de $M$",
+        "Le tableau des prédécesseurs uniquement"
+      ],
+      "bonneReponse": 0,
+      "explication": "« En un ou plusieurs clics » = chemin de longueur quelconque : c'est la définition de la fermeture transitive.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s05-c004",
+      "section": "libre-maths-sq2-s05-s03",
+      "type": "question",
+      "recto": "Dans une matrice de fermeture transitive, la colonne du sommet $S$ ne contient que des 1 sauf sur la diagonale. Que peut-on dire ?",
+      "verso": "Tous les autres sommets permettent d'atteindre $S$ ; et $S$ n'est sur aucun circuit (0 en diagonale).",
+      "difficulte": 2
+    }
+  ]
+}

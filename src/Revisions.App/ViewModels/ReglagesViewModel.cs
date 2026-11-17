@@ -77,6 +77,15 @@ public partial class ReglagesViewModel : ObservableObject
 
     /// <summary>« Vérifier les mises à jour au démarrage » (activé par défaut).</summary>
     [ObservableProperty] private bool _verifierMisesAJour;
+    /// <summary>Cours libres intégrés : chargés (vrai) ou masqués (faux).</summary>
+    [ObservableProperty] private bool _coursLibres;
+    /// <summary>Faux si le dossier des cours libres est introuvable (l'interrupteur est alors grisé).</summary>
+    public bool CoursLibresDisponibles { get; }
+
+    partial void OnCoursLibresChanged(bool value)
+    {
+        if (_initialise) _ = _main.ChangerCoursLibresAsync(value);
+    }
 
     /// <summary>Résultat de « Vérifier maintenant ».</summary>
     [ObservableProperty] private string? _messageMiseAJour;
@@ -125,6 +134,8 @@ public partial class ReglagesViewModel : ObservableObject
         _dossierCours = r.DossierCours ?? "";
         _accentLibre = r.CouleurAccent ?? "";
         _verifierMisesAJour = r.VerifierMisesAJour;
+        _coursLibres = r.CoursLibres == true;
+        CoursLibresDisponibles = etat.DossierCoursLibres is not null;
 #pragma warning restore MVVMTK0034
         _cleTheme = r.Theme;
         _couleurAccent = r.CouleurAccent;
@@ -171,6 +182,8 @@ public partial class ReglagesViewModel : ObservableObject
         r.Theme = _cleTheme;
         r.CouleurAccent = _couleurAccent;
         r.VerifierMisesAJour = VerifierMisesAJour;
+        // Tant que rien n'est décidé (null), on ne fige pas le choix à la modification d'un autre réglage.
+        if (r.CoursLibres is not null || CoursLibres) r.CoursLibres = CoursLibres;
         _etat.Enregistrer(); // enregistre et applique le thème immédiatement
     }
 

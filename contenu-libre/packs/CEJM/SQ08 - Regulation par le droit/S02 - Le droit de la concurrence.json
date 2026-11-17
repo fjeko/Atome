@@ -1,0 +1,78 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq08-s02",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 8 – Régulation des activités économiques",
+  "sequence": null,
+  "seance": "S2 – Le droit de la concurrence",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Distinguer la concurrence déloyale, qui nuit à un concurrent, des pratiques anticoncurrentielles, qui faussent le marché, et connaître le contrôle des concentrations.",
+  "notions": [
+    "Concurrence déloyale",
+    "Ententes et abus de position dominante",
+    "Contrôle des concentrations"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq08-s02-s01",
+      "titre": "La concurrence déloyale",
+      "contenu": "La concurrence est libre, mais doit rester **loyale**. Un acte de **concurrence déloyale** cause un préjudice à un **concurrent** par un comportement contraire aux usages honnêtes. La victime agit en **responsabilité civile** (art. 1240) : faute, préjudice, lien de causalité.\n\n| Acte | Exemple inventé |\n|---|---|\n| **confusion** | imiter le logo et les couleurs d'un concurrent pour attirer ses clients |\n| **dénigrement** | publier des avis mensongers disant que les produits d'un rival sont dangereux |\n| **parasitisme** | profiter sans rien payer des investissements et de la notoriété d'un autre |\n| **désorganisation** | détourner un fichier clients, saboter un site concurrent |\n| **débauchage** déloyal | recruter massivement les salariés clés d'un concurrent pour le désorganiser |\n\nVendre à un **prix abusivement bas** pour éliminer un concurrent est aussi sanctionné.",
+      "notions": [
+        "Concurrence déloyale"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq08-s02-s02",
+      "titre": "Les pratiques anticoncurrentielles",
+      "contenu": "Elles portent atteinte au **fonctionnement du marché** lui-même ; elles sont sanctionnées par l'**Autorité de la concurrence** (amendes pouvant atteindre 10 % du chiffre d'affaires mondial) et par la Commission européenne.\n\n- **Entente** (code de commerce, art. L420-1) : accord entre entreprises pour fausser la concurrence : fixer ensemble les prix, se répartir les clients ou les territoires, s'entendre sur les réponses à un appel d'offres.\n- **Abus de position dominante** (art. L420-2) : être dominant n'est pas interdit, en **abuser** l'est : refus de vente injustifié, prix prédateurs, conditions discriminatoires, ventes liées.\n\n**Contrôle des concentrations** : les fusions et rachats importants doivent être notifiés à l'avance ; l'autorité peut les autoriser, les soumettre à conditions (céder des magasins) ou les interdire, pour éviter qu'une entreprise ne domine le marché.\n\n| | Concurrence déloyale | Pratique anticoncurrentielle |\n|---|---|---|\n| atteinte à | un concurrent | le marché |\n| juge | tribunaux (responsabilité civile) | Autorité de la concurrence |",
+      "notions": [
+        "Ententes et abus de position dominante",
+        "Contrôle des concentrations"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq08-s02-c001",
+      "section": "libre-cejm-sq08-s02-s01",
+      "type": "qcm",
+      "question": "Une boulangerie distribue des tracts affirmant faussement que son voisin utilise de la farine avariée. C'est…",
+      "choix": [
+        "Du dénigrement",
+        "Une entente",
+        "Un abus de position dominante",
+        "Du parasitisme"
+      ],
+      "bonneReponse": 0,
+      "explication": "Jeter le discrédit sur un concurrent identifiable est du dénigrement.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq08-s02-c002",
+      "section": "libre-cejm-sq08-s02-s02",
+      "type": "qcm",
+      "question": "Trois fabricants de peinture conviennent secrètement d'augmenter leurs prix du même montant. C'est…",
+      "choix": [
+        "Une entente",
+        "Du dénigrement",
+        "Un abus de position dominante",
+        "Une concentration"
+      ],
+      "bonneReponse": 0,
+      "explication": "Un accord entre entreprises indépendantes pour fixer les prix fausse le marché.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq08-s02-c003",
+      "section": "libre-cejm-sq08-s02-s02",
+      "type": "question",
+      "recto": "Une entreprise en position dominante est-elle en infraction ?",
+      "verso": "Non : seul l'abus de cette position (refus de vente, prix prédateurs, discriminations) est sanctionné.",
+      "difficulte": 2
+    }
+  ]
+}

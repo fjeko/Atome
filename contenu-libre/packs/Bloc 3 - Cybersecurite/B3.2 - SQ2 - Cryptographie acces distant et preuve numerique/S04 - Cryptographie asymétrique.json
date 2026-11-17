@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq2-s04",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – SQ2 – Cryptographie, accès distant et preuve numérique",
+  "sequence": null,
+  "seance": "S04 – Cryptographie asymétrique",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La cryptographie asymétrique repose sur deux clés distinctes : une publique, une privée. Elle résout l'échange de clés et permet la signature. Dans la pratique, on la combine avec le symétrique.",
+  "notions": [
+    "Chiffrement asymétrique",
+    "Clé publique",
+    "Clé privée",
+    "Échange de clés Diffie-Hellman",
+    "Comparaison symétrique asymétrique",
+    "Chiffrement hybride"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq2-s04-s01",
+      "titre": "Clé publique, clé privée",
+      "contenu": "Chaque utilisateur dispose de **deux clés** reliées entre elles par une construction mathématique :\n- la **clé publique**, diffusée à tous ;\n- la **clé privée**, gardée **secrète**.\n\nUn message chiffré à l'aide de la clé publique de Bob ne peut être déchiffré **qu'avec la clé privée de Bob**.\n\nPour écrire à Bob en confidentialité, Alice utilise la **clé publique de Bob** pour chiffrer ; lui seul pourra déchiffrer.\n\nIl est impossible en pratique de retrouver la clé privée à partir de la clé publique (problèmes mathématiques difficiles : factorisation pour **RSA**, logarithme discret pour les **courbes elliptiques**).",
+      "notions": [
+        "Chiffrement asymétrique",
+        "Clé publique",
+        "Clé privée"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s04-s02",
+      "titre": "Échange de clés",
+      "contenu": "L'**échange de clés Diffie-Hellman** (1976) permet à deux personnes de **construire une clé secrète commune** en échangeant des valeurs **publiques**, sans jamais transmettre la clé elle-même.\n\nPrincipe simplifié : chacun choisit un secret, envoie un calcul public basé dessus, et combine la valeur reçue avec son propre secret ; les deux obtiennent le même résultat, qu'un espion ne peut pas recalculer.\n\nAttention : sans authentification, un attaquant placé au milieu peut faire un échange avec chacun (attaque de l'**homme du milieu**) : on authentifie donc les échanges (certificats).",
+      "notions": [
+        "Échange de clés Diffie-Hellman"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s04-s03",
+      "titre": "Symétrique ou asymétrique ?",
+      "contenu": "| Critère | Symétrique | Asymétrique |\n| --- | --- | --- |\n| Clés | une clé secrète partagée | une paire par personne |\n| Vitesse | très rapide | lent (100 à 1 000 fois) |\n| Échange de clé | difficile | facile (clé publique diffusée) |\n| Usages | chiffrer les données | échanger une clé, signer |\n\nEn pratique, on fait du **chiffrement hybride** : l'asymétrique sert à **échanger une clé de session** symétrique, qui chiffre ensuite les données. C'est ce que fait HTTPS.",
+      "notions": [
+        "Comparaison symétrique asymétrique",
+        "Chiffrement hybride"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq2-s04-c001",
+      "section": "libre-b3-32-sq2-s04-s01",
+      "type": "qcm",
+      "question": "Alice veut envoyer un document confidentiel à Bob. Avec quelle clé chiffre-t-elle ?",
+      "choix": [
+        "Sa clé privée",
+        "Sa clé publique",
+        "La clé publique de Bob",
+        "La clé privée de Bob"
+      ],
+      "bonneReponse": 2,
+      "explication": "Seule la clé privée de Bob pourra déchiffrer.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s04-c002",
+      "section": "libre-b3-32-sq2-s04-s02",
+      "type": "question",
+      "recto": "Quel problème résout l'échange de clés Diffie-Hellman ?",
+      "verso": "Il permet d'**établir une clé secrète commune** sur un canal public, sans l'envoyer.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s04-c003",
+      "section": "libre-b3-32-sq2-s04-s03",
+      "type": "qcm",
+      "question": "Pourquoi HTTPS ne chiffre-t-il pas toute la page avec RSA ?",
+      "choix": [
+        "RSA n'est pas sûr",
+        "Le chiffrement asymétrique est trop lent ; il sert à établir une clé symétrique de session",
+        "RSA ne fonctionne que sur les e-mails",
+        "Pour économiser des certificats"
+      ],
+      "bonneReponse": 1,
+      "explication": "Hybride : asymétrique pour l'échange, symétrique pour le volume.",
+      "difficulte": 2
+    }
+  ]
+}

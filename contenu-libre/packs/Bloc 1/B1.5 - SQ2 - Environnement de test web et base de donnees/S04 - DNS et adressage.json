@@ -1,0 +1,78 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-15-sq2-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.5 – SQ2 – Environnement de test d'une application web et d'une base de données",
+  "sequence": null,
+  "seance": "S04 – DNS et adressage",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les types d'enregistrements DNS, les outils pour tester la résolution de noms et la configuration d'une adresse IP statique sur les serveurs.",
+  "notions": [
+    "Types d'enregistrements DNS",
+    "Outils de test de résolution",
+    "Adressage statique des serveurs"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-15-sq2-s04-s01",
+      "titre": "Les enregistrements DNS",
+      "contenu": "| Type | Rôle | Exemple |\n| --- | --- | --- |\n| **A** | nom → adresse IPv4 | `srv-web-test  A  192.168.56.10` |\n| **AAAA** | nom → adresse IPv6 | |\n| **CNAME** | alias vers un autre nom | `resa  CNAME  srv-web-test` |\n| **MX** | serveur de messagerie du domaine | `@  MX 10  mail` |\n| **NS** | serveur faisant autorité pour la zone | |\n| **PTR** | adresse → nom (zone inverse) | `10  PTR  srv-web-test.labo.local.` |\n| **SOA** | informations de la zone (serveur principal, numéro de série…) | |\n| **TXT** | texte libre (vérifications, politiques e-mail) | |",
+      "notions": [
+        "Types d'enregistrements DNS"
+      ]
+    },
+    {
+      "id": "libre-b1-15-sq2-s04-s02",
+      "titre": "Tester et adresser",
+      "contenu": "```bash\nnslookup resa.labo.local\ndig resa.labo.local +short\ndig -x 192.168.56.10          # résolution inverse\nhost srv-bdd-test.labo.local\ncat /etc/resolv.conf           # serveur DNS utilisé par la machine\n```\nLes **serveurs** ont une adresse **statique** (les clients et les configurations comptent sur elle). Sous Debian, `/etc/network/interfaces` :\n```text\nauto enp0s8\niface enp0s8 inet static\n    address 192.168.56.11/24\n    gateway 192.168.56.1\n    dns-nameservers 192.168.56.2\n```\npuis `sudo systemctl restart networking` (ou `ifdown`/`ifup`).",
+      "notions": [
+        "Outils de test de résolution",
+        "Adressage statique des serveurs"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-15-sq2-s04-c001",
+      "section": "libre-b1-15-sq2-s04-s01",
+      "type": "qcm",
+      "question": "Quel enregistrement permet d'accéder au site par le nom `resa.labo.local` qui pointe vers le serveur `srv-web-test.labo.local` ?",
+      "choix": [
+        "MX",
+        "PTR",
+        "CNAME",
+        "SOA"
+      ],
+      "bonneReponse": 2,
+      "explication": "Un CNAME crée un alias vers un nom existant.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-15-sq2-s04-c002",
+      "section": "libre-b1-15-sq2-s04-s01",
+      "type": "qcm",
+      "question": "Quel enregistrement sert à retrouver le nom correspondant à une adresse IP ?",
+      "choix": [
+        "A",
+        "PTR",
+        "NS",
+        "TXT"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le PTR, dans la zone de recherche inversée, associe une adresse à un nom.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-15-sq2-s04-c003",
+      "section": "libre-b1-15-sq2-s04-s02",
+      "type": "question",
+      "recto": "Quelle commande affiche l'adresse IP associée à un nom, de façon concise, sous Linux ?",
+      "verso": "`dig nom +short` (ou `nslookup nom`, `host nom`).",
+      "difficulte": 1
+    }
+  ]
+}

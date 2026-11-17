@@ -1,0 +1,78 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq09-s01",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 9 – Environnement de l'entreprise et innovation",
+  "sequence": null,
+  "seance": "S1 – L'environnement de l'entreprise",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Distinguer micro et macro-environnement, et réaliser un diagnostic PESTEL qui débouche sur des opportunités et des menaces.",
+  "notions": [
+    "Micro et macro-environnement",
+    "Diagnostic PESTEL",
+    "Opportunités et menaces"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq09-s01-s01",
+      "titre": "Micro et macro-environnement",
+      "contenu": "- Le **micro-environnement** : les acteurs proches avec lesquels l'entreprise est en relation directe : **clients**, **fournisseurs**, **concurrents**, **partenaires**, prescripteurs. Elle peut parfois les influencer.\n- Le **macro-environnement** : les grandes forces générales qui s'imposent à toutes les entreprises : économie, lois, technologies, société, écologie, politique. L'entreprise les subit plus qu'elle ne les influence.",
+      "notions": [
+        "Micro et macro-environnement"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq09-s01-s02",
+      "titre": "Le diagnostic PESTEL",
+      "contenu": "Méthode en trois temps :\n1. **Relever** les faits du dossier qui concernent l'environnement général.\n2. **Classer** chacun dans un domaine : Politique, Économique, Socioculturel, Technologique, Écologique, Légal.\n3. **Qualifier** chacun en **opportunité** ou **menace** pour l'entreprise étudiée, et en tirer une conséquence (adapter l'offre, investir, se protéger).\n\nExemple : *Atelier Ressort*, entreprise fictive de réparation d'électroménager.\n\n| Fait | Domaine | Effet |\n|---|---|---|\n| obligation pour les fabricants de fournir des pièces détachées plus longtemps | L | opportunité |\n| succès des démarches « anti-gaspillage » | S | opportunité |\n| baisse continue du prix des appareils neufs | E | menace (on rachète au lieu de réparer) |\n| bonus financier de l'État pour la réparation | P | opportunité |\n| appareils de plus en plus électroniques | T | menace (pièces chères) ou opportunité (si l'atelier se forme) |",
+      "notions": [
+        "Diagnostic PESTEL",
+        "Opportunités et menaces"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq09-s01-c001",
+      "section": "libre-cejm-sq09-s01-s01",
+      "type": "qcm",
+      "question": "L'arrivée d'un nouveau concurrent dans la rue relève…",
+      "choix": [
+        "Du micro-environnement",
+        "Du macro-environnement",
+        "De la grille PESTEL, domaine légal",
+        "Des ressources internes"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les concurrents font partie de l'environnement proche.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq09-s01-c002",
+      "section": "libre-cejm-sq09-s01-s02",
+      "type": "qcm",
+      "question": "« Le gouvernement crée un bonus pour encourager la réparation. » Domaine ?",
+      "choix": [
+        "Politique",
+        "Écologique",
+        "Socioculturel",
+        "Technologique"
+      ],
+      "bonneReponse": 0,
+      "explication": "C'est une décision des pouvoirs publics (politique d'aide). Si c'était une obligation légale, on la classerait en L.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq09-s01-c003",
+      "section": "libre-cejm-sq09-s01-s02",
+      "type": "question",
+      "recto": "Pourquoi un PESTEL doit-il se terminer par des opportunités et menaces ?",
+      "verso": "Parce qu'un fait n'a de sens que rapporté à l'entreprise étudiée : il faut en déduire son effet et les décisions possibles.",
+      "difficulte": 2
+    }
+  ]
+}

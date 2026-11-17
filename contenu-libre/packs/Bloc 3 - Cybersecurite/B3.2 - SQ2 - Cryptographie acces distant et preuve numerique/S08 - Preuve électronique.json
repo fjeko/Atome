@@ -1,0 +1,92 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq2-s08",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – SQ2 – Cryptographie, accès distant et preuve numérique",
+  "sequence": null,
+  "seance": "S08 – Preuve électronique",
+  "ordre": 8,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une preuve électronique n'est recevable que si son auteur est identifié, son intégrité garantie et sa conservation fiable. La collecte suit des règles strictes, notamment travailler sur une copie et tracer chaque manipulation.",
+  "notions": [
+    "Preuve électronique",
+    "Matière civile",
+    "Matière pénale",
+    "Copie physique",
+    "Copie logique",
+    "Chaîne de traçabilité",
+    "Erreurs de procédure"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq2-s08-s01",
+      "titre": "La preuve en droit",
+      "contenu": "Article 1366 du Code civil : « L'écrit électronique a la même force probante que l'écrit sur support papier, sous réserve que puisse être dûment identifiée la personne dont il émane et qu'il soit établi et conservé dans des conditions de nature à en garantir l'intégrité. »\n\n- En **matière civile** (litige commercial, prud'hommes), la preuve doit être loyale ; l'archivage doit garantir intégrité et durabilité.\n- En **matière pénale**, la preuve est **libre** mais doit être **loyalement obtenue** par les enquêteurs, discutée contradictoirement et appréciée par le juge ; sa **fiabilité** (intégrité, traçabilité de la collecte) est déterminante.",
+      "notions": [
+        "Preuve électronique",
+        "Matière civile",
+        "Matière pénale"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s08-s02",
+      "titre": "Collecter sans altérer",
+      "contenu": "Principes de la collecte (investigation numérique) :\n- **ne jamais travailler sur l'original** : on réalise une **copie** ;\n  - **copie physique** (image bit à bit de tout le support, y compris l'espace libre et les fichiers effacés) ;\n  - **copie logique** (seulement les fichiers visibles) ;\n- utiliser un **bloqueur d'écriture** pour lire le support sans le modifier ;\n- calculer l'**empreinte** (hachage SHA-256) de l'original et de la copie : identiques = intégrité prouvée ;\n- tenir une **chaîne de traçabilité** : qui a manipulé quoi, quand, comment ;\n- pour une machine allumée, capturer d'abord la **mémoire vive** (données volatiles).",
+      "notions": [
+        "Copie physique",
+        "Copie logique",
+        "Chaîne de traçabilité"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s08-s03",
+      "titre": "Les pièges de collecte",
+      "contenu": "- **Allumer** ou **explorer** directement le disque suspect : on modifie des dates, des journaux.\n- **Éteindre** brutalement une machine allumée : perte de la mémoire vive.\n- Aucune empreinte, aucun journal des manipulations : la défense contestera l'intégrité.\n- Collecter de façon **déloyale** (accès à la messagerie personnelle d'un salarié sans cadre).\n- Captures d'écran non datées, sans URL : faible valeur.",
+      "notions": [
+        "Erreurs de procédure"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq2-s08-c001",
+      "section": "libre-b3-32-sq2-s08-s01",
+      "type": "question",
+      "recto": "À quelles conditions un écrit électronique vaut-il preuve comme un écrit papier ?",
+      "verso": "Si on peut **identifier son auteur** et s'il est **conservé de façon à garantir son intégrité**.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s08-c002",
+      "section": "libre-b3-32-sq2-s08-s02",
+      "type": "qcm",
+      "question": "Pourquoi calcule-t-on l'empreinte SHA-256 d'un disque saisi ?",
+      "choix": [
+        "Pour le chiffrer",
+        "Pour prouver que la copie analysée est identique à l'original et n'a pas été modifiée",
+        "Pour le compresser",
+        "Pour retrouver le mot de passe"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'empreinte sert de « sceau » d'intégrité.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s08-c003",
+      "section": "libre-b3-32-sq2-s08-s03",
+      "type": "exercice",
+      "enonce": "Chez le transporteur fictif **RoutAzur**, un administrateur soupçonne un salarié d'avoir copié des fichiers clients. Il ouvre le PC du salarié, parcourt ses dossiers, copie ce qui l'intéresse sur sa clé USB et l'éteint. Repère les fautes et décris la bonne procédure.",
+      "etapes": [
+        "Fautes : exploration directe (dates modifiées), copie partielle sans empreinte, aucune traçabilité, extinction (mémoire vive perdue), clé personnelle non maîtrisée, accès possible à des fichiers personnels du salarié sans cadre.",
+        "Bonne procédure : préserver la machine en l'état, faire appel à un prestataire ou à la direction/juriste, éventuellement un commissaire de justice.",
+        "Réaliser une copie physique avec bloqueur d'écriture, calculer les empreintes SHA-256 de l'original et de la copie.",
+        "Tenir un registre de traçabilité ; analyser uniquement la copie, dans le respect des règles sur les fichiers personnels."
+      ],
+      "reponse": "Collecte non loyale et altérante ; il fallait copie bit à bit, empreintes, traçabilité et cadre juridique.",
+      "difficulte": 3
+    }
+  ]
+}

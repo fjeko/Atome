@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq14-s01",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 14 – Besoins et solutions de financement",
+  "sequence": null,
+  "seance": "S1 – Les besoins de financement",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. D'où viennent les besoins de financement : cycle d'exploitation et besoin en fonds de roulement, cycle d'investissement, et règle d'équilibre financier.",
+  "notions": [
+    "Cycle d'exploitation et BFR",
+    "Cycle d'investissement",
+    "Équilibre financier et bilan"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq14-s01-s01",
+      "titre": "Le cycle d'exploitation et le BFR",
+      "contenu": "Le **cycle d'exploitation** : acheter (matières, marchandises) → produire / stocker → vendre → encaisser. Entre les décaissements et les encaissements, il y a un **décalage** qu'il faut financer.\n\n$$\\text{BFR} = \\text{stocks} + \\text{créances clients} - \\text{dettes fournisseurs}$$\n\nExemple fictif : stocks 30 000 €, créances clients 45 000 €, dettes fournisseurs 25 000 € → **BFR = 50 000 €**. L'entreprise doit trouver 50 000 € pour faire tourner son activité courante.\n\nCe qui fait **augmenter** le BFR : stocks plus importants, délais de paiement accordés aux clients plus longs, délais obtenus des fournisseurs plus courts, **croissance** de l'activité.\n\n**Saisonnalité** : un vendeur de jouets constitue ses stocks en automne : son BFR culmine avant Noël.\n\nUn BFR **négatif** est possible quand les clients paient avant que l'entreprise ne règle ses fournisseurs (grande distribution, abonnements) : l'exploitation dégage alors de la trésorerie.",
+      "notions": [
+        "Cycle d'exploitation et BFR"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq14-s01-s02",
+      "titre": "Investissement et équilibre financier",
+      "contenu": "Le **cycle d'investissement** concerne l'acquisition de biens **durables** (machines, véhicules, locaux, logiciels) utilisés sur plusieurs années. On caractérise un investissement par son **montant**, sa **durée d'utilisation** et la **rentabilité** attendue (gains supplémentaires ou économies qu'il procure).\n\n**Bilan simplifié** :\n| Emplois (ce que l'entreprise possède) | Ressources (comment c'est financé) |\n|---|---|\n| immobilisations (investissements) | capitaux propres (apports, bénéfices conservés) |\n| stocks, créances | dettes financières à long terme |\n| trésorerie | dettes à court terme (fournisseurs, découvert) |\n\n**Principe d'équilibre financier** : les besoins **durables** (investissements, BFR permanent) doivent être financés par des ressources **durables** (capitaux propres, emprunts à long terme). Financer une machine sur 7 ans avec un découvert est dangereux : la banque peut le supprimer à tout moment et il coûte cher.\n\n**Trésorerie** = fonds de roulement (ressources durables − emplois durables) − BFR.",
+      "notions": [
+        "Cycle d'investissement",
+        "Équilibre financier et bilan"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq14-s01-c001",
+      "section": "libre-cejm-sq14-s01-s01",
+      "type": "exercice",
+      "enonce": "Calcule le BFR : stocks 12 000 €, créances clients 20 000 €, dettes fournisseurs 18 000 €. Puis indique l'effet si les clients obtiennent 15 jours de délai supplémentaires (créances portées à 28 000 €).",
+      "etapes": [
+        "BFR = 12 000 + 20 000 − 18 000 = 14 000 €.",
+        "Nouveau BFR = 12 000 + 28 000 − 18 000 = 22 000 €."
+      ],
+      "reponse": "BFR de 14 000 €, qui passe à 22 000 € (+8 000 €) : il faut financer ces 8 000 € supplémentaires.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq14-s01-c002",
+      "section": "libre-cejm-sq14-s01-s01",
+      "type": "qcm",
+      "question": "Pourquoi la croissance du chiffre d'affaires peut-elle mettre une entreprise en difficulté de trésorerie ?",
+      "choix": [
+        "Elle augmente les stocks et les créances clients, donc le BFR à financer",
+        "Elle diminue les ventes",
+        "Elle supprime les dettes fournisseurs",
+        "Elle n'a aucun effet"
+      ],
+      "bonneReponse": 0,
+      "explication": "Plus d'activité = plus de décalages à financer avant d'encaisser.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq14-s01-c003",
+      "section": "libre-cejm-sq14-s01-s02",
+      "type": "qcm",
+      "question": "Quelle situation respecte le principe d'équilibre financier ?",
+      "choix": [
+        "Financer un camion utilisé 6 ans par un emprunt sur 5 ans",
+        "Financer un local par un découvert",
+        "Financer des machines par le crédit fournisseurs",
+        "Financer tous les investissements par la trésorerie du mois"
+      ],
+      "bonneReponse": 0,
+      "explication": "Un besoin durable est couvert par une ressource durable.",
+      "difficulte": 2
+    }
+  ]
+}

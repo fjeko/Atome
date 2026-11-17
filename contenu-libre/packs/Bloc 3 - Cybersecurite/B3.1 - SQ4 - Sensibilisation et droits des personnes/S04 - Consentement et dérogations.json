@@ -1,0 +1,97 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq4-s04",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ4 – Sensibilisation et droits des personnes",
+  "sequence": null,
+  "seance": "S04 – Consentement et dérogations",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Information préalable et consentement sont deux choses différentes : on informe toujours, on ne demande le consentement que lorsqu'il est la base légale. Le consentement doit pouvoir être prouvé ; les données sensibles exigent des conditions renforcées.",
+  "notions": [
+    "Information et consentement",
+    "Preuve du consentement",
+    "Retrait du consentement",
+    "Dérogations",
+    "Consentement explicite"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq4-s04-s01",
+      "titre": "Information n'est pas consentement",
+      "contenu": "- L'**information** est **toujours due**, quelle que soit la base légale.\n- Le **consentement** n'est qu'**une base légale parmi six**. On ne le demande pas quand une autre base s'applique (contrat, obligation légale…) : demander un consentement qu'on ne peut pas respecter (si la personne refuse) trompe la personne.\n\nExemple : pour livrer une commande, on informe le client mais on ne lui demande pas son « consentement » pour utiliser son adresse : c'est l'exécution du contrat.",
+      "notions": [
+        "Information et consentement"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq4-s04-s02",
+      "titre": "Prouver le consentement",
+      "contenu": "Le responsable doit pouvoir **démontrer** que la personne a consenti. On conserve :\n- **qui** a consenti (identifiant) ;\n- **quand** (horodatage) ;\n- **à quoi** (version du texte d'information et finalité) ;\n- **comment** (formulaire, case cochée).\n\nLe **retrait** doit être aussi simple que le consentement (lien de désinscription, paramètre de compte) et prend effet pour l'avenir.",
+      "notions": [
+        "Preuve du consentement",
+        "Retrait du consentement"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq4-s04-s03",
+      "titre": "Données sensibles et dérogations",
+      "contenu": "Le traitement de **données sensibles** est interdit sauf **dérogation**, par exemple :\n- **consentement explicite** de la personne (déclaration expresse, écrite ou case dédiée) ;\n- obligations en droit du travail et de la protection sociale ;\n- sauvegarde des intérêts vitaux ;\n- données **manifestement rendues publiques** par la personne ;\n- médecine préventive, soins, santé publique ;\n- activités d'une association, d'un syndicat ou d'une église envers ses membres.\n\nMême avec une dérogation, des mesures de sécurité renforcées et souvent une **AIPD** sont nécessaires.",
+      "notions": [
+        "Dérogations",
+        "Consentement explicite"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq4-s04-c001",
+      "section": "libre-b3-31-sq4-s04-s01",
+      "type": "qcm",
+      "question": "Un employeur demande à ses salariés de « consentir » au traitement de leurs données de paie. Quel problème ?",
+      "choix": [
+        "Aucun",
+        "La base légale est l'obligation légale/le contrat ; un consentement salarié n'est pas libre et inutile ici",
+        "Il faut un double consentement",
+        "Les salariés doivent signer chez un notaire"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le lien de subordination rend le consentement rarement libre ; la paie relève du contrat et de la loi.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq4-s04-c002",
+      "section": "libre-b3-31-sq4-s04-s02",
+      "type": "exercice",
+      "enonce": "Conçois la table qui stocke la preuve des consentements à la newsletter du site **Cuisine Pétillante**.",
+      "etapes": [
+        "`id` : identifiant de l'enregistrement.",
+        "`id_utilisateur` (ou e-mail) : qui a consenti.",
+        "`finalite` : « newsletter » (un enregistrement par finalité).",
+        "`version_texte` : version de la mention affichée.",
+        "`date_consentement` et `date_retrait` (NULL tant que le consentement est actif).",
+        "`canal` : formulaire d'inscription, espace client…"
+      ],
+      "reponse": "`consentement(id, id_utilisateur, finalite, version_texte, date_consentement, date_retrait, canal)`",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq4-s04-c003",
+      "section": "libre-b3-31-sq4-s04-s03",
+      "type": "qcm",
+      "question": "Une application de suivi du sommeil collecte la fréquence cardiaque. Sur quoi peut-elle s'appuyer ?",
+      "choix": [
+        "Sur l'intérêt légitime de l'éditeur",
+        "Sur le consentement explicite de l'utilisateur",
+        "Sur aucune base, c'est interdit",
+        "Sur une obligation légale"
+      ],
+      "bonneReponse": 1,
+      "explication": "Données de santé : dérogation nécessaire, ici le consentement explicite.",
+      "difficulte": 2
+    }
+  ]
+}

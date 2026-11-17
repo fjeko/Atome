@@ -1,0 +1,98 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq1-s06",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – SQ1 – Inventaire et gestion d'un parc informatique",
+  "sequence": null,
+  "seance": "S06 – Groupes statiques et dynamiques",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Regrouper des machines dans un outil d'inventaire : un groupe statique est une liste figée, un groupe dynamique est une recherche enregistrée qui se met à jour seule.",
+  "notions": [
+    "Groupe statique",
+    "Groupe dynamique",
+    "Choisir le type de groupe"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq1-s06-s01",
+      "titre": "Pourquoi faire des groupes ?",
+      "contenu": "Dans l'outil d'inventaire, un **groupe** rassemble des machines pour les traiter ensemble : leur déployer un logiciel, les surveiller, sortir une liste.\n\nUn **groupe statique** est une **liste figée** : on y place des machines à la main (ou à partir d'un résultat de recherche, à un instant donné). Il ne change **que si quelqu'un le modifie**.\n\nExemple : à l'école de musique Do-Ré-Mi, on crée le groupe statique « Pilote nouvelle suite bureautique » avec les 5 postes qui testeront le logiciel. On ne veut pas que d'autres postes y entrent tout seuls.",
+      "notions": [
+        "Groupe statique"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq1-s06-s02",
+      "titre": "Le groupe dynamique",
+      "contenu": "Un **groupe dynamique** est une **recherche enregistrée** : à chaque fois qu'on le consulte (ou à intervalles réguliers), l'outil relance la recherche. Son contenu **suit l'évolution du parc**.\n\nExemple : groupe dynamique « Postes sous Windows 10 » avec le critère *système* ressemble à `*Windows 10*`.\n- Lundi : 14 postes.\n- Mardi, 3 postes sont migrés en Windows 11 → ils **sortent** automatiquement du groupe : 11 postes.\n- Un nouveau poste Windows 10 est inventorié → il **entre** automatiquement.\n\n**Piège** : penser qu'un groupe dynamique est une « photo » prise à sa création. Non, c'est une question reposée en permanence.",
+      "notions": [
+        "Groupe dynamique"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq1-s06-s03",
+      "titre": "Statique ou dynamique : comment choisir ?",
+      "contenu": "| Besoin | Type de groupe |\n| --- | --- |\n| liste précise choisie par une personne (pilote, prêt de matériel, salle de formation) | **statique** |\n| ensemble défini par un **critère** qui doit rester juste dans le temps (OS, version, site, RAM) | **dynamique** |\n| faire une « photo » à une date (audit, rapport du 1er mars) | statique (ou export CSV) |\n\nQuestion à se poser : **« Si le parc change demain, est-ce que je veux que le groupe change aussi ? »** Oui → dynamique. Non → statique.",
+      "notions": [
+        "Choisir le type de groupe"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq1-s06-c001",
+      "section": "libre-b1-11-sq1-s06-s01",
+      "type": "question",
+      "recto": "Qu'est-ce qu'un groupe statique ?",
+      "verso": "Une liste de machines figée : elle ne change que si quelqu'un ajoute ou retire des machines manuellement.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s06-c002",
+      "section": "libre-b1-11-sq1-s06-s02",
+      "type": "qcm",
+      "question": "Un groupe dynamique « RAM < 8 Go » contient 12 postes. On ajoute de la RAM à 4 d'entre eux (passés à 16 Go) et leurs agents remontent l'inventaire. Combien de postes contient le groupe ?",
+      "choix": [
+        "12",
+        "8",
+        "16",
+        "4"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le groupe dynamique relance sa recherche : les 4 postes ne remplissent plus le critère et sortent du groupe. 12 − 4 = 8.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq1-s06-c003",
+      "section": "libre-b1-11-sq1-s06-s03",
+      "type": "qcm",
+      "question": "Le responsable veut un groupe qui contienne toujours tous les postes où un logiciel de visioconférence n'est **pas à jour**, pour leur pousser la mise à jour. Quel type de groupe ?",
+      "choix": [
+        "Statique, créé une fois pour toutes",
+        "Dynamique, basé sur la version du logiciel",
+        "Statique, mis à jour chaque mois à la main",
+        "Aucun groupe n'est nécessaire"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le critère (version obsolète) doit être réévalué en continu : un poste mis à jour doit sortir du groupe, un nouveau poste en retard doit y entrer.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq1-s06-c004",
+      "section": "libre-b1-11-sq1-s06-s03",
+      "type": "exercice",
+      "enonce": "Pour chaque besoin, choisis statique ou dynamique : (a) les 10 portables prêtés aux élus pour le conseil municipal ; (b) tous les postes du bâtiment B ; (c) les postes ayant moins de 20 Go libres sur le disque.",
+      "etapes": [
+        "(a) La liste est choisie par une personne et ne dépend pas d'un critère technique : statique.",
+        "(b) Le lieu est un critère de l'inventaire, et un poste déménagé doit changer de groupe : dynamique.",
+        "(c) L'espace libre change en permanence : il faut que le groupe suive, donc dynamique."
+      ],
+      "reponse": "(a) statique ; (b) dynamique ; (c) dynamique.",
+      "difficulte": 2
+    }
+  ]
+}

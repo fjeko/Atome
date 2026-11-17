@@ -1,0 +1,126 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-22-sq2-s01",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.2 – SQ2 – Qualité logicielle et tests unitaires",
+  "sequence": null,
+  "seance": "S01 – Maintenance et qualité",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La maintenance représente l'essentiel de la vie d'un logiciel. On distingue plusieurs types de maintenance, on mesure la qualité selon une norme, et on écrit du code propre pour faciliter les évolutions.",
+  "notions": [
+    "Maintenance corrective",
+    "Maintenance évolutive",
+    "Maintenance adaptative",
+    "Maintenance préventive",
+    "Tierce maintenance applicative",
+    "Norme de qualité",
+    "Caractéristiques de qualité",
+    "Code propre",
+    "Métriques de code"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-22-sq2-s01-s01",
+      "titre": "Types de maintenance",
+      "contenu": "| Type | Objectif | Exemple |\n| --- | --- | --- |\n| **Corrective** | corriger une anomalie | le calcul de TVA est faux |\n| **Évolutive** (perfective) | ajouter ou améliorer une fonctionnalité | export PDF des factures |\n| **Adaptative** | adapter à un nouvel environnement | nouvelle version de Windows, nouvelle loi |\n| **Préventive** | anticiper les problèmes | refactoriser un module fragile, mettre à jour une bibliothèque |",
+      "notions": [
+        "Maintenance corrective",
+        "Maintenance évolutive",
+        "Maintenance adaptative",
+        "Maintenance préventive"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq2-s01-s02",
+      "titre": "Tierce maintenance applicative",
+      "contenu": "La **TMA** (tierce maintenance applicative) : une organisation **confie la maintenance** de ses applications à un **prestataire extérieur** (ESN), selon un contrat.\n\nLe contrat précise :\n- le périmètre (applications concernées, types de maintenance) ;\n- les **niveaux de service** : délai de prise en charge, délai de correction selon la gravité ;\n- les indicateurs de suivi et les pénalités.\n\nAvantages : compétences spécialisées, coûts prévisibles. Risques : perte de maîtrise interne, dépendance au prestataire.",
+      "notions": [
+        "Tierce maintenance applicative"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq2-s01-s03",
+      "titre": "Qualité logicielle : la norme",
+      "contenu": "La norme **ISO/IEC 25010** décrit la qualité d'un logiciel par des **caractéristiques**, notamment :\n\n| Caractéristique | Question |\n| --- | --- |\n| Adéquation fonctionnelle | fait-il ce qui est demandé ? |\n| Efficacité de performance | est-il rapide, sobre en ressources ? |\n| Compatibilité | coexiste-t-il avec d'autres systèmes ? |\n| Utilisabilité | est-il facile à apprendre et à utiliser ? |\n| Fiabilité | fonctionne-t-il sans panne ? |\n| Sécurité | protège-t-il les données ? |\n| Maintenabilité | est-il facile à corriger et faire évoluer ? |\n| Portabilité | s'installe-t-il ailleurs facilement ? |\n\nLe développeur agit surtout sur la **maintenabilité** : c'est elle que visent le code propre et les tests.",
+      "notions": [
+        "Norme de qualité",
+        "Caractéristiques de qualité"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq2-s01-s04",
+      "titre": "Code propre et mesures",
+      "contenu": "Le **code propre** (*clean code*) se lit facilement. Règles fondamentales :\n- des **noms qui disent l'intention** ;\n- des **fonctions courtes** qui font **une seule chose** ;\n- pas de duplication ;\n- des commentaires seulement quand le code ne peut pas parler seul ;\n- une gestion d'erreurs explicite.\n\nLes outils fournissent des **mesures** (métriques) : nombre de lignes, **complexité cyclomatique** (nombre de chemins dans une méthode), taux de **duplication**, **couverture** de tests, dette technique estimée. Elles guident, mais ne remplacent pas la relecture.",
+      "notions": [
+        "Code propre",
+        "Métriques de code"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-22-sq2-s01-c001",
+      "section": "libre-b2-22-sq2-s01-s01",
+      "type": "qcm",
+      "question": "La loi impose une nouvelle mention sur les factures ; on modifie l'application. Quel type de maintenance ?",
+      "choix": [
+        "Corrective",
+        "Adaptative",
+        "Préventive",
+        "Aucune, c'est un nouveau projet"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'application n'avait pas de bug : on l'adapte à un changement de son environnement (réglementaire).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq2-s01-c002",
+      "section": "libre-b2-22-sq2-s01-s01",
+      "type": "exercice",
+      "enonce": "Classe ces demandes : (a) le bouton Imprimer plante, (b) ajouter un tableau de bord, (c) migrer vers .NET 10 car l'ancienne version n'est plus suivie, (d) réécrire une classe de 2 000 lignes avant qu'elle pose problème.",
+      "etapes": [
+        "(a) un dysfonctionnement → corrective.",
+        "(b) une nouvelle fonctionnalité → évolutive.",
+        "(c) un changement d'environnement technique → adaptative.",
+        "(d) une anticipation sans bug actuel → préventive."
+      ],
+      "reponse": "a corrective, b évolutive, c adaptative, d préventive.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-22-sq2-s01-c003",
+      "section": "libre-b2-22-sq2-s01-s02",
+      "type": "question",
+      "recto": "Qu'est-ce que la TMA ?",
+      "verso": "La **tierce maintenance applicative** : la maintenance d'applications confiée à un prestataire externe, encadrée par un contrat avec des niveaux de service.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-22-sq2-s01-c004",
+      "section": "libre-b2-22-sq2-s01-s03",
+      "type": "qcm",
+      "question": "Une application est juste et rapide, mais chaque modification prend des jours car le code est illisible. Quelle caractéristique est faible ?",
+      "choix": [
+        "Adéquation fonctionnelle",
+        "Efficacité de performance",
+        "Maintenabilité",
+        "Portabilité"
+      ],
+      "bonneReponse": 2,
+      "explication": "La difficulté à modifier le code relève de la maintenabilité.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq2-s01-c005",
+      "section": "libre-b2-22-sq2-s01-s04",
+      "type": "question",
+      "recto": "Que mesure la complexité cyclomatique d'une méthode ?",
+      "verso": "Le nombre de **chemins indépendants** (liés aux `if`, boucles, `case`…) : plus elle est élevée, plus la méthode est difficile à comprendre et à tester.",
+      "difficulte": 2
+    }
+  ]
+}

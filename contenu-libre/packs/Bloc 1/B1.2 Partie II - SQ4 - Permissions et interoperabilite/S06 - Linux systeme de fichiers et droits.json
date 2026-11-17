@@ -1,0 +1,110 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq4-s06",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ4 – Permissions d'accès, imprimante partagée et interopérabilité Windows/Linux",
+  "sequence": null,
+  "seance": "S06 – Linux : système de fichiers et droits",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. L'arborescence standard de Linux, systèmes de fichiers, partitions et points de montage (fichier fstab), droits en notation symbolique et octale, liens symboliques, redirections et tubes.",
+  "notions": [
+    "Répertoires standard",
+    "Partitions et points de montage",
+    "Fichier fstab",
+    "Droits en notation octale",
+    "Liens symboliques",
+    "Redirections et tubes"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq4-s06-s01",
+      "titre": "L'arborescence et le montage",
+      "contenu": "Sous Linux, tout part d'une **racine unique** `/` (pas de C:, D:).\n| Répertoire | Contenu |\n| --- | --- |\n| `/etc` | configuration |\n| `/home` | dossiers personnels |\n| `/root` | dossier de root |\n| `/var` | données variables (journaux `/var/log`, sites web) |\n| `/tmp` | fichiers temporaires |\n| `/usr` | programmes et bibliothèques |\n| `/bin`, `/sbin` | commandes essentielles |\n| `/dev` | périphériques (`/dev/sda1`) |\n| `/mnt`, `/media` | points de montage |\n| `/srv` | données servies (partages, sites) |\n\nUn disque est découpé en **partitions** formatées avec un **système de fichiers** (ext4, xfs, vfat…). Pour l'utiliser, on le **monte** sur un dossier (**point de montage**) :\n```bash\nlsblk                         # voir disques et partitions\nsudo mount /dev/sdb1 /srv/donnees\ndf -h                         # espace des systèmes montés\n```\nPour un montage **automatique au démarrage**, une ligne dans `/etc/fstab` :\n```text\n# périphérique (UUID conseillé)              point de montage  type  options   dump pass\nUUID=5c1e0d7a-2b4f-4a1e-9f0d-7e3b2c1a9f88  /srv/donnees      ext4  defaults  0    2\n```",
+      "notions": [
+        "Répertoires standard",
+        "Partitions et points de montage",
+        "Fichier fstab"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq4-s06-s02",
+      "titre": "Les droits en notation octale",
+      "contenu": "Chaque droit vaut un nombre : **r = 4, w = 2, x = 1**. On additionne pour chaque catégorie, **dans l'ordre propriétaire – groupe – autres**.\n| Droits | Calcul | Octal |\n| --- | --- | --- |\n| `rwx` | 4+2+1 | 7 |\n| `rw-` | 4+2 | 6 |\n| `r-x` | 4+1 | 5 |\n| `r--` | 4 | 4 |\n| `---` | 0 | 0 |\n\n`chmod 750 projet` → `rwxr-x---` ; `chmod 640 bilan.ods` → `rw-r-----`.\nEn notation **symbolique** : `chmod u=rwx,g=rx,o= projet` fait la même chose.\n\n**Piège** : inverser l'ordre (groupe avant propriétaire).",
+      "notions": [
+        "Droits en notation octale"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq4-s06-s03",
+      "titre": "Liens, redirections et tubes",
+      "contenu": "**Lien symbolique** : un raccourci vers un fichier ou dossier.\n```bash\nln -s /srv/partages/commun ~/commun\n```\nSi la cible est supprimée, le lien est « cassé ».\n\n**Redirections** :\n| Syntaxe | Effet |\n| --- | --- |\n| `cmd > fichier` | écrit la sortie dans le fichier (écrase) |\n| `cmd >> fichier` | ajoute à la fin |\n| `cmd 2> erreurs.txt` | redirige les messages d'erreur |\n| `cmd < fichier` | lit l'entrée depuis un fichier |\n\n**Tube** `|` : ce que produit la première commande sert d'entrée à la suivante.\n```bash\nls -l /srv/partages | grep compta\ncat /var/log/auth.log | grep \"Failed\" | wc -l     # nombre d'échecs de connexion\n```",
+      "notions": [
+        "Liens symboliques",
+        "Redirections et tubes"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq4-s06-c001",
+      "section": "libre-b1-12b-sq4-s06-s01",
+      "type": "qcm",
+      "question": "À quoi sert le fichier /etc/fstab ?",
+      "choix": [
+        "À stocker les mots de passe",
+        "À décrire les systèmes de fichiers à monter automatiquement au démarrage",
+        "À lister les paquets installés",
+        "À configurer le réseau"
+      ],
+      "bonneReponse": 1,
+      "explication": "Chaque ligne indique un périphérique, son point de montage, son type et ses options.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq4-s06-c002",
+      "section": "libre-b1-12b-sq4-s06-s02",
+      "type": "exercice",
+      "enonce": "Convertis `rw-rw-r--` en octal, puis 751 en notation rwx.",
+      "etapes": [
+        "rw- = 6, rw- = 6, r-- = 4 → 664.",
+        "7 = rwx, 5 = r-x, 1 = --x."
+      ],
+      "reponse": "664 ; 751 = `rwxr-x--x`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq4-s06-c003",
+      "section": "libre-b1-12b-sq4-s06-s02",
+      "type": "qcm",
+      "question": "Quelle commande donne au propriétaire tous les droits, au groupe la lecture seule et aucun droit aux autres ?",
+      "choix": [
+        "`chmod 774`",
+        "`chmod 740`",
+        "`chmod 047`",
+        "`chmod 700`"
+      ],
+      "bonneReponse": 1,
+      "explication": "7 (rwx) pour le propriétaire, 4 (r--) pour le groupe, 0 pour les autres.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq4-s06-c004",
+      "section": "libre-b1-12b-sq4-s06-s03",
+      "type": "qcm",
+      "question": "Quelle est la différence entre `>` et `>>` ?",
+      "choix": [
+        "Aucune",
+        "`>` remplace le contenu du fichier, `>>` ajoute à la fin",
+        "`>>` redirige les erreurs",
+        "`>` crée un lien symbolique"
+      ],
+      "bonneReponse": 1,
+      "explication": "Attention : `>` écrase sans prévenir.",
+      "difficulte": 2
+    }
+  ]
+}

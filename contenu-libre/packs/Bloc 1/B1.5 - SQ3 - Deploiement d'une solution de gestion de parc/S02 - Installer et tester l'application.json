@@ -1,0 +1,63 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-15-sq3-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.5 – SQ3 – Déployer une solution de gestion de parc dans un nouvel environnement",
+  "sequence": null,
+  "seance": "S02 – Installer et tester l'application",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Installer l'application de gestion de parc sur les serveurs préparés, terminer l'assistant d'installation et sécuriser, puis vérifier son bon fonctionnement.",
+  "notions": [
+    "Installation de l'application",
+    "Sécurisation après installation",
+    "Tests de fonctionnement"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-15-sq3-s02-s01",
+      "titre": "Installer et sécuriser",
+      "contenu": "Étapes types :\n1. sur `srv-glpi-web` : serveur web, PHP et ses extensions requises ; télécharger l'archive **depuis le site officiel** et vérifier son empreinte ;\n2. sur `srv-glpi-bdd` : créer la base et un compte **limité à cette base**, autorisé depuis le seul serveur web ;\n3. lancer l'**assistant web** : connexion à la base (par **nom** de serveur), création des tables ;\n4. **sécuriser** :\n   - changer les mots de passe des **comptes par défaut** (ou les désactiver) ;\n   - **supprimer** le script d'installation (`install/install.php`) ;\n   - placer les dossiers de données et de configuration **hors de la racine web** si l'application le permet ;\n   - HTTPS.",
+      "notions": [
+        "Installation de l'application",
+        "Sécurisation après installation"
+      ]
+    },
+    {
+      "id": "libre-b1-15-sq3-s02-s02",
+      "titre": "Tester",
+      "contenu": "- connexion à l'interface avec le compte administrateur **nominatif** ;\n- création d'un ordinateur, d'un ticket ;\n- remontée d'inventaire d'un **agent** de test ;\n- envoi des **notifications** e-mail ;\n- tâches planifiées (*cron*) actives ;\n- consultation des **journaux** (`/var/log/apache2/error.log`, journaux de l'application) : aucune erreur.",
+      "notions": [
+        "Tests de fonctionnement"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-15-sq3-s02-c001",
+      "section": "libre-b1-15-sq3-s02-s01",
+      "type": "qcm",
+      "question": "Pourquoi supprimer le script d'installation après avoir installé l'application ?",
+      "choix": [
+        "Pour gagner de la place",
+        "Pour qu'un tiers ne puisse pas relancer l'installation et écraser ou détourner la configuration",
+        "Parce qu'il ralentit le site",
+        "Ce n'est pas nécessaire"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un script d'installation accessible est une porte d'entrée pour un attaquant.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-15-sq3-s02-c002",
+      "section": "libre-b1-15-sq3-s02-s02",
+      "type": "question",
+      "recto": "Cite trois tests à réaliser après l'installation d'une application de gestion de parc.",
+      "verso": "Par exemple : connexion à l'interface, création d'un élément ou d'un ticket, remontée d'un agent d'inventaire, notifications e-mail, tâches planifiées, absence d'erreurs dans les journaux.",
+      "difficulte": 1
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq10-s04",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 10 – Coûts, combinaison productive, faire ou faire faire",
+  "sequence": null,
+  "seance": "S4 – Synthèse et étude de cas",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif des coûts, de la productivité et de l'externalisation, puis cas chiffré d'une entreprise fictive.",
+  "notions": [
+    "Synthèse coûts et production",
+    "Application à un cas"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq10-s04-s01",
+      "titre": "L'essentiel",
+      "contenu": "- Coût total = coûts **fixes** + coûts **variables** ; le coût unitaire baisse quand le volume augmente.\n- Coût du travail = salaire brut + cotisations patronales.\n- **Productivité** = production / facteur ; ne pas confondre avec la production.\n- Taux de variation : $\\frac{V_A - V_D}{V_D} \\times 100$ (base = valeur de **départ**).\n- Faire ou faire faire : cœur de métier, coûts (dont cachés), dépendance, qualité.",
+      "notions": [
+        "Synthèse coûts et production"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq10-s04-s02",
+      "titre": "Étude de cas : Laverie Zéphyr",
+      "contenu": "*Laverie Zéphyr*, blanchisserie fictive pour hôtels, traite 48 000 kg de linge par an avec 8 salariés. Coûts annuels : loyer 36 000 €, assurance 4 000 €, salaires chargés 224 000 €, lessive et énergie 1,20 € par kg.\n\nLe gérant envisage : (a) d'acheter un tunnel de lavage automatique, financé par emprunt, qui permettrait de traiter 60 000 kg avec 7 salariés ; (b) d'externaliser les livraisons à un transporteur.",
+      "notions": [
+        "Application à un cas"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq10-s04-c001",
+      "section": "libre-cejm-sq10-s04-s01",
+      "type": "qcm",
+      "question": "Une valeur passe de 80 à 100. Un élève calcule $\\frac{20}{100} = 20\\,\\%$. Quelle est son erreur ?",
+      "choix": [
+        "Il a divisé par la valeur d'arrivée au lieu de la valeur de départ (bonne réponse : +25 %)",
+        "Aucune",
+        "Il fallait diviser par 180",
+        "Il fallait soustraire 100 − 80 = 2 %"
+      ],
+      "bonneReponse": 0,
+      "explication": "$\\frac{100 - 80}{80} \\times 100 = 25\\,\\%$.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq10-s04-c002",
+      "section": "libre-cejm-sq10-s04-s02",
+      "type": "exercice",
+      "enonce": "Pour *Laverie Zéphyr* : calcule la productivité actuelle et après investissement, puis donne un argument pour et un contre l'externalisation des livraisons.",
+      "etapes": [
+        "Actuellement : $\\frac{48\\,000}{8} = 6\\,000$ kg par salarié.",
+        "Après : $\\frac{60\\,000}{7} \\approx 8\\,571$ kg par salarié, soit un gain d'environ $\\frac{8\\,571 - 6\\,000}{6\\,000} \\times 100 \\approx 43\\,\\%$.",
+        "Pour l'externalisation : plus besoin d'acheter et d'entretenir des camionnettes, coûts rendus variables.",
+        "Contre : dépendance au transporteur, moins de contrôle sur les horaires de livraison promis aux hôtels."
+      ],
+      "reponse": "Productivité : 6 000 puis environ 8 571 kg par salarié (+43 %) ; externaliser rend les coûts variables mais crée une dépendance.",
+      "difficulte": 3
+    }
+  ]
+}

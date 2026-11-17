@@ -1,0 +1,93 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq13-s02",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 13 – Processus, structures et coordination",
+  "sequence": null,
+  "seance": "S2 – Structures, coordination et management",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les structures fonctionnelle, divisionnelle, matricielle et en réseau, les mécanismes de coordination, les niveaux et les styles de management.",
+  "notions": [
+    "Structures organisationnelles",
+    "Mécanismes de coordination",
+    "Niveaux et styles de management"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq13-s02-s01",
+      "titre": "Les structures",
+      "contenu": "| Structure | Organisation | Avantages | Limites |\n|---|---|---|---|\n| **fonctionnelle** | services par **fonction** (production, commercial, finance) | spécialisation, économies d'échelle | cloisonnement, lenteur, décisions remontées en haut |\n| **divisionnelle** | divisions par **produit, marché ou zone** géographique | réactivité, responsabilisation | doublons de services, coûts |\n| **matricielle** | double rattachement : un **métier** et un **projet/produit** | souplesse, compétences partagées | conflits entre deux chefs, lourdeur |\n| **en réseau** | entreprise centrale + partenaires indépendants liés par contrats | flexibilité, concentration sur le cœur de métier | dépendance, contrôle difficile |\n\nOn reconnaît une structure sur l'**organigramme** : sous la direction, les cases sont-elles des fonctions (fonctionnelle), des produits ou zones (divisionnelle), ou un quadrillage (matricielle) ?",
+      "notions": [
+        "Structures organisationnelles"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq13-s02-s02",
+      "titre": "Coordination, niveaux et styles de management",
+      "contenu": "**Mécanismes de coordination** :\n- **ajustement mutuel** : communication directe et informelle (petite équipe, start-up) ;\n- **supervision directe** : un responsable donne les ordres et contrôle ;\n- **standardisation des procédés** (procédures, règles), **des résultats** (objectifs chiffrés), **des qualifications** (formation commune : médecins, ingénieurs).\n\n**Niveaux de management** : **stratégique** (direction : orientations à long terme), **tactique** (cadres intermédiaires : traduire la stratégie en plans), **opérationnel** (encadrement de proximité : organiser le quotidien).\n\n**Styles de direction** :\n| Style | Indices dans un texte |\n|---|---|\n| autoritaire | décisions seules, ordres, contrôle strict, peu de communication |\n| paternaliste | décisions seules mais attention bienveillante au bien-être des salariés |\n| consultatif | le dirigeant demande l'avis des salariés puis décide seul |\n| participatif | les salariés participent réellement à la décision |",
+      "notions": [
+        "Mécanismes de coordination",
+        "Niveaux et styles de management"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq13-s02-c001",
+      "section": "libre-cejm-sq13-s02-s01",
+      "type": "qcm",
+      "question": "Sous la direction générale, l'organigramme montre « Division Europe », « Division Amériques », « Division Asie ». Structure ?",
+      "choix": [
+        "Divisionnelle",
+        "Fonctionnelle",
+        "Matricielle",
+        "En réseau"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les divisions sont organisées par zone géographique.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq13-s02-c002",
+      "section": "libre-cejm-sq13-s02-s01",
+      "type": "question",
+      "recto": "Quelle est la principale limite d'une structure matricielle ?",
+      "verso": "Le double rattachement hiérarchique, source de conflits et de décisions plus lentes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq13-s02-c003",
+      "section": "libre-cejm-sq13-s02-s02",
+      "type": "qcm",
+      "question": "« La gérante réunit l'équipe pour recueillir les idées, puis tranche elle-même. » Style de direction ?",
+      "choix": [
+        "Consultatif",
+        "Participatif",
+        "Autoritaire",
+        "Paternaliste"
+      ],
+      "bonneReponse": 0,
+      "explication": "Elle consulte, mais décide seule.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq13-s02-c004",
+      "section": "libre-cejm-sq13-s02-s02",
+      "type": "qcm",
+      "question": "Une chaîne de restaurants impose à tous ses établissements les mêmes fiches recettes. Mécanisme de coordination ?",
+      "choix": [
+        "Standardisation des procédés",
+        "Ajustement mutuel",
+        "Standardisation des qualifications",
+        "Supervision directe"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les fiches décrivent comment faire le travail.",
+      "difficulte": 2
+    }
+  ]
+}

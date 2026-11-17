@@ -1,0 +1,121 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq2-s01",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – SQ2 – Conception et évolution de base de données",
+  "sequence": null,
+  "seance": "S01 – Trois niveaux de modèles et règles de passage",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La conception d'une base passe par trois niveaux : conceptuel (MCD), logique (MLD, relationnel) et physique (MPD, propre au SGBD). Des règles systématiques font passer d'un niveau à l'autre, et la rétroconception fait le chemin inverse.",
+  "notions": [
+    "MCD",
+    "MLD",
+    "MPD",
+    "Règles de passage MCD vers MLD",
+    "Formalismes de modèle physique",
+    "Notation patte d'oie",
+    "Rétroconception de base"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq2-s01-s01",
+      "titre": "Conceptuel, logique, physique",
+      "contenu": "| Niveau | Question | Contenu | Dépend du SGBD ? |\n| --- | --- | --- | --- |\n| **Conceptuel** (MCD) | quelles informations ? | entités, associations, cardinalités | non |\n| **Logique** (MLD) | quelle organisation en tables ? | relations, clés primaires et étrangères | non (modèle relationnel) |\n| **Physique** (MPD) | comment dans tel SGBD ? | types (`VARCHAR(50)`), index, moteur, script SQL | oui |\n\nOn passe de l'un à l'autre en appliquant des **règles** ; les outils de modélisation (Looping, JMerise, Mocodo, DBeaver, MySQL Workbench…) les automatisent en partie.",
+      "notions": [
+        "MCD",
+        "MLD",
+        "MPD"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq2-s01-s02",
+      "titre": "Règles de passage",
+      "contenu": "| Élément du MCD | Traduction |\n| --- | --- |\n| Entité | table ; identifiant → clé primaire |\n| Association avec un côté (0,1)/(1,1) (dépendance fonctionnelle) | clé étrangère dans la table côté (x,1) |\n| Association (x,n)–(x,n) | table ; clé primaire = clés étrangères des entités reliées |\n| Association ternaire | table ; clé = les trois clés étrangères (moins celles déterminées par une CIF) |\n| Propriété d'association | colonne de la table issue de l'association (ou de la table qui reçoit la clé étrangère) |\n| Lien identifiant | clé primaire composée : clé étrangère + identifiant relatif |\n| Association réflexive | clé étrangère vers la même table (ou table de liaison si n–n) |",
+      "notions": [
+        "Règles de passage MCD vers MLD"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq2-s01-s03",
+      "titre": "Lire différents formalismes physiques",
+      "contenu": "Un modèle physique peut être affiché de plusieurs façons :\n- **notation patte d'oie** (*crow's foot*) : un trait simple = « un », une patte d'oie = « plusieurs », un cercle = « zéro possible » ;\n- **notation UML** des outils : multiplicités `1`, `0..*` aux extrémités ;\n- **flèches** qui partent de la clé étrangère et pointent la clé primaire référencée.\n\nQuelle que soit la notation, cherche : les **clés primaires** (souvent une icône de clé), les **clés étrangères** et le **sens** de la référence.",
+      "notions": [
+        "Formalismes de modèle physique",
+        "Notation patte d'oie"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq2-s01-s04",
+      "titre": "Rétroconception d'une base",
+      "contenu": "La **rétroconception** reconstruit le MCD à partir d'une base existante (script SQL ou diagramme physique) :\n1. chaque table **sans clé étrangère dans sa clé primaire** → une entité ;\n2. chaque clé étrangère simple → une association de type CIF : (1,1) ou (0,1) côté table qui la porte (selon NOT NULL), (0,n) ou (1,n) de l'autre côté ;\n3. chaque table dont l'identifiant **est formé uniquement de clés étrangères** → une association (x,n)–(x,n) ;\n4. clé composée « clé étrangère + numéro » → lien identifiant.",
+      "notions": [
+        "Rétroconception de base"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq2-s01-c001",
+      "section": "libre-b2-23-sq2-s01-s01",
+      "type": "qcm",
+      "question": "À quel niveau choisit-on le type `DECIMAL(8,2)` d'une colonne ?",
+      "choix": [
+        "Conceptuel",
+        "Logique",
+        "Physique",
+        "Aucun"
+      ],
+      "bonneReponse": 2,
+      "explication": "Les types précis dépendent du SGBD : niveau physique.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-23-sq2-s01-c002",
+      "section": "libre-b2-23-sq2-s01-s02",
+      "type": "exercice",
+      "enonce": "Traduis : `MEDECIN(idMedecin, nom)`, `PATIENT(idPatient, nom)`, `CRENEAU(idCreneau, debut)`, et l'association ternaire *Consulter* (0,n de chaque côté) avec la propriété `motif`.",
+      "etapes": [
+        "Entités → tables : MEDECIN(idMedecin, nom), PATIENT(idPatient, nom), CRENEAU(idCreneau, debut).",
+        "Ternaire → table CONSULTER avec les trois clés étrangères.",
+        "Clé primaire composée des trois : (#idMedecin, #idPatient, #idCreneau), plus la colonne motif.",
+        "Si une règle dit « un médecin ne voit qu'un patient par créneau », (idMedecin, idCreneau) suffit comme clé."
+      ],
+      "reponse": "CONSULTER(#idMedecin, #idPatient, #idCreneau, motif), clé à ajuster selon les dépendances fonctionnelles.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq2-s01-c003",
+      "section": "libre-b2-23-sq2-s01-s03",
+      "type": "qcm",
+      "question": "Dans un diagramme en patte d'oie, `CLIENT ||———o< COMMANDE` signifie :",
+      "choix": [
+        "Un client a zéro, une ou plusieurs commandes ; une commande a exactement un client",
+        "Une commande a plusieurs clients",
+        "Un client a exactement une commande",
+        "Il n'y a pas de lien"
+      ],
+      "bonneReponse": 0,
+      "explication": "`||` = exactement un (côté client), `o<` = zéro ou plusieurs (côté commande).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq2-s01-c004",
+      "section": "libre-b2-23-sq2-s01-s04",
+      "type": "qcm",
+      "question": "Le script contient `CREATE TABLE participer (id_benevole INT, id_evenement INT, role VARCHAR(30), PRIMARY KEY (id_benevole, id_evenement), FOREIGN KEY ... , FOREIGN KEY ...)`. En rétroconception, c'est :",
+      "choix": [
+        "une entité PARTICIPER",
+        "une association Participer entre BENEVOLE et EVENEMENT, portant la propriété role",
+        "une association réflexive",
+        "un héritage"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une table dont la clé est composée de deux clés étrangères vient d'une association n–n.",
+      "difficulte": 2
+    }
+  ]
+}

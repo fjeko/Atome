@@ -1,0 +1,62 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq5-s05",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – SQ5 – Sauvegardes d'un serveur de fichiers",
+  "sequence": null,
+  "seance": "S05 – Rédiger un plan de sauvegarde",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Formaliser une stratégie dans un plan de sauvegarde : quoi, quand, comment, où, combien de temps, qui fait quoi et comment on teste.",
+  "notions": [
+    "Rubriques d'un plan de sauvegarde",
+    "Rédaction d'un plan pour un cas"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq5-s05-s01",
+      "titre": "Les rubriques d'un plan de sauvegarde",
+      "contenu": "Un **plan de sauvegarde** est un document qui décrit la stratégie pour que **n'importe qui** puisse la comprendre et l'appliquer.\n\n| Rubrique | Question |\n| --- | --- |\n| Périmètre | **quoi** ? (dossiers, bases, configuration) |\n| Objectifs | RPO et RTO retenus |\n| Type et fréquence | **quand** et **comment** ? (complète le vendredi, différentielle chaque soir…) |\n| Supports et emplacements | **où** ? (disque dédié, NAS, copie hors site) |\n| Rétention | **combien de temps** garde-t-on chaque sauvegarde ? |\n| Responsabilités | **qui** surveille, qui change les supports, qui restaure ? |\n| Vérification | **comment** et **quand** teste-t-on la restauration ? |\n| Procédure de restauration | étapes à suivre en cas de besoin |",
+      "notions": [
+        "Rubriques d'un plan de sauvegarde"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq5-s05-s02",
+      "titre": "Exemple complet",
+      "contenu": "### Cas : la fromagerie coopérative du Haut-Jura (15 salariés)\nUn serveur de fichiers (300 Go de données, environ 3 Go modifiés par jour). La direction accepte de perdre au maximum une journée et veut repartir sous 24 h.\n\n| Rubrique | Choix |\n| --- | --- |\n| Périmètre | `D:\\Partages` (commercial, qualité, compta), état du système |\n| Objectifs | RPO 24 h, RTO 24 h |\n| Type et fréquence | complète le vendredi 21 h, différentielle du lundi au jeudi 21 h |\n| Supports | disque USB dédié de 4 To + copie chiffrée hebdomadaire vers un stockage cloud |\n| Rétention | 4 semaines sur le disque, 12 mois (1 complète par mois) dans le cloud |\n| Responsabilités | la technicienne surveille les journaux chaque lundi ; le gérant est suppléant |\n| Vérification | restauration test d'un dossier chaque mois, restauration complète sur VM chaque semestre |",
+      "notions": [
+        "Rédaction d'un plan pour un cas"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq5-s05-c001",
+      "section": "libre-b1-11-sq5-s05-s01",
+      "type": "question",
+      "recto": "Cite cinq rubriques d'un plan de sauvegarde.",
+      "verso": "Par exemple : périmètre (quoi), type et fréquence (quand), supports (où), rétention (combien de temps), responsabilités (qui), tests de restauration.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq5-s05-c002",
+      "section": "libre-b1-11-sq5-s05-s02",
+      "type": "exercice",
+      "enonce": "Rédige les grandes lignes d'un plan de sauvegarde pour l'association sportive Les Foulées Vertes : un NAS contient 40 Go (licenciés, comptabilité, photos). Peu de modifications (≈ 200 Mo par semaine, surtout le week-end). Le bureau accepte de perdre une semaine de travail et peut attendre 3 jours pour retrouver ses fichiers.",
+      "etapes": [
+        "Périmètre : les dossiers licenciés, comptabilité et photos du NAS.",
+        "Objectifs : RPO 1 semaine, RTO 3 jours.",
+        "Fréquence : une sauvegarde par semaine suffit, le lundi soir après l'activité du week-end (complète mensuelle + incrémentales ou différentielles hebdomadaires, vu le faible volume).",
+        "Supports : disque externe débranché après chaque sauvegarde + copie hors site (cloud ou disque gardé par le trésorier chez lui).",
+        "Rétention : par exemple 8 semaines et 12 mensuelles.",
+        "Responsabilités et tests : un bénévole désigné lance/contrôle la sauvegarde ; test de restauration d'un fichier chaque mois."
+      ],
+      "reponse": "Sauvegarde hebdomadaire le lundi, disque externe déconnecté + copie hors site, rétention 2 mois / 1 an, un responsable nommé et un test mensuel de restauration.",
+      "difficulte": 3
+    }
+  ]
+}

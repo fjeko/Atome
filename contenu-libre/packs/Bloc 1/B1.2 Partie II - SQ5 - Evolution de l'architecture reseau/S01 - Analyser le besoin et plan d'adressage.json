@@ -1,0 +1,79 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq5-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ5 – Évolution d'une architecture réseau et maquettage",
+  "sequence": null,
+  "seance": "S01 – Analyser le besoin et proposer un plan d'adressage",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Partir d'un besoin d'évolution (nouveaux services, nouveaux sous-réseaux) pour construire un plan d'adressage sans chevauchement, avec passerelles et adresses des équipements.",
+  "notions": [
+    "Analyse du besoin d'évolution",
+    "Découpage en sous-réseaux",
+    "Plan d'adressage",
+    "Chevauchement de plages"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq5-s01-s01",
+      "titre": "Analyser le besoin",
+      "contenu": "### Cas : l'auberge de jeunesse Les Hirondelles\nAujourd'hui : un seul réseau 192.168.50.0/24 pour tout le monde (personnel, Wi-Fi des clients, caméras). La direction veut :\n- isoler le **Wi-Fi clients** (jusqu'à 100 appareils) ;\n- un réseau **personnel** (20 postes + imprimantes) ;\n- un réseau **caméras** (12 caméras).\n\nQuestions à se poser : combien d'appareils par réseau (avec marge de croissance) ? qui doit communiquer avec qui ? quels équipements devront être modifiés ?",
+      "notions": [
+        "Analyse du besoin d'évolution"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq5-s01-s02",
+      "titre": "Découper sans chevauchement",
+      "contenu": "On part du plus grand besoin et on découpe l'espace disponible 192.168.50.0/24 :\n| Réseau | Besoin | Masque | Adresse réseau | Hôtes | Passerelle |\n| --- | --- | --- | --- | --- | --- |\n| Clients Wi-Fi | 100 | /25 (126) | 192.168.50.0/25 | .1 à .126 | .126 |\n| Personnel | 20 | /27 (30) | 192.168.50.128/27 | .129 à .158 | .158 |\n| Caméras | 12 | /28 (14) | 192.168.50.160/28 | .161 à .174 | .174 |\nIl reste 192.168.50.176 à .255 pour les évolutions.\n\nRègles :\n- chaque réseau **commence** à un multiple de sa taille (un /27 commence à 0, 32, 64, 96, 128…) ;\n- **pas de chevauchement** : une adresse ne doit appartenir qu'à un seul réseau ;\n- la **passerelle** est dans le réseau ;\n- on prévoit les **adresses fixes** (serveurs, imprimantes) et la **plage DHCP** séparément.",
+      "notions": [
+        "Découpage en sous-réseaux",
+        "Plan d'adressage",
+        "Chevauchement de plages"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq5-s01-c001",
+      "section": "libre-b1-12b-sq5-s01-s01",
+      "type": "question",
+      "recto": "Quelles informations faut-il réunir avant de construire un plan d'adressage ?",
+      "verso": "Le nombre d'appareils de chaque réseau (avec une marge), les besoins de communication entre réseaux, et les équipements concernés.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq5-s01-c002",
+      "section": "libre-b1-12b-sq5-s01-s02",
+      "type": "qcm",
+      "question": "Un collègue propose le réseau caméras en 192.168.50.150/28. Quel est le problème ?",
+      "choix": [
+        "Aucun",
+        "150 n'est pas un début de bloc /28 et la plage chevaucherait le réseau du personnel",
+        "Un /28 est trop grand",
+        "Les caméras ne peuvent pas avoir d'adresse IP"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les blocs /28 commencent à des multiples de 16 (144, 160…). Le bloc 144-159 empiéterait sur 128-159 (personnel).",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b1-12b-sq5-s01-c003",
+      "section": "libre-b1-12b-sq5-s01-s02",
+      "type": "exercice",
+      "enonce": "Ajoute un réseau « administration » de 6 équipements dans l'espace restant (à partir de .176). Donne le masque, l'adresse réseau, la plage, la diffusion et une passerelle.",
+      "etapes": [
+        "6 hôtes : $2^3 - 2 = 6$, donc 3 bits hôte → /29.",
+        "Premier bloc libre multiple de 8 : 176.",
+        "Plage : .177 à .182 ; diffusion .183.",
+        "Passerelle : par exemple .182."
+      ],
+      "reponse": "192.168.50.176/29 ; hôtes .177 à .182 ; diffusion .183 ; passerelle .182 (un /28 donnerait plus de marge).",
+      "difficulte": 3
+    }
+  ]
+}

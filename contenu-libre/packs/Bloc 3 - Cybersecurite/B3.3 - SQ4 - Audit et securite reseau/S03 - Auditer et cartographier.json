@@ -1,0 +1,87 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq4-s03",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – SQ4 – Audit et sécurité réseau",
+  "sequence": null,
+  "seance": "S03 – Auditer et cartographier",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un audit réseau commence par une cartographie : équipements, liens, zones et flux. On suit une chaîne de connexion de bout en bout pour repérer ses faiblesses, en s'appuyant sur les piliers d'un audit.",
+  "notions": [
+    "Cartographie réseau",
+    "Inventaire réseau",
+    "Chaîne de connexion",
+    "Piliers d'un audit"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq4-s03-s01",
+      "titre": "Cartographier le réseau",
+      "contenu": "La **cartographie** décrit :\n- les **équipements** : routeurs, pare-feu, switchs, bornes Wi-Fi, serveurs, postes, imprimantes, objets connectés ;\n- le **plan d'adressage** et les **VLAN** ;\n- les **liens** (internes, vers Internet, vers d'autres sites) ;\n- les **flux** autorisés entre zones ;\n- les **versions** logicielles et les responsables.\n\nOn la construit à partir de la documentation, des configurations, d'outils de découverte autorisés, et on la tient **à jour**. On ne protège bien que ce qu'on connaît.",
+      "notions": [
+        "Cartographie réseau",
+        "Inventaire réseau"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq4-s03-s02",
+      "titre": "Auditer une chaîne de connexion",
+      "contenu": "Suivre le chemin d'un utilisateur jusqu'à un service, maillon par maillon : **poste** → **prise/borne Wi-Fi** → **switch** → **routeur/pare-feu** → **serveur** → **application** → **base de données**.\n\nPour chaque maillon, se demander : est-il à jour ? configuré par défaut ? le flux est-il chiffré ? filtré ? journalisé ? qui l'administre et comment ?",
+      "notions": [
+        "Chaîne de connexion"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq4-s03-s03",
+      "titre": "Les piliers d'un audit",
+      "contenu": "Un audit de sécurité s'appuie sur plusieurs volets complémentaires :\n- **audit organisationnel** : politique, procédures, rôles, sensibilisation, conformité ;\n- **audit d'architecture** : cartographie, segmentation, redondance ;\n- **audit de configuration** : équipements et systèmes comparés aux bonnes pratiques (guides de l'ANSSI, référentiels CIS) ;\n- **audit de code** des applications ;\n- **test d'intrusion** : mise en situation d'attaque, avec autorisation écrite.\n\nLivrable : un **rapport** qui classe les écarts par **gravité** et propose un **plan d'action** priorisé.",
+      "notions": [
+        "Piliers d'un audit"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq4-s03-c001",
+      "section": "libre-b3-33-sq4-s03-s01",
+      "type": "question",
+      "recto": "Pourquoi la cartographie est-elle la première étape d'un audit réseau ?",
+      "verso": "Parce qu'on ne peut évaluer et protéger que ce qu'on **connaît** : équipements, flux et zones oubliés sont des failles.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-33-sq4-s03-c002",
+      "section": "libre-b3-33-sq4-s03-s02",
+      "type": "exercice",
+      "enonce": "Réseau de la librairie fictive **Encre & Papier** : une box opérateur avec mot de passe administrateur d'origine ; Wi-Fi clients et caisse sur le même réseau ; serveur de stock accessible depuis Internet en bureau à distance ; pas de sauvegarde hors site. Pointe les faiblesses et propose des corrections.",
+      "etapes": [
+        "Box : identifiants par défaut → les changer, mettre à jour, désactiver l'administration à distance.",
+        "Wi-Fi clients et caisse mélangés → séparer en deux réseaux (VLAN/SSID invités isolé), filtrer entre eux.",
+        "Bureau à distance exposé → le fermer et passer par un VPN avec MFA.",
+        "Pas de sauvegarde hors site → sauvegarde 3-2-1 avec copie hors ligne testée.",
+        "Documenter la nouvelle cartographie."
+      ],
+      "reponse": "4 faiblesses : administration par défaut, absence de segmentation, accès distant exposé, sauvegardes ; corrections associées.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b3-33-sq4-s03-c003",
+      "section": "libre-b3-33-sq4-s03-s03",
+      "type": "qcm",
+      "question": "Comparer les réglages d'un pare-feu aux guides de bonnes pratiques, c'est un audit :",
+      "choix": [
+        "organisationnel",
+        "de configuration",
+        "de code",
+        "financier"
+      ],
+      "bonneReponse": 1,
+      "explication": "On vérifie la configuration réelle par rapport à un référentiel.",
+      "difficulte": 1
+    }
+  ]
+}

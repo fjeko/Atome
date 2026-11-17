@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-14-sq2-s06",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.4 – SQ2 – Méthodes agiles et gestion de versions",
+  "sequence": null,
+  "seance": "S06 – Travail collaboratif et conflits",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Travailler à plusieurs avec un dépôt distant : demandes de fusion et revue, apparition d'un conflit de fusion et sa résolution correcte.",
+  "notions": [
+    "Demande de fusion et revue",
+    "Conflit de fusion",
+    "Résoudre un conflit"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-14-sq2-s06-s01",
+      "titre": "Demande de fusion",
+      "contenu": "En équipe, on ne fusionne pas soi-même sa branche dans `main` : on ouvre une **demande de fusion** (*merge request* / *pull request*) sur la forge :\n1. publier sa branche (`git push -u origin ma-branche`) ;\n2. ouvrir la demande, décrire ce qui change et pourquoi, lier le ticket concerné ;\n3. un collègue **relit** (revue de code), commente, demande des corrections ;\n4. une fois approuvée (et les tests automatiques passés), la branche est **fusionnée**.",
+      "notions": [
+        "Demande de fusion et revue"
+      ]
+    },
+    {
+      "id": "libre-b1-14-sq2-s06-s02",
+      "titre": "Le conflit de fusion",
+      "contenu": "Un **conflit** survient quand deux personnes ont modifié **les mêmes lignes** d'un fichier dans deux branches. Git ne peut pas choisir : il marque la zone.\n```text\n<<<<<<< HEAD\n<p>Ouvert du mardi au samedi, 9 h – 18 h</p>\n=======\n<p>Ouvert du lundi au samedi, 10 h – 19 h</p>\n>>>>>>> horaires-ete\n```\n- entre `<<<<<<< HEAD` et `=======` : la version de la branche courante ;\n- entre `=======` et `>>>>>>>` : la version de la branche fusionnée.\n\nRésolution :\n1. **lire** les deux versions et **comprendre** l'intention de chacun (en parlant avec le collègue si besoin) ;\n2. éditer le fichier pour obtenir la **bonne version** (l'une, l'autre ou une combinaison) et **supprimer les marqueurs** ;\n3. `git add fichier` puis `git commit` pour terminer la fusion ;\n4. **tester**.\n\n**Piège** : garder « sa » version sans lire celle de l'autre, et écraser son travail ; ou laisser des marqueurs `<<<<<<<` dans le fichier.",
+      "notions": [
+        "Conflit de fusion",
+        "Résoudre un conflit"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-14-sq2-s06-c001",
+      "section": "libre-b1-14-sq2-s06-s01",
+      "type": "question",
+      "recto": "Pourquoi passer par une demande de fusion plutôt que fusionner directement dans main ?",
+      "verso": "Pour faire relire le code (revue), discuter des changements et vérifier les tests avant de modifier la branche principale.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-14-sq2-s06-c002",
+      "section": "libre-b1-14-sq2-s06-s02",
+      "type": "qcm",
+      "question": "Après avoir édité un fichier en conflit, que fais-tu pour terminer la fusion ?",
+      "choix": [
+        "`git push --force`",
+        "`git add` du fichier corrigé puis `git commit`",
+        "Supprimer le dépôt et recloner",
+        "Rien, Git termine seul"
+      ],
+      "bonneReponse": 1,
+      "explication": "Indexer le fichier résolu indique à Git que le conflit est réglé ; la validation finalise la fusion.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-14-sq2-s06-c003",
+      "section": "libre-b1-14-sq2-s06-s02",
+      "type": "exercice",
+      "enonce": "Dans le conflit ci-dessus, la responsable confirme que les horaires d'été (lundi–samedi, 10 h–19 h) remplacent les anciens. Écris le contenu final et les commandes.",
+      "etapes": [
+        "Garder la version de la branche horaires-ete.",
+        "Supprimer les trois lignes de marqueurs et l'ancienne version.",
+        "Indexer et valider."
+      ],
+      "reponse": "Contenu : `<p>Ouvert du lundi au samedi, 10 h – 19 h</p>` puis `git add horaires.html` et `git commit -m \"Fusionne les horaires d'été\"`.",
+      "difficulte": 2
+    }
+  ]
+}

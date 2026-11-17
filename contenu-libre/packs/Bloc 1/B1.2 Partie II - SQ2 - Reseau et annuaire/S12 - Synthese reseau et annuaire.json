@@ -1,0 +1,67 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq2-s12",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ2 – Réseaux, adressage IP et annuaire de domaine",
+  "sequence": null,
+  "seance": "S12 – Synthèse réseau et annuaire",
+  "ordre": 12,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une mise en situation qui enchaîne plan d'adressage, VLAN, annuaire et droits pour une petite organisation.",
+  "notions": [
+    "Plan d'adressage d'un site",
+    "Mise en place d'un domaine de bout en bout"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq2-s12-s01",
+      "titre": "Un plan d'adressage pour un site",
+      "contenu": "### Cas : la maison de santé pluridisciplinaire du Val d'Ys\nBesoins : 3 réseaux (VLAN) — soignants (25 postes), administratif (10 postes), invités Wi-Fi (jusqu'à 40 appareils). Réseau privé disponible : 10.20.0.0/16.\n\n| VLAN | Besoin | Masque | Réseau | Passerelle |\n| --- | --- | --- | --- | --- |\n| 10 Soignants | 25 | /27 (30 hôtes) | 10.20.10.0/27 | 10.20.10.30 |\n| 20 Admin | 10 | /28 (14 hôtes) | 10.20.20.0/28 | 10.20.20.14 |\n| 30 Invités | 40 | /26 (62 hôtes) | 10.20.30.0/26 | 10.20.30.62 |\n\nBonne pratique : garder de la **marge** (un /27 pour 25 postes est juste : on pourrait préférer un /26).",
+      "notions": [
+        "Plan d'adressage d'un site"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s12-s02",
+      "titre": "Le domaine de bout en bout",
+      "contenu": "Enchaînement pour la maison de santé :\n1. **Contrôleur de domaine** avec IP fixe, rôle AD DS + DNS (domaine `valdys.local`).\n2. **UO** : Soignants, Administratif, Ordinateurs, Groupes.\n3. **Comptes** nominatifs et **groupes globaux** par fonction (G_Medecins, G_Secretariat…).\n4. **Groupes domaine local** par ressource (DL_Agenda_M…) et **droits NTFS** (AGDLP) ; partage large.\n5. **GPO** : lecteurs réseau, verrouillage de session, politique de mot de passe.\n6. **Postes** : modèle généralisé, clones renommés, adressés, joints au domaine.\n7. **Tests** par profil et documentation.",
+      "notions": [
+        "Mise en place d'un domaine de bout en bout"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq2-s12-c001",
+      "section": "libre-b1-12b-sq2-s12-s01",
+      "type": "exercice",
+      "enonce": "Vérifie le VLAN 20 : donne son adresse de diffusion et sa plage d'hôtes, et vérifie que la passerelle est valide.",
+      "etapes": [
+        "/28 : 4 bits hôte, 16 adresses de 10.20.20.0 à 10.20.20.15.",
+        "Diffusion : 10.20.20.15.",
+        "Hôtes : 10.20.20.1 à 10.20.20.14 (14 hôtes).",
+        "La passerelle 10.20.20.14 est dans la plage : valide."
+      ],
+      "reponse": "Diffusion 10.20.20.15 ; hôtes .1 à .14 ; passerelle .14 valide.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b1-12b-sq2-s12-c002",
+      "section": "libre-b1-12b-sq2-s12-s02",
+      "type": "qcm",
+      "question": "Dans cet enchaînement, pourquoi le contrôleur de domaine doit-il avoir une adresse IP fixe ?",
+      "choix": [
+        "Parce que DHCP est interdit dans un domaine",
+        "Parce que les postes l'utilisent comme serveur DNS et doivent toujours le trouver à la même adresse",
+        "Pour aller plus vite",
+        "Parce que les VLAN l'exigent"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les postes sont configurés avec l'adresse du DNS (le DC) : elle ne doit jamais changer.",
+      "difficulte": 2
+    }
+  ]
+}

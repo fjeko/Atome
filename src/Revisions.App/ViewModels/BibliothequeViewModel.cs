@@ -15,6 +15,8 @@ public sealed class LigneSeance(ResumeSeance seance, string? emplacement = null)
     public string PackId => seance.PackId;
     public string Titre => seance.Seance;
     public string? Emplacement => emplacement;
+    /// <summary>Cours libre intégré à Atome : affiche le badge « Libre ».</summary>
+    public bool EstLibre => seance.Libre;
     public bool ADesCartes => seance.NbCartes > 0;
     public double Maitrise => seance.NbCartes == 0 ? 0 : (double)seance.NbMaitrisees / seance.NbCartes;
 

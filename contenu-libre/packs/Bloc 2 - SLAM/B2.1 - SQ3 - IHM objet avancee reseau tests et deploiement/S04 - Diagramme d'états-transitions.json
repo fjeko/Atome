@@ -1,0 +1,93 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq3-s04",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – SQ3 – POO avancée, diagrammes dynamiques, tests et déploiement",
+  "sequence": null,
+  "seance": "S04 – Diagramme d'états-transitions",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le diagramme d'états-transitions décrit le cycle de vie d'un objet métier : les états qu'il traverse et les événements qui le font changer d'état.",
+  "notions": [
+    "État",
+    "Transition",
+    "Événement",
+    "Garde",
+    "Action sur transition",
+    "Activité dans un état",
+    "Traduction en code d'un cycle de vie"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq3-s04-s01",
+      "titre": "États et transitions",
+      "contenu": "Certains objets passent par des **états** successifs : une commande est *en préparation*, *expédiée*, *livrée*… Le **diagramme d'états-transitions** décrit ce **cycle de vie**.\n\n- **État** : rectangle arrondi avec un nom (adjectif ou participe) : *Expédiée*.\n- **Transition** : flèche d'un état à un autre, étiquetée par l'**événement** qui la déclenche.\n- **État initial** (disque plein) et **état final** (disque cerclé).\n\nExemple : colis de la société de livraison **VéloCourse**.\n\n```text\n(●) -> [Enregistré] --prise en charge--> [En livraison]\n[En livraison] --remis--> [Livré] -> (◉)\n[En livraison] --absent--> [En attente au dépôt]\n[En attente au dépôt] --retrait--> [Livré]\n[En attente au dépôt] --après 10 jours--> [Retourné] -> (◉)\n```",
+      "notions": [
+        "État",
+        "Transition",
+        "Événement"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s04-s02",
+      "titre": "Gardes, actions et activités",
+      "contenu": "Une transition peut porter : `événement [garde] / action`.\n- **garde** : condition à vérifier pour que la transition ait lieu : `paiement reçu [montant = total]` ;\n- **action** : opération rapide exécutée pendant la transition : `/ envoyer un e-mail`.\n\nDans un état, on peut noter :\n- `entry / ...` : action à l'entrée dans l'état ;\n- `do / ...` : activité qui dure tant qu'on est dans l'état ;\n- `exit / ...` : action à la sortie.",
+      "notions": [
+        "Garde",
+        "Action sur transition",
+        "Activité dans un état"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s04-s03",
+      "titre": "Du diagramme au code",
+      "contenu": "Le cycle de vie se traduit souvent par un **attribut d'état** (énumération) et des méthodes qui **vérifient l'état courant** avant de changer :\n\n```java\npublic enum EtatColis { ENREGISTRE, EN_LIVRAISON, LIVRE, AU_DEPOT, RETOURNE }\n\npublic void remettre() {\n    if (etat != EtatColis.EN_LIVRAISON && etat != EtatColis.AU_DEPOT)\n        throw new IllegalStateException(\"Colis non remettable\");\n    etat = EtatColis.LIVRE;\n}\n```\n\nUne transition **absente** du diagramme correspond à une opération **interdite** dans cet état.",
+      "notions": [
+        "Traduction en code d'un cycle de vie"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq3-s04-c001",
+      "section": "libre-b2-21-sq3-s04-s01",
+      "type": "qcm",
+      "question": "Que représente une flèche dans un diagramme d'états-transitions ?",
+      "choix": [
+        "Un appel de méthode entre deux objets",
+        "Le passage d'un état à un autre, déclenché par un événement",
+        "Un héritage",
+        "Une action en parallèle"
+      ],
+      "bonneReponse": 1,
+      "explication": "Chaque transition est déclenchée par un événement, éventuellement sous condition.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq3-s04-c002",
+      "section": "libre-b2-21-sq3-s04-s02",
+      "type": "question",
+      "recto": "Que signifie l'étiquette `annulation [non expédiée] / rembourser` ?",
+      "verso": "Sur l'événement **annulation**, si la commande **n'est pas expédiée** (garde), on change d'état en exécutant l'action **rembourser**.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq3-s04-c003",
+      "section": "libre-b2-21-sq3-s04-s03",
+      "type": "exercice",
+      "enonce": "Dessine (en texte) le cycle de vie d'une demande de congé chez **Altéa Conseil** : créée en brouillon, puis soumise ; le manager la valide ou la refuse ; une demande soumise peut être retirée par l'employé ; une demande validée peut être annulée tant que le congé n'a pas commencé.",
+      "etapes": [
+        "États : Brouillon, Soumise, Validée, Refusée, Retirée, Annulée.",
+        "(●) → Brouillon --soumettre--> Soumise.",
+        "Soumise --valider--> Validée ; Soumise --refuser--> Refusée ; Soumise --retirer--> Retirée.",
+        "Validée --annuler [date du jour < début du congé]--> Annulée.",
+        "Refusée, Retirée, Annulée → (◉) ; Validée → (◉) quand le congé est passé."
+      ],
+      "reponse": "6 états, transitions étiquetées par les événements, une garde sur l'annulation.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq1-s03",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ1 – Cybermenaces et bonnes pratiques",
+  "sequence": null,
+  "seance": "S03 – Rançongiciels",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un rançongiciel chiffre les données de la victime et réclame une rançon. On connaît son déroulement, ses vecteurs, ses modèles d'extorsion, la prévention et les bons réflexes en cas d'infection.",
+  "notions": [
+    "Rançongiciel",
+    "Déroulement d'une attaque par rançongiciel",
+    "Vecteurs d'infection",
+    "Double extorsion",
+    "Rançongiciel en service",
+    "Prévention rançongiciel",
+    "Réaction à une infection"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq1-s03-s01",
+      "titre": "Déroulement d'une attaque",
+      "contenu": "Un **rançongiciel** (*ransomware*) est un logiciel malveillant qui **chiffre** les fichiers (et souvent les sauvegardes accessibles) puis réclame une **rançon** : la victime ne recevra la clé pour déchiffrer ses données qu'après paiement.\n\nÉtapes typiques :\n1. **intrusion** (hameçonnage, accès à distance mal protégé, faille non corrigée) ;\n2. **installation** discrète et **propagation** dans le réseau, recherche de comptes administrateurs ;\n3. **exfiltration** de données (copie vers l'attaquant) ;\n4. **destruction ou chiffrement** des sauvegardes accessibles ;\n5. **chiffrement** massif des données ;\n6. **demande de rançon**, souvent en cryptomonnaie, avec un délai.",
+      "notions": [
+        "Rançongiciel",
+        "Déroulement d'une attaque par rançongiciel"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s03-s02",
+      "titre": "Vecteurs et modèles d'extorsion",
+      "contenu": "**Vecteurs** fréquents : pièce jointe ou lien piégé, accès de **bureau à distance** exposé avec un mot de passe faible, **VPN** ou serveur non mis à jour, clé USB, logiciel piraté.\n\n**Modèles d'extorsion** :\n- **simple** : payer pour déchiffrer ;\n- **double** : payer aussi pour que les données volées **ne soient pas publiées** ;\n- **multiple** : menaces supplémentaires (déni de service, contact des clients de la victime).\n\n**Rançongiciel en service** (*RaaS*) : des développeurs **louent** leur rançongiciel à des « affiliés » qui mènent les attaques et partagent les gains. Cela rend ces attaques accessibles à des criminels peu compétents.",
+      "notions": [
+        "Vecteurs d'infection",
+        "Double extorsion",
+        "Rançongiciel en service"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s03-s03",
+      "titre": "Prévenir et réagir",
+      "contenu": "**Prévention** :\n- **sauvegardes** régulières, dont une **hors ligne** (déconnectée) ou immuable, et **testées** (restauration réelle) ;\n- mises à jour rapides ; accès distants protégés (VPN, authentification multifacteur) ;\n- moindre privilège, comptes administrateurs séparés ;\n- antivirus/EDR, filtrage des courriels, sensibilisation.\n\n**Réaction** :\n1. **isoler** immédiatement la machine (débrancher le câble réseau, couper le Wi-Fi) **sans l'éteindre** (conserver les traces en mémoire) ;\n2. alerter le service informatique / la cellule de crise ;\n3. **ne pas payer** : aucune garantie de récupérer les données, et cela finance le crime ;\n4. **porter plainte** et, si des données personnelles sont touchées, notifier l'autorité de contrôle (CNIL) sous **72 h** ;\n5. restaurer à partir de sauvegardes saines après nettoyage.",
+      "notions": [
+        "Prévention rançongiciel",
+        "Réaction à une infection"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq1-s03-c001",
+      "section": "libre-b3-31-sq1-s03-s01",
+      "type": "qcm",
+      "question": "Pourquoi les attaquants cherchent-ils à atteindre les sauvegardes avant de chiffrer ?",
+      "choix": [
+        "Pour les copier gratuitement",
+        "Pour empêcher la victime de restaurer ses données sans payer",
+        "Parce que les sauvegardes sont plus faciles à chiffrer",
+        "Par hasard"
+      ],
+      "bonneReponse": 1,
+      "explication": "Sans sauvegarde saine, la victime est poussée à payer.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s03-c002",
+      "section": "libre-b3-31-sq1-s03-s02",
+      "type": "qcm",
+      "question": "Dans une double extorsion, l'attaquant menace :",
+      "choix": [
+        "de chiffrer deux fois les fichiers",
+        "de publier les données volées en plus de les garder chiffrées",
+        "de doubler la rançon chaque jour",
+        "d'attaquer deux entreprises"
+      ],
+      "bonneReponse": 1,
+      "explication": "Même avec de bonnes sauvegardes, la menace de divulgation reste.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s03-c003",
+      "section": "libre-b3-31-sq1-s03-s03",
+      "type": "qcm",
+      "question": "Un poste affiche une demande de rançon. Premier geste ?",
+      "choix": [
+        "Éteindre le PC et le rallumer",
+        "Payer rapidement pour limiter les dégâts",
+        "Déconnecter le poste du réseau sans l'éteindre, puis alerter",
+        "Supprimer les fichiers chiffrés"
+      ],
+      "bonneReponse": 2,
+      "explication": "Isoler limite la propagation ; ne pas éteindre préserve des indices utiles à l'enquête.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s03-c004",
+      "section": "libre-b3-31-sq1-s03-s03",
+      "type": "question",
+      "recto": "Pourquoi déconseille-t-on de payer la rançon ?",
+      "verso": "Aucune garantie de récupérer les données (ni qu'elles ne soient pas publiées), on finance les criminels et on risque d'être ciblé à nouveau.",
+      "difficulte": 2
+    }
+  ]
+}

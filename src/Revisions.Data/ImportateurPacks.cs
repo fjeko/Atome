@@ -117,7 +117,7 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
         if (problemes.Any(x => x.Gravite == Gravite.Erreur))
             return Refuser(fichier, pack.Id, problemes, connexion);
 
-        if (dossierCours is not null && !File.Exists(Path.Combine(dossierCours, pack.SourceFichier)))
+        if (dossierCours is not null && pack.SourceFichier.Length > 0 && !File.Exists(Path.Combine(dossierCours, pack.SourceFichier)))
             problemes.Add(new Probleme(Gravite.Avertissement, "source.fichier", $"Document d'origine introuvable : {pack.SourceFichier}"));
 
         // Tout ou rien : si une étape échoue, la transaction est annulée et la base reste intacte.

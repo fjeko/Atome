@@ -1,0 +1,61 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-m-s06",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Méthodologie de l'épreuve",
+  "sequence": null,
+  "seance": "S6 – Le raisonnement juridique",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Résoudre un cas pratique en quatre étapes : qualifier les faits, poser le problème de droit, énoncer la règle, appliquer et conclure.",
+  "notions": [
+    "Étapes du raisonnement juridique",
+    "Application à un cas"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-m-s06-s01",
+      "titre": "Les quatre étapes",
+      "contenu": "1. **Qualification des faits** : on traduit l'histoire en termes juridiques (qui est le vendeur ? le consommateur ? s'agit-il d'un contrat de vente, d'une prestation de services ?).\n2. **Problème de droit** : une question **générale et juridique**, souvent fermée. Pas « Lina peut-elle récupérer son argent ? » mais « Un contrat conclu à la suite de mensonges déterminants peut-il être annulé ? ».\n3. **Règle de droit** : on cite la règle (article de loi, principe, jurisprudence) **avec ses conditions**.\n4. **Solution** : on vérifie chaque condition sur les faits (« en l'espèce… »), puis on **conclut** en répondant au problème posé.\n\nC'est un **syllogisme** : majeure (la règle), mineure (les faits), conclusion.",
+      "notions": [
+        "Étapes du raisonnement juridique"
+      ]
+    },
+    {
+      "id": "libre-cejm-m-s06-s02",
+      "titre": "Exemple rédigé",
+      "contenu": "*Faits (inventés)* : Malo achète une console d'occasion à un vendeur professionnel, *Rétro'Play*. Le vendeur affirme qu'elle a été « révisée et garantie sans défaut », alors qu'il sait qu'elle a déjà été réparée deux fois pour une panne de carte mère. Malo veut annuler la vente.\n\n1. **Qualification** : contrat de vente entre un professionnel et un consommateur ; le vendeur a sciemment donné une fausse information.\n2. **Problème** : un contrat conclu à la suite d'un mensonge du cocontractant peut-il être annulé ?\n3. **Règle** : le **dol** est le fait d'obtenir le consentement de l'autre par des manœuvres, des mensonges ou la dissimulation intentionnelle d'une information déterminante (code civil, art. 1137). Il entraîne la **nullité relative** du contrat.\n4. **Solution** : en l'espèce, le vendeur a menti sur l'état de la console ; ce mensonge était intentionnel et déterminant (Malo n'aurait pas acheté en connaissant les pannes). Les conditions du dol sont réunies : Malo peut demander la nullité du contrat et la restitution du prix.",
+      "notions": [
+        "Application à un cas"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-m-s06-c001",
+      "section": "libre-cejm-m-s06-s01",
+      "type": "qcm",
+      "question": "Quelle formulation est un bon problème de droit ?",
+      "choix": [
+        "« Le silence d'un client vaut-il acceptation d'une offre ? »",
+        "« Monsieur Roy a-t-il raison ? »",
+        "« Que va faire le juge ? »",
+        "« Pourquoi l'entreprise a-t-elle des problèmes ? »"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le problème de droit est général, juridique et ne contient pas les noms des personnes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-m-s06-c002",
+      "section": "libre-cejm-m-s06-s02",
+      "type": "question",
+      "recto": "Pourquoi faut-il vérifier chaque condition de la règle sur les faits ?",
+      "verso": "Parce que la conclusion n'est valable que si toutes les conditions sont réunies en l'espèce ; citer la règle sans l'appliquer ne suffit pas.",
+      "difficulte": 2
+    }
+  ]
+}

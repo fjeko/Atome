@@ -1,0 +1,33 @@
+Atome – packs libres BTS SIO
+Copyright (c) 2026 fjeko et les contributeurs du projet Atome
+
+Les fichiers du dossier « contenu-libre/ » (les packs JSON de cours et de cartes de revision) sont
+distribues sous licence
+
+    Creative Commons Attribution - Partage dans les Memes Conditions 4.0 International
+    (CC BY-SA 4.0)
+
+Resume (ce n'est pas la licence, juste un guide) - tu peux :
+  - Partager : copier et redistribuer ces contenus sur tout support et sous tout format ;
+  - Adapter : les remixer, les transformer et creer a partir d'eux, meme a titre commercial ;
+a condition de :
+  - Attribution : citer « Atome - packs libres BTS SIO », donner un lien vers la licence et indiquer
+    si des modifications ont ete faites ;
+  - Partage dans les memes conditions : si tu modifies ces contenus, tu dois diffuser ta version sous
+    la meme licence CC BY-SA 4.0 ;
+  - Aucune restriction supplementaire : ne pas ajouter de conditions qui empechent les autres de faire
+    ce que la licence autorise.
+
+Texte juridique complet (officiel, en francais) :
+    https://creativecommons.org/licenses/by-sa/4.0/legalcode.fr
+Resume officiel :
+    https://creativecommons.org/licenses/by-sa/4.0/deed.fr
+
+Attribution a utiliser :
+    « Atome – packs libres BTS SIO », licence CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/deed.fr).
+
+Ce contenu est fourni « en l'etat », sans garantie. Il s'agit d'un support de revision original,
+non officiel : il ne remplace ni ton cours, ni le referentiel officiel du BTS SIO.
+
+Le code de l'application Atome (hors du dossier « contenu-libre/ ») est sous la licence du fichier
+LICENSE a la racine du depot.

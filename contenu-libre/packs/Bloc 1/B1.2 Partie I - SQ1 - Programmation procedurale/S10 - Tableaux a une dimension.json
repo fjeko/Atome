@@ -1,0 +1,140 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq1-s10",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie I – SQ1 – Programmation procédurale en C#, corrections et évolutions",
+  "sequence": null,
+  "seance": "S10 – Tableaux à une dimension",
+  "ordre": 10,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Stocker plusieurs valeurs dans un tableau : déclaration, indices, parcours, calcul de moyenne, inversion, comptage de fréquences et tableau passé en paramètre.",
+  "notions": [
+    "Déclaration d'un tableau",
+    "Indices et limites",
+    "Parcours",
+    "Moyenne et cumul",
+    "Inversion",
+    "Fréquences",
+    "Tableau en paramètre"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq1-s10-s01",
+      "titre": "Déclarer un tableau et accéder aux cases",
+      "contenu": "Un **tableau** contient un nombre **fixe** de valeurs **du même type**, rangées dans des cases numérotées par un **indice**.\n```csharp\ndouble[] ventes = new double[7];             // 7 cases, toutes à 0\nstring[] jours = { \"lun\", \"mar\", \"mer\", \"jeu\", \"ven\", \"sam\", \"dim\" };\n\nventes[0] = 312.5;      // première case : indice 0\nventes[6] = 845;        // dernière case : indice 6 (= Length - 1)\nConsole.WriteLine(jours.Length);   // 7\n```\n**Les indices vont de 0 à `Length - 1`.** Accéder à `ventes[7]` provoque une exception `IndexOutOfRangeException` : c'est l'erreur classique du « un cran trop loin ».",
+      "notions": [
+        "Déclaration d'un tableau",
+        "Indices et limites"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s10-s02",
+      "titre": "Parcourir un tableau",
+      "contenu": "Avec `for` (quand on a besoin de l'indice) :\n```csharp\ndouble total = 0;\nfor (int i = 0; i < ventes.Length; i++)\n{\n    total += ventes[i];\n}\ndouble moyenne = total / ventes.Length;\n```\nAvec `foreach` (lecture simple, sans indice) :\n```csharp\nforeach (string j in jours)\n{\n    Console.Write(j + \" \");\n}\n```\n`foreach` ne permet **pas** de modifier les cases du tableau ; pour cela, utilise `for`.",
+      "notions": [
+        "Parcours",
+        "Moyenne et cumul"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s10-s03",
+      "titre": "Inverser un tableau",
+      "contenu": "Pour inverser un tableau **sur place**, on échange la première case avec la dernière, la deuxième avec l'avant-dernière, et ainsi de suite **jusqu'au milieu** :\n```csharp\nint[] t = { 4, 8, 15, 16, 23 };\nfor (int i = 0; i < t.Length / 2; i++)\n{\n    int temp = t[i];\n    t[i] = t[t.Length - 1 - i];\n    t[t.Length - 1 - i] = temp;\n}\n// t vaut { 23, 16, 15, 8, 4 }\n```\n**Piège** : aller jusqu'à `t.Length` au lieu de `t.Length / 2`. On ré-échange alors tout, et le tableau revient à l'état initial !",
+      "notions": [
+        "Inversion"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s10-s04",
+      "titre": "Compter des fréquences",
+      "contenu": "Pour compter **combien de fois** apparaît chaque valeur, on utilise un **tableau de compteurs** dont l'indice représente la valeur.\n\nExemple : 30 avis clients notés de 1 à 5 étoiles dans le tableau `avis`.\n```csharp\nint[] frequences = new int[6];       // indices 0 à 5 ; on n'utilise pas l'indice 0\nforeach (int note in avis)\n{\n    frequences[note]++;\n}\nfor (int etoiles = 1; etoiles <= 5; etoiles++)\n{\n    Console.WriteLine($\"{etoiles} étoile(s) : {frequences[etoiles]} avis\");\n}\n```",
+      "notions": [
+        "Fréquences"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s10-s05",
+      "titre": "Passer un tableau en paramètre",
+      "contenu": "Un tableau se passe à une méthode comme une autre variable :\n```csharp\nstatic double Moyenne(double[] valeurs)\n{\n    double somme = 0;\n    foreach (double v in valeurs) somme += v;\n    return somme / valeurs.Length;\n}\n```\n**Attention** : un tableau est un **type référence**. La méthode reçoit une copie de la *référence*, qui désigne **le même tableau** : si elle modifie une case, la modification est **visible chez l'appelant**, même sans `ref`.\n```csharp\nstatic void RemettreAZero(int[] t)\n{\n    for (int i = 0; i < t.Length; i++) t[i] = 0;\n}\n// après RemettreAZero(scores), toutes les cases de scores valent 0\n```",
+      "notions": [
+        "Tableau en paramètre"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq1-s10-c001",
+      "section": "libre-b1-12a-sq1-s10-s01",
+      "type": "qcm",
+      "question": "Un tableau `int[] t = new int[10];` : quel est l'indice de la dernière case ?",
+      "choix": [
+        "10",
+        "9",
+        "11",
+        "1"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les indices commencent à 0, donc la dernière case est à `Length - 1` = 9.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq1-s10-c002",
+      "section": "libre-b1-12a-sq1-s10-s02",
+      "type": "exercice",
+      "enonce": "Écris le code qui compte combien de jours la vente a dépassé 500 € dans le tableau `ventes`.",
+      "etapes": [
+        "Initialiser un compteur à 0.",
+        "Parcourir toutes les cases.",
+        "Si la case dépasse 500, incrémenter le compteur."
+      ],
+      "reponse": "```csharp\nint nbJours = 0;\nforeach (double v in ventes)\n{\n    if (v > 500) nbJours++;\n}\n```",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s10-c003",
+      "section": "libre-b1-12a-sq1-s10-s03",
+      "type": "qcm",
+      "question": "Dans l'inversion ci-dessus, que se passe-t-il si la boucle va jusqu'à `i < t.Length` ?",
+      "choix": [
+        "Le tableau est correctement inversé",
+        "Chaque paire est échangée deux fois : le tableau revient à son état initial",
+        "Une exception est levée",
+        "Seule la première moitié est inversée"
+      ],
+      "bonneReponse": 1,
+      "explication": "Après le milieu, on refait les mêmes échanges en sens inverse.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b1-12a-sq1-s10-c004",
+      "section": "libre-b1-12a-sq1-s10-s04",
+      "type": "exercice",
+      "enonce": "`int[] des = { 3, 6, 3, 1, 6, 6, 2 };` On calcule les fréquences dans `int[] f = new int[7];`. Que valent `f[6]`, `f[3]` et `f[4]` ?",
+      "etapes": [
+        "6 apparaît 3 fois.",
+        "3 apparaît 2 fois.",
+        "4 n'apparaît pas."
+      ],
+      "reponse": "`f[6] = 3`, `f[3] = 2`, `f[4] = 0`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s10-c005",
+      "section": "libre-b1-12a-sq1-s10-s05",
+      "type": "qcm",
+      "question": "Une méthode reçoit `int[] t` (sans `ref`) et fait `t[0] = 99;`. Que se passe-t-il pour le tableau de l'appelant ?",
+      "choix": [
+        "Rien, c'est une copie",
+        "Sa première case vaut maintenant 99",
+        "Une exception est levée",
+        "Il faut obligatoirement `ref` pour que ça compile"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le tableau n'est pas copié : la méthode et l'appelant manipulent le même tableau en mémoire.",
+      "difficulte": 3
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq3-s01",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – SQ3 – Signature numérique, hachage et certificats",
+  "sequence": null,
+  "seance": "S01 – Signature de courriel et limites",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La « signature » en bas d'un courriel n'est qu'un bloc de texte : n'importe qui peut la copier. Elle ne prouve rien, ce qu'exploitent les fraudes par usurpation de dirigeant. D'où l'intérêt d'une vraie signature numérique.",
+  "notions": [
+    "Signature de courriel",
+    "Fraude au président",
+    "Besoin de signature numérique"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq3-s01-s01",
+      "titre": "Le bloc de signature",
+      "contenu": "Le **bloc de signature** d'un courriel contient en général : nom, fonction, organisation, coordonnées, logo, parfois une mention légale ou un rappel environnemental.\n\nUtile pour l'**image** et le **contact**, il n'a **aucune valeur de sécurité** : c'est du texte (ou une image) que n'importe qui peut reproduire. De même, le champ « De : » d'un courriel peut être **falsifié**.",
+      "notions": [
+        "Signature de courriel"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s01-s02",
+      "titre": "Fraude par usurpation de dirigeant",
+      "contenu": "Scénario type : un courriel semble venir du directeur (nom, signature, logo copiés, adresse proche ou falsifiée) et demande à un comptable un **virement urgent et confidentiel**.\n\nPourquoi ça marche : autorité, urgence, secret, et une signature qui « a l'air vraie ».\n\nParades :\n- procédure de **double validation** des virements et de **contre-appel** à un numéro connu ;\n- configuration du domaine de messagerie (**SPF, DKIM, DMARC**) qui limite la falsification de l'expéditeur ;\n- **signature numérique** des courriels sensibles ;\n- sensibilisation.",
+      "notions": [
+        "Fraude au président"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s01-s03",
+      "titre": "Pourquoi une signature numérique ?",
+      "contenu": "Une **signature numérique** repose sur la cryptographie asymétrique. Elle apporte ce que le bloc de texte ne donne pas :\n- **authenticité** : le message vient bien du détenteur de la clé privée ;\n- **intégrité** : la moindre modification après signature est détectée ;\n- **non-répudiation** : le signataire ne peut pas nier avoir signé.\n\nElle **ne chiffre pas** le message : un message signé reste lisible. Pour la confidentialité, on le chiffre en plus.",
+      "notions": [
+        "Besoin de signature numérique"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq3-s01-c001",
+      "section": "libre-b3-32-sq3-s01-s01",
+      "type": "qcm",
+      "question": "Que prouve le bloc de signature en bas d'un courriel ?",
+      "choix": [
+        "L'identité certaine de l'expéditeur",
+        "L'intégrité du message",
+        "Rien : il peut être copié par n'importe qui",
+        "La date d'envoi"
+      ],
+      "bonneReponse": 2,
+      "explication": "C'est un simple texte, sans mécanisme cryptographique.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-32-sq3-s01-c002",
+      "section": "libre-b3-32-sq3-s01-s02",
+      "type": "question",
+      "recto": "Citer deux parades à la fraude par usurpation de dirigeant.",
+      "verso": "Procédure de **contre-appel / double validation** des virements ; **signature numérique** des courriels (et SPF/DKIM/DMARC, sensibilisation).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq3-s01-c003",
+      "section": "libre-b3-32-sq3-s01-s03",
+      "type": "qcm",
+      "question": "Un courriel signé numériquement est-il confidentiel ?",
+      "choix": [
+        "Oui, la signature chiffre le message",
+        "Non, la signature garantit l'origine et l'intégrité, pas la confidentialité",
+        "Seulement s'il contient une pièce jointe",
+        "Oui, si le destinataire a un certificat"
+      ],
+      "bonneReponse": 1,
+      "explication": "Signer et chiffrer sont deux opérations distinctes.",
+      "difficulte": 2
+    }
+  ]
+}

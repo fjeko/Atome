@@ -1,0 +1,89 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq5-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ5 – Évolution d'une architecture réseau et maquettage",
+  "sequence": null,
+  "seance": "S03 – Maquette et tests dans un simulateur",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Reproduire l'évolution dans un simulateur réseau : ajout de modules, création de VLAN, configuration en ligne de commande, raccordement, tests, sauvegarde de la configuration, et limites de la maquette.",
+  "notions": [
+    "Construire la maquette",
+    "Configuration en ligne de commande",
+    "Tests de la maquette",
+    "Sauvegarde de la configuration",
+    "Intérêts et limites du maquettage"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq5-s03-s01",
+      "titre": "Construire et configurer la maquette",
+      "contenu": "Dans le simulateur :\n1. placer les équipements (commutateur, routeur, postes, serveur) ; **ajouter un module** (carte d'interfaces supplémentaire) si le routeur manque de ports — équipement **éteint** ;\n2. créer les VLAN (en mode graphique ou en ligne de commande) ;\n3. configurer en **ligne de commande** :\n```text\nSwitch> enable\nSwitch# configure terminal\nSwitch(config)# vlan 30\nSwitch(config-vlan)# name CAMERAS\nSwitch(config)# interface fastEthernet 0/12\nSwitch(config-if)# switchport access vlan 30\n\nRouter(config)# interface gigabitEthernet 0/0.30\nRouter(config-subif)# encapsulation dot1Q 30\nRouter(config-subif)# ip address 192.168.50.174 255.255.255.240\n```\n4. raccorder avec les bons câbles et vérifier que les liens sont actifs.",
+      "notions": [
+        "Construire la maquette",
+        "Configuration en ligne de commande"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq5-s03-s02",
+      "titre": "Tester et sauvegarder",
+      "contenu": "Tests à prévoir (et à noter dans un tableau attendu/obtenu) :\n- chaque poste obtient une adresse du **bon réseau** ;\n- ping de la **passerelle** de chaque VLAN ;\n- communications **autorisées** (personnel → caméras) qui marchent ;\n- communications **interdites** (Wi-Fi clients → personnel) qui sont bien bloquées ;\n- accès à Internet (simulé).\n\n**Sauvegarder la configuration** : sur ce type d'équipement, la configuration active (*running-config*) est perdue au redémarrage si on ne l'enregistre pas :\n```text\nSwitch# copy running-config startup-config\n```\n(ou `write memory`). Et on enregistre le fichier de la maquette.",
+      "notions": [
+        "Tests de la maquette",
+        "Sauvegarde de la configuration"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq5-s03-s03",
+      "titre": "Intérêts et limites de la maquette",
+      "contenu": "**Intérêts** : tester **sans risque** pour la production, détecter les erreurs de conception (chevauchement, relais oublié), préparer les commandes exactes, former, montrer le projet.\n\n**Limites** : le simulateur ne reproduit **pas tout** : performances réelles, versions exactes de logiciel des équipements, défauts matériels, charge réelle, interactions avec des équipements non simulés. Une maquette réussie **ne garantit pas** le déploiement : on prévoit des tests en production et un plan de retour arrière.",
+      "notions": [
+        "Intérêts et limites du maquettage"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq5-s03-c001",
+      "section": "libre-b1-12b-sq5-s03-s01",
+      "type": "question",
+      "recto": "À quoi sert la commande `encapsulation dot1Q 30` sur une sous-interface de routeur ?",
+      "verso": "À indiquer que cette sous-interface traite les trames étiquetées du VLAN 30 sur le lien trunk.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq5-s03-c002",
+      "section": "libre-b1-12b-sq5-s03-s02",
+      "type": "qcm",
+      "question": "Après un redémarrage, un commutateur a perdu tous ses VLAN. Que n'a-t-on pas fait ?",
+      "choix": [
+        "Un ping",
+        "Enregistrer la configuration active dans la configuration de démarrage",
+        "Un trunk",
+        "Un relais DHCP"
+      ],
+      "bonneReponse": 1,
+      "explication": "Sans `copy running-config startup-config`, les modifications restent en mémoire vive et disparaissent au redémarrage.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq5-s03-c003",
+      "section": "libre-b1-12b-sq5-s03-s03",
+      "type": "qcm",
+      "question": "Quelle affirmation sur une maquette réussie est juste ?",
+      "choix": [
+        "Elle prouve que le déploiement réel fonctionnera à coup sûr",
+        "Elle valide la conception et les configurations, mais des tests réels restent nécessaires",
+        "Elle remplace la documentation",
+        "Elle rend inutile la sauvegarde des configurations"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le simulateur ne reproduit pas tous les comportements du matériel réel.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -107,7 +107,7 @@ public static partial class LecteurPack
             int? sourcePages = null;
             if (racine.TryGetProperty("source", out var source) && source.ValueKind == JsonValueKind.Object)
             {
-                sourceFichier = Texte(source, "fichier", "source.fichier", true, Erreur);
+                sourceFichier = Texte(source, "fichier", "source.fichier", false, Erreur);
                 sourcePages = Entier(source, "pages", "source.pages", false, Erreur);
             }
             else
@@ -191,7 +191,7 @@ public static partial class LecteurPack
                 Sequence = sequence,
                 Seance = seance!,
                 Ordre = ordre,
-                SourceFichier = sourceFichier!,
+                SourceFichier = sourceFichier ?? "", // vide = pas de document d'origine (cours libres)
                 SourcePages = sourcePages,
                 Resume = resume!,
                 Notions = notions!,

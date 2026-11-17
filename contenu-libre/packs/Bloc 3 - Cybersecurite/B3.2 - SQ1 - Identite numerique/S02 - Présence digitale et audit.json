@@ -1,0 +1,101 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq1-s02",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – SQ1 – Identité numérique",
+  "sequence": null,
+  "seance": "S02 – Présence digitale et audit",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La présence digitale d'une organisation repose sur son site, son référencement, ses réseaux sociaux et les avis. Un audit digital mesure cette présence et sa réputation avec des outils dédiés.",
+  "notions": [
+    "Image de marque",
+    "E-réputation",
+    "Bad buzz",
+    "Présence digitale",
+    "Référencement naturel",
+    "Référencement payant",
+    "Audit digital",
+    "Outils de veille"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq1-s02-s01",
+      "titre": "Image de marque et e-réputation",
+      "contenu": "- **Image de marque** : la perception globale qu'a le public d'une organisation.\n- **E-réputation** : l'image que renvoient les contenus en ligne (avis, articles, publications, commentaires).\n- **Bad buzz** : emballement négatif rapide sur les réseaux (une vidéo, une réponse maladroite, un produit défectueux) qui peut durablement abîmer la réputation.\n\nRéponse à un bad buzz : réagir vite mais sans précipitation, reconnaître les faits, présenter des actions, ne pas supprimer les critiques légitimes (effet inverse).",
+      "notions": [
+        "Image de marque",
+        "E-réputation",
+        "Bad buzz"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq1-s02-s02",
+      "titre": "Présence digitale et référencement",
+      "contenu": "La **présence digitale** comprend : site web, fiches sur les cartes en ligne, réseaux sociaux, places de marché, annuaires, articles et avis.\n\nÊtre visible dans les moteurs de recherche :\n- **référencement naturel** (SEO) : contenu de qualité, mots-clés pertinents, site rapide et adapté au mobile, liens entrants ; gratuit mais lent ;\n- **référencement payant** (SEA) : annonces achetées sur des mots-clés ; immédiat mais payant tant qu'on paie.",
+      "notions": [
+        "Présence digitale",
+        "Référencement naturel",
+        "Référencement payant"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq1-s02-s03",
+      "titre": "Audit digital",
+      "contenu": "L'**audit digital** dresse l'état de la présence en ligne :\n1. **inventaire** des comptes et sites officiels (et des comptes oubliés ou non officiels) ;\n2. **visibilité** : position dans les moteurs sur les requêtes importantes, trafic ;\n3. **réputation** : avis, notes, mentions, tonalité ;\n4. **cohérence** : mêmes informations (horaires, logo, coordonnées) partout ;\n5. **recommandations**.\n\nOutils : recherche de son nom dans les moteurs, **alertes** sur mots-clés, outils de **veille** des réseaux sociaux, statistiques des plateformes, outils d'analyse SEO.",
+      "notions": [
+        "Audit digital",
+        "Outils de veille"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq1-s02-c001",
+      "section": "libre-b3-32-sq1-s02-s01",
+      "type": "qcm",
+      "question": "Un client publie une vidéo virale montrant un colis abîmé. Quelle réaction est la plus adaptée ?",
+      "choix": [
+        "Supprimer tous les commentaires négatifs",
+        "Ignorer, ça passera",
+        "Répondre publiquement, reconnaître le problème et proposer une solution",
+        "Menacer le client de poursuites"
+      ],
+      "bonneReponse": 2,
+      "explication": "La transparence limite l'emballement ; la censure l'amplifie.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq1-s02-c002",
+      "section": "libre-b3-32-sq1-s02-s02",
+      "type": "qcm",
+      "question": "Acheter des annonces sur le mot-clé « bière artisanale Rennes » relève :",
+      "choix": [
+        "du référencement naturel",
+        "du référencement payant",
+        "de l'identité déclarative uniquement",
+        "du bad buzz"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les liens sponsorisés sont du SEA.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-32-sq1-s02-c003",
+      "section": "libre-b3-32-sq1-s02-s03",
+      "type": "exercice",
+      "enonce": "Cartographie la présence numérique de l'auberge fictive **Le Vieux Moulin** : site web, fiche sur une carte en ligne (note 4,1), page sur un réseau social (dernier message il y a 2 ans), compte créé par un ancien gérant dont plus personne n'a les accès, avis sur deux sites de voyage.",
+      "etapes": [
+        "Maîtrisés : site web, fiche carte (à mettre à jour), page réseau social (inactive : à relancer ou fermer).",
+        "Non maîtrisé : compte de l'ancien gérant → risque d'usurpation ou d'informations fausses ; demander sa récupération ou suppression à la plateforme.",
+        "Réputation : note correcte ; répondre aux avis, surtout négatifs.",
+        "Cohérence : vérifier horaires et coordonnées identiques partout."
+      ],
+      "reponse": "Inventaire des 5 présences, récupération du compte orphelin, réactivation de la page et réponse aux avis.",
+      "difficulte": 2
+    }
+  ]
+}

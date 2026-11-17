@@ -1,0 +1,75 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq2-s07",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – SQ2 – Accès et privilèges",
+  "sequence": null,
+  "seance": "S07 – Synthèse : accès et privilèges",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif : modèles de contrôle d'accès, ACL et groupes, partages, protection des portables, comptes de base de données et journaux.",
+  "notions": [
+    "Récapitulatif contrôle d'accès",
+    "Exercice de synthèse accès"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq2-s07-s01",
+      "titre": "L'essentiel",
+      "contenu": "| Thème | Règle d'or |\n| --- | --- |\n| Droits | moindre privilège, besoin d'en connaître, séparation des tâches |\n| Attribution | aux **groupes/rôles**, pas aux personnes |\n| Partage Windows | droit effectif = le plus restrictif (partage/NTFS) ; refus prioritaire |\n| Portables | chiffrement du disque, stockage déporté, procédure de vol |\n| Bases de données | isolée, un compte par application, droits minimaux |\n| Journaux | taille suffisante, archivage, centralisation, consultation |",
+      "notions": [
+        "Récapitulatif contrôle d'accès"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq2-s07-s02",
+      "titre": "Exercice de synthèse",
+      "contenu": "Une démarche d'audit des accès : lister les objets sensibles, lister les rôles, construire la matrice, comparer avec les droits réels, corriger, puis surveiller.",
+      "notions": [
+        "Exercice de synthèse accès"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq2-s07-c001",
+      "section": "libre-b3-33-sq2-s07-s01",
+      "type": "qcm",
+      "question": "Laquelle est une erreur ?",
+      "choix": [
+        "Créer un groupe par fonction et lui attribuer les droits",
+        "Donner le contrôle total à tous « au cas où »",
+        "Centraliser les journaux",
+        "Chiffrer les portables"
+      ],
+      "bonneReponse": 1,
+      "explication": "Accorder des droits « au cas où » viole le moindre privilège.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq2-s07-c002",
+      "section": "libre-b3-33-sq2-s07-s01",
+      "type": "question",
+      "recto": "Pourquoi centraliser les journaux sur un serveur dédié ?",
+      "verso": "Pour les **corréler**, les **conserver** et empêcher un attaquant de les **effacer** sur la machine compromise.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq2-s07-c003",
+      "section": "libre-b3-33-sq2-s07-s02",
+      "type": "exercice",
+      "enonce": "Audit chez le distributeur fictif **AquaPure** : tous les salariés ont « Contrôle total » sur le serveur de fichiers ; l'application web utilise le compte root de MySQL ; les journaux de sécurité font 20 Mo et sont écrasés en 2 jours ; deux anciens salariés ont encore un compte actif. Propose les corrections.",
+      "etapes": [
+        "Fichiers : définir les rôles, créer des groupes par fonction, reconstruire les ACL NTFS selon une matrice (lecture/modification ciblées) ; partage large + NTFS fin.",
+        "Base : créer un compte dédié à l'application avec SELECT/INSERT/UPDATE/DELETE sur sa seule base, depuis l'adresse du serveur web ; changer le mot de passe root et interdire root à distance.",
+        "Journaux : augmenter la taille, archiver, centraliser vers un collecteur, vue des 4625/4740.",
+        "Comptes : désactiver immédiatement les deux comptes, mettre en place une procédure de départ et une revue trimestrielle."
+      ],
+      "reponse": "Moindre privilège sur fichiers et base, journaux conservés et centralisés, comptes orphelins supprimés avec une procédure.",
+      "difficulte": 3
+    }
+  ]
+}

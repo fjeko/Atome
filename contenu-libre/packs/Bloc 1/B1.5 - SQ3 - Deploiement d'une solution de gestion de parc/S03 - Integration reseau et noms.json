@@ -1,0 +1,65 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-15-sq3-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.5 – SQ3 – Déployer une solution de gestion de parc dans un nouvel environnement",
+  "sequence": null,
+  "seance": "S03 – Intégration réseau et noms",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Intégrer la solution dans le réseau du client : plan d'adressage et de nommage, enregistrements DNS, configuration par noms plutôt que par adresses, et tests d'intégration.",
+  "notions": [
+    "Adapter au plan d'adressage et de nommage",
+    "Enregistrements de noms",
+    "Configurer par noms",
+    "Tests d'intégration"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-15-sq3-s03-s01",
+      "titre": "Noms plutôt qu'adresses",
+      "contenu": "On s'adapte au **plan d'adressage** et à la **convention de nommage** du client (ex. `SRV-GLPI-WEB`, réseau serveurs 10.12.5.0/24).\n\nDans le DNS du client, on crée :\n```text\nsrv-glpi-web   A      10.12.5.21\nsrv-glpi-bdd   A      10.12.5.22\nparc           CNAME  srv-glpi-web      ; adresse simple pour les utilisateurs\n```\nDans toutes les configurations (application → base, agents → serveur), on utilise des **noms**, pas des adresses :\n```text\nServeur de base : srv-glpi-bdd.client.local      (et non 10.12.5.22)\nURL des agents  : https://parc.client.local/      (et non https://10.12.5.21/)\n```\nSi un jour le serveur change d'adresse, on modifie **un enregistrement DNS**, pas cinquante configurations.\n\n**Piège** : des adresses codées en dur, valables dans la maquette, qui cassent dans le réseau du client.",
+      "notions": [
+        "Adapter au plan d'adressage et de nommage",
+        "Enregistrements de noms",
+        "Configurer par noms"
+      ]
+    },
+    {
+      "id": "libre-b1-15-sq3-s03-s02",
+      "titre": "Tests d'intégration",
+      "contenu": "Les **tests d'intégration** vérifient que la solution fonctionne **dans** l'environnement du client :\n```bash\nnslookup parc.client.local            # résolution du nom\ncurl -I https://parc.client.local     # le site répond\nmysql -h srv-glpi-bdd.client.local -u glpi_app -p glpi -e \"SELECT 1;\"   # depuis le serveur web\n```\nEt depuis un **poste utilisateur** : accès à l'interface, remontée d'un agent, réception d'une notification.",
+      "notions": [
+        "Tests d'intégration"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-15-sq3-s03-c001",
+      "section": "libre-b1-15-sq3-s03-s01",
+      "type": "qcm",
+      "question": "Pourquoi configurer les agents d'inventaire avec `parc.client.local` plutôt qu'avec l'adresse IP du serveur ?",
+      "choix": [
+        "Parce que les agents ne comprennent pas les adresses IP",
+        "Pour qu'un changement d'adresse du serveur ne demande qu'une mise à jour DNS",
+        "Pour accélérer les remontées",
+        "Parce que HTTPS interdit les adresses IP"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le nom découple la configuration de l'adresse réelle.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-15-sq3-s03-c002",
+      "section": "libre-b1-15-sq3-s03-s02",
+      "type": "question",
+      "recto": "Qu'est-ce qu'un test d'intégration dans ce contexte ?",
+      "verso": "Un test qui vérifie que l'application fonctionne avec les éléments réels du client : DNS, réseau, base distante, postes et agents.",
+      "difficulte": 1
+    }
+  ]
+}

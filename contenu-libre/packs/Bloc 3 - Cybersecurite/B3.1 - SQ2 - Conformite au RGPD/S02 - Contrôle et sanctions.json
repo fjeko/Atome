@@ -1,0 +1,106 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq2-s02",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ2 – Conformité au RGPD",
+  "sequence": null,
+  "seance": "S02 – Contrôle et sanctions",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Chaque pays a une autorité de contrôle (la CNIL en France), coordonnée au niveau européen. Elle contrôle, met en demeure et sanctionne ; des sanctions pénales existent aussi.",
+  "notions": [
+    "CNIL",
+    "Comité européen de la protection des données",
+    "Contrôles de la CNIL",
+    "Sanctions administratives",
+    "Sanctions pénales",
+    "Mise en demeure"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq2-s02-s01",
+      "titre": "Autorités de contrôle",
+      "contenu": "- En France, l'**autorité de contrôle** est la **CNIL** (Commission nationale de l'informatique et des libertés) : elle conseille, reçoit les plaintes, contrôle et sanctionne.\n- Les autorités nationales coopèrent au sein du **CEPD** (Comité européen de la protection des données), qui publie des lignes directrices et tranche les désaccords.\n- **Guichet unique** : une organisation présente dans plusieurs pays a une autorité « chef de file », celle de son établissement principal.",
+      "notions": [
+        "CNIL",
+        "Comité européen de la protection des données"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq2-s02-s02",
+      "titre": "Moyens de contrôle",
+      "contenu": "La CNIL peut déclencher un contrôle à la suite d'une **plainte**, d'une actualité (fuite de données), ou dans le cadre de **thèmes prioritaires** annuels. Les contrôles peuvent être :\n- **sur place** (dans les locaux) ;\n- **en ligne** (examen d'un site, des cookies) ;\n- **sur pièces** (demande de documents : registre, contrats) ;\n- sur **audition** (convocation).",
+      "notions": [
+        "Contrôles de la CNIL"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq2-s02-s03",
+      "titre": "Procédure et échelle des sanctions",
+      "contenu": "Après un contrôle, la CNIL peut :\n- adresser un **rappel à l'ordre** ou une **mise en demeure** de se mettre en conformité dans un délai ;\n- prononcer des **sanctions** : limitation ou arrêt d'un traitement, **amende administrative**, astreinte, publication de la sanction.\n\nPlafonds d'amende : jusqu'à **20 millions d'euros** ou **4 % du chiffre d'affaires annuel mondial** (le montant le plus élevé) pour les manquements les plus graves ; 10 M€ ou 2 % pour d'autres. Une **procédure simplifiée** existe pour les cas peu complexes (amendes plus faibles).\n\nIl existe aussi des **sanctions pénales** (Code pénal) : des peines pouvant atteindre cinq ans de prison et 300 000 € d'amende pour certaines infractions (collecte frauduleuse, détournement de finalité). Les personnes lésées peuvent demander réparation devant le juge.",
+      "notions": [
+        "Sanctions administratives",
+        "Sanctions pénales",
+        "Mise en demeure"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq2-s02-c001",
+      "section": "libre-b3-31-sq2-s02-s01",
+      "type": "qcm",
+      "question": "Quelle autorité contrôle l'application du RGPD en France ?",
+      "choix": [
+        "L'ANSSI",
+        "La CNIL",
+        "La DGCCRF",
+        "Le CEPD"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'ANSSI s'occupe de cybersécurité ; la CNIL de protection des données.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq2-s02-c002",
+      "section": "libre-b3-31-sq2-s02-s02",
+      "type": "question",
+      "recto": "Citer deux façons dont la CNIL peut contrôler une organisation.",
+      "verso": "Sur place, en ligne, sur pièces (documents demandés) ou sur audition.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq2-s02-c003",
+      "section": "libre-b3-31-sq2-s02-s03",
+      "type": "qcm",
+      "question": "Quel est le plafond maximal d'une amende administrative RGPD ?",
+      "choix": [
+        "1 million d'euros",
+        "10 % du bénéfice",
+        "20 millions d'euros ou 4 % du chiffre d'affaires mondial, le plus élevé des deux",
+        "300 000 €"
+      ],
+      "bonneReponse": 2,
+      "explication": "C'est le plafond des manquements les plus graves.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq2-s02-c004",
+      "section": "libre-b3-31-sq2-s02-s03",
+      "type": "qcm",
+      "question": "Que se passe-t-il le plus souvent avant une amende ?",
+      "choix": [
+        "Rien, l'amende est immédiate",
+        "Une mise en demeure de se conformer dans un délai",
+        "Une fermeture de l'entreprise",
+        "Une plainte pénale automatique"
+      ],
+      "bonneReponse": 1,
+      "explication": "La CNIL privilégie d'abord la mise en conformité ; l'amende vient si les manquements persistent ou sont graves.",
+      "difficulte": 2
+    }
+  ]
+}

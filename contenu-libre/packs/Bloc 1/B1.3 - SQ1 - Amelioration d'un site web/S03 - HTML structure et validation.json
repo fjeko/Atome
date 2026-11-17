@@ -1,0 +1,106 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq1-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – SQ1 – Améliorer un site web",
+  "sequence": null,
+  "seance": "S03 – HTML : structure et validation",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Écrire une page HTML correcte : éléments, balises, attributs, imbrication, éléments vides, structure de page, langue, encodage, métadonnées, entités, zonage sémantique et validation.",
+  "notions": [
+    "Élément balise attribut",
+    "Imbrication et éléments vides",
+    "Structure d'une page",
+    "Langue encodage métadonnées",
+    "Entités",
+    "Zonage sémantique",
+    "Validation"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq1-s03-s01",
+      "titre": "Éléments, balises, attributs",
+      "contenu": "**HTML** décrit la **structure** et le **sens** du contenu (pas sa mise en forme).\n```html\n<a href=\"contact.html\" title=\"Nous écrire\">Contact</a>\n```\n- `<a>` est la **balise ouvrante**, `</a>` la **balise fermante** ; l'ensemble avec le contenu forme un **élément** ;\n- `href` et `title` sont des **attributs** (nom=\"valeur\").\n\n**Imbrication** : les éléments se ferment dans l'ordre inverse de leur ouverture.\n```html\n<p>Un <strong>miel <em>de châtaignier</em></strong> local.</p>   <!-- correct -->\n<p>Un <strong>miel <em>de châtaignier</strong></em> local.</p>   <!-- incorrect -->\n```\n**Éléments vides** : sans contenu ni balise fermante : `<img src=\"pot.jpg\" alt=\"Pot de miel\">`, `<br>`, `<input>`, `<meta>`.",
+      "notions": [
+        "Élément balise attribut",
+        "Imbrication et éléments vides"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq1-s03-s02",
+      "titre": "Structure d'une page",
+      "contenu": "```html\n<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <meta name=\"description\" content=\"Miel artisanal récolté dans les Cévennes, vente directe.\">\n  <title>Miel des Cévennes – Nos produits</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <h1>Nos miels</h1>\n  <p>Prix : 9&nbsp;€ le pot &amp; 16&nbsp;€ les deux.</p>\n</body>\n</html>\n```\n- `<!DOCTYPE html>` : document HTML5 ;\n- `lang=\"fr\"` : la **langue** (utile aux lecteurs d'écran et aux moteurs) ;\n- `charset=\"utf-8\"` : l'**encodage** (sinon accents illisibles) ;\n- `<title>` : titre de l'onglet et des résultats de recherche ;\n- `<meta name=\"description\">` : résumé affiché par les moteurs.\n\n**Entités** : pour écrire des caractères réservés : `&lt;` (<), `&gt;` (>), `&amp;` (&), `&nbsp;` (espace insécable), `&quot;`.",
+      "notions": [
+        "Structure d'une page",
+        "Langue encodage métadonnées",
+        "Entités"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq1-s03-s03",
+      "titre": "Zonage sémantique et validation",
+      "contenu": "HTML5 propose des balises qui donnent du **sens** aux zones de la page :\n```html\n<header>logo, titre</header>\n<nav>menu principal</nav>\n<main>\n  <article>\n    <h2>Le miel de bruyère</h2>\n    <section>...</section>\n  </article>\n  <aside>encadré : point de vente</aside>\n</main>\n<footer>mentions légales, contact</footer>\n```\nElles aident l'**accessibilité** (navigation par zones) et le **référencement**. Une seule `<h1>` par page, puis des niveaux de titres sans sauter de niveau.\n\n**Valider** : le validateur du W3C (validator.w3.org) liste les erreurs (balise non fermée, attribut inconnu, `alt` manquant…). On corrige **la première erreur d'abord** : elle en provoque souvent d'autres.",
+      "notions": [
+        "Zonage sémantique",
+        "Validation"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq1-s03-c001",
+      "section": "libre-b1-13-sq1-s03-s01",
+      "type": "qcm",
+      "question": "Quelle ligne est correctement imbriquée ?",
+      "choix": [
+        "`<p><em>Texte</p></em>`",
+        "`<p><em>Texte</em></p>`",
+        "`<em><p>Texte</em></p>`",
+        "`<p><em>Texte</p>`"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le dernier élément ouvert (em) doit être le premier fermé.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq1-s03-c002",
+      "section": "libre-b1-13-sq1-s03-s02",
+      "type": "question",
+      "recto": "Pourquoi déclarer `<meta charset=\"utf-8\">` ?",
+      "verso": "Pour indiquer l'encodage des caractères au navigateur ; sans lui, les accents et caractères spéciaux peuvent s'afficher mal.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-13-sq1-s03-c003",
+      "section": "libre-b1-13-sq1-s03-s03",
+      "type": "exercice",
+      "enonce": "Le validateur signale : « Element img is missing required attribute alt » et « End tag p seen, but there were open elements ». Que corriger ?",
+      "etapes": [
+        "Première erreur : ajouter un attribut alt décrivant l'image (ou alt=\"\" si décorative).",
+        "Seconde : un élément ouvert dans le paragraphe n'a pas été fermé avant `</p>` (ex. un `<strong>`) ; fermer dans le bon ordre.",
+        "Revalider."
+      ],
+      "reponse": "Ajouter `alt=\"…\"` à l'image et fermer l'élément resté ouvert avant `</p>`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq1-s03-c004",
+      "section": "libre-b1-13-sq1-s03-s03",
+      "type": "qcm",
+      "question": "Quelle balise convient au menu de navigation principal ?",
+      "choix": [
+        "`<aside>`",
+        "`<nav>`",
+        "`<footer>`",
+        "`<section>`"
+      ],
+      "bonneReponse": 1,
+      "explication": "`<nav>` signale un bloc de liens de navigation.",
+      "difficulte": 2
+    }
+  ]
+}

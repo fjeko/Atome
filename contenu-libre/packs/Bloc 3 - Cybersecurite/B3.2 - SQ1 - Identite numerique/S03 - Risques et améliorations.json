@@ -1,0 +1,97 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq1-s03",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – SQ1 – Identité numérique",
+  "sequence": null,
+  "seance": "S03 – Risques et améliorations",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. L'identité numérique d'une organisation peut être altérée par des contenus qu'elle ne maîtrise pas ou par des actes malveillants. On distingue contenus maîtrisés et non maîtrisés, et on met en place des actions pour améliorer et protéger son image.",
+  "notions": [
+    "Contenus maîtrisés",
+    "Contenus non maîtrisés",
+    "Altération de l'identité",
+    "Défiguration de site",
+    "Amélioration de l'identité numérique",
+    "Veille de réputation"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq1-s03-s01",
+      "titre": "Contenus maîtrisés et non maîtrisés",
+      "contenu": "| Maîtrisés | Non maîtrisés |\n| --- | --- |\n| site officiel, communiqués | avis clients, commentaires |\n| comptes officiels sur les réseaux | articles de presse, blogs |\n| publicités | publications de salariés ou d'anciens salariés |\n| | faux comptes, faux avis, rumeurs |\n\nL'erreur fréquente est de ne surveiller que **ce qu'on publie soi-même** : l'essentiel de la réputation se joue souvent dans les contenus non maîtrisés.",
+      "notions": [
+        "Contenus maîtrisés",
+        "Contenus non maîtrisés"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq1-s03-s02",
+      "titre": "Risques d'altération",
+      "contenu": "Menaces sur l'identité d'une organisation :\n- **défiguration** de son site (page d'accueil remplacée après une intrusion) ;\n- **piratage** d'un compte officiel sur un réseau social (publications frauduleuses) ;\n- **faux avis** en masse (concurrent malveillant) ;\n- **faux site** ou nom de domaine proche, pour tromper les clients ;\n- **diffamation** ou dénigrement ;\n- fuite de données qui fait la une.\n\nConséquences : perte de confiance, chute des ventes, escroqueries des clients au nom de l'organisation, coûts de remise en état.",
+      "notions": [
+        "Altération de l'identité",
+        "Défiguration de site"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq1-s03-s03",
+      "titre": "Améliorer et protéger son identité",
+      "contenu": "Actions :\n- **définir** une ligne éditoriale et des règles de prise de parole (qui publie, comment répondre) ;\n- **sécuriser les comptes** officiels : MFA, accès nominatifs, liste des administrateurs à jour ;\n- **occuper** les plateformes utiles et réserver son nom sur les principales, même inactives ;\n- **mettre en place une veille** (alertes) et répondre aux avis ;\n- **former** les salariés à la prise de parole ;\n- produire du contenu de qualité régulièrement.",
+      "notions": [
+        "Amélioration de l'identité numérique",
+        "Veille de réputation"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq1-s03-c001",
+      "section": "libre-b3-32-sq1-s03-s01",
+      "type": "qcm",
+      "question": "Lequel est un contenu non maîtrisé par l'organisation ?",
+      "choix": [
+        "Sa page « Qui sommes-nous ? »",
+        "Ses publications officielles",
+        "Un fil de discussion d'anciens clients sur un forum",
+        "Son catalogue en ligne"
+      ],
+      "bonneReponse": 2,
+      "explication": "L'organisation ne contrôle ni l'existence ni le contenu de ce fil.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-32-sq1-s03-c002",
+      "section": "libre-b3-32-sq1-s03-s02",
+      "type": "exercice",
+      "enonce": "La page d'accueil du site de la mutuelle fictive **SantéPlus Vallée** a été remplacée par un message revendicatif. Analyse les risques et les actions.",
+      "etapes": [
+        "Atteinte à l'intégrité du site et à l'image : les adhérents doutent de la sécurité de leurs données.",
+        "Risque associé : l'intrus a peut-être accédé à d'autres données (à vérifier : violation de données ?).",
+        "Actions immédiates : mettre le site hors ligne ou une page de maintenance, conserver les preuves (journaux, copie), restaurer une version saine après correction de la faille.",
+        "Communication : message factuel aux adhérents ; notification CNIL si des données personnelles sont touchées ; plainte."
+      ],
+      "reponse": "Atteinte à l'image et possible violation de données : isoler, préserver les preuves, corriger, restaurer, communiquer.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq1-s03-c003",
+      "section": "libre-b3-32-sq1-s03-s03",
+      "type": "qcm",
+      "question": "Pourquoi activer la double authentification sur les comptes officiels d'une organisation ?",
+      "choix": [
+        "Pour gagner des abonnés",
+        "Pour éviter le piratage du compte et des publications frauduleuses en son nom",
+        "Pour améliorer le référencement",
+        "C'est obligatoire légalement"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un compte piraté peut ruiner la réputation en quelques heures.",
+      "difficulte": 2
+    }
+  ]
+}

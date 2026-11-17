@@ -1,0 +1,109 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq1-s07",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – SQ1 – Inventaire et gestion d'un parc informatique",
+  "sequence": null,
+  "seance": "S07 – Formats ouverts et export CSV",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Pourquoi privilégier les formats ouverts (interopérabilité, pérennité), comment est construit un fichier CSV et comment l'exploiter dans un tableur après un export d'inventaire.",
+  "notions": [
+    "Format ouvert et format fermé",
+    "Interopérabilité et pérennité",
+    "Structure d'un CSV",
+    "Délimiteur",
+    "Export et exploitation dans un tableur"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq1-s07-s01",
+      "titre": "Formats ouverts et fermés",
+      "contenu": "Un **format de fichier** est la façon dont les données sont rangées dans un fichier.\n\n- **Format ouvert** : ses spécifications sont **publiques** et utilisables librement par tout le monde. Exemples : ODT (OpenDocument), PDF, PNG, HTML, CSV, JSON.\n- **Format fermé (propriétaire)** : ses règles sont **gardées secrètes** ou soumises à conditions par son éditeur. Seul son logiciel le lit parfaitement. Exemple historique : l'ancien format .doc.\n\nDeux enjeux :\n- **Interopérabilité** : la capacité de logiciels différents à échanger et utiliser les mêmes données. Un format ouvert est lisible par n'importe quel programme qui respecte la spécification.\n- **Pérennité** : dans 20 ans, pourra-t-on relire le fichier ? Si l'éditeur d'un format fermé disparaît, ses fichiers deviennent difficiles à exploiter. Un format ouvert documenté pourra toujours être relu.\n\nC'est pour ça que les administrations françaises sont encouragées à utiliser des formats ouverts (Référentiel général d'interopérabilité).",
+      "notions": [
+        "Format ouvert et format fermé",
+        "Interopérabilité et pérennité"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq1-s07-s02",
+      "titre": "La structure d'un fichier CSV",
+      "contenu": "**CSV** (*Comma-Separated Values*) est un format **texte** très simple pour stocker un tableau :\n- **une ligne = un enregistrement** (une machine, par exemple) ;\n- la **première ligne** contient souvent les **noms des colonnes** (l'en-tête) ;\n- les valeurs sont séparées par un **délimiteur**.\n\n```csv\nNom;Systeme;RAM_Go;Lieu\nPC-ACCUEIL-01;Windows 11;16;Rez-de-chaussée\nPC-COMPTA-02;Windows 10;8;Étage 1\nPORT-DIR-01;Windows 11;32;Étage 2\n```\n\nLe délimiteur officiel est la **virgule**, mais en France le **point-virgule** est fréquent, car la virgule sert déjà de séparateur décimal (12,5).\n\nSi une valeur contient le délimiteur, on l'entoure de **guillemets** : `\"Dupont; Martin\"`.\n\n**Piège** : ouvrir un CSV avec le mauvais délimiteur. Tout s'affiche alors dans une seule colonne. Il suffit de réimporter en précisant le bon séparateur.",
+      "notions": [
+        "Structure d'un CSV",
+        "Délimiteur"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq1-s07-s03",
+      "titre": "Exporter et exploiter dans un tableur",
+      "contenu": "Après une recherche dans l'outil d'inventaire, on peut **exporter le résultat en CSV**. On l'ouvre ensuite dans un tableur (LibreOffice Calc, Excel) pour :\n- **trier** (par date d'achat, par RAM) ;\n- **filtrer** (seulement l'étage 1) ;\n- **compter** (combien de postes Windows 10 : fonction `NB.SI`) ;\n- faire un **graphique** pour un rapport.\n\nExemple de formule pour compter les postes sous Windows 10 dans la colonne B :\n```text\n=NB.SI(B2:B200;\"Windows 10\")\n```\n\nDans LibreOffice Calc, à l'ouverture d'un CSV, une fenêtre demande le **jeu de caractères** (choisis UTF-8 pour garder les accents) et le **séparateur**.",
+      "notions": [
+        "Export et exploitation dans un tableur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq1-s07-c001",
+      "section": "libre-b1-11-sq1-s07-s01",
+      "type": "question",
+      "recto": "Qu'est-ce que l'interopérabilité ?",
+      "verso": "La capacité de systèmes ou logiciels différents à échanger des données et à les utiliser correctement.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s07-c002",
+      "section": "libre-b1-11-sq1-s07-s01",
+      "type": "qcm",
+      "question": "Pourquoi un format ouvert favorise-t-il la pérennité des données ?",
+      "choix": [
+        "Parce qu'il compresse mieux les fichiers",
+        "Parce que sa spécification publique permettra toujours d'écrire un programme pour le relire",
+        "Parce qu'il est toujours gratuit à l'achat",
+        "Parce qu'il est chiffré"
+      ],
+      "bonneReponse": 1,
+      "explication": "Même si le logiciel d'origine disparaît, la documentation publique permet de relire les données.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq1-s07-c003",
+      "section": "libre-b1-11-sq1-s07-s02",
+      "type": "qcm",
+      "question": "Pourquoi le séparateur d'un CSV produit en France est-il souvent un point-virgule ?",
+      "choix": [
+        "Parce que la virgule est interdite dans les fichiers texte",
+        "Parce que la virgule sert de séparateur décimal en français",
+        "Parce qu'un point-virgule occupe moins d'espace",
+        "Parce que les tableurs n'acceptent pas la virgule"
+      ],
+      "bonneReponse": 1,
+      "explication": "Dans « 12,5 Go », la virgule ferait croire à deux colonnes. Le point-virgule évite cette ambiguïté.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq1-s07-c004",
+      "section": "libre-b1-11-sq1-s07-s02",
+      "type": "exercice",
+      "enonce": "Écris la ligne CSV (délimiteur `;`) pour le poste PORT-COM-07, sous Ubuntu 24.04, avec 16 Go de RAM, situé « Salle Bleue, Annexe ».",
+      "etapes": [
+        "On respecte l'ordre des colonnes : Nom, Systeme, RAM_Go, Lieu.",
+        "Le lieu contient une virgule mais pas de point-virgule : pas besoin de guillemets avec le délimiteur `;` (on peut quand même en mettre)."
+      ],
+      "reponse": "`PORT-COM-07;Ubuntu 24.04;16;Salle Bleue, Annexe`",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq1-s07-c005",
+      "section": "libre-b1-11-sq1-s07-s03",
+      "type": "question",
+      "recto": "Lors de l'ouverture d'un CSV, les accents s'affichent mal (« Ã© » au lieu de « é »). Que faut-il vérifier ?",
+      "verso": "Le jeu de caractères choisi à l'import : il faut prendre celui du fichier, généralement UTF-8.",
+      "difficulte": 2
+    }
+  ]
+}

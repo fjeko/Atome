@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq3-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – SQ3 – Site à base de CMS et extensions",
+  "sequence": null,
+  "seance": "S02 – Installation et vocabulaire",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La pile technique d'un CMS libre, son installation pas à pas et son vocabulaire : articles, pages, catégories, thèmes, extensions, widgets, menus.",
+  "notions": [
+    "Pile applicative d'un CMS",
+    "Installation d'un CMS",
+    "Articles et pages",
+    "Thèmes et extensions",
+    "Widgets et menus"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq3-s02-s01",
+      "titre": "Pile technique et installation",
+      "contenu": "Un CMS comme WordPress repose sur une pile **serveur web + PHP + base MySQL/MariaDB**. Installation :\n1. créer une **base de données** et un **utilisateur dédié** (droits limités à cette base) :\n```sql\nCREATE DATABASE site_rando CHARACTER SET utf8mb4;\nCREATE USER 'rando_app'@'localhost' IDENTIFIED BY 'Ph!rase-longue-et-unique';\nGRANT ALL PRIVILEGES ON site_rando.* TO 'rando_app'@'localhost';\n```\n2. copier les fichiers du CMS dans le dossier du site ;\n3. lancer l'**assistant web** : nom de la base, utilisateur, mot de passe, préfixe des tables ;\n4. créer le **compte administrateur** (pas « admin » comme identifiant, mot de passe robuste) ;\n5. régler : titre, langue, fuseau, structure des URL (permaliens lisibles).",
+      "notions": [
+        "Pile applicative d'un CMS",
+        "Installation d'un CMS"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq3-s02-s02",
+      "titre": "Le vocabulaire",
+      "contenu": "| Terme | Signification |\n| --- | --- |\n| **Article** | contenu daté, classé par **catégories** et **étiquettes**, présenté du plus récent au plus ancien (actualités, blog) |\n| **Page** | contenu permanent, hors chronologie (« Qui sommes-nous », « Contact ») |\n| **Média** | images, PDF, vidéos téléversés |\n| **Thème** | l'**apparence** du site (mise en page, couleurs, typographies) |\n| **Extension** (*plugin*) | ajoute une **fonctionnalité** (formulaire, boutique, sauvegarde, SEO) |\n| **Widget** | petit bloc placé dans une zone du thème (barre latérale, pied de page) : dernières actus, recherche |\n| **Menu** | liste de liens de navigation, placée dans un emplacement du thème |\n\n**Piège** : confondre thème (apparence) et extension (fonction). Changer de thème ne doit pas faire perdre une fonctionnalité essentielle.",
+      "notions": [
+        "Articles et pages",
+        "Thèmes et extensions",
+        "Widgets et menus"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq3-s02-c001",
+      "section": "libre-b1-13-sq3-s02-s01",
+      "type": "question",
+      "recto": "Pourquoi créer un utilisateur de base de données dédié au CMS plutôt que d'utiliser root ?",
+      "verso": "Moindre privilège : si le site est compromis, l'attaquant ne peut atteindre que cette base, et non l'ensemble des bases hébergées.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq3-s02-c002",
+      "section": "libre-b1-13-sq3-s02-s02",
+      "type": "qcm",
+      "question": "Pour ajouter un formulaire de réservation au site, on installe…",
+      "choix": [
+        "un thème",
+        "une extension",
+        "un widget de recherche",
+        "une catégorie"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une extension ajoute une fonctionnalité ; un thème change l'apparence.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-13-sq3-s02-c003",
+      "section": "libre-b1-13-sq3-s02-s02",
+      "type": "qcm",
+      "question": "« Mentions légales » doit-elle être un article ou une page ?",
+      "choix": [
+        "Un article, classé dans une catégorie",
+        "Une page, car c'est un contenu permanent hors chronologie",
+        "Un widget",
+        "Un média"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les articles sont datés et chronologiques ; les contenus permanents sont des pages.",
+      "difficulte": 2
+    }
+  ]
+}

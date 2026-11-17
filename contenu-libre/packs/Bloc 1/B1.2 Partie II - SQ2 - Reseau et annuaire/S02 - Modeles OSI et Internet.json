@@ -1,0 +1,105 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq2-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ2 – Réseaux, adressage IP et annuaire de domaine",
+  "sequence": null,
+  "seance": "S02 – Modèles OSI et Internet",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Pourquoi on découpe les communications en couches, les normes et l'interopérabilité, les 7 couches du modèle OSI, les 4 couches du modèle Internet et le principe d'encapsulation.",
+  "notions": [
+    "Normes et interopérabilité",
+    "Découpage en couches",
+    "Service protocole interface",
+    "Modèle OSI",
+    "Modèle Internet TCP IP",
+    "Encapsulation"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq2-s02-s01",
+      "titre": "Normes et couches",
+      "contenu": "Pour qu'un téléphone d'une marque communique avec un serveur d'une autre, tout le monde doit suivre les mêmes règles : des **normes** (rédigées par un organisme officiel comme l'ISO ou l'IEEE) ou des **standards** (adoptés par l'usage). C'est la condition de l'**interopérabilité**.\n\nCommuniquer en réseau est complexe : on découpe le problème en **couches**. Chaque couche :\n- rend un **service** à la couche du dessus (ex. « transporter des données de façon fiable ») ;\n- utilise le service de la couche du dessous ;\n- dialogue avec la **même couche** de la machine distante grâce à un **protocole** (des règles de dialogue) ;\n- communique avec ses couches voisines par une **interface**.\n\nAvantage : on peut changer une couche (passer du câble au Wi-Fi) sans toucher aux autres.",
+      "notions": [
+        "Normes et interopérabilité",
+        "Découpage en couches",
+        "Service protocole interface"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s02-s02",
+      "titre": "Le modèle OSI",
+      "contenu": "Le **modèle OSI** (ISO) décrit 7 couches :\n| N° | Couche | Rôle | Exemples |\n| --- | --- | --- | --- |\n| 7 | Application | services pour l'utilisateur | HTTP, SMTP, DNS |\n| 6 | Présentation | format des données, chiffrement, compression | encodage, TLS (en partie) |\n| 5 | Session | ouverture, maintien, fermeture du dialogue | |\n| 4 | Transport | acheminement de bout en bout, fiabilité, ports | TCP, UDP |\n| 3 | Réseau | adressage logique, routage entre réseaux | IP, routeur |\n| 2 | Liaison | transmission sur un même réseau, adresses physiques | Ethernet, MAC, commutateur |\n| 1 | Physique | transmission des bits sur le support | câble, fibre, ondes |\n\nMoyen mnémotechnique (de la 1 à la 7) : « **P**our **L**e **R**éseau **T**out **S**e **P**asse **A**utomatiquement ».",
+      "notions": [
+        "Modèle OSI"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s02-s03",
+      "titre": "Le modèle Internet et l'encapsulation",
+      "contenu": "Le modèle **Internet** (TCP/IP), utilisé en pratique, regroupe les couches en 4 :\n| Modèle Internet | Correspond aux couches OSI |\n| --- | --- |\n| Application | 5, 6, 7 |\n| Transport | 4 |\n| Internet | 3 |\n| Accès réseau | 1, 2 |\n\n**Encapsulation** : en descendant les couches, chaque couche **ajoute son en-tête** aux données reçues d'en haut.\n```text\nApplication :                      [ Données ]\nTransport   :              [TCP]   [ Données ]          → segment\nInternet    :         [IP] [TCP]   [ Données ]          → paquet\nAccès réseau:  [Eth]  [IP] [TCP]   [ Données ] [FCS]    → trame → bits\n```\nÀ la réception, chaque couche **retire** son en-tête (désencapsulation) et passe le reste au-dessus.",
+      "notions": [
+        "Modèle Internet TCP IP",
+        "Encapsulation"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq2-s02-c001",
+      "section": "libre-b1-12b-sq2-s02-s01",
+      "type": "question",
+      "recto": "Quelle est la différence entre un service et un protocole dans un modèle en couches ?",
+      "verso": "Le service est ce qu'une couche fournit à la couche supérieure de la même machine ; le protocole est l'ensemble des règles de dialogue entre deux couches de même niveau sur des machines différentes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s02-c002",
+      "section": "libre-b1-12b-sq2-s02-s02",
+      "type": "qcm",
+      "question": "Dans quelle couche OSI travaille un routeur ?",
+      "choix": [
+        "1 – Physique",
+        "2 – Liaison",
+        "3 – Réseau",
+        "4 – Transport"
+      ],
+      "bonneReponse": 2,
+      "explication": "Le routeur lit les adresses IP pour choisir le chemin : couche 3.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s02-c003",
+      "section": "libre-b1-12b-sq2-s02-s02",
+      "type": "qcm",
+      "question": "À quelle couche OSI se situe l'adresse MAC ?",
+      "choix": [
+        "Physique",
+        "Liaison de données",
+        "Réseau",
+        "Application"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'adresse MAC identifie une carte sur le réseau local : couche 2. L'adresse IP est en couche 3.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s02-c004",
+      "section": "libre-b1-12b-sq2-s02-s03",
+      "type": "exercice",
+      "enonce": "Remets dans l'ordre d'encapsulation à l'émission : paquet IP, données de l'application, trame Ethernet, segment TCP.",
+      "etapes": [
+        "Tout part des données produites par l'application.",
+        "La couche transport ajoute l'en-tête TCP : segment.",
+        "La couche Internet ajoute l'en-tête IP : paquet.",
+        "La couche accès réseau ajoute l'en-tête Ethernet et le contrôle : trame."
+      ],
+      "reponse": "Données → segment TCP → paquet IP → trame Ethernet.",
+      "difficulte": 2
+    }
+  ]
+}

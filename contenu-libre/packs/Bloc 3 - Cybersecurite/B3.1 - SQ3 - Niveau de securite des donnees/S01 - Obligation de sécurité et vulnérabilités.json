@@ -1,0 +1,119 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq3-s01",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ3 – Niveau de sécurité des données",
+  "sequence": null,
+  "seance": "S01 – Obligation de sécurité et vulnérabilités",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le responsable de traitement doit assurer une sécurité adaptée au risque. Pour cela, il faut connaître les vulnérabilités : techniques (applications web), humaines et liées aux tiers, et comprendre les motivations des attaquants.",
+  "notions": [
+    "Obligation de sécurité",
+    "Critères DICT",
+    "Vulnérabilité",
+    "Menace",
+    "Risque",
+    "OWASP Top 10",
+    "Vulnérabilités web",
+    "Vulnérabilités humaines",
+    "Risques liés aux tiers"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq3-s01-s01",
+      "titre": "L'obligation de sécurité",
+      "contenu": "L'article 32 du RGPD oblige le responsable de traitement et le sous-traitant à prendre des **mesures techniques et organisationnelles adéquates** pour garantir un niveau de sécurité **adapté au risque**.\n\nOn évalue la sécurité selon quatre critères (**DICT**) :\n- **Disponibilité** : la donnée est accessible quand on en a besoin ;\n- **Intégrité** : elle n'a pas été modifiée de façon non autorisée ;\n- **Confidentialité** : seules les personnes autorisées y accèdent ;\n- **Traçabilité** (ou preuve) : on sait qui a fait quoi et quand.",
+      "notions": [
+        "Obligation de sécurité",
+        "Critères DICT"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq3-s01-s02",
+      "titre": "Vulnérabilité, menace, risque",
+      "contenu": "- **Vulnérabilité** : une **faiblesse** (mot de passe par défaut, logiciel non à jour, formulaire non contrôlé).\n- **Menace** : ce qui **pourrait exploiter** cette faiblesse (un attaquant, un rançongiciel, une erreur humaine, un incendie).\n- **Risque** : la **possibilité** que la menace exploite la vulnérabilité et cause un **impact** ; on l'évalue par **gravité × vraisemblance**.\n\nExemple : un serveur non mis à jour (vulnérabilité) + des robots qui scannent Internet (menace) = risque élevé d'intrusion.",
+      "notions": [
+        "Vulnérabilité",
+        "Menace",
+        "Risque"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq3-s01-s03",
+      "titre": "Vulnérabilités des applications web",
+      "contenu": "L'**OWASP** (fondation ouverte pour la sécurité des applications) publie un classement de référence, le **Top 10** des risques des applications web. On y retrouve notamment :\n- **contrôle d'accès défaillant** (accéder aux données d'un autre en changeant un identifiant dans l'URL) ;\n- **défaillances cryptographiques** (données sensibles non chiffrées, mots de passe mal hachés) ;\n- **injections** (SQL, commandes) ;\n- **conception non sécurisée** ;\n- **mauvaise configuration** (messages d'erreur détaillés, comptes par défaut) ;\n- **composants vulnérables ou obsolètes** ;\n- **défauts d'identification et d'authentification** ;\n- défauts de **journalisation et de surveillance**.",
+      "notions": [
+        "OWASP Top 10",
+        "Vulnérabilités web"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq3-s01-s04",
+      "titre": "Vulnérabilités humaines et liées aux tiers",
+      "contenu": "- **Humaines** : erreurs (envoi au mauvais destinataire), négligence (mot de passe sur un post-it), manipulation (ingénierie sociale), malveillance interne.\n- **Liées aux tiers** : prestataires et sous-traitants qui ont accès au SI, logiciels et bibliothèques externes, fournisseurs cloud. Une attaque peut passer par le maillon le plus faible de la chaîne.\n\nParades : sensibilisation, procédures, contrats avec clauses de sécurité, accès des prestataires limités et tracés.",
+      "notions": [
+        "Vulnérabilités humaines",
+        "Risques liés aux tiers"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq3-s01-c001",
+      "section": "libre-b3-31-sq3-s01-s01",
+      "type": "qcm",
+      "question": "Une base de notes d'élèves modifiée par un intrus touche surtout :",
+      "choix": [
+        "la disponibilité",
+        "l'intégrité",
+        "la confidentialité",
+        "la traçabilité"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les données ont été altérées : c'est leur intégrité qui est atteinte.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq3-s01-c002",
+      "section": "libre-b3-31-sq3-s01-s02",
+      "type": "qcm",
+      "question": "« Le logiciel de caisse utilise une version obsolète d'une bibliothèque » est :",
+      "choix": [
+        "une vulnérabilité",
+        "une menace",
+        "un risque",
+        "un impact"
+      ],
+      "bonneReponse": 0,
+      "explication": "C'est une faiblesse ; la menace serait l'attaquant qui l'exploite.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq3-s01-c003",
+      "section": "libre-b3-31-sq3-s01-s03",
+      "type": "question",
+      "recto": "Que désigne le « contrôle d'accès défaillant » ?",
+      "verso": "Un utilisateur peut accéder à des données ou fonctions **qui ne lui sont pas permises** (par ex. voir la facture d'un autre client en modifiant un numéro dans l'URL).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq3-s01-c004",
+      "section": "libre-b3-31-sq3-s01-s04",
+      "type": "qcm",
+      "question": "Un prestataire de maintenance garde un accès administrateur permanent au SI d'un client. Quel type de vulnérabilité ?",
+      "choix": [
+        "Humaine",
+        "Liée aux tiers",
+        "Physique",
+        "Cryptographique"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'accès d'un tiers non limité dans le temps élargit la surface d'attaque.",
+      "difficulte": 2
+    }
+  ]
+}

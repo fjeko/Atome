@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq1-s07",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ1 – Cybermenaces et bonnes pratiques",
+  "sequence": null,
+  "seance": "S07 – Bonnes pratiques et politiques de sécurité",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La sécurité repose sur plusieurs couches complémentaires : mises à jour, contrôle d'accès, protection des données confidentielles, formation et politiques écrites (usage d'Internet, réseaux sociaux).",
+  "notions": [
+    "Défense en profondeur",
+    "Mises à jour",
+    "Moindre privilège",
+    "Données confidentielles",
+    "Politique de sécurité",
+    "Charte d'usage"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq1-s07-s01",
+      "titre": "La défense en profondeur",
+      "contenu": "La **défense en profondeur** (ou en couches) consiste à **empiler plusieurs protections indépendantes**, pour qu'une faille dans l'une soit compensée par les autres :\n\n| Couche | Exemples |\n| --- | --- |\n| Humaine | sensibilisation, procédures |\n| Physique | locaux fermés, badges |\n| Réseau | pare-feu, segmentation, VPN |\n| Système | mises à jour, antivirus/EDR, durcissement |\n| Applicative | contrôle des saisies, authentification |\n| Données | chiffrement, sauvegardes |",
+      "notions": [
+        "Défense en profondeur"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s07-s02",
+      "titre": "Mesures techniques de base",
+      "contenu": "- **Mises à jour** : appliquer rapidement les correctifs de sécurité (système, navigateur, applications, équipements réseau).\n- **Contrôle d'accès** et **moindre privilège** : chacun n'accède qu'à ce dont il a besoin ; comptes administrateurs réservés à l'administration.\n- **Mots de passe** longs et uniques, gestionnaire de mots de passe, authentification multifacteur.\n- **Données confidentielles** : les classer, les chiffrer, limiter les copies (pas sur clé USB non chiffrée ni dans une messagerie personnelle), les détruire proprement.\n- **Sauvegardes** régulières et testées.",
+      "notions": [
+        "Mises à jour",
+        "Moindre privilège",
+        "Données confidentielles"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s07-s03",
+      "titre": "Former et formaliser",
+      "contenu": "Les mesures techniques ne suffisent pas sans les personnes :\n- **sensibiliser et former** régulièrement (hameçonnage simulé, rappels) ;\n- rédiger une **politique de sécurité des systèmes d'information** (PSSI) : objectifs, règles, responsabilités ;\n- adopter une **charte d'usage** signée par les utilisateurs : usage d'Internet et de la messagerie, réseaux sociaux (ne pas divulguer d'informations internes, attention à ce qu'on publie sur son poste), équipements personnels, sanctions.",
+      "notions": [
+        "Politique de sécurité",
+        "Charte d'usage"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq1-s07-c001",
+      "section": "libre-b3-31-sq1-s07-s01",
+      "type": "question",
+      "recto": "Quel est le principe de la défense en profondeur ?",
+      "verso": "Superposer **plusieurs couches** de protection indépendantes pour qu'aucune faille unique ne suffise à compromettre le SI.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq1-s07-c002",
+      "section": "libre-b3-31-sq1-s07-s02",
+      "type": "qcm",
+      "question": "Un employé travaille tous les jours avec un compte administrateur « pour gagner du temps ». Quel principe est violé ?",
+      "choix": [
+        "Défense en profondeur",
+        "Moindre privilège",
+        "Disponibilité",
+        "Non-répudiation"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un logiciel malveillant lancé par erreur aurait alors tous les droits.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s07-c003",
+      "section": "libre-b3-31-sq1-s07-s03",
+      "type": "exercice",
+      "enonce": "Rédige cinq règles d'une charte « réseaux sociaux » pour les salariés d'une clinique vétérinaire fictive, **VétoLune**.",
+      "etapes": [
+        "Ne publier aucune photo ni information sur les animaux et leurs propriétaires sans accord écrit.",
+        "Ne pas divulguer d'informations internes (planning, incidents, organisation des locaux).",
+        "Ne pas s'exprimer au nom de la clinique sans y être autorisé.",
+        "Se méfier des demandes de contact inconnues qui posent des questions sur la clinique (ingénierie sociale).",
+        "Signaler au responsable toute publication qui met en cause la clinique ou ses clients."
+      ],
+      "reponse": "Cinq règles qui protègent la confidentialité, la réputation et limitent l'ingénierie sociale.",
+      "difficulte": 2
+    }
+  ]
+}

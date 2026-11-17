@@ -1,0 +1,102 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-22-sq1-s01",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.2 – SQ1 – Maintenance corrective",
+  "sequence": null,
+  "seance": "S01 – Analyse statique et signalements",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un analyseur statique lit le code sans l'exécuter et signale bugs probables, failles et mauvaises pratiques. Il faut comprendre chaque signalement avant de le corriger.",
+  "notions": [
+    "Analyse statique",
+    "Analyseur de code",
+    "Extension d'EDI",
+    "Niveaux de gravité",
+    "Correction de signalement"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-22-sq1-s01-s01",
+      "titre": "Qu'est-ce que l'analyse statique ?",
+      "contenu": "L'**analyse statique** examine le **code source sans l'exécuter**. Un **analyseur** applique des centaines de **règles** et signale :\n- des **bugs probables** (variable jamais initialisée, comparaison toujours vraie) ;\n- des **failles** (requête SQL concaténée, mot de passe en dur) ;\n- des **mauvaises pratiques** (méthode trop longue, code mort, nommage).\n\nExemples d'outils : **SonarLint** / SonarQube, les analyseurs Roslyn de Visual Studio (C#), Checkstyle, PMD ou SpotBugs (Java).\n\nContrairement aux tests, l'analyse statique ne vérifie pas que le programme fait **ce qu'on attend** : elle repère des **défauts de forme et de risque**.",
+      "notions": [
+        "Analyse statique",
+        "Analyseur de code"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq1-s01-s02",
+      "titre": "L'analyseur dans l'EDI",
+      "contenu": "Installé comme **extension de l'EDI** (Visual Studio, VS Code, IntelliJ, Eclipse), l'analyseur souligne le code **pendant que tu tapes** et liste les signalements dans une fenêtre dédiée.\n\nChaque signalement indique : la **règle** (avec un identifiant), la **ligne**, une **gravité** et souvent une explication avec un exemple de correction.\n\n| Gravité (selon les outils) | Sens |\n| --- | --- |\n| Bloquant / critique | bug ou faille à corriger en priorité |\n| Majeur | risque réel de dysfonctionnement |\n| Mineur / info | style, lisibilité |",
+      "notions": [
+        "Extension d'EDI",
+        "Niveaux de gravité"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq1-s01-s03",
+      "titre": "Lire et corriger des signalements",
+      "contenu": "Exemples courants (C# et Java) :\n\n```csharp\n// « Variable 'total' assignée mais jamais utilisée »\nint total = CalculerTotal();\n```\n→ supprimer la ligne ou utiliser la variable.\n\n```java\n// « Comparer des chaînes avec equals() plutôt qu'avec == »\nif (statut == \"PAYE\") { ... }\n```\n→ `if (\"PAYE\".equals(statut))`.\n\n```csharp\n// « Bloc catch vide : l'exception est ignorée »\ntry { Enregistrer(); } catch (Exception) { }\n```\n→ journaliser l'erreur et prévenir l'utilisateur.\n\nRègle d'or : **comprendre** le signalement avant d'agir. Désactiver une règle ou ajouter une annotation pour « faire taire » l'outil masque le problème au lieu de le régler.",
+      "notions": [
+        "Correction de signalement"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-22-sq1-s01-c001",
+      "section": "libre-b2-22-sq1-s01-s01",
+      "type": "qcm",
+      "question": "Quelle est la particularité d'une analyse statique ?",
+      "choix": [
+        "Elle exécute le programme avec des données de test",
+        "Elle examine le code sans l'exécuter",
+        "Elle mesure le temps de réponse",
+        "Elle ne fonctionne qu'après le déploiement"
+      ],
+      "bonneReponse": 1,
+      "explication": "« Statique » : le programme n'est pas lancé, seul le code est lu.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-22-sq1-s01-c002",
+      "section": "libre-b2-22-sq1-s01-s02",
+      "type": "question",
+      "recto": "Quelles informations donne un signalement d'analyseur ?",
+      "verso": "La **règle** violée (identifiant), l'**emplacement** (fichier, ligne), la **gravité** et une explication de la correction attendue.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-22-sq1-s01-c003",
+      "section": "libre-b2-22-sq1-s01-s03",
+      "type": "qcm",
+      "question": "L'analyseur signale `if (code == \"A12\")` en Java. Quelle correction ?",
+      "choix": [
+        "`if (code = \"A12\")`",
+        "`if (\"A12\".equals(code))`",
+        "Désactiver la règle",
+        "`if (code.toString() == \"A12\")`"
+      ],
+      "bonneReponse": 1,
+      "explication": "`==` compare les références ; `equals` compare le contenu. Mettre la constante en premier évite aussi une erreur si `code` est nul.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq1-s01-c004",
+      "section": "libre-b2-22-sq1-s01-s03",
+      "type": "exercice",
+      "enonce": "Associe chaque signalement à sa correction : (1) « paramètre inutilisé `ville` », (2) « catch vide », (3) « chaîne SQL construite par concaténation ».",
+      "etapes": [
+        "(1) Supprimer le paramètre (et mettre à jour les appels) ou l'utiliser s'il a été oublié par erreur.",
+        "(2) Traiter l'exception : la journaliser et informer l'utilisateur, ou la laisser remonter.",
+        "(3) Réécrire la requête avec des paramètres (`@ville`) au lieu de concaténer."
+      ],
+      "reponse": "1 → supprimer/utiliser le paramètre ; 2 → gérer l'exception ; 3 → requête paramétrée.",
+      "difficulte": 2
+    }
+  ]
+}

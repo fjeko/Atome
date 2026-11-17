@@ -1,0 +1,116 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq3-s01",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – SQ3 – POO avancée, diagrammes dynamiques, tests et déploiement",
+  "sequence": null,
+  "seance": "S01 – Polymorphisme, surcharge et redéfinition",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le polymorphisme permet à un même appel de produire des comportements différents. La surcharge joue sur les paramètres (choix à la compilation), la redéfinition sur la classe réelle de l'objet (choix à l'exécution).",
+  "notions": [
+    "Surcharge",
+    "Polymorphisme statique",
+    "Redéfinition",
+    "Polymorphisme dynamique",
+    "@Override",
+    "super",
+    "this",
+    "Liste polymorphe"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq3-s01-s01",
+      "titre": "La surcharge (polymorphisme statique)",
+      "contenu": "La **surcharge** (*overloading*) : plusieurs méthodes de **même nom** dans la même classe, avec des **paramètres différents** (nombre ou types). Le compilateur choisit la bonne version d'après les arguments : c'est le **polymorphisme statique**.\n\n```java\npublic class Calculette {\n    public int ajouter(int a, int b) { return a + b; }\n    public double ajouter(double a, double b) { return a + b; }\n    public int ajouter(int a, int b, int c) { return a + b + c; }\n}\n```\n\nLe **type de retour seul ne suffit pas** à distinguer deux surcharges : `int f(int x)` et `double f(int x)` ne peuvent pas coexister.\n\nLes constructeurs sont souvent surchargés : `Produit(String nom)` et `Produit(String nom, double prix)`.",
+      "notions": [
+        "Surcharge",
+        "Polymorphisme statique"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s01-s02",
+      "titre": "La redéfinition (polymorphisme dynamique)",
+      "contenu": "La **redéfinition** (*overriding*) : une classe fille **réécrit** une méthode héritée, avec **la même signature**. On ajoute l'annotation `@Override` pour que le compilateur vérifie.\n\n```java\npublic class Employe {\n    protected double salaireBase;\n    public double salaire() { return salaireBase; }\n}\n\npublic class Commercial extends Employe {\n    private double ventes;\n    @Override\n    public double salaire() { return salaireBase + ventes * 0.05; }\n}\n```\n\n**Polymorphisme dynamique** : quand on appelle une méthode sur une référence de type mère, c'est la version de la **classe réelle de l'objet** qui s'exécute, choisie **à l'exécution**.\n\n```java\nEmploye e = new Commercial(...);\ne.salaire(); // exécute la version de Commercial\n```",
+      "notions": [
+        "Redéfinition",
+        "Polymorphisme dynamique",
+        "@Override"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s01-s03",
+      "titre": "this, super et le polymorphisme en pratique",
+      "contenu": "- `this` : l'objet courant (`this.nom`, `this(...)` pour un autre constructeur).\n- `super` : la partie « mère » de l'objet : `super(...)` appelle le constructeur parent, `super.methode()` appelle la version de la mère.\n\n```java\n@Override\npublic String toString() {\n    return super.toString() + \" (commercial)\";\n}\n```\n\nLe polymorphisme montre sa force avec une **liste de type mère** :\n\n```java\nArrayList<Employe> equipe = new ArrayList<>();\nequipe.add(new Employe(...));\nequipe.add(new Commercial(...));\ndouble masse = 0;\nfor (Employe e : equipe) masse += e.salaire(); // chaque objet calcule à sa façon\n```\n\nOn n'a pas besoin de tester le type de chaque employé.",
+      "notions": [
+        "super",
+        "this",
+        "Liste polymorphe"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq3-s01-c001",
+      "section": "libre-b2-21-sq3-s01-s01",
+      "type": "qcm",
+      "question": "Lesquelles de ces deux méthodes ne peuvent pas coexister dans la même classe ?",
+      "choix": [
+        "`void afficher(String s)` et `void afficher(int n)`",
+        "`void afficher()` et `void afficher(String s)`",
+        "`int total(int a)` et `double total(int a)`",
+        "`void calcul(int a, double b)` et `void calcul(double a, int b)`"
+      ],
+      "bonneReponse": 2,
+      "explication": "Seul le type de retour diffère : la signature (nom + paramètres) est identique, donc erreur de compilation.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq3-s01-c002",
+      "section": "libre-b2-21-sq3-s01-s02",
+      "type": "qcm",
+      "question": "`Employe e = new Commercial(); e.salaire();` Quelle méthode est exécutée ?",
+      "choix": [
+        "Celle d'Employe, car e est déclaré Employe",
+        "Celle de Commercial, car l'objet réel est un Commercial",
+        "Les deux, l'une après l'autre",
+        "Aucune, erreur de compilation"
+      ],
+      "bonneReponse": 1,
+      "explication": "Polymorphisme dynamique : c'est le type **réel** de l'objet qui compte à l'exécution.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq3-s01-c003",
+      "section": "libre-b2-21-sq3-s01-s02",
+      "type": "question",
+      "recto": "Quel est l'intérêt de l'annotation `@Override` ?",
+      "verso": "Le compilateur vérifie que la méthode **redéfinit vraiment** une méthode de la mère (sinon erreur, par exemple en cas de faute de frappe).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq3-s01-c004",
+      "section": "libre-b2-21-sq3-s01-s03",
+      "type": "exercice",
+      "enonce": "Classe `Forfait` avec `double prix()` qui renvoie 20. Écris la fille `ForfaitPremium` dont le prix vaut celui du forfait de base plus 15, en réutilisant la méthode de la mère.",
+      "etapes": [
+        "`public class ForfaitPremium extends Forfait {`",
+        "Redéfinir avec la même signature et l'annotation : `@Override public double prix() {`",
+        "Réutiliser la version mère : `return super.prix() + 15; } }`"
+      ],
+      "reponse": "`@Override public double prix() { return super.prix() + 15; }` → 35.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq3-s01-c005",
+      "section": "libre-b2-21-sq3-s01-s03",
+      "type": "question",
+      "recto": "Surcharge ou redéfinition : laquelle est choisie à la compilation ?",
+      "verso": "La **surcharge** (choix selon les paramètres). La redéfinition est résolue **à l'exécution** selon l'objet réel.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq3-s01",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – SQ3 – Droits sous Linux",
+  "sequence": null,
+  "seance": "S01 – Fichiers, chemins, utilisateurs",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Linux organise tous les fichiers dans une arborescence unique à partir de la racine. Chaque utilisateur a une identité (UID), un groupe principal et un répertoire personnel, décrits dans des fichiers de comptes.",
+  "notions": [
+    "Arborescence Linux",
+    "Chemin absolu",
+    "Chemin relatif",
+    "Utilisateur Linux",
+    "UID",
+    "/etc/passwd",
+    "Création d'utilisateur",
+    "useradd",
+    "passwd"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq3-s01-s01",
+      "titre": "Arborescence et chemins",
+      "contenu": "Sous Linux, **tout part de la racine** `/` : il n'y a pas de lettres de lecteur. Les disques et clés USB sont **montés** dans des répertoires.\n\n| Répertoire | Contenu |\n| --- | --- |\n| `/home` | répertoires personnels des utilisateurs |\n| `/root` | répertoire personnel de l'administrateur |\n| `/etc` | fichiers de configuration |\n| `/var` | données variables (journaux, sites web) |\n| `/tmp` | fichiers temporaires |\n| `/bin`, `/usr/bin` | commandes |\n\n- **Chemin absolu** : commence par `/` : `/home/ines/rapports/mars.txt`.\n- **Chemin relatif** : part du **répertoire courant** : depuis `/home/ines`, `rapports/mars.txt` ; `..` = répertoire parent, `.` = répertoire courant, `~` = son répertoire personnel.",
+      "notions": [
+        "Arborescence Linux",
+        "Chemin absolu",
+        "Chemin relatif"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq3-s01-s02",
+      "titre": "Utilisateurs et fichiers de comptes",
+      "contenu": "Chaque utilisateur a :\n- un **nom** et un **UID** (identifiant numérique ; 0 = root ; à partir de 1000 pour les utilisateurs « humains » sur la plupart des distributions) ;\n- un **groupe principal** (GID) ;\n- un **répertoire personnel** et un **shell**.\n\nUne ligne de `/etc/passwd` :\n\n```text\nines:x:1001:1001:Ines Ferreira:/home/ines:/bin/bash\n```\n\n(nom : x : UID : GID : commentaire : répertoire : shell). Les empreintes des mots de passe sont dans `/etc/shadow`.\n\n```bash\nid ines          # uid=1001(ines) gid=1001(ines) groupes=1001(ines),27(sudo)\nwhoami\n```",
+      "notions": [
+        "Utilisateur Linux",
+        "UID",
+        "/etc/passwd"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq3-s01-s03",
+      "titre": "Créer et gérer des utilisateurs",
+      "contenu": "```bash\nsudo useradd -m -s /bin/bash -c \"Tom Garnier\" tom   # -m : crée /home/tom\nsudo passwd tom                                      # définir le mot de passe\nsudo usermod -L tom                                  # verrouiller le compte\nsudo usermod -U tom                                  # déverrouiller\nsudo userdel -r tom                                  # supprimer avec son répertoire\n```\n\nSur Debian/Ubuntu, `adduser tom` est une version interactive plus conviviale.\n\n**Répertoire personnel** (`/home/tom`, `~`) ≠ **répertoire courant** (là où l'on se trouve, affiché par `pwd`).",
+      "notions": [
+        "Création d'utilisateur",
+        "useradd",
+        "passwd"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq3-s01-c001",
+      "section": "libre-b3-33-sq3-s01-s01",
+      "type": "qcm",
+      "question": "Tu es dans `/home/ines/rapports`. Quel chemin relatif désigne `/home/ines/photos/ete.jpg` ?",
+      "choix": [
+        "`photos/ete.jpg`",
+        "`../photos/ete.jpg`",
+        "`/photos/ete.jpg`",
+        "`./ines/photos/ete.jpg`"
+      ],
+      "bonneReponse": 1,
+      "explication": "`..` remonte dans `/home/ines`, puis on descend dans `photos`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq3-s01-c002",
+      "section": "libre-b3-33-sq3-s01-s02",
+      "type": "question",
+      "recto": "Quel est l'UID de root ?",
+      "verso": "**0**.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-33-sq3-s01-c003",
+      "section": "libre-b3-33-sq3-s01-s03",
+      "type": "exercice",
+      "enonce": "Écris les commandes pour créer l'utilisatrice `nora` (nom complet Nora Bellec) avec un répertoire personnel et le shell bash, lui définir un mot de passe, puis vérifier son identité.",
+      "etapes": [
+        "Créer : `sudo useradd -m -s /bin/bash -c \"Nora Bellec\" nora`",
+        "Mot de passe : `sudo passwd nora`",
+        "Vérifier : `id nora` et `grep nora /etc/passwd`"
+      ],
+      "reponse": "useradd -m -s -c, puis passwd, puis id.",
+      "difficulte": 1
+    }
+  ]
+}

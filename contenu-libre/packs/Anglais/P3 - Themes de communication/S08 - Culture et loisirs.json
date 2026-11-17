@@ -1,0 +1,187 @@
+{
+  "formatVersion": 1,
+  "id": "libre-ang-t-s08",
+  "matiere": "Anglais",
+  "bloc": "Bloc 5",
+  "partie": "Thèmes de communication",
+  "sequence": null,
+  "seance": "S8 – Culture et loisirs",
+  "ordre": 8,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Parler de cinéma et de célébrités, guider une visite de musée, et choisir ses vacances ou présenter une offre touristique.",
+  "notions": [
+    "Culture et loisirs : mise en situation",
+    "Culture et loisirs : verbes",
+    "Culture et loisirs : noms",
+    "Culture et loisirs : adjectifs et adverbes",
+    "Culture et loisirs : expressions et mots de liaison"
+  ],
+  "sections": [
+    {
+      "id": "libre-ang-t-s08-s01",
+      "titre": "En situation",
+      "contenu": "*Welcome to the city museum. Today's **guided tour** lasts about an hour. We will start with the **permanent collection**, then visit the temporary **exhibition** on video-game design. Please do not touch the **artworks**, and photos without flash are allowed.*\n\n*— What did you think of the film?*\n*— The **plot** was a bit slow, but the **cast** was amazing and the **soundtrack** was **breathtaking**. I'd definitely **recommend** it.*",
+      "notions": [
+        "Culture et loisirs : mise en situation"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s08-s02",
+      "titre": "Verbes",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **to recommend** | recommander | *I'd recommend this series to anyone.* |\n| **to release** | sortir (un film, un album) | *The film was released in May.* |\n| **to sightsee / to go sightseeing** | visiter (en touriste) | *We went sightseeing in Lisbon.* |\n| **to book** | réserver | *We booked a cottage by the sea.* |\n| **to unwind** | se détendre | *I unwind by playing the guitar.* |\n| **to star (in)** | jouer le rôle principal (dans) | *She stars in a new thriller.* |",
+      "notions": [
+        "Culture et loisirs : verbes"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s08-s03",
+      "titre": "Noms",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **an exhibition** | une exposition | *The exhibition closes on Sunday.* |\n| **a guided tour** | une visite guidée | *The guided tour starts at 10.* |\n| **the plot** | l'intrigue | *The plot is hard to follow.* |\n| **the cast** | la distribution (acteurs) | *The cast includes several newcomers.* |\n| **a sequel** | une suite | *The sequel is better than the first film.* |\n| **a getaway** | une escapade | *We're planning a weekend getaway.* |\n| **accommodation** | l'hébergement | *Accommodation is included in the price.* |",
+      "notions": [
+        "Culture et loisirs : noms"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s08-s04",
+      "titre": "Adjectifs et adverbes",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **breathtaking** | à couper le souffle | *The view from the top is breathtaking.* |\n| **overrated** | surestimé | *That film is overrated.* |\n| **crowded** | bondé | *The beach was crowded in August.* |\n| **off the beaten track** | hors des sentiers battus | *We prefer places off the beaten track.* |\n| **worth (+ -ing)** | qui vaut la peine (de) | *The museum is worth visiting.* |",
+      "notions": [
+        "Culture et loisirs : adjectifs et adverbes"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s08-s05",
+      "titre": "Expressions et mots de liaison",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **I'd definitely recommend it.** | je le recommande vivement | *Great restaurant; I'd definitely recommend it.* |\n| **It's not my cup of tea.** | ce n'est pas mon truc | *Opera is not my cup of tea.* |\n| **in my spare time** | pendant mon temps libre | *In my spare time, I play chess.* |\n| **on the left / on your right** | sur la gauche / sur votre droite | *On your right, you can see the old harbour.* |\n| **a must-see** | un incontournable | *The castle is a must-see.* |",
+      "notions": [
+        "Culture et loisirs : expressions et mots de liaison"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-ang-t-s08-c001",
+      "section": "libre-ang-t-s08-s02",
+      "type": "question",
+      "recto": "Traduis en français : **to release**\n\n*The film was released in May.*",
+      "verso": "sortir (un film, un album)",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s08-c002",
+      "section": "libre-ang-t-s08-s02",
+      "type": "question",
+      "recto": "Traduis en français : **to unwind**\n\n*I unwind by playing the guitar.*",
+      "verso": "se détendre",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s08-c003",
+      "section": "libre-ang-t-s08-s02",
+      "type": "question",
+      "recto": "Traduis en anglais : **recommander**",
+      "verso": "**to recommend** — *I'd recommend this series to anyone.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s08-c004",
+      "section": "libre-ang-t-s08-s02",
+      "type": "qcm",
+      "question": "Complète : *The new album will be ___ next Friday.*",
+      "choix": [
+        "released",
+        "realised",
+        "recommended",
+        "starred"
+      ],
+      "bonneReponse": 0,
+      "explication": "*Release* = sortir. *Realise* est un faux ami (= se rendre compte).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s08-c005",
+      "section": "libre-ang-t-s08-s03",
+      "type": "question",
+      "recto": "Traduis en français : **the plot**\n\n*The plot is hard to follow.*",
+      "verso": "l'intrigue",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s08-c006",
+      "section": "libre-ang-t-s08-s03",
+      "type": "question",
+      "recto": "Traduis en français : **a getaway**\n\n*We're planning a weekend getaway.*",
+      "verso": "une escapade",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s08-c007",
+      "section": "libre-ang-t-s08-s03",
+      "type": "question",
+      "recto": "Traduis en anglais : **l'hébergement**",
+      "verso": "**accommodation** — *Accommodation is included in the price.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s08-c008",
+      "section": "libre-ang-t-s08-s04",
+      "type": "question",
+      "recto": "Traduis en français : **overrated**\n\n*That film is overrated.*",
+      "verso": "surestimé",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s08-c009",
+      "section": "libre-ang-t-s08-s04",
+      "type": "question",
+      "recto": "Traduis en anglais : **qui vaut la peine (de)**",
+      "verso": "**worth (+ -ing)** — *The museum is worth visiting.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s08-c010",
+      "section": "libre-ang-t-s08-s04",
+      "type": "qcm",
+      "question": "Complète : *This castle is really worth ___.*",
+      "choix": [
+        "visiting",
+        "to visit",
+        "visit",
+        "visited"
+      ],
+      "bonneReponse": 0,
+      "explication": "*Worth* est suivi de la forme en *-ing*.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s08-c011",
+      "section": "libre-ang-t-s08-s05",
+      "type": "question",
+      "recto": "Traduis en français : **It's not my cup of tea.**\n\n*Opera is not my cup of tea.*",
+      "verso": "ce n'est pas mon truc",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s08-c012",
+      "section": "libre-ang-t-s08-s05",
+      "type": "question",
+      "recto": "Traduis en anglais : **pendant mon temps libre**",
+      "verso": "**in my spare time** — *In my spare time, I play chess.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s08-c013",
+      "section": "libre-ang-t-s08-s01",
+      "type": "exercice",
+      "enonce": "Présente en anglais, en deux phrases de guide, une salle de musée consacrée à des affiches de cinéma anciennes.",
+      "etapes": [
+        "Accueil et localisation : *On your left…*",
+        "Description avec un adjectif fort."
+      ],
+      "reponse": "*On your left, you can see our collection of vintage film posters. Some of them are more than a hundred years old and absolutely breathtaking.*",
+      "difficulte": 2
+    }
+  ]
+}

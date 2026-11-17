@@ -1,0 +1,98 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq11-s01",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 11 – Structure juridique et économie sociale et solidaire",
+  "sequence": null,
+  "seance": "S1 – Choisir sa structure juridique",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les motivations de l'entrepreneur, les structures unipersonnelles et pluripersonnelles, et les critères de choix.",
+  "notions": [
+    "Structure juridique et motivations",
+    "Formes de sociétés et critères de choix",
+    "Recommandation argumentée"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq11-s01-s01",
+      "titre": "Pourquoi une structure juridique ?",
+      "contenu": "La **structure juridique** est le cadre légal dans lequel s'exerce l'activité. Elle détermine qui dirige, qui est responsable des dettes, comment les bénéfices sont imposés et quelle protection sociale a le dirigeant.\n\nLe choix dépend des **motivations** de l'entrepreneur : travailler seul ou à plusieurs, protéger son patrimoine personnel, accueillir des investisseurs, payer moins de charges sociales, avoir une meilleure protection sociale, préparer une transmission.\n\nOn distingue :\n- l'**entreprise individuelle** (EI) : pas de personne morale distincte, l'entrepreneur exerce en son nom (le régime micro-entrepreneur en est une forme simplifiée) ;\n- les **sociétés**, qui sont des **personnes morales** distinctes de leurs associés, avec leur propre patrimoine.",
+      "notions": [
+        "Structure juridique et motivations"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq11-s01-s02",
+      "titre": "Les principales formes",
+      "contenu": "| Forme | Associés | Capital | Dirigeant | Responsabilité des associés | Imposition des bénéfices (par défaut) |\n|---|---|---|---|---|---|\n| **EI** | 1 (entrepreneur) | pas de capital | l'entrepreneur | patrimoine professionnel (séparé du personnel depuis 2022) | impôt sur le revenu (option IS possible) |\n| **EURL** | 1 | libre (≥ 1 €) | gérant | limitée aux apports | IR (option IS) |\n| **SASU** | 1 | libre | président | limitée aux apports | IS |\n| **SARL** | 2 à 100 | libre | gérant(s) | limitée aux apports | IS |\n| **SAS** | 2 ou plus | libre | président, statuts très souples | limitée aux apports | IS |\n| **SA** | 2 ou plus (7 si cotée) | 37 000 € minimum | conseil d'administration, directeur général | limitée aux apports | IS |\n| **SNC** | 2 ou plus, commerçants | libre | gérant | **indéfinie et solidaire** | IR (option IS) |\n\n**Statut social du dirigeant** : le **gérant majoritaire** de SARL et l'entrepreneur individuel sont **travailleurs indépendants** (cotisations plus faibles, protection moindre) ; le **président** de SAS/SASU est **assimilé salarié** (meilleure protection, cotisations plus élevées).\n\nVocabulaire : le **capital social** est la somme des **apports** en numéraire (argent) et en nature (biens) ; les apports en industrie (savoir-faire) ne le composent pas.",
+      "notions": [
+        "Formes de sociétés et critères de choix"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq11-s01-s03",
+      "titre": "Recommander une structure",
+      "contenu": "Méthode : partir du **profil** et justifier par **au moins trois critères**.\n\n*Profil inventé* : Yanis, développeur, veut lancer seul une activité de création de sites, avec peu d'investissement, tester son idée et protéger sa maison.\n\nRecommandation : **entreprise individuelle** (au régime micro-entrepreneur) :\n1. un seul entrepreneur, pas besoin d'associé ;\n2. formalités et comptabilité simplifiées, pas de capital ;\n3. depuis 2022, les biens personnels de l'entrepreneur sont automatiquement distincts de ses biens professionnels.\n\nSi l'activité grandit ou s'il veut accueillir un associé, il pourra passer en SASU puis en SAS.",
+      "notions": [
+        "Recommandation argumentée"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq11-s01-c001",
+      "section": "libre-cejm-sq11-s01-s01",
+      "type": "question",
+      "recto": "Quelle est la différence fondamentale entre une entreprise individuelle et une société ?",
+      "verso": "La société est une personne morale distincte, avec son propre patrimoine ; l'entreprise individuelle n'a pas de personnalité juridique distincte de l'entrepreneur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq11-s01-c002",
+      "section": "libre-cejm-sq11-s01-s02",
+      "type": "qcm",
+      "question": "Deux amis veulent créer une société avec des statuts très souples et un dirigeant assimilé salarié. Quelle forme ?",
+      "choix": [
+        "SAS",
+        "SARL avec gérant majoritaire",
+        "SNC",
+        "EI"
+      ],
+      "bonneReponse": 0,
+      "explication": "La SAS offre une grande liberté statutaire et son président est assimilé salarié.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq11-s01-c003",
+      "section": "libre-cejm-sq11-s01-s02",
+      "type": "qcm",
+      "question": "Dans quelle forme les associés répondent-ils des dettes sociales sur tout leur patrimoine ?",
+      "choix": [
+        "La SNC",
+        "La SARL",
+        "La SAS",
+        "La SA"
+      ],
+      "bonneReponse": 0,
+      "explication": "Dans la SNC, la responsabilité est indéfinie et solidaire.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq11-s01-c004",
+      "section": "libre-cejm-sq11-s01-s03",
+      "type": "exercice",
+      "enonce": "Clara et Ben veulent créer une agence de communication à deux, rester maîtres de la gestion et protéger leur patrimoine. Ils acceptent le statut de travailleur indépendant pour réduire les charges. Recommande une forme.",
+      "etapes": [
+        "Nombre d'associés : 2 → structure pluripersonnelle.",
+        "Responsabilité limitée aux apports : SARL ou SAS.",
+        "Statut indépendant pour réduire les charges : gérant majoritaire de SARL (ensemble ils détiennent la majorité ; en cogérance, chacun est considéré comme majoritaire si leurs parts réunies dépassent 50 %)."
+      ],
+      "reponse": "Une SARL avec cogérance majoritaire.",
+      "difficulte": 3
+    }
+  ]
+}

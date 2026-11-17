@@ -1,0 +1,68 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq2-s06",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ2 – Réseaux, adressage IP et annuaire de domaine",
+  "sequence": null,
+  "seance": "S06 – Réseaux de machines virtuelles",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Choisir le mode réseau des VM selon le besoin d'une maquette : NAT, réseau NAT partagé, pont, réseau interne, réseau privé hôte, et combiner plusieurs cartes.",
+  "notions": [
+    "Modes réseau d'un hyperviseur",
+    "Choisir un mode pour une maquette",
+    "VM à plusieurs cartes"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq2-s06-s01",
+      "titre": "Rappel des modes réseau",
+      "contenu": "| Mode | Accès Internet | Joignable depuis le LAN physique | VM ↔ VM | Hôte ↔ VM |\n| --- | --- | --- | --- | --- |\n| NAT | oui | non | non (chaque VM isolée) | limité |\n| Réseau NAT (partagé) | oui | non | oui, entre VM du même réseau NAT | limité |\n| Accès par pont | oui (via le réseau réel) | **oui** | oui | oui |\n| Réseau interne | non | non | **oui** | non |\n| Réseau privé hôte | non | non | oui | **oui** |\n\nLe réseau interne est idéal pour une maquette **serveur + clients** qui ne doit pas perturber le vrai réseau (un serveur DHCP de test en pont distribuerait des adresses aux vrais postes de l'entreprise !).",
+      "notions": [
+        "Modes réseau d'un hyperviseur"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s06-s02",
+      "titre": "Construire une maquette",
+      "contenu": "Une VM peut avoir **plusieurs cartes réseau**, chacune dans un mode différent. Schéma classique :\n```text\n         Internet\n            |\n     (carte 1 : NAT)\n     [VM routeur/pare-feu]\n     (carte 2 : réseau interne \"LAN-TEST\")\n            |\n   +--------+---------+\n[VM serveur]     [VM client Windows]\n(réseau interne)  (réseau interne)\n```\nLa VM routeur donne Internet à la maquette tout en la gardant isolée du réseau réel.\n\nDémarche :\n1. dessiner la maquette et son plan d'adressage ;\n2. créer les réseaux internes (même **nom** pour toutes les VM qui doivent se voir) ;\n3. affecter les cartes ;\n4. tester avec `ping`.",
+      "notions": [
+        "Choisir un mode pour une maquette",
+        "VM à plusieurs cartes"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq2-s06-c001",
+      "section": "libre-b1-12b-sq2-s06-s01",
+      "type": "qcm",
+      "question": "Tu installes un serveur DHCP de test dans une VM. Quel mode réseau est dangereux ?",
+      "choix": [
+        "Réseau interne",
+        "Réseau privé hôte",
+        "Accès par pont",
+        "NAT"
+      ],
+      "bonneReponse": 2,
+      "explication": "En pont, la VM est sur le vrai réseau : son DHCP pourrait répondre aux postes réels et leur donner de mauvaises adresses.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b1-12b-sq2-s06-c002",
+      "section": "libre-b1-12b-sq2-s06-s02",
+      "type": "exercice",
+      "enonce": "Tu veux une maquette où un serveur Linux et deux clients se voient, isolés du réseau réel, et où seul le serveur doit pouvoir télécharger des mises à jour. Propose la configuration réseau des VM.",
+      "etapes": [
+        "Clients : une carte en réseau interne (nom « MAQUETTE »).",
+        "Serveur : une carte en réseau interne « MAQUETTE » pour parler aux clients.",
+        "Serveur : une seconde carte en NAT pour accéder à Internet."
+      ],
+      "reponse": "Clients : réseau interne MAQUETTE ; serveur : deux cartes (réseau interne MAQUETTE + NAT).",
+      "difficulte": 2
+    }
+  ]
+}

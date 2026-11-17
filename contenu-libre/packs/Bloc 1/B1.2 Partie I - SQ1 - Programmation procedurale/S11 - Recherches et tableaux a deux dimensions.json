@@ -1,0 +1,134 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq1-s11",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie I – SQ1 – Programmation procédurale en C#, corrections et évolutions",
+  "sequence": null,
+  "seance": "S11 – Recherches et tableaux à deux dimensions",
+  "ordre": 11,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Rechercher une valeur dans un tableau (séquentiellement ou par dichotomie), faire un tri simple, supprimer une case par décalage et manipuler des tableaux à deux dimensions.",
+  "notions": [
+    "Recherche séquentielle",
+    "Recherche dichotomique",
+    "Tri élémentaire",
+    "Suppression par décalage",
+    "Tableau à deux dimensions"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq1-s11-s01",
+      "titre": "La recherche séquentielle",
+      "contenu": "On parcourt le tableau **case par case** jusqu'à trouver la valeur ou atteindre la fin.\n```csharp\nstatic int Rechercher(string[] t, string cherche)\n{\n    int i = 0;\n    while (i < t.Length && t[i] != cherche)\n    {\n        i++;\n    }\n    if (i < t.Length) return i;   // trouvé à l'indice i\n    return -1;                    // pas trouvé\n}\n```\nL'ordre des conditions compte : `i < t.Length` est testé **en premier**. Grâce au `&&` « paresseux », si `i` vaut `Length`, la seconde condition n'est pas évaluée et on évite le dépassement.\n\nFonctionne sur **n'importe quel tableau**, trié ou non. Dans le pire cas, on regarde **toutes** les cases.",
+      "notions": [
+        "Recherche séquentielle"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s11-s02",
+      "titre": "La recherche dichotomique",
+      "contenu": "Si le tableau est **trié**, on peut aller beaucoup plus vite : on regarde la case du **milieu**, et on élimine la moitié qui ne peut pas contenir la valeur.\n```csharp\nstatic int Dichotomie(int[] t, int cherche)\n{\n    int debut = 0, fin = t.Length - 1;\n    while (debut <= fin)\n    {\n        int milieu = (debut + fin) / 2;\n        if (t[milieu] == cherche) return milieu;\n        if (t[milieu] < cherche) debut = milieu + 1;\n        else fin = milieu - 1;\n    }\n    return -1;\n}\n```\nPour 1 000 valeurs, il faut au plus 10 comparaisons (contre 1 000 en séquentiel), car $2^{10} = 1\\,024$.\n\n**Piège** : appliquer la dichotomie à un tableau **non trié** : le résultat est faux.",
+      "notions": [
+        "Recherche dichotomique"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s11-s03",
+      "titre": "Un tri simple : le tri par sélection",
+      "contenu": "Principe : on cherche le **plus petit** élément et on le place en première position, puis le plus petit du reste en deuxième position, etc.\n```csharp\nfor (int i = 0; i < t.Length - 1; i++)\n{\n    int iMin = i;\n    for (int j = i + 1; j < t.Length; j++)\n        if (t[j] < t[iMin]) iMin = j;\n    int temp = t[i]; t[i] = t[iMin]; t[iMin] = temp;\n}\n```\nDans un vrai projet, on utilise `Array.Sort(t);`, mais savoir écrire un tri est un exercice classique de logique.",
+      "notions": [
+        "Tri élémentaire"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s11-s04",
+      "titre": "Supprimer une case par décalage",
+      "contenu": "Un tableau a une taille fixe : pour « supprimer » l'élément d'indice `k`, on **décale vers la gauche** tous les éléments suivants, et on tient à jour le **nombre d'éléments utiles**.\n```csharp\n// t contient nb éléments utiles ; on supprime celui d'indice k\nfor (int i = k; i < nb - 1; i++)\n{\n    t[i] = t[i + 1];\n}\nnb--;\n```\nExemple : `{ \"Ana\", \"Bilal\", \"Chloé\", \"Dario\" }`, nb = 4, on supprime k = 1 (Bilal) → `{ \"Ana\", \"Chloé\", \"Dario\", \"Dario\" }` avec nb = 3 : la dernière case n'est plus prise en compte.",
+      "notions": [
+        "Suppression par décalage"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s11-s05",
+      "titre": "Les tableaux à deux dimensions",
+      "contenu": "Un tableau à deux dimensions est une **grille** de lignes et de colonnes.\n```csharp\n// Ventes de 3 boutiques (lignes) sur 4 trimestres (colonnes)\nint[,] ventes = new int[3, 4];\nventes[0, 2] = 1250;      // boutique 0, trimestre 3\n\nint nbLignes = ventes.GetLength(0);    // 3\nint nbColonnes = ventes.GetLength(1);  // 4\n\nfor (int b = 0; b < nbLignes; b++)\n{\n    int totalBoutique = 0;\n    for (int t = 0; t < nbColonnes; t++)\n        totalBoutique += ventes[b, t];\n    Console.WriteLine($\"Boutique {b + 1} : {totalBoutique} €\");\n}\n```\nOn parcourt avec **deux boucles imbriquées** : une pour les lignes, une pour les colonnes.",
+      "notions": [
+        "Tableau à deux dimensions"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq1-s11-c001",
+      "section": "libre-b1-12a-sq1-s11-s01",
+      "type": "qcm",
+      "question": "Pourquoi écrire `i < t.Length && t[i] != cherche` dans cet ordre ?",
+      "choix": [
+        "Pour que le code soit plus rapide à compiler",
+        "Pour ne jamais lire `t[i]` quand i est hors du tableau",
+        "Parce que `&&` ne fonctionne que dans cet ordre",
+        "L'ordre n'a aucune importance"
+      ],
+      "bonneReponse": 1,
+      "explication": "Si la première condition est fausse, `&&` ne teste pas la seconde : on n'accède jamais à une case inexistante.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s11-c002",
+      "section": "libre-b1-12a-sq1-s11-s02",
+      "type": "exercice",
+      "enonce": "Déroule la dichotomie pour chercher 31 dans `{ 4, 9, 13, 22, 31, 40, 57 }`.",
+      "etapes": [
+        "debut = 0, fin = 6 → milieu = 3, t[3] = 22 < 31 → debut = 4.",
+        "debut = 4, fin = 6 → milieu = 5, t[5] = 40 > 31 → fin = 4.",
+        "debut = 4, fin = 4 → milieu = 4, t[4] = 31 → trouvé."
+      ],
+      "reponse": "Trouvé à l'indice 4, en 3 comparaisons.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s11-c003",
+      "section": "libre-b1-12a-sq1-s11-s03",
+      "type": "exercice",
+      "enonce": "Applique le tri par sélection à `{ 7, 2, 9, 4 }` en donnant le tableau après chaque passage.",
+      "etapes": [
+        "i = 0 : minimum du tableau = 2 (indice 1), échange avec t[0] → { 2, 7, 9, 4 }.",
+        "i = 1 : minimum de { 7, 9, 4 } = 4 (indice 3), échange avec t[1] → { 2, 4, 9, 7 }.",
+        "i = 2 : minimum de { 9, 7 } = 7 (indice 3), échange avec t[2] → { 2, 4, 7, 9 }."
+      ],
+      "reponse": "{ 2, 4, 7, 9 } après 3 passages.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b1-12a-sq1-s11-c004",
+      "section": "libre-b1-12a-sq1-s11-s04",
+      "type": "qcm",
+      "question": "Pourquoi la boucle de décalage s'arrête-t-elle à `i < nb - 1` ?",
+      "choix": [
+        "Pour aller plus vite",
+        "Parce que `t[i + 1]` doit rester une case utile ; aller plus loin lirait au-delà des éléments",
+        "Parce que la dernière case est toujours vide",
+        "Parce que l'indice 0 est réservé"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le dernier tour copie `t[nb-1]` dans `t[nb-2]`. Un tour de plus lirait `t[nb]`, hors des données utiles (ou hors du tableau).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s11-c005",
+      "section": "libre-b1-12a-sq1-s11-s05",
+      "type": "exercice",
+      "enonce": "Écris le code qui calcule le total du **trimestre** d'indice 1 (toutes boutiques) dans `ventes`.",
+      "etapes": [
+        "La colonne est fixée : indice 1.",
+        "On fait varier la ligne (la boutique) de 0 à `GetLength(0) - 1`.",
+        "On cumule dans une variable."
+      ],
+      "reponse": "```csharp\nint totalT2 = 0;\nfor (int b = 0; b < ventes.GetLength(0); b++)\n    totalT2 += ventes[b, 1];\n```",
+      "difficulte": 2
+    }
+  ]
+}

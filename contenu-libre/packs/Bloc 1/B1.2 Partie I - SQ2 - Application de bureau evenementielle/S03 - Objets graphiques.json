@@ -1,0 +1,89 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq2-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie I – SQ2 – Application de bureau événementielle en C#",
+  "sequence": null,
+  "seance": "S03 – Objets graphiques : propriétés, méthodes, événements",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les contrôles courants d'une application de bureau (zones de texte, étiquettes, boutons, listes, cases, images), leur nommage, leurs propriétés, méthodes et événements, et l'usage du concepteur visuel.",
+  "notions": [
+    "Contrôles usuels",
+    "Nommage des contrôles",
+    "Propriétés",
+    "Méthodes",
+    "Événements",
+    "Concepteur visuel"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq2-s03-s01",
+      "titre": "Les contrôles usuels et leur nommage",
+      "contenu": "On place les contrôles depuis la **boîte à outils** sur le formulaire, dans le **concepteur visuel**. Chaque contrôle doit recevoir un **nom significatif** avec un **préfixe** indiquant son type :\n| Contrôle | Rôle | Préfixe | Exemple |\n| --- | --- | --- | --- |\n| `Label` | texte affiché | `lbl` | `lblResultat` |\n| `TextBox` | saisie de texte | `txt` | `txtNom` |\n| `Button` | déclencher une action | `btn` | `btnValider` |\n| `ComboBox` | liste déroulante | `cbo` | `cboCategorie` |\n| `ListBox` | liste visible | `lst` | `lstInscrits` |\n| `CheckBox` | case à cocher (oui/non) | `chk` | `chkNewsletter` |\n| `RadioButton` | un choix parmi plusieurs | `rdb` | `rdbAdulte` |\n| `NumericUpDown` | nombre avec flèches | `num` | `numQuantite` |\n| `PictureBox` | image | `pic` | `picAffiche` |\n\n`button1`, `textBox3`… ne disent rien : renomme **tout de suite** (propriété `(Name)`).",
+      "notions": [
+        "Contrôles usuels",
+        "Nommage des contrôles",
+        "Concepteur visuel"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s03-s02",
+      "titre": "Propriétés, méthodes et événements",
+      "contenu": "Chaque contrôle est un **objet** qui possède :\n- des **propriétés** (ses caractéristiques) : `Text`, `Enabled`, `Visible`, `BackColor`, `Font`, `Checked`, `SelectedIndex`…\n- des **méthodes** (ce qu'il sait faire) : `Focus()`, `Clear()`, `Items.Add(...)`, `Hide()`…\n- des **événements** (ce qui peut lui arriver) : `Click`, `TextChanged`, `CheckedChanged`, `SelectedIndexChanged`…\n\n```csharp\nprivate void chkLivraison_CheckedChanged(object sender, EventArgs e)\n{\n    txtAdresse.Enabled = chkLivraison.Checked;   // propriété\n    if (chkLivraison.Checked) txtAdresse.Focus(); // méthode\n}\n```\nOn règle les propriétés soit dans la **fenêtre Propriétés** (à la conception), soit **par le code** (à l'exécution).",
+      "notions": [
+        "Propriétés",
+        "Méthodes",
+        "Événements"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq2-s03-c001",
+      "section": "libre-b1-12a-sq2-s03-s01",
+      "type": "qcm",
+      "question": "Quel nom convient à une zone de texte où l'on saisit un code postal ?",
+      "choix": [
+        "`textBox1`",
+        "`lblCodePostal`",
+        "`txtCodePostal`",
+        "`CodePostal`"
+      ],
+      "bonneReponse": 2,
+      "explication": "Préfixe `txt` pour une TextBox, suivi d'un nom parlant.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq2-s03-c002",
+      "section": "libre-b1-12a-sq2-s03-s02",
+      "type": "qcm",
+      "question": "Dans `lstClients.Items.Add(\"Mme Roux\");`, que représente `Add` ?",
+      "choix": [
+        "Une propriété",
+        "Une méthode",
+        "Un événement",
+        "Un contrôle"
+      ],
+      "bonneReponse": 1,
+      "explication": "`Add(...)` est une action : c'est une méthode de la collection `Items`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq2-s03-c003",
+      "section": "libre-b1-12a-sq2-s03-s02",
+      "type": "exercice",
+      "enonce": "Classe chaque élément : `Text`, `Click`, `Focus()`, `Enabled`, `TextChanged`, `Clear()`.",
+      "etapes": [
+        "Caractéristiques (propriétés) : Text, Enabled.",
+        "Actions (méthodes, avec parenthèses) : Focus(), Clear().",
+        "Ce qui arrive au contrôle (événements) : Click, TextChanged."
+      ],
+      "reponse": "Propriétés : Text, Enabled ; méthodes : Focus(), Clear() ; événements : Click, TextChanged.",
+      "difficulte": 2
+    }
+  ]
+}

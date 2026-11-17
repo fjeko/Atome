@@ -1,0 +1,105 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-22-sq1-s02",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.2 – SQ1 – Maintenance corrective",
+  "sequence": null,
+  "seance": "S02 – Règles de codage",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Des règles de nommage et de structure communes rendent le code lisible par toute l'équipe. Elles viennent du langage et parfois d'une charte interne vérifiée par l'analyseur.",
+  "notions": [
+    "Règles de nommage",
+    "Casse",
+    "Règles de structure",
+    "Complexité",
+    "Règles internes",
+    "Configuration de l'analyseur"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-22-sq1-s02-s01",
+      "titre": "Conventions de nommage",
+      "contenu": "| Élément | Java | C# |\n| --- | --- | --- |\n| Classe | `PascalCase` : `FactureClient` | `PascalCase` |\n| Méthode | `camelCase` : `calculerTotal()` | `PascalCase` : `CalculerTotal()` |\n| Variable locale, paramètre | `camelCase` | `camelCase` |\n| Constante | `MAJUSCULES_SOULIGNEES` | `PascalCase` |\n| Attribut privé | `camelCase` | souvent `_camelCase` |\n| Interface | `Exportable` | `IExportable` |\n\nAu-delà de la casse : des noms **explicites** (`nbJoursRetard` plutôt que `n`), des méthodes nommées par un **verbe**, pas d'abréviations obscures.",
+      "notions": [
+        "Règles de nommage",
+        "Casse"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq1-s02-s02",
+      "titre": "Règles de structure",
+      "contenu": "Les analyseurs vérifient aussi la **structure** :\n- méthode **trop longue** ou **trop complexe** (trop de `if` imbriqués) → découper ;\n- **trop de paramètres** (plus de 5-7) → regrouper dans un objet ;\n- **code dupliqué** → factoriser ;\n- **nombres magiques** (`if (age > 17)`) → constante nommée (`AGE_MAJORITE`) ;\n- **code mort** (jamais exécuté) → supprimer.",
+      "notions": [
+        "Règles de structure",
+        "Complexité"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq1-s02-s03",
+      "titre": "Règles internes",
+      "contenu": "Une organisation peut ajouter ses **règles internes** : préfixes imposés, interdiction de certaines bibliothèques, en-tête de licence obligatoire, langue des commentaires…\n\nElles sont décrites dans un **fichier de configuration** partagé par l'équipe et versionné avec le projet (par ex. `.editorconfig` en C#, `checkstyle.xml` en Java, profil de qualité SonarQube). Ainsi, tous les postes appliquent **les mêmes règles**.",
+      "notions": [
+        "Règles internes",
+        "Configuration de l'analyseur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-22-sq1-s02-c001",
+      "section": "libre-b2-22-sq1-s02-s01",
+      "type": "qcm",
+      "question": "En C#, comment nommer une méthode qui calcule une remise ?",
+      "choix": [
+        "calculer_remise()",
+        "calculerRemise()",
+        "CalculerRemise()",
+        "CALCULER_REMISE()"
+      ],
+      "bonneReponse": 2,
+      "explication": "En C#, les méthodes sont en PascalCase.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-22-sq1-s02-c002",
+      "section": "libre-b2-22-sq1-s02-s01",
+      "type": "qcm",
+      "question": "L'analyseur signale « le nom de l'interface doit commencer par I » en C#. Quel nom corrige `Stockable` ?",
+      "choix": [
+        "StockableInterface",
+        "IStockable",
+        "iStockable",
+        "Stockable_I"
+      ],
+      "bonneReponse": 1,
+      "explication": "Convention .NET : une interface commence par un I majuscule suivi du nom en PascalCase.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq1-s02-c003",
+      "section": "libre-b2-22-sq1-s02-s02",
+      "type": "exercice",
+      "enonce": "Réécris en respectant les règles : `public double c(double m) { if (m > 150) return m * 0.9; return m; }` (Java, remise de 10 % au-delà de 150 €).",
+      "etapes": [
+        "Nommer la méthode avec un verbe explicite : `appliquerRemise`.",
+        "Nommer le paramètre : `montant`.",
+        "Remplacer les nombres magiques par des constantes : `SEUIL_REMISE = 150`, `TAUX_REMISE = 0.10`.",
+        "`return montant > SEUIL_REMISE ? montant * (1 - TAUX_REMISE) : montant;`"
+      ],
+      "reponse": "`private static final double SEUIL_REMISE = 150; private static final double TAUX_REMISE = 0.10; public double appliquerRemise(double montant) { ... }`",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq1-s02-c004",
+      "section": "libre-b2-22-sq1-s02-s03",
+      "type": "question",
+      "recto": "Pourquoi versionner le fichier de configuration de l'analyseur avec le projet ?",
+      "verso": "Pour que **tous les développeurs** appliquent exactement les mêmes règles, et que les changements de règles soient tracés.",
+      "difficulte": 1
+    }
+  ]
+}

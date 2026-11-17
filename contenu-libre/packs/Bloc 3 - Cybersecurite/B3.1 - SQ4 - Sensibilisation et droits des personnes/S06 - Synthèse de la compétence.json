@@ -1,0 +1,95 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq4-s06",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ4 – Sensibilisation et droits des personnes",
+  "sequence": null,
+  "seance": "S06 – Synthèse de la compétence",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Bilan de la protection des données : menaces, bonnes pratiques, notions clés du RGPD, étapes de mise en conformité, réflexes simples, audits et tests d'intrusion, et principes des mesures correctives.",
+  "notions": [
+    "Bilan protection des données",
+    "Audit de sécurité",
+    "Test d'intrusion",
+    "Réflexes de sécurité"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq4-s06-s01",
+      "titre": "Les notions clés",
+      "contenu": "| Thème | À retenir |\n| --- | --- |\n| Menaces | hameçonnage, rançongiciel, DDoS, ingénierie sociale |\n| Bonnes pratiques | mises à jour, MFA, sauvegardes hors ligne, moindre privilège |\n| RGPD | données personnelles, base légale, minimisation, durées |\n| Acteurs | responsable, sous-traitant, DPO, CNIL |\n| Obligations | registre, information, droits (1 mois), violation (72 h), AIPD |\n| Sécurité | DICT, analyse de risques, plan de réponse |\n| Humain | sensibilisation continue, charte |\n\n**Étapes de mise en conformité** : désigner un pilote, cartographier, prioriser, gérer les risques, organiser les processus, documenter.",
+      "notions": [
+        "Bilan protection des données"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq4-s06-s02",
+      "titre": "Audits et tests d'intrusion",
+      "contenu": "- **Audit de sécurité** : examen du niveau de sécurité au regard d'un référentiel (organisation, configuration, conformité).\n- **Test d'intrusion** (*pentest*) : un prestataire **autorisé** simule une attaque réelle pour trouver les failles exploitables. Il faut un **cadre écrit** (périmètre, dates, autorisation), sinon c'est une intrusion illégale.\n\n**Principes des mesures correctives** : traiter d'abord les failles les plus critiques, corriger la **cause** et pas seulement le symptôme, vérifier la correction (nouveau test), documenter.",
+      "notions": [
+        "Audit de sécurité",
+        "Test d'intrusion"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq4-s06-s03",
+      "titre": "Les réflexes simples",
+      "contenu": "Pour toi, au quotidien :\n1. verrouiller sa session ;\n2. mots de passe longs, uniques, gestionnaire + MFA ;\n3. se méfier des messages urgents ; vérifier par un autre canal ;\n4. mettre à jour ;\n5. sauvegarder ;\n6. ne collecter que le nécessaire ;\n7. signaler tout incident sans attendre.",
+      "notions": [
+        "Réflexes de sécurité"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq4-s06-c001",
+      "section": "libre-b3-31-sq4-s06-s01",
+      "type": "qcm",
+      "question": "Quel couple délai/obligation est correct ?",
+      "choix": [
+        "Réponse à une demande d'accès : 72 h",
+        "Notification d'une violation à la CNIL : 72 h",
+        "Information en collecte indirecte : 1 an",
+        "Notification d'une violation : 1 mois"
+      ],
+      "bonneReponse": 1,
+      "explication": "72 h pour notifier la CNIL ; 1 mois pour répondre aux demandes de droits.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq4-s06-c002",
+      "section": "libre-b3-31-sq4-s06-s02",
+      "type": "qcm",
+      "question": "Qu'est-ce qui distingue un test d'intrusion d'une attaque ?",
+      "choix": [
+        "La technique utilisée",
+        "L'autorisation écrite et le périmètre définis avec l'organisation testée",
+        "Le fait qu'il se déroule la nuit",
+        "Rien"
+      ],
+      "bonneReponse": 1,
+      "explication": "Sans autorisation, même avec de bonnes intentions, l'intrusion est un délit.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq4-s06-c003",
+      "section": "libre-b3-31-sq4-s06-s03",
+      "type": "exercice",
+      "enonce": "L'association d'aide aux devoirs fictive **Plume & Compas** (bénévoles, 150 enfants) veut se mettre en conformité. Propose un plan d'action en 6 points.",
+      "etapes": [
+        "Désigner un référent (pas d'obligation de DPO ici) et lister les traitements dans un registre (inscriptions, contacts des parents, bénévoles, photos).",
+        "Vérifier les bases légales ; recueillir le consentement des parents pour les photos ; minimiser (pas de données scolaires inutiles).",
+        "Fixer des durées de conservation (fin d'année + délai court) et supprimer l'ancien.",
+        "Sécuriser : comptes nominatifs, MFA sur la messagerie, fichiers partagés en accès restreint, sauvegarde.",
+        "Informer les familles (mention sur la fiche d'inscription) et organiser l'exercice des droits.",
+        "Sensibiliser les bénévoles et rédiger une procédure de violation de données."
+      ],
+      "reponse": "Registre, bases légales et consentement photo, durées, sécurité, information, sensibilisation et procédure d'incident.",
+      "difficulte": 3
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq2-s03",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "SQ2 – Graphes",
+  "sequence": null,
+  "seance": "S3 – Entraînement chemins et puissances",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Lister des chemins à la main, puis les compter sans les lister grâce aux puissances de la matrice d'adjacence ; repérer les circuits et les chemins hamiltoniens.",
+  "notions": [
+    "Calcul des puissances de M",
+    "Interprétation des puissances",
+    "Circuits et trace",
+    "Chemin et circuit hamiltoniens"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq2-s03-s01",
+      "titre": "Calculer M² à la main",
+      "contenu": "On reprend le tournoi : $T = \\begin{pmatrix}0 & 1 & 1 & 0\\\\0 & 0 & 1 & 1\\\\0 & 0 & 0 & 1\\\\1 & 0 & 0 & 0\\end{pmatrix}$ (ordre A, B, C, D).\n\n**Méthode rapide** : la ligne $X$ de $T^2$ est la somme des lignes de $T$ des successeurs de $X$.\n- A a pour successeurs B et C : ligne B + ligne C = $(0,0,1,1) + (0,0,0,1) = (0, 0, 1, 2)$.\n- B → C, D : $(0,0,0,1) + (1,0,0,0) = (1, 0, 0, 1)$.\n- C → D : $(1, 0, 0, 0)$.\n- D → A : $(0, 1, 1, 0)$.\n\n$$T^2 = \\begin{pmatrix}0 & 0 & 1 & 2\\\\1 & 0 & 0 & 1\\\\1 & 0 & 0 & 0\\\\0 & 1 & 1 & 0\\end{pmatrix}$$\n\n$(T^2)_{1,4} = 2$ : deux chemins de longueur 2 de A à D. On les retrouve : $A \\to B \\to D$ et $A \\to C \\to D$. Avec la méthode classique ligne × colonne, on obtient bien sûr le même résultat.",
+      "notions": [
+        "Calcul des puissances de M"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s03-s02",
+      "titre": "Interpréter les coefficients et les sommes",
+      "contenu": "Avec $T^2$ ci-dessus :\n- **total** des coefficients : $3 + 2 + 1 + 2 = 8$ chemins de longueur 2 dans le graphe ;\n- **ligne A** : 3 chemins de longueur 2 partent de A ;\n- **colonne D** : $2 + 1 + 0 + 0 = 3$ chemins de longueur 2 arrivent en D ;\n- **diagonale** nulle : pas de circuit de longueur 2 (aucun duel « aller-retour »).\n\nRédaction attendue : « Le coefficient $(1,4)$ de $T^2$ vaut 2, donc il existe 2 chemins de longueur 2 allant de A à D. »",
+      "notions": [
+        "Interprétation des puissances"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s03-s03",
+      "titre": "Repérer les circuits avec la trace",
+      "contenu": "Pour *Potager Malin* ($M$ de la séance précédente), le calcul (calculatrice ou à la main) donne :\n\n$$M^3 = \\begin{pmatrix}1 & 0 & 0 & 1 & 1\\\\0 & 0 & 0 & 0 & 1\\\\1 & 0 & 0 & 0 & 0\\\\0 & 1 & 1 & 1 & 0\\\\0 & 0 & 1 & 1 & 1\\end{pmatrix}$$\n\nLa diagonale contient trois 1, en A, D et E : un circuit de longueur 3 passe par ces trois pages. C'est $A \\to D \\to E \\to A$, compté une fois depuis chacun de ses sommets. **La trace (3) n'est donc pas le nombre de circuits** : un circuit de longueur $p$ est compté $p$ fois.",
+      "notions": [
+        "Circuits et trace"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s03-s04",
+      "titre": "Chemins hamiltoniens : chercher ou prouver l'absence",
+      "contenu": "Pour **trouver** un chemin hamiltonien, pars d'un sommet sans prédécesseur s'il y en a un (il est forcément au début), et essaie d'avancer sans repasser par un sommet déjà vu.\n\nTournoi : $D \\to A \\to B \\to C$ ? D bat A ✔️, A bat B ✔️, B bat C ✔️ : c'est un chemin hamiltonien. Il donne même un classement possible des joueurs.\n\nPour **prouver qu'il n'y en a pas**, cherche un obstacle : par exemple deux sommets sans prédécesseur (ils voudraient tous deux être au début), ou deux sommets sans successeur.\n\nCircuit hamiltonien du tournoi : $A \\to B \\to C \\to D \\to A$ ? A bat B, B bat C, C bat D, D bat A : oui ✔️.",
+      "notions": [
+        "Chemin et circuit hamiltoniens"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq2-s03-c001",
+      "section": "libre-maths-sq2-s03-s01",
+      "type": "exercice",
+      "enonce": "Calcule $M^2$ pour le graphe de matrice $M = \\begin{pmatrix}0 & 1 & 1\\\\0 & 0 & 1\\\\1 & 0 & 0\\end{pmatrix}$ (sommets 1, 2, 3).",
+      "etapes": [
+        "Successeurs : 1 → {2, 3} ; 2 → {3} ; 3 → {1}.",
+        "Ligne 1 de $M^2$ = ligne 2 + ligne 3 de $M$ = $(0,0,1) + (1,0,0) = (1, 0, 1)$.",
+        "Ligne 2 = ligne 3 = $(1, 0, 0)$. Ligne 3 = ligne 1 = $(0, 1, 1)$."
+      ],
+      "reponse": "$M^2 = \\begin{pmatrix}1 & 0 & 1\\\\1 & 0 & 0\\\\0 & 1 & 1\\end{pmatrix}$",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s03-c002",
+      "section": "libre-maths-sq2-s03-s02",
+      "type": "qcm",
+      "question": "La somme de tous les coefficients de $M^3$ vaut 11. Qu'est-ce que cela signifie ?",
+      "choix": [
+        "Le graphe contient 11 chemins de longueur 3",
+        "Le graphe contient 11 arcs",
+        "Il y a 11 circuits de longueur 3",
+        "Le plus long chemin a pour longueur 11"
+      ],
+      "bonneReponse": 0,
+      "explication": "Chaque coefficient compte des chemins de longueur 3 ; leur total est le nombre de tous ces chemins.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s03-c003",
+      "section": "libre-maths-sq2-s03-s02",
+      "type": "question",
+      "recto": "La diagonale de $M^2$ est nulle. Qu'en déduis-tu ?",
+      "verso": "Il n'y a aucun circuit de longueur 2 (pas de paire de sommets reliés dans les deux sens), et pas de boucle utilisée deux fois.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s03-c004",
+      "section": "libre-maths-sq2-s03-s03",
+      "type": "qcm",
+      "question": "La trace de $M^4$ vaut 8 et on sait que tous les circuits de longueur 4 passent par 4 sommets distincts. Combien y a-t-il de circuits différents de longueur 4 ?",
+      "choix": [
+        "2",
+        "8",
+        "4",
+        "32"
+      ],
+      "bonneReponse": 0,
+      "explication": "Chaque circuit de longueur 4 est compté 4 fois sur la diagonale (une fois par sommet de départ) : $8 / 4 = 2$.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-maths-sq2-s03-c005",
+      "section": "libre-maths-sq2-s03-s04",
+      "type": "exercice",
+      "enonce": "Un graphe a pour arcs : 1 → 2, 1 → 3, 2 → 4, 3 → 4. Possède-t-il un chemin hamiltonien ?",
+      "etapes": [
+        "1 n'a pas de prédécesseur : un chemin hamiltonien doit commencer par 1.",
+        "4 n'a pas de successeur : il doit finir par 4.",
+        "Entre les deux, il faudrait passer par 2 puis 3 (ou 3 puis 2), mais il n'y a pas d'arc entre 2 et 3."
+      ],
+      "reponse": "Non, aucun chemin hamiltonien.",
+      "difficulte": 3
+    }
+  ]
+}

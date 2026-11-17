@@ -1,0 +1,106 @@
+{
+  "formatVersion": 1,
+  "id": "libre-algo-p3-s04",
+  "matiere": "Algorithmique appliquée",
+  "bloc": "Bloc 6",
+  "partie": "Partie 3 – Modules",
+  "sequence": null,
+  "seance": "S4 – Synthèse modules",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Refactoriser un programme monolithique en modules, choisir les signatures, et éviter les erreurs d'appel et de portée.",
+  "notions": [
+    "Refactorisation en modules",
+    "Signature à partir d'un énoncé",
+    "Langage typé ou non typé",
+    "Erreurs d'appel et de portée"
+  ],
+  "sections": [
+    {
+      "id": "libre-algo-p3-s04-s01",
+      "titre": "Refactoriser : exemple complet",
+      "contenu": "**Avant** : un bloc unique, des valeurs en dur, du code dupliqué.\n```python\nn1 = float(input(\"Note 1 ? \"))\nwhile n1 < 0 or n1 > 20:\n    n1 = float(input(\"Note 1 ? \"))\nn2 = float(input(\"Note 2 ? \"))\nwhile n2 < 0 or n2 > 20:\n    n2 = float(input(\"Note 2 ? \"))\nm = (n1 + n2) / 2\nif m >= 10:\n    print(\"Admis\", m)\nelse:\n    print(\"Ajourné\", m)\n```\n\n**Après** :\n```python\nNOTE_MIN, NOTE_MAX, SEUIL = 0, 20, 10\n\ndef saisir_note(message):\n    '''Redemande tant que la note n'est pas entre NOTE_MIN et NOTE_MAX.'''\n    note = float(input(message))\n    while note < NOTE_MIN or note > NOTE_MAX:\n        note = float(input(message))\n    return note\n\ndef moyenne(valeurs):\n    return sum(valeurs) / len(valeurs)\n\ndef est_admis(m):\n    return m >= SEUIL\n\nnotes = [saisir_note(f\"Note {i} ? \") for i in (1, 2)]\nm = moyenne(notes)\nprint(\"Admis\" if est_admis(m) else \"Ajourné\", m)\n```\n\nGains : plus de duplication, chaque fonction se teste seule, et passer à 5 notes ne demande de changer qu'une ligne.",
+      "notions": [
+        "Refactorisation en modules"
+      ]
+    },
+    {
+      "id": "libre-algo-p3-s04-s02",
+      "titre": "Donner la signature à partir d'un énoncé",
+      "contenu": "Méthode : repère **ce qui entre** (paramètres), **ce qui sort** (retour) et s'il y a un **effet** (affichage).\n\n| Énoncé | Signature |\n|---|---|\n| « teste si une année est bissextile » | `FONCTION estBissextile(annee : entier) : booléen` |\n| « affiche un tableau de prix » | `PROCÉDURE afficherPrix(prix : tableau de réels)` |\n| « calcule le prix TTC » | `FONCTION prixTTC(prixHT : réel, taux : réel) : réel` |\n| « remet à zéro un tableau » | `PROCÉDURE raz(t : tableau d'entiers)` (modifié en place) |\n\nNotion de **langage typé** : en pseudo-code et en C#, on écrit le type de chaque paramètre et du retour ; Python ne l'impose pas, mais on peut l'indiquer avec des **annotations** : `def prix_ttc(prix_ht: float, taux: float) -> float:`.",
+      "notions": [
+        "Signature à partir d'un énoncé",
+        "Langage typé ou non typé"
+      ]
+    },
+    {
+      "id": "libre-algo-p3-s04-s03",
+      "titre": "Les erreurs d'appel et de portée",
+      "contenu": "| Erreur | Exemple | Message ou effet |\n|---|---|---|\n| mauvais nombre d'arguments | `prix_ttc(100)` | `TypeError: missing 1 required positional argument` |\n| mauvais ordre | `prix_ttc(0.2, 100)` | pas d'erreur, résultat faux |\n| mauvais type | `prix_ttc(\"100\", 0.2)` | `TypeError` |\n| valeur de retour ignorée | `prix_ttc(100, 0.2)` seul | résultat perdu |\n| variable locale utilisée dehors | `print(c)` après la fonction | `NameError` |\n| même valeur répétée en dur | `0.2` à dix endroits | oubli lors d'un changement |",
+      "notions": [
+        "Erreurs d'appel et de portée"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-algo-p3-s04-c001",
+      "section": "libre-algo-p3-s04-s01",
+      "type": "qcm",
+      "question": "Quel est le principal défaut du programme « avant » ?",
+      "choix": [
+        "Le même bloc de saisie contrôlée est écrit deux fois",
+        "Il est trop rapide",
+        "Il utilise une boucle while",
+        "Il calcule mal la moyenne"
+      ],
+      "bonneReponse": 0,
+      "explication": "La duplication multiplie les risques d'erreur : un correctif doit être fait à chaque copie.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p3-s04-c002",
+      "section": "libre-algo-p3-s04-s02",
+      "type": "exercice",
+      "enonce": "Donne la signature en pseudo-code d'un module qui « compte le nombre de valeurs d'un tableau d'entiers supérieures à un seuil ».",
+      "etapes": [
+        "Entrées : le tableau et le seuil.",
+        "Sortie : un nombre (entier), sans affichage → fonction."
+      ],
+      "reponse": "`FONCTION compterSuperieurs(t : tableau d'entiers, seuil : entier) : entier`",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p3-s04-c003",
+      "section": "libre-algo-p3-s04-s03",
+      "type": "qcm",
+      "question": "`def aire(l, h): return l * h` puis `print(aire(5))`. Que se passe-t-il ?",
+      "choix": [
+        "TypeError : il manque un argument",
+        "Affiche 5",
+        "Affiche 0",
+        "Affiche None"
+      ],
+      "bonneReponse": 0,
+      "explication": "La signature exige deux paramètres sans valeur par défaut.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p3-s04-c004",
+      "section": "libre-algo-p3-s04-s03",
+      "type": "qcm",
+      "question": "Après l'appel `f()` où `f` crée une variable locale `z`, `print(z)` dans le programme principal donne…",
+      "choix": [
+        "NameError",
+        "La dernière valeur de z",
+        "None",
+        "0"
+      ],
+      "bonneReponse": 0,
+      "explication": "Une variable locale disparaît à la fin de l'appel.",
+      "difficulte": 2
+    }
+  ]
+}

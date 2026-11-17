@@ -1,0 +1,61 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq06-s02",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 6 – Création d'entreprise, pilotage et performance",
+  "sequence": null,
+  "seance": "S2 – Logique entrepreneuriale et logique managériale",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Deux façons de piloter une organisation : saisir des opportunités en prenant des risques, ou optimiser et contrôler l'existant.",
+  "notions": [
+    "Logiques entrepreneuriale et managériale",
+    "Profil de l'entrepreneur innovateur"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq06-s02-s01",
+      "titre": "Deux logiques",
+      "contenu": "| | Logique **entrepreneuriale** | Logique **managériale** |\n|---|---|---|\n| moteur | saisir une **opportunité**, innover | **optimiser** l'existant |\n| rapport au risque | accepte le risque et l'incertitude | cherche à le réduire |\n| organisation | souple, informelle, réactive | formalisée : procédures, règles, contrôle |\n| décision | rapide, intuitive, centrée sur le fondateur | planifiée, appuyée sur des indicateurs |\n| moment typique | création, lancement d'un nouveau produit | croissance, maturité |\n\nLes deux logiques ne s'opposent pas : elles **se succèdent** (une start-up qui grandit se structure) ou **coexistent** (une grande entreprise crée une équipe d'innovation autonome, on parle d'intrapreneuriat).",
+      "notions": [
+        "Logiques entrepreneuriale et managériale"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq06-s02-s02",
+      "titre": "L'entrepreneur innovateur",
+      "contenu": "Profil souvent décrit : il **repère des opportunités** que d'autres ne voient pas, **innove**, accepte le **risque**, mobilise des ressources qu'il ne possède pas encore et persévère malgré l'échec.\n\nLa recherche récente nuance cette image du « héros solitaire » : l'entrepreneur avance souvent **par petits pas**, en partant des **moyens dont il dispose** (ses compétences, son réseau), en limitant ses pertes acceptables et en construisant le projet **avec des partenaires** au fil des rencontres (approche dite de l'effectuation). Entreprendre s'apprend.",
+      "notions": [
+        "Profil de l'entrepreneur innovateur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq06-s02-c001",
+      "section": "libre-cejm-sq06-s02-s01",
+      "type": "qcm",
+      "question": "Une entreprise de 300 salariés met en place des procédures qualité et des tableaux de bord mensuels. Logique dominante ?",
+      "choix": [
+        "Managériale",
+        "Entrepreneuriale",
+        "Aucune",
+        "Sociétale"
+      ],
+      "bonneReponse": 0,
+      "explication": "Formaliser, contrôler, optimiser : logique managériale.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq06-s02-c002",
+      "section": "libre-cejm-sq06-s02-s02",
+      "type": "question",
+      "recto": "Que nuance la recherche récente sur l'entrepreneuriat ?",
+      "verso": "L'image du génie solitaire : l'entrepreneur part souvent de ses moyens, avance par étapes en limitant ses pertes et construit son projet avec des partenaires.",
+      "difficulte": 2
+    }
+  ]
+}

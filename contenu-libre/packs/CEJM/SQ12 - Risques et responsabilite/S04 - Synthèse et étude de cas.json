@@ -1,0 +1,66 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq12-s04",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 12 – Risques et responsabilité civile",
+  "sequence": null,
+  "seance": "S4 – Synthèse et étude de cas",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif des régimes de responsabilité, puis cas pratique à plusieurs acteurs.",
+  "notions": [
+    "Synthèse responsabilité",
+    "Application à un cas"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq12-s04-s01",
+      "titre": "L'essentiel",
+      "contenu": "| Régime | Conditions | Particularité |\n|---|---|---|\n| contractuelle | contrat + inexécution + dommage + causalité | résultat : faute présumée ; moyens : faute à prouver |\n| fait personnel | faute + dommage + causalité | hors contrat |\n| fait d'autrui | dommage causé par un préposé, un enfant… | l'employeur ou le parent répond |\n| fait des choses | chose sous sa garde, rôle actif | sans faute |\n| produits défectueux | défaut de sécurité | le producteur répond sans faute |\n| exonérations | force majeure, faute de la victime, fait d'un tiers | |",
+      "notions": [
+        "Synthèse responsabilité"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq12-s04-s02",
+      "titre": "Cas pratique : l'atelier Vélocité",
+      "contenu": "*Vélocité*, atelier fictif de réparation de vélos, a réparé les freins du vélo de Jade. Le lendemain, les freins lâchent : Jade percute la vitrine d'un fleuriste. Enquête : le mécanicien, salarié de Vélocité, a mal serré une pièce ; la pièce elle-même n'était pas défectueuse.",
+      "notions": [
+        "Application à un cas"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq12-s04-c001",
+      "section": "libre-cejm-sq12-s04-s01",
+      "type": "qcm",
+      "question": "Quelle condition manque si une entreprise a commis une faute mais que personne n'a subi de préjudice ?",
+      "choix": [
+        "Le dommage",
+        "Le fait générateur",
+        "Le lien de causalité",
+        "Aucune"
+      ],
+      "bonneReponse": 0,
+      "explication": "Sans dommage, rien à réparer.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq12-s04-c002",
+      "section": "libre-cejm-sq12-s04-s02",
+      "type": "exercice",
+      "enonce": "Quels régimes de responsabilité Jade et le fleuriste peuvent-ils invoquer contre Vélocité ?",
+      "etapes": [
+        "Jade est liée à Vélocité par un contrat de réparation : responsabilité contractuelle. Le réparateur doit rendre un vélo en état de sécurité : le défaut de serrage est une inexécution ; dommage (blessures, vélo) et causalité sont établis.",
+        "Le fleuriste n'a pas de contrat avec Vélocité : responsabilité extracontractuelle. Le mécanicien a commis une faute ; Vélocité en répond comme commettant de son préposé.",
+        "La pièce n'étant pas défectueuse, le régime des produits défectueux ne s'applique pas."
+      ],
+      "reponse": "Jade : responsabilité contractuelle de Vélocité. Fleuriste : responsabilité de Vélocité du fait de son salarié (commettant).",
+      "difficulte": 3
+    }
+  ]
+}

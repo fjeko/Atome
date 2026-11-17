@@ -1,0 +1,121 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq3-s02",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – SQ3 – POO avancée, diagrammes dynamiques, tests et déploiement",
+  "sequence": null,
+  "seance": "S02 – Abstraction, interfaces, final",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une interface définit un contrat que plusieurs classes s'engagent à respecter. Le mot-clé final empêche de modifier une valeur, de redéfinir une méthode ou d'hériter d'une classe.",
+  "notions": [
+    "Abstraction",
+    "Interface",
+    "implements",
+    "final",
+    "instanceof",
+    "Transtypage"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq3-s02-s01",
+      "titre": "Rappel : classe abstraite",
+      "contenu": "L'**abstraction** consiste à ne garder que l'essentiel commun. Une **classe abstraite** :\n- ne peut pas être instanciée ;\n- peut avoir des attributs, des constructeurs, des méthodes concrètes **et** des méthodes abstraites ;\n- s'utilise quand les filles partagent du **code** et un **état**.\n\n```java\npublic abstract class Forme {\n    public abstract double aire();\n    public String decrire() { return \"Aire : \" + aire(); }\n}\n```",
+      "notions": [
+        "Abstraction"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s02-s02",
+      "titre": "Les interfaces",
+      "contenu": "Une **interface** est un **contrat** : une liste de méthodes que les classes qui l'**implémentent** s'engagent à fournir.\n\n```java\npublic interface Exportable {\n    String versCsv();\n}\n\npublic class Facture implements Exportable {\n    @Override\n    public String versCsv() { return numero + \";\" + montant; }\n}\n\npublic class Client implements Exportable, Comparable<Client> {\n    ...\n}\n```\n\n- Une classe peut implémenter **plusieurs** interfaces (alors qu'elle n'hérite que d'**une** classe).\n- Une interface ne porte pas d'état (pas d'attributs d'instance).\n- On peut manipuler des objets **par leur interface** : `List<Exportable> aExporter`.\n\n### Classe abstraite ou interface ?\n\n| Besoin | Choix |\n| --- | --- |\n| Des classes **de même famille** partagent du code | classe abstraite |\n| Des classes **sans lien** partagent une **capacité** | interface |",
+      "notions": [
+        "Interface",
+        "implements"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s02-s03",
+      "titre": "Le mot-clé final",
+      "contenu": "`final` signifie « **définitif** » :\n\n| Sur | Effet |\n| --- | --- |\n| une variable ou un attribut | valeur affectée **une seule fois** |\n| une méthode | ne peut pas être **redéfinie** |\n| une classe | ne peut pas avoir de **filles** (`String` est final) |\n\n```java\npublic final class Iban { ... }               // pas d'héritage\npublic final double calculerTaxe() { ... }    // pas de redéfinition\nprivate final String reference;               // fixée dans le constructeur\n```",
+      "notions": [
+        "final"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s02-s04",
+      "titre": "Test de type et conversion",
+      "contenu": "Quand on manipule un objet par une référence de type mère, on peut avoir besoin de savoir sa classe réelle : `instanceof`.\n\n```java\nfor (Employe e : equipe) {\n    if (e instanceof Commercial c) {   // test + conversion (Java 16+)\n        System.out.println(c.getVentes());\n    }\n}\n```\n\nForme classique : `if (e instanceof Commercial) { Commercial c = (Commercial) e; ... }`. Un transtypage vers une mauvaise classe lève une `ClassCastException`.\n\nBon réflexe : si tu enchaînes les `instanceof`, c'est souvent qu'une **méthode redéfinie** (polymorphisme) serait plus propre.",
+      "notions": [
+        "instanceof",
+        "Transtypage"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq3-s02-c001",
+      "section": "libre-b2-21-sq3-s02-s01",
+      "type": "question",
+      "recto": "Peut-on écrire `new Forme()` si Forme est abstraite ?",
+      "verso": "Non. On instancie une classe fille concrète, qui a redéfini toutes les méthodes abstraites.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq3-s02-c002",
+      "section": "libre-b2-21-sq3-s02-s02",
+      "type": "qcm",
+      "question": "Une `Facture`, un `Client` et un `Stock` doivent tous pouvoir être exportés en CSV. Meilleure solution ?",
+      "choix": [
+        "Les faire hériter d'une classe `Csv`",
+        "Créer une interface `Exportable` qu'ils implémentent",
+        "Copier la méthode dans chaque classe sans lien",
+        "Rendre la méthode statique dans Facture"
+      ],
+      "bonneReponse": 1,
+      "explication": "Ces classes n'ont rien en commun hormis cette **capacité** : une interface convient.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq3-s02-c003",
+      "section": "libre-b2-21-sq3-s02-s02",
+      "type": "qcm",
+      "question": "Combien d'interfaces une classe Java peut-elle implémenter ?",
+      "choix": [
+        "Une seule",
+        "Deux au maximum",
+        "Autant qu'elle veut",
+        "Aucune si elle hérite déjà d'une classe"
+      ],
+      "bonneReponse": 2,
+      "explication": "L'héritage de classe est simple, l'implémentation d'interfaces est multiple.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq3-s02-c004",
+      "section": "libre-b2-21-sq3-s02-s03",
+      "type": "qcm",
+      "question": "Que provoque `class CompteSpecial extends CompteBancaire` si CompteBancaire est déclarée `final` ?",
+      "choix": [
+        "Rien de particulier",
+        "Les méthodes deviennent privées",
+        "Une erreur de compilation",
+        "CompteSpecial devient abstraite"
+      ],
+      "bonneReponse": 2,
+      "explication": "Une classe `final` ne peut pas être étendue.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq3-s02-c005",
+      "section": "libre-b2-21-sq3-s02-s04",
+      "type": "question",
+      "recto": "Pourquoi multiplier les `instanceof` est-il souvent un signe de mauvaise conception ?",
+      "verso": "Parce que le **polymorphisme** (une méthode redéfinie dans chaque classe) éviterait de tester le type à la main.",
+      "difficulte": 2
+    }
+  ]
+}

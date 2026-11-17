@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-14-sq1-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.4 – SQ1 – Gestion de projet classique",
+  "sequence": null,
+  "seance": "S04 – Cycles de vie",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les grands modèles de cycle de vie d'un projet (cascade, V, W, incrémental, itératif/spirale), leurs avantages et inconvénients, et comment choisir.",
+  "notions": [
+    "Cycle en cascade et effet tunnel",
+    "Cycle en V",
+    "Cycle en W",
+    "Cycle incrémental",
+    "Cycle itératif et spirale",
+    "Choisir un cycle"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-14-sq1-s04-s01",
+      "titre": "Cascade, V et W",
+      "contenu": "- **Cascade** : les phases s'enchaînent **une seule fois**, chacune commence quand la précédente est terminée et validée. Simple, mais le client ne découvre le produit que **tout à la fin** : c'est l'**effet tunnel**. Une erreur de compréhension du besoin est découverte trop tard.\n- **Cycle en V** : à chaque phase de conception (descente) correspond une phase de **test** (remontée) préparée en même temps :\n```text\nBesoin ───────────────────────────── Recette (VABF/VSR)\n  Spécifications ─────────────── Tests de validation\n     Conception ─────────── Tests d'intégration\n        Codage ──── Tests unitaires\n```\n- **Cycle en W** : un **double V** : un premier V produit une **maquette/prototype** validée par le client, un second V réalise le produit final. Utile quand le besoin est flou.",
+      "notions": [
+        "Cycle en cascade et effet tunnel",
+        "Cycle en V",
+        "Cycle en W"
+      ]
+    },
+    {
+      "id": "libre-b1-14-sq1-s04-s02",
+      "titre": "Incrémental, itératif, spirale",
+      "contenu": "- **Incrémental** : le produit est livré **par morceaux** (incréments) qui s'ajoutent : version 1 avec les fonctions essentielles, puis ajouts.\n- **Itératif** : on répète des cycles courts (concevoir → réaliser → tester → évaluer), chaque itération **améliore** le produit avec les retours des utilisateurs. Les méthodes agiles sont itératives **et** incrémentales.\n- **Spirale** : modèle itératif centré sur l'**analyse des risques** à chaque tour (projets complexes et risqués).\n\nChoisir :\n| Situation | Cycle adapté |\n| --- | --- |\n| besoin clair et stable, technologie maîtrisée, contraintes réglementaires de documentation | V |\n| besoin flou, à préciser avec le client | W, itératif, agile |\n| besoin de livrer vite une première version utile | incrémental / agile |\n| projet très risqué et innovant | spirale |",
+      "notions": [
+        "Cycle incrémental",
+        "Cycle itératif et spirale",
+        "Choisir un cycle"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-14-sq1-s04-c001",
+      "section": "libre-b1-14-sq1-s04-s01",
+      "type": "qcm",
+      "question": "Qu'appelle-t-on « effet tunnel » ?",
+      "choix": [
+        "Un réseau qui passe par un VPN",
+        "Le fait que le client ne voie le résultat qu'à la fin du projet, sans pouvoir réagir avant",
+        "Une tâche bloquée par une autre",
+        "Un retard sur le chemin critique"
+      ],
+      "bonneReponse": 1,
+      "explication": "C'est le principal défaut du cycle en cascade.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-14-sq1-s04-c002",
+      "section": "libre-b1-14-sq1-s04-s02",
+      "type": "qcm",
+      "question": "Une association ne sait pas encore précisément ce qu'elle attend de son futur outil de gestion des bénévoles. Quel cycle convient le moins ?",
+      "choix": [
+        "Itératif",
+        "Cycle en W",
+        "Cascade",
+        "Agile"
+      ],
+      "bonneReponse": 2,
+      "explication": "La cascade suppose un besoin complet dès le départ ; avec un besoin flou, l'effet tunnel serait maximal.",
+      "difficulte": 2
+    }
+  ]
+}

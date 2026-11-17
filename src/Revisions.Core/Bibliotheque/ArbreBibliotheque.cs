@@ -17,6 +17,8 @@ public sealed class ResumeSeance
     public int NbMaitrisees { get; set; }
     public int NbDues { get; set; }
     public int NbNouvelles { get; set; }
+    /// <summary>Vrai pour un cours libre intégré à Atome (badge « Libre » dans la bibliothèque).</summary>
+    public bool Libre => PackId.StartsWith(Revisions.Core.Packs.ContenuLibre.PrefixeId, StringComparison.Ordinal);
 }
 
 /// <summary>

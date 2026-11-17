@@ -1,0 +1,66 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq1-s07",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ1 – Installer et configurer de nouveaux postes",
+  "sequence": null,
+  "seance": "S07 – Synthèse : préparer des postes Windows et Linux",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif de la préparation de postes : comparaison Windows/Linux et liste de contrôle avant de livrer un poste.",
+  "notions": [
+    "Comparaison Windows Linux",
+    "Liste de contrôle d'un poste"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq1-s07-s01",
+      "titre": "Windows et Linux : les équivalences",
+      "contenu": "| Besoin | Windows | Linux |\n| --- | --- | --- |\n| administrateur | groupe Administrateurs, UAC | root, `sudo` |\n| installer un logiciel | `winget`, installateur | `apt`, dépôts |\n| configuration centralisée | registre | fichiers texte dans `/etc` |\n| imposer des réglages | stratégies de groupe | fichiers de configuration, outils de gestion |\n| comptes | `lusrmgr.msc`, `net user` | `adduser`, `/etc/passwd` |\n| droits sur les fichiers | autorisations NTFS (listes de contrôle d'accès) | rwx propriétaire/groupe/autres |\n| variables | `%PATH%`, `setx` | `$PATH`, `export` |",
+      "notions": [
+        "Comparaison Windows Linux"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s07-s02",
+      "titre": "Liste de contrôle avant de livrer un poste",
+      "contenu": "- [ ] nommé selon la convention, bonne langue de clavier et fuseau horaire ;\n- [ ] système **à jour**, antivirus/pare-feu actifs ;\n- [ ] logiciels de la configuration standard installés ;\n- [ ] comptes créés avec les **bons droits** (pas d'administrateur inutile) ;\n- [ ] stratégies appliquées **et vérifiées** (`gpresult`, essais) ;\n- [ ] inventaire : l'agent remonte bien le poste ;\n- [ ] fiche du poste à jour (utilisateur, lieu) et intervention tracée dans le ticket.",
+      "notions": [
+        "Liste de contrôle d'un poste"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq1-s07-c001",
+      "section": "libre-b1-12b-sq1-s07-s01",
+      "type": "qcm",
+      "question": "Quel est l'équivalent Linux du registre Windows pour la configuration du système ?",
+      "choix": [
+        "Le dossier /home",
+        "Les fichiers texte de configuration, principalement dans /etc",
+        "Le fichier /etc/shadow",
+        "La commande sudo"
+      ],
+      "bonneReponse": 1,
+      "explication": "Sous Linux, la configuration système est surtout stockée dans des fichiers texte sous /etc.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq1-s07-c002",
+      "section": "libre-b1-12b-sq1-s07-s02",
+      "type": "exercice",
+      "enonce": "Le stagiaire de la menuiserie Copeaux & Fils a livré un poste où l'utilisateur est administrateur « pour éviter qu'il appelle ». Explique le risque et la bonne pratique.",
+      "etapes": [
+        "Risque : tout logiciel malveillant lancé par l'utilisateur obtient les droits complets ; l'utilisateur peut casser la configuration.",
+        "Principe : moindre privilège.",
+        "Bonne pratique : compte standard pour le quotidien ; installations par le support ou via un catalogue de logiciels autorisés."
+      ],
+      "reponse": "Il faut un compte standard (moindre privilège) ; les besoins d'installation passent par le support.",
+      "difficulte": 2
+    }
+  ]
+}

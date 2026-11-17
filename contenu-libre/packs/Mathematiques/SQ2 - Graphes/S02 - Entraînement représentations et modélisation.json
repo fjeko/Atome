@@ -1,0 +1,111 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq2-s02",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "SQ2 – Graphes",
+  "sequence": null,
+  "seance": "S2 – Entraînement représentations et modélisation",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. S'exercer à convertir un graphe d'une forme de représentation à une autre et à modéliser des situations concrètes par un graphe orienté.",
+  "notions": [
+    "Passage tableau ↔ matrice",
+    "Modélisation par un graphe",
+    "Lecture d'une matrice d'adjacence"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq2-s02-s01",
+      "titre": "Du tableau à la matrice",
+      "contenu": "*Potager Malin*, un site fictif de jardinage, a 5 pages : Accueil (A), Blog (B), Conseils (C), Boutique (D), Panier (E). Les liens forment le tableau des successeurs :\n\n| Page | A | B | C | D | E |\n|---|---|---|---|---|---|\n| Liens vers | B, C, D | C | D | E | A |\n\nOn remplit la matrice ligne par ligne (ordre A, B, C, D, E) :\n\n$$M = \\begin{pmatrix}0 & 1 & 1 & 1 & 0\\\\0 & 0 & 1 & 0 & 0\\\\0 & 0 & 0 & 1 & 0\\\\0 & 0 & 0 & 0 & 1\\\\1 & 0 & 0 & 0 & 0\\end{pmatrix}$$\n\nContrôle : 7 liens dans le tableau, 7 coefficients égaux à 1. Prédécesseurs (lus en colonne) : A ← E ; B ← A ; C ← A, B ; D ← A, C ; E ← D.",
+      "notions": [
+        "Passage tableau ↔ matrice"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s02-s02",
+      "titre": "De la description au graphe : modéliser",
+      "contenu": "Pour modéliser une situation :\n1. décider **ce que sont les sommets** (des personnes, des pages, des tâches, des lieux…) ;\n2. décider **ce que signifie un arc** et dans quel sens (« X a battu Y », « X précède Y », « on peut aller de X à Y ») ;\n3. écrire la matrice dans un ordre de sommets **annoncé**.\n\nExemple : un mini-tournoi de ping-pong entre Ana (A), Bilal (B), Chloé (C) et Dan (D). Un arc $X \\to Y$ signifie « X a battu Y ». Résultats : A bat B, A bat C, B bat C, B bat D, C bat D, D bat A.\n\n$$T = \\begin{pmatrix}0 & 1 & 1 & 0\\\\0 & 0 & 1 & 1\\\\0 & 0 & 0 & 1\\\\1 & 0 & 0 & 0\\end{pmatrix}$$\n\nInterprétation : la **somme d'une ligne** = nombre de victoires (A : 2, B : 2, C : 1, D : 1) ; la **somme d'une colonne** = nombre de défaites.",
+      "notions": [
+        "Modélisation par un graphe"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s02-s03",
+      "titre": "Lire une matrice d'un coup d'œil",
+      "contenu": "Face à une matrice d'adjacence, prends l'habitude de répondre à ces questions :\n\n| Question | Où regarder |\n|---|---|\n| Combien de sommets ? | la dimension $n \\times n$ |\n| Combien d'arcs ? | le nombre de 1 |\n| Des boucles ? | des 1 sur la diagonale |\n| Sommet sans successeur ? | une ligne de 0 |\n| Sommet sans prédécesseur ? | une colonne de 0 |\n\nPour *Potager Malin* : 5 sommets, 7 arcs, aucune boucle, aucune page sans successeur ni sans prédécesseur (on peut toujours naviguer).",
+      "notions": [
+        "Lecture d'une matrice d'adjacence"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq2-s02-c001",
+      "section": "libre-maths-sq2-s02-s01",
+      "type": "exercice",
+      "enonce": "Donne le tableau des successeurs et le nombre d'arcs du graphe de matrice $\\begin{pmatrix}0 & 1 & 1 & 0\\\\0 & 1 & 0 & 1\\\\0 & 0 & 0 & 1\\\\1 & 0 & 0 & 0\\end{pmatrix}$ (sommets 1 à 4).",
+      "etapes": [
+        "Ligne 1 : des 1 en colonnes 2 et 3 → 1 a pour successeurs 2 et 3.",
+        "Ligne 2 : colonnes 2 et 4 → successeurs 2 (c'est une **boucle**) et 4.",
+        "Ligne 3 : 4. Ligne 4 : 1.",
+        "On compte les 1 : 6."
+      ],
+      "reponse": "1 → {2, 3} ; 2 → {2, 4} (boucle sur 2) ; 3 → {4} ; 4 → {1}. 6 arcs.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s02-c002",
+      "section": "libre-maths-sq2-s02-s01",
+      "type": "qcm",
+      "question": "Dans le site *Potager Malin*, depuis quelles pages peut-on atteindre directement la Boutique (D) ?",
+      "choix": [
+        "A et C",
+        "C seulement",
+        "A, B et C",
+        "E seulement"
+      ],
+      "bonneReponse": 0,
+      "explication": "On lit la colonne D : des 1 en lignes A et C. B mène à C, pas à D.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s02-c003",
+      "section": "libre-maths-sq2-s02-s02",
+      "type": "exercice",
+      "enonce": "Quatre tâches d'un petit projet : T2 ne peut commencer qu'après T1 ; T3 après T1 ; T4 après T2 et T3. Modélise par un graphe (arc X → Y : « X doit précéder Y ») et donne sa matrice.",
+      "etapes": [
+        "Sommets : T1, T2, T3, T4. Arcs : T1 → T2, T1 → T3, T2 → T4, T3 → T4.",
+        "Ligne T1 : $(0, 1, 1, 0)$ ; ligne T2 : $(0, 0, 0, 1)$ ; ligne T3 : $(0, 0, 0, 1)$ ; ligne T4 : $(0, 0, 0, 0)$."
+      ],
+      "reponse": "$\\begin{pmatrix}0 & 1 & 1 & 0\\\\0 & 0 & 0 & 1\\\\0 & 0 & 0 & 1\\\\0 & 0 & 0 & 0\\end{pmatrix}$",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s02-c004",
+      "section": "libre-maths-sq2-s02-s02",
+      "type": "question",
+      "recto": "Dans le graphe du tournoi (arc X → Y : X a battu Y), que représente la somme d'une colonne de la matrice ?",
+      "verso": "Le nombre de défaites du joueur correspondant (le nombre de joueurs qui l'ont battu).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq2-s02-c005",
+      "section": "libre-maths-sq2-s02-s03",
+      "type": "qcm",
+      "question": "Une matrice d'adjacence $5 \\times 5$ contient huit 1, dont deux sur la diagonale, et sa 3e colonne est nulle. Quelle affirmation est fausse ?",
+      "choix": [
+        "Le sommet 3 n'a pas de successeur",
+        "Le graphe a 8 arcs",
+        "Le graphe a 2 boucles",
+        "Le sommet 3 n'a pas de prédécesseur"
+      ],
+      "bonneReponse": 0,
+      "explication": "Une colonne nulle signifie : aucun prédécesseur. Pour « aucun successeur », il faudrait une ligne nulle.",
+      "difficulte": 2
+    }
+  ]
+}

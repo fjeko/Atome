@@ -1,0 +1,72 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq1-s07",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – SQ1 – Sécuriser le poste de travail",
+  "sequence": null,
+  "seance": "S07 – Gestion et suppression des comptes",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les comptes suivent un cycle de vie : création avec les bons droits, revue régulière, désactivation puis suppression au départ. Avant de supprimer un profil, on récupère les données utiles.",
+  "notions": [
+    "Cycle de vie des comptes",
+    "Comptes orphelins",
+    "Suppression de compte",
+    "Suppression de profil"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq1-s07-s01",
+      "titre": "Cycle de vie d'un compte",
+      "contenu": "1. **Création** à l'arrivée, à partir d'une demande validée, dans les bons **groupes** (droits selon la fonction).\n2. **Modification** à chaque changement de poste (retirer les anciens droits !).\n3. **Revue** périodique : comptes inutilisés, droits excessifs.\n4. **Départ** : **désactivation immédiate**, puis suppression après la période de conservation définie.\n\nLes **comptes orphelins** (anciens salariés, stagiaires, prestataires) sont une porte d'entrée classique : personne ne remarque leur utilisation.",
+      "notions": [
+        "Cycle de vie des comptes",
+        "Comptes orphelins"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s07-s02",
+      "titre": "Supprimer proprement",
+      "contenu": "Avant de supprimer un compte et son **profil** (documents, bureau, paramètres) :\n- **récupérer** les données professionnelles utiles (transférer au responsable, archiver) ;\n- **transférer** la messagerie si besoin (message d'absence, redirection limitée dans le temps) ;\n- **révoquer** les accès externes (VPN, applications en ligne, clés, certificats) ;\n- **désactiver** d'abord (réversible), **supprimer** ensuite ;\n- respecter la **vie privée** : les fichiers marqués « personnel » ne sont pas consultés.\n\nSous Windows : *Paramètres système avancés > Profils des utilisateurs* pour supprimer un profil local ; `net user nom /active:no` pour désactiver. Sous Linux : `usermod -L` (verrouiller), puis `userdel -r` (supprimer avec le répertoire personnel).",
+      "notions": [
+        "Suppression de compte",
+        "Suppression de profil"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq1-s07-c001",
+      "section": "libre-b3-33-sq1-s07-s01",
+      "type": "qcm",
+      "question": "Un stagiaire est parti il y a 6 mois et son compte est toujours actif. Quel est le risque ?",
+      "choix": [
+        "Aucun, il n'a plus le badge",
+        "Le compte peut être utilisé (par lui ou un attaquant) sans que personne ne le remarque",
+        "Le compte va se supprimer seul",
+        "Il bloque la licence de l'antivirus"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un compte orphelin actif est une porte d'entrée discrète.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq1-s07-c002",
+      "section": "libre-b3-33-sq1-s07-s02",
+      "type": "exercice",
+      "enonce": "Une commerciale quitte l'entreprise vendredi. Liste les actions sur ses comptes, dans l'ordre.",
+      "etapes": [
+        "Vendredi soir : désactiver le compte (annuaire) et révoquer VPN, applications en ligne, accès mobiles.",
+        "Récupérer ses fichiers professionnels et les remettre à son responsable ; archiver les dossiers clients.",
+        "Mettre en place un message d'absence ou une redirection temporaire vers son remplaçant.",
+        "Récupérer le matériel (portable, téléphone, badge) et réinitialiser les appareils.",
+        "Après la période définie : supprimer le compte et le profil, tracer l'opération."
+      ],
+      "reponse": "Désactiver et révoquer immédiatement, récupérer les données, rediriger, récupérer le matériel, supprimer plus tard.",
+      "difficulte": 2
+    }
+  ]
+}

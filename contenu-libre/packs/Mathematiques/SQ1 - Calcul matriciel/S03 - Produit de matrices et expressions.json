@@ -1,0 +1,228 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq1-s03",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "SQ1 – Calcul matriciel",
+  "sequence": null,
+  "seance": "S3 – Produit de matrices et expressions",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Comment multiplier deux matrices (ligne × colonne), quand c'est possible, quelles propriétés restent vraies et lesquelles changent ; puissances et expressions mêlées.",
+  "notions": [
+    "Condition de compatibilité du produit",
+    "Calcul ligne × colonne",
+    "Non-commutativité",
+    "Propriétés du produit (associativité, distributivité, identité)",
+    "Puissance d'une matrice carrée",
+    "Expressions mêlées",
+    "Interprétation d'un produit en gestion"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq1-s03-s01",
+      "titre": "Condition et taille du résultat",
+      "contenu": "Le produit $A \\times B$ n'existe que si :\n\n> **nombre de colonnes de $A$ = nombre de lignes de $B$**\n\nSi $A$ est $n \\times p$ et $B$ est $p \\times q$, alors $A \\times B$ est $n \\times q$.\n\nMoyen mnémotechnique : écris les dimensions côte à côte, $(n \\times \\mathbf{p}) \\cdot (\\mathbf{p} \\times q)$. Les deux nombres « intérieurs » doivent être égaux ; les deux « extérieurs » donnent la taille du résultat.\n\n| $A$ | $B$ | $A \\times B$ |\n|---|---|---|\n| $2 \\times 3$ | $3 \\times 2$ | $2 \\times 2$ |\n| $3 \\times 2$ | $2 \\times 3$ | $3 \\times 3$ |\n| $1 \\times 4$ | $4 \\times 1$ | $1 \\times 1$ (un seul nombre) |\n| $2 \\times 3$ | $2 \\times 3$ | impossible |",
+      "notions": [
+        "Condition de compatibilité du produit"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s03-s02",
+      "titre": "Calculer : ligne de A × colonne de B",
+      "contenu": "Le coefficient (i, j) de $A \\times B$ s'obtient avec la **ligne i de A** et la **colonne j de B** : on multiplie les nombres deux à deux, puis on additionne.\n\nExemple avec $A = \\begin{pmatrix}1 & 2\\\\3 & 0\\end{pmatrix}$ et $B = \\begin{pmatrix}2 & -1\\\\1 & 4\\end{pmatrix}$ :\n\n- (1,1) : ligne 1 de $A$ $(1, 2)$ et colonne 1 de $B$ $(2, 1)$ → $1 \\times 2 + 2 \\times 1 = 4$\n- (1,2) : $(1, 2)$ et $(-1, 4)$ → $1 \\times (-1) + 2 \\times 4 = 7$\n- (2,1) : $(3, 0)$ et $(2, 1)$ → $6 + 0 = 6$\n- (2,2) : $(3, 0)$ et $(-1, 4)$ → $-3 + 0 = -3$\n\n$$A \\times B = \\begin{pmatrix}4 & 7\\\\6 & -3\\end{pmatrix}$$\n\nAvec des tailles différentes, même principe. $C = \\begin{pmatrix}1 & 0 & 2\\\\-1 & 3 & 1\\end{pmatrix}$ ($2 \\times 3$) et $D = \\begin{pmatrix}3 & 1\\\\2 & 1\\\\1 & 0\\end{pmatrix}$ ($3 \\times 2$) :\n\n$$C \\times D = \\begin{pmatrix}1\\cdot3 + 0\\cdot2 + 2\\cdot1 & 1\\cdot1 + 0\\cdot1 + 2\\cdot0\\\\-3 + 6 + 1 & -1 + 3 + 0\\end{pmatrix} = \\begin{pmatrix}5 & 1\\\\4 & 2\\end{pmatrix}$$\n\n⚠️ L'erreur classique : multiplier « case par case ». Ce n'est **pas** le produit matriciel.",
+      "notions": [
+        "Calcul ligne × colonne"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s03-s03",
+      "titre": "Propriétés : ce qui change par rapport aux nombres",
+      "contenu": "Reprenons $A = \\begin{pmatrix}1 & 2\\\\3 & 0\\end{pmatrix}$ et $B = \\begin{pmatrix}2 & -1\\\\1 & 4\\end{pmatrix}$. On a trouvé $AB = \\begin{pmatrix}4 & 7\\\\6 & -3\\end{pmatrix}$. Calculons dans l'autre sens :\n\n$$BA = \\begin{pmatrix}2 - 3 & 4 + 0\\\\1 + 12 & 2 + 0\\end{pmatrix} = \\begin{pmatrix}-1 & 4\\\\13 & 2\\end{pmatrix} \\neq AB$$\n\n### En général, $A \\times B \\neq B \\times A$\nLe produit n'est **pas commutatif**. L'ordre des facteurs compte, toujours.\n\n### Ce qui reste vrai (quand les produits existent)\n- **Associativité** : $(AB)C = A(BC)$ — on peut regrouper comme on veut, sans changer l'ordre.\n- **Distributivité** : $A(B + C) = AB + AC$ et $(A + B)C = AC + BC$.\n- **Identité neutre** : $A \\times I = I \\times A = A$ pour $A$ carrée de même ordre que $I$.\n- $k(AB) = (kA)B = A(kB)$ pour un réel $k$.\n\n### Conséquence pour développer\n$(A + B)^2 = (A + B)(A + B) = A^2 + AB + BA + B^2$. On **ne peut pas** regrouper $AB + BA$ en $2AB$.",
+      "notions": [
+        "Non-commutativité",
+        "Propriétés du produit (associativité, distributivité, identité)"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s03-s04",
+      "titre": "Puissances d'une matrice carrée",
+      "contenu": "Pour une matrice **carrée** $A$ : $A^2 = A \\times A$, $A^3 = A^2 \\times A$, etc. (et par convention $A^0 = I$).\n\nAvec $A = \\begin{pmatrix}1 & 2\\\\3 & 0\\end{pmatrix}$ :\n\n$$A^2 = \\begin{pmatrix}1 + 6 & 2 + 0\\\\3 + 0 & 6 + 0\\end{pmatrix} = \\begin{pmatrix}7 & 2\\\\3 & 6\\end{pmatrix}$$\n\n$$A^3 = A^2 \\times A = \\begin{pmatrix}7 + 6 & 14 + 0\\\\3 + 18 & 6 + 0\\end{pmatrix} = \\begin{pmatrix}13 & 14\\\\21 & 6\\end{pmatrix}$$\n\n⚠️ $A^2$ ne s'obtient **pas** en élevant chaque coefficient au carré. Ici le carré case par case donnerait $\\begin{pmatrix}1 & 4\\\\9 & 0\\end{pmatrix}$, ce qui est faux.\n\nUne matrice non carrée n'a pas de carré : $(2 \\times 3) \\cdot (2 \\times 3)$ est impossible. Pour les grandes puissances, la calculatrice est faite pour ça.",
+      "notions": [
+        "Puissance d'une matrice carrée"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s03-s05",
+      "titre": "Expressions mêlées et contexte de gestion",
+      "contenu": "### Priorités\nDans $2A - A \\times B$, on calcule d'abord les produits, puis la soustraction. Avec les $A$ et $B$ ci-dessus :\n\n$$2A - AB = \\begin{pmatrix}2 & 4\\\\6 & 0\\end{pmatrix} - \\begin{pmatrix}4 & 7\\\\6 & -3\\end{pmatrix} = \\begin{pmatrix}-2 & -3\\\\0 & 3\\end{pmatrix}$$\n\n### Sens d'un produit : quantités × prix\n*La Tasse Ronde*, un café fictif, vend des expressos, des cappuccinos et des thés. Les quantités vendues sur deux jours forment $Q$ ($2 \\times 3$, lignes = jours) et les prix unitaires forment $P$ ($3 \\times 1$) :\n\n$$Q = \\begin{pmatrix}40 & 25 & 10\\\\35 & 30 & 15\\end{pmatrix}, \\quad P = \\begin{pmatrix}1{,}5\\\\3\\\\2{,}5\\end{pmatrix}$$\n\n$$Q \\times P = \\begin{pmatrix}40 \\times 1{,}5 + 25 \\times 3 + 10 \\times 2{,}5\\\\35 \\times 1{,}5 + 30 \\times 3 + 15 \\times 2{,}5\\end{pmatrix} = \\begin{pmatrix}160\\\\180\\end{pmatrix}$$\n\nInterprétation : la recette est de 160 € le jour 1 et de 180 € le jour 2. La ligne × colonne fait exactement « somme des quantités × prix ».\n\nRègle pratique : pour que le produit ait un sens, la **colonne** de la première matrice et la **ligne** de la seconde doivent parler de **la même chose** (ici, les boissons).",
+      "notions": [
+        "Expressions mêlées",
+        "Interprétation d'un produit en gestion"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq1-s03-c001",
+      "section": "libre-maths-sq1-s03-s01",
+      "type": "qcm",
+      "question": "$A$ est $3 \\times 2$ et $B$ est $2 \\times 4$. Quelles sont les dimensions de la matrice $A \\times B$ ?",
+      "choix": [
+        "$3 \\times 4$",
+        "$2 \\times 2$",
+        "$4 \\times 3$",
+        "Impossible"
+      ],
+      "bonneReponse": 0,
+      "explication": "Intérieurs : 2 et 2, c'est compatible. Extérieurs : 3 et 4, donc $3 \\times 4$.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s03-c002",
+      "section": "libre-maths-sq1-s03-s01",
+      "type": "qcm",
+      "question": "$A$ est $3 \\times 2$ et $B$ est $2 \\times 4$. Peut-on calculer $B \\times A$ ?",
+      "choix": [
+        "Non : 4 colonnes pour $B$ mais 3 lignes pour $A$",
+        "Oui, on obtient $2 \\times 2$",
+        "Oui, on obtient $4 \\times 3$",
+        "Oui, car $A \\times B$ existe"
+      ],
+      "bonneReponse": 0,
+      "explication": "Pour $B \\times A$, on compare les colonnes de $B$ (4) et les lignes de $A$ (3). Ils diffèrent : impossible.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s03-c003",
+      "section": "libre-maths-sq1-s03-s02",
+      "type": "exercice",
+      "enonce": "Calcule $\\begin{pmatrix}2 & 1\\\\0 & 3\\end{pmatrix} \\times \\begin{pmatrix}1 & 4\\\\5 & -2\\end{pmatrix}$.",
+      "etapes": [
+        "(1,1) : $2 \\times 1 + 1 \\times 5 = 7$ ; (1,2) : $2 \\times 4 + 1 \\times (-2) = 6$",
+        "(2,1) : $0 \\times 1 + 3 \\times 5 = 15$ ; (2,2) : $0 \\times 4 + 3 \\times (-2) = -6$"
+      ],
+      "reponse": "$\\begin{pmatrix}7 & 6\\\\15 & -6\\end{pmatrix}$",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s03-c004",
+      "section": "libre-maths-sq1-s03-s02",
+      "type": "exercice",
+      "enonce": "Calcule $\\begin{pmatrix}1 & 2 & 3\\end{pmatrix} \\times \\begin{pmatrix}4\\\\0\\\\-1\\end{pmatrix}$.",
+      "etapes": [
+        "Dimensions : $(1 \\times 3) \\cdot (3 \\times 1)$ → résultat $1 \\times 1$.",
+        "$1 \\times 4 + 2 \\times 0 + 3 \\times (-1) = 4 + 0 - 3$"
+      ],
+      "reponse": "$\\begin{pmatrix}1\\end{pmatrix}$ (un seul coefficient, égal à 1)",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s03-c005",
+      "section": "libre-maths-sq1-s03-s02",
+      "type": "qcm",
+      "question": "Un élève calcule $\\begin{pmatrix}1 & 2\\\\3 & 4\\end{pmatrix} \\times \\begin{pmatrix}5 & 6\\\\7 & 8\\end{pmatrix}$ et trouve $\\begin{pmatrix}5 & 12\\\\21 & 32\\end{pmatrix}$. Quelle erreur a-t-il faite ?",
+      "choix": [
+        "Il a multiplié case par case",
+        "Il a inversé les deux matrices",
+        "Il a additionné au lieu de multiplier",
+        "Aucune, c'est juste"
+      ],
+      "bonneReponse": 0,
+      "explication": "$5 = 1 \\times 5$, $12 = 2 \\times 6$… c'est le produit terme à terme. Le vrai résultat est $\\begin{pmatrix}19 & 22\\\\43 & 50\\end{pmatrix}$.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s03-c006",
+      "section": "libre-maths-sq1-s03-s03",
+      "type": "qcm",
+      "question": "Soit $A$ et $B$ deux matrices carrées d'un même ordre : quelle est l'expression développée de $(A + B)^2$ ?",
+      "choix": [
+        "$A^2 + AB + BA + B^2$",
+        "$A^2 + 2AB + B^2$",
+        "$A^2 + B^2$",
+        "$A^2 + 2BA + B^2$"
+      ],
+      "bonneReponse": 0,
+      "explication": "On développe $(A+B)(A+B)$ sans changer l'ordre : $AB$ et $BA$ sont en général différents.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s03-c007",
+      "section": "libre-maths-sq1-s03-s03",
+      "type": "question",
+      "recto": "Que vaut $A \\times I_2$ si $A = \\begin{pmatrix}3 & 1\\\\5 & 2\\end{pmatrix}$ ?",
+      "verso": "$A$ elle-même : la matrice identité est l'élément neutre du produit (comme 1 pour les nombres).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s03-c008",
+      "section": "libre-maths-sq1-s03-s03",
+      "type": "exercice",
+      "enonce": "Avec $A = \\begin{pmatrix}2 & 1\\\\0 & x\\end{pmatrix}$ et $B = \\begin{pmatrix}1 & 3\\\\0 & 2\\end{pmatrix}$, trouve $x$ pour que $AB = BA$.",
+      "etapes": [
+        "$AB = \\begin{pmatrix}2 & 6 + 2\\\\0 & 2x\\end{pmatrix} = \\begin{pmatrix}2 & 8\\\\0 & 2x\\end{pmatrix}$",
+        "$BA = \\begin{pmatrix}2 & 1 + 3x\\\\0 & 2x\\end{pmatrix}$",
+        "Égalité case par case : seule la case (1,2) pose condition, $8 = 1 + 3x$."
+      ],
+      "reponse": "$x = \\dfrac{7}{3}$",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-maths-sq1-s03-c009",
+      "section": "libre-maths-sq1-s03-s04",
+      "type": "exercice",
+      "enonce": "Calcule $M^2$ pour $M = \\begin{pmatrix}0 & 1\\\\2 & 1\\end{pmatrix}$.",
+      "etapes": [
+        "(1,1) : $0 \\times 0 + 1 \\times 2 = 2$ ; (1,2) : $0 \\times 1 + 1 \\times 1 = 1$",
+        "(2,1) : $2 \\times 0 + 1 \\times 2 = 2$ ; (2,2) : $2 \\times 1 + 1 \\times 1 = 3$"
+      ],
+      "reponse": "$M^2 = \\begin{pmatrix}2 & 1\\\\2 & 3\\end{pmatrix}$",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s03-c010",
+      "section": "libre-maths-sq1-s03-s04",
+      "type": "qcm",
+      "question": "Pourquoi ne peut-on pas calculer $A^2$ si $A$ est une matrice $2 \\times 3$ ?",
+      "choix": [
+        "Car $A \\times A$ demande 3 colonnes = 2 lignes, ce qui est faux",
+        "Car les puissances n'existent que pour les matrices identité",
+        "On peut : on élève chaque coefficient au carré",
+        "Car il faudrait une calculatrice"
+      ],
+      "bonneReponse": 0,
+      "explication": "$A^2 = A \\times A$ exige des dimensions compatibles, donc une matrice carrée.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s03-c011",
+      "section": "libre-maths-sq1-s03-s05",
+      "type": "exercice",
+      "enonce": "*La Tasse Ronde* vend 20 expressos, 10 cappuccinos et 6 thés un mardi. Avec $P = \\begin{pmatrix}1{,}5\\\\3\\\\2{,}5\\end{pmatrix}$, calcule la recette du mardi par un produit matriciel.",
+      "etapes": [
+        "Matrice ligne des quantités : $\\begin{pmatrix}20 & 10 & 6\\end{pmatrix}$ ($1 \\times 3$), et $P$ est $3 \\times 1$ : le produit est $1 \\times 1$.",
+        "$20 \\times 1{,}5 + 10 \\times 3 + 6 \\times 2{,}5 = 30 + 30 + 15$"
+      ],
+      "reponse": "$\\begin{pmatrix}75\\end{pmatrix}$ : la recette est de 75 €.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s03-c012",
+      "section": "libre-maths-sq1-s03-s05",
+      "type": "qcm",
+      "question": "$Q$ est $2 \\times 3$ (jours × boissons) et $P$ est $3 \\times 1$ (prix des boissons). Lequel de ces produits a un sens ?",
+      "choix": [
+        "$Q \\times P$",
+        "$P \\times Q$",
+        "Les deux",
+        "Aucun"
+      ],
+      "bonneReponse": 0,
+      "explication": "$Q \\times P$ : $(2 \\times 3)(3 \\times 1)$ est compatible. $P \\times Q$ : $(3 \\times 1)(2 \\times 3)$ ne l'est pas.",
+      "difficulte": 2
+    }
+  ]
+}

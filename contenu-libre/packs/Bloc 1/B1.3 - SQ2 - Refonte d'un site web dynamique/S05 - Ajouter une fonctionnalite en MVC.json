@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq2-s05",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – SQ2 – Refonte d'un site web dynamique (PHP, MVC, SQL, responsive)",
+  "sequence": null,
+  "seance": "S05 – Ajouter une fonctionnalité en MVC",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Ajouter une fonctionnalité (une recherche) dans un site MVC, étape par étape : découpage en sous-fonctionnalités, route, méthode de modèle, action de contrôleur, vue, puis mise en forme avec une bibliothèque CSS et d'icônes.",
+  "notions": [
+    "Découpage en sous-fonctionnalités",
+    "Ajout d'une route",
+    "Méthode de modèle",
+    "Action de contrôleur et vue",
+    "Bibliothèque de mise en page et icônes"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq2-s05-s01",
+      "titre": "Découper et ajouter la route",
+      "contenu": "Besoin : « rechercher un jeu par une partie de son titre ».\n\nDécoupage en sous-fonctionnalités :\n1. un **formulaire** de recherche (dans le menu) ;\n2. une **route** `action=recherche` ;\n3. une **méthode du modèle** qui cherche en base ;\n4. une **action du contrôleur** qui récupère le mot-clé et appelle le modèle ;\n5. une **vue** qui affiche les résultats (ou « aucun résultat »).\n\nRoute dans `index.php` :\n```php\ncase 'recherche': $ctrl->recherche($_GET['q'] ?? ''); break;\n```\nFormulaire :\n```html\n<form action=\"index.php\" method=\"get\">\n  <input type=\"hidden\" name=\"action\" value=\"recherche\">\n  <label for=\"q\">Rechercher un jeu</label>\n  <input type=\"search\" id=\"q\" name=\"q\">\n  <button type=\"submit\">Rechercher</button>\n</form>\n```",
+      "notions": [
+        "Découpage en sous-fonctionnalités",
+        "Ajout d'une route"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq2-s05-s02",
+      "titre": "Modèle, contrôleur, vue",
+      "contenu": "```php\n// Modèle\npublic function rechercher(string $motCle): array {\n    $req = $this->bdd->prepare('SELECT id_jeu, titre FROM JEU WHERE titre LIKE :motif ORDER BY titre');\n    $req->execute(['motif' => '%' . $motCle . '%']);\n    return $req->fetchAll(PDO::FETCH_ASSOC);\n}\n\n// Contrôleur\npublic function recherche(string $q): void {\n    $q = trim($q);\n    $resultats = $q === '' ? [] : (new JeuModele())->rechercher($q);\n    require 'vues/recherche.php';\n}\n```\n```php\n<!-- Vue -->\n<h1>Résultats pour « <?= htmlspecialchars($q) ?> »</h1>\n<?php if (empty($resultats)): ?>\n  <p>Aucun jeu trouvé.</p>\n<?php else: ?>\n  <ul>\n  <?php foreach ($resultats as $j): ?>\n    <li><a href=\"index.php?action=detail&id=<?= $j['id_jeu'] ?>\"><?= htmlspecialchars($j['titre']) ?></a></li>\n  <?php endforeach; ?>\n  </ul>\n<?php endif; ?>\n```\nLe motif `%...%` est construit en PHP mais transmis **comme valeur** à la requête préparée : pas d'injection.",
+      "notions": [
+        "Méthode de modèle",
+        "Action de contrôleur et vue"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq2-s05-s03",
+      "titre": "Bibliothèque de mise en page et d'icônes",
+      "contenu": "Pour gagner du temps et obtenir un rendu cohérent et responsive, on peut s'appuyer sur une **bibliothèque CSS** (comme Bootstrap) : grille, boutons, formulaires, menus prêts à l'emploi, par simple ajout de **classes**.\n```html\n<form class=\"d-flex gap-2\" action=\"index.php\" method=\"get\">\n  <input class=\"form-control\" type=\"search\" name=\"q\" aria-label=\"Rechercher un jeu\">\n  <button class=\"btn btn-primary\" type=\"submit\"><i class=\"bi bi-search\"></i> Rechercher</button>\n</form>\n```\nUne **bibliothèque d'icônes** (Bootstrap Icons, Font Awesome…) fournit des pictogrammes cohérents. Points d'attention : vérifier la **licence**, ne charger que ce qui sert (poids), garder des libellés accessibles.",
+      "notions": [
+        "Bibliothèque de mise en page et icônes"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq2-s05-c001",
+      "section": "libre-b1-13-sq2-s05-s01",
+      "type": "question",
+      "recto": "Pourquoi découper une fonctionnalité en sous-fonctionnalités avant de la coder ?",
+      "verso": "Pour avancer par petites étapes testables, savoir quel fichier modifier (route, modèle, contrôleur, vue) et ne rien oublier.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-13-sq2-s05-c002",
+      "section": "libre-b1-13-sq2-s05-s02",
+      "type": "qcm",
+      "question": "Dans cette recherche, où doit se trouver la vérification « mot-clé vide → aucun résultat » ?",
+      "choix": [
+        "Dans la vue",
+        "Dans le contrôleur",
+        "Dans la base de données",
+        "Dans le fichier CSS"
+      ],
+      "bonneReponse": 1,
+      "explication": "C'est de la logique : elle revient au contrôleur ; la vue se contente d'afficher.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq2-s05-c003",
+      "section": "libre-b1-13-sq2-s05-s03",
+      "type": "question",
+      "recto": "Cite un avantage et un point d'attention liés à l'usage d'une bibliothèque CSS.",
+      "verso": "Avantage : composants prêts et cohérents, responsive facilité, gain de temps. Point d'attention : poids des fichiers, licence, sites qui se ressemblent, dépendance à une bibliothèque.",
+      "difficulte": 2
+    }
+  ]
+}

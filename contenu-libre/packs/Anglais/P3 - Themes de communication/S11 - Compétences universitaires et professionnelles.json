@@ -1,0 +1,183 @@
+{
+  "formatVersion": 1,
+  "id": "libre-ang-t-s11",
+  "matiere": "Anglais",
+  "bloc": "Bloc 5",
+  "partie": "Thèmes de communication",
+  "sequence": null,
+  "seance": "S11 – Compétences universitaires et professionnelles",
+  "ordre": 11,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Rédiger un rapport de stage, résumer un document, citer ses sources et établir une bibliographie en anglais.",
+  "notions": [
+    "Compétences universitaires et professionnelles : mise en situation",
+    "Compétences universitaires et professionnelles : verbes",
+    "Compétences universitaires et professionnelles : noms",
+    "Compétences universitaires et professionnelles : adjectifs et adverbes",
+    "Compétences universitaires et professionnelles : expressions et mots de liaison"
+  ],
+  "sections": [
+    {
+      "id": "libre-ang-t-s11-s01",
+      "titre": "En situation",
+      "contenu": "***Internship report – summary***\n*During my eight-week **internship** at a web agency, I was **in charge of** testing a booking application. **This report describes** the tasks I carried out, **highlights** the skills I developed and **outlines** the difficulties I encountered. **According to** the agency's own data, automated tests reduced bugs by 30%.*\n\n**Citer une source** : *According to Smith (2025), …* ; *As stated in the report…* ; liste finale **References** : auteur, année, titre, éditeur ou URL et date de consultation, par exemple : *Martin, L. (2025). Testing Web Apps. Example Press.*",
+      "notions": [
+        "Compétences universitaires et professionnelles : mise en situation"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s11-s02",
+      "titre": "Verbes",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **to summarise** | résumer | *Summarise the article in 100 words.* |\n| **to highlight** | souligner, mettre en évidence | *The report highlights three risks.* |\n| **to outline** | présenter dans les grandes lignes | *First, I will outline the project.* |\n| **to quote / to cite** | citer | *Always cite the author and the date.* |\n| **to carry out** | réaliser, effectuer | *I carried out user tests.* |\n| **to acquire (skills)** | acquérir (des compétences) | *I acquired skills in project management.* |\n| **to proofread** | relire (pour corriger) | *Proofread your report before sending it.* |",
+      "notions": [
+        "Compétences universitaires et professionnelles : verbes"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s11-s03",
+      "titre": "Noms",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **an internship / an intern** | un stage / un stagiaire | *My internship lasted two months.* |\n| **a supervisor** | un tuteur, un responsable | *My supervisor gave me useful feedback.* |\n| **a skill** | une compétence | *Communication is a key skill.* |\n| **a summary** | un résumé | *Write a summary of the meeting.* |\n| **references / a bibliography** | les références / une bibliographie | *Add your references at the end.* |\n| **plagiarism** | le plagiat | *Plagiarism is strictly forbidden.* |\n| **feedback** | un retour, des commentaires | *Thank you for your feedback.* |",
+      "notions": [
+        "Compétences universitaires et professionnelles : noms"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s11-s04",
+      "titre": "Adjectifs et adverbes",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **relevant** | pertinent | *Only include relevant information.* |\n| **accurate** | exact, précis | *Make sure the figures are accurate.* |\n| **concise** | concis | *A summary should be concise.* |\n| **thorough** | minutieux, approfondi | *She did a thorough analysis.* |\n| **in charge of** | responsable de | *I was in charge of the database.* |",
+      "notions": [
+        "Compétences universitaires et professionnelles : adjectifs et adverbes"
+      ]
+    },
+    {
+      "id": "libre-ang-t-s11-s05",
+      "titre": "Expressions et mots de liaison",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **According to…** | selon… | *According to the survey, 60% of users agree.* |\n| **This report describes…** | ce rapport décrit… | *This report describes my missions.* |\n| **To sum up / In conclusion** | pour résumer / en conclusion | *To sum up, the internship was very rewarding.* |\n| **as stated in** | comme indiqué dans | *As stated in the user guide, …* |\n| **It is worth noting that…** | il convient de noter que… | *It is worth noting that the tests were automated.* |",
+      "notions": [
+        "Compétences universitaires et professionnelles : expressions et mots de liaison"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-ang-t-s11-c001",
+      "section": "libre-ang-t-s11-s02",
+      "type": "question",
+      "recto": "Traduis en français : **to highlight**\n\n*The report highlights three risks.*",
+      "verso": "souligner, mettre en évidence",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s11-c002",
+      "section": "libre-ang-t-s11-s02",
+      "type": "question",
+      "recto": "Traduis en français : **to outline**\n\n*First, I will outline the project.*",
+      "verso": "présenter dans les grandes lignes",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s11-c003",
+      "section": "libre-ang-t-s11-s02",
+      "type": "question",
+      "recto": "Traduis en anglais : **résumer**",
+      "verso": "**to summarise** — *Summarise the article in 100 words.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s11-c004",
+      "section": "libre-ang-t-s11-s02",
+      "type": "qcm",
+      "question": "Complète : *Before submitting your report, ___ it carefully.*",
+      "choix": [
+        "proofread",
+        "outline",
+        "quote",
+        "acquire"
+      ],
+      "bonneReponse": 0,
+      "explication": "Relire pour corriger : *proofread*.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s11-c005",
+      "section": "libre-ang-t-s11-s03",
+      "type": "question",
+      "recto": "Traduis en français : **a supervisor**\n\n*My supervisor gave me useful feedback.*",
+      "verso": "un tuteur, un responsable",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s11-c006",
+      "section": "libre-ang-t-s11-s03",
+      "type": "question",
+      "recto": "Traduis en français : **feedback**\n\n*Thank you for your feedback.*",
+      "verso": "un retour, des commentaires",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s11-c007",
+      "section": "libre-ang-t-s11-s03",
+      "type": "question",
+      "recto": "Traduis en anglais : **le plagiat**",
+      "verso": "**plagiarism** — *Plagiarism is strictly forbidden.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s11-c008",
+      "section": "libre-ang-t-s11-s04",
+      "type": "question",
+      "recto": "Traduis en français : **relevant**\n\n*Only include relevant information.*",
+      "verso": "pertinent",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s11-c009",
+      "section": "libre-ang-t-s11-s04",
+      "type": "question",
+      "recto": "Traduis en français : **accurate**\n\n*Make sure the figures are accurate.*",
+      "verso": "exact, précis",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s11-c010",
+      "section": "libre-ang-t-s11-s04",
+      "type": "qcm",
+      "question": "Complète : *Your summary is too long: it must be more ___.*",
+      "choix": [
+        "concise",
+        "thorough",
+        "relevant",
+        "accurate"
+      ],
+      "bonneReponse": 0,
+      "explication": "Trop long → il faut être plus *concise*.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s11-c011",
+      "section": "libre-ang-t-s11-s05",
+      "type": "question",
+      "recto": "Traduis en français : **It is worth noting that…**\n\n*It is worth noting that the tests were automated.*",
+      "verso": "il convient de noter que…",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-t-s11-c012",
+      "section": "libre-ang-t-s11-s05",
+      "type": "question",
+      "recto": "Traduis en anglais : **selon…**",
+      "verso": "**According to…** — *According to the survey, 60% of users agree.*",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-t-s11-c013",
+      "section": "libre-ang-t-s11-s01",
+      "type": "question",
+      "recto": "Faux ami : que signifie *actually* dans un rapport ?",
+      "verso": "En fait, en réalité (et non « actuellement », qui se dit *currently*).",
+      "difficulte": 2
+    }
+  ]
+}

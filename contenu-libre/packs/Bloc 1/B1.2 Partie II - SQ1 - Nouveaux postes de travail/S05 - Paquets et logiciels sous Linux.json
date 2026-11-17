@@ -1,0 +1,87 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq1-s05",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ1 – Installer et configurer de nouveaux postes",
+  "sequence": null,
+  "seance": "S05 – Paquets et logiciels sous Linux",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Installer des logiciels sous Linux : paquets, dépôts, gestionnaire apt, et installation prudente de paquets hors des dépôts officiels.",
+  "notions": [
+    "Paquet",
+    "Dépôt",
+    "Gestionnaire de paquets apt",
+    "Paquets hors dépôts"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq1-s05-s01",
+      "titre": "Paquets et dépôts",
+      "contenu": "Sous Linux, un logiciel s'installe sous forme de **paquet** : une archive qui contient le programme, ses fichiers de configuration et la liste de ses **dépendances** (les autres paquets dont il a besoin). Sur Debian/Ubuntu, les paquets ont l'extension `.deb`.\n\nLes paquets sont rangés dans des **dépôts** : des serveurs officiels, **signés** par la distribution, qui garantissent l'origine des logiciels. La liste des dépôts utilisés est dans `/etc/apt/sources.list` et `/etc/apt/sources.list.d/`.\n\nIntérêt par rapport à « télécharger un .exe sur un site » : origine vérifiée, dépendances gérées automatiquement, mises à jour centralisées.",
+      "notions": [
+        "Paquet",
+        "Dépôt"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s05-s02",
+      "titre": "Le gestionnaire de paquets apt",
+      "contenu": "| Commande | Rôle |\n| --- | --- |\n| `apt search gimp` | chercher un paquet |\n| `apt show gimp` | afficher sa description |\n| `sudo apt install gimp` | installer (avec ses dépendances) |\n| `sudo apt remove gimp` | désinstaller |\n| `sudo apt purge gimp` | désinstaller **et** supprimer la configuration |\n| `sudo apt autoremove` | supprimer les dépendances devenues inutiles |\n| `apt list --installed` | lister les paquets installés |",
+      "notions": [
+        "Gestionnaire de paquets apt"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s05-s03",
+      "titre": "Paquets hors des dépôts officiels",
+      "contenu": "Certains logiciels ne sont pas dans les dépôts officiels. Options :\n- l'éditeur fournit **son propre dépôt** : on ajoute sa clé de signature et sa source, puis on installe avec apt (les mises à jour suivront) ;\n- un fichier **`.deb`** téléchargé : `sudo apt install ./logiciel.deb` (gère les dépendances) ou `sudo dpkg -i logiciel.deb` ;\n- des formats universels : **Snap**, **Flatpak**, **AppImage**.\n\n**Prudence** : un paquet installé avec sudo a **tous les droits** sur la machine. On ne télécharge que depuis le **site officiel** de l'éditeur, et on préfère toujours les dépôts quand c'est possible.",
+      "notions": [
+        "Paquets hors dépôts"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq1-s05-c001",
+      "section": "libre-b1-12b-sq1-s05-s01",
+      "type": "question",
+      "recto": "Qu'est-ce qu'un dépôt de paquets ?",
+      "verso": "Un serveur qui met à disposition des paquets signés, d'où le gestionnaire de paquets télécharge les logiciels et leurs mises à jour.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq1-s05-c002",
+      "section": "libre-b1-12b-sq1-s05-s02",
+      "type": "qcm",
+      "question": "Tu veux désinstaller un logiciel en supprimant aussi ses fichiers de configuration. Quelle commande ?",
+      "choix": [
+        "`sudo apt remove`",
+        "`sudo apt purge`",
+        "`sudo apt autoremove`",
+        "`sudo apt update`"
+      ],
+      "bonneReponse": 1,
+      "explication": "`purge` retire le paquet et sa configuration ; `remove` laisse la configuration.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq1-s05-c003",
+      "section": "libre-b1-12b-sq1-s05-s03",
+      "type": "qcm",
+      "question": "Pourquoi préférer les dépôts officiels à un .deb trouvé sur un forum ?",
+      "choix": [
+        "Les .deb ne fonctionnent pas sur Ubuntu",
+        "Les dépôts garantissent l'origine (signature) et assurent les mises à jour",
+        "Les dépôts sont plus rapides à télécharger",
+        "Un .deb ne peut pas avoir de dépendances"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un .deb d'origine inconnue, installé avec les droits root, pourrait contenir un logiciel malveillant et ne sera pas mis à jour.",
+      "difficulte": 2
+    }
+  ]
+}

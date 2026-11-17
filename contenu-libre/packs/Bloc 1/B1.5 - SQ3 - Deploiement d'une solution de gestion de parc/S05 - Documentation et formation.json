@@ -1,0 +1,61 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-15-sq3-s05",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.5 – SQ3 – Déployer une solution de gestion de parc dans un nouvel environnement",
+  "sequence": null,
+  "seance": "S05 – Documentation et formation",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Terminer un déploiement : documentation technique et utilisateur, tests finaux, formation, acceptation par le client, et les étapes génériques de tout déploiement d'application.",
+  "notions": [
+    "Documentation technique et utilisateur",
+    "Formation et acceptation",
+    "Étapes génériques d'un déploiement"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-15-sq3-s05-s01",
+      "titre": "Documenter et former",
+      "contenu": "**Documentation technique** (pour les administrateurs) : schéma, serveurs et rôles, noms et adresses, versions, comptes de service (sans mots de passe en clair : coffre-fort de mots de passe), emplacement des fichiers, sauvegardes, procédure de mise à jour, ordre de démarrage.\n\n**Documentation utilisateur** (pour les techniciens du client) : se connecter, créer un ticket, rechercher un matériel… avec captures d'écran, courte et orientée tâches.\n\nOn la rédige **pendant** le projet, pas après coup.\n\n**Formation** : séance pratique sur des cas réels, support remis. **Acceptation** : le client vérifie la solution selon les critères convenus (procès-verbal de recette) ; les réserves éventuelles sont levées.",
+      "notions": [
+        "Documentation technique et utilisateur",
+        "Formation et acceptation"
+      ]
+    },
+    {
+      "id": "libre-b1-15-sq3-s05-s02",
+      "titre": "Les étapes génériques d'un déploiement",
+      "contenu": "1. **Analyse** de l'environnement cible (adressage, nommage, contraintes).\n2. **Préparation** des serveurs (modèles, clones personnalisés).\n3. **Installation** et **sécurisation** de l'application.\n4. **Intégration** (DNS, réseau, annuaire, messagerie).\n5. **Habilitations** minimales.\n6. **Tests** (fonctionnels, intégration) et compte rendu.\n7. **Documentation**, **formation**, **acceptation**.\n8. **Mise en exploitation** : sauvegardes, supervision, mises à jour.",
+      "notions": [
+        "Étapes génériques d'un déploiement"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-15-sq3-s05-c001",
+      "section": "libre-b1-15-sq3-s05-s01",
+      "type": "question",
+      "recto": "Quelle différence entre documentation technique et documentation utilisateur ?",
+      "verso": "La technique décrit l'installation et l'exploitation (serveurs, configuration, sauvegardes) pour les administrateurs ; l'utilisateur explique comment se servir de l'application au quotidien.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-15-sq3-s05-c002",
+      "section": "libre-b1-15-sq3-s05-s02",
+      "type": "exercice",
+      "enonce": "Pour chacune de ces erreurs constatées lors d'un déploiement, indique l'étape qui a été négligée : (a) l'application ne trouve plus la base après le déménagement du serveur ; (b) le dossier web est en 777 ; (c) les techniciens du client ne savent pas créer un ticket.",
+      "etapes": [
+        "(a) Adresse IP codée en dur : étape d'intégration (configuration par noms).",
+        "(b) Droits excessifs : étape des habilitations minimales.",
+        "(c) Absence de prise en main : documentation utilisateur et formation."
+      ],
+      "reponse": "(a) intégration réseau/noms ; (b) habilitations ; (c) documentation et formation.",
+      "difficulte": 2
+    }
+  ]
+}

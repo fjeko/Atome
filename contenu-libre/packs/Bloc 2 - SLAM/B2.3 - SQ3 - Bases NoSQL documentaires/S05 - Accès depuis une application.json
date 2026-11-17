@@ -1,0 +1,96 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq3-s05",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – SQ3 – Bases NoSQL orientées documents",
+  "sequence": null,
+  "seance": "S05 – Accès depuis une application",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une application C# accède à MongoDB grâce au pilote officiel : une classe métier correspond aux documents d'une collection, et on réalise les opérations CRUD par le client, la base et la collection.",
+  "notions": [
+    "Pilote MongoDB C#",
+    "MongoClient",
+    "Mapping de classe",
+    "BsonId",
+    "BsonElement",
+    "CRUD avec le pilote C#"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq3-s05-s01",
+      "titre": "Pilote et connexion",
+      "contenu": "On ajoute le paquet NuGet **MongoDB.Driver**. Trois objets :\n\n```csharp\nusing MongoDB.Driver;\n\nvar client = new MongoClient(\"mongodb://localhost:27017\");     // serveur\nIMongoDatabase db = client.GetDatabase(\"jardinerie\");          // base\nIMongoCollection<Plante> plantes = db.GetCollection<Plante>(\"plantes\");   // collection typée\n```\n\nPour un **serveur distant**, on change la chaîne de connexion (`mongodb://utilisateur:motdepasse@serveur:27017/?authSource=admin`, ou `mongodb+srv://…` pour un service hébergé), placée dans la **configuration**, jamais en dur. On active l'authentification et le chiffrement (TLS) côté serveur.\n\nLe `MongoClient` est prévu pour être **réutilisé** : on le crée une seule fois (singleton).",
+      "notions": [
+        "Pilote MongoDB C#",
+        "MongoClient"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s05-s02",
+      "titre": "La classe métier liée à une collection",
+      "contenu": "```csharp\nusing MongoDB.Bson;\nusing MongoDB.Bson.Serialization.Attributes;\n\n[BsonIgnoreExtraElements]   // ignore les champs du document absents de la classe\npublic class Plante\n{\n    [BsonId]\n    [BsonRepresentation(BsonType.ObjectId)]\n    public string? Id { get; set; }\n\n    [BsonElement(\"nom\")]  public string Nom { get; set; } = \"\";\n    [BsonElement(\"prix\")] public double Prix { get; set; }\n    [BsonElement(\"stock\")] public int Stock { get; set; }\n    [BsonElement(\"categorie\")] public string Categorie { get; set; } = \"\";\n}\n```\n\n- `[BsonId]` : la propriété correspond au champ `_id`.\n- `[BsonElement(\"nom\")]` : nom du champ dans le document (sinon, le nom de la propriété, avec sa casse).\n- Piège : si la classe utilise `Nom` et les documents `nom`, sans attribut, les valeurs restent vides. Le mapping doit être **cohérent** avec la collection.\n- `[BsonIgnoreExtraElements]` placé **sur la classe** évite une erreur quand un document contient un champ absent de la classe.",
+      "notions": [
+        "Mapping de classe",
+        "BsonId",
+        "BsonElement"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s05-s03",
+      "titre": "Opérations CRUD en C#",
+      "contenu": "```csharp\n// Create\nplantes.InsertOne(new Plante { Nom = \"Pilea\", Prix = 9.5, Stock = 20, Categorie = \"intérieur\" });\n\n// Read\nList<Plante> pasCheres = plantes.Find(p => p.Prix < 15).ToList();\nPlante? une = plantes.Find(p => p.Nom == \"Pilea\").FirstOrDefault();\n\n// Update\nvar maj = Builders<Plante>.Update.Set(p => p.Prix, 8.9);\nplantes.UpdateOne(p => p.Nom == \"Pilea\", maj);\n\n// Delete\nplantes.DeleteOne(p => p.Id == idASupprimer);\n```\n\nLes filtres s'écrivent avec des **expressions lambda** typées : le compilateur vérifie les noms de propriétés. Les versions `...Async` (`InsertOneAsync`, `Find(...).ToListAsync()`) évitent de bloquer l'interface.",
+      "notions": [
+        "CRUD avec le pilote C#"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq3-s05-c001",
+      "section": "libre-b2-23-sq3-s05-s01",
+      "type": "qcm",
+      "question": "Dans quel ordre obtient-on une collection avec le pilote C# ?",
+      "choix": [
+        "MongoClient → GetDatabase → GetCollection",
+        "GetCollection → GetDatabase → MongoClient",
+        "GetDatabase → MongoClient → GetCollection",
+        "Directement new Collection()"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le client donne la base, qui donne la collection.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-23-sq3-s05-c002",
+      "section": "libre-b2-23-sq3-s05-s02",
+      "type": "qcm",
+      "question": "Les documents contiennent `\"nom\"` mais la propriété C# s'appelle `Nom`, sans attribut. Résultat à la lecture ?",
+      "choix": [
+        "Le pilote fait la correspondance automatiquement, quelle que soit la casse",
+        "Le champ n'est pas reconnu : erreur ou valeur vide selon la configuration",
+        "Le document est supprimé",
+        "La propriété prend la valeur « nom »"
+      ],
+      "bonneReponse": 1,
+      "explication": "Il faut `[BsonElement(\"nom\")]` (ou une convention de nommage configurée).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq3-s05-c003",
+      "section": "libre-b2-23-sq3-s05-s03",
+      "type": "exercice",
+      "enonce": "Écris la méthode `List<Plante> ARecommander(int seuil)` qui renvoie les plantes dont le stock est inférieur au seuil, triées par stock croissant.",
+      "etapes": [
+        "Filtre lambda : `plantes.Find(p => p.Stock < seuil)`.",
+        "Tri croissant : `.SortBy(p => p.Stock)`.",
+        "Matérialiser : `.ToList()`."
+      ],
+      "reponse": "`public List<Plante> ARecommander(int seuil) => plantes.Find(p => p.Stock < seuil).SortBy(p => p.Stock).ToList();`",
+      "difficulte": 2
+    }
+  ]
+}

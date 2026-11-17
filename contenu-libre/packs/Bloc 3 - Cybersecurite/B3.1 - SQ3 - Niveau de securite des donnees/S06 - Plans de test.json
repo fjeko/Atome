@@ -1,0 +1,93 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq3-s06",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ3 – Niveau de sécurité des données",
+  "sequence": null,
+  "seance": "S06 – Plans de test",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Tester, c'est vérifier qu'un programme fait ce qu'il doit et seulement cela. Un plan de test fixe les objectifs, les types de tests, l'organisation et des jeux d'essai qui incluent les valeurs limites.",
+  "notions": [
+    "Objectifs des tests",
+    "Principes des tests",
+    "Types de tests",
+    "Organisation des tests",
+    "Jeu d'essai",
+    "Valeurs limites",
+    "Classes d'équivalence"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq3-s06-s01",
+      "titre": "Objectifs et principes",
+      "contenu": "Objectifs : **détecter** les défauts, **vérifier** la conformité au besoin, **réduire** le risque en production, donner **confiance**.\n\nPrincipes clés :\n- tester montre la **présence** de défauts, pas leur absence ;\n- les tests **exhaustifs** sont impossibles : on choisit des cas représentatifs ;\n- tester **tôt** coûte moins cher ;\n- les défauts se **regroupent** souvent dans quelques modules ;\n- répéter les mêmes tests finit par ne plus rien trouver : il faut les **faire évoluer**.",
+      "notions": [
+        "Objectifs des tests",
+        "Principes des tests"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq3-s06-s02",
+      "titre": "Types de tests et organisation",
+      "contenu": "| Type | Ce qu'on vérifie |\n| --- | --- |\n| unitaire | une fonction isolée |\n| d'intégration | des modules ensemble |\n| fonctionnel / système | l'application complète face au besoin |\n| d'acceptation (recette) | validation par le client |\n| de non-régression | rien n'est cassé après une modification |\n| de sécurité | résistance aux attaques (injections, droits, mots de passe) |\n| de performance | temps de réponse, charge |\n\nUn **plan de test** précise : périmètre, types de tests, environnement, données, responsables, calendrier, critères de réussite, et une fiche par cas (entrée, résultat attendu, résultat obtenu).",
+      "notions": [
+        "Types de tests",
+        "Organisation des tests"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq3-s06-s03",
+      "titre": "Jeux d'essai et valeurs limites",
+      "contenu": "Méthode :\n1. découper les entrées en **classes d'équivalence** (valeurs qui doivent se comporter de la même façon) ;\n2. prendre une valeur dans chaque classe ;\n3. tester les **valeurs limites** de chaque classe (juste avant, sur, juste après la frontière).",
+      "notions": [
+        "Jeu d'essai",
+        "Valeurs limites",
+        "Classes d'équivalence"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq3-s06-c001",
+      "section": "libre-b3-31-sq3-s06-s01",
+      "type": "question",
+      "recto": "Pourquoi ne peut-on pas tester tous les cas possibles ?",
+      "verso": "Le nombre de combinaisons d'entrées est **gigantesque** ; on choisit des cas représentatifs (classes de valeurs et limites).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq3-s06-c002",
+      "section": "libre-b3-31-sq3-s06-s02",
+      "type": "qcm",
+      "question": "Après une correction, on rejoue tous les anciens tests. Ce sont des tests :",
+      "choix": [
+        "d'acceptation",
+        "de non-régression",
+        "de performance",
+        "d'intégration"
+      ],
+      "bonneReponse": 1,
+      "explication": "On vérifie que la correction n'a rien cassé ailleurs.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq3-s06-c003",
+      "section": "libre-b3-31-sq3-s06-s03",
+      "type": "exercice",
+      "enonce": "Construis le jeu d'essai de `estRobuste` (12 caractères minimum, 4 types requis).",
+      "etapes": [
+        "11 caractères avec les 4 types (`Abcdefgh1!x`) → FAUX (limite basse).",
+        "12 caractères avec les 4 types (`Abcdefgh1!xy`) → VRAI (frontière).",
+        "12 caractères sans majuscule → FAUX ; sans chiffre → FAUX ; sans spécial → FAUX ; sans minuscule → FAUX.",
+        "Chaîne vide → FAUX.",
+        "Très long mot de passe valide (64 caractères) → VRAI."
+      ],
+      "reponse": "Tester 11/12 caractères, l'absence de chaque type, la chaîne vide et un cas très long.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -176,5 +176,10 @@ internal static class Migrations
           etat            TEXT NOT NULL DEFAULT 'nouveau' CHECK (etat IN ('nouveau','exporte'))
         );
         """,
+
+        // ---- 6 : masquer des packs (cours libres désactivés dans les Réglages) ---------------
+        """
+        ALTER TABLE pack ADD COLUMN masque INTEGER NOT NULL DEFAULT 0;
+        """,
     ];
 }

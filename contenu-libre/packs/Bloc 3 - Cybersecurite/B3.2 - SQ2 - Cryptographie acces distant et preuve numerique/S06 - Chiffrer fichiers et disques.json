@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq2-s06",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – SQ2 – Cryptographie, accès distant et preuve numérique",
+  "sequence": null,
+  "seance": "S06 – Chiffrer fichiers et disques",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. On peut chiffrer un fichier précis ou un disque entier. Les deux sont complémentaires ; des modules matériels protègent les clés. Tester la robustesse des mots de passe est encadré par la loi.",
+  "notions": [
+    "Chiffrement de fichier",
+    "Chiffrement de disque",
+    "TPM",
+    "Transmission de la clé",
+    "Cadre légal des tests de mots de passe",
+    "Craquage de mots de passe"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq2-s06-s01",
+      "titre": "Chiffrement de fichiers et de disques",
+      "contenu": "| | Chiffrement de **fichier** (7-Zip AES, VeraCrypt conteneur, GPG) | Chiffrement de **disque entier** (BitLocker, LUKS, FileVault) |\n| --- | --- | --- |\n| Protège | un fichier, même s'il est copié ou envoyé | tout le disque si l'appareil est volé éteint |\n| Transparence | il faut chiffrer/déchiffrer volontairement | transparent pour l'utilisateur |\n| Limite | oubli de chiffrer une copie | **aucune protection une fois le disque déverrouillé** (logiciel malveillant, session ouverte) |\n\nIls sont **complémentaires** : disque chiffré pour le vol, fichiers chiffrés pour les échanges.\n\nLe **TPM** (*Trusted Platform Module*) est une puce qui **stocke les clés** de façon protégée et vérifie que le démarrage n'a pas été modifié ; BitLocker l'utilise, idéalement avec un code PIN au démarrage.",
+      "notions": [
+        "Chiffrement de fichier",
+        "Chiffrement de disque",
+        "TPM"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s06-s02",
+      "titre": "Transmettre la clé",
+      "contenu": "Erreur classique : joindre le fichier chiffré **et** son mot de passe dans **un seul et même courriel**. Un attaquant qui intercepte l'un intercepte l'autre.\n\nBonne pratique : transmettre la clé par un **autre canal** (SMS, téléphone, de vive voix) ; utiliser une phrase de passe longue ; conserver les clés de récupération (BitLocker) en lieu sûr : **sans clé, pas de récupération possible**.",
+      "notions": [
+        "Transmission de la clé"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq2-s06-s03",
+      "titre": "Tester des mots de passe : cadre légal",
+      "contenu": "Les outils de **craquage** (John the Ripper, Hashcat) testent la robustesse des mots de passe en essayant des millions de candidats sur des empreintes.\n\nLe Code pénal (articles **323-1 et suivants**) punit l'accès frauduleux à un système et la détention ou l'utilisation d'outils d'attaque **sans motif légitime**. On ne les utilise donc que :\n- sur **ses propres** systèmes de test ou un environnement de formation ;\n- ou dans le cadre d'une **mission autorisée par écrit** (audit, test d'intrusion), avec un périmètre défini.\n\nUne démonstration montre vite qu'un mot de passe court tombe en quelques secondes, alors qu'une longue phrase de passe résiste.",
+      "notions": [
+        "Cadre légal des tests de mots de passe",
+        "Craquage de mots de passe"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq2-s06-c001",
+      "section": "libre-b3-32-sq2-s06-s01",
+      "type": "qcm",
+      "question": "Un portable avec BitLocker activé est infecté par un logiciel espion pendant qu'on l'utilise. Le chiffrement du disque protège-t-il les fichiers ?",
+      "choix": [
+        "Oui, toujours",
+        "Non : une fois le disque déverrouillé, les fichiers sont lisibles par les programmes en cours d'exécution",
+        "Oui, si le TPM est présent",
+        "Seulement les fichiers Word"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le chiffrement de disque protège surtout contre le vol de l'appareil éteint.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq2-s06-c002",
+      "section": "libre-b3-32-sq2-s06-s02",
+      "type": "qcm",
+      "question": "Comment transmettre le mot de passe d'une archive chiffrée envoyée par e-mail ?",
+      "choix": [
+        "Dans le même e-mail, en gras",
+        "Dans le nom du fichier",
+        "Par un autre canal, par exemple un appel téléphonique",
+        "Dans un second e-mail une minute après"
+      ],
+      "bonneReponse": 2,
+      "explication": "Un canal différent évite qu'une seule interception suffise.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-32-sq2-s06-c003",
+      "section": "libre-b3-32-sq2-s06-s03",
+      "type": "question",
+      "recto": "Dans quel cadre peut-on utiliser un outil de craquage de mots de passe ?",
+      "verso": "Sur ses **propres** systèmes de test, ou dans une mission **autorisée par écrit** avec un périmètre défini ; sinon, c'est un délit.",
+      "difficulte": 2
+    }
+  ]
+}

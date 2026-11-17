@@ -1,0 +1,94 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq4-s01",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ4 – Sensibilisation et droits des personnes",
+  "sequence": null,
+  "seance": "S01 – Sensibiliser : objectifs et méthodes",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La sensibilisation fait des utilisateurs un maillon fort de la sécurité. Elle répond à une obligation, s'organise selon plusieurs axes et formes, et commence par mesurer le niveau du public.",
+  "notions": [
+    "Obligation de sensibiliser",
+    "Facteur humain",
+    "Axes de sensibilisation",
+    "Formes de formation",
+    "Test de positionnement"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq4-s01-s01",
+      "titre": "Pourquoi sensibiliser ?",
+      "contenu": "- La majorité des incidents implique une **action humaine** : clic sur un lien piégé, mot de passe réutilisé, envoi au mauvais destinataire.\n- Le RGPD impose des **mesures organisationnelles** de sécurité : former le personnel qui manipule des données en fait partie ; le DPO a pour mission de sensibiliser.\n- En cas de contrôle ou d'incident, l'absence de formation peut aggraver la **sanction** et la responsabilité de l'organisation.\n\nObjectif : passer de « l'utilisateur, maillon faible » à « l'utilisateur, **premier capteur** » qui détecte et signale.",
+      "notions": [
+        "Obligation de sensibiliser",
+        "Facteur humain"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq4-s01-s02",
+      "titre": "Les axes et les formes",
+      "contenu": "**Axes** possibles : reconnaître l'hameçonnage, mots de passe et MFA, protection des données personnelles (RGPD), nomadisme, réseaux sociaux, réflexes en cas d'incident, sécurité physique.\n\n**Formes** :\n| Forme | Atout |\n| --- | --- |\n| atelier en présentiel | échanges, cas concrets |\n| module en ligne (e-learning) | à son rythme, suivi des résultats |\n| campagne d'hameçonnage simulé | mise en situation réelle |\n| affiches, vidéos courtes, quiz | rappels réguliers |\n| escape game, serious game | engagement |\n\nUne seule séance théorique **sans suivi** est peu efficace : on combine plusieurs formes et on répète.",
+      "notions": [
+        "Axes de sensibilisation",
+        "Formes de formation"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq4-s01-s03",
+      "titre": "Le test de positionnement",
+      "contenu": "Avant de former, on mesure le **niveau initial** du public par un **test de positionnement** (quiz, questionnaire, simulation). Il permet :\n- d'**adapter** le contenu (inutile d'expliquer les bases à des informaticiens) ;\n- de **cibler** les points faibles ;\n- de **mesurer les progrès** en refaisant le test après la formation.",
+      "notions": [
+        "Test de positionnement"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq4-s01-c001",
+      "section": "libre-b3-31-sq4-s01-s01",
+      "type": "qcm",
+      "question": "Pourquoi la sensibilisation est-elle une mesure de sécurité à part entière ?",
+      "choix": [
+        "Parce qu'elle remplace l'antivirus",
+        "Parce que beaucoup d'incidents commencent par une action humaine",
+        "Parce qu'elle est gratuite",
+        "Parce que la loi interdit les mesures techniques"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les mesures techniques ne suffisent pas si les utilisateurs sont trompés.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq4-s01-c002",
+      "section": "libre-b3-31-sq4-s01-s02",
+      "type": "qcm",
+      "question": "Laquelle est la démarche la plus efficace ?",
+      "choix": [
+        "Une conférence de 3 heures une fois tous les 5 ans",
+        "Un atelier initial, puis des rappels courts et des exercices réguliers",
+        "Envoyer la charte par e-mail sans commentaire",
+        "Sanctionner chaque clic sur un lien piégé"
+      ],
+      "bonneReponse": 1,
+      "explication": "La répétition et la mise en pratique ancrent les réflexes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq4-s01-c003",
+      "section": "libre-b3-31-sq4-s01-s03",
+      "type": "exercice",
+      "enonce": "Corrige ce questionnaire rempli par un salarié : (1) « Un site avec cadenas est sûr » → Vrai ; (2) « Je peux utiliser le même mot de passe si il est complexe » → Vrai ; (3) « Si je clique sur un lien suspect, je préviens l'informatique » → Vrai.",
+      "etapes": [
+        "(1) Faux : le cadenas indique seulement une connexion chiffrée ; un faux site peut l'avoir.",
+        "(2) Faux : un mot de passe réutilisé fuité sur un site permet d'accéder aux autres comptes.",
+        "(3) Vrai : signaler vite permet de limiter les dégâts ; on ne sera pas blâmé."
+      ],
+      "reponse": "1 faux, 2 faux, 3 vrai : score 1/3, à retravailler sur les sites frauduleux et les mots de passe.",
+      "difficulte": 2
+    }
+  ]
+}

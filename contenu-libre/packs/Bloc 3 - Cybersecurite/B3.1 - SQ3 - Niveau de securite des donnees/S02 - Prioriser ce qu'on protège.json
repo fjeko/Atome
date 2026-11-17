@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq3-s02",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ3 – Niveau de sécurité des données",
+  "sequence": null,
+  "seance": "S02 – Prioriser ce qu'on protège",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. On ne peut pas tout protéger au même niveau : on recense les éléments à protéger, on les classe selon leur valeur et leur sensibilité, on attribue les droits selon la fonction et on définit une politique, notamment pour les mots de passe.",
+  "notions": [
+    "Inventaire des biens",
+    "Classification des données",
+    "Gestion des droits par fonction",
+    "Politique de protection des données",
+    "Mot de passe robuste",
+    "Authentification multifacteur"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq3-s02-s01",
+      "titre": "Recenser et classer les biens",
+      "contenu": "Étapes :\n1. **Recenser** les biens : données (fichier clients, paie), applications, serveurs, postes, comptes.\n2. **Documenter** : propriétaire, emplacement, qui y accède.\n3. **Classer** selon la sensibilité, par exemple : public, interne, confidentiel, secret.\n4. **Prioriser** : protéger d'abord ce dont la perte ou la fuite aurait l'impact le plus grave.\n\n| Donnée (cabinet comptable fictif **Chiffres & Lettres**) | Classement |\n| --- | --- |\n| plaquette commerciale | public |\n| planning des congés | interne |\n| bilans des clients | confidentiel |\n| identifiants bancaires des clients | secret |",
+      "notions": [
+        "Inventaire des biens",
+        "Classification des données"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq3-s02-s02",
+      "titre": "Droits selon la fonction",
+      "contenu": "Les droits d'accès se définissent **selon la fonction** (profil, rôle), pas au cas par cas :\n\n| Fonction | Dossiers clients | Paie | Paramètres SI |\n| --- | --- | --- | --- |\n| Comptable | lecture/écriture | — | — |\n| RH | — | lecture/écriture | — |\n| Administrateur | technique seulement | — | total |\n\nOn revoit les droits à chaque **arrivée, changement de poste et départ** (sinon, les droits s'accumulent).\n\nLa **politique de protection des données** formalise ces règles : classification, droits, chiffrement, sauvegardes, conservation, procédures.",
+      "notions": [
+        "Gestion des droits par fonction",
+        "Politique de protection des données"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq3-s02-s03",
+      "titre": "Mots de passe robustes",
+      "contenu": "Un mot de passe robuste est avant tout **long** et **unique** :\n- au moins **12 caractères** avec plusieurs types (minuscules, majuscules, chiffres, spéciaux), ou une **phrase de passe** plus longue (par ex. 4 à 5 mots aléatoires) ;\n- **un mot de passe différent par service** ; un **gestionnaire** de mots de passe aide ;\n- **authentification multifacteur** pour les comptes sensibles.\n\nRègles **contre-productives** à éviter : forcer un changement trop fréquent (les utilisateurs ajoutent « 1 », « 2 »…), complexité imposée sur un mot de passe court. On change plutôt le mot de passe **en cas de soupçon** de compromission.",
+      "notions": [
+        "Mot de passe robuste",
+        "Authentification multifacteur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq3-s02-c001",
+      "section": "libre-b3-31-sq3-s02-s01",
+      "type": "qcm",
+      "question": "Quelle donnée protéger en priorité dans une clinique ?",
+      "choix": [
+        "Le menu de la cafétéria",
+        "Le planning de nettoyage",
+        "Les dossiers médicaux des patients",
+        "L'organigramme publié sur le site"
+      ],
+      "bonneReponse": 2,
+      "explication": "Données de santé : sensibilité maximale.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq3-s02-c002",
+      "section": "libre-b3-31-sq3-s02-s02",
+      "type": "question",
+      "recto": "Quand faut-il revoir les droits d'un utilisateur ?",
+      "verso": "À chaque **arrivée**, **changement de fonction** et **départ**, plus des revues périodiques.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq3-s02-c003",
+      "section": "libre-b3-31-sq3-s02-s03",
+      "type": "qcm",
+      "question": "Lequel est le plus robuste ?",
+      "choix": [
+        "`P@ssw0rd!`",
+        "`Marseille2026`",
+        "`galet-pivoine-tramway-sobre-41`",
+        "`azerty123`"
+      ],
+      "bonneReponse": 2,
+      "explication": "Une longue phrase de mots aléatoires résiste mieux qu'un mot court « décoré ».",
+      "difficulte": 2
+    }
+  ]
+}

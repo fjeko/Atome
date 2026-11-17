@@ -1,0 +1,87 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-34-sq1-s01",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.4 – SQ1 – Développement web et RGPD",
+  "sequence": null,
+  "seance": "S01 – Formulaire : information et minimisation",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un formulaire web est le premier point de collecte de données personnelles. Le développeur limite les champs au nécessaire, distingue obligatoire et facultatif et affiche l'information requise au bon endroit.",
+  "notions": [
+    "Minimisation dans un formulaire",
+    "Champs obligatoires et facultatifs",
+    "Mention d'information sur formulaire",
+    "Correction de formulaire non conforme"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-34-sq1-s01-s01",
+      "titre": "Minimiser les champs",
+      "contenu": "Pour chaque champ, pose la question : **est-ce nécessaire à la finalité ?**\n\nFormulaire d'inscription à une newsletter du site fictif **Recettes du Marais** :\n\n| Champ | Nécessaire ? |\n| --- | --- |\n| adresse e-mail | **oui** (finalité : envoyer la lettre) |\n| prénom | facultatif (personnalisation), à marquer comme tel |\n| date de naissance | **non** → supprimer |\n| téléphone | **non** → supprimer |\n| adresse postale | **non** → supprimer |\n\n- Les champs **obligatoires** sont signalés (astérisque expliqué) ; les autres explicitement **facultatifs**.\n- On ne collecte pas « au cas où » pour un usage futur hypothétique.",
+      "notions": [
+        "Minimisation dans un formulaire",
+        "Champs obligatoires et facultatifs"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq1-s01-s02",
+      "titre": "Informer au moment de la collecte",
+      "contenu": "Sous le formulaire, une **mention courte** (premier niveau) avec un lien vers la politique complète (second niveau) :\n\n```html\n<p class=\"mention-rgpd\">\n  Les informations recueillies sont traitées par Recettes du Marais pour vous envoyer\n  notre lettre hebdomadaire. Base légale : votre consentement. Elles sont conservées\n  jusqu'à votre désinscription. Vous pouvez accéder à vos données, les rectifier ou les\n  effacer en écrivant à <a href=\"mailto:dpo@recettesdumarais.example\">dpo@recettesdumarais.example</a>.\n  En savoir plus : <a href=\"/confidentialite\">politique de confidentialité</a>.\n  Vous pouvez adresser une réclamation à la CNIL.\n</p>\n```\n\nÉléments attendus : responsable, finalité, base légale, destinataires, durée, droits et contact, réclamation CNIL (et transferts hors UE le cas échéant).",
+      "notions": [
+        "Mention d'information sur formulaire"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq1-s01-s03",
+      "titre": "Corriger un formulaire",
+      "contenu": "Contrôle côté développeur :\n- champs minimaux, `required` seulement sur l'indispensable ;\n- `type` adaptés (`email`, `tel`) et validation **côté serveur** ;\n- envoi en **HTTPS** ;\n- mention d'information visible ;\n- aucune case de consentement **pré-cochée** ;\n- pas de données sensibles sans nécessité ni garanties.",
+      "notions": [
+        "Correction de formulaire non conforme"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-34-sq1-s01-c001",
+      "section": "libre-b3-34-sq1-s01-s01",
+      "type": "qcm",
+      "question": "Pour un formulaire de demande de devis de jardinage, quel champ est superflu ?",
+      "choix": [
+        "Adresse du jardin",
+        "Téléphone ou e-mail de contact",
+        "Situation familiale",
+        "Surface approximative"
+      ],
+      "bonneReponse": 2,
+      "explication": "La situation familiale n'a aucun rapport avec la finalité (établir un devis).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq1-s01-c002",
+      "section": "libre-b3-34-sq1-s01-s02",
+      "type": "question",
+      "recto": "Où placer la mention d'information d'un formulaire ?",
+      "verso": "**Directement au niveau du formulaire** (au moment de la collecte), accompagnée d'un lien vers la version complète de la politique de confidentialité.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-34-sq1-s01-c003",
+      "section": "libre-b3-34-sq1-s01-s03",
+      "type": "exercice",
+      "enonce": "Corrige ce formulaire de contact : nom*, prénom*, e-mail*, téléphone*, date de naissance*, numéro de sécurité sociale, message* ; case « J'accepte de recevoir les offres des partenaires » cochée par défaut ; aucune mention ; envoi en HTTP.",
+      "etapes": [
+        "Supprimer date de naissance et numéro de sécurité sociale (inutiles, et le NIR est très encadré).",
+        "Téléphone : facultatif ; garder nom, e-mail, message obligatoires (prénom facultatif).",
+        "Case partenaires : décochée par défaut, séparée de l'envoi du message (consentement distinct).",
+        "Ajouter la mention d'information et le lien vers la politique.",
+        "Passer le site en HTTPS."
+      ],
+      "reponse": "Formulaire minimal (nom, e-mail, message), case non pré-cochée, mention ajoutée, HTTPS.",
+      "difficulte": 2
+    }
+  ]
+}

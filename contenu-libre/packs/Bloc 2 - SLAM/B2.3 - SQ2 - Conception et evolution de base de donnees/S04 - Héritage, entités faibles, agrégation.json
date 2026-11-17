@@ -1,0 +1,87 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq2-s04",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – SQ2 – Conception et évolution de base de données",
+  "sequence": null,
+  "seance": "S04 – Héritage, entités faibles, agrégation",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Approfondissement des composants avancés du MCD : héritage et ses contraintes, entités faibles identifiées relativement, agrégation, et leur traduction en tables.",
+  "notions": [
+    "Héritage MCD",
+    "Contraintes d'héritage",
+    "Traduction de l'héritage en tables",
+    "Entité faible",
+    "Agrégation MCD"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq2-s04-s01",
+      "titre": "Héritage : quand et comment",
+      "contenu": "L'héritage s'impose quand des **variantes** d'une même entité ont des propriétés ou des associations **spécifiques**.\n\nExemple : les **membres** d'un club de sport **ClubOxygène** sont soit des `ADHERENT`s (date de certificat médical), soit des `ENTRAINEUR`s (numéro de diplôme). Seuls les entraîneurs *encadrent* des cours.\n\nContraintes : **X** exclusion, **T** totalité, **XT** partition. Ici, si un entraîneur peut aussi être adhérent, il n'y a pas d'exclusion.\n\nNe pas utiliser l'héritage pour une **simple valeur** qui ne change rien à la structure : un booléen ou une entité de référence suffit.",
+      "notions": [
+        "Héritage MCD",
+        "Contraintes d'héritage"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq2-s04-s02",
+      "titre": "Traduire l'héritage",
+      "contenu": "Option la plus fidèle (une table par entité, clé partagée) :\n\n```text\nMEMBRE(idMembre, nom, prenom, email)\nADHERENT(#idMembre, dateCertificat)\nENTRAINEUR(#idMembre, numDiplome)\nCOURS(idCours, intitule, #idMembre_entraineur)   -- référence ENTRAINEUR\n```\n\nLa clé primaire des sous-types est aussi **clé étrangère** vers la table mère. L'association *Encadrer* référence bien ENTRAINEUR (et non MEMBRE) : impossible qu'un simple adhérent encadre un cours.",
+      "notions": [
+        "Traduction de l'héritage en tables"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq2-s04-s03",
+      "titre": "Entité faible et agrégation",
+      "contenu": "**Entité faible** : son identifiant n'a de sens qu'à l'intérieur d'une autre entité (lien identifiant).\nExemple : les `PLACE`s d'un `STADE` numérotées par tribune : `PLACE(#idStade, numPlace)`.\n\n**Agrégation** : une association devient elle-même participante d'une autre association.\nExemple : l'association *Inscrire* (ADHERENT, COURS) est reliée à un `TARIF` appliqué. Traduction : la table INSCRIRE reçoit une clé étrangère vers TARIF.",
+      "notions": [
+        "Entité faible",
+        "Agrégation MCD"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq2-s04-c001",
+      "section": "libre-b2-23-sq2-s04-s01",
+      "type": "qcm",
+      "question": "Les sous-types `CLIENT_PARTICULIER` et `CLIENT_PRO` n'ont aucune propriété ni association spécifique, seulement un libellé différent. Faut-il un héritage ?",
+      "choix": [
+        "Oui, toujours",
+        "Non, un attribut type (ou une entité TYPE_CLIENT) suffit",
+        "Oui, avec une contrainte XT",
+        "Non, il faut deux bases séparées"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'héritage ne se justifie que par des différences de structure.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq2-s04-c002",
+      "section": "libre-b2-23-sq2-s04-s02",
+      "type": "question",
+      "recto": "Dans la traduction « une table par entité », quelle est la clé primaire d'une table de sous-type ?",
+      "verso": "La même que celle de la table mère, qui est **à la fois** clé primaire et **clé étrangère** vers la mère.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq2-s04-c003",
+      "section": "libre-b2-23-sq2-s04-s03",
+      "type": "exercice",
+      "enonce": "Une résidence de vacances **Les Oyats** a des bâtiments (code) ; les appartements sont numérotés 1, 2, 3… dans chaque bâtiment ; chaque appartement a une surface. Modélise et traduis.",
+      "etapes": [
+        "Entité BATIMENT(codeBat).",
+        "Entité faible APPARTEMENT(numApp, surface) reliée à BATIMENT par un lien identifiant (1,1) côté appartement.",
+        "Traduction : BATIMENT(codeBat) ; APPARTEMENT(#codeBat, numApp, surface)."
+      ],
+      "reponse": "Clé primaire composée (#codeBat, numApp).",
+      "difficulte": 2
+    }
+  ]
+}

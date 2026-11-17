@@ -1,0 +1,79 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq2-s05",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie I – SQ2 – Application de bureau événementielle en C#",
+  "sequence": null,
+  "seance": "S05 – Sécuriser l'interface",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Empêcher les erreurs de l'utilisateur plutôt que les subir : activer ou désactiver les contrôles au bon moment, vérifier les saisies et interdire les enchaînements illogiques.",
+  "notions": [
+    "Activer et désactiver les contrôles",
+    "Vérifier les saisies",
+    "Enchaînements logiques",
+    "Messages à l'utilisateur"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq2-s05-s01",
+      "titre": "Activer et désactiver au bon moment",
+      "contenu": "Le meilleur moyen d'éviter une erreur, c'est de **la rendre impossible**. La propriété `Enabled` grise un contrôle :\n```csharp\nprivate void FrmInscription_Load(object sender, EventArgs e)\n{\n    btnValider.Enabled = false;   // rien à valider au départ\n}\n\nprivate void txtNom_TextChanged(object sender, EventArgs e)\n{\n    // le bouton ne s'active que si le nom est rempli\n    btnValider.Enabled = txtNom.Text.Trim() != \"\";\n}\n```\nExemples d'**enchaînements illogiques** à empêcher :\n- cliquer « Imprimer le reçu » avant d'avoir enregistré le paiement ;\n- choisir une taille de t-shirt alors que la case « je veux un t-shirt » n'est pas cochée ;\n- lancer deux fois le même traitement en double-cliquant (on désactive le bouton pendant le traitement).",
+      "notions": [
+        "Activer et désactiver les contrôles",
+        "Enchaînements logiques"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s05-s02",
+      "titre": "Vérifier les saisies",
+      "contenu": "Même avec une interface bien pensée, on **vérifie** toujours les valeurs avant de les utiliser :\n```csharp\nprivate void btnEnregistrer_Click(object sender, EventArgs e)\n{\n    if (!int.TryParse(txtAge.Text, out int age) || age < 6 || age > 99)\n    {\n        MessageBox.Show(\"L'âge doit être un nombre entre 6 et 99.\",\n                        \"Saisie incorrecte\", MessageBoxButtons.OK, MessageBoxIcon.Warning);\n        txtAge.Focus();\n        txtAge.SelectAll();\n        return;\n    }\n    // ... enregistrement\n}\n```\nBonnes pratiques pour les messages :\n- dire **ce qui ne va pas** et **comment corriger** (« L'âge doit être… » plutôt que « Erreur 12 ») ;\n- remettre le **focus** sur le champ fautif ;\n- pas de ton accusateur ;\n- pour les vérifications en direct, un `ErrorProvider` affiche une petite icône à côté du champ.\n\nOn peut aussi **filtrer les frappes** :\n```csharp\nprivate void txtAge_KeyPress(object sender, KeyPressEventArgs e)\n{\n    // on n'accepte que les chiffres et la touche Retour arrière\n    if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)\n        e.Handled = true;   // la touche est ignorée\n}\n```",
+      "notions": [
+        "Vérifier les saisies",
+        "Messages à l'utilisateur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq2-s05-c001",
+      "section": "libre-b1-12a-sq2-s05-s01",
+      "type": "qcm",
+      "question": "Dans un formulaire de don, le bouton « Payer » ne doit être utilisable que si un montant est choisi. Quelle est la meilleure approche ?",
+      "choix": [
+        "Laisser le bouton actif et afficher une erreur en cas de clic sans montant",
+        "Désactiver le bouton tant qu'aucun montant n'est choisi",
+        "Cacher tout le formulaire",
+        "Choisir un montant par défaut de 1 000 €"
+      ],
+      "bonneReponse": 1,
+      "explication": "Prévenir plutôt que guérir : un bouton désactivé empêche l'erreur. (Un contrôle au clic reste utile en complément.)",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq2-s05-c002",
+      "section": "libre-b1-12a-sq2-s05-s02",
+      "type": "question",
+      "recto": "Que doit contenir un bon message d'erreur de saisie ?",
+      "verso": "Ce qui ne va pas et comment le corriger, dans un ton neutre ; idéalement le focus est replacé sur le champ concerné.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq2-s05-c003",
+      "section": "libre-b1-12a-sq2-s05-s02",
+      "type": "exercice",
+      "enonce": "Écris la vérification d'un champ `txtEmail` : il doit contenir un « @ » et un point après le « @ ». Sinon, afficher un message et replacer le focus.",
+      "etapes": [
+        "Récupérer le texte (avec Trim).",
+        "Chercher la position du « @ » avec IndexOf ; elle doit être > 0.",
+        "Chercher un point après cette position avec IndexOf('.', position).",
+        "Si une condition échoue : message, focus, return."
+      ],
+      "reponse": "```csharp\nstring mail = txtEmail.Text.Trim();\nint posArobase = mail.IndexOf('@');\nif (posArobase <= 0 || mail.IndexOf('.', posArobase) == -1)\n{\n    MessageBox.Show(\"Adresse e-mail incomplète (exemple : nom@domaine.fr).\");\n    txtEmail.Focus();\n    return;\n}\n```",
+      "difficulte": 2
+    }
+  ]
+}

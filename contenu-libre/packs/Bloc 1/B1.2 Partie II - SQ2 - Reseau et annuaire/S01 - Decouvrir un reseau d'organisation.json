@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq2-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ2 – Réseaux, adressage IP et annuaire de domaine",
+  "sequence": null,
+  "seance": "S01 – Découvrir un réseau d'organisation et son schéma",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les équipements d'un réseau local (commutateur, routeur, pare-feu), la classification des réseaux selon leur étendue, les services qu'offre un réseau et la lecture d'un schéma réseau.",
+  "notions": [
+    "Équipements réseau",
+    "Classification PAN LAN MAN WAN",
+    "Services réseau",
+    "Lecture d'un schéma réseau"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq2-s01-s01",
+      "titre": "Les équipements d'un réseau local",
+      "contenu": "Un **réseau** relie des équipements pour qu'ils échangent des données. Dans une organisation, on trouve :\n| Équipement | Rôle |\n| --- | --- |\n| **Commutateur** (*switch*) | relie les postes d'un même réseau local ; il envoie chaque trame uniquement vers le port du destinataire |\n| **Routeur** | relie **des réseaux différents** entre eux (le réseau local et Internet, deux sites) et choisit le chemin des paquets |\n| **Pare-feu** | filtre les communications selon des règles (autoriser, bloquer) |\n| **Point d'accès Wi-Fi** | raccorde les appareils sans fil au réseau filaire |\n| **Serveurs** | fournissent des services (fichiers, annuaire, messagerie, impression) |\n\nUne **box** Internet de particulier réunit souvent dans un seul boîtier routeur, commutateur, point d'accès et pare-feu.",
+      "notions": [
+        "Équipements réseau"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s01-s02",
+      "titre": "Classer les réseaux par étendue",
+      "contenu": "| Sigle | Nom | Étendue | Exemple |\n| --- | --- | --- | --- |\n| **PAN** | réseau personnel | quelques mètres | téléphone + écouteurs Bluetooth |\n| **LAN** | réseau local | un bâtiment, un site | réseau d'une PME |\n| **MAN** | réseau métropolitain | une ville | réseau reliant les bâtiments d'une métropole |\n| **WAN** | réseau étendu | pays, monde | Internet, liaison entre agences de régions différentes |",
+      "notions": [
+        "Classification PAN LAN MAN WAN"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s01-s03",
+      "titre": "Services et schéma réseau",
+      "contenu": "Le réseau rend des **services** : partage de fichiers et d'imprimantes, accès à Internet, messagerie, annuaire des utilisateurs, attribution automatique d'adresses (DHCP), traduction des noms en adresses (DNS), téléphonie…\n\nUn **schéma réseau** représente les équipements, les liaisons et souvent les adresses. Exemple pour l'imprimerie Lafeuille :\n```text\n             Internet\n                |\n          [Routeur/pare-feu] 192.168.20.254\n                |\n          [Commutateur principal]\n          /       |          \\\n  [Serveur]   [Commutateur   [Point d'accès\n  .20.10       atelier]        Wi-Fi]\n               /    \\\n         [PC-01]   [Imprimante .20.50]\n```\nLire un schéma, c'est répondre à : par **quels équipements** passe une communication ? Quelle est la **passerelle** des postes ? Où sont les **points uniques de panne** (si le commutateur principal tombe, tout s'arrête) ?",
+      "notions": [
+        "Services réseau",
+        "Lecture d'un schéma réseau"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq2-s01-c001",
+      "section": "libre-b1-12b-sq2-s01-s01",
+      "type": "qcm",
+      "question": "Quel équipement relie deux réseaux différents, par exemple le réseau local et Internet ?",
+      "choix": [
+        "Le commutateur",
+        "Le routeur",
+        "Le point d'accès Wi-Fi",
+        "La carte réseau"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le commutateur relie les machines d'un même réseau ; le routeur fait passer les paquets d'un réseau à un autre.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq2-s01-c002",
+      "section": "libre-b1-12b-sq2-s01-s02",
+      "type": "qcm",
+      "question": "Les 12 bâtiments municipaux d'une ville reliés par la fibre de la collectivité forment plutôt un…",
+      "choix": [
+        "PAN",
+        "LAN",
+        "MAN",
+        "WAN"
+      ],
+      "bonneReponse": 2,
+      "explication": "Un réseau à l'échelle d'une ville est un réseau métropolitain (MAN).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq2-s01-c003",
+      "section": "libre-b1-12b-sq2-s01-s03",
+      "type": "exercice",
+      "enonce": "Sur le schéma de l'imprimerie, par quels équipements passe une impression lancée depuis PC-01 ? Et une consultation d'un site web depuis le serveur ?",
+      "etapes": [
+        "PC-01 et l'imprimante sont tous deux branchés au commutateur atelier.",
+        "Pour Internet, le serveur passe par le commutateur principal, puis le routeur/pare-feu."
+      ],
+      "reponse": "Impression : PC-01 → commutateur atelier → imprimante. Web depuis le serveur : serveur → commutateur principal → routeur/pare-feu → Internet.",
+      "difficulte": 2
+    }
+  ]
+}

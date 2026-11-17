@@ -1,0 +1,81 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-m-s02",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Méthodologie de l'épreuve",
+  "sequence": null,
+  "seance": "S2 – Comprendre la consigne",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le verbe directeur dit quelle forme doit prendre la réponse : repérer, analyser ou argumenter. Bien le lire évite de répondre à côté.",
+  "notions": [
+    "Verbes directeurs",
+    "Reformulation de la consigne"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-m-s02-s01",
+      "titre": "Les verbes directeurs",
+      "contenu": "| Famille | Verbes | Ce qu'on attend |\n|---|---|---|\n| **Repérage** | relever, identifier, repérer, citer | extraire une information du dossier, brièvement, en citant la source |\n| **Analyse** | expliquer, analyser, caractériser, justifier, qualifier | montrer le *pourquoi* ou le *comment*, avec une notion du cours appliquée aux faits |\n| **Argumentation** | discuter, apprécier, proposer, évaluer, montrer que | construire un raisonnement avec des arguments, parfois des avantages **et** des limites, et conclure |\n\nExemples :\n- « **Identifiez** les parties prenantes de l'entreprise » → une liste justifiée par un mot du texte.\n- « **Caractérisez** le marché sur lequel elle se situe » → nommer la structure (oligopole…) **avec** les indices du dossier.\n- « **Appréciez** la pertinence de ce choix » → avantages, limites, avis motivé.",
+      "notions": [
+        "Verbes directeurs"
+      ]
+    },
+    {
+      "id": "libre-cejm-m-s02-s02",
+      "titre": "Reformuler avant de répondre",
+      "contenu": "Avant de rédiger, reformule la question avec tes mots : « On me demande de… à propos de… en m'appuyant sur… ».\n\nPuis vérifie trois points :\n1. **le verbe** (quelle forme ?) ;\n2. **l'objet** (sur quoi précisément ? une seule entreprise, une décision, une période ?) ;\n3. **les limites** (« à partir de l'annexe 3 », « en deux arguments »…).\n\nStructure type d'une réponse d'analyse : **notion** (définition courte) → **application** aux faits du dossier → **conclusion** qui répond à la question.",
+      "notions": [
+        "Reformulation de la consigne"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-m-s02-c001",
+      "section": "libre-cejm-m-s02-s01",
+      "type": "qcm",
+      "question": "La consigne dit : « Justifiez le choix d'un emprunt bancaire ». Quelle réponse convient ?",
+      "choix": [
+        "Expliquer, à l'aide des données, pourquoi l'emprunt est adapté au besoin",
+        "Définir l'emprunt bancaire",
+        "Recopier le passage du document qui mentionne l'emprunt",
+        "Lister toutes les sources de financement"
+      ],
+      "bonneReponse": 0,
+      "explication": "Justifier = donner les raisons, en reliant la notion aux faits de la situation.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-m-s02-c002",
+      "section": "libre-cejm-m-s02-s01",
+      "type": "qcm",
+      "question": "Quel verbe appelle une réponse nuancée avec avantages et limites ?",
+      "choix": [
+        "Discuter",
+        "Relever",
+        "Identifier",
+        "Citer"
+      ],
+      "bonneReponse": 0,
+      "explication": "« Discuter » est un verbe d'argumentation.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-m-s02-c003",
+      "section": "libre-cejm-m-s02-s02",
+      "type": "exercice",
+      "enonce": "Reformule la consigne : « À partir de l'annexe 2, analysez les conséquences de la hausse des taux directeurs pour la société Vélorium. »",
+      "etapes": [
+        "Verbe : analyser → expliquer les mécanismes, pas seulement décrire.",
+        "Objet : les conséquences de la hausse des taux, pour cette entreprise précise.",
+        "Limite : s'appuyer sur l'annexe 2."
+      ],
+      "reponse": "« Je dois expliquer, à l'aide de l'annexe 2, comment la hausse des taux directeurs se répercute sur Vélorium (coût de ses emprunts, investissements, demande de ses clients). »",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-14-sq2-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.4 – SQ2 – Méthodes agiles et gestion de versions",
+  "sequence": null,
+  "seance": "S03 – Sprint et suivi d'avancement",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le déroulement d'un sprint (planification, mêlée quotidienne, revue, rétrospective), le carnet de sprint, le tableau des tâches et la courbe d'avancement restant.",
+  "notions": [
+    "Déroulement d'un sprint",
+    "Carnet de sprint",
+    "Tableau des tâches",
+    "Courbe d'avancement restant"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-14-sq2-s03-s01",
+      "titre": "Le sprint",
+      "contenu": "Un **sprint** est une itération de **durée fixe** (1 à 4 semaines, souvent 2) qui produit un **incrément** utilisable.\n1. **Planification du sprint** : l'équipe choisit, en haut du carnet de produit, ce qu'elle s'engage à réaliser et fixe l'**objectif du sprint**. Ces éléments, découpés en tâches, forment le **carnet de sprint**.\n2. **Mêlée quotidienne** (*daily scrum*, 15 minutes, debout) : chaque membre indique son avancement de la veille, son programme du jour et ses obstacles.\n3. **Revue de sprint** : démonstration de l'incrément au Product Owner et aux parties prenantes ; retours ; mise à jour du carnet de produit.\n4. **Rétrospective** : l'équipe réfléchit à sa **façon de travailler** et choisit des améliorations.",
+      "notions": [
+        "Déroulement d'un sprint",
+        "Carnet de sprint"
+      ]
+    },
+    {
+      "id": "libre-b1-14-sq2-s03-s02",
+      "titre": "Tableau des tâches et courbe d'avancement",
+      "contenu": "Le **tableau des tâches** du sprint (colonnes *À faire / En cours / À vérifier / Fait*) rend le travail **visible** pour tous.\n\nLa **courbe d'avancement restant** (*burndown chart*) montre chaque jour le **travail restant** (en points ou en heures). On la compare à la **ligne idéale** (descente régulière jusqu'à 0 à la fin du sprint).\n```text\nPoints\n 40 |●\n 30 |  ·  ●  ●              · ligne idéale\n 20 |        ·   ●          ● réel\n 10 |              ·  ●\n  0 |__________________·___●__\n      J1  J3  J5  J7  J9  J10\n```\n- courbe **au-dessus** de l'idéale : l'équipe est **en retard** ;\n- courbe **plate** plusieurs jours : rien n'est terminé (tâches bloquées ou trop grosses) ;\n- courbe **sous** l'idéale : en avance.",
+      "notions": [
+        "Tableau des tâches",
+        "Courbe d'avancement restant"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-14-sq2-s03-c001",
+      "section": "libre-b1-14-sq2-s03-s01",
+      "type": "qcm",
+      "question": "Quelle est la différence entre la revue et la rétrospective de sprint ?",
+      "choix": [
+        "Aucune",
+        "La revue porte sur le produit livré (démonstration) ; la rétrospective sur la façon de travailler de l'équipe",
+        "La revue est quotidienne",
+        "La rétrospective est faite par le client seul"
+      ],
+      "bonneReponse": 1,
+      "explication": "Revue = le « quoi » produit ; rétrospective = le « comment » on travaille.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-14-sq2-s03-c002",
+      "section": "libre-b1-14-sq2-s03-s02",
+      "type": "exercice",
+      "enonce": "Sprint de 10 jours, 40 points prévus. Au soir du jour 5, il reste 28 points. L'équipe est-elle en avance ou en retard sur la ligne idéale ?",
+      "etapes": [
+        "La ligne idéale perd 40 / 10 = 4 points par jour.",
+        "Au jour 5, l'idéal est 40 − 5 × 4 = 20 points restants.",
+        "Il en reste 28 > 20."
+      ],
+      "reponse": "En retard de 8 points : il faut en parler en mêlée (obstacles, réduction du périmètre avec le Product Owner).",
+      "difficulte": 2
+    }
+  ]
+}

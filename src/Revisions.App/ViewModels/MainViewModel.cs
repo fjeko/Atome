@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Revisions.App.Services;
 using Revisions.App.Views;
 using Revisions.Core.MisesAJour;
+using Revisions.Core.Packs;
 using Revisions.Core.Sessions;
 using Revisions.Data;
 
@@ -230,12 +231,16 @@ public partial class MainViewModel(
         {
             var jour = etat.Jour;
             bool planningArrive = false;
+            bool proposerCoursLibres = false;
             var resultats = await Task.Run(() =>
             {
                 baseDeDonnees.SauvegarderSiNecessaire(jour);
                 Journal.Etape("Sauvegarde quotidienne finie");
                 var resultatsImport = ImporterDossier();
                 Journal.Etape($"Scan des packs fini ({resultatsImport.Count} fichiers)");
+                // Cours libres livrés avec Atome : mise à jour si activés, proposition au premier lancement.
+                resultatsImport.AddRange(SynchroniserCoursLibres(out proposerCoursLibres));
+                Journal.Etape("Cours libres synchronisés");
                 // Planning du CNED : dossier « planning » à côté du dossier « packs » (facultatif).
                 planningArrive = ImporterPlanning();
                 Journal.Etape("Planning chargé");
@@ -247,6 +252,9 @@ public partial class MainViewModel(
             // Mises à jour : en tâche de fond, sans attendre (ni le rapport d'import qui peut s'ouvrir juste après).
             _ = VerifierMisesAJourAuDemarrageAsync();
             AnnoncerImport(resultats, afficherRapportSiRien: false);
+            // Premier lancement sans aucun pack : proposition des cours libres (Oui / Plus tard).
+            if (proposerCoursLibres && await ProposerCoursLibresAsync())
+                resultats = [.. resultats, .. await ChargerCoursLibresAsync(jour)];
             // L'accueil a été calculé avant l'import : on le rafraîchit si des packs sont arrivés.
             if (VueCourante is AccueilViewModel && (planningArrive || resultats.Any(r => r.Statut is StatutImport.Importe or StatutImport.MisAJour)))
                 AllerAccueil();
@@ -261,6 +269,76 @@ public partial class MainViewModel(
             Bandeau = "L'import automatique des packs a échoué : " + exception.Message;
             _ = VerifierMisesAJourAuDemarrageAsync();
         }
+    }
+
+    /// <summary>
+    /// Cours libres au démarrage (à appeler hors du fil de l'interface). Cours libres activés : on réimporte le dossier
+    /// livré avec Atome (lecture seule ; seuls les fichiers nouveaux ou modifiés sont lus). Aucun choix encore :
+    /// avec des packs privés déjà là, on désactive sans rien importer ; sans aucun pack, on demande de proposer.
+    /// </summary>
+    private List<ResultatImport> SynchroniserCoursLibres(out bool proposer)
+    {
+        proposer = false;
+        var depot = services.GetRequiredService<DepotCoursLibres>();
+        string? dossier = etat.DossierCoursLibres;
+        switch (ContenuLibre.Evaluer(etat.Reglages.CoursLibres, depot.NombrePacksPrives(), dossier is not null))
+        {
+            case ActionCoursLibres.DesactiverParDefaut:
+                etat.Reglages.CoursLibres = false;
+                services.GetRequiredService<DepotProfil>().EcrireValeur("cours_libres", "0");
+                break;
+            case ActionCoursLibres.Proposer:
+                proposer = true;
+                break;
+        }
+        return etat.Reglages.CoursLibres == true && dossier is not null
+            ? importateur.ImporterDossier(dossier, null)
+            : [];
+    }
+
+    /// <summary>Affiche la proposition ; si l'étudiant accepte, le choix est enregistré. « Plus tard » ne fige rien.</summary>
+    private Task<bool> ProposerCoursLibresAsync()
+    {
+        int nombre = etat.DossierCoursLibres is { } d ? Directory.EnumerateFiles(d, "*.json", SearchOption.AllDirectories).Count() : 0;
+        bool oui = new FenetreCoursLibres(nombre) { Owner = Application.Current.MainWindow }.ShowDialog() == true;
+        if (oui)
+        {
+            etat.Reglages.CoursLibres = true;
+            services.GetRequiredService<DepotProfil>().EcrireValeur("cours_libres", "1");
+        }
+        return Task.FromResult(oui);
+    }
+
+    private async Task<List<ResultatImport>> ChargerCoursLibresAsync(DateOnly jour)
+    {
+        Bandeau = "Chargement des cours libres…";
+        return await Task.Run(() =>
+        {
+            var r = etat.DossierCoursLibres is { } d ? services.GetRequiredService<DepotCoursLibres>().Activer(d) : [];
+            services.GetRequiredService<DepotAcquis>().Recalculer(jour);
+            return r;
+        });
+    }
+
+    /// <summary>Interrupteur des Réglages : charge les cours libres, ou les masque (sans rien effacer).</summary>
+    public async Task ChangerCoursLibresAsync(bool actif)
+    {
+        var depot = services.GetRequiredService<DepotCoursLibres>();
+        var jour = etat.Jour;
+        List<ResultatImport> resultats = [];
+        try
+        {
+            if (actif) resultats = await ChargerCoursLibresAsync(jour);
+            else await Task.Run(() => { depot.Masquer(); services.GetRequiredService<DepotAcquis>().Recalculer(jour); });
+        }
+        catch (Exception exception)
+        {
+            Journal.Erreur("Cours libres", exception);
+            Bandeau = "Les cours libres n'ont pas pu être mis à jour : " + exception.Message;
+            return;
+        }
+        AnnoncerImport(resultats, afficherRapportSiRien: false);
+        if (!actif) Bandeau = "Cours libres masqués. Ta progression est conservée.";
     }
 
     /// <summary>

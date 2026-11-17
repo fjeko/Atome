@@ -1,0 +1,106 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-23-sq3-s04",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.3 – SQ3 – Bases NoSQL orientées documents",
+  "sequence": null,
+  "seance": "S04 – Regroupements",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le pipeline d'agrégation enchaîne des étapes ($match, $group, $sort, $project…) pour filtrer, regrouper et calculer, comme GROUP BY en SQL.",
+  "notions": [
+    "Pipeline d'agrégation",
+    "$match",
+    "$group",
+    "$project",
+    "$unwind",
+    "$lookup",
+    "Traduction SQL vers MongoDB"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-23-sq3-s04-s01",
+      "titre": "Le pipeline d'agrégation",
+      "contenu": "`aggregate` reçoit un **tableau d'étapes** ; chaque étape transforme les documents et passe le résultat à la suivante.\n\n```javascript\ndb.ventes.aggregate([\n  { $match: { annee: 2026 } },                                   // filtrer (WHERE)\n  { $group: { _id: \"$categorie\",                                 // regrouper (GROUP BY)\n              total: { $sum: \"$montant\" },\n              nb: { $sum: 1 },\n              panierMoyen: { $avg: \"$montant\" } } },\n  { $match: { total: { $gt: 1000 } } },                          // filtrer les groupes (HAVING)\n  { $sort: { total: -1 } }                                       // trier (ORDER BY)\n])\n```\n\n- Dans `$group`, `_id` est le **critère de regroupement** ; `\"$categorie\"` (avec `$`) désigne la **valeur du champ**.\n- Accumulateurs : `$sum`, `$avg`, `$min`, `$max`, `$count`, `$push`.\n- `{ $sum: 1 }` compte les documents.",
+      "notions": [
+        "Pipeline d'agrégation",
+        "$match",
+        "$group"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s04-s02",
+      "titre": "Autres étapes utiles",
+      "contenu": "- `$project` : choisir ou calculer des champs (`{ $project: { nom: 1, ttc: { $multiply: [\"$prix\", 1.2] } } }`).\n- `$unwind` : « déplier » un tableau : un document par élément (utile pour compter des tags ou des lignes de commande).\n- `$lookup` : joindre une autre collection (équivalent d'une jointure externe).\n- `$limit`, `$skip` : pagination.",
+      "notions": [
+        "$project",
+        "$unwind",
+        "$lookup"
+      ]
+    },
+    {
+      "id": "libre-b2-23-sq3-s04-s03",
+      "titre": "Traduire du SQL",
+      "contenu": "| SQL | MongoDB |\n| --- | --- |\n| `SELECT * FROM t WHERE a = 1` | `db.t.find({ a: 1 })` |\n| `SELECT a, b FROM t` | `db.t.find({}, { a: 1, b: 1 })` |\n| `ORDER BY a DESC LIMIT 5` | `.sort({ a: -1 }).limit(5)` |\n| `SELECT COUNT(*) FROM t WHERE …` | `db.t.countDocuments({ … })` |\n| `GROUP BY x` + agrégat | `aggregate([{ $group: { _id: \"$x\", … } }])` |\n| `UPDATE t SET a = 2 WHERE id = 3` | `db.t.updateOne({ _id: 3 }, { $set: { a: 2 } })` |\n| `DELETE FROM t WHERE …` | `db.t.deleteMany({ … })` |",
+      "notions": [
+        "Traduction SQL vers MongoDB"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-23-sq3-s04-c001",
+      "section": "libre-b2-23-sq3-s04-s01",
+      "type": "qcm",
+      "question": "Dans `$group`, que représente `_id: \"$ville\"` ?",
+      "choix": [
+        "L'identifiant du premier document",
+        "Le regroupement par valeur du champ ville",
+        "Une ville nommée « $ville »",
+        "Un filtre sur la ville"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le `$` devant le nom désigne la valeur du champ dans chaque document.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq3-s04-c002",
+      "section": "libre-b2-23-sq3-s04-s01",
+      "type": "question",
+      "recto": "Quelle étape joue le rôle de HAVING dans un pipeline ?",
+      "verso": "Un **`$match` placé après `$group`**, qui filtre sur les valeurs calculées.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-23-sq3-s04-c003",
+      "section": "libre-b2-23-sq3-s04-s02",
+      "type": "exercice",
+      "enonce": "Collection `commandes` : `{ client: \"C12\", date: ..., lignes: [ { ref: \"PL-1\", qte: 2, prix: 18.5 }, ... ] }`. Calcule le chiffre d'affaires par référence, du plus élevé au plus faible.",
+      "etapes": [
+        "Déplier les lignes : `{ $unwind: \"$lignes\" }`.",
+        "Regrouper par référence : `{ $group: { _id: \"$lignes.ref\", ca: { $sum: { $multiply: [\"$lignes.qte\", \"$lignes.prix\"] } } } }`.",
+        "Trier : `{ $sort: { ca: -1 } }`."
+      ],
+      "reponse": "`db.commandes.aggregate([ { $unwind: \"$lignes\" }, { $group: { _id: \"$lignes.ref\", ca: { $sum: { $multiply: [\"$lignes.qte\", \"$lignes.prix\"] } } } }, { $sort: { ca: -1 } } ])`",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b2-23-sq3-s04-c004",
+      "section": "libre-b2-23-sq3-s04-s03",
+      "type": "qcm",
+      "question": "Traduction de `SELECT categorie, AVG(prix) FROM plantes GROUP BY categorie` ?",
+      "choix": [
+        "`db.plantes.find({}, { categorie: 1, prix: \"avg\" })`",
+        "`db.plantes.aggregate([{ $group: { _id: \"$categorie\", moyenne: { $avg: \"$prix\" } } }])`",
+        "`db.plantes.group(\"categorie\").avg(\"prix\")`",
+        "`db.plantes.aggregate([{ $avg: \"$prix\" }])`"
+      ],
+      "bonneReponse": 1,
+      "explication": "Regroupement par `_id` et accumulateur `$avg`.",
+      "difficulte": 2
+    }
+  ]
+}

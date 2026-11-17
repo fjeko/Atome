@@ -1,0 +1,98 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq3-s04",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – SQ3 – Signature numérique, hachage et certificats",
+  "sequence": null,
+  "seance": "S04 – Pratique avec un outil de chiffrement",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. OpenSSL, outil libre en ligne de commande, permet de générer des clés, des demandes de certificat, des certificats autosignés, de chiffrer et déchiffrer des fichiers et de calculer des empreintes.",
+  "notions": [
+    "OpenSSL",
+    "Génération de clé",
+    "Extraction de clé publique",
+    "CSR",
+    "Certificat autosigné",
+    "Chiffrement de fichier avec OpenSSL"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq3-s04-s01",
+      "titre": "Générer une clé et extraire la clé publique",
+      "contenu": "**OpenSSL** est une boîte à outils cryptographique libre, disponible sous Linux, macOS et Windows.\n\n```bash\n# Clé privée RSA 3072 bits\nopenssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -out cle_privee.pem\n\n# Extraire la clé publique correspondante\nopenssl pkey -in cle_privee.pem -pubout -out cle_publique.pem\n\n# Calculer une empreinte\nopenssl dgst -sha256 rapport.pdf\n```\n\nLa **clé privée** ne quitte jamais le serveur ou le poste ; on peut la protéger par une phrase de passe (`-aes256`). La **clé publique** se diffuse librement.",
+      "notions": [
+        "OpenSSL",
+        "Génération de clé",
+        "Extraction de clé publique"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s04-s02",
+      "titre": "Demande de certificat et certificat autosigné",
+      "contenu": "- Une **demande de signature de certificat** (**CSR**) contient la clé publique et l'identité (nom de domaine, organisation) ; on l'envoie à une AC, qui renvoie le certificat signé.\n- Un **certificat autosigné** est signé par **sa propre clé** : pratique pour des **tests** ou un usage interne, mais aucun navigateur ne lui fait confiance par défaut.\n\n```bash\n# Demande de certificat\nopenssl req -new -key cle_privee.pem -out intranet.csr -subj \"/CN=intranet.coop-alpine.test/O=Coop Alpine\"\n\n# Certificat autosigné valable 365 jours\nopenssl req -x509 -new -key cle_privee.pem -days 365 -out intranet.crt -subj \"/CN=intranet.coop-alpine.test\"\n\n# Lire un certificat\nopenssl x509 -in intranet.crt -noout -text\n```",
+      "notions": [
+        "CSR",
+        "Certificat autosigné"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s04-s03",
+      "titre": "Chiffrer et déchiffrer un fichier",
+      "contenu": "**Symétrique**, avec une phrase de passe :\n\n```bash\nopenssl enc -aes-256-cbc -pbkdf2 -salt -in bilan.xlsx -out bilan.xlsx.enc\nopenssl enc -d -aes-256-cbc -pbkdf2 -in bilan.xlsx.enc -out bilan.xlsx\n```\n\n**Asymétrique** (petits fichiers, ou une clé de session) avec la clé publique du destinataire :\n\n```bash\nopenssl pkeyutl -encrypt -pubin -inkey cle_publique_bob.pem -in secret.txt -out secret.bin\nopenssl pkeyutl -decrypt -inkey cle_privee_bob.pem -in secret.bin -out secret.txt\n```\n\nPour un gros fichier, on chiffre le fichier en AES avec une clé aléatoire, puis on chiffre cette clé avec RSA (hybride).",
+      "notions": [
+        "Chiffrement de fichier avec OpenSSL"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq3-s04-c001",
+      "section": "libre-b3-32-sq3-s04-s01",
+      "type": "qcm",
+      "question": "Quel fichier peut-on diffuser librement ?",
+      "choix": [
+        "cle_privee.pem",
+        "cle_publique.pem",
+        "Les deux",
+        "Aucun"
+      ],
+      "bonneReponse": 1,
+      "explication": "La clé privée doit rester secrète.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-32-sq3-s04-c002",
+      "section": "libre-b3-32-sq3-s04-s02",
+      "type": "qcm",
+      "question": "Que contient une CSR envoyée à une autorité de certification ?",
+      "choix": [
+        "La clé privée et le mot de passe",
+        "La clé publique et l'identité à certifier",
+        "Le certificat déjà signé",
+        "L'empreinte du site"
+      ],
+      "bonneReponse": 1,
+      "explication": "On n'envoie jamais la clé privée.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq3-s04-c003",
+      "section": "libre-b3-32-sq3-s04-s03",
+      "type": "exercice",
+      "enonce": "Tu dois envoyer `contrat.pdf` (2 Mo) à Bob, qui t'a donné sa clé publique. Décris la démarche hybride avec OpenSSL.",
+      "etapes": [
+        "Générer une clé aléatoire : `openssl rand -hex 32 > cle.txt`.",
+        "Chiffrer le PDF en AES avec cette clé : `openssl enc -aes-256-cbc -pbkdf2 -in contrat.pdf -out contrat.enc -pass file:cle.txt`.",
+        "Chiffrer la clé avec la clé publique de Bob : `openssl pkeyutl -encrypt -pubin -inkey bob_pub.pem -in cle.txt -out cle.enc`.",
+        "Envoyer `contrat.enc` et `cle.enc`, puis supprimer `cle.txt`.",
+        "Bob déchiffre `cle.enc` avec sa clé privée, puis le PDF avec la clé obtenue."
+      ],
+      "reponse": "AES pour le fichier, RSA pour la clé : seule la clé privée de Bob permet de tout déchiffrer.",
+      "difficulte": 2
+    }
+  ]
+}

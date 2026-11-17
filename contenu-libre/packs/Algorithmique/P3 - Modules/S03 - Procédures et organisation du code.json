@@ -1,0 +1,105 @@
+{
+  "formatVersion": 1,
+  "id": "libre-algo-p3-s03",
+  "matiere": "Algorithmique appliquée",
+  "bloc": "Bloc 6",
+  "partie": "Partie 3 – Modules",
+  "sequence": null,
+  "seance": "S3 – Procédures et organisation du code",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Écrire des fonctions booléennes et des fonctions de calcul utiles, factoriser les saisies et affichages répétitifs en procédures, et organiser un programme principal.",
+  "notions": [
+    "Fonction booléenne",
+    "Fonctions de calcul (chiffres, clé de contrôle)",
+    "Simulation aléatoire",
+    "Procédures de saisie et d'affichage",
+    "Programme principal"
+  ],
+  "sections": [
+    {
+      "id": "libre-algo-p3-s03-s01",
+      "titre": "Fonctions booléennes (prédicats)",
+      "contenu": "Une **fonction booléenne** répond par Vrai ou Faux. Son nom commence souvent par `est_`, `a_`, `peut_`.\n\n```python\ndef est_pair(n):\n    return n % 2 == 0          # la comparaison est déjà un booléen\n\ndef est_premier(n):\n    if n < 2:\n        return False\n    d = 2\n    while d * d <= n:\n        if n % d == 0:\n            return False       # un diviseur trouvé : on sort tout de suite\n        d = d + 1\n    return True\n```\n\nOn l'emploie directement dans une condition : `if est_premier(n):` (inutile d'écrire `== True`).\n\nÀ éviter : `if n % 2 == 0: return True else: return False` — c'est correct mais quatre lignes pour dire `return n % 2 == 0`.",
+      "notions": [
+        "Fonction booléenne"
+      ]
+    },
+    {
+      "id": "libre-algo-p3-s03-s02",
+      "titre": "Fonctions de calcul : chiffres et clé de contrôle",
+      "contenu": "**Somme des chiffres** d'un entier positif : on extrait le dernier chiffre avec `% 10` et on le retire avec `// 10`.\n```python\ndef somme_chiffres(n):\n    s = 0\n    while n > 0:\n        s = s + n % 10\n        n = n // 10\n    return s\n\nprint(somme_chiffres(4713))    # 15\n```\n\n**Clé de contrôle** : de nombreux identifiants (cartes, numéros de commande) se terminent par un chiffre calculé à partir des autres, pour détecter les fautes de frappe. Règle inventée pour l'exemple : la clé est le dernier chiffre de la somme des chiffres.\n\n```python\ndef cle(numero):\n    return somme_chiffres(numero) % 10\n\ndef identifiant_valide(ident):\n    '''ident = numéro suivi de sa clé, ex. 482138.'''\n    numero = ident // 10\n    return cle(numero) == ident % 10\n\nprint(cle(48213))                  # 4+8+2+1+3 = 18 → 8\nprint(identifiant_valide(482138))  # True\nprint(identifiant_valide(482139))  # False\n```\n\nUne fonction en appelle une autre : on construit des outils de plus en plus puissants à partir de petits morceaux testés.",
+      "notions": [
+        "Fonctions de calcul (chiffres, clé de contrôle)"
+      ]
+    },
+    {
+      "id": "libre-algo-p3-s03-s03",
+      "titre": "Simulation aléatoire",
+      "contenu": "```python\nimport random\n\ndef lancer_de():\n    '''Renvoie un entier aléatoire entre 1 et 6.'''\n    return random.randint(1, 6)\n\ndef frequence_six(nb_lancers):\n    '''Renvoie la proportion de 6 obtenus sur nb_lancers lancers.'''\n    nb_six = 0\n    for _ in range(nb_lancers):\n        if lancer_de() == 6:\n            nb_six = nb_six + 1\n    return nb_six / nb_lancers\n\nprint(frequence_six(6000))   # proche de 0.167, varie à chaque exécution\n```\n\nLe résultat change à chaque exécution, mais se rapproche de $\\frac{1}{6}$ quand le nombre de lancers augmente.",
+      "notions": [
+        "Simulation aléatoire"
+      ]
+    },
+    {
+      "id": "libre-algo-p3-s03-s04",
+      "titre": "Factoriser saisies et affichages en procédures",
+      "contenu": "Quand le même bloc de saisie ou d'affichage revient plusieurs fois, on en fait une **procédure** paramétrée.\n\n```python\ndef saisir_vecteur(n):\n    '''Saisit n entiers au clavier et renvoie la liste.'''\n    t = []\n    for i in range(n):\n        t.append(int(input(f\"Valeur {i + 1} ? \")))\n    return t\n\ndef afficher_matrice(m):\n    '''Affiche la matrice m ligne par ligne.'''\n    for ligne in m:\n        for v in ligne:\n            print(f\"{v:4}\", end=\"\")   # chaque valeur sur 4 caractères\n        print()\n\n# Programme principal\nnotes = saisir_vecteur(3)\nafficher_matrice([notes, [x * 2 for x in notes]])\n```\n\nOrganisation d'un fichier : **en-tête**, **imports**, **constantes**, **fonctions et procédures**, puis le **programme principal** en bas, court et lisible comme un sommaire.",
+      "notions": [
+        "Procédures de saisie et d'affichage",
+        "Programme principal"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-algo-p3-s03-c001",
+      "section": "libre-algo-p3-s03-s01",
+      "type": "exercice",
+      "enonce": "Écris une fonction `est_dans_intervalle(x, a, b)` qui renvoie Vrai si $a \\le x \\le b$.",
+      "etapes": [
+        "La comparaison chaînée de Python, `a <= x <= b`, renvoie directement un booléen."
+      ],
+      "reponse": "```python\ndef est_dans_intervalle(x, a, b):\n    '''Renvoie True si a <= x <= b.'''\n    return a <= x <= b\n```",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p3-s03-c002",
+      "section": "libre-algo-p3-s03-s02",
+      "type": "exercice",
+      "enonce": "Calcule à la main `cle(9071)` avec la règle ci-dessus, puis dis si 90716 est valide.",
+      "etapes": [
+        "Somme des chiffres : 9 + 0 + 7 + 1 = 17.",
+        "Clé : 17 % 10 = 7.",
+        "90716 se termine par 6 ≠ 7."
+      ],
+      "reponse": "`cle(9071)` vaut 7 ; 90716 n'est pas valide (le bon identifiant est 90717).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p3-s03-c003",
+      "section": "libre-algo-p3-s03-s03",
+      "type": "qcm",
+      "question": "Pourquoi `frequence_six` reçoit-elle `nb_lancers` en paramètre au lieu d'utiliser 6000 en dur ?",
+      "choix": [
+        "Pour pouvoir la réutiliser avec n'importe quel nombre de lancers",
+        "Parce que Python l'exige",
+        "Pour rendre le résultat identique à chaque fois",
+        "Pour éviter d'importer random"
+      ],
+      "bonneReponse": 0,
+      "explication": "Paramétrer plutôt que coder en dur rend la fonction réutilisable.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p3-s03-c004",
+      "section": "libre-algo-p3-s03-s04",
+      "type": "question",
+      "recto": "Dans quel ordre organise-t-on un fichier Python bien structuré ?",
+      "verso": "En-tête, imports, constantes, définitions des fonctions/procédures, puis programme principal.",
+      "difficulte": 1
+    }
+  ]
+}

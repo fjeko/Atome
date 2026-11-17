@@ -1,0 +1,101 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq3-s05",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – SQ3 – Droits sous Linux",
+  "sequence": null,
+  "seance": "S05 – Attributs et ACL",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Au-delà des permissions, Linux propose des attributs (immuable, ajout seul) et des listes de contrôle d'accès POSIX pour donner des droits à un utilisateur ou un groupe supplémentaire, dans la limite du masque.",
+  "notions": [
+    "Attribut immuable",
+    "Attribut ajout seul",
+    "chattr",
+    "ACL POSIX",
+    "setfacl",
+    "getfacl",
+    "Masque ACL",
+    "Droits effectifs ACL"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq3-s05-s01",
+      "titre": "Attributs de fichiers",
+      "contenu": "Les **attributs** (systèmes de fichiers ext4, etc.) ajoutent des protections, même contre root (tant qu'il ne les retire pas) :\n\n```bash\nsudo chattr +i /etc/resolv.conf     # immuable : ni modification, ni suppression, ni renommage\nsudo chattr +a /var/log/audit.log   # ajout seul : on peut seulement ajouter à la fin\nlsattr /etc/resolv.conf             # afficher les attributs\nsudo chattr -i /etc/resolv.conf     # retirer\n```\n\nL'attribut **ajout seul** est utile pour les **journaux** : on ne peut pas effacer les traces existantes.",
+      "notions": [
+        "Attribut immuable",
+        "Attribut ajout seul",
+        "chattr"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq3-s05-s02",
+      "titre": "Les ACL POSIX",
+      "contenu": "Les permissions de base ne connaissent qu'**un** propriétaire et **un** groupe. Pour donner un droit à un **utilisateur supplémentaire** sans changer de groupe, on utilise une **ACL** :\n\n```bash\nsetfacl -m u:karim:r budget.ods          # karim peut lire\nsetfacl -m g:direction:rw budget.ods     # le groupe direction lit et écrit\ngetfacl budget.ods                       # afficher\nsetfacl -x u:karim budget.ods            # retirer l'entrée de karim\nsetfacl -m d:g:atelier:rwx /srv/atelier  # ACL par défaut, héritée par les nouveaux fichiers\n```\n\nUn `+` à la fin des droits dans `ls -l` signale une ACL : `-rw-r-----+`.",
+      "notions": [
+        "ACL POSIX",
+        "setfacl",
+        "getfacl"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq3-s05-s03",
+      "titre": "Le masque des ACL",
+      "contenu": "Dans une ACL, l'entrée **mask** fixe le **maximum** des droits accordés aux utilisateurs et groupes nommés (et au groupe propriétaire). Les droits **effectifs** = droits de l'entrée **ET** masque.\n\n```text\n# getfacl budget.ods\nuser::rw-\nuser:karim:rw-        #effective:r--\ngroup::r--\nmask::r--\nother::---\n```\n\nKarim a `rw-` dans l'ACL, mais le masque `r--` limite ses droits effectifs à la **lecture**. Piège : un `chmod g-w` modifie aussi le masque et peut réduire des ACL sans qu'on s'en aperçoive.",
+      "notions": [
+        "Masque ACL",
+        "Droits effectifs ACL"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq3-s05-c001",
+      "section": "libre-b3-33-sq3-s05-s01",
+      "type": "qcm",
+      "question": "Quel attribut protège un journal contre l'effacement de lignes existantes tout en permettant d'en ajouter ?",
+      "choix": [
+        "+i",
+        "+a",
+        "SUID",
+        "sticky bit"
+      ],
+      "bonneReponse": 1,
+      "explication": "`+a` (append only) n'autorise que l'ajout en fin de fichier.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq3-s05-c002",
+      "section": "libre-b3-33-sq3-s05-s02",
+      "type": "qcm",
+      "question": "Que signifie le `+` dans `-rw-r-----+ 1 ines compta budget.ods` ?",
+      "choix": [
+        "Le fichier est exécutable",
+        "Le fichier possède des ACL supplémentaires",
+        "Le fichier est immuable",
+        "Le fichier est caché"
+      ],
+      "bonneReponse": 1,
+      "explication": "Il faut alors utiliser `getfacl` pour voir les droits complets.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-33-sq3-s05-c003",
+      "section": "libre-b3-33-sq3-s05-s03",
+      "type": "exercice",
+      "enonce": "Donne à l'utilisateur `karim` (hors du groupe compta) le droit de lire et modifier `rapport.ods` (propriétaire ines, groupe compta, droits 640), puis vérifie ses droits effectifs.",
+      "etapes": [
+        "Ajouter l'entrée : `setfacl -m u:karim:rw rapport.ods`.",
+        "`setfacl` recalcule le masque à `rw-` : vérifier avec `getfacl rapport.ods` (pas de mention `#effective` restrictive).",
+        "Si le masque était à `r--`, le corriger : `setfacl -m m::rw rapport.ods`.",
+        "Tester : `sudo -u karim cat rapport.ods` puis une modification."
+      ],
+      "reponse": "`setfacl -m u:karim:rw` puis contrôle du masque avec `getfacl`.",
+      "difficulte": 2
+    }
+  ]
+}

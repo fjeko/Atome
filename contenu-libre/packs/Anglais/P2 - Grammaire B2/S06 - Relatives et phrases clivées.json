@@ -1,0 +1,81 @@
+{
+  "formatVersion": 1,
+  "id": "libre-ang-g-s06",
+  "matiere": "Anglais",
+  "bloc": "Bloc 5",
+  "partie": "Grammaire B2",
+  "sequence": null,
+  "seance": "S6 – Relatives et phrases clivées",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Relier deux idées avec une proposition relative (déterminative ou explicative) et mettre un élément en relief avec une phrase clivée.",
+  "notions": [
+    "Pronoms relatifs",
+    "Relatives déterminatives et explicatives",
+    "Phrases clivées"
+  ],
+  "sections": [
+    {
+      "id": "libre-ang-g-s06-s01",
+      "titre": "Les pronoms relatifs",
+      "contenu": "| Pronom | Antécédent | Exemple |\n|---|---|---|\n| **who** | personne | *The developer **who** wrote this code has left.* |\n| **which** | chose, idée | *The laptop **which** I bought is fast.* |\n| **that** | personne ou chose (déterminatives seulement) | *The app **that** you recommended is great.* |\n| **whose** | possession (dont le / la) | *The client **whose** order was lost called again.* |\n| **where / when** | lieu / moment | *The office **where** I work* / *the day **when** we met* |\n\n**Déterminative** (*defining*) : indispensable pour savoir de qui/quoi on parle ; **pas de virgules**. Le pronom peut être **omis s'il est complément** : *The laptop (**which**) I bought…* — mais **jamais s'il est sujet** : *The developer **who** wrote…* (obligatoire).\n\n**Explicative** (*non-defining*) : ajoute une information accessoire, **entre virgules** ; **pas de *that***, pas d'omission : *Our CEO, **who** founded the company in 2015, will speak first.*\n\n**Préposition** : en langue courante, elle se place **en fin** de relative : *the person (who) I spoke **to*** ; en style formel, devant *whom/which* : *the person **to whom** I spoke*.",
+      "notions": [
+        "Pronoms relatifs",
+        "Relatives déterminatives et explicatives"
+      ]
+    },
+    {
+      "id": "libre-ang-g-s06-s02",
+      "titre": "Les phrases clivées : mettre en relief",
+      "contenu": "Pour insister sur un élément :\n\n- **It is / was … that / who …** : *It was **the intern** who found the bug.* — C'est le stagiaire qui a trouvé le bug.\n- **What … is / was …** : ***What** we need **is** more time.* — Ce dont nous avons besoin, c'est de plus de temps.\n- **All … is …** : ***All** I want **is** a clear answer.*\n\nLe verbe **be** s'accorde avec ce qui suit dans *It is… that* (*It **is** the managers who decide* — *it* reste singulier) et se met au temps du récit (*It **was** in 2020 that…*).",
+      "notions": [
+        "Phrases clivées"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-ang-g-s06-c001",
+      "section": "libre-ang-g-s06-s01",
+      "type": "qcm",
+      "question": "Dans laquelle de ces phrases le pronom relatif peut-il être omis ?",
+      "choix": [
+        "The report that you wrote is excellent.",
+        "The man who called you is waiting.",
+        "My laptop, which is new, crashed.",
+        "The company that employs me is growing."
+      ],
+      "bonneReponse": 0,
+      "explication": "Dans la première, *that* est complément (*you wrote the report*) : on peut l'omettre. Ailleurs il est sujet ou dans une explicative.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-ang-g-s06-c002",
+      "section": "libre-ang-g-s06-s01",
+      "type": "qcm",
+      "question": "Complète : *I met a designer ___ work is exhibited in Tokyo.*",
+      "choix": [
+        "whose",
+        "who",
+        "which",
+        "that"
+      ],
+      "bonneReponse": 0,
+      "explication": "Possession (« dont le travail ») : *whose*.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-g-s06-c003",
+      "section": "libre-ang-g-s06-s02",
+      "type": "exercice",
+      "enonce": "Réécris en mettant en relief *a faster connection* : *We need a faster connection.*",
+      "etapes": [
+        "Structure en *What … is …*."
+      ],
+      "reponse": "*What we need is a faster connection.*",
+      "difficulte": 2
+    }
+  ]
+}

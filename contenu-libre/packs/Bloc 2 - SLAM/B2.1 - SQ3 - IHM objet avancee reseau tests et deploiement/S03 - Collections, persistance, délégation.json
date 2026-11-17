@@ -1,0 +1,117 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq3-s03",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – SQ3 – POO avancée, diagrammes dynamiques, tests et déploiement",
+  "sequence": null,
+  "seance": "S03 – Collections, persistance, délégation",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les collections génériques stockent des objets typés. La persistance sauvegarde les objets au-delà de l'exécution. La délégation confie une tâche à un autre objet au lieu d'hériter.",
+  "notions": [
+    "Collections génériques",
+    "List",
+    "Map",
+    "Classe métier",
+    "Classe technique",
+    "Persistance",
+    "Sérialisation",
+    "Délégation",
+    "Composition plutôt qu'héritage"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq3-s03-s01",
+      "titre": "Collections génériques",
+      "contenu": "Les collections Java sont **génériques** : on précise entre chevrons le type contenu, et le compilateur vérifie.\n\n| Interface | Implémentation courante | Usage |\n| --- | --- | --- |\n| `List<T>` | `ArrayList<T>` | liste ordonnée, accès par indice |\n| `Set<T>` | `HashSet<T>` | ensemble sans doublon |\n| `Map<K,V>` | `HashMap<K,V>` | dictionnaire clé → valeur |\n\n```java\nMap<String, Integer> stock = new HashMap<>();\nstock.put(\"REF-12\", 40);\nstock.put(\"REF-30\", 5);\nint qte = stock.get(\"REF-12\");              // 40\nboolean existe = stock.containsKey(\"REF-99\"); // false\n```\n\nBonne pratique : déclarer avec l'**interface** (`List<Produit> l = new ArrayList<>();`) pour pouvoir changer d'implémentation.",
+      "notions": [
+        "Collections génériques",
+        "List",
+        "Map"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s03-s02",
+      "titre": "Classes métier et classes techniques",
+      "contenu": "- **Classe métier** : représente un concept du domaine (`Reservation`, `Patient`, `Facture`).\n- **Classe technique** : sert le fonctionnement de l'application (`Connexion`, `FichierLog`, `ExporteurCsv`).\n\nSéparer les deux rend le métier réutilisable : la même classe `Reservation` sert dans une appli de bureau, une appli web ou des tests.",
+      "notions": [
+        "Classe métier",
+        "Classe technique"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s03-s03",
+      "titre": "Persistance",
+      "contenu": "La **persistance** : conserver l'état des objets **après la fermeture** de l'application. Plusieurs moyens :\n- fichier texte (CSV, JSON) écrit et relu à la main ;\n- **sérialisation** Java : un objet `Serializable` est transformé en suite d'octets ;\n- **base de données** (le plus courant en entreprise).\n\n```java\ntry (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(\"stock.dat\"))) {\n    out.writeObject(listeProduits);  // Produit doit implémenter Serializable\n}\n```\n\nLe `try (...)` (avec ressources) ferme le fichier automatiquement, même en cas d'erreur.",
+      "notions": [
+        "Persistance",
+        "Sérialisation"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq3-s03-s04",
+      "titre": "Délégation plutôt qu'héritage",
+      "contenu": "La **délégation** : un objet **confie** une partie de son travail à un autre objet qu'il possède, au lieu d'en hériter.\n\n```java\npublic class Commande {\n    private CalculateurRemise calculateur;   // délégué\n    public double total() {\n        double brut = ...;\n        return brut - calculateur.remise(brut);\n    }\n}\n```\n\nPourquoi ? Hériter juste pour réutiliser du code crée des liens rigides (une `Commande` n'**est pas** un `CalculateurRemise`). Avec la délégation, on peut **changer** de calculateur (remise fidélité, remise soldes) sans toucher à `Commande`.\n\nPrincipe : « **préférer la composition à l'héritage** » quand le test « est un » ne passe pas.",
+      "notions": [
+        "Délégation",
+        "Composition plutôt qu'héritage"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq3-s03-c001",
+      "section": "libre-b2-21-sq3-s03-s01",
+      "type": "qcm",
+      "question": "Pour retrouver rapidement un adhérent à partir de son numéro de carte, quelle collection choisir ?",
+      "choix": [
+        "ArrayList<Adherent>",
+        "HashMap<String, Adherent>",
+        "HashSet<String>",
+        "Un tableau de String"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une Map associe une clé (le numéro) à une valeur (l'adhérent) avec un accès direct.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq3-s03-c002",
+      "section": "libre-b2-21-sq3-s03-s02",
+      "type": "question",
+      "recto": "`GestionnaireFichierConfig` est-elle une classe métier ou technique ?",
+      "verso": "**Technique** : elle ne représente pas un concept du domaine, elle sert le fonctionnement de l'application.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq3-s03-c003",
+      "section": "libre-b2-21-sq3-s03-s03",
+      "type": "qcm",
+      "question": "Quel est l'avantage du bloc `try (...)` avec ressources ?",
+      "choix": [
+        "Il rend l'écriture plus rapide",
+        "Il ferme automatiquement le fichier, même en cas d'exception",
+        "Il évite d'implémenter Serializable",
+        "Il chiffre le fichier"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les ressources déclarées dans les parenthèses sont fermées à la sortie du bloc.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq3-s03-c004",
+      "section": "libre-b2-21-sq3-s03-s04",
+      "type": "exercice",
+      "enonce": "Une classe `Rapport` hérite de `Imprimante` uniquement pour utiliser sa méthode `imprimer(String texte)`. Réécris en délégation.",
+      "etapes": [
+        "Supprimer `extends Imprimante` : un rapport n'est pas une imprimante.",
+        "Ajouter un attribut `private Imprimante imprimante;` fourni au constructeur.",
+        "Dans `Rapport`, écrire `public void sortir() { imprimante.imprimer(contenu()); }`."
+      ],
+      "reponse": "`Rapport` possède une `Imprimante` et lui délègue l'impression ; on peut ainsi passer une autre imprimante (PDF, papier).",
+      "difficulte": 2
+    }
+  ]
+}

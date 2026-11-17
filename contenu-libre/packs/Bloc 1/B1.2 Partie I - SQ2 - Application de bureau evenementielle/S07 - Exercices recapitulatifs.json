@@ -1,0 +1,88 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq2-s07",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie I – SQ2 – Application de bureau événementielle en C#",
+  "sequence": null,
+  "seance": "S07 – Exercices récapitulatifs",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Trois petites applications à construire pour réinvestir l'événementiel : un jeu de devinette, un convertisseur avec contrôle des entrées et un calcul à partir d'une formule.",
+  "notions": [
+    "Jeu interactif",
+    "Convertisseur avec contrôles",
+    "Calcul à partir d'une formule",
+    "Bien programmer en événementiel"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq2-s07-s01",
+      "titre": "Un jeu : deviner le nombre",
+      "contenu": "L'ordinateur tire un nombre entre 1 et 100 ; le joueur propose, le programme répond « plus grand » ou « plus petit », et compte les essais.\n\nPoint clé : le nombre secret et le compteur doivent **survivre entre deux clics**. Une variable locale d'un gestionnaire est **recréée à chaque clic** ! On les déclare donc comme **champs de la classe** du formulaire :\n```csharp\npublic partial class FrmDevinette : Form\n{\n    private readonly Random hasard = new Random();\n    private int secret;\n    private int essais;\n\n    private void NouvellePartie()\n    {\n        secret = hasard.Next(1, 101);   // 1 à 100\n        essais = 0;\n        lblIndice.Text = \"J'ai choisi un nombre entre 1 et 100.\";\n        btnProposer.Enabled = true;\n    }\n\n    private void FrmDevinette_Load(object sender, EventArgs e) => NouvellePartie();\n\n    private void btnProposer_Click(object sender, EventArgs e)\n    {\n        if (!int.TryParse(txtProposition.Text, out int prop) || prop < 1 || prop > 100)\n        {\n            lblIndice.Text = \"Propose un entier entre 1 et 100.\";\n            return;\n        }\n        essais++;\n        if (prop < secret) lblIndice.Text = \"C'est plus grand !\";\n        else if (prop > secret) lblIndice.Text = \"C'est plus petit !\";\n        else\n        {\n            lblIndice.Text = $\"Bravo, trouvé en {essais} essais !\";\n            btnProposer.Enabled = false;   // partie terminée\n        }\n        txtProposition.SelectAll();\n        txtProposition.Focus();\n    }\n}\n```\nRemarque le module `NouvellePartie`, appelé au chargement et par un bouton « Rejouer » : on ne duplique pas l'initialisation.",
+      "notions": [
+        "Jeu interactif",
+        "Bien programmer en événementiel"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s07-s02",
+      "titre": "Un convertisseur avec contrôles",
+      "contenu": "Convertisseur de températures : un champ, deux boutons radio (°C → °F, °F → °C), un résultat.\n$$F = C \\times \\frac{9}{5} + 32 \\qquad C = (F - 32) \\times \\frac{5}{9}$$\n```csharp\nprivate void Convertir()\n{\n    if (!double.TryParse(txtValeur.Text, out double v))\n    {\n        lblResultat.Text = \"Valeur numérique attendue\";\n        return;\n    }\n    if (rdbCversF.Checked)\n        lblResultat.Text = $\"{v * 9 / 5 + 32:0.0} °F\";\n    else\n        lblResultat.Text = $\"{(v - 32) * 5 / 9:0.0} °C\";\n}\n```\nOn appelle `Convertir()` sur `TextChanged` et sur `CheckedChanged` des deux boutons radio.",
+      "notions": [
+        "Convertisseur avec contrôles"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s07-s03",
+      "titre": "Un calcul à partir d'une formule",
+      "contenu": "Une salle d'escalade calcule l'**indice de masse corporelle** pour ses fiches d'inscription (information, pas diagnostic) :\n$$\\text{IMC} = \\frac{\\text{masse (kg)}}{\\text{taille (m)}^2}$$\nÉtapes :\n1. contrôler que la masse est entre 20 et 300 et la taille entre 1,00 et 2,50 ;\n2. calculer avec `Math.Pow(taille, 2)` ;\n3. afficher arrondi à une décimale.",
+      "notions": [
+        "Calcul à partir d'une formule"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq2-s07-c001",
+      "section": "libre-b1-12a-sq2-s07-s01",
+      "type": "qcm",
+      "question": "Si `essais` était déclaré dans `btnProposer_Click`, que se passerait-il ?",
+      "choix": [
+        "Le compteur fonctionnerait normalement",
+        "Il repartirait de 0 à chaque clic et afficherait toujours 1 essai",
+        "Le programme ne compilerait pas",
+        "Le nombre secret changerait à chaque clic"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une variable locale disparaît à la fin du gestionnaire : l'état partagé entre événements doit être un champ de la classe.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq2-s07-c002",
+      "section": "libre-b1-12a-sq2-s07-s02",
+      "type": "exercice",
+      "enonce": "Quel résultat affiche le convertisseur pour 25 en mode °C → °F, puis pour 50 en mode °F → °C ?",
+      "etapes": [
+        "25 × 9 / 5 + 32 = 45 + 32 = 77.",
+        "(50 − 32) × 5 / 9 = 18 × 5 / 9 = 10."
+      ],
+      "reponse": "« 77,0 °F » puis « 10,0 °C ».",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq2-s07-c003",
+      "section": "libre-b1-12a-sq2-s07-s03",
+      "type": "exercice",
+      "enonce": "Calcule l'IMC pour 68 kg et 1,75 m, et écris l'instruction C# correspondante.",
+      "etapes": [
+        "Taille au carré : $1{,}75^2 = 3{,}0625$.",
+        "$68 / 3{,}0625 \\approx 22{,}2$."
+      ],
+      "reponse": "IMC ≈ 22,2 ; `double imc = masse / Math.Pow(taille, 2);` puis `lblImc.Text = $\"{imc:0.0}\";`.",
+      "difficulte": 2
+    }
+  ]
+}

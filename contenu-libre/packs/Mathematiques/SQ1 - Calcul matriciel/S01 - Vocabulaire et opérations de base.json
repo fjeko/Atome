@@ -1,0 +1,199 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq1-s01",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "SQ1 – Calcul matriciel",
+  "sequence": null,
+  "seance": "S1 – Vocabulaire et opérations de base",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Ce qu'est une matrice, comment on la décrit (dimension, coefficients) et les premières opérations : égalité, somme, différence et multiplication par un nombre.",
+  "notions": [
+    "Matrice et coefficient",
+    "Dimension n × p",
+    "Matrices particulières (carrée, ligne, colonne, nulle, identité)",
+    "Égalité de deux matrices",
+    "Addition et soustraction",
+    "Multiplication par un réel",
+    "Combinaison d'opérations"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq1-s01-s01",
+      "titre": "Une matrice, c'est un tableau de nombres rangé",
+      "contenu": "Une **matrice** est un tableau rectangulaire de nombres, écrit entre grandes parenthèses. Chaque nombre s'appelle un **coefficient**.\n\nExemple : une petite crêperie fictive, *Le Bilig Joyeux*, note ses ventes de trois recettes (beurre-sucre, chocolat, complète) sur deux jours :\n\n| | beurre-sucre | chocolat | complète |\n|---|---|---|---|\n| samedi | 12 | 30 | 8 |\n| dimanche | 15 | 26 | 10 |\n\nOn peut ranger ces chiffres dans une matrice $V$ :\n\n$$V = \\begin{pmatrix}12 & 30 & 8\\\\15 & 26 & 10\\end{pmatrix}$$\n\n### Dimension\nLa **dimension** (ou taille) d'une matrice, c'est « nombre de lignes × nombre de colonnes », **toujours dans cet ordre**. Ici $V$ a 2 lignes et 3 colonnes : c'est une matrice $2 \\times 3$.\n\n### Repérer un coefficient\nOn note $a_{i,j}$ (ou $a_{ij}$) le coefficient situé à la ligne $i$ et à la colonne $j$. Dans $V$ : $v_{2,3} = 10$ (ligne 2 = dimanche, colonne 3 = complète) et $v_{1,2} = 30$.\n\nAstuce : pense « **L**igne d'abord, **C**olonne ensuite », comme dans une feuille de calcul où l'on dit « ligne 2, colonne C ».",
+      "notions": [
+        "Matrice et coefficient",
+        "Dimension n × p"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s01-s02",
+      "titre": "Les matrices particulières",
+      "contenu": "Certaines formes reviennent sans arrêt ; elles ont un nom.\n\n| Nom | Description | Exemple |\n|---|---|---|\n| matrice **carrée** d'ordre $n$ | autant de lignes que de colonnes ($n \\times n$) | $\\begin{pmatrix}1 & 4\\\\0 & 2\\end{pmatrix}$ |\n| matrice **ligne** | une seule ligne ($1 \\times p$) | $\\begin{pmatrix}3 & 7 & 1\\end{pmatrix}$ |\n| matrice **colonne** | une seule colonne ($n \\times 1$) | $\\begin{pmatrix}2\\\\5\\end{pmatrix}$ |\n| matrice **nulle** | tous les coefficients valent 0 | $\\begin{pmatrix}0 & 0\\\\0 & 0\\end{pmatrix}$ |\n| matrice **identité** $I_n$ | carrée, des 1 sur la diagonale, des 0 ailleurs | $I_3 = \\begin{pmatrix}1 & 0 & 0\\\\0 & 1 & 0\\\\0 & 0 & 1\\end{pmatrix}$ |\n\nLa **diagonale** d'une matrice carrée, ce sont les coefficients $a_{1,1}, a_{2,2}, \\dots$ (du coin haut-gauche au coin bas-droite).\n\n⚠️ Ne confonds pas la matrice **nulle** (que des 0) et la matrice **identité** (des 1 sur la diagonale) : elles jouent des rôles très différents, un peu comme les nombres 0 et 1.",
+      "notions": [
+        "Matrices particulières (carrée, ligne, colonne, nulle, identité)"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s01-s03",
+      "titre": "Quand deux matrices sont-elles égales ?",
+      "contenu": "Deux matrices sont **égales** quand :\n1. elles ont **la même dimension** ;\n2. leurs coefficients situés à la même place sont égaux, **deux à deux**.\n\nExemple : $\\begin{pmatrix}x + 1 & 4\\\\3 & 2y\\end{pmatrix} = \\begin{pmatrix}5 & 4\\\\3 & 10\\end{pmatrix}$ donne deux petites équations : $x + 1 = 5$ et $2y = 10$, donc $x = 4$ et $y = 5$.\n\nUne matrice $2 \\times 3$ n'est **jamais** égale à une matrice $3 \\times 2$, même si elles contiennent les mêmes nombres.",
+      "notions": [
+        "Égalité de deux matrices"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s01-s04",
+      "titre": "Additionner et soustraire",
+      "contenu": "On ne peut additionner (ou soustraire) deux matrices que si elles ont **la même dimension**. On opère alors **case par case**.\n\nAvec $A = \\begin{pmatrix}2 & -1\\\\0 & 3\\end{pmatrix}$ et $B = \\begin{pmatrix}4 & 5\\\\-2 & 1\\end{pmatrix}$ :\n\n$$A + B = \\begin{pmatrix}2+4 & -1+5\\\\0+(-2) & 3+1\\end{pmatrix} = \\begin{pmatrix}6 & 4\\\\-2 & 4\\end{pmatrix}$$\n\n$$A - B = \\begin{pmatrix}2-4 & -1-5\\\\0-(-2) & 3-1\\end{pmatrix} = \\begin{pmatrix}-2 & -6\\\\2 & 2\\end{pmatrix}$$\n\nLe résultat a la même dimension que $A$ et $B$.\n\n**Propriétés** (comme avec les nombres) : $A + B = B + A$, et $A - A$ donne la matrice nulle.\n\nSens concret : si $V$ contient les ventes du week-end 1 et $W$ celles du week-end 2 (mêmes lignes, mêmes colonnes), $V + W$ contient les ventes cumulées.",
+      "notions": [
+        "Addition et soustraction"
+      ]
+    },
+    {
+      "id": "libre-maths-sq1-s01-s05",
+      "titre": "Multiplier par un nombre et combiner",
+      "contenu": "Multiplier une matrice par un réel $k$, c'est multiplier **chaque coefficient** par $k$ :\n\n$$3 \\times \\begin{pmatrix}2 & -1\\\\0 & 3\\end{pmatrix} = \\begin{pmatrix}6 & -3\\\\0 & 9\\end{pmatrix}$$\n\nOn peut toujours multiplier une matrice par un réel, quelles que soient ses dimensions.\n\nOn peut ensuite **combiner** les opérations, avec les priorités habituelles (la multiplication avant l'addition). Avec les matrices $A$ et $B$ de la section précédente :\n\n$$2A - B = \\begin{pmatrix}4 & -2\\\\0 & 6\\end{pmatrix} - \\begin{pmatrix}4 & 5\\\\-2 & 1\\end{pmatrix} = \\begin{pmatrix}0 & -7\\\\2 & 5\\end{pmatrix}$$\n\nConcret : si une matrice contient des prix, $1{,}1 \\times P$ donne les prix augmentés de 10 %.",
+      "notions": [
+        "Multiplication par un réel",
+        "Combinaison d'opérations"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq1-s01-c001",
+      "section": "libre-maths-sq1-s01-s01",
+      "type": "question",
+      "recto": "Quelle est la dimension de $\\begin{pmatrix}5 & 0 & 2 & 7\\\\1 & 3 & 4 & 6\\end{pmatrix}$ ?",
+      "verso": "$2 \\times 4$ : 2 lignes et 4 colonnes (on donne toujours les lignes en premier).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s01-c002",
+      "section": "libre-maths-sq1-s01-s01",
+      "type": "qcm",
+      "question": "Dans $C = \\begin{pmatrix}8 & 1 & 4\\\\9 & 0 & 6\\\\2 & 5 & 3\\end{pmatrix}$, que vaut $c_{3,2}$ ?",
+      "choix": [
+        "$5$",
+        "$6$",
+        "$9$",
+        "$2$"
+      ],
+      "bonneReponse": 0,
+      "explication": "Ligne 3, colonne 2 : on lit 5. Le 6 est $c_{2,3}$ (indices inversés), le 9 est $c_{2,1}$.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s01-c003",
+      "section": "libre-maths-sq1-s01-s01",
+      "type": "question",
+      "recto": "Une matrice a 4 lignes et 1 colonne. Combien a-t-elle de coefficients, et quelle est sa dimension ?",
+      "verso": "4 coefficients ; dimension $4 \\times 1$.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s01-c004",
+      "section": "libre-maths-sq1-s01-s02",
+      "type": "question",
+      "recto": "Écris la matrice identité $I_3$.",
+      "verso": "$I_3 = \\begin{pmatrix}1 & 0 & 0\\\\0 & 1 & 0\\\\0 & 0 & 1\\end{pmatrix}$",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s01-c005",
+      "section": "libre-maths-sq1-s01-s02",
+      "type": "qcm",
+      "question": "Quelle matrice est une matrice **colonne** ?",
+      "choix": [
+        "$\\begin{pmatrix}1\\\\4\\\\7\\end{pmatrix}$",
+        "$\\begin{pmatrix}1 & 4 & 7\\end{pmatrix}$",
+        "$\\begin{pmatrix}1 & 0\\\\0 & 1\\end{pmatrix}$",
+        "$\\begin{pmatrix}0 & 0\\\\0 & 0\\end{pmatrix}$"
+      ],
+      "bonneReponse": 0,
+      "explication": "Une matrice colonne n'a qu'une colonne : ici $3 \\times 1$. La deuxième est une matrice ligne.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s01-c006",
+      "section": "libre-maths-sq1-s01-s03",
+      "type": "exercice",
+      "enonce": "Trouve $a$ et $b$ pour que $\\begin{pmatrix}2a & 1\\\\0 & b - 3\\end{pmatrix} = \\begin{pmatrix}8 & 1\\\\0 & 4\\end{pmatrix}$.",
+      "etapes": [
+        "Même dimension ($2 \\times 2$) : on peut comparer case par case.",
+        "Case (1,1) : $2a = 8$ donc $a = 4$.",
+        "Case (2,2) : $b - 3 = 4$ donc $b = 7$.",
+        "Les autres cases sont déjà égales (1 = 1 et 0 = 0)."
+      ],
+      "reponse": "$a = 4$ et $b = 7$",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s01-c007",
+      "section": "libre-maths-sq1-s01-s03",
+      "type": "qcm",
+      "question": "$\\begin{pmatrix}1 & 2 & 3\\end{pmatrix}$ et $\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}$ sont-elles égales ?",
+      "choix": [
+        "Non, elles n'ont pas la même dimension",
+        "Oui, elles contiennent les mêmes nombres",
+        "Oui, car on lit les nombres dans le même ordre"
+      ],
+      "bonneReponse": 0,
+      "explication": "La première est $1 \\times 3$, la seconde $3 \\times 1$ : dimensions différentes, donc pas égales.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s01-c008",
+      "section": "libre-maths-sq1-s01-s04",
+      "type": "qcm",
+      "question": "$A$ est $2 \\times 3$ et $B$ est $3 \\times 2$. Que peut-on dire de $A + B$ ?",
+      "choix": [
+        "Impossible à calculer",
+        "C'est une matrice $2 \\times 2$",
+        "C'est une matrice $3 \\times 3$",
+        "C'est une matrice $2 \\times 3$"
+      ],
+      "bonneReponse": 0,
+      "explication": "Pour additionner, il faut exactement la même dimension. Ici ce n'est pas le cas.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s01-c009",
+      "section": "libre-maths-sq1-s01-s04",
+      "type": "exercice",
+      "enonce": "Calcule $\\begin{pmatrix}1 & 0\\\\-3 & 2\\end{pmatrix} - \\begin{pmatrix}4 & -2\\\\1 & 2\\end{pmatrix}$.",
+      "etapes": [
+        "Case (1,1) : $1 - 4 = -3$ ; case (1,2) : $0 - (-2) = 2$.",
+        "Case (2,1) : $-3 - 1 = -4$ ; case (2,2) : $2 - 2 = 0$."
+      ],
+      "reponse": "$\\begin{pmatrix}-3 & 2\\\\-4 & 0\\end{pmatrix}$",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq1-s01-c010",
+      "section": "libre-maths-sq1-s01-s05",
+      "type": "exercice",
+      "enonce": "Avec $A = \\begin{pmatrix}1 & 3\\\\-2 & 0\\end{pmatrix}$ et $B = \\begin{pmatrix}0 & 1\\\\4 & -1\\end{pmatrix}$, calcule $3A - 2B$.",
+      "etapes": [
+        "$3A = \\begin{pmatrix}3 & 9\\\\-6 & 0\\end{pmatrix}$",
+        "$2B = \\begin{pmatrix}0 & 2\\\\8 & -2\\end{pmatrix}$",
+        "On soustrait case par case : $\\begin{pmatrix}3-0 & 9-2\\\\-6-8 & 0-(-2)\\end{pmatrix}$"
+      ],
+      "reponse": "$3A - 2B = \\begin{pmatrix}3 & 7\\\\-14 & 2\\end{pmatrix}$",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq1-s01-c011",
+      "section": "libre-maths-sq1-s01-s05",
+      "type": "question",
+      "recto": "Que vaut $A - A$ pour une matrice $A$ de dimension $2 \\times 3$ ?",
+      "verso": "La matrice **nulle** $2 \\times 3$ (six zéros), pas la matrice identité.",
+      "difficulte": 1
+    }
+  ]
+}

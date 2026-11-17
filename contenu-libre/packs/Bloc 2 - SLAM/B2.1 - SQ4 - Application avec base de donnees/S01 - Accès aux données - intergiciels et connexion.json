@@ -1,0 +1,127 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq4-s01",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – SQ4 – Application de bureau avec base de données",
+  "sequence": null,
+  "seance": "S01 – Accès aux données : intergiciels et connexion",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une application ne parle pas directement au moteur de base de données : elle passe par un intergiciel (ODBC, JDBC, ADO.NET, PDO) et une chaîne de connexion. Les ORM ajoutent une couche qui transforme les lignes en objets.",
+  "notions": [
+    "Intergiciel",
+    "Pilote",
+    "ODBC",
+    "JDBC",
+    "ADO.NET",
+    "PDO",
+    "Chaîne de connexion",
+    "ORM",
+    "Mapping objet-relationnel"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq4-s01-s01",
+      "titre": "Le rôle d'un intergiciel",
+      "contenu": "Ton programme C# veut lire la table `client` d'une base MySQL. Entre les deux, il faut un **intergiciel** (*middleware*) : une couche logicielle qui offre une **interface standard** au programme et traduit les demandes pour le **SGBD** visé grâce à un **pilote** (*driver*).\n\n```text\nApplication  →  API d'accès (ADO.NET)  →  pilote MySQL  →  serveur MySQL\n```\n\nAvantage : le code reste quasiment le même si on change de SGBD ; seul le pilote (et quelques détails SQL) change.",
+      "notions": [
+        "Intergiciel",
+        "Pilote"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq4-s01-s02",
+      "titre": "Les principaux intergiciels",
+      "contenu": "| Sigle | Langage / plateforme | Remarque |\n| --- | --- | --- |\n| **ODBC** | indépendant (C, Windows…) | standard ancien et universel |\n| **JDBC** | Java | `DriverManager.getConnection(...)` |\n| **ADO.NET** | C# / .NET | `MySqlConnection`, `SqlConnection`… |\n| **PDO** | PHP | `new PDO($dsn, $user, $mdp)` |\n\nPour une application **mobile**, on évite en général la connexion directe à la base : l'application appelle une **API web** (REST) hébergée sur un serveur, qui, elle, accède à la base. Cela évite d'exposer la base sur Internet et d'embarquer des identifiants dans l'application.",
+      "notions": [
+        "ODBC",
+        "JDBC",
+        "ADO.NET",
+        "PDO"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq4-s01-s03",
+      "titre": "La chaîne de connexion",
+      "contenu": "Pour se connecter, il faut :\n- l'**adresse** du serveur (nom ou IP) et le **port** (3306 pour MySQL, 5432 pour PostgreSQL) ;\n- le **nom de la base** ;\n- un **identifiant** et un **mot de passe** ;\n- le **pilote** installé dans le projet (par ex. le paquet NuGet `MySql.Data` ou `MySqlConnector`).\n\nCes informations sont rassemblées dans une **chaîne de connexion** :\n\n```csharp\nstring cs = \"server=localhost;port=3306;database=atelier;uid=app_atelier;pwd=********;\";\nusing var cnx = new MySqlConnection(cs);\ncnx.Open();\n```\n\nOn ne laisse pas cette chaîne en dur dans le code versionné : on la place dans un **fichier de configuration** exclu du dépôt, ou dans des variables d'environnement.",
+      "notions": [
+        "Chaîne de connexion"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq4-s01-s04",
+      "titre": "Les ORM",
+      "contenu": "Un **ORM** (*Object-Relational Mapping*) fait **automatiquement la correspondance** entre les tables et les classes : une ligne de `client` devient un objet `Client`.\n\nExemples : **Entity Framework** (C#), **Hibernate** (Java), **Doctrine** (PHP).\n\n```csharp\nvar clients = contexte.Clients.Where(c => c.Ville == \"Rennes\").ToList();\n```\n\nAvantages : moins de SQL à écrire, protection contre l'injection. Inconvénients : une couche de plus à apprendre, requêtes parfois moins efficaces. Comprendre le SQL reste indispensable.\n\nAutres sigles utiles : **SGBD(R)** (système de gestion de bases de données, relationnel ou non), **DAO** (objet d'accès aux données), **CRUD** (Create, Read, Update, Delete).",
+      "notions": [
+        "ORM",
+        "Mapping objet-relationnel"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq4-s01-c001",
+      "section": "libre-b2-21-sq4-s01-s01",
+      "type": "question",
+      "recto": "À quoi sert un intergiciel d'accès aux données ?",
+      "verso": "À offrir au programme une **interface standard** pour dialoguer avec une base, en s'appuyant sur un **pilote** propre à chaque SGBD.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq4-s01-c002",
+      "section": "libre-b2-21-sq4-s01-s02",
+      "type": "qcm",
+      "question": "Quel intergiciel utilise-t-on pour accéder à une base depuis une application C# ?",
+      "choix": [
+        "JDBC",
+        "PDO",
+        "ADO.NET",
+        "JSON"
+      ],
+      "bonneReponse": 2,
+      "explication": "JDBC est pour Java, PDO pour PHP ; .NET utilise ADO.NET.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq4-s01-c003",
+      "section": "libre-b2-21-sq4-s01-s02",
+      "type": "qcm",
+      "question": "Pourquoi une application mobile passe-t-elle généralement par une API plutôt que de se connecter directement au SGBD ?",
+      "choix": [
+        "Parce que les téléphones ne savent pas faire de SQL",
+        "Pour ne pas exposer la base sur Internet ni stocker ses identifiants dans l'application",
+        "Parce que c'est plus rapide",
+        "Parce que les API sont gratuites"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'API sert d'intermédiaire sécurisé : seule elle connaît les identifiants de la base.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq4-s01-c004",
+      "section": "libre-b2-21-sq4-s01-s03",
+      "type": "question",
+      "recto": "Quelles informations contient une chaîne de connexion ?",
+      "verso": "Serveur (et port), nom de la base, identifiant et mot de passe, parfois des options (encodage, SSL).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq4-s01-c005",
+      "section": "libre-b2-21-sq4-s01-s04",
+      "type": "qcm",
+      "question": "Que fait un ORM ?",
+      "choix": [
+        "Il chiffre la base de données",
+        "Il associe automatiquement les tables aux classes et les lignes aux objets",
+        "Il remplace le SGBD",
+        "Il génère l'interface graphique"
+      ],
+      "bonneReponse": 1,
+      "explication": "ORM = mapping objet-relationnel.",
+      "difficulte": 2
+    }
+  ]
+}

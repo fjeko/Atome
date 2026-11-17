@@ -35,6 +35,7 @@ public sealed class DepotBibliotheque(BaseDeDonnees baseDeDonnees)
             JOIN matiere m ON m.id = p.matiere_id
             LEFT JOIN carte c ON c.pack_id = p.id AND c.archivee = 0
             LEFT JOIN etat_carte e ON e.carte_id = c.id
+            WHERE p.masque = 0
             GROUP BY p.id
             ORDER BY m.bloc, m.nom, p.partie, p.sequence, p.ordre, p.seance
             """, new { jour = BaseDeDonnees.Iso(jour) }).ToList();

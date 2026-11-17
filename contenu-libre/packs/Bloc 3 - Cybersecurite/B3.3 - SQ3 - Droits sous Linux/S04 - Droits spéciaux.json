@@ -1,0 +1,94 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq3-s04",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – SQ3 – Droits sous Linux",
+  "sequence": null,
+  "seance": "S04 – Droits spéciaux",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Trois droits spéciaux complètent rwx : le SUID exécute un programme avec l'identité de son propriétaire, le SGID fait hériter le groupe dans un répertoire, et le sticky bit empêche de supprimer les fichiers des autres.",
+  "notions": [
+    "SUID",
+    "SGID",
+    "Héritage de groupe",
+    "Sticky bit"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq3-s04-s01",
+      "titre": "SUID",
+      "contenu": "Le **SUID** (*Set User ID*) sur un **programme** : il tourne avec l'identité de son **propriétaire** et non avec celle de l'utilisateur qui l'a démarré.\n\nExemple : `passwd` appartient à root et a le SUID, pour qu'un utilisateur puisse modifier **son** mot de passe dans `/etc/shadow` (lisible par root seulement).\n\n```text\n-rwsr-xr-x 1 root root 68208 /usr/bin/passwd\n```\nLe `s` à la place du `x` du propriétaire indique le SUID. Octal : **4000** (`chmod 4755`).\n\n**Danger** : un programme SUID root mal écrit permet de devenir root. On n'en ajoute **jamais** sur un script ; on surveille la liste : `find / -perm -4000 -type f 2>/dev/null`.",
+      "notions": [
+        "SUID"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq3-s04-s02",
+      "titre": "SGID",
+      "contenu": "Le **SGID** (*Set Group ID*) :\n- sur un **programme** : il s'exécute avec les droits du **groupe** propriétaire ;\n- sur un **répertoire** (usage le plus courant) : les fichiers créés dedans **héritent du groupe du répertoire**, au lieu du groupe principal de leur créateur.\n\nIdéal pour un **dossier de travail collectif** : tous les fichiers appartiennent au groupe du projet.\n\n```text\ndrwxrws--- 2 root projet-x 4096 /srv/projet-x\n```\n`s` à la place du `x` du groupe. Octal : **2000** (`chmod 2770`).",
+      "notions": [
+        "SGID",
+        "Héritage de groupe"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq3-s04-s03",
+      "titre": "Sticky bit",
+      "contenu": "Le **sticky bit** sur un **répertoire** : chacun peut y créer des fichiers (si `w`), mais **seul le propriétaire** d'un fichier (ou du répertoire, ou root) peut le **supprimer ou renommer**.\n\nExemple : `/tmp`, ouvert à tous mais protégé :\n\n```text\ndrwxrwxrwt 15 root root 4096 /tmp\n```\n`t` à la place du `x` des autres. Octal : **1000** (`chmod 1777`, `chmod +t`).\n\n**Notation octale étendue** : un 4e chiffre en tête : SUID 4, SGID 2, sticky 1. `chmod 3770` = SGID + sticky + `rwxrwx---`.",
+      "notions": [
+        "Sticky bit"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq3-s04-c001",
+      "section": "libre-b3-33-sq3-s04-s01",
+      "type": "qcm",
+      "question": "Pourquoi la commande passwd possède-t-elle le SUID ?",
+      "choix": [
+        "Pour être plus rapide",
+        "Pour qu'un utilisateur ordinaire puisse écrire dans /etc/shadow, réservé à root, uniquement pour changer son mot de passe",
+        "Pour que root ne puisse pas l'utiliser",
+        "Pour chiffrer les mots de passe"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le programme agit avec l'identité de root, de façon contrôlée.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq3-s04-c002",
+      "section": "libre-b3-33-sq3-s04-s02",
+      "type": "qcm",
+      "question": "Dans un répertoire `drwxrws--- root atelier`, Nora (groupe principal nora) crée un fichier. Quel groupe aura-t-il ?",
+      "choix": [
+        "nora",
+        "atelier",
+        "root",
+        "Aucun"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le SGID sur le répertoire impose l'héritage du groupe.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq3-s04-c003",
+      "section": "libre-b3-33-sq3-s04-s03",
+      "type": "exercice",
+      "enonce": "Mets en place `/srv/atelier` pour le groupe `atelier` : les membres lisent et écrivent tous les fichiers, les nouveaux fichiers appartiennent au groupe atelier, personne ne peut supprimer les fichiers d'un autre, les autres utilisateurs n'ont aucun accès.",
+      "etapes": [
+        "Créer : `sudo mkdir /srv/atelier` puis `sudo chgrp atelier /srv/atelier`.",
+        "Droits de base : rwx pour propriétaire et groupe, rien pour les autres → 770.",
+        "Ajouter SGID (2) pour l'héritage du groupe et sticky (1) contre la suppression par autrui → 2 + 1 = 3.",
+        "`sudo chmod 3770 /srv/atelier` → affichage `drwxrws--T`.",
+        "Pour que les fichiers créés soient modifiables par le groupe, régler `umask 007` pour les membres (fichiers en 660)."
+      ],
+      "reponse": "`chgrp atelier` + `chmod 3770` (SGID + sticky), umask 007 pour les membres.",
+      "difficulte": 3
+    }
+  ]
+}

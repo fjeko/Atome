@@ -29,8 +29,26 @@ public sealed class EtatApplication(TimeProvider horloge, DepotProfil profil)
     /// <summary>Vrai si l'application est affichée en sombre.</summary>
     public bool EstSombre => Palette.Sombre;
 
+    /// <summary>
+    /// Dossier des cours libres livrés avec Atome (« contenu-libre\packs » à côté de l'exécutable), ou null s'il n'existe pas.
+    /// Lu en lecture seule : on ne copie rien, les packs sont importés d'où ils sont (une mise à jour d'Atome les remplace).
+    /// En développement, on remonte les dossiers parents jusqu'à « app\contenu-libre ».
+    /// </summary>
+    public string? DossierCoursLibres { get; private set; }
+
+    private static string? TrouverCoursLibres()
+    {
+        for (var dossier = new DirectoryInfo(AppContext.BaseDirectory); dossier is not null; dossier = dossier.Parent)
+        {
+            string candidat = Path.Combine(dossier.FullName, "contenu-libre", "packs");
+            if (Directory.Exists(candidat)) return candidat;
+        }
+        return null;
+    }
+
     public void Initialiser()
     {
+        DossierCoursLibres = TrouverCoursLibres();
         Reglages = profil.ChargerReglages();
         DetecterDossiers();
         AppliquerTheme();

@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq2-s01",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ2 – Conformité au RGPD",
+  "sequence": null,
+  "seance": "S01 – Le règlement et son champ",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le RGPD est le règlement européen qui encadre le traitement des données personnelles depuis mai 2018. Il s'applique à toute organisation, quelle que soit sa taille, qui traite des données de personnes situées dans l'Union.",
+  "notions": [
+    "RGPD",
+    "Objectifs du RGPD",
+    "Champ d'application matériel",
+    "Traitement de données",
+    "Champ d'application territorial",
+    "Transferts hors UE"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq2-s01-s01",
+      "titre": "Les objectifs du RGPD",
+      "contenu": "Le **Règlement général sur la protection des données** (RGPD, règlement UE 2016/679), applicable depuis le **25 mai 2018**, poursuit trois objectifs :\n- **renforcer les droits** des personnes sur leurs données ;\n- **responsabiliser** les organisations qui traitent des données (principe de **responsabilité** : elles doivent pouvoir **prouver** leur conformité) ;\n- **harmoniser** les règles dans toute l'Union européenne et crédibiliser la régulation (sanctions renforcées, coopération entre autorités).\n\nC'est un **règlement** : il s'applique directement dans tous les États membres. En France, la loi Informatique et Libertés de 1978, modifiée, le complète.",
+      "notions": [
+        "RGPD",
+        "Objectifs du RGPD"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq2-s01-s02",
+      "titre": "Champ d'application matériel",
+      "contenu": "Le RGPD s'applique aux **traitements** de **données à caractère personnel**, automatisés ou non (un fichier papier structuré est concerné).\n\nUn **traitement** est **toute opération** sur des données : collecte, enregistrement, organisation, conservation, consultation, modification, transmission, effacement…\n\nIl s'applique à **toutes les organisations** : entreprises de toute taille, associations, administrations. Exception : l'usage **strictement personnel ou domestique** (le carnet d'adresses de ta famille).",
+      "notions": [
+        "Champ d'application matériel",
+        "Traitement de données"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq2-s01-s03",
+      "titre": "Champ géographique et portée hors de l'Union",
+      "contenu": "Le RGPD s'applique :\n- aux organisations **établies dans l'Union**, où que les données soient traitées ;\n- aux organisations **hors Union** qui **ciblent** des personnes situées dans l'Union (offre de biens ou services, suivi de leur comportement en ligne).\n\nUne plateforme américaine qui vend à des clients français est donc soumise au RGPD.\n\nLes **transferts** de données **hors de l'Union** sont encadrés : autorisés vers un pays reconnu « adéquat » par la Commission européenne, ou avec des garanties (clauses contractuelles types, règles d'entreprise contraignantes).",
+      "notions": [
+        "Champ d'application territorial",
+        "Transferts hors UE"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq2-s01-c001",
+      "section": "libre-b3-31-sq2-s01-s01",
+      "type": "qcm",
+      "question": "Depuis quand le RGPD est-il applicable ?",
+      "choix": [
+        "1978",
+        "janvier 2016",
+        "25 mai 2018",
+        "2023"
+      ],
+      "bonneReponse": 2,
+      "explication": "Adopté en 2016, il est entré en application le 25 mai 2018.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq2-s01-c002",
+      "section": "libre-b3-31-sq2-s01-s02",
+      "type": "qcm",
+      "question": "Le club de pétanque **Les Boules d'Or** (association de 40 membres) tient un fichier des adhérents. Le RGPD s'applique-t-il ?",
+      "choix": [
+        "Oui : dès qu'une organisation manipule des données personnelles, elle est soumise au règlement",
+        "Non, seulement les entreprises",
+        "Non, seulement au-delà de 250 personnes",
+        "Seulement si le fichier est en ligne"
+      ],
+      "bonneReponse": 0,
+      "explication": "La taille n'exonère pas ; certaines obligations sont seulement allégées.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq2-s01-c003",
+      "section": "libre-b3-31-sq2-s01-s03",
+      "type": "question",
+      "recto": "Une application canadienne qui suit le comportement d'utilisateurs français doit-elle respecter le RGPD ?",
+      "verso": "Oui : le RGPD s'applique dès qu'une organisation, même hors UE, **cible** ou **suit** des personnes situées dans l'Union.",
+      "difficulte": 2
+    }
+  ]
+}

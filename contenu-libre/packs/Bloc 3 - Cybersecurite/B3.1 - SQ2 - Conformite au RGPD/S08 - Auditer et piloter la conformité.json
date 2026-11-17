@@ -1,0 +1,89 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq2-s08",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ2 – Conformité au RGPD",
+  "sequence": null,
+  "seance": "S08 – Auditer et piloter la conformité",
+  "ordre": 8,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La conformité se pilote dans la durée : plan d'action, responsabilités, documentation, audits. Auditer un site permet de dresser la liste des non-conformités. Le guide du développeur aide à intégrer la protection des données dès la conception.",
+  "notions": [
+    "Pilotage de la conformité",
+    "Protection des données dès la conception",
+    "Audit de site",
+    "Non-conformités",
+    "Guide du développeur CNIL"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq2-s08-s01",
+      "titre": "Piloter la conformité",
+      "contenu": "Démarche en continu :\n1. **désigner** un pilote (DPO ou référent) ;\n2. **cartographier** et tenir le registre ;\n3. **prioriser** les actions (données sensibles, transferts, sécurité) ;\n4. **gérer les risques** (analyse d'impact si risque élevé) ;\n5. **organiser les processus** : demandes de droits, violations, nouveaux projets ;\n6. **documenter** pour prouver (registres, contrats, consentements, procédures) ;\n7. **auditer** régulièrement et former.\n\n**Protection des données dès la conception et par défaut** (*privacy by design / by default*) : intégrer la protection dès le début d'un projet, et régler par défaut les paramètres les plus protecteurs.",
+      "notions": [
+        "Pilotage de la conformité",
+        "Protection des données dès la conception"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq2-s08-s02",
+      "titre": "Auditer un site web",
+      "contenu": "Points de contrôle d'un site :\n- **mentions légales** et **politique de confidentialité** présentes et complètes ;\n- **bandeau cookies** conforme (pas de traceur avant consentement, refus facile) ;\n- **formulaires** : données minimales, champs obligatoires justifiés, mention d'information, cases non pré-cochées ;\n- **HTTPS** partout ;\n- **comptes** : mots de passe robustes, stockés hachés ;\n- **moyen d'exercer ses droits** ;\n- **sous-traitants** (hébergeur, outils d'analyse) et transferts hors UE identifiés.",
+      "notions": [
+        "Audit de site",
+        "Non-conformités"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq2-s08-s03",
+      "titre": "Guide du développeur",
+      "contenu": "La CNIL met à disposition un **guide RGPD destiné aux développeurs** (ressource libre). Réflexes à retenir :\n- préparer le projet : identifier les données et leurs finalités dès la conception ;\n- **minimiser** les données collectées et les journaux ;\n- gérer les **durées** de conservation dans le code (purge automatique) ;\n- sécuriser : HTTPS, mots de passe hachés (bcrypt/Argon2), requêtes paramétrées, gestion des droits ;\n- ne pas mettre de **vraies données** dans les environnements de test ;\n- documenter et gérer le code source de façon sécurisée (pas de secrets dans le dépôt).",
+      "notions": [
+        "Guide du développeur CNIL"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq2-s08-c001",
+      "section": "libre-b3-31-sq2-s08-s01",
+      "type": "question",
+      "recto": "Que signifie « protection des données par défaut » ?",
+      "verso": "Que les **réglages par défaut** soient les plus protecteurs (collecte minimale, profil non public, options facultatives désactivées) sans action de l'utilisateur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq2-s08-c002",
+      "section": "libre-b3-31-sq2-s08-s02",
+      "type": "exercice",
+      "enonce": "Audit du site de la pépinière fictive **Racines Vives** : formulaire de devis demandant la date de naissance ; case « recevoir nos offres » pré-cochée ; Google Analytics chargé dès l'arrivée ; pas de politique de confidentialité ; site en HTTP. Liste les non-conformités et corrections.",
+      "etapes": [
+        "Date de naissance inutile pour un devis → minimisation : supprimer le champ.",
+        "Case pré-cochée → consentement invalide : case vide, consentement actif.",
+        "Traceur d'audience avant consentement → bloquer jusqu'au choix, ou outil configuré en mode exempté.",
+        "Absence de politique de confidentialité → rédiger l'information (responsable, finalités, durées, droits, CNIL).",
+        "HTTP → passer en HTTPS (certificat), pour la confidentialité des formulaires."
+      ],
+      "reponse": "Cinq non-conformités (minimisation, consentement, cookies, information, sécurité) avec leur correction.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq2-s08-c003",
+      "section": "libre-b3-31-sq2-s08-s03",
+      "type": "qcm",
+      "question": "Pour tester une nouvelle version de l'application, quelle pratique respecte le RGPD ?",
+      "choix": [
+        "Copier la base de production complète sur le poste du développeur",
+        "Utiliser un jeu de données fictif ou anonymisé",
+        "Envoyer la base de production au prestataire par e-mail",
+        "Désactiver les mots de passe en test"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les environnements de test sont moins protégés : on y met des données fictives.",
+      "difficulte": 2
+    }
+  ]
+}

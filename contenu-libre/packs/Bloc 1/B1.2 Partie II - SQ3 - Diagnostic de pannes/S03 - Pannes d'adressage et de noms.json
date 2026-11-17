@@ -1,0 +1,90 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq3-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ3 – Diagnostic de pannes réseau",
+  "sequence": null,
+  "seance": "S03 – Pannes d'adressage et de noms",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les pannes de la couche réseau et des services : adresse statique au lieu de DHCP, conflit d'adresses, passerelle erronée, mauvais VLAN, mauvais serveur de noms et imprimante mal adressée.",
+  "notions": [
+    "IP statique au lieu de DHCP",
+    "Conflit d'adresses",
+    "Passerelle erronée",
+    "Mauvais VLAN",
+    "Serveur de noms erroné",
+    "Imprimante mal adressée"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq3-s03-s01",
+      "titre": "Pannes d'adressage",
+      "contenu": "| Situation | Symptôme | Correction |\n| --- | --- | --- |\n| poste en **IP statique** d'un ancien réseau alors que le réseau utilise DHCP | aucune communication, ou seulement avec certains | repasser en « obtenir une adresse automatiquement » |\n| **conflit d'adresses** : deux machines ont la même IP | message « conflit d'adresse IP », coupures intermittentes | trouver le doublon, corriger ; réserver les IP fixes hors de la plage DHCP |\n| **passerelle erronée** | le poste joint son réseau local, mais rien au-delà | corriger la passerelle (dans le même réseau) |\n| masque erroné | certaines machines du réseau injoignables | corriger le masque |\n| adresse 169.254.x.x | pas de réponse DHCP | vérifier le câble, le VLAN, le serveur DHCP |",
+      "notions": [
+        "IP statique au lieu de DHCP",
+        "Conflit d'adresses",
+        "Passerelle erronée"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq3-s03-s02",
+      "titre": "Mauvais VLAN, noms et imprimante",
+      "contenu": "- **Mauvais VLAN** : la prise est brassée sur un port d'un autre VLAN → le poste reçoit (par DHCP) une adresse d'un autre réseau, ou aucune. Vérifier l'adresse obtenue et la configuration du port du commutateur.\n- **Serveur de noms erroné** : les adresses IP répondent, mais pas les noms. Deux cas :\n  - noms **internes** (`srv-fichiers.local`) introuvables → le poste n'utilise pas le DNS **interne** ;\n  - noms **Internet** introuvables → le DNS interne ne sait pas résoudre vers l'extérieur (redirecteurs), ou le DNS configuré est injoignable.\n- **Imprimante mal adressée** : l'imprimante a changé d'adresse (DHCP sans réservation) alors que les postes l'impriment à l'ancienne IP. Solution : **réservation DHCP** ou IP fixe hors plage, et mise à jour du port d'impression.",
+      "notions": [
+        "Mauvais VLAN",
+        "Serveur de noms erroné",
+        "Imprimante mal adressée"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq3-s03-c001",
+      "section": "libre-b1-12b-sq3-s03-s01",
+      "type": "qcm",
+      "question": "Un poste joint tous les postes de son réseau mais aucun site Internet ni autre réseau. Que vérifies-tu en priorité ?",
+      "choix": [
+        "Le câble",
+        "La passerelle par défaut",
+        "L'adresse MAC",
+        "La taille du disque"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le local fonctionne, seul ce qui sort du réseau échoue : c'est le rôle de la passerelle.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq3-s03-c002",
+      "section": "libre-b1-12b-sq3-s03-s02",
+      "type": "exercice",
+      "enonce": "Au cabinet de géomètres Arpent & Co, un poste obtient 192.168.30.41 alors que tous les postes des bureaux sont en 192.168.10.x. Le réseau invités est 192.168.30.0/24. Diagnostic et correction ?",
+      "etapes": [
+        "L'adresse appartient au réseau invités : le poste est dans le VLAN invités.",
+        "Cause probable : prise brassée sur un port du VLAN invités, ou port mal configuré.",
+        "Correction : rebrasser sur un port du VLAN bureaux ou modifier l'affectation du port au bon VLAN.",
+        "Vérifier : `ipconfig /release` puis `/renew`, adresse en 192.168.10.x, accès aux serveurs."
+      ],
+      "reponse": "Mauvais VLAN : corriger l'affectation du port (ou le brassage), puis renouveler l'adresse et tester.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b1-12b-sq3-s03-c003",
+      "section": "libre-b1-12b-sq3-s03-s02",
+      "type": "qcm",
+      "question": "Les postes impriment depuis des mois, puis plus rien du jour au lendemain ; l'imprimante fonctionne et affiche une nouvelle adresse IP. Quelle solution durable ?",
+      "choix": [
+        "Réinstaller Windows sur tous les postes",
+        "Réserver une adresse fixe à l'imprimante (réservation DHCP ou IP hors plage) et mettre à jour les postes",
+        "Remplacer l'imprimante",
+        "Désactiver le DHCP"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un équipement partagé doit garder toujours la même adresse.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-14-sq2-s05",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.4 – SQ2 – Méthodes agiles et gestion de versions",
+  "sequence": null,
+  "seance": "S05 – Branches et opérations de base",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les opérations de base de Git (initialiser, cloner, extraire, valider, envoyer, récupérer, fusionner) et le travail dans une branche isolée.",
+  "notions": [
+    "Créer et cloner un dépôt",
+    "Indexer et valider",
+    "Message de validation",
+    "Branches",
+    "Fusion",
+    "Envoyer et récupérer"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-14-sq2-s05-s01",
+      "titre": "Opérations de base",
+      "contenu": "```bash\ngit init                         # crée un dépôt dans le dossier courant\ngit clone <url-du-depot>         # copie un dépôt distant\ngit status                       # état des fichiers\ngit add index.html style.css     # indexer (préparer) des modifications\ngit commit -m \"Ajoute la page des horaires d'ouverture\"\ngit log --oneline                # historique\ngit diff                         # voir les modifications non indexées\n```\nUn **bon message** de validation : court, à l'impératif ou au présent, il dit **ce que fait** la modification (« Corrige le calcul de la TVA sur les remises »). « modif », « test », « ça marche » sont inutiles six mois plus tard.\n\nUne validation = **un changement cohérent** : pas 15 sujets mélangés.",
+      "notions": [
+        "Créer et cloner un dépôt",
+        "Indexer et valider",
+        "Message de validation"
+      ]
+    },
+    {
+      "id": "libre-b1-14-sq2-s05-s02",
+      "titre": "Branches, fusion, synchronisation",
+      "contenu": "Une **branche** est une ligne de développement **isolée**. La branche principale (`main`) doit rester **stable** ; on développe chaque fonctionnalité dans sa branche.\n```bash\ngit switch -c fonction-recherche   # créer la branche et s'y placer\n# ... modifications, add, commit ...\ngit switch main                    # revenir sur main\ngit merge fonction-recherche       # fusionner la branche dans main\ngit branch -d fonction-recherche   # supprimer la branche fusionnée\n```\nAvec un dépôt distant :\n```bash\ngit pull               # récupérer et intégrer les nouveautés des collègues\ngit push               # envoyer ses validations\ngit push -u origin fonction-recherche   # publier une nouvelle branche\n```\n**Piège** : travailler directement sur `main` ; oublier `git pull` avant de commencer, et se retrouver en retard sur les collègues.",
+      "notions": [
+        "Branches",
+        "Fusion",
+        "Envoyer et récupérer"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-14-sq2-s05-c001",
+      "section": "libre-b1-14-sq2-s05-s01",
+      "type": "qcm",
+      "question": "Quelle commande prépare un fichier pour la prochaine validation ?",
+      "choix": [
+        "`git commit`",
+        "`git add`",
+        "`git push`",
+        "`git log`"
+      ],
+      "bonneReponse": 1,
+      "explication": "`git add` indexe ; `git commit` enregistre ce qui est indexé.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-14-sq2-s05-c002",
+      "section": "libre-b1-14-sq2-s05-s02",
+      "type": "exercice",
+      "enonce": "Écris la suite de commandes pour : créer une branche « correctif-menu », y valider la modification de `menu.css`, revenir sur main et fusionner.",
+      "etapes": [
+        "Créer et se placer sur la branche.",
+        "Indexer puis valider avec un message clair.",
+        "Revenir sur main, fusionner."
+      ],
+      "reponse": "```bash\ngit switch -c correctif-menu\ngit add menu.css\ngit commit -m \"Corrige l'affichage du menu sur mobile\"\ngit switch main\ngit merge correctif-menu\n```",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq1-s09",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – SQ1 – Améliorer un site web",
+  "sequence": null,
+  "seance": "S09 – Synthèse : auditer et améliorer un site",
+  "ordre": 9,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une grille d'audit qui réunit droit, HTML, CSS, JavaScript, référencement et déploiement, appliquée à un site fictif.",
+  "notions": [
+    "Grille d'audit d'un site",
+    "Plan d'actions"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq1-s09-s01",
+      "titre": "Une grille d'audit",
+      "contenu": "| Domaine | Points à vérifier |\n| --- | --- |\n| Juridique | mentions légales, cookies, RGPD des formulaires, droits des images, CGU |\n| HTML | validation W3C, langue, encodage, structure sémantique, `alt` |\n| CSS | charte respectée, pas de styles dans le HTML, responsive |\n| JavaScript | pas d'erreur en console, saisies contrôlées |\n| Référencement | titres et descriptions uniques, sitemap, robots.txt, vitesse |\n| Production | HTTPS, débogage désactivé, sauvegardes, pas de fichiers sensibles exposés |",
+      "notions": [
+        "Grille d'audit d'un site"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq1-s09-s02",
+      "titre": "Construire un plan d'actions",
+      "contenu": "On classe les écarts par **priorité** :\n1. **légal et sécurité** (risque de sanction ou de fuite) ;\n2. **fonctionnement** (formulaires cassés, erreurs) ;\n3. **visibilité et confort** (SEO, vitesse, design).",
+      "notions": [
+        "Plan d'actions"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq1-s09-c001",
+      "section": "libre-b1-13-sq1-s09-s01",
+      "type": "question",
+      "recto": "Cite deux points d'audit juridique et deux points d'audit technique d'un site.",
+      "verso": "Juridique : mentions légales, consentement aux cookies, information RGPD, droits sur les images. Technique : validation HTML, HTTPS, vitesse, erreurs JavaScript, titres uniques.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-13-sq1-s09-c002",
+      "section": "libre-b1-13-sq1-s09-s02",
+      "type": "exercice",
+      "enonce": "Le site de l'école de voile Cap au Large présente : formulaire d'inscription en HTTP, bandeau cookies sans bouton « Refuser », 14 erreurs au validateur, calculateur de tarif qui concatène les nombres, toutes les pages titrées « Cap au Large ». Classe les actions par priorité.",
+      "etapes": [
+        "Priorité 1 (légal/sécurité) : passer en HTTPS (données d'inscription en clair) ; bandeau conforme avec refus.",
+        "Priorité 2 (fonctionnement) : corriger le calculateur (conversion en nombres) ; corriger les erreurs HTML.",
+        "Priorité 3 (visibilité) : titres uniques et descriptifs."
+      ],
+      "reponse": "1. HTTPS + bandeau cookies ; 2. calculateur + erreurs HTML ; 3. titres SEO.",
+      "difficulte": 3
+    }
+  ]
+}

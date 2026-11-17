@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq05-s02",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 5 – Finalités et parties prenantes",
+  "sequence": null,
+  "seance": "S2 – Les parties prenantes",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Identifier les acteurs qui influencent l'entreprise ou sont touchés par elle, les classer et comprendre leurs attentes, parfois contradictoires.",
+  "notions": [
+    "Notion de partie prenante",
+    "Classements des parties prenantes",
+    "Attentes et conflits d'intérêts"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq05-s02-s01",
+      "titre": "Notion et classements",
+      "contenu": "Une **partie prenante** est un individu ou un groupe qui **influence** l'organisation ou est **affecté** par ses décisions. On les représente souvent en **roue** autour de l'entreprise.\n\nDeux classements :\n- **internes** (dans l'organisation : salariés, dirigeants, associés) / **externes** (clients, fournisseurs, banques, État, collectivités, associations, riverains) ;\n- **primaires** (liées directement à l'activité par un contrat ou un échange : salariés, clients, fournisseurs, actionnaires) / **secondaires** (influence indirecte : médias, ONG, riverains, collectivités).\n\nOn n'oublie pas les parties prenantes **silencieuses** : l'environnement, les générations futures, qui ne peuvent pas s'exprimer elles-mêmes.",
+      "notions": [
+        "Notion de partie prenante",
+        "Classements des parties prenantes"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq05-s02-s02",
+      "titre": "Attentes et conflits",
+      "contenu": "| Partie prenante | Attentes principales |\n|---|---|\n| actionnaires | rentabilité, dividendes, valeur de l'entreprise |\n| salariés | salaire, sécurité de l'emploi, conditions de travail, reconnaissance |\n| clients | qualité, prix, service, éthique |\n| fournisseurs | commandes régulières, paiement dans les délais |\n| banques | remboursement, solvabilité |\n| État, collectivités | respect de la loi, impôts, emplois sur le territoire |\n| riverains, associations | absence de nuisances, respect de l'environnement |\n\nCes attentes peuvent **s'opposer** : augmenter les salaires (salariés) réduit les dividendes (actionnaires) ; baisser les prix (clients) peut pousser à presser les fournisseurs. Le dirigeant doit **arbitrer** et chercher des compromis.",
+      "notions": [
+        "Attentes et conflits d'intérêts"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq05-s02-c001",
+      "section": "libre-cejm-sq05-s02-s01",
+      "type": "qcm",
+      "question": "Un fournisseur est une partie prenante…",
+      "choix": [
+        "Externe et primaire",
+        "Interne et primaire",
+        "Externe et secondaire",
+        "Interne et secondaire"
+      ],
+      "bonneReponse": 0,
+      "explication": "Il est hors de l'organisation mais lié directement à son activité par contrat.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq05-s02-c002",
+      "section": "libre-cejm-sq05-s02-s01",
+      "type": "qcm",
+      "question": "Une association de riverains qui conteste l'agrandissement d'un entrepôt est une partie prenante…",
+      "choix": [
+        "Externe et secondaire",
+        "Interne et primaire",
+        "Externe et primaire",
+        "Interne et secondaire"
+      ],
+      "bonneReponse": 0,
+      "explication": "Elle n'a pas de lien contractuel, mais elle influence et est affectée par la décision.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq05-s02-c003",
+      "section": "libre-cejm-sq05-s02-s02",
+      "type": "exercice",
+      "enonce": "Une entreprise envisage de délocaliser sa production pour réduire ses coûts. Identifie deux parties prenantes aux intérêts opposés et explique le conflit.",
+      "etapes": [
+        "Actionnaires : la baisse des coûts augmente la rentabilité.",
+        "Salariés et collectivité locale : pertes d'emplois et de recettes fiscales."
+      ],
+      "reponse": "Conflit entre la rentabilité attendue par les actionnaires et l'emploi attendu par les salariés et le territoire.",
+      "difficulte": 2
+    }
+  ]
+}

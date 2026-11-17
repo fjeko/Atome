@@ -1,0 +1,79 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq4-s02",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – SQ4 – Conformité légale, newsletter, cloud et référencement d'un site CMS",
+  "sequence": null,
+  "seance": "S02 – Portabilité et effacement",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Répondre aux demandes de portabilité et d'effacement des données personnelles : obligations, délais, et outils d'export et de suppression d'un CMS.",
+  "notions": [
+    "Droit à la portabilité",
+    "Droit à l'effacement",
+    "Délai de réponse",
+    "Export et suppression dans le CMS"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq4-s02-s01",
+      "titre": "Portabilité et effacement",
+      "contenu": "Le RGPD donne aux personnes plusieurs droits. Deux d'entre eux demandent une action technique :\n- **Droit à la portabilité** : recevoir les données **qu'elle a fournies**, dans un format que l'art. 20 du RGPD décrit ainsi : « structuré, couramment utilisé et lisible par machine » (CSV, JSON, XML), pour les réutiliser ailleurs. À ne pas confondre avec le **droit d'accès** (savoir quelles données sont détenues et en obtenir une copie, sous une forme quelconque).\n- **Droit à l'effacement** (« droit à l'oubli ») : obtenir la suppression de ses données, notamment quand elles ne sont plus nécessaires ou que la personne retire son consentement. Exceptions : obligations légales de conservation (une **facture** doit être gardée 10 ans en comptabilité).\n\n**Délai** : répondre **dans un mois** à compter de la demande (prolongeable de deux mois pour une demande complexe, en prévenant la personne). Vérifier l'**identité** du demandeur sans exiger plus que nécessaire.",
+      "notions": [
+        "Droit à la portabilité",
+        "Droit à l'effacement",
+        "Délai de réponse"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq4-s02-s02",
+      "titre": "Les outils du CMS",
+      "contenu": "Beaucoup de CMS intègrent des outils de confidentialité : *Outils > Exporter les données personnelles* et *Effacer les données personnelles*, avec envoi d'un e-mail de confirmation au demandeur. Une extension de boutique ou de formulaire doit aussi être couverte (commandes, messages stockés).\n\nProcédure type :\n1. enregistrer la demande (date, demandeur) ;\n2. vérifier l'identité ;\n3. lancer l'export (archive JSON/HTML) ou l'effacement ;\n4. contrôler les autres emplacements (outil d'e-mailing, sauvegardes selon leur rotation) ;\n5. répondre à la personne et garder une trace de la réponse.",
+      "notions": [
+        "Export et suppression dans le CMS"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq4-s02-c001",
+      "section": "libre-b1-13-sq4-s02-s01",
+      "type": "qcm",
+      "question": "Une cliente demande à récupérer ses données de compte « dans un fichier qu'elle pourra importer ailleurs ». Quel droit exerce-t-elle ?",
+      "choix": [
+        "Droit d'accès",
+        "Droit à la portabilité",
+        "Droit d'opposition",
+        "Droit à l'effacement"
+      ],
+      "bonneReponse": 1,
+      "explication": "La portabilité porte sur un format structuré et réutilisable par une machine.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq4-s02-c002",
+      "section": "libre-b1-13-sq4-s02-s01",
+      "type": "question",
+      "recto": "Un client demande l'effacement de ses données. Peut-on supprimer ses factures ?",
+      "verso": "Non : les factures sont soumises à une obligation légale de conservation. On efface ce qui n'est plus nécessaire (compte, newsletter) et on conserve, en accès restreint, ce que la loi impose.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq4-s02-c003",
+      "section": "libre-b1-13-sq4-s02-s02",
+      "type": "exercice",
+      "enonce": "Tu reçois le 3 mars une demande d'effacement d'un abonné à la newsletter d'une librairie. Décris les étapes et la date limite de réponse.",
+      "etapes": [
+        "Noter la demande (3 mars) et vérifier que l'adresse e-mail correspond.",
+        "Supprimer l'abonné de la plateforme d'e-mailing et du CMS (compte, messages de contact).",
+        "Conserver ce qui relève d'une obligation légale (factures éventuelles).",
+        "Confirmer l'effacement à la personne."
+      ],
+      "reponse": "Effacement dans le CMS et l'outil d'e-mailing, conservation des seules données légalement obligatoires, réponse au plus tard le 3 avril.",
+      "difficulte": 2
+    }
+  ]
+}

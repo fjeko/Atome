@@ -1,0 +1,89 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq3-s05",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – SQ3 – Signature numérique, hachage et certificats",
+  "sequence": null,
+  "seance": "S05 – Protocole de transport sécurisé et poignée de main",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. TLS a évolué depuis SSL. La poignée de main négocie une suite cryptographique, authentifie le serveur par son certificat et établit une clé de session. L'authentification peut être mutuelle.",
+  "notions": [
+    "Évolution SSL TLS",
+    "Poignée de main TLS",
+    "Suite cryptographique",
+    "Clé de session",
+    "Authentification mutuelle"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq3-s05-s01",
+      "titre": "Évolution de SSL à TLS 1.3",
+      "contenu": "| Version | Statut |\n| --- | --- |\n| SSL 2.0, SSL 3.0 | obsolètes, vulnérables |\n| TLS 1.0, TLS 1.1 | dépréciés (désactivés par les navigateurs) |\n| **TLS 1.2** | encore largement utilisé, sûr s'il est bien configuré |\n| **TLS 1.3** (2018) | recommandé : plus rapide, supprime les algorithmes faibles |\n\nUn serveur doit **désactiver** les anciennes versions pour éviter qu'un attaquant force l'utilisation d'un protocole faible (attaque par rétrogradation).",
+      "notions": [
+        "Évolution SSL TLS"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s05-s02",
+      "titre": "La poignée de main",
+      "contenu": "La **poignée de main** (*handshake*) TLS 1.3, simplifiée :\n1. **ClientHello** : le client envoie les versions et **suites cryptographiques** acceptées, et sa part d'échange de clés.\n2. **ServerHello** : le serveur choisit la suite, envoie sa part d'échange de clés ; tous deux calculent la **clé de session**.\n3. Le serveur envoie son **certificat** et une **preuve** qu'il possède la clé privée correspondante (signature).\n4. Le client **vérifie** le certificat ; les deux confirment ; les données applicatives sont chiffrées.\n\nUne **suite cryptographique** combine : un échange de clés (ECDHE), un algorithme d'authentification (RSA, ECDSA), un chiffrement symétrique avec intégrité (AES-GCM, ChaCha20-Poly1305) et une fonction de hachage (SHA-256/384). Exemple en TLS 1.3 : `TLS_AES_256_GCM_SHA384`.\n\nLa **clé de session** est temporaire et symétrique ; grâce à l'échange éphémère, la compromission future de la clé privée du serveur ne permet pas de déchiffrer les sessions passées (**confidentialité persistante**).",
+      "notions": [
+        "Poignée de main TLS",
+        "Suite cryptographique",
+        "Clé de session"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s05-s03",
+      "titre": "Authentification mutuelle",
+      "contenu": "En général, seul le **serveur** présente un certificat ; l'utilisateur s'authentifie ensuite par mot de passe.\n\nEn **authentification mutuelle** (*mTLS*), le **client** présente **aussi** un certificat, que le serveur vérifie. Usages : accès d'API entre entreprises, accès des postes d'une organisation à un service interne, objets connectés.",
+      "notions": [
+        "Authentification mutuelle"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq3-s05-c001",
+      "section": "libre-b3-32-sq3-s05-s01",
+      "type": "qcm",
+      "question": "Quelles versions de TLS faut-il accepter sur un serveur web aujourd'hui ?",
+      "choix": [
+        "SSL 3.0 et TLS 1.0",
+        "Toutes, pour la compatibilité",
+        "TLS 1.2 et TLS 1.3",
+        "Uniquement TLS 1.0"
+      ],
+      "bonneReponse": 2,
+      "explication": "Les versions antérieures sont vulnérables.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-32-sq3-s05-c002",
+      "section": "libre-b3-32-sq3-s05-s02",
+      "type": "qcm",
+      "question": "À quoi sert la clé de session établie pendant la poignée de main ?",
+      "choix": [
+        "À signer le certificat",
+        "À chiffrer symétriquement les données échangées pendant la connexion",
+        "À identifier l'utilisateur",
+        "À hacher les mots de passe"
+      ],
+      "bonneReponse": 1,
+      "explication": "L'asymétrique sert à l'établir ; le symétrique chiffre ensuite les données.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq3-s05-c003",
+      "section": "libre-b3-32-sq3-s05-s03",
+      "type": "question",
+      "recto": "Qu'apporte l'authentification mutuelle TLS ?",
+      "verso": "Le **serveur vérifie aussi l'identité du client** grâce à un certificat client, en plus de l'authentification habituelle du serveur.",
+      "difficulte": 2
+    }
+  ]
+}

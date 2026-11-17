@@ -1,0 +1,152 @@
+{
+  "formatVersion": 1,
+  "id": "libre-algo-p2-s02",
+  "matiere": "Algorithmique appliquée",
+  "bloc": "Bloc 6",
+  "partie": "Partie 2 – Tableaux",
+  "sequence": null,
+  "seance": "S2 – Vecteurs : exercices guidés et algorithmes avec mémoire",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Échanger, inverser, décaler, copier, répartir des valeurs, gérer un remplissage partiel, mélanger un paquet de cartes, et mémoriser des résultats (polynôme, nombres premiers, facteurs).",
+  "notions": [
+    "Échange, inversion, décalage",
+    "Copie et alias",
+    "Répartition et remplissage partiel",
+    "Mélange aléatoire",
+    "Algorithmes avec mémoire (polynôme, tamis, facteurs)"
+  ],
+  "sections": [
+    {
+      "id": "libre-algo-p2-s02-s01",
+      "titre": "Échanger, inverser, décaler",
+      "contenu": "**Échanger** deux cases demande une **variable temporaire**, sinon on perd une valeur :\n```python\ntmp = t[i]\nt[i] = t[j]\nt[j] = tmp\n```\n(Python accepte aussi `t[i], t[j] = t[j], t[i]`.)\n\n**Inverser** le tableau sur place : on échange la case `i` avec la case symétrique `n - 1 - i`, **seulement sur la première moitié** (sinon on ré-inverse tout).\n```python\nt = [3, 8, 1, 6, 4]\nn = len(t)\nfor i in range(n // 2):\n    tmp = t[i]\n    t[i] = t[n - 1 - i]\n    t[n - 1 - i] = tmp\nprint(t)          # [4, 6, 1, 8, 3]\n```\n\n**Décaler** d'une case vers la gauche (rotation) : on sauvegarde la première valeur, on décale, on la replace à la fin.\n```python\nt = [3, 8, 1, 6, 4]\npremier = t[0]\nfor i in range(len(t) - 1):\n    t[i] = t[i + 1]\nt[len(t) - 1] = premier\nprint(t)          # [8, 1, 6, 4, 3]\n```",
+      "notions": [
+        "Échange, inversion, décalage"
+      ]
+    },
+    {
+      "id": "libre-algo-p2-s02-s02",
+      "titre": "Copier, répartir, remplir partiellement",
+      "contenu": "**Copier** : en Python, `b = a` ne copie **pas** la liste, il crée un deuxième nom pour la même liste (un **alias**).\n```python\na = [1, 2, 3]\nb = a\nb[0] = 99\nprint(a)          # [99, 2, 3]  ← a a changé aussi !\nb = a.copy()      # vraie copie (ou list(a), ou a[:])\n```\n\n**Répartir** les valeurs entre deux tableaux :\n```python\nt = [7, 4, 10, 3, 8, 1]\npairs = []\nimpairs = []\nfor v in t:\n    if v % 2 == 0:\n        pairs.append(v)\n    else:\n        impairs.append(v)\nprint(pairs, impairs)   # [4, 10, 8] [7, 3, 1]\n```\n\n**Remplissage partiel** : on réserve une taille maximale et on tient un **compteur** des cases réellement utilisées. Tous les calculs se font sur `nb` cases, pas sur la taille déclarée.\n```python\nnotes = [0.0] * 30\nnb = 0\n# … à chaque saisie : notes[nb] = valeur ; nb = nb + 1\n```",
+      "notions": [
+        "Copie et alias",
+        "Répartition et remplissage partiel"
+      ]
+    },
+    {
+      "id": "libre-algo-p2-s02-s03",
+      "titre": "Mélanger et distribuer un jeu de cartes",
+      "contenu": "Simulation : un jeu de 10 cartes numérotées de 1 à 10 est mélangé, puis distribué à deux joueurs.\n\n```python\nimport random\n\npaquet = []\nfor v in range(1, 11):\n    paquet.append(v)\n\n# Mélange : on échange chaque case avec une case tirée au hasard\nfor i in range(len(paquet) - 1, 0, -1):\n    j = random.randint(0, i)        # entier entre 0 et i inclus\n    paquet[i], paquet[j] = paquet[j], paquet[i]\n\n# Distribution alternée\njoueur1 = []\njoueur2 = []\nfor i in range(len(paquet)):\n    if i % 2 == 0:\n        joueur1.append(paquet[i])\n    else:\n        joueur2.append(paquet[i])\n```\n\nLe mélange ci-dessus (de la fin vers le début, avec `j` entre 0 et `i`) donne toutes les permutations avec la même probabilité : c'est le **mélange de Fisher-Yates**.\n\nPour comparer les deux piles, on parcourt les deux listes en parallèle avec le même indice.",
+      "notions": [
+        "Mélange aléatoire"
+      ]
+    },
+    {
+      "id": "libre-algo-p2-s02-s04",
+      "titre": "Algorithmes avec mémoire",
+      "contenu": "**Polynôme** $P(x) = 2x^3 - x^2 + 4x - 5$ : on range les coefficients du degré 0 au degré 3, `coef = [-5, 4, -1, 2]`.\n\n- Méthode naïve : $\\sum coef_i \\times x^i$, beaucoup de multiplications.\n- Méthode de **Horner** : $P(x) = ((2x - 1)x + 4)x - 5$, une multiplication par degré.\n\n```python\nx = 2\nres = 0\nfor i in range(len(coef) - 1, -1, -1):   # du degré 3 au degré 0\n    res = res * x + coef[i]\nprint(res)        # 15\n```\n\n**Tamis d'Ératosthène** : on mémorise dans un tableau de booléens si chaque nombre est premier, et on raye les multiples.\n```python\nN = 30\nest_premier = [True] * (N + 1)\nest_premier[0] = False\nest_premier[1] = False\nfor i in range(2, N + 1):\n    if est_premier[i]:\n        for k in range(i * i, N + 1, i):\n            est_premier[k] = False\n# premiers : 2 3 5 7 11 13 17 19 23 29\n```\n\n**Décomposition en facteurs premiers** : on divise par `d` tant que c'est possible, puis on passe à `d + 1`. Pour 360 : `[2, 2, 2, 3, 3, 5]`.",
+      "notions": [
+        "Algorithmes avec mémoire (polynôme, tamis, facteurs)"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-algo-p2-s02-c001",
+      "section": "libre-algo-p2-s02-s01",
+      "type": "qcm",
+      "question": "Que contient `t` après `t[0] = t[1]` puis `t[1] = t[0]`, si `t = [5, 9]` au départ ?",
+      "choix": [
+        "[9, 9]",
+        "[9, 5]",
+        "[5, 9]",
+        "[5, 5]"
+      ],
+      "bonneReponse": 0,
+      "explication": "La valeur 5 est écrasée par la première instruction et perdue : il fallait une variable temporaire.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p2-s02-c002",
+      "section": "libre-algo-p2-s02-s01",
+      "type": "qcm",
+      "question": "Pour inverser un tableau de 6 cases, combien d'échanges fait la boucle `for i in range(n // 2)` ?",
+      "choix": [
+        "3",
+        "6",
+        "5",
+        "2"
+      ],
+      "bonneReponse": 0,
+      "explication": "6 // 2 = 3 échanges : (0,5), (1,4), (2,3). Six échanges remettraient le tableau dans l'ordre initial.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p2-s02-c003",
+      "section": "libre-algo-p2-s02-s02",
+      "type": "qcm",
+      "question": "Après `a = [1, 2]`, `b = a`, `b.append(3)`, que vaut `a` ?",
+      "choix": [
+        "[1, 2, 3]",
+        "[1, 2]",
+        "[3]",
+        "Erreur"
+      ],
+      "bonneReponse": 0,
+      "explication": "`b` est un alias de `a` : c'est la même liste.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p2-s02-c004",
+      "section": "libre-algo-p2-s02-s02",
+      "type": "question",
+      "recto": "Dans un tableau de 30 cases dont seules 12 sont remplies (compteur `nb = 12`), sur quoi calcule-t-on la moyenne ?",
+      "verso": "Sur les `nb` = 12 premières cases, en divisant par 12 (et non par 30).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p2-s02-c005",
+      "section": "libre-algo-p2-s02-s03",
+      "type": "exercice",
+      "enonce": "Écris une boucle qui compte combien de « plis » gagne le joueur 1 : à chaque indice `i`, il gagne si `joueur1[i] > joueur2[i]`.",
+      "etapes": [
+        "Les deux piles ont la même taille : un seul indice suffit.",
+        "Compteur initialisé à 0."
+      ],
+      "reponse": "```python\ngagnes = 0\nfor i in range(len(joueur1)):\n    if joueur1[i] > joueur2[i]:\n        gagnes = gagnes + 1\nprint(gagnes)\n```",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p2-s02-c006",
+      "section": "libre-algo-p2-s02-s04",
+      "type": "exercice",
+      "enonce": "Avec Horner, calcule $P(3)$ pour $P(x) = x^2 + 2x - 4$ (coef = [-4, 2, 1]).",
+      "etapes": [
+        "res = 0",
+        "Degré 2 : res = 0 × 3 + 1 = 1",
+        "Degré 1 : res = 1 × 3 + 2 = 5",
+        "Degré 0 : res = 5 × 3 − 4 = 11"
+      ],
+      "reponse": "$P(3) = 11$ (vérification : $9 + 6 - 4 = 11$)",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p2-s02-c007",
+      "section": "libre-algo-p2-s02-s04",
+      "type": "qcm",
+      "question": "Dans le tamis, pourquoi la boucle interne commence-t-elle à `i * i` ?",
+      "choix": [
+        "Les multiples plus petits de i ont déjà été rayés par des nombres plus petits",
+        "Pour éviter une division par zéro",
+        "Par hasard, `2 * i` donnerait un autre résultat faux",
+        "Parce que `i * i` est premier"
+      ],
+      "bonneReponse": 0,
+      "explication": "Par exemple pour i = 5, 10, 15 et 20 ont déjà été rayés par 2 et 3. Commencer à 2i serait juste mais plus lent.",
+      "difficulte": 3
+    }
+  ]
+}

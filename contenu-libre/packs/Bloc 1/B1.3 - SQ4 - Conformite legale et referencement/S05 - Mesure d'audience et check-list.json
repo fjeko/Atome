@@ -1,0 +1,69 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq4-s05",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – SQ4 – Conformité légale, newsletter, cloud et référencement d'un site CMS",
+  "sequence": null,
+  "seance": "S05 – Mesure d'audience et check-list finale",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Suivre la visibilité et l'audience d'un site tout en respectant le consentement aux traceurs, puis vérifier la conformité avec une check-list finale.",
+  "notions": [
+    "Outils de suivi de visibilité",
+    "Mesure d'audience et consentement",
+    "Check-list de conformité"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq4-s05-s01",
+      "titre": "Suivre visibilité et audience",
+      "contenu": "- Les **outils pour webmasters** des moteurs de recherche indiquent comment le site apparaît dans les résultats : pages indexées, requêtes tapées par les internautes, position moyenne, erreurs d'exploration.\n- Les outils de **mesure d'audience** comptent les visites, pages vues, provenance, appareils.\n\n**Consentement** : un outil de mesure d'audience qui dépose des traceurs doit, par défaut, attendre le **consentement** de l'internaute. Il ne peut en être dispensé que s'il est configuré selon des conditions strictes (finalité limitée à la mesure, données non recoupées ni transmises, adresse IP anonymisée…). Erreur fréquente : charger le script de mesure **avant** que l'internaute ait fait son choix.",
+      "notions": [
+        "Outils de suivi de visibilité",
+        "Mesure d'audience et consentement"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq4-s05-s02",
+      "titre": "Check-list finale",
+      "contenu": "- [ ] mentions légales complètes et accessibles partout ;\n- [ ] politique de confidentialité à jour ;\n- [ ] bandeau cookies : refus aussi simple que l'acceptation, aucun traceur avant le choix ;\n- [ ] formulaires : données minimales, information, cases de consentement distinctes et non pré-cochées, preuve conservée ;\n- [ ] procédure pour les demandes d'accès, de portabilité, d'effacement (délai d'un mois) ;\n- [ ] newsletter en double confirmation, lien de désinscription ;\n- [ ] droits sur tous les médias ;\n- [ ] HTTPS, mises à jour, sauvegardes testées ;\n- [ ] site déclaré aux outils pour webmasters, plan du site envoyé.",
+      "notions": [
+        "Check-list de conformité"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq4-s05-c001",
+      "section": "libre-b1-13-sq4-s05-s01",
+      "type": "qcm",
+      "question": "Le script de mesure d'audience d'un site se charge dès l'arrivée du visiteur, avant le bandeau. Est-ce conforme ?",
+      "choix": [
+        "Oui, la mesure d'audience est toujours exemptée",
+        "Non, sauf configuration exemptée stricte : il faut attendre le consentement",
+        "Oui, si le site est en HTTPS",
+        "Oui, si le bandeau s'affiche ensuite"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le consentement doit être préalable, sauf cas d'exemption très encadré.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq4-s05-c002",
+      "section": "libre-b1-13-sq4-s05-s02",
+      "type": "exercice",
+      "enonce": "Audit du site du festival Les Nuits du Causse : newsletter en inscription simple, case newsletter pré-cochée dans le formulaire de billetterie, mesure d'audience chargée sans consentement, aucune procédure pour les demandes RGPD. Propose les corrections.",
+      "etapes": [
+        "Newsletter : passer en double confirmation.",
+        "Case pré-cochée : la décocher par défaut et la rendre facultative et distincte de l'achat.",
+        "Mesure d'audience : la conditionner au consentement (ou configuration exemptée stricte).",
+        "Demandes RGPD : rédiger une procédure (adresse de contact, vérification d'identité, réponse sous un mois, outils d'export/effacement)."
+      ],
+      "reponse": "Double opt-in, case non pré-cochée et distincte, traceurs après consentement, procédure RGPD documentée.",
+      "difficulte": 3
+    }
+  ]
+}

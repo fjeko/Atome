@@ -1,0 +1,158 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq3-s01",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "SQ3 – Ordonnancement",
+  "sequence": null,
+  "seance": "S1 – La méthode MPM : niveaux, graphe et dates",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Planifier un projet découpé en tâches : tableau des antériorités, niveaux, graphe d'ordonnancement, puis dates au plus tôt et au plus tard pour obtenir la durée minimale.",
+  "notions": [
+    "But de l'ordonnancement",
+    "Tâche, durée et antériorité",
+    "Niveaux des tâches",
+    "Graphe d'ordonnancement",
+    "Dates au plus tôt",
+    "Durée minimale du projet",
+    "Dates au plus tard"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq3-s01-s01",
+      "titre": "Pourquoi ordonnancer un projet ?",
+      "contenu": "Un projet (créer un site, déployer des postes, organiser un événement) se découpe en **tâches**. Chaque tâche a :\n- une **durée** ;\n- des **tâches antérieures** (ou antécédents) : celles qui doivent être **terminées** avant qu'elle puisse commencer ;\n- par conséquent, des **tâches suivantes** (ou successeurs).\n\nL'**ordonnancement** répond à trois questions :\n1. Quelle est la **durée minimale** du projet ?\n2. Quelles tâches sont **critiques** (le moindre retard retarde tout le projet) ?\n3. De combien peut-on retarder les autres (les **marges**) ?\n\nLa méthode utilisée ici, de type **MPM** (méthode des potentiels), représente chaque tâche par un sommet d'un graphe orienté sans circuit.\n\n**Projet fil rouge.** *Les Sentiers Partagés*, une association fictive de randonnée, refait son site web :\n\n| Tâche | Description | Durée (jours) | Tâches antérieures |\n|---|---|---|---|\n| A | Analyse des besoins | 3 | — |\n| B | Choix de l'hébergeur | 2 | A |\n| C | Maquettes des pages | 4 | A |\n| D | Installation du serveur | 2 | B |\n| E | Développement des pages | 5 | C, D |\n| F | Import des contenus | 3 | D |\n| G | Tests et mise en ligne | 2 | E, F |",
+      "notions": [
+        "But de l'ordonnancement",
+        "Tâche, durée et antériorité"
+      ]
+    },
+    {
+      "id": "libre-maths-sq3-s01-s02",
+      "titre": "Étape 1 et 2 : niveaux et graphe",
+      "contenu": "### Les niveaux\nOn applique la méthode des niveaux (retrait des tâches sans antérieure) :\n\n| Niveau | 0 | 1 | 2 | 3 | 4 |\n|---|---|---|---|---|---|\n| Tâches | A | B, C | D | E, F | G |\n\n### Le graphe d'ordonnancement\n- Chaque tâche est un sommet, dessiné en **colonnes par niveau**.\n- On ajoute un sommet **Début** (relié aux tâches sans antérieure) et un sommet **Fin** (relié aux tâches sans successeur).\n- Chaque arc $X \\to Y$ porte la **durée de la tâche d'origine $X$** (Début → … porte 0).\n\nArcs du projet : Début → A (0), A → B (3), A → C (3), B → D (2), C → E (4), D → E (2), D → F (2), E → G (5), F → G (3), G → Fin (2).\n\nChaque sommet est représenté par une case qui recevra deux nombres : $\\boxed{X \\mid t_X \\mid T_X}$ (date au plus tôt, date au plus tard).",
+      "notions": [
+        "Niveaux des tâches",
+        "Graphe d'ordonnancement"
+      ]
+    },
+    {
+      "id": "libre-maths-sq3-s01-s03",
+      "titre": "Étape 3 : les dates au plus tôt",
+      "contenu": "Pour une tâche, la **date au plus tôt** $t_X$ est l'instant le plus précoce où elle peut **démarrer**, une fois ses antérieures terminées. On parcourt le graphe **de gauche à droite** :\n\n$$t_{\\text{Début}} = 0 \\qquad t_Y = \\max_{X \\text{ antérieure de } Y} \\left(t_X + d_X\\right)$$\n\nOn prend le **maximum**, car il faut attendre que **toutes** les antérieures soient terminées.\n\n| Tâche | Calcul | $t$ |\n|---|---|---|\n| A | Début | 0 |\n| B | $0 + 3$ | 3 |\n| C | $0 + 3$ | 3 |\n| D | $3 + 2$ | 5 |\n| E | $\\max(3 + 4 ;\\ 5 + 2) = \\max(7 ; 7)$ | 7 |\n| F | $5 + 2$ | 7 |\n| G | $\\max(7 + 5 ;\\ 7 + 3)$ | 12 |\n| Fin | $12 + 2$ | **14** |\n\n**Durée minimale du projet : 14 jours** (c'est la date au plus tôt de Fin).",
+      "notions": [
+        "Dates au plus tôt",
+        "Durée minimale du projet"
+      ]
+    },
+    {
+      "id": "libre-maths-sq3-s01-s04",
+      "titre": "Étape 4 : les dates au plus tard",
+      "contenu": "La **date au plus tard** $T_X$ est l'instant limite auquel la tâche peut **démarrer** sans repousser l'achèvement du projet. On parcourt le graphe **de droite à gauche**, en partant de $T_{\\text{Fin}} = t_{\\text{Fin}}$ :\n\n$$T_X = \\min_{Y \\text{ successeur de } X} \\left(T_Y\\right) - d_X$$\n\nOn prend le **minimum**, car X doit être finie à temps pour **chacun** de ses successeurs.\n\n| Tâche | Calcul | $T$ |\n|---|---|---|\n| Fin | | 14 |\n| G | $14 - 2$ | 12 |\n| F | $12 - 3$ | 9 |\n| E | $12 - 5$ | 7 |\n| D | $\\min(7 ; 9) - 2$ | 5 |\n| C | $7 - 4$ | 3 |\n| B | $5 - 2$ | 3 |\n| A | $\\min(3 ; 3) - 3$ | 0 |\n\n**Contrôle de cohérence** : on retombe sur $T_{\\text{Début}} = 0$. Sinon, il y a une erreur de calcul.\n\n| Tâche | A | B | C | D | E | F | G |\n|---|---|---|---|---|---|---|---|\n| $t$ | 0 | 3 | 3 | 5 | 7 | 7 | 12 |\n| $T$ | 0 | 3 | 3 | 5 | 7 | 9 | 12 |",
+      "notions": [
+        "Dates au plus tard"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq3-s01-c001",
+      "section": "libre-maths-sq3-s01-s01",
+      "type": "question",
+      "recto": "Que signifie « la tâche E a pour antérieures C et D » ?",
+      "verso": "E ne peut commencer que lorsque C **et** D sont toutes les deux terminées.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq3-s01-c002",
+      "section": "libre-maths-sq3-s01-s01",
+      "type": "qcm",
+      "question": "Dans le projet *Les Sentiers Partagés*, quels sont les successeurs de D ?",
+      "choix": [
+        "E et F",
+        "B",
+        "G",
+        "C et E"
+      ],
+      "bonneReponse": 0,
+      "explication": "On cherche les tâches qui ont D dans leur colonne « antérieures » : E et F. B est l'antérieure de D, pas son successeur.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq3-s01-c003",
+      "section": "libre-maths-sq3-s01-s02",
+      "type": "qcm",
+      "question": "Sur un arc $X \\to Y$ du graphe d'ordonnancement, quelle valeur écrit-on ?",
+      "choix": [
+        "La durée de la tâche d'origine X",
+        "La durée de la tâche Y",
+        "La somme des durées de X et Y",
+        "La date au plus tôt de Y"
+      ],
+      "bonneReponse": 0,
+      "explication": "L'arc signifie « il faut attendre la durée de X avant de commencer Y » : on y met la durée de X.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq3-s01-c004",
+      "section": "libre-maths-sq3-s01-s02",
+      "type": "question",
+      "recto": "À quoi servent les sommets « Début » et « Fin » ?",
+      "verso": "À avoir un point de départ et d'arrivée uniques : Début précède les tâches sans antérieure, Fin suit les tâches sans successeur. La date au plus tôt de Fin est la durée du projet.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq3-s01-c005",
+      "section": "libre-maths-sq3-s01-s03",
+      "type": "qcm",
+      "question": "Une tâche a deux antérieures : X ($t_X = 4$, durée 3) et Y ($t_Y = 2$, durée 6). Quelle est sa date au plus tôt ?",
+      "choix": [
+        "8",
+        "7",
+        "4",
+        "15"
+      ],
+      "bonneReponse": 0,
+      "explication": "$\\max(4 + 3 ;\\ 2 + 6) = \\max(7 ; 8) = 8$. Prendre le minimum (7) est l'erreur classique.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq3-s01-c006",
+      "section": "libre-maths-sq3-s01-s03",
+      "type": "question",
+      "recto": "Pourquoi prend-on le maximum pour les dates au plus tôt ?",
+      "verso": "Parce qu'une tâche ne peut commencer que lorsque **toutes** ses antérieures sont finies : c'est la plus tardive qui impose la date.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq3-s01-c007",
+      "section": "libre-maths-sq3-s01-s04",
+      "type": "exercice",
+      "enonce": "Une tâche X dure 4 jours. Ses successeurs ont pour dates au plus tard 15 et 11. Calcule $T_X$.",
+      "etapes": [
+        "On prend le plus petit des $T$ des successeurs : $\\min(15 ; 11) = 11$.",
+        "On retire la durée de X : $11 - 4 = 7$."
+      ],
+      "reponse": "$T_X = 7$",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq3-s01-c008",
+      "section": "libre-maths-sq3-s01-s04",
+      "type": "qcm",
+      "question": "En calculant les dates au plus tard, tu retombes sur 2 pour la tâche de départ au lieu de 0. Que conclus-tu ?",
+      "choix": [
+        "Il y a une erreur de calcul quelque part",
+        "Le projet peut commencer 2 jours plus tard",
+        "La durée du projet est augmentée de 2",
+        "C'est normal pour un long projet"
+      ],
+      "bonneReponse": 0,
+      "explication": "Au début comme à la fin, date au plus tôt et date au plus tard doivent coïncider. Sinon, revérifie les max et les min.",
+      "difficulte": 2
+    }
+  ]
+}

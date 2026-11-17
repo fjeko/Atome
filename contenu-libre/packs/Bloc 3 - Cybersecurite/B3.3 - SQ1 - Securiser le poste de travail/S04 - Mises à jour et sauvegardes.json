@@ -1,0 +1,117 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq1-s04",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – SQ1 – Sécuriser le poste de travail",
+  "sequence": null,
+  "seance": "S04 – Mises à jour et sauvegardes",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les mises à jour corrigent les failles connues ; en entreprise, un serveur de mises à jour les distribue. La confidentialité du système se règle aussi. Les sauvegardes, à ne pas confondre avec la synchronisation, permettent de restaurer.",
+  "notions": [
+    "Mises à jour de sécurité",
+    "Types de mises à jour",
+    "Serveur de mises à jour",
+    "WSUS",
+    "Paramètres de confidentialité",
+    "Sauvegarde",
+    "Synchronisation",
+    "Règle 3-2-1"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq1-s04-s01",
+      "titre": "Types de mises à jour",
+      "contenu": "| Type | Contenu |\n| --- | --- |\n| **Correctif de sécurité** | corrige une vulnérabilité connue (à installer **vite**) |\n| Correctif fonctionnel | corrige un bug |\n| Mise à jour de fonctionnalités | ajoute des fonctions (nouvelle version de Windows 11) |\n| Mise à jour de définitions | signatures de l'antivirus |\n| Micrologiciel (*firmware*) | BIOS/UEFI, box, imprimante, switch |\n\nDès qu'une faille est publiée, les attaquants l'exploitent en masse : un système **non à jour** est une cible facile. **Désactiver les mises à jour** est une erreur grave. Un système en **fin de support** (plus de correctifs) doit être remplacé ou isolé.",
+      "notions": [
+        "Mises à jour de sécurité",
+        "Types de mises à jour"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s04-s02",
+      "titre": "Serveur de mises à jour",
+      "contenu": "En entreprise, on centralise : un **serveur de mises à jour** (WSUS, Windows Update for Business, Intune pour Windows ; dépôt miroir pour Linux) :\n- télécharge les mises à jour une seule fois (économie de bande passante) ;\n- permet de les **tester** sur un groupe pilote avant de les **approuver** pour tous ;\n- fournit des **rapports** : quels postes sont à jour, lesquels sont en retard.",
+      "notions": [
+        "Serveur de mises à jour",
+        "WSUS"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s04-s03",
+      "titre": "Confidentialité du système",
+      "contenu": "Un système neuf envoie souvent des données à l'éditeur (télémétrie, publicité ciblée, historique d'activité, localisation). Sur un poste professionnel :\n- réduire la **télémétrie** au minimum autorisé ;\n- désactiver l'identifiant publicitaire et l'historique d'activité ;\n- limiter l'accès des applications à la caméra, au micro, à la localisation ;\n- appliquer ces réglages **par stratégie de groupe** pour tout le parc.",
+      "notions": [
+        "Paramètres de confidentialité"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s04-s04",
+      "titre": "Sauvegarde ou synchronisation ?",
+      "contenu": "- **Synchronisation** (OneDrive, Nextcloud) : la même version partout. Si un fichier est supprimé ou **chiffré par un rançongiciel**, la modification est **répliquée** partout.\n- **Sauvegarde** : des **copies datées**, conservées dans le temps, permettant de **revenir** à un état antérieur.\n\n**Règle 3-2-1** : **3** copies des données, sur **2** supports différents, dont **1** hors site (et idéalement hors ligne ou immuable). Et surtout : **tester la restauration** régulièrement.",
+      "notions": [
+        "Sauvegarde",
+        "Synchronisation",
+        "Règle 3-2-1"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq1-s04-c001",
+      "section": "libre-b3-33-sq1-s04-s01",
+      "type": "qcm",
+      "question": "Pourquoi installer rapidement un correctif de sécurité ?",
+      "choix": [
+        "Pour avoir les nouvelles fonctions",
+        "Parce que la faille corrigée est publique et rapidement exploitée par les attaquants",
+        "Pour libérer de l'espace disque",
+        "Ce n'est pas utile"
+      ],
+      "bonneReponse": 1,
+      "explication": "La publication d'un correctif signale la faille aux attaquants.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-33-sq1-s04-c002",
+      "section": "libre-b3-33-sq1-s04-s02",
+      "type": "question",
+      "recto": "Quel est l'intérêt d'approuver d'abord les mises à jour sur un groupe pilote ?",
+      "verso": "Détecter une mise à jour qui **casse une application** avant de la déployer sur tout le parc.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-33-sq1-s04-c003",
+      "section": "libre-b3-33-sq1-s04-s03",
+      "type": "qcm",
+      "question": "Sur un poste de cabinet médical, quel réglage est prioritaire ?",
+      "choix": [
+        "Activer les publicités personnalisées",
+        "Limiter la télémétrie et l'accès des applications au micro et à la caméra",
+        "Activer l'historique d'activité synchronisé",
+        "Partager la localisation"
+      ],
+      "bonneReponse": 1,
+      "explication": "Les données des patients et l'activité du poste ne doivent pas fuiter.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq1-s04-c004",
+      "section": "libre-b3-33-sq1-s04-s04",
+      "type": "qcm",
+      "question": "Un rançongiciel chiffre les fichiers d'un dossier synchronisé avec le cloud. Que se passe-t-il ?",
+      "choix": [
+        "Le cloud garde automatiquement les originaux sans limite",
+        "Les fichiers chiffrés sont synchronisés et remplacent les versions en ligne",
+        "Rien, la synchronisation est une sauvegarde",
+        "Le rançongiciel est supprimé"
+      ],
+      "bonneReponse": 1,
+      "explication": "La synchronisation n'est pas une sauvegarde (même si certains services gardent un historique limité).",
+      "difficulte": 2
+    }
+  ]
+}

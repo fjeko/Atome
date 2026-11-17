@@ -1,0 +1,103 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-22-sq1-s04",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.2 – SQ1 – Maintenance corrective",
+  "sequence": null,
+  "seance": "S04 – Expressions régulières",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une expression régulière décrit un motif de texte. Elle sert à valider un format (code postal, e-mail, référence), à rechercher ou à remplacer.",
+  "notions": [
+    "Expression régulière",
+    "Classes de caractères",
+    "Quantificateurs",
+    "Ancres",
+    "Validation de format"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-22-sq1-s04-s01",
+      "titre": "Les briques de base",
+      "contenu": "Une **expression régulière** (*regex*) est un **motif** qui décrit un ensemble de chaînes.\n\n| Motif | Signification |\n| --- | --- |\n| `abc` | la suite exacte « abc » |\n| `.` | n'importe quel caractère |\n| `[aeiou]` | un caractère parmi la liste |\n| `[A-Z]`, `[0-9]` | un caractère dans l'intervalle |\n| `[^0-9]` | un caractère qui **n'est pas** un chiffre |\n| `\\d`, `\\w`, `\\s` | chiffre, caractère de mot, espace |\n| `*` | 0 fois ou plus |\n| `+` | 1 fois ou plus |\n| `?` | 0 ou 1 fois |\n| `{3}`, `{2,4}` | exactement 3 fois, de 2 à 4 fois |\n| `(a\\|b)` | a ou b (alternative) |\n\nPour un caractère spécial pris littéralement, on l'**échappe** : `\\.` pour un point.",
+      "notions": [
+        "Expression régulière",
+        "Classes de caractères",
+        "Quantificateurs"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq1-s04-s02",
+      "titre": "Les ancres",
+      "contenu": "Sans ancre, une regex cherche le motif **n'importe où** dans la chaîne : `\\d{5}` trouve une correspondance dans `\"abc123456xyz\"`.\n\nPour **valider** un format complet, on encadre par :\n- `^` : début de la chaîne ;\n- `$` : fin de la chaîne.\n\n`^\\d{5}$` accepte `\"35000\"` mais refuse `\"350001\"` et `\"Code 35000\"`.\n\nOublier les ancres est l'erreur la plus fréquente : la regex devient **trop permissive**.",
+      "notions": [
+        "Ancres"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq1-s04-s03",
+      "titre": "Écrire et utiliser une regex",
+      "contenu": "Exemples de validation :\n\n| Format | Regex |\n| --- | --- |\n| Référence produit `AB-1234` | `^[A-Z]{2}-\\d{4}$` |\n| Plaque `AA-123-AA` | `^[A-Z]{2}-\\d{3}-[A-Z]{2}$` |\n| Heure `hh:mm` (00 à 23) | `^([01]\\d\\|2[0-3]):[0-5]\\d$` |\n\nEn C# : `Regex.IsMatch(saisie, @\"^[A-Z]{2}-\\d{4}$\")`. En Java : `saisie.matches(\"[A-Z]{2}-\\\\d{4}\")` (`matches` teste la chaîne entière ; en Java, on double les antislashs dans les chaînes).\n\nPour les e-mails, une regex « parfaite » est très complexe : on se contente d'une vérification raisonnable (`^[^@\\s]+@[^@\\s]+\\.[a-z]{2,}$`) puis d'un message de confirmation.",
+      "notions": [
+        "Validation de format"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-22-sq1-s04-c001",
+      "section": "libre-b2-22-sq1-s04-s01",
+      "type": "qcm",
+      "question": "Que reconnaît `[0-9]{5}` ?",
+      "choix": [
+        "Le nombre 5",
+        "Un chiffre suivi de 5",
+        "Une suite de 5 chiffres",
+        "Entre 0 et 9 caractères"
+      ],
+      "bonneReponse": 2,
+      "explication": "`[0-9]` = un chiffre, `{5}` = exactement 5 fois.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-22-sq1-s04-c002",
+      "section": "libre-b2-22-sq1-s04-s02",
+      "type": "qcm",
+      "question": "Laquelle valide exactement un code postal français (5 chiffres, rien d'autre) ?",
+      "choix": [
+        "`\\d{5}`",
+        "`[0-9]+`",
+        "`^\\d{5}$`",
+        "`^\\d{1,5}$`"
+      ],
+      "bonneReponse": 2,
+      "explication": "Sans ancres, `\\d{5}` accepte aussi `\"123456\"` ; `+` et `{1,5}` acceptent d'autres longueurs.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq1-s04-c003",
+      "section": "libre-b2-22-sq1-s04-s03",
+      "type": "exercice",
+      "enonce": "Écris une regex qui valide un numéro de ticket de la forme `TK-` suivi de 3 à 6 chiffres (ex. `TK-042`, `TK-123456`).",
+      "etapes": [
+        "Début de chaîne : `^`.",
+        "Préfixe littéral : `TK-`.",
+        "3 à 6 chiffres : `\\d{3,6}`.",
+        "Fin de chaîne : `$`."
+      ],
+      "reponse": "`^TK-\\d{3,6}$`",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq1-s04-c004",
+      "section": "libre-b2-22-sq1-s04-s03",
+      "type": "question",
+      "recto": "Que reconnaît `^[A-Z][a-z]+$` ?",
+      "verso": "Un mot qui commence par **une majuscule** suivie d'**au moins une** minuscule, et rien d'autre (ex. « Nantes »).",
+      "difficulte": 2
+    }
+  ]
+}

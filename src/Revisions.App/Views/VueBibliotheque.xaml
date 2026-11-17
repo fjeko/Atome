@@ -130,7 +130,16 @@
                                     <StackPanel VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Emplacement}" Style="{StaticResource Discret}" FontSize="12"
                                                    Visibility="{Binding Emplacement, Converter={StaticResource VisibleSi}}" />
-                                        <TextBlock Text="{Binding Titre}" FontSize="16" TextWrapping="Wrap" />
+                                        <DockPanel>
+                                            <Border DockPanel.Dock="Right" CornerRadius="9" Padding="8,1" Margin="10,2,0,0" VerticalAlignment="Top"
+                                                    Background="{DynamicResource AccentFillColorDefaultBrush}"
+                                                    Visibility="{Binding EstLibre, Converter={StaticResource VisibleSi}}"
+                                                    ToolTip="Cours libre intégré à Atome (licence CC BY-SA 4.0)">
+                                                <TextBlock Text="Libre" FontSize="11" FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource TextOnAccentFillColorPrimaryBrush}" />
+                                            </Border>
+                                            <TextBlock Text="{Binding Titre}" FontSize="16" TextWrapping="Wrap" />
+                                        </DockPanel>
                                         <TextBlock Text="{Binding Detail}" Style="{StaticResource Discret}" FontSize="12" />
                                     </StackPanel>
                                     <ProgressBar Grid.Column="1" Value="{Binding Maitrise, Mode=OneWay}" Maximum="1" Height="6"

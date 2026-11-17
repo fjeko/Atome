@@ -1,0 +1,126 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq3-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie I – SQ3 – Programmation orientée objet en C#",
+  "sequence": null,
+  "seance": "S01 – Classes, objets, constructeurs, encapsulation",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les bases de l'objet : une classe est un modèle, un objet en est une instance ; constructeur, encapsulation par les visibilités, propriétés (accesseurs et mutateurs) et membres statiques.",
+  "notions": [
+    "Classe et objet",
+    "Instanciation et cycle de vie",
+    "Constructeur",
+    "Encapsulation et visibilité",
+    "Propriétés accesseurs mutateurs",
+    "Membres statiques"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq3-s01-s01",
+      "titre": "Classe et objet",
+      "contenu": "Une **classe** est un **modèle** qui décrit :\n- des **attributs** (les données) ;\n- des **méthodes** (les comportements).\n\nUn **objet** est un exemplaire concret construit à partir de ce modèle : on parle d'**instance**.\n\nComparaison : la classe est le **plan** d'une maison ; les objets sont les **maisons** construites avec ce plan, chacune avec sa propre couleur de volets.\n\n```csharp\nAdherent a1 = new Adherent(\"Lina Moreau\", 2019);   // instanciation\nAdherent a2 = new Adherent(\"Paul Girard\", 2024);\n```\n`new` crée l'objet en mémoire et renvoie une **référence** vers lui.\n\n**Cycle de vie** : l'objet est créé par `new`, utilisé tant qu'une variable le référence, puis, quand plus rien ne pointe vers lui, le **ramasse-miettes** (*garbage collector*) de .NET libère automatiquement sa mémoire.",
+      "notions": [
+        "Classe et objet",
+        "Instanciation et cycle de vie"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s01-s02",
+      "titre": "Écrire une classe avec constructeur",
+      "contenu": "```csharp\npublic class Adherent\n{\n    // Attributs privés : invisibles depuis l'extérieur\n    private string nom;\n    private int anneeInscription;\n    private int nbEmprunts;\n\n    // Constructeur : même nom que la classe, pas de type de retour\n    public Adherent(string nom, int anneeInscription)\n    {\n        this.nom = nom;\n        this.anneeInscription = anneeInscription;\n        this.nbEmprunts = 0;\n    }\n\n    public void Emprunter()\n    {\n        if (nbEmprunts >= 5)\n            throw new InvalidOperationException(\"Limite de 5 emprunts atteinte\");\n        nbEmprunts++;\n    }\n}\n```\n- Le **constructeur** initialise l'objet au moment du `new`. Il garantit qu'un objet naît dans un **état valide**.\n- `this` désigne l'objet courant (utile quand un paramètre porte le même nom qu'un attribut).\n\n**Encapsulation** : on **cache** les données (`private`) et on n'expose que des méthodes contrôlées (`public`). Ainsi, impossible d'écrire `a1.nbEmprunts = 42;` depuis l'extérieur : la règle des 5 emprunts est **protégée**.\n\n| Visibilité | Accessible depuis |\n| --- | --- |\n| `private` | la classe elle-même uniquement |\n| `protected` | la classe et ses classes filles |\n| `public` | partout |",
+      "notions": [
+        "Constructeur",
+        "Encapsulation et visibilité"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s01-s03",
+      "titre": "Propriétés : accesseurs et mutateurs",
+      "contenu": "Pour **lire** ou **modifier** un attribut privé de façon contrôlée, on utilise des **accesseurs** (*getters*) et **mutateurs** (*setters*). En C#, on les écrit sous forme de **propriétés** :\n```csharp\nprivate string telephone;\n\npublic string Telephone\n{\n    get { return telephone; }\n    set\n    {\n        if (value.Length != 10)\n            throw new ArgumentException(\"Le numéro doit faire 10 chiffres\");\n        telephone = value;\n    }\n}\n\npublic int NbEmprunts => nbEmprunts;        // lecture seule\npublic string Nom { get; private set; }     // propriété automatique\n```\nUtilisation : `a1.Telephone = \"0612345678\";` appelle le `set` (avec `value` = la valeur affectée) ; `Console.WriteLine(a1.Telephone);` appelle le `get`.\n\nPar convention, l'attribut privé est en camelCase (`telephone`) et la propriété en PascalCase (`Telephone`).",
+      "notions": [
+        "Propriétés accesseurs mutateurs"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq3-s01-s04",
+      "titre": "Les membres statiques",
+      "contenu": "Un membre **statique** appartient à **la classe elle-même**, pas à chaque objet. Il est **partagé** par toutes les instances.\n```csharp\npublic class Adherent\n{\n    private static int nbAdherents = 0;   // un seul compteur pour toute la classe\n    public static int NbAdherents => nbAdherents;\n\n    public Adherent(string nom, int annee)\n    {\n        // ...\n        nbAdherents++;\n    }\n}\n\nConsole.WriteLine(Adherent.NbAdherents);   // on y accède par le nom de la classe\n```\nTu en utilises déjà : `Math.Sqrt()`, `Console.WriteLine()`, `int.Parse()` sont des méthodes statiques — on ne crée pas d'objet `Math`.",
+      "notions": [
+        "Membres statiques"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq3-s01-c001",
+      "section": "libre-b1-12a-sq3-s01-s01",
+      "type": "qcm",
+      "question": "Quelle est la relation entre une classe et un objet ?",
+      "choix": [
+        "Les deux termes désignent exactement la même notion",
+        "L'objet est une instance construite à partir du modèle qu'est la classe",
+        "La classe est une instance de l'objet",
+        "Un objet contient plusieurs classes"
+      ],
+      "bonneReponse": 1,
+      "explication": "La classe décrit ; l'objet existe concrètement en mémoire, avec ses propres valeurs.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq3-s01-c002",
+      "section": "libre-b1-12a-sq3-s01-s02",
+      "type": "question",
+      "recto": "À quoi sert un constructeur ?",
+      "verso": "À initialiser un objet au moment de sa création (`new`), pour qu'il démarre dans un état cohérent.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq3-s01-c003",
+      "section": "libre-b1-12a-sq3-s01-s02",
+      "type": "qcm",
+      "question": "Pourquoi déclarer l'attribut `nbEmprunts` en `private` ?",
+      "choix": [
+        "Pour qu'il soit plus rapide",
+        "Pour que seul le code de la classe puisse le modifier et faire respecter ses règles",
+        "Parce que les entiers doivent toujours être privés",
+        "Pour qu'il soit partagé entre tous les objets"
+      ],
+      "bonneReponse": 1,
+      "explication": "C'est l'encapsulation : l'extérieur doit passer par `Emprunter()`, qui vérifie la limite.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq3-s01-c004",
+      "section": "libre-b1-12a-sq3-s01-s03",
+      "type": "exercice",
+      "enonce": "Écris une propriété `Note` (double) avec son attribut privé, qui refuse toute valeur en dehors de 0 à 20.",
+      "etapes": [
+        "Déclarer l'attribut privé `note`.",
+        "Dans le `get`, renvoyer l'attribut.",
+        "Dans le `set`, vérifier `value` ; lever une exception si hors bornes, sinon affecter."
+      ],
+      "reponse": "```csharp\nprivate double note;\npublic double Note\n{\n    get { return note; }\n    set\n    {\n        if (value < 0 || value > 20)\n            throw new ArgumentOutOfRangeException(nameof(value), \"Note entre 0 et 20\");\n        note = value;\n    }\n}\n```",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq3-s01-c005",
+      "section": "libre-b1-12a-sq3-s01-s04",
+      "type": "qcm",
+      "question": "Trois objets `Adherent` ont été créés avec le constructeur ci-dessus. Que vaut `Adherent.NbAdherents` ?",
+      "choix": [
+        "1, car chaque objet a son propre compteur",
+        "3, car le compteur statique est partagé",
+        "0, car un statique ne peut pas être modifié",
+        "Erreur : on ne peut pas lire un statique par le nom de la classe"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le champ statique est unique pour la classe ; chaque constructeur l'incrémente.",
+      "difficulte": 2
+    }
+  ]
+}

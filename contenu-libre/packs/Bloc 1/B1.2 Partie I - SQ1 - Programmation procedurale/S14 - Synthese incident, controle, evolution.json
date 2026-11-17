@@ -1,0 +1,85 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq1-s14",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie I – SQ1 – Programmation procédurale en C#, corrections et évolutions",
+  "sequence": null,
+  "seance": "S14 – Synthèse : incident, contrôle, évolution",
+  "ordre": 14,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une mise en situation complète : reproduire un incident, le corriger, renforcer les contrôles de saisie, rédiger un rapport, puis traiter une demande d'évolution.",
+  "notions": [
+    "Reproduire et corriger un incident",
+    "Rapport d'incident",
+    "Traiter une évolution"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq1-s14-s01",
+      "titre": "Corriger un incident",
+      "contenu": "### Cas : l'application de location de vélos de l'office de tourisme\nTicket reçu : *« Pour une location de 3 jours, le prix affiché est 25,50 € au lieu de 36 €. »*\n\nRègle métier : 15 € le premier jour, 10,50 € par jour supplémentaire.\n\nCode incriminé :\n```csharp\nstatic double PrixLocation(int jours)\n{\n    double prix = 15;\n    for (int j = 1; j < jours - 1; j++)\n        prix += 10.5;\n    return prix;\n}\n```\nDémarche :\n1. **Reproduire** : on appelle `PrixLocation(3)` soi-même : il renvoie bien 25,50. L'anomalie est confirmée.\n2. **Tracer** : pour 3 jours, la boucle va de j = 1 à j < 2 → **un seul** tour au lieu de deux.\n3. **Corriger** : la boucle doit faire `jours - 1` tours → `for (int j = 1; j < jours; j++)`.\n4. **Tester** : 1 jour → 15 ; 2 jours → 25,50 ; 3 jours → 36 ; 0 jour → doit être refusé (contrôle à ajouter).",
+      "notions": [
+        "Reproduire et corriger un incident"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s14-s02",
+      "titre": "Rédiger un rapport d'incident",
+      "contenu": "Le rapport garde une trace du travail et informe l'équipe. Il contient :\n| Rubrique | Exemple |\n| --- | --- |\n| Référence et date | Ticket n° 2026-118, 12/03 |\n| Description du symptôme | prix faux pour les locations de plus de 2 jours |\n| Cause | borne de la boucle erronée (un tour manquant) |\n| Correction | `j < jours - 1` remplacé par `j < jours` ; ajout d'un contrôle `jours >= 1` |\n| Tests réalisés | 1, 2, 3, 7 jours, 0 et saisie invalide : tous conformes |\n| Livraison | version 1.4.2, commit « Corrige le calcul du prix… » |",
+      "notions": [
+        "Rapport d'incident"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s14-s03",
+      "titre": "Traiter une demande d'évolution",
+      "contenu": "Nouvelle demande : *« En tant qu'agent d'accueil, je veux appliquer 20 % de réduction aux titulaires de la carte Pass'Vallée afin de récompenser les habitants. »*\n\nDémarche :\n1. **Analyser** : où s'applique la réduction ? Sur le total. Cumulable avec autre chose ? Non (à confirmer avec le demandeur).\n2. **Définir les tests** : 3 jours sans carte → 36 € ; 3 jours avec carte → 28,80 €.\n3. **Coder** en réutilisant l'existant :\n```csharp\nconst double ReductionPass = 0.20;\n\nstatic double PrixFinal(int jours, bool aLaCarte)\n{\n    double prix = PrixLocation(jours);\n    if (aLaCarte) prix = prix * (1 - ReductionPass);\n    return Math.Round(prix, 2);\n}\n```\n4. **Tester**, **documenter** (commentaire XML, mode opératoire pour l'accueil), **livrer** via une branche et une demande de fusion.",
+      "notions": [
+        "Traiter une évolution"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq1-s14-c001",
+      "section": "libre-b1-12a-sq1-s14-s01",
+      "type": "exercice",
+      "enonce": "Avec la correction `for (int j = 1; j < jours; j++)`, fais la trace de `PrixLocation(3)` et indique quel contrôle de saisie il faut ajouter.",
+      "etapes": [
+        "prix = 15.",
+        "j = 1 : 1 < 3 → prix = 25,5.",
+        "j = 2 : 2 < 3 → prix = 36.",
+        "j = 3 : 3 < 3 faux → fin, renvoie 36.",
+        "Contrôle : refuser un nombre de jours inférieur à 1 (et une saisie non numérique avec TryParse)."
+      ],
+      "reponse": "36 € ; ajouter un contrôle `jours >= 1` et une saisie protégée par `TryParse`.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-b1-12a-sq1-s14-c002",
+      "section": "libre-b1-12a-sq1-s14-s02",
+      "type": "question",
+      "recto": "Quelles rubriques ne doivent pas manquer dans un rapport d'incident logiciel ?",
+      "verso": "Référence, symptôme constaté, cause identifiée, correction apportée, tests réalisés et résultats, version livrée.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s14-c003",
+      "section": "libre-b1-12a-sq1-s14-s03",
+      "type": "qcm",
+      "question": "Pourquoi avoir créé `PrixFinal` au lieu de modifier `PrixLocation` ?",
+      "choix": [
+        "Parce qu'on ne peut pas modifier une fonction existante",
+        "Pour garder une fonction simple et déjà testée, et ajouter la nouvelle règle à part",
+        "Pour que le programme soit plus rapide",
+        "Parce que les constantes sont interdites dans PrixLocation"
+      ],
+      "bonneReponse": 1,
+      "explication": "On réutilise un module fiable et on isole la nouvelle règle : moins de risque de régression, code plus lisible.",
+      "difficulte": 2
+    }
+  ]
+}

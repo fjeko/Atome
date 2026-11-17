@@ -1,0 +1,78 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq1-s08",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – SQ1 – Sécuriser le poste de travail",
+  "sequence": null,
+  "seance": "S08 – Synthèse : poste de travail",
+  "ordre": 8,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif de la sécurisation du poste : authentification et mots de passe, MFA, mises à jour, sauvegardes, antivirus, pare-feu et gestion des comptes.",
+  "notions": [
+    "Durcissement du poste",
+    "Exercice paramétrage de poste"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq1-s08-s01",
+      "titre": "Liste de contrôle d'un poste neuf",
+      "contenu": "1. Compte utilisateur **standard** pour le travail ; compte administrateur séparé.\n2. Mot de passe/phrase de passe robuste + **MFA** ; verrouillage automatique de session.\n3. **Chiffrement** du disque (BitLocker + TPM).\n4. **Mises à jour** automatiques (système, navigateur, applications) via le serveur de l'entreprise.\n5. **Antivirus**/EDR actif et géré.\n6. **Pare-feu** local activé, règles minimales.\n7. **Confidentialité** : télémétrie réduite.\n8. **Sauvegarde** des données (règle 3-2-1).\n9. Logiciels inutiles désinstallés ; installation réservée aux administrateurs.",
+      "notions": [
+        "Durcissement du poste"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s08-s02",
+      "titre": "Exercice de synthèse",
+      "contenu": "Pour paramétrer un poste, travaille avec une liste de contrôle et coche chaque point vérifié : c'est aussi une preuve en cas d'audit.",
+      "notions": [
+        "Exercice paramétrage de poste"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq1-s08-c001",
+      "section": "libre-b3-33-sq1-s08-s01",
+      "type": "qcm",
+      "question": "Lequel N'est PAS une bonne pratique sur un poste professionnel ?",
+      "choix": [
+        "Chiffrer le disque",
+        "Utiliser un compte standard au quotidien",
+        "Désactiver les mises à jour pour éviter les redémarrages",
+        "Activer le pare-feu local"
+      ],
+      "bonneReponse": 2,
+      "explication": "Sans mises à jour, les failles connues restent ouvertes.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq1-s08-c002",
+      "section": "libre-b3-33-sq1-s08-s01",
+      "type": "question",
+      "recto": "Citer deux confusions fréquentes sur la sécurité du poste.",
+      "verso": "Croire que le **sel** empêche la force brute (il protège des tables précalculées) ; confondre **synchronisation** et **sauvegarde** (ou complexité et longueur des mots de passe).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq1-s08-c003",
+      "section": "libre-b3-33-sq1-s08-s02",
+      "type": "exercice",
+      "enonce": "On te confie un portable neuf pour la directrice de la crèche fictive **Les P'tits Mousses**, qui manipule les dossiers des familles. Rédige la procédure de paramétrage en 7 étapes.",
+      "etapes": [
+        "Mettre à jour le système et le micrologiciel ; installer uniquement les logiciels nécessaires.",
+        "Créer un compte standard pour la directrice, garder le compte administrateur séparé.",
+        "Activer BitLocker avec TPM + PIN ; sauvegarder la clé de récupération dans un lieu sûr.",
+        "Configurer mot de passe robuste, verrouillage après 5 minutes, MFA sur la messagerie.",
+        "Vérifier antivirus et pare-feu actifs ; réduire la télémétrie.",
+        "Mettre en place la sauvegarde des documents (hors ligne + hors site) et tester une restauration.",
+        "Remettre une fiche de bonnes pratiques et faire signer la charte."
+      ],
+      "reponse": "Mises à jour, comptes séparés, chiffrement, authentification, protections actives, sauvegardes testées, sensibilisation.",
+      "difficulte": 3
+    }
+  ]
+}

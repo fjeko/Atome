@@ -1,0 +1,115 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq3-s06",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – SQ3 – Signature numérique, hachage et certificats",
+  "sequence": null,
+  "seance": "S06 – Certificats : types, délivrance, révocation",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un certificat X.509 contient une identité, une clé publique, une période de validité et la signature de l'AC. Il existe plusieurs niveaux de validation, des procédures de délivrance et de révocation, et plusieurs formats de fichiers.",
+  "notions": [
+    "X.509",
+    "Champs d'un certificat",
+    "Certificat DV",
+    "Certificat OV",
+    "Certificat EV",
+    "Délivrance de certificat",
+    "Révocation",
+    "Formats de certificat"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq3-s06-s01",
+      "titre": "Structure d'un certificat X.509",
+      "contenu": "Le format standard est **X.509 v3**. Champs principaux :\n- **version** et **numéro de série** ;\n- **émetteur** (*Issuer*) : l'AC qui a signé ;\n- **sujet** (*Subject*) : à qui appartient le certificat (CN, O…) ;\n- **période de validité** (*Not Before*, *Not After*) ;\n- **clé publique** du sujet et son algorithme ;\n- **extensions** : noms alternatifs (*SAN* : tous les noms de domaine couverts), usages autorisés, points de distribution des listes de révocation ;\n- **signature** de l'AC.",
+      "notions": [
+        "X.509",
+        "Champs d'un certificat"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s06-s02",
+      "titre": "Niveaux de validation",
+      "contenu": "| Type | Ce que l'AC vérifie | Usage |\n| --- | --- | --- |\n| **DV** (validation du domaine) | le demandeur contrôle le domaine (automatique, souvent gratuit) | blogs, sites vitrines |\n| **OV** (validation de l'organisation) | + existence de l'organisation | sites d'entreprise |\n| **EV** (validation étendue) | + vérifications juridiques approfondies | historiquement banques, e-commerce |\n\nPoint clé : les trois offrent **le même niveau de chiffrement**. Ils diffèrent par le niveau de **vérification de l'identité** du titulaire. Un certificat EV ne « chiffre pas mieux ».\n\nAutres variantes : certificat **mono-domaine**, **multi-domaines** (SAN), **wildcard** (`*.exemple.fr`).",
+      "notions": [
+        "Certificat DV",
+        "Certificat OV",
+        "Certificat EV"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s06-s03",
+      "titre": "Délivrance, révocation, formats",
+      "contenu": "**Délivrance** : création de la clé et de la CSR → vérifications par l'AC (selon DV/OV/EV ; protocole automatisé **ACME** chez Let's Encrypt) → émission → installation → **renouvellement** avant expiration (durées de vie courtes, aujourd'hui au plus environ un an, et appelées à diminuer).\n\n**Révocation** : si la clé privée est compromise ou l'organisation change, on **révoque** le certificat avant son expiration. Les clients vérifient l'état via une **liste de révocation** (CRL) ou le protocole **OCSP**.\n\n**Formats** :\n| Extension | Contenu |\n| --- | --- |\n| `.pem`, `.crt` | texte Base64 entre `-----BEGIN CERTIFICATE-----` |\n| `.der`, `.cer` | binaire |\n| `.p12`, `.pfx` | certificat + clé privée, protégés par mot de passe (import/export Windows) |",
+      "notions": [
+        "Délivrance de certificat",
+        "Révocation",
+        "Formats de certificat"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq3-s06-c001",
+      "section": "libre-b3-32-sq3-s06-s01",
+      "type": "qcm",
+      "question": "Dans quel champ trouve-t-on les noms de domaine couverts par le certificat ?",
+      "choix": [
+        "Issuer",
+        "Not After",
+        "Subject Alternative Name (SAN)",
+        "Numéro de série"
+      ],
+      "bonneReponse": 2,
+      "explication": "Les navigateurs vérifient le nom du site dans le SAN.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq3-s06-c002",
+      "section": "libre-b3-32-sq3-s06-s02",
+      "type": "qcm",
+      "question": "Choisir un certificat EV plutôt que DV améliore-t-il la protection des échanges ?",
+      "choix": [
+        "Oui, il utilise un chiffrement plus fort",
+        "Non, le chiffrement est le même ; seule la vérification de l'identité diffère",
+        "Oui, il empêche l'hameçonnage",
+        "Non, un DV n'utilise pas TLS"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le niveau de validation concerne l'identité, pas la force cryptographique.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq3-s06-c003",
+      "section": "libre-b3-32-sq3-s06-s03",
+      "type": "qcm",
+      "question": "La clé privée du serveur web a été volée. Que faire en priorité ?",
+      "choix": [
+        "Attendre l'expiration du certificat",
+        "Révoquer le certificat, générer une nouvelle clé et obtenir un nouveau certificat",
+        "Changer le mot de passe administrateur seulement",
+        "Supprimer le site"
+      ],
+      "bonneReponse": 1,
+      "explication": "Sinon, l'attaquant peut se faire passer pour le serveur jusqu'à l'expiration.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq3-s06-c004",
+      "section": "libre-b3-32-sq3-s06-s03",
+      "type": "exercice",
+      "enonce": "Choisis un type de certificat pour : (1) le blog d'un photographe, (2) les sous-domaines `app`, `api`, `docs` d'un éditeur, (3) un intranet de test accessible seulement en interne.",
+      "etapes": [
+        "(1) Blog : certificat DV gratuit et automatisé (ACME) suffit.",
+        "(2) Plusieurs sous-domaines : certificat wildcard `*.editeur.fr` ou multi-domaines (SAN) avec les trois noms.",
+        "(3) Intranet de test : certificat autosigné ou émis par une AC interne, ajoutée au magasin de confiance des postes."
+      ],
+      "reponse": "DV pour le blog, wildcard/SAN pour les sous-domaines, autosigné ou AC interne pour le test.",
+      "difficulte": 2
+    }
+  ]
+}

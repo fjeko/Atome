@@ -1,0 +1,153 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq02-s01",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 2 – Fonctionnement et défaillances des marchés",
+  "sequence": null,
+  "seance": "S1 – Le fonctionnement des marchés",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Comment l'offre et la demande fixent un prix, ce qu'est la concurrence pure et parfaite, les marchés imparfaits, la monnaie et le marché financier.",
+  "notions": [
+    "Offre, demande et prix d'équilibre",
+    "Déplacement des courbes",
+    "Concurrence pure et parfaite",
+    "Monopole et oligopole",
+    "Fonctions de la monnaie",
+    "Actions, obligations, marchés primaire et secondaire",
+    "Coopération et coopétition"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq02-s01-s01",
+      "titre": "Offre, demande et prix d'équilibre",
+      "contenu": "Un **marché** est le lieu, physique ou virtuel, où se rencontrent l'**offre** (les vendeurs) et la **demande** (les acheteurs) d'un bien ou service. Dans une **économie de marché**, l'essentiel des décisions de production et de prix passe par ces marchés.\n\n- La **demande** baisse quand le prix monte (les acheteurs renoncent).\n- L'**offre** augmente quand le prix monte (produire devient plus rentable).\n\nLe **prix d'équilibre** est celui pour lequel la quantité offerte égale la quantité demandée.\n\n### Déplacer la courbe ou se déplacer sur la courbe ?\n- Un changement **du prix** fait **glisser le long** des courbes.\n- Un changement **d'un autre facteur** **déplace** la courbe entière :\n  - la demande se déplace vers la droite si les revenus augmentent, si le produit devient à la mode… ;\n  - l'offre se déplace vers la gauche si les coûts de production augmentent, après une mauvaise récolte…\n\nExemple : une sécheresse réduit la récolte de cacao → l'offre se déplace vers la gauche → **le prix d'équilibre monte** et la quantité échangée baisse.",
+      "notions": [
+        "Offre, demande et prix d'équilibre",
+        "Déplacement des courbes"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq02-s01-s02",
+      "titre": "Concurrence pure et parfaite et marchés réels",
+      "contenu": "La **concurrence pure et parfaite** est un modèle théorique qui suppose cinq conditions :\n1. **atomicité** : très nombreux vendeurs et acheteurs, aucun ne peut influencer le prix ;\n2. **homogénéité** : les produits sont identiques ;\n3. **libre entrée et sortie** du marché ;\n4. **transparence** : tout le monde a toute l'information ;\n5. **mobilité** des facteurs de production.\n\nAucun marché réel ne les remplit toutes. Les structures réelles :\n- **monopole** : un seul vendeur face à de nombreux acheteurs (ex. un réseau ferré national) ;\n- **oligopole** : quelques grands vendeurs, interdépendants (ex. opérateurs de téléphonie, constructeurs d'avions) ;\n- concurrence **monopolistique** : beaucoup de vendeurs qui **différencient** leurs produits (marques, style).",
+      "notions": [
+        "Concurrence pure et parfaite",
+        "Monopole et oligopole"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq02-s01-s03",
+      "titre": "Monnaie et marché financier",
+      "contenu": "La **monnaie** a trois fonctions : **intermédiaire des échanges**, **unité de compte** (elle mesure la valeur), **réserve de valeur** (elle permet d'épargner).\n\nLe **marché financier** permet aux entreprises de se financer en émettant des titres :\n- une **action** est un titre de **propriété** : l'actionnaire possède une part de l'entreprise, vote en assemblée et reçoit éventuellement des **dividendes** (variables) ;\n- une **obligation** est un titre de **créance** : l'obligataire a **prêté** de l'argent ; il reçoit des **intérêts** et est remboursé à l'échéance.\n\n- **Marché primaire** : émission de titres **neufs** → l'entreprise reçoit les fonds.\n- **Marché secondaire** (la Bourse) : revente de titres **existants** entre investisseurs → l'entreprise ne reçoit rien, mais ce marché rend les titres liquides et attire donc les épargnants.",
+      "notions": [
+        "Fonctions de la monnaie",
+        "Actions, obligations, marchés primaire et secondaire"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq02-s01-s04",
+      "titre": "Coopérer entre concurrents",
+      "contenu": "Les entreprises ne font pas que s'affronter :\n- la **coopération** : des entreprises s'associent pour un projet (partenariat, groupement d'achats, réseau de distribution) ;\n- la **coopétition** : des **concurrents** coopèrent sur un domaine précis tout en restant rivaux ailleurs. Exemple : deux constructeurs développent ensemble un moteur pour partager le coût de la recherche, puis vendent chacun leurs voitures.\n\nIntérêt : partager les coûts et les risques, accéder à des compétences. Limite : risque de fuite de savoir-faire, et le droit de la concurrence interdit que la coopération devienne une **entente** sur les prix.",
+      "notions": [
+        "Coopération et coopétition"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq02-s01-c001",
+      "section": "libre-cejm-sq02-s01-s01",
+      "type": "qcm",
+      "question": "Le prix des trottinettes électriques baisse ; les ventes augmentent. Comment le décrire ?",
+      "choix": [
+        "Un déplacement le long de la courbe de demande",
+        "Un déplacement de la courbe de demande vers la droite",
+        "Un déplacement de la courbe d'offre vers la gauche",
+        "Une défaillance de marché"
+      ],
+      "bonneReponse": 0,
+      "explication": "C'est le prix lui-même qui change : on se déplace sur la courbe.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq02-s01-c002",
+      "section": "libre-cejm-sq02-s01-s01",
+      "type": "qcm",
+      "question": "Une forte hausse du prix de l'énergie touche tous les fabricants de verre. Effet attendu sur le marché du verre ?",
+      "choix": [
+        "L'offre recule, le prix d'équilibre augmente",
+        "La demande augmente, le prix baisse",
+        "L'offre augmente, le prix baisse",
+        "Aucun effet"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les coûts de production montent : la courbe d'offre se déplace vers la gauche.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq02-s01-c003",
+      "section": "libre-cejm-sq02-s01-s02",
+      "type": "qcm",
+      "question": "Sur le marché des consoles de jeux, trois fabricants se partagent presque tout. C'est…",
+      "choix": [
+        "Un oligopole",
+        "Un monopole",
+        "Une concurrence pure et parfaite",
+        "Un marché financier"
+      ],
+      "bonneReponse": 0,
+      "explication": "Quelques offreurs qui s'observent mutuellement : oligopole.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq02-s01-c004",
+      "section": "libre-cejm-sq02-s01-s02",
+      "type": "question",
+      "recto": "Quelle condition de la concurrence parfaite n'est pas remplie quand chaque marque de baskets a son propre style ?",
+      "verso": "L'homogénéité des produits : les produits sont différenciés.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq02-s01-c005",
+      "section": "libre-cejm-sq02-s01-s03",
+      "type": "qcm",
+      "question": "Un épargnant achète en Bourse des actions déjà existantes d'une société. Que reçoit la société ?",
+      "choix": [
+        "Rien : c'est une opération du marché secondaire",
+        "Le prix des actions",
+        "Des intérêts",
+        "Un prêt de l'épargnant"
+      ],
+      "bonneReponse": 0,
+      "explication": "L'argent va au vendeur des actions, pas à l'entreprise. Seul le marché primaire finance directement l'entreprise.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq02-s01-c006",
+      "section": "libre-cejm-sq02-s01-s03",
+      "type": "qcm",
+      "question": "Quelle différence entre action et obligation ?",
+      "choix": [
+        "L'action donne une part de propriété, l'obligation est une créance",
+        "Les deux termes désignent exactement la même notion",
+        "L'obligation donne droit de vote",
+        "L'action rapporte un intérêt fixe"
+      ],
+      "bonneReponse": 0,
+      "explication": "Actionnaire = copropriétaire ; obligataire = prêteur.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq02-s01-c007",
+      "section": "libre-cejm-sq02-s01-s04",
+      "type": "question",
+      "recto": "Qu'est-ce que la coopétition ?",
+      "verso": "Une coopération entre entreprises concurrentes sur un domaine précis, tout en restant rivales sur le reste.",
+      "difficulte": 1
+    }
+  ]
+}

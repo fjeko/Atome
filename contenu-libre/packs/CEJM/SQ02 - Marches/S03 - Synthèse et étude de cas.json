@@ -1,0 +1,66 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq02-s03",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 2 – Fonctionnement et défaillances des marchés",
+  "sequence": null,
+  "seance": "S3 – Synthèse et étude de cas",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif du fonctionnement et des défaillances des marchés, puis application à une entreprise fictive.",
+  "notions": [
+    "Synthèse des marchés",
+    "Application à un cas"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq02-s03-s01",
+      "titre": "L'essentiel",
+      "contenu": "| Notion | À retenir |\n|---|---|\n| prix d'équilibre | offre = demande ; un choc déplace une courbe et modifie le prix |\n| concurrence parfaite | 5 conditions, modèle de référence jamais réalisé |\n| monopole / oligopole | un / quelques vendeurs |\n| action / obligation | propriété / créance |\n| primaire / secondaire | titres neufs (finance l'entreprise) / titres existants |\n| sélection adverse / aléa moral | problème avant / après le contrat |\n| externalité | effet sur un tiers **non compensé** par le marché |",
+      "notions": [
+        "Synthèse des marchés"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq02-s03-s02",
+      "titre": "Étude de cas : Cacao Lune",
+      "contenu": "*Cacao Lune* est une chocolaterie artisanale fictive. Trois informations :\n1. Une mauvaise récolte a fait bondir le prix du cacao de 40 % en un an.\n2. Pour financer un nouvel atelier, l'entreprise hésite entre faire entrer des investisseurs au capital et émettre des obligations auprès de particuliers.\n3. Elle s'associe avec une chocolaterie concurrente de la ville voisine pour acheter ensemble le cacao et obtenir de meilleurs prix.",
+      "notions": [
+        "Application à un cas"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq02-s03-c001",
+      "section": "libre-cejm-sq02-s03-s01",
+      "type": "qcm",
+      "question": "Quel élément fait d'un effet une externalité au sens économique ?",
+      "choix": [
+        "L'absence de compensation par le marché",
+        "Son caractère positif",
+        "Le fait qu'il soit illégal",
+        "Le fait qu'il touche l'État"
+      ],
+      "bonneReponse": 0,
+      "explication": "Si l'effet est payé (par exemple une indemnité prévue par contrat), ce n'est plus une externalité.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq02-s03-c002",
+      "section": "libre-cejm-sq02-s03-s02",
+      "type": "exercice",
+      "enonce": "Analyse les trois informations de l'étude de cas *Cacao Lune* avec les notions de la séquence.",
+      "etapes": [
+        "1. Choc d'offre négatif sur le marché du cacao : l'offre recule, le prix d'équilibre monte ; les coûts de Cacao Lune augmentent.",
+        "2. Ouvrir le capital = émettre des actions (les nouveaux associés auront une part du pouvoir) ; émettre des obligations = s'endetter (intérêts à payer, mais pas de perte de contrôle). Les deux se font sur un marché primaire.",
+        "3. Coopétition : deux concurrents coopèrent pour les achats ; ils devront éviter toute entente sur leurs prix de vente."
+      ],
+      "reponse": "Choc d'offre ; arbitrage actions/obligations ; coopétition encadrée par le droit de la concurrence.",
+      "difficulte": 3
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq1-s06",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – SQ1 – Améliorer un site web",
+  "sequence": null,
+  "seance": "S06 – JavaScript et DOM",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Rendre une page interactive avec JavaScript : chargement du script, variables et constantes, fonctions, objets, DOM, sélection et modification d'éléments, événements, fonctions anonymes, console et débogueur, et correction d'un petit calculateur.",
+  "notions": [
+    "Langage côté client et chargement",
+    "Variables constantes et fonctions",
+    "Objets",
+    "DOM et sélection d'éléments",
+    "Modifier le contenu",
+    "Événements et fonction anonyme",
+    "Console et débogueur"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq1-s06-s01",
+      "titre": "Les bases du langage",
+      "contenu": "**JavaScript** s'exécute **dans le navigateur** (côté client) : il réagit aux actions sans recharger la page.\n\nChargement :\n```html\n<script src=\"calcul.js\" defer></script>\n```\n`defer` fait exécuter le script **après** la construction de la page. Sans lui (script dans le `<head>`), le code peut chercher un élément **qui n'existe pas encore** → erreur `null`.\n\n```js\nconst TVA = 0.2;          // constante : ne change pas\nlet total = 0;            // variable\nfunction prixTtc(ht) {\n  return ht * (1 + TVA);\n}\nconst produit = {          // objet : propriétés nom/valeur\n  nom: \"Savon au lait d'ânesse\",\n  prix: 6.5,\n  enStock: true\n};\nconsole.log(produit.nom, prixTtc(produit.prix));\n```",
+      "notions": [
+        "Langage côté client et chargement",
+        "Variables constantes et fonctions",
+        "Objets"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq1-s06-s02",
+      "titre": "Le DOM : sélectionner et modifier",
+      "contenu": "Le **DOM** (*Document Object Model*) est la représentation de la page sous forme d'**arbre d'objets** que JavaScript peut lire et modifier.\n```js\nconst champ = document.querySelector(\"#quantite\");   // par id (sélecteur CSS)\nconst lignes = document.querySelectorAll(\".ligne\");  // tous les éléments de classe ligne\nconst zone = document.getElementById(\"resultat\");\n\nzone.textContent = \"Total : 13 €\";        // change le texte\nzone.classList.add(\"mis-en-avant\");       // ajoute une classe CSS\nchamp.value;                              // valeur saisie : TOUJOURS une chaîne\n```\n**Piège** : `champ.value` est du **texte**. `\"3\" + 2` donne `\"32\"` ! Il faut convertir : `Number(champ.value)` ou `parseFloat(champ.value)`.",
+      "notions": [
+        "DOM et sélection d'éléments",
+        "Modifier le contenu"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq1-s06-s03",
+      "titre": "Événements, console et correction",
+      "contenu": "On réagit aux **événements** avec `addEventListener` ; on passe souvent une **fonction anonyme** (sans nom) :\n```js\nconst bouton = document.querySelector(\"#calculer\");\nbouton.addEventListener(\"click\", function () {\n  const qte = Number(document.querySelector(\"#quantite\").value);\n  const prix = Number(document.querySelector(\"#prix\").value);\n  if (Number.isNaN(qte) || qte <= 0) {\n    document.querySelector(\"#resultat\").textContent = \"Quantité invalide\";\n    return;\n  }\n  document.querySelector(\"#resultat\").textContent = `Total : ${(qte * prix).toFixed(2)} €`;\n});\n```\nOutils : **F12 > Console** pour voir les erreurs et les `console.log()`, onglet **Sources/Débogueur** pour poser des points d'arrêt.",
+      "notions": [
+        "Événements et fonction anonyme",
+        "Console et débogueur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq1-s06-c001",
+      "section": "libre-b1-13-sq1-s06-s01",
+      "type": "qcm",
+      "question": "Pourquoi ajouter l'attribut `defer` à une balise `<script>` placée dans le `<head>` ?",
+      "choix": [
+        "Pour accélérer le serveur",
+        "Pour que le script s'exécute après la construction de la page, quand les éléments existent",
+        "Pour désactiver le script",
+        "Pour le charger depuis un autre site"
+      ],
+      "bonneReponse": 1,
+      "explication": "Sinon `document.querySelector(...)` peut renvoyer `null` car l'élément n'est pas encore créé.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq1-s06-c002",
+      "section": "libre-b1-13-sq1-s06-s02",
+      "type": "qcm",
+      "question": "Si le champ contient 4, que vaut `champ.value + 1` ?",
+      "choix": [
+        "5",
+        "\"41\"",
+        "Une erreur",
+        "NaN"
+      ],
+      "bonneReponse": 1,
+      "explication": "`value` est une chaîne : `+` concatène. Il faut `Number(champ.value) + 1`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-13-sq1-s06-c003",
+      "section": "libre-b1-13-sq1-s06-s03",
+      "type": "exercice",
+      "enonce": "Un calculateur affiche « Total : 25.3 € » pour 2 articles à 5,3 €. Code : `total.textContent = \"Total : \" + qte.value + prix.value * 1 + \" €\";`. Explique l'erreur et corrige.",
+      "etapes": [
+        "`qte.value` est la chaîne \"2\" ; `prix.value * 1` vaut 5.3 (la multiplication convertit).",
+        "\"Total : \" + \"2\" + 5.3 → concaténation : \"Total : 25.3\" ; la quantité et le prix ne sont jamais multipliés.",
+        "Il faut convertir les deux valeurs en nombres puis les multiplier."
+      ],
+      "reponse": "```js\nconst q = Number(qte.value), p = Number(prix.value);\ntotal.textContent = \"Total : \" + (q * p).toFixed(2) + \" €\";\n```",
+      "difficulte": 3
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-15-sq2-s07",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.5 – SQ2 – Environnement de test d'une application web et d'une base de données",
+  "sequence": null,
+  "seance": "S07 – Tests et compte rendu",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Vérifier l'environnement de test de bout en bout et rédiger un compte rendu de tests clair.",
+  "notions": [
+    "Plan de tests de l'environnement",
+    "Compte rendu de tests"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-15-sq2-s07-s01",
+      "titre": "Plan de tests",
+      "contenu": "| N° | Test | Commande / action | Attendu |\n| --- | --- | --- | --- |\n| 1 | résolution du nom du site | `dig resa.labo.local +short` | 192.168.56.10 |\n| 2 | accès SSH par clé | `ssh adm.lea@srv-web-test` | connexion sans mot de passe |\n| 3 | root SSH refusé | `ssh root@srv-web-test` | refus |\n| 4 | site accessible | navigateur → http://resa.labo.local | page d'accueil |\n| 5 | connexion web → base | page de liste des salles | données affichées |\n| 6 | base inaccessible depuis un autre poste | `mariadb -h srv-bdd-test -u app_resa -p` depuis le poste | refus |\n| 7 | droits du code | `sudo -u www-data touch /var/www/resa/index.php` | refus |\n| 8 | téléversement | envoi d'un fichier via l'application | réussi |\n| 9 | export de la base | `mariadb-dump resa` | fichier .sql créé |\n\nLes tests **négatifs** (ce qui doit être refusé) sont aussi importants que les positifs.",
+      "notions": [
+        "Plan de tests de l'environnement"
+      ]
+    },
+    {
+      "id": "libre-b1-15-sq2-s07-s02",
+      "titre": "Compte rendu",
+      "contenu": "Un compte rendu de tests contient :\n- le **contexte** : version testée, date, environnement, testeur ;\n- le **tableau** des tests avec résultat attendu, **obtenu**, statut (OK/KO) ;\n- pour chaque KO : description, **capture** ou extrait de journal, cause supposée, action ;\n- une **conclusion** : l'environnement est-il prêt ? réserves ?",
+      "notions": [
+        "Compte rendu de tests"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-15-sq2-s07-c001",
+      "section": "libre-b1-15-sq2-s07-s01",
+      "type": "question",
+      "recto": "Pourquoi inclure des tests « négatifs » (qui doivent échouer) dans un plan de tests ?",
+      "verso": "Pour prouver que les protections fonctionnent : un accès interdit doit être réellement refusé.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-15-sq2-s07-c002",
+      "section": "libre-b1-15-sq2-s07-s02",
+      "type": "exercice",
+      "enonce": "Le test 6 est KO : la base répond depuis un poste quelconque du réseau. Rédige la ligne de compte rendu et l'action corrective.",
+      "etapes": [
+        "Constat : connexion réussie depuis 192.168.56.50 avec le compte app_resa.",
+        "Causes possibles : compte créé avec l'hôte '%' et pare-feu ouvert à tous sur 3306.",
+        "Action : recréer le compte limité à 192.168.56.10 et restreindre le pare-feu à cette source ; refaire le test."
+      ],
+      "reponse": "Test 6 – KO – base joignable depuis 192.168.56.50 ; cause : compte en '%' et port 3306 ouvert à tous ; action : restreindre compte et pare-feu au serveur web, test à refaire.",
+      "difficulte": 2
+    }
+  ]
+}

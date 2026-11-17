@@ -1,0 +1,86 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq4-s02",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – SQ4 – Audit et sécurité réseau",
+  "sequence": null,
+  "seance": "S02 – Vulnérabilités par couche",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Chaque couche du modèle OSI a ses vulnérabilités et ses protections, du câble jusqu'à l'application. On associe une attaque à sa couche et on utilise des commandes de diagnostic pour observer le réseau.",
+  "notions": [
+    "Modèle OSI et sécurité",
+    "Usurpation ARP",
+    "Usurpation d'adresse IP",
+    "Commandes de diagnostic réseau"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq4-s02-s01",
+      "titre": "Attaques et couches OSI",
+      "contenu": "| Couche | Exemple de vulnérabilité / attaque | Protection |\n| --- | --- | --- |\n| 1 Physique | branchement sur une prise libre, écoute du câble, brouillage Wi-Fi | locaux fermés, prises désactivées |\n| 2 Liaison | **usurpation ARP** (se faire passer pour la passerelle), saturation de la table MAC, saut de VLAN | sécurité des ports, inspection ARP, 802.1X |\n| 3 Réseau | **usurpation d'adresse IP**, reconnaissance par ping, routage détourné | filtrage, anti-usurpation, ACL |\n| 4 Transport | **balayage de ports**, inondation SYN | pare-feu à états, limitation de débit |\n| 5-6 Session/Présentation | vol de session, TLS mal configuré | TLS 1.2/1.3, jetons de session sûrs |\n| 7 Application | injection SQL, XSS, hameçonnage, DNS falsifié | validation des entrées, WAF, DNSSEC, sensibilisation |",
+      "notions": [
+        "Modèle OSI et sécurité",
+        "Usurpation ARP",
+        "Usurpation d'adresse IP"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq4-s02-s02",
+      "titre": "Commandes de diagnostic",
+      "contenu": "| Commande | Usage |\n| --- | --- |\n| `ipconfig /all` / `ip a` | configuration IP de la machine |\n| `ping` | joignabilité d'un hôte |\n| `tracert` / `traceroute` | chemin (routeurs traversés) |\n| `nslookup` / `dig` | résolution DNS |\n| `arp -a` / `ip neigh` | table ARP (une même MAC pour deux IP peut trahir une usurpation) |\n| `netstat -ano` / `ss -tulpn` | connexions et ports en écoute |\n| `nmap` | découverte d'hôtes et de ports (**uniquement** sur son réseau ou avec autorisation) |\n| Wireshark | capture et analyse de trames |",
+      "notions": [
+        "Commandes de diagnostic réseau"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq4-s02-c001",
+      "section": "libre-b3-33-sq4-s02-s01",
+      "type": "qcm",
+      "question": "Un attaquant envoie de fausses réponses ARP pour que les postes lui envoient le trafic destiné à la passerelle. Quelle couche ?",
+      "choix": [
+        "Physique",
+        "Liaison de données (2)",
+        "Transport (4)",
+        "Application (7)"
+      ],
+      "bonneReponse": 1,
+      "explication": "ARP fait le lien entre IP et adresse MAC, au niveau 2.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq4-s02-c002",
+      "section": "libre-b3-33-sq4-s02-s01",
+      "type": "qcm",
+      "question": "Un balayage des ports TCP ouverts d'un serveur concerne la couche :",
+      "choix": [
+        "2",
+        "3",
+        "4",
+        "7"
+      ],
+      "bonneReponse": 2,
+      "explication": "Les ports appartiennent à la couche transport.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq4-s02-c003",
+      "section": "libre-b3-33-sq4-s02-s02",
+      "type": "exercice",
+      "enonce": "Sur un poste, `arp -a` affiche la passerelle 192.168.1.1 et un autre hôte 192.168.1.37 avec la **même adresse MAC**. Interprète et donne la conduite à tenir.",
+      "etapes": [
+        "Deux IP différentes avec la même MAC : la machine 192.168.1.37 répond probablement à la place de la passerelle.",
+        "Suspicion d'usurpation ARP (attaque de l'homme du milieu).",
+        "Isoler la machine suspecte (port du switch), prévenir le responsable sécurité, capturer le trafic pour preuve.",
+        "Prévention : inspection ARP dynamique et sécurité des ports sur les switchs, 802.1X."
+      ],
+      "reponse": "Usurpation ARP probable : isoler, analyser, puis activer les protections de couche 2.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq5-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ5 – Évolution d'une architecture réseau et maquettage",
+  "sequence": null,
+  "seance": "S04 – Synthèse : faire évoluer un réseau",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif de la démarche d'évolution d'une architecture, de l'analyse au déploiement, et des erreurs classiques à éviter.",
+  "notions": [
+    "Démarche d'évolution",
+    "Erreurs classiques"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq5-s04-s01",
+      "titre": "La démarche complète",
+      "contenu": "1. **Étudier l'existant** : schéma, adressage, équipements.\n2. **Analyser le besoin** : réseaux à créer, nombre d'appareils, flux autorisés.\n3. **Plan d'adressage** sans chevauchement, avec marge.\n4. **Plan de modifications** par équipement + sauvegarde des configurations + retour arrière.\n5. **Maquette** dans un simulateur et **tests**.\n6. **Déploiement** à un moment de faible activité, tests réels.\n7. **Documentation** mise à jour.",
+      "notions": [
+        "Démarche d'évolution"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq5-s04-s02",
+      "titre": "Les erreurs classiques",
+      "contenu": "| Erreur | Conséquence |\n| --- | --- |\n| plages qui se chevauchent | adresses ambiguës, routage faux |\n| passerelle hors du sous-réseau | aucun accès aux autres réseaux |\n| relais DHCP oublié | postes en 169.254 |\n| configuration non enregistrée | tout est perdu au redémarrage |\n| trunk non configuré | les VLAN ne passent pas entre commutateurs |\n| documentation non mise à jour | dépannages futurs difficiles |",
+      "notions": [
+        "Erreurs classiques"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq5-s04-c001",
+      "section": "libre-b1-12b-sq5-s04-s01",
+      "type": "question",
+      "recto": "Pourquoi déployer une évolution réseau à un moment de faible activité ?",
+      "verso": "Pour limiter la gêne en cas de coupure ou de problème, et avoir le temps de revenir en arrière si besoin.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq5-s04-c002",
+      "section": "libre-b1-12b-sq5-s04-s02",
+      "type": "exercice",
+      "enonce": "Après déploiement, les postes du VLAN 20 branchés sur le second commutateur n'obtiennent pas d'adresse ; ceux du VLAN 20 sur le premier commutateur fonctionnent. Hypothèse et vérification ?",
+      "etapes": [
+        "Même VLAN, seul le second commutateur pose problème : la différence est le lien entre les deux commutateurs.",
+        "Hypothèse : le lien inter-commutateurs n'est pas en trunk, ou n'autorise pas le VLAN 20.",
+        "Vérifier la configuration du port de liaison (mode trunk, VLAN autorisés) sur les deux commutateurs."
+      ],
+      "reponse": "Lien entre commutateurs mal configuré (pas de trunk ou VLAN 20 non autorisé) : corriger le port de liaison puis tester.",
+      "difficulte": 3
+    }
+  ]
+}

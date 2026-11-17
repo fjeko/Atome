@@ -1,0 +1,98 @@
+{
+  "formatVersion": 1,
+  "id": "libre-ang-g-s10",
+  "matiere": "Anglais",
+  "bloc": "Bloc 5",
+  "partie": "Grammaire B2",
+  "sequence": null,
+  "seance": "S10 – Prépositions dépendantes et constructions verbales",
+  "ordre": 10,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Les prépositions qui suivent certains verbes, adjectifs et noms, et le choix entre infinitif et forme en -ing après un verbe.",
+  "notions": [
+    "Prépositions dépendantes",
+    "Infinitif ou forme en -ing"
+  ],
+  "sections": [
+    {
+      "id": "libre-ang-g-s10-s01",
+      "titre": "Verbe, adjectif ou nom + préposition",
+      "contenu": "| Mot | Préposition | Exemple |\n|---|---|---|\n| *depend* | **on** | *It **depends on** the budget.* |\n| *apply* | **for** (un poste) / **to** (une entreprise) | *I **applied for** the job.* |\n| *responsible* | **for** | *She is **responsible for** security.* |\n| *interested* | **in** | *Are you **interested in** cloud computing?* |\n| *good / bad* | **at** | *He is **good at** negotiating.* |\n| *aware* | **of** | *We are **aware of** the risk.* |\n| *focus* | **on** | *Let's **focus on** the main issue.* |\n| *agree* | **with** (qqn) / **on** (un point) | *I **agree with** you.* |\n| *increase / decrease* (nom) | **in** (dans quoi) / **of** (de combien) | *an **increase in** sales **of** 5%* |\n| *reason* | **for** | *the **reason for** the delay* |\n| *wait / pay / ask* | **for** | *Wait **for** me.* (sans « for » en français) |\n\nFaux amis de construction : *discuss **something*** (pas de *about*), *enter **a room*** (pas de *in*), *listen **to***, *explain **something to** someone*.\n\nAprès une préposition, un verbe prend **-ing** : *She is good at **solving** problems.*",
+      "notions": [
+        "Prépositions dépendantes"
+      ]
+    },
+    {
+      "id": "libre-ang-g-s10-s02",
+      "titre": "Infinitif ou -ing ?",
+      "contenu": "| Construction | Verbes | Exemple |\n|---|---|---|\n| verbe + **to** + base | *want, decide, plan, hope, agree, refuse, manage, need, offer, promise, expect* | *We **decided to** hire a developer.* |\n| verbe + **V-ing** | *enjoy, avoid, finish, suggest, consider, mind, keep, risk, practise, can't stand, look forward to* | *I **look forward to hearing** from you.* |\n| verbe + objet + **to** + base | *ask, tell, allow, encourage, expect, want* | *She **asked me to** check the logs.* |\n| verbe + objet + base | *let, make* | *They **let us** leave early.* |\n\nChangement de sens : ***stop to do*** (s'arrêter pour faire) / ***stop doing*** (arrêter de faire) ; ***remember to do*** (penser à faire) / ***remember doing*** (se souvenir d'avoir fait) ; ***try to do*** (essayer, s'efforcer) / ***try doing*** (essayer pour voir).",
+      "notions": [
+        "Infinitif ou forme en -ing"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-ang-g-s10-c001",
+      "section": "libre-ang-g-s10-s01",
+      "type": "qcm",
+      "question": "Complète : *The final decision depends ___ the client.*",
+      "choix": [
+        "on",
+        "of",
+        "from",
+        "at"
+      ],
+      "bonneReponse": 0,
+      "explication": "*Depend on*.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-g-s10-c002",
+      "section": "libre-ang-g-s10-s01",
+      "type": "qcm",
+      "question": "Quelle phrase est correcte ?",
+      "choix": [
+        "We discussed the budget.",
+        "We discussed about the budget.",
+        "We discussed on the budget.",
+        "We discussed of the budget."
+      ],
+      "bonneReponse": 0,
+      "explication": "*Discuss* se construit sans préposition.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-g-s10-c003",
+      "section": "libre-ang-g-s10-s02",
+      "type": "qcm",
+      "question": "Complète : *I look forward to ___ you next week.*",
+      "choix": [
+        "meeting",
+        "meet",
+        "to meet",
+        "met"
+      ],
+      "bonneReponse": 0,
+      "explication": "*To* est ici une préposition (*look forward to*) : -ing.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-ang-g-s10-c004",
+      "section": "libre-ang-g-s10-s02",
+      "type": "qcm",
+      "question": "Complète : *Would you mind ___ the window?*",
+      "choix": [
+        "closing",
+        "to close",
+        "close",
+        "closed"
+      ],
+      "bonneReponse": 0,
+      "explication": "*Mind* + -ing.",
+      "difficulte": 1
+    }
+  ]
+}

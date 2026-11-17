@@ -1,0 +1,119 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-11-sq5-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.1 – SQ5 – Sauvegardes d'un serveur de fichiers",
+  "sequence": null,
+  "seance": "S01 – Pourquoi et contre quoi sauvegarder",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Ce qu'est une sauvegarde, ce qui la distingue d'un enregistrement, d'un archivage ou d'un RAID, les causes de pertes de données et le choix de ce qu'il faut sauvegarder.",
+  "notions": [
+    "Définition d'une sauvegarde",
+    "Sauvegarde enregistrement archivage",
+    "RAID n'est pas une sauvegarde",
+    "Causes de pertes de données",
+    "Choisir quoi sauvegarder"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-11-sq5-s01-s01",
+      "titre": "Sauvegarder, enregistrer, archiver",
+      "contenu": "Trois mots qu'on confond souvent :\n\n- **Enregistrer** : écrire son travail sur le disque (Ctrl+S). Le fichier existe en **un seul exemplaire**.\n- **Sauvegarder** : faire une **copie** des données **sur un autre support**, pour pouvoir les **restaurer** en cas de perte. Les données d'origine restent en service.\n- **Archiver** : **déplacer** des données qui ne servent plus au quotidien vers un stockage de **longue durée**, pour les conserver (obligation légale, mémoire). L'archive est souvent la **seule** copie, donc elle-même doit être sauvegardée !\n\nExemple au garage Auto-Volt : le fichier client est **enregistré** chaque jour sur le serveur, **sauvegardé** chaque nuit sur un NAS, et les factures de plus de 3 ans sont **archivées** (on doit les garder 10 ans).",
+      "notions": [
+        "Définition d'une sauvegarde",
+        "Sauvegarde enregistrement archivage"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq5-s01-s02",
+      "titre": "Le RAID n'est pas une sauvegarde",
+      "contenu": "Un serveur a souvent ses disques en **RAID 1** (miroir) ou **RAID 5** : si un disque tombe en panne, le serveur continue de fonctionner. C'est très utile pour la **disponibilité**… mais **ce n'est pas une sauvegarde**.\n\nPourquoi ? Le RAID **recopie immédiatement** toute modification sur tous les disques :\n- un fichier **supprimé par erreur** est supprimé partout ;\n- un fichier **chiffré par un rançongiciel** est chiffré partout ;\n- un **incendie** détruit tous les disques ensemble.\n\nUne sauvegarde, elle, conserve des **versions passées**, sur un **support séparé**.",
+      "notions": [
+        "RAID n'est pas une sauvegarde"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq5-s01-s03",
+      "titre": "Contre quoi se protéger ?",
+      "contenu": "Les causes de perte de données sont variées :\n| Catégorie | Exemples |\n| --- | --- |\n| **Erreur humaine** (la plus fréquente) | suppression, écrasement d'un fichier, mauvaise manipulation |\n| **Panne** | disque qui lâche, serveur qui grille, coupure de courant |\n| **Malveillance** | rançongiciel, salarié mécontent, vol d'un portable |\n| **Sinistre** | incendie, dégât des eaux, inondation |\n| **Logiciel** | bug, mise à jour qui corrompt une base |\n\nChaque cause appelle une protection : les versions multiples protègent contre l'erreur, la copie **hors site** contre le sinistre, la copie **déconnectée** contre le rançongiciel.\n\nC'est l'idée de la **règle 3-2-1** : **3** copies des données, sur **2** supports différents, dont **1** hors site.",
+      "notions": [
+        "Causes de pertes de données"
+      ]
+    },
+    {
+      "id": "libre-b1-11-sq5-s01-s04",
+      "titre": "Choisir quoi sauvegarder",
+      "contenu": "On ne sauvegarde pas « tout, tout le temps » : ça coûte de la place et du temps. On se demande :\n- **Quelles données sont vitales ?** Dossiers partagés, bases de données métier, messagerie, comptabilité.\n- **Que coûterait leur perte ?** (temps de ressaisie, argent, obligations légales)\n- **Que peut-on réinstaller facilement ?** Le système et les logiciels se réinstallent ; les données métier, non. On peut toutefois sauvegarder la **configuration** et l'**état du système** d'un serveur pour le reconstruire plus vite.\n\nÀ l'inverse, inutile de sauvegarder les fichiers temporaires, la corbeille ou les installateurs téléchargeables.",
+      "notions": [
+        "Choisir quoi sauvegarder"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-11-sq5-s01-c001",
+      "section": "libre-b1-11-sq5-s01-s01",
+      "type": "qcm",
+      "question": "Les factures de 2016 d'une entreprise sont déplacées sur un disque de stockage longue durée et supprimées du serveur. C'est…",
+      "choix": [
+        "une sauvegarde",
+        "un archivage",
+        "un enregistrement",
+        "une réplication RAID"
+      ],
+      "bonneReponse": 1,
+      "explication": "On déplace des données peu utilisées pour les conserver longtemps : c'est un archivage.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq5-s01-c002",
+      "section": "libre-b1-11-sq5-s01-s01",
+      "type": "question",
+      "recto": "Quel est le but d'une sauvegarde ?",
+      "verso": "Disposer d'une copie des données sur un autre support pour pouvoir les restaurer en cas de perte ou d'altération.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-11-sq5-s01-c003",
+      "section": "libre-b1-11-sq5-s01-s02",
+      "type": "qcm",
+      "question": "Le serveur d'une association a deux disques en RAID 1. Une bénévole supprime par erreur le dossier des adhérents. Que se passe-t-il ?",
+      "choix": [
+        "Le RAID restaure automatiquement le dossier",
+        "Le dossier reste présent sur le second disque",
+        "Le dossier est supprimé sur les deux disques ; seule une sauvegarde permettra de le récupérer",
+        "Le serveur s'arrête pour protéger les données"
+      ],
+      "bonneReponse": 2,
+      "explication": "Le miroir recopie la suppression sur les deux disques. Le RAID protège contre la panne d'un disque, pas contre les erreurs.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq5-s01-c004",
+      "section": "libre-b1-11-sq5-s01-s03",
+      "type": "question",
+      "recto": "Énonce la règle 3-2-1.",
+      "verso": "Garder 3 copies des données (l'original + 2 sauvegardes), sur 2 types de supports différents, dont 1 copie hors site.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-11-sq5-s01-c005",
+      "section": "libre-b1-11-sq5-s01-s04",
+      "type": "qcm",
+      "question": "Pour le serveur de fichiers d'un cabinet de kinésithérapie, que faut-il sauvegarder en priorité ?",
+      "choix": [
+        "Le dossier des fichiers temporaires",
+        "Les installateurs des logiciels",
+        "Les dossiers partagés contenant les dossiers patients et la facturation",
+        "La corbeille du serveur"
+      ],
+      "bonneReponse": 2,
+      "explication": "Ce sont les données métier, impossibles à recréer, qui sont prioritaires.",
+      "difficulte": 2
+    }
+  ]
+}

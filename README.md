@@ -6,15 +6,18 @@
 
 <p align="center"><em>Tes révisions, at home.</em></p>
 
+<p align="center"><strong>Projet étudiant BTS SIO SLAM</strong></p>
+
 <p align="center">
   <a href="../../releases/latest"><strong>⬇ Télécharger Atome</strong></a> ·
+  <a href="#cours-libres-intégrés">Cours libres</a> ·
   <a href="#créer-ses-propres-packs">Créer ses packs</a> ·
-  <a href="../../issues">Signaler un bug</a>
+  <a href="../../issues">Signaler une erreur</a>
 </p>
 
-> Application Windows de révision pour le **BTS SIO** : tu importes tes cours sous forme de « packs »,
-> tu les lis dans l'application (Markdown et formules LaTeX, hors ligne), puis tu révises avec des cartes
-> planifiées par **répétition espacée**, avec une gamification qui ne punit jamais une absence.
+> Application Windows de révision pour le **BTS SIO** : tu lis tes cours dans l'application (Markdown et formules
+> LaTeX, hors ligne), puis tu révises avec des cartes planifiées par **répétition espacée**, avec une
+> gamification qui ne punit jamais une absence. Des **cours libres** sont livrés avec, pour commencer tout de suite.
 
 <p align="center">
   <img src="docs/images/accueil.png" alt="Accueil : la session du jour en un clic" width="49%">
@@ -29,40 +32,80 @@
   <img src="docs/images/reglages.png" alt="Réglages : rythme et reprise après une pause" width="49%">
 </p>
 
-**Version de test** : un bug, une idée ? Ouvre un [Issue](../../issues) sur ce dépôt.
-
 **Atome** est mon tout premier projet. Il a été **entièrement généré par une IA (Claude, d'Anthropic)** :
 je l'ai imaginé, guidé et testé, mais je n'ai pas écrit le code moi-même. Je l'ai fait pour mes propres
 révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je le partage à mes camarades.
 
-## Ce qu'il faut savoir avant de commencer
+## Fonctionnalités
 
-- **Aucun cours n'est fourni** : ni dans ce dépôt, ni dans l'application. Les cours sont réservés à leurs
-  destinataires, et chacun utilise **ses propres cours**.
-- Un **pack d'exemple** est inclus ([`samples/exemple.json`](samples/exemple.json)) pour essayer l'application.
-- Pour fabriquer tes propres packs à partir de tes PDF, il suffit de les donner à Claude avec un prompt
-  prêt à l'emploi : voir [Créer ses propres packs](#créer-ses-propres-packs).
-- L'application fonctionne **hors ligne**, sans compte, et tes données restent sur ton PC. Sa seule connexion :
-  demander à GitHub, une fois par jour au plus, s'il existe une nouvelle version (désactivable dans les Réglages).
+- **Lecture des cours** : chaque séance se lit dans l'application, section par section (Markdown, formules LaTeX, code coloré).
+- **Répétition espacée FSRS** : des cartes (question, QCM, exercice pas à pas) revues au bon moment, à ton rythme.
+- **Gamification sans punition** : XP, niveaux, série comptée en semaines, mode reprise après une pause, plafond de cartes par jour.
+- **Mes acquis** : tu déclares ce que tu maîtrises déjà, les cartes s'adaptent à ton niveau.
+- **Planning CNED** : la proposition de ton organisme de formation en frises par matière, avec **import direct du fichier Excel**.
+- **TD en groupe** : le même TD à plusieurs, chacun sur son PC, avec un simple code à dicter (sans réseau).
+- **Signalements** : un petit drapeau sur chaque carte et chaque section pour signaler une erreur, exportable pour corriger les cours.
+- **Partage `.atome`** : tes cours et ton planning dans un seul fichier, à donner à un camarade.
+- **Mise à jour automatique** : Atome propose lui-même les nouvelles versions (sans toucher à tes données).
+- **Cours libres intégrés** : 440 cours originaux du programme de 1re année, livrés avec l'application.
+- Neuf thèmes, **hors ligne**, sans compte : tes données restent sur ton PC.
 
-## Télécharger et installer
+## Installation
 
-1. Va dans l'onglet **[Releases](../../releases)** de ce dépôt et télécharge la dernière version.
-2. Lance `Atome-Setup-x.y.z.exe` et suis l'assistant (aucun droit administrateur nécessaire). Rien d'autre à installer.
+1. Va dans l'onglet **[Releases](../../releases/latest)** et télécharge `Atome-Setup-x.y.z.exe`
+   (ou `Atome-portable.zip`, sans installation : décompresse puis ouvre `Atome.exe`).
+2. Lance le setup et suis l'assistant (aucun droit administrateur nécessaire, rien d'autre à installer).
 3. **Windows peut afficher « Windows a protégé votre ordinateur »** (SmartScreen) : l'application n'est pas
-   signée numériquement, ce qui coûte cher pour un projet personnel. Clique sur **Informations complémentaires**
-   puis **Exécuter quand même**. Le code source est entièrement visible ici si tu veux vérifier.
-4. Prérequis : Windows 10/11 et le **WebView2 Runtime** (déjà inclus dans Windows 11).
+   signée numériquement, ce qui coûte cher pour un projet personnel. Clique sur **Informations complémentaires**,
+   puis **Exécuter quand même**.
+4. Si le **Contrôle intelligent des applications** (Windows 11) bloque l'installation, désactive-le le temps
+   d'installer (Sécurité Windows → Contrôle des applications et du navigateur), ou utilise le ZIP portable.
+5. Prérequis : Windows 10/11 et le **WebView2 Runtime** (déjà inclus dans Windows 11).
 
-Pour essayer : **Bibliothèque** → importer `samples/exemple.json`.
+Le code est entièrement visible ici si tu veux vérifier. Au premier lancement, sans aucun cours, Atome te propose de
+charger les cours libres.
 
 ### Mises à jour
 
-Installé avec le setup, Atome vérifie au démarrage (une fois par jour au plus) s'il existe une nouvelle version
-et la propose dans un bandeau : **Mettre à jour**, **Plus tard** ou **Ignorer cette version**. La mise à jour
-télécharge `Atome-Setup-x.y.z.exe`, vérifie son empreinte SHA-256 (fichier `.sha256` publié avec la Release),
-sauvegarde la base, puis installe et relance Atome. Tes données ne sont jamais touchées. En version portable,
-le bandeau propose seulement le lien de téléchargement. Détails dans l'Aide, page **Mises à jour**.
+Installé avec le setup, Atome vérifie au démarrage (une fois par jour au plus, désactivable dans les Réglages) s'il
+existe une nouvelle version et la propose dans un bandeau : **Mettre à jour**, **Plus tard** ou **Ignorer cette version**.
+Le setup téléchargé est vérifié par son empreinte SHA-256, la base est sauvegardée, puis Atome se réinstalle et se
+relance. Tes données et ta progression ne sont jamais touchées. C'est la seule connexion Internet d'Atome.
+
+## Cours libres intégrés
+
+Atome embarque **440 cours originaux** (séances de cours + cartes de révision) pour le programme de 1re année du BTS SIO
+option SLAM : Bloc 1, Bloc 2, Bloc 3, algorithmique, mathématiques, anglais et CEJM.
+
+- Ils ont été écrits en **« salle blanche »** : à partir de fiches abstraites (notions et savoir-faire seulement),
+  sans jamais avoir sous les yeux les cours d'un organisme de formation, puis vérifiés par un contrôle de similarité.
+  Détails dans [`contenu-libre/README.md`](contenu-libre/README.md).
+- Licence **[CC BY-SA 4.0](contenu-libre/LICENSE)** : tu peux les réutiliser et les adapter en citant
+  « Atome – packs libres BTS SIO » et en partageant tes modifications sous la même licence.
+- Premier lancement sans aucun pack : Atome propose de les charger (**Oui** / **Plus tard**).
+  Si tu as déjà tes propres packs, rien n'est chargé automatiquement : un interrupteur **Réglages → Cours libres
+  intégrés** les charge ou les masque, sans rien effacer. Ils portent un badge **Libre** dans la Bibliothèque et ne se
+  mélangent jamais à tes packs.
+- Les mises à jour d'Atome mettent ces cours à jour, sans perdre ta progression.
+
+## Ce qu'il faut savoir sur le contenu
+
+- **Les cours du CNED ne sont pas fournis** : ni dans ce dépôt, ni dans l'application. Ils sont réservés à leurs
+  destinataires. Chacun peut fabriquer des packs à partir de **ses propres cours** (voir ci-dessous) et ne doit jamais
+  les publier.
+- Un **pack d'exemple** est aussi inclus ([`samples/exemple.json`](samples/exemple.json)).
+- Les cours libres sont écrits par une IA : **ils peuvent contenir des erreurs**. Aide-moi à les corriger, voir
+  [Contribuer et signaler une erreur](#contribuer-et-signaler-une-erreur).
+
+## Contribuer et signaler une erreur
+
+- **Une erreur dans un cours ou une carte ?** Dans Atome, clique sur le petit drapeau (touche **S** en session),
+  puis exporte tes signalements depuis **Réglages → Mes signalements**.
+- **Un bug, une idée ?** Ouvre un [Issue](../../issues) sur ce dépôt, avec le nom de la séance ou la capture
+  du problème.
+- **Corriger un cours libre** : les packs sont de simples fichiers JSON dans [`contenu-libre/packs/`](contenu-libre/packs)
+  (format dans [`docs/FORMAT.md`](docs/FORMAT.md)). Une *pull request* est la bienvenue, sous la même licence CC BY-SA 4.0.
+- **Ne publie jamais de contenu tiré de cours protégés** (CNED ou autre).
 
 ## Créer ses propres packs
 
@@ -76,6 +119,10 @@ Claude peut le générer à partir de tes PDF :
 
 Le format exact est décrit dans [`docs/FORMAT.md`](docs/FORMAT.md).
 **Ne publie jamais tes packs** : ils contiennent le contenu de tes cours.
+
+---
+
+# Pour les développeurs
 
 ## Documentation
 
@@ -106,7 +153,7 @@ Au démarrage, l'application importe automatiquement les packs de son dossier de
 dotnet test
 ```
 
-708 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
+724 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
 construction des sessions, mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
 bibliothèque en niveaux, couleurs et contrastes de chaque thème, enregistrement des réglages,
 ordre du cours (tri naturel, chiffres romains) et tourniquet des matières, planning de l'année (priorités,
@@ -157,6 +204,7 @@ app/
       Web/              Page de rendu locale + markdown-it, KaTeX, highlight.js (hors ligne).
   tests/Revisions.Tests/  Tests xUnit.
   samples/exemple.json    Petit pack de démonstration (à importer depuis la Bibliothèque).
+  contenu-libre/         440 cours libres (CC BY-SA 4.0), copiés à côté de l'exe à la compilation ; DepotCoursLibres les charge ou les masque.
 ```
 
 Sens des dépendances : `App → Data → Core`. Le Core ne dépend de rien.
@@ -227,6 +275,8 @@ puis dévoile la correction étape par étape, Entrée (hors des cases) fait la 
 - Variable d'environnement `REVISIONS_DONNEES` : utilise un autre dossier de données, pour essayer
   sans toucher à son vrai historique.
 
-## Licence
+## Licences
 
-[MIT](LICENSE) © 2026 fjeko. La licence ne couvre que le code d'Atome, pas les cours.
+- **Code d'Atome** : [MIT](LICENSE) © 2026 fjeko.
+- **Cours libres** (`contenu-libre/`) : [CC BY-SA 4.0](contenu-libre/LICENSE), attribution « Atome – packs libres BTS SIO ».
+- **Cours du CNED** : non fournis, réservés à leurs destinataires.

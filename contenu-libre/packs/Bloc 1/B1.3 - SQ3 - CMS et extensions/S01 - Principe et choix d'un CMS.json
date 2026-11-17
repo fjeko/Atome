@@ -1,0 +1,67 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-13-sq3-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.3 – SQ3 – Site à base de CMS et extensions",
+  "sequence": null,
+  "seance": "S01 – Principe et choix d'un CMS",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Ce qu'est un système de gestion de contenu (CMS), ses deux espaces, l'édition visuelle, ses avantages et limites, les principaux CMS et comment choisir entre CMS et développement sur mesure.",
+  "notions": [
+    "Définition d'un CMS",
+    "Espace de gestion et espace public",
+    "Avantages et limites",
+    "Principaux CMS",
+    "CMS ou sur mesure"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-13-sq3-s01-s01",
+      "titre": "Qu'est-ce qu'un CMS ?",
+      "contenu": "Un **CMS** (*Content Management System*, système de gestion de contenu) est une application web qui permet de **créer et mettre à jour un site sans programmer**. Il sépare :\n- l'**espace de gestion** (*back-office*), protégé par identifiant : on rédige des pages, ajoute des images, gère les menus et les utilisateurs ;\n- l'**espace public** (*front-office*) : le site tel que les visiteurs le voient.\n\nL'**éditeur visuel** (souvent par blocs) permet de mettre en forme comme dans un traitement de texte (WYSIWYG). Plusieurs rédacteurs peuvent contribuer avec des **rôles** différents (administrateur, éditeur, auteur, contributeur).",
+      "notions": [
+        "Définition d'un CMS",
+        "Espace de gestion et espace public"
+      ]
+    },
+    {
+      "id": "libre-b1-13-sq3-s01-s02",
+      "titre": "Avantages, limites et choix",
+      "contenu": "| Avantages | Limites |\n| --- | --- |\n| mise en ligne rapide et peu coûteuse | performances parfois moyennes (beaucoup de code générique) |\n| contenus modifiables par des non-informaticiens | **sécurité** : cible fréquente des attaques, mises à jour indispensables |\n| milliers de thèmes et d'extensions | dépendance aux extensions (abandonnées, incompatibles) |\n| grande communauté, documentation | fonctions très spécifiques difficiles à obtenir |\n\nPrincipaux CMS libres : **WordPress** (le plus répandu, blogs et sites vitrines, boutique avec une extension), **Drupal** (sites complexes, grands portails), **Joomla**, **PrestaShop** (spécialisé e-commerce).\n\n**CMS ou développement sur mesure ?**\n- site vitrine, blog, petite boutique, budget limité, client autonome → **CMS** ;\n- logique métier très particulière (calculs, intégration à un logiciel interne), fortes exigences de performance → **sur mesure** (ou framework).",
+      "notions": [
+        "Avantages et limites",
+        "Principaux CMS",
+        "CMS ou sur mesure"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-13-sq3-s01-c001",
+      "section": "libre-b1-13-sq3-s01-s01",
+      "type": "question",
+      "recto": "Quelle différence entre le back-office et le front-office d'un CMS ?",
+      "verso": "Le back-office est l'espace d'administration (création et gestion des contenus) ; le front-office est le site public vu par les visiteurs.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-13-sq3-s01-c002",
+      "section": "libre-b1-13-sq3-s01-s02",
+      "type": "qcm",
+      "question": "Une association veut un site vitrine avec un agenda d'événements, mis à jour par ses bénévoles, avec un petit budget. Quelle solution ?",
+      "choix": [
+        "Un développement sur mesure en PHP MVC",
+        "Un CMS avec une extension d'agenda",
+        "Des pages HTML statiques modifiées par un développeur",
+        "Une application mobile native"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le besoin est standard et les bénévoles doivent être autonomes : un CMS convient.",
+      "difficulte": 2
+    }
+  ]
+}

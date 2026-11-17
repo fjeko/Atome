@@ -1,0 +1,108 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq1-s09",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie I – SQ1 – Programmation procédurale en C#, corrections et évolutions",
+  "sequence": null,
+  "seance": "S09 – Paramètres : par valeur et par référence",
+  "ordre": 9,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Comprendre ce qui arrive à un argument transmis à une méthode : copie (par valeur) ou accès à l'original (ref, out), et quand utiliser chaque mode.",
+  "notions": [
+    "Passage par valeur",
+    "Passage par référence ref",
+    "Paramètre out",
+    "Choisir le mode de passage"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq1-s09-s01",
+      "titre": "Le passage par valeur",
+      "contenu": "Par défaut, C# transmet une **copie** de la valeur : la méthode travaille sur sa propre copie, et **l'original n'est pas modifié**.\n```csharp\nstatic void Doubler(int n)\n{\n    n = n * 2;\n}\n\nint points = 10;\nDoubler(points);\nConsole.WriteLine(points);   // 10 : l'original n'a pas changé\n```\nC'est un **piège fréquent** : on croit modifier la variable de l'appelant, mais on ne modifie que la copie.",
+      "notions": [
+        "Passage par valeur"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s09-s02",
+      "titre": "Le passage par référence : ref",
+      "contenu": "Avec `ref`, la méthode reçoit un **accès direct à la variable** de l'appelant : toute modification est visible après l'appel. Le mot-clé `ref` s'écrit **dans la déclaration et dans l'appel**, et la variable doit être **initialisée** avant.\n```csharp\nstatic void Doubler(ref int n)\n{\n    n = n * 2;\n}\n\nint points = 10;\nDoubler(ref points);\nConsole.WriteLine(points);   // 20\n```\n\nExemple classique : échanger deux valeurs.\n```csharp\nstatic void Echanger(ref int a, ref int b)\n{\n    int temp = a;\n    a = b;\n    b = temp;\n}\n```",
+      "notions": [
+        "Passage par référence ref"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s09-s03",
+      "titre": "Le paramètre out",
+      "contenu": "`out` ressemble à `ref`, mais sert à **renvoyer** une valeur supplémentaire : la variable n'a **pas besoin** d'être initialisée avant, et la méthode **doit** lui affecter une valeur.\n```csharp\nstatic void DecomposerDuree(int totalMinutes, out int heures, out int minutes)\n{\n    heures = totalMinutes / 60;\n    minutes = totalMinutes % 60;\n}\n\nDecomposerDuree(135, out int h, out int m);   // h = 2, m = 15\n```\nTu l'as déjà croisé avec `int.TryParse(texte, out int n)` : la fonction renvoie un `bool` **et** fournit le nombre par `out`.",
+      "notions": [
+        "Paramètre out"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq1-s09-s04",
+      "titre": "Quel mode choisir ?",
+      "contenu": "| Besoin | Mode |\n| --- | --- |\n| la méthode utilise une valeur sans la modifier pour l'appelant | **par valeur** (par défaut) |\n| la méthode doit **modifier** une variable existante de l'appelant | `ref` |\n| la méthode doit **produire** plusieurs résultats | `out` (ou renvoyer un objet / un tuple) |\n\nEn règle générale, **préfère une fonction qui renvoie un résultat** : c'est plus lisible que `ref`. Réserve `ref` aux cas comme l'échange de deux variables.",
+      "notions": [
+        "Choisir le mode de passage"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq1-s09-c001",
+      "section": "libre-b1-12a-sq1-s09-s01",
+      "type": "qcm",
+      "question": "Qu'affiche ce code ?\n```csharp\nstatic void Vider(int stock) { stock = 0; }\nint s = 25; Vider(s); Console.WriteLine(s);\n```",
+      "choix": [
+        "0",
+        "25",
+        "Une erreur",
+        "null"
+      ],
+      "bonneReponse": 1,
+      "explication": "`stock` est une copie de `s`. Mettre la copie à 0 ne change pas `s`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s09-c002",
+      "section": "libre-b1-12a-sq1-s09-s02",
+      "type": "exercice",
+      "enonce": "Fais la trace : `int x = 3, y = 8; Echanger(ref x, ref y);` avec la méthode `Echanger` ci-dessus. Que valent x et y ?",
+      "etapes": [
+        "`temp = a` → temp = 3.",
+        "`a = b` → a (donc x) = 8.",
+        "`b = temp` → b (donc y) = 3.",
+        "Grâce à `ref`, x et y sont modifiés directement."
+      ],
+      "reponse": "x = 8 et y = 3.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s09-c003",
+      "section": "libre-b1-12a-sq1-s09-s03",
+      "type": "question",
+      "recto": "Quelle différence entre `ref` et `out` ?",
+      "verso": "Avec `ref`, la variable doit être initialisée avant l'appel et la méthode peut la lire et la modifier. Avec `out`, elle peut ne pas l'être, et la méthode doit obligatoirement lui donner une valeur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq1-s09-c004",
+      "section": "libre-b1-12a-sq1-s09-s04",
+      "type": "qcm",
+      "question": "Une méthode doit calculer à la fois le minimum et le maximum d'une série. Quelle solution est adaptée ?",
+      "choix": [
+        "Deux paramètres par valeur",
+        "Deux paramètres `out`",
+        "Une variable globale pour chaque",
+        "C'est impossible en C#"
+      ],
+      "bonneReponse": 1,
+      "explication": "`out` permet de renvoyer plusieurs résultats (un tuple ou un objet conviendraient aussi).",
+      "difficulte": 2
+    }
+  ]
+}

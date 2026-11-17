@@ -1,0 +1,67 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq4-s07",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ4 – Permissions d'accès, imprimante partagée et interopérabilité Windows/Linux",
+  "sequence": null,
+  "seance": "S07 – Client de partage sous Linux",
+  "ordre": 7,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Accéder depuis un poste Linux aux partages Windows (protocole SMB) : connexion graphique, montage manuel, montage automatique au démarrage et dépannage.",
+  "notions": [
+    "SMB et Samba",
+    "Connexion graphique",
+    "Montage manuel CIFS",
+    "Montage automatique",
+    "Dépannage du montage"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq4-s07-s01",
+      "titre": "Accéder à un partage Windows",
+      "contenu": "Les partages Windows utilisent le protocole **SMB**. Sous Linux, la suite **Samba** permet d'être client (et serveur) SMB : c'est l'**interopérabilité** Windows/Linux.\n\n**Graphiquement** : dans le gestionnaire de fichiers, *Autres emplacements > Connexion à un serveur* : `smb://srv01.hydro.local/Commun`, puis identifiants du domaine.\n\n**En ligne de commande** :\n```bash\nsudo apt install cifs-utils\nsudo mkdir -p /mnt/commun\nsudo mount -t cifs //srv01.hydro.local/Commun /mnt/commun \\\n     -o username=lea.martin,domain=HYDRO,uid=$(id -u),gid=$(id -g)\n```\n`uid`/`gid` font apparaître les fichiers comme appartenant à l'utilisateur local (sinon, à root).",
+      "notions": [
+        "SMB et Samba",
+        "Connexion graphique",
+        "Montage manuel CIFS"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq4-s07-s02",
+      "titre": "Montage automatique et dépannage",
+      "contenu": "Pour monter au démarrage, une ligne dans `/etc/fstab`, avec les identifiants dans un **fichier protégé** (jamais en clair dans fstab, lisible par tous) :\n```text\n//srv01.hydro.local/Commun  /mnt/commun  cifs  credentials=/etc/smb-lea,uid=1000,gid=1000,_netdev  0  0\n```\n```bash\n# /etc/smb-lea (droits 600, appartenant à root)\nusername=lea.martin\npassword=********\ndomain=HYDRO\n```\n`_netdev` indique d'attendre que le réseau soit prêt. Test sans redémarrer : `sudo mount -a`.\n\nDépannage :\n| Symptôme | Piste |\n| --- | --- |\n| « Permission denied » | identifiants, domaine, droits sur le partage |\n| « Host is down » / nom introuvable | DNS (le nom du serveur se résout-il ? `ping srv01.hydro.local`) |\n| montage échoue au démarrage mais `mount -a` marche | réseau pas prêt : `_netdev` |\n| fichiers en lecture seule | `uid`/`gid` ou droits NTFS |",
+      "notions": [
+        "Montage automatique",
+        "Dépannage du montage"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq4-s07-c001",
+      "section": "libre-b1-12b-sq4-s07-s01",
+      "type": "question",
+      "recto": "Quel protocole utilisent les partages de fichiers Windows, et quelle suite logicielle permet à Linux de l'utiliser ?",
+      "verso": "Le protocole SMB ; la suite Samba (avec le paquet cifs-utils pour monter les partages).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq4-s07-c002",
+      "section": "libre-b1-12b-sq4-s07-s02",
+      "type": "qcm",
+      "question": "Pourquoi placer les identifiants SMB dans un fichier séparé protégé plutôt que dans /etc/fstab ?",
+      "choix": [
+        "Parce que fstab n'accepte pas les mots de passe",
+        "Parce que /etc/fstab est lisible par tous les utilisateurs : le mot de passe serait exposé",
+        "Pour aller plus vite au démarrage",
+        "Parce que Samba l'exige"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le fichier de credentials en droits 600 n'est lisible que par root.",
+      "difficulte": 2
+    }
+  ]
+}

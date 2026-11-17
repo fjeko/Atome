@@ -1,0 +1,63 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq4-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ4 – Permissions d'accès, imprimante partagée et interopérabilité Windows/Linux",
+  "sequence": null,
+  "seance": "S04 – Dossiers partagés par rôle",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Mettre en œuvre les dossiers partagés d'une organisation avec le modèle de groupes imbriqués AGDLP, les déployer en lecteurs réseau par GPO et observer droits hérités et explicites.",
+  "notions": [
+    "Mise en œuvre AGDLP sur les dossiers",
+    "Lecteurs réseau par GPO",
+    "Observer droits hérités et explicites"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq4-s04-s01",
+      "titre": "Appliquer AGDLP aux dossiers",
+      "contenu": "Pour chaque dossier et chaque niveau de droit, un groupe domaine local :\n| Dossier | Groupe DL (Modifier) | Groupe DL (Lecture) |\n| --- | --- | --- |\n| Etudes\\Projets | DL_Projets_M ← G_Ingenieurs | DL_Projets_L ← G_Direction |\n| Comptabilite | DL_Compta_M ← G_Comptables | DL_Compta_L ← G_RH, G_Direction |\n\nPuis en NTFS (en retirant les autorisations trop larges héritées de la racine) :\n```bat\nicacls \"D:\\Partages\\Etudes\\Projets\" /grant \"HYDRO\\DL_Projets_M:(OI)(CI)M\" \"HYDRO\\DL_Projets_L:(OI)(CI)RX\"\n```\n`(OI)(CI)` = l'entrée s'applique aux fichiers et sous-dossiers ; `M` = Modification ; `RX` = Lecture et exécution.\n\nQuand Léa passe de la comptabilité à la RH : on la retire de G_Comptables et on l'ajoute à G_RH. **Aucun** dossier n'est touché.",
+      "notions": [
+        "Mise en œuvre AGDLP sur les dossiers"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq4-s04-s02",
+      "titre": "Lecteurs réseau et vérification",
+      "contenu": "GPO utilisateur « Lecteurs » : *Préférences > Paramètres Windows > Mappages de lecteurs* :\n- `P:` → `\\\\SRV01\\Partages\\Etudes\\Projets`, **ciblage** : membres de G_Ingenieurs ;\n- `K:` → Comptabilite, ciblage G_Comptables (on évite les lettres déjà utilisées par les disques locaux) ;\n- `S:` → Commun pour tous.\n\nVérification :\n- *Sécurité > Avancé* : la colonne « Hérité de » indique si l'entrée vient d'un parent ou est **explicite** (« Aucun ») ;\n- onglet **Accès effectif** : choisir un utilisateur et voir ses droits réels ;\n- session de test de chaque profil.",
+      "notions": [
+        "Lecteurs réseau par GPO",
+        "Observer droits hérités et explicites"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq4-s04-c001",
+      "section": "libre-b1-12b-sq4-s04-s01",
+      "type": "question",
+      "recto": "Dans icacls, que signifient (OI)(CI) ?",
+      "verso": "Héritage par les objets (fichiers) et par les conteneurs (sous-dossiers) : l'autorisation s'applique à tout le contenu.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq4-s04-c002",
+      "section": "libre-b1-12b-sq4-s04-s02",
+      "type": "qcm",
+      "question": "Dans la fenêtre Avancé, une entrée affiche « Hérité de : Aucun ». Que cela signifie-t-il ?",
+      "choix": [
+        "Elle ne s'applique à personne",
+        "C'est une autorisation explicite, posée directement sur cet objet",
+        "Elle est désactivée",
+        "Elle vient du partage"
+      ],
+      "bonneReponse": 1,
+      "explication": "Une entrée sans parent d'héritage a été définie sur l'objet lui-même.",
+      "difficulte": 2
+    }
+  ]
+}

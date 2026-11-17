@@ -1,0 +1,74 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-14-sq2-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.4 – SQ2 – Méthodes agiles et gestion de versions",
+  "sequence": null,
+  "seance": "S04 – Gestion de versions : concepts",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Pourquoi gérer les versions, et le vocabulaire : dépôt, révision, numérotation des versions, états d'un fichier, architectures locale, centralisée et décentralisée.",
+  "notions": [
+    "Intérêt de la gestion de versions",
+    "Dépôt et révision",
+    "Numérotation des versions",
+    "États d'un fichier",
+    "Architectures locale centralisée décentralisée"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-14-sq2-s04-s01",
+      "titre": "Pourquoi et vocabulaire",
+      "contenu": "Sans outil, on finit avec `site_v2_final_VRAIMENT_final.zip`… Un **logiciel de gestion de versions** (Git, Subversion) :\n- garde l'**historique** de toutes les modifications (qui, quand, pourquoi) ;\n- permet de **revenir** à une version antérieure ;\n- permet de **travailler à plusieurs** sur les mêmes fichiers ;\n- permet de développer des fonctionnalités **en parallèle** (branches).\n\nVocabulaire :\n- **dépôt** (*repository*) : l'espace qui contient les fichiers et tout leur historique ;\n- **révision** (*commit*) : un état enregistré du projet, avec un identifiant et un message ;\n- **version** (*release*) : une révision publiée, numérotée.\n\nNumérotation sémantique **MAJEUR.MINEUR.CORRECTIF** (ex. 2.4.1) :\n- **correctif** +1 : correction de bug sans changement fonctionnel (2.4.1 → 2.4.2) ;\n- **mineur** +1 : nouvelle fonctionnalité compatible (2.4.2 → 2.5.0) ;\n- **majeur** +1 : changement incompatible (2.5.0 → 3.0.0).",
+      "notions": [
+        "Intérêt de la gestion de versions",
+        "Dépôt et révision",
+        "Numérotation des versions"
+      ]
+    },
+    {
+      "id": "libre-b1-14-sq2-s04-s02",
+      "titre": "États et architectures",
+      "contenu": "Dans Git, un fichier passe par des **états** :\n```text\nnon suivi → modifié → indexé (git add) → validé (git commit)\n```\n`git status` montre l'état de chaque fichier.\n\n**Architectures** :\n| Architecture | Principe | Exemple |\n| --- | --- | --- |\n| locale | historique sur un seul poste | anciens outils |\n| **centralisée** | un **serveur unique** contient l'historique ; chacun y valide directement | Subversion |\n| **décentralisée** | **chaque développeur a une copie complète** du dépôt (clone) ; on échange les révisions avec `push`/`pull` | Git |\nEn décentralisé, on peut valider **hors ligne**, et chaque clone est une sauvegarde de l'historique.\n\nLes **forges** en ligne (GitHub, GitLab, plateformes libres) hébergent les dépôts et ajoutent des outils : **suivi des anomalies** (*issues*), **demandes de fusion**, **wiki**, forums, intégration continue.",
+      "notions": [
+        "États d'un fichier",
+        "Architectures locale centralisée décentralisée"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-14-sq2-s04-c001",
+      "section": "libre-b1-14-sq2-s04-s01",
+      "type": "qcm",
+      "question": "Une application en version 3.2.5 reçoit une nouvelle fonctionnalité compatible avec l'existant. Quel numéro ?",
+      "choix": [
+        "3.2.6",
+        "3.3.0",
+        "4.0.0",
+        "3.2.5.1"
+      ],
+      "bonneReponse": 1,
+      "explication": "Nouvelle fonctionnalité compatible : on incrémente le mineur et on remet le correctif à 0.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-14-sq2-s04-c002",
+      "section": "libre-b1-14-sq2-s04-s02",
+      "type": "qcm",
+      "question": "Quel est l'avantage d'une architecture décentralisée comme Git ?",
+      "choix": [
+        "Il n'y a pas d'historique à stocker",
+        "Chaque développeur possède une copie complète du dépôt et peut travailler hors ligne",
+        "Un seul développeur peut travailler à la fois",
+        "Les fichiers ne peuvent pas être modifiés"
+      ],
+      "bonneReponse": 1,
+      "explication": "Chaque clone contient tout l'historique ; on synchronise ensuite avec push et pull.",
+      "difficulte": 2
+    }
+  ]
+}

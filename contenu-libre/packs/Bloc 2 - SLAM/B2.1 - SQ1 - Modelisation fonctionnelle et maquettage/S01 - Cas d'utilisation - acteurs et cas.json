@@ -1,0 +1,146 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-21-sq1-s01",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.1 – SQ1 – Modélisation fonctionnelle et maquettage",
+  "sequence": null,
+  "seance": "S01 – Cas d'utilisation : acteurs et cas",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Avant de coder, on décrit ce que le futur logiciel doit permettre de faire et pour qui. Le diagramme de cas d'utilisation UML donne cette vue d'ensemble : un système, des acteurs et des cas.",
+  "notions": [
+    "Modélisation fonctionnelle",
+    "Système",
+    "Acteur primaire",
+    "Acteur secondaire",
+    "Cas d'utilisation",
+    "Association acteur-cas",
+    "Démarche de construction"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-21-sq1-s01-s01",
+      "titre": "Pourquoi modéliser le fonctionnel ?",
+      "contenu": "Quand un client te demande une application, il exprime ses besoins avec ses mots : « je veux que mes adhérents puissent réserver un créneau ». Le risque, c'est que toi, tu comprennes autre chose.\n\nLa **modélisation fonctionnelle** sert à décrire **ce que le système doit faire**, du point de vue de ceux qui l'utilisent, **sans parler de la technique** (ni langage, ni base de données, ni écrans détaillés).\n\nOn utilise pour cela le langage **UML** (*Unified Modeling Language*), une notation graphique standardisée. Ses diagrammes fonctionnels sont :\n- le **diagramme de cas d'utilisation** : qui fait quoi avec le système ;\n- la **description textuelle** de chaque cas : comment ça se déroule ;\n- le **diagramme d'activités** : le déroulement sous forme de flux.\n\n> Exemple fil rouge : l'association **Grimpe & Co** gère une salle d'escalade. Elle veut une application pour inscrire ses adhérents, réserver des créneaux et prêter du matériel.\n\nCes schémas deviennent une base de discussion avec le client : il peut les valider avant qu'une seule ligne de code soit écrite.",
+      "notions": [
+        "Modélisation fonctionnelle"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq1-s01-s02",
+      "titre": "Le système et ses acteurs",
+      "contenu": "Le **système** est représenté par un grand rectangle portant son nom : tout ce qui est dedans sera informatisé.\n\nUn **acteur** est un **rôle** joué par quelqu'un ou quelque chose qui **interagit avec le système depuis l'extérieur**. On le dessine par un bonhomme (ou un rectangle avec le mot-clé `«actor»` pour un système externe).\n\n- Un acteur est un **rôle**, pas une personne : Léa peut être à la fois *Adhérent* et *Bénévole*.\n- Un **acteur primaire** déclenche le cas pour obtenir un résultat (l'adhérent qui réserve).\n- Un **acteur secondaire** est sollicité par le système pendant le cas (le service de paiement en ligne, le service d'envoi de SMS).\n\nPar convention, on place les acteurs primaires à gauche du rectangle et les secondaires à droite.\n\nPour Grimpe & Co :\n\n| Acteur | Type | Pourquoi |\n| --- | --- | --- |\n| Adhérent | primaire | réserve un créneau |\n| Moniteur | primaire | ouvre et clôture une séance |\n| Plateforme de paiement | secondaire | encaisse la cotisation |",
+      "notions": [
+        "Système",
+        "Acteur primaire",
+        "Acteur secondaire"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq1-s01-s03",
+      "titre": "Les cas d'utilisation",
+      "contenu": "Un **cas d'utilisation** est un **service rendu par le système** à un acteur, qui produit un **résultat observable** et utile. On le dessine par une **ellipse** dans le rectangle du système, nommée par un **verbe à l'infinitif + complément** : « Réserver un créneau », « Prêter du matériel ».\n\nUn trait (association) relie l'acteur au cas auquel il participe.\n\n```text\n +---------------- Gestion de la salle ----------------+\n |                                                     |\nAdhérent ---- ( Réserver un créneau ) ---- Paiement    |\n |                                                     |\nMoniteur ---- ( Clôturer une séance )                  |\n +-----------------------------------------------------+\n```\n\n**Bonne taille de cas** : un cas correspond à un objectif complet de l'acteur. « Cliquer sur Valider » est trop fin (c'est une étape) ; « Gérer la salle » est trop gros (c'est tout le système).\n\nUn cas ne contient **ni détails d'interface** (boutons, couleurs) **ni structure de données** : il dit *quoi*, pas *comment*.",
+      "notions": [
+        "Cas d'utilisation",
+        "Association acteur-cas"
+      ]
+    },
+    {
+      "id": "libre-b2-21-sq1-s01-s04",
+      "titre": "Construire le diagramme pas à pas",
+      "contenu": "Méthode à partir d'un énoncé :\n1. **Délimite le système** : qu'est-ce qui sera informatisé ?\n2. **Repère les acteurs** : qui (ou quoi) interagit avec le système ? Souligne les rôles dans le texte.\n3. **Repère les cas** : pour chaque acteur, quels objectifs atteint-il grâce au système ? Les verbes de l'énoncé aident.\n4. **Relie** chaque acteur à ses cas.\n5. **Relis avec le client** : rien ne manque, rien n'est en trop ?\n\nMini-cas : *Le cabinet* **Podosoin** *veut que ses patients prennent rendez-vous en ligne. La secrétaire confirme ou annule les rendez-vous. Un SMS de rappel est envoyé la veille par un service externe.*\n\n- Acteurs : Patient (primaire), Secrétaire (primaire), Service SMS (secondaire).\n- Cas : Prendre rendez-vous, Confirmer un rendez-vous, Annuler un rendez-vous, Envoyer un rappel.",
+      "notions": [
+        "Démarche de construction"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-21-sq1-s01-c001",
+      "section": "libre-b2-21-sq1-s01-s01",
+      "type": "question",
+      "recto": "Que décrit la modélisation fonctionnelle d'un système ?",
+      "verso": "**Ce que le système doit faire** pour ses utilisateurs, sans entrer dans la technique (langage, base, écrans).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq1-s01-c002",
+      "section": "libre-b2-21-sq1-s01-s01",
+      "type": "qcm",
+      "question": "Quel diagramme UML montre « qui fait quoi » avec le système ?",
+      "choix": [
+        "Le diagramme de classes",
+        "Le diagramme de cas d'utilisation",
+        "Le diagramme de séquences",
+        "Le diagramme de paquetages"
+      ],
+      "bonneReponse": 1,
+      "explication": "Le diagramme de cas d'utilisation présente les acteurs et les services (cas) que le système leur rend.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq1-s01-c003",
+      "section": "libre-b2-21-sq1-s01-s02",
+      "type": "question",
+      "recto": "Un acteur UML représente-t-il une personne précise ?",
+      "verso": "Non : un acteur est un **rôle** extérieur au système. Une même personne peut jouer plusieurs rôles, et un acteur peut être un autre système.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq1-s01-c004",
+      "section": "libre-b2-21-sq1-s01-s02",
+      "type": "qcm",
+      "question": "Dans le cas « Payer sa cotisation », la plateforme bancaire qui valide la carte est :",
+      "choix": [
+        "un acteur primaire",
+        "un acteur secondaire",
+        "un cas d'utilisation",
+        "une partie du système"
+      ],
+      "bonneReponse": 1,
+      "explication": "Elle ne déclenche pas le cas, elle est **sollicitée** par le système : c'est un acteur secondaire, placé à droite.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq1-s01-c005",
+      "section": "libre-b2-21-sq1-s01-s03",
+      "type": "question",
+      "recto": "Comment nomme-t-on un cas d'utilisation ?",
+      "verso": "Par un **verbe à l'infinitif suivi d'un complément** qui exprime un objectif de l'acteur : « Réserver un créneau ».",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-21-sq1-s01-c006",
+      "section": "libre-b2-21-sq1-s01-s03",
+      "type": "qcm",
+      "question": "Lequel de ces intitulés est un cas d'utilisation de bonne taille ?",
+      "choix": [
+        "Saisir son adresse e-mail",
+        "Gérer l'association",
+        "Emprunter un baudrier",
+        "Cliquer sur « Confirmer »"
+      ],
+      "bonneReponse": 2,
+      "explication": "« Emprunter un baudrier » est un objectif complet. Les autres sont soit une simple étape, soit tout le système.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-21-sq1-s01-c007",
+      "section": "libre-b2-21-sq1-s01-s04",
+      "type": "exercice",
+      "enonce": "L'atelier **Rouelibre** répare des vélos. Le client dépose une demande de réparation en ligne ; le mécanicien établit un devis et le client l'accepte ou le refuse ; le responsable consulte le chiffre d'affaires du mois. Liste les acteurs et les cas d'utilisation.",
+      "etapes": [
+        "Délimiter : on informatise la gestion des demandes et des devis.",
+        "Acteurs (rôles qui interagissent) : Client, Mécanicien, Responsable.",
+        "Cas du Client : Déposer une demande, Répondre à un devis.",
+        "Cas du Mécanicien : Établir un devis.",
+        "Cas du Responsable : Consulter le chiffre d'affaires."
+      ],
+      "reponse": "3 acteurs primaires (Client, Mécanicien, Responsable) ; 4 cas : Déposer une demande, Établir un devis, Répondre à un devis, Consulter le chiffre d'affaires.",
+      "difficulte": 2
+    }
+  ]
+}

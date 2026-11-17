@@ -1,0 +1,94 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b2-22-sq2-s02",
+  "matiere": "Bloc 2 – SLAM : conception et développement d'applications",
+  "bloc": "Bloc 2",
+  "partie": "B2.2 – SQ2 – Qualité logicielle et tests unitaires",
+  "sequence": null,
+  "seance": "S02 – KISS, DRY et responsabilité unique",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Trois principes simples guident un code maintenable : rester simple (KISS), ne pas se répéter (DRY) et donner une seule responsabilité à chaque classe (S de SOLID).",
+  "notions": [
+    "KISS",
+    "DRY",
+    "Responsabilité unique",
+    "SOLID"
+  ],
+  "sections": [
+    {
+      "id": "libre-b2-22-sq2-s02-s01",
+      "titre": "KISS : rester simple",
+      "contenu": "**KISS** (*Keep It Simple, Stupid*) : choisir la solution **la plus simple** qui répond au besoin. Pas de « au cas où » ni d'astuce illisible.\n\n```csharp\n// Compliqué\nbool estPair = (n & 1) == 0 ? true : false;\n// Simple\nbool estPair = n % 2 == 0;\n```\n\nKISS s'applique aussi à l'architecture : inutile d'ajouter trois couches d'abstraction pour une application de 5 écrans.",
+      "notions": [
+        "KISS"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq2-s02-s02",
+      "titre": "DRY : ne pas se répéter",
+      "contenu": "**DRY** (*Don't Repeat Yourself*) : chaque connaissance doit exister **à un seul endroit**. Si une règle (le taux de TVA, le calcul d'une remise) est copiée dans cinq fichiers, une modification oubliée dans l'un d'eux crée un bug.\n\n```java\n// Avant : le même calcul dans deux méthodes\ndouble prixTTC1 = prixHT * 1.2;\ndouble prixTTC2 = autreHT * 1.2;\n// Après\nstatic final double TVA = 0.20;\nstatic double ttc(double ht) { return ht * (1 + TVA); }\n```\n\nAttention à l'excès inverse : fusionner deux codes **qui se ressemblent par hasard** mais n'ont pas le même sens rend le code plus confus.",
+      "notions": [
+        "DRY"
+      ]
+    },
+    {
+      "id": "libre-b2-22-sq2-s02-s03",
+      "titre": "Responsabilité unique (SRP)",
+      "contenu": "**SOLID** regroupe cinq principes de conception objet. Le premier :\n\n**S – Single Responsibility Principle** : une classe ne doit avoir **qu'une seule raison de changer**.\n\n```csharp\n// Viole SRP : métier + base + affichage\npublic class Facture {\n    public decimal Total() { ... }\n    public void SauverEnBase() { ... }\n    public void ImprimerPdf() { ... }\n}\n```\n\nTrois raisons de changer (règle de calcul, structure de la base, mise en page) → trois classes : `Facture` (calcul), `FactureDAO` (base), `FactureImpression` (PDF).",
+      "notions": [
+        "Responsabilité unique",
+        "SOLID"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b2-22-sq2-s02-c001",
+      "section": "libre-b2-22-sq2-s02-s01",
+      "type": "qcm",
+      "question": "Que recommande le principe KISS ?",
+      "choix": [
+        "Factoriser tout le code possible",
+        "Choisir la solution la plus simple qui répond au besoin",
+        "Écrire des tests avant le code",
+        "Utiliser le plus de patrons de conception possible"
+      ],
+      "bonneReponse": 1,
+      "explication": "Simple = plus facile à lire, à tester et à corriger.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b2-22-sq2-s02-c002",
+      "section": "libre-b2-22-sq2-s02-s02",
+      "type": "qcm",
+      "question": "Un taux de remise de 5 % est écrit « 0.05 » dans six classes. Quel principe est violé ?",
+      "choix": [
+        "KISS",
+        "DRY",
+        "Substitution de Liskov",
+        "Ségrégation des interfaces"
+      ],
+      "bonneReponse": 1,
+      "explication": "La même connaissance est dupliquée : la centraliser dans une constante ou un paramètre.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b2-22-sq2-s02-c003",
+      "section": "libre-b2-22-sq2-s02-s03",
+      "type": "exercice",
+      "enonce": "La classe `Inscription` d'un club de tennis calcule le tarif, envoie l'e-mail de bienvenue et écrit dans un fichier journal. Refactorise selon SRP.",
+      "etapes": [
+        "Identifier les raisons de changer : règle tarifaire, contenu/envoi d'e-mail, format du journal.",
+        "Garder dans `Inscription` les données et `CalculerTarif()`.",
+        "Créer `ServiceEmail` avec `EnvoyerBienvenue(Inscription i)`.",
+        "Créer `Journal` avec `Ecrire(string message)`.",
+        "Le contrôleur orchestre : il calcule, envoie l'e-mail, puis journalise."
+      ],
+      "reponse": "Trois classes à responsabilité unique, coordonnées par le contrôleur.",
+      "difficulte": 2
+    }
+  ]
+}

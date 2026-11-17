@@ -1,0 +1,106 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq03-s01",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 3 – Formation et validité du contrat",
+  "sequence": null,
+  "seance": "S1 – La période précontractuelle",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Avant de signer, on négocie librement mais de bonne foi : devoir d'information, confidentialité, rupture abusive des pourparlers et avant-contrats.",
+  "notions": [
+    "Pourparlers, liberté et bonne foi",
+    "Rupture abusive des pourparlers",
+    "Devoir d'information",
+    "Confidentialité des négociations",
+    "Pacte de préférence",
+    "Promesse unilatérale"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq03-s01-s01",
+      "titre": "Négocier librement, mais de bonne foi",
+      "contenu": "Les **pourparlers** sont la phase de négociation avant la conclusion d'un contrat. Le code civil pose deux principes :\n- la **liberté** : chacun est libre d'engager, de poursuivre ou de rompre une négociation ;\n- la **bonne foi** : « Les contrats doivent être négociés, formés et exécutés de bonne foi » (art. 1104 du Code civil ; voir aussi l'art. 1112).\n\nLa rupture des pourparlers n'est donc **pas fautive en soi**. Elle devient **abusive** si elle est brutale ou déloyale : par exemple rompre au dernier moment, sans motif, après avoir laissé croire à l'autre que l'accord était acquis et l'avoir poussé à engager des frais.\n\n**Réparation** : la victime peut obtenir des dommages-intérêts pour les frais engagés et la perte d'une chance de conclure ailleurs, **mais pas** pour le profit qu'elle espérait retirer du contrat qui n'a jamais été signé (art. 1112).",
+      "notions": [
+        "Pourparlers, liberté et bonne foi",
+        "Rupture abusive des pourparlers"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq03-s01-s02",
+      "titre": "Devoir d'information et confidentialité",
+      "contenu": "- **Devoir d'information** (art. 1112-1) : quand un partenaire détient une information **décisive** pour le consentement de l'autre, il doit la lui transmettre dès lors que ce dernier l'ignore de façon légitime ou se fie à lui. Ce devoir ne s'étend pas à l'appréciation de ce que vaut la prestation.\n- **Confidentialité** (art. 1112-2) : toute personne qui exploite ou révèle sans y être autorisée une information confidentielle apprise lors des discussions engage sa responsabilité.\n\nExemple : pendant une négociation de partenariat, *Hublo*, start-up fictive, présente son algorithme à un grand distributeur. Si celui-ci rompt puis réutilise l'algorithme, il viole la confidentialité.",
+      "notions": [
+        "Devoir d'information",
+        "Confidentialité des négociations"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq03-s01-s03",
+      "titre": "Les avant-contrats",
+      "contenu": "Pour encadrer la négociation, il est possible de conclure un **avant-contrat**, sous deux formes principales :\n\n| | Pacte de préférence (art. 1123) | Promesse unilatérale (art. 1124) |\n|---|---|---|\n| engagement | si le promettant décide de contracter, il s'adresse **d'abord** au bénéficiaire | le promettant s'engage **déjà** à conclure ; le bénéficiaire a un délai pour lever l'option |\n| le promettant est-il obligé de vendre ? | non, seulement de proposer en priorité | oui, si le bénéficiaire lève l'option |\n| exemple | un associé obtient une priorité pour racheter les parts de son associé s'il les vend un jour | un vendeur promet de vendre son local à un prix fixé pendant 3 mois |\n\nDans une promesse unilatérale, si le promettant se rétracte avant la fin du délai, cela **ne bloque pas** la formation du contrat.",
+      "notions": [
+        "Pacte de préférence",
+        "Promesse unilatérale"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq03-s01-c001",
+      "section": "libre-cejm-sq03-s01-s01",
+      "type": "qcm",
+      "question": "Après trois semaines de discussions, une entreprise informe son interlocuteur qu'elle choisit un autre fournisseur moins cher. Cette rupture est-elle fautive ?",
+      "choix": [
+        "Non, la liberté de rompre les pourparlers est le principe",
+        "Oui, toute rupture est fautive",
+        "Oui, car la négociation a duré plus d'une semaine",
+        "Non, sauf si le prix est supérieur"
+      ],
+      "bonneReponse": 0,
+      "explication": "Rompre pour un motif légitime, sans brutalité, fait partie de la liberté de négocier.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq03-s01-c002",
+      "section": "libre-cejm-sq03-s01-s01",
+      "type": "qcm",
+      "question": "En cas de rupture abusive des pourparlers, que ne peut-on PAS obtenir ?",
+      "choix": [
+        "Le bénéfice qu'aurait rapporté le contrat non conclu",
+        "Le remboursement des frais d'études engagés",
+        "Une indemnité pour la perte d'une chance",
+        "Des dommages-intérêts"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le code civil écarte tout dédommagement pour le gain espéré d'un contrat jamais conclu.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-cejm-sq03-s01-c003",
+      "section": "libre-cejm-sq03-s01-s02",
+      "type": "question",
+      "recto": "Que risque une partie qui divulgue une information confidentielle reçue pendant des pourparlers ?",
+      "verso": "D'engager sa responsabilité et de devoir verser des dommages-intérêts.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-sq03-s01-c004",
+      "section": "libre-cejm-sq03-s01-s03",
+      "type": "qcm",
+      "question": "Une créatrice veut être sûre de pouvoir acheter un local si son propriétaire décide un jour de le vendre, sans l'y obliger. Quel avant-contrat ?",
+      "choix": [
+        "Un pacte de préférence",
+        "Une promesse unilatérale de vente",
+        "Un contrat de vente",
+        "Une clause pénale"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le pacte donne une priorité, sans obliger à vendre.",
+      "difficulte": 2
+    }
+  ]
+}

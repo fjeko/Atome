@@ -1,0 +1,83 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12a-sq2-s04",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie I – SQ2 – Application de bureau événementielle en C#",
+  "sequence": null,
+  "seance": "S04 – Construire une interface par itérations",
+  "ordre": 4,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Construire pas à pas une petite application à partir d'une maquette : placement des contrôles, code des gestionnaires, remplissage d'une liste, puis amélioration à chaque itération.",
+  "notions": [
+    "De la maquette à l'interface",
+    "Remplir un contrôle par le code",
+    "Factoriser les traitements"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12a-sq2-s04-s01",
+      "titre": "De la maquette à l'interface",
+      "contenu": "### Cas : le convertisseur de recettes de la pâtisserie Au Fournil d'Elsa\nBesoin : adapter les quantités d'une recette (prévue pour un nombre de parts) à un autre nombre de parts.\n\nMaquette :\n```text\n+-------------------------------------------+\n| Ingrédient : [ Farine          v ]        |\n| Quantité (g) : [ 250 ]                    |\n| Parts prévues : [ 6 ]  Parts voulues : [9]|\n|                         [ Convertir ]     |\n| Résultat : 375 g de Farine                |\n+-------------------------------------------+\n```\nItération 1 : on place `cboIngredient`, `txtQuantite`, `numPartsPrevues`, `numPartsVoulues`, `btnConvertir`, `lblResultat`, on les nomme, on règle l'ordre de tabulation.",
+      "notions": [
+        "De la maquette à l'interface"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s04-s02",
+      "titre": "Remplir un contrôle par le code",
+      "contenu": "Itération 2 : on remplit la liste au **chargement** de la fenêtre (événement `Load`) :\n```csharp\nprivate void FrmRecette_Load(object sender, EventArgs e)\n{\n    string[] ingredients = { \"Farine\", \"Sucre\", \"Beurre\", \"Lait\", \"Œufs\" };\n    cboIngredient.Items.AddRange(ingredients);\n    cboIngredient.SelectedIndex = 0;   // premier élément sélectionné\n    cboIngredient.DropDownStyle = ComboBoxStyle.DropDownList; // pas de saisie libre\n}\n```\nPuis le calcul :\n```csharp\nprivate void btnConvertir_Click(object sender, EventArgs e)\n{\n    double quantite = double.Parse(txtQuantite.Text);\n    double resultat = quantite * (double)numPartsVoulues.Value / (double)numPartsPrevues.Value;\n    lblResultat.Text = $\"Résultat : {resultat:0} g de {cboIngredient.Text}\";\n}\n```",
+      "notions": [
+        "Remplir un contrôle par le code"
+      ]
+    },
+    {
+      "id": "libre-b1-12a-sq2-s04-s03",
+      "titre": "Factoriser les traitements",
+      "contenu": "Itération 3 : l'utilisateur veut que le résultat se mette à jour **dès qu'on change** une valeur, sans cliquer. Plutôt que de copier le calcul dans quatre gestionnaires, on crée **une méthode** et on l'appelle depuis chacun :\n```csharp\nprivate void MettreAJourResultat()\n{\n    if (!double.TryParse(txtQuantite.Text, out double quantite))\n    {\n        lblResultat.Text = \"Quantité invalide\";\n        return;\n    }\n    double resultat = quantite * (double)numPartsVoulues.Value / (double)numPartsPrevues.Value;\n    lblResultat.Text = $\"Résultat : {resultat:0} g de {cboIngredient.Text}\";\n}\n\nprivate void txtQuantite_TextChanged(object sender, EventArgs e) => MettreAJourResultat();\nprivate void numPartsVoulues_ValueChanged(object sender, EventArgs e) => MettreAJourResultat();\n```\nOn peut même **abonner plusieurs événements au même gestionnaire** dans la fenêtre Propriétés (icône éclair).",
+      "notions": [
+        "Factoriser les traitements"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12a-sq2-s04-c001",
+      "section": "libre-b1-12a-sq2-s04-s01",
+      "type": "question",
+      "recto": "Pourquoi commencer par une maquette avant de placer les contrôles ?",
+      "verso": "Pour valider la disposition et le contenu avec l'utilisateur avant de coder, et avoir un plan clair de l'interface.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12a-sq2-s04-c002",
+      "section": "libre-b1-12a-sq2-s04-s02",
+      "type": "exercice",
+      "enonce": "Avec 250 g pour 6 parts et 9 parts voulues, quel résultat affiche le programme ? Et pour 4 parts voulues ?",
+      "etapes": [
+        "Formule : quantité × parts voulues / parts prévues.",
+        "250 × 9 / 6 = 375.",
+        "250 × 4 / 6 ≈ 166,67, affiché avec le format `0` → 167."
+      ],
+      "reponse": "375 g, puis 167 g.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12a-sq2-s04-c003",
+      "section": "libre-b1-12a-sq2-s04-s03",
+      "type": "qcm",
+      "question": "Quatre gestionnaires d'événements contiennent le même calcul copié-collé. Que faire ?",
+      "choix": [
+        "Rien, c'est normal en événementiel",
+        "Placer le calcul dans une méthode appelée par les quatre gestionnaires",
+        "Supprimer trois des contrôles",
+        "Mettre le calcul dans le Designer.cs"
+      ],
+      "bonneReponse": 1,
+      "explication": "Factoriser évite les incohérences : une correction se fait à un seul endroit.",
+      "difficulte": 2
+    }
+  ]
+}

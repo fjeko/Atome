@@ -1,0 +1,171 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq2-s01",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "SQ2 – Graphes",
+  "sequence": null,
+  "seance": "S1 – Représentations, chemins et puissances",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un graphe orienté se décrit par un dessin, des tableaux de successeurs ou de prédécesseurs, ou une matrice d'adjacence ; les puissances de cette matrice comptent les chemins.",
+  "notions": [
+    "Graphe orienté : sommets, arcs, boucle",
+    "Tableaux des successeurs et des prédécesseurs",
+    "Matrice d'adjacence",
+    "Chemin, longueur, circuit",
+    "Chemin et circuit hamiltoniens",
+    "Puissances de la matrice d'adjacence"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq2-s01-s01",
+      "titre": "Sommets, arcs et boucles",
+      "contenu": "Un **graphe orienté** est un ensemble de points, les **sommets**, reliés par des flèches, les **arcs**. L'arc $X \\to Y$ va de son **origine** $X$ vers son **extrémité** $Y$ : on dit que $Y$ est un **successeur** de $X$ et que $X$ est un **prédécesseur** de $Y$.\n\nUn arc qui part d'un sommet et y revient ($X \\to X$) est une **boucle**. Un graphe est **simple** quand il y a au plus un arc dans chaque sens entre deux sommets.\n\nExemple fil rouge, le graphe $G_1$ à 4 sommets et 5 arcs : $A \\to B$, $B \\to C$, $B \\to D$, $C \\to A$, $C \\to D$.\n\n```\n   A ──► B ──► D\n   ▲     │     ▲\n   │     ▼     │\n   └──── C ────┘\n```\n\nLes graphes servent à modéliser : des pages web reliées par des liens, des tâches qui doivent en précéder d'autres, des trajets possibles, des résultats de matchs…",
+      "notions": [
+        "Graphe orienté : sommets, arcs, boucle"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s01-s02",
+      "titre": "Tableaux des successeurs et des prédécesseurs",
+      "contenu": "On peut décrire $G_1$ sans dessin :\n\n| Sommet | Successeurs | Prédécesseurs |\n|---|---|---|\n| A | B | C |\n| B | C, D | A |\n| C | A, D | B |\n| D | — | B, C |\n\nLecture : D n'a **aucun successeur** (on ne peut pas en partir) ; aucun sommet n'est sans prédécesseur ici.\n\nPour passer d'un tableau à l'autre : chaque arc $X \\to Y$ met $Y$ dans les successeurs de $X$ **et** $X$ dans les prédécesseurs de $Y$. Le nombre total d'arcs est le nombre total de successeurs listés (ici 5), et c'est aussi le nombre total de prédécesseurs.",
+      "notions": [
+        "Tableaux des successeurs et des prédécesseurs"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s01-s03",
+      "titre": "La matrice d'adjacence",
+      "contenu": "On numérote les sommets dans un ordre fixé (ici A, B, C, D). La **matrice d'adjacence** $M$ est carrée, avec :\n\n$$m_{i,j} = \\begin{cases}1 & \\text{s'il y a un arc du sommet } i \\text{ vers le sommet } j\\\\0 & \\text{sinon}\\end{cases}$$\n\n**Ligne = origine, colonne = extrémité.** Pour $G_1$ :\n\n$$M = \\begin{pmatrix}0 & 1 & 0 & 0\\\\0 & 0 & 1 & 1\\\\1 & 0 & 0 & 1\\\\0 & 0 & 0 & 0\\end{pmatrix}$$\n\nCe qu'on lit directement :\n- le **nombre de 1** = nombre d'arcs (5) ;\n- la **ligne** d'un sommet donne ses successeurs ; une ligne de 0 = sommet sans successeur (D) ;\n- la **colonne** d'un sommet donne ses prédécesseurs ; une colonne de 0 = sommet sans prédécesseur ;\n- un 1 sur la **diagonale** = une boucle.",
+      "notions": [
+        "Matrice d'adjacence"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s01-s04",
+      "titre": "Chemins et circuits",
+      "contenu": "- Un **chemin** est une suite d'arcs qui s'enchaînent : l'extrémité de l'un est l'origine du suivant. On l'écrit par ses sommets : $A \\to B \\to D$.\n- La **longueur** d'un chemin est son **nombre d'arcs** (ici 2), pas son nombre de sommets.\n- Un **circuit** est un chemin qui revient à son sommet de départ : $A \\to B \\to C \\to A$ (longueur 3). Une boucle est un circuit de longueur 1.\n- Un chemin (ou circuit) est **hamiltonien** s'il passe **une fois et une seule** par **chaque** sommet du graphe.\n\nDans $G_1$ : $A \\to B \\to C \\to D$ est un chemin hamiltonien. Il n'y a pas de circuit hamiltonien : D n'a aucun successeur, donc un circuit ne peut pas passer par D.",
+      "notions": [
+        "Chemin, longueur, circuit",
+        "Chemin et circuit hamiltoniens"
+      ]
+    },
+    {
+      "id": "libre-maths-sq2-s01-s05",
+      "titre": "Les puissances de M comptent les chemins",
+      "contenu": "**Propriété** : le coefficient $(i, j)$ de $M^p$ est le **nombre de chemins de longueur $p$** allant du sommet $i$ au sommet $j$.\n\nPour $G_1$ :\n\n$$M^2 = \\begin{pmatrix}0 & 0 & 1 & 1\\\\1 & 0 & 0 & 1\\\\0 & 1 & 0 & 0\\\\0 & 0 & 0 & 0\\end{pmatrix} \\qquad M^3 = \\begin{pmatrix}1 & 0 & 0 & 1\\\\0 & 1 & 0 & 0\\\\0 & 0 & 1 & 1\\\\0 & 0 & 0 & 0\\end{pmatrix}$$\n\nLectures :\n- $(M^2)_{1,4} = 1$ : un seul chemin de longueur 2 de A vers D ($A \\to B \\to D$).\n- **Somme de la ligne $i$** de $M^p$ : nombre de chemins de longueur $p$ qui **partent** de $i$.\n- **Somme de la colonne $j$** : nombre de chemins de longueur $p$ qui **arrivent** en $j$.\n- **Somme de tous les coefficients** : nombre total de chemins de longueur $p$ (5 chemins de longueur 2 ici).\n- **Diagonale** de $M^p$ : les circuits de longueur $p$. La **trace** (somme de la diagonale) de $M^3$ vaut 3 : c'est le circuit $A \\to B \\to C \\to A$, compté une fois depuis chacun de ses 3 sommets.\n\nAstuce de calcul à la main : la ligne $X$ de $M^2$ est la **somme des lignes de $M$ des successeurs de $X$**.",
+      "notions": [
+        "Puissances de la matrice d'adjacence"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq2-s01-c001",
+      "section": "libre-maths-sq2-s01-s01",
+      "type": "question",
+      "recto": "Dans un graphe, l'arc $P \\to Q$ existe. Qui est le successeur de qui ?",
+      "verso": "$Q$ est un successeur de $P$ (et $P$ est un prédécesseur de $Q$).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq2-s01-c002",
+      "section": "libre-maths-sq2-s01-s01",
+      "type": "qcm",
+      "question": "Qu'est-ce qu'une boucle dans un graphe orienté ?",
+      "choix": [
+        "Un arc qui part d'un sommet et revient sur ce même sommet",
+        "Un chemin qui revient à son point de départ",
+        "Un sommet sans successeur",
+        "Deux arcs de sens opposés entre deux sommets"
+      ],
+      "bonneReponse": 0,
+      "explication": "Une boucle est un seul arc $X \\to X$. Un chemin fermé de plusieurs arcs s'appelle un circuit.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq2-s01-c003",
+      "section": "libre-maths-sq2-s01-s02",
+      "type": "exercice",
+      "enonce": "Un graphe a pour successeurs : 1 → {2, 3} ; 2 → {3} ; 3 → {1} ; 4 → {3}. Donne le tableau des prédécesseurs.",
+      "etapes": [
+        "On parcourt chaque arc : $1 \\to 2$, $1 \\to 3$, $2 \\to 3$, $3 \\to 1$, $4 \\to 3$.",
+        "Prédécesseurs de 1 : 3. De 2 : 1. De 3 : 1, 2, 4. De 4 : aucun."
+      ],
+      "reponse": "1 ← {3} ; 2 ← {1} ; 3 ← {1, 2, 4} ; 4 ← aucun (4 est un point d'entrée).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s01-c004",
+      "section": "libre-maths-sq2-s01-s03",
+      "type": "qcm",
+      "question": "Dans une matrice d'adjacence (sommets A, B, C dans cet ordre), $m_{3,1} = 1$. Qu'est-ce que cela signifie ?",
+      "choix": [
+        "Il existe un arc $C \\to A$",
+        "Il existe un arc $A \\to C$",
+        "A a trois successeurs",
+        "Il y a une boucle sur C"
+      ],
+      "bonneReponse": 0,
+      "explication": "Ligne 3 = origine C, colonne 1 = extrémité A. Inverser le sens est l'erreur la plus fréquente.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq2-s01-c005",
+      "section": "libre-maths-sq2-s01-s03",
+      "type": "question",
+      "recto": "Comment repère-t-on, dans la matrice d'adjacence, un sommet sans prédécesseur ?",
+      "verso": "Sa **colonne** ne contient que des 0 (aucun arc n'arrive sur lui).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s01-c006",
+      "section": "libre-maths-sq2-s01-s04",
+      "type": "question",
+      "recto": "Quelle est la longueur du chemin $P \\to Q \\to R \\to P \\to S$ ?",
+      "verso": "4 : c'est le nombre d'arcs (5 sommets écrits, mais 4 flèches).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq2-s01-c007",
+      "section": "libre-maths-sq2-s01-s04",
+      "type": "qcm",
+      "question": "Un graphe a un sommet sans successeur. Que peut-on dire ?",
+      "choix": [
+        "Il n'a pas de circuit hamiltonien",
+        "Il n'a pas de chemin hamiltonien",
+        "Il n'a aucun circuit",
+        "Il a forcément une boucle"
+      ],
+      "bonneReponse": 0,
+      "explication": "Un circuit hamiltonien doit passer par ce sommet puis en repartir : impossible. Un chemin hamiltonien peut, lui, finir sur ce sommet.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s01-c008",
+      "section": "libre-maths-sq2-s01-s05",
+      "type": "qcm",
+      "question": "$(M^3)_{2,5} = 4$. Que signifie ce coefficient ?",
+      "choix": [
+        "Il y a 4 chemins de longueur 3 du sommet 2 au sommet 5",
+        "Il y a 3 chemins de longueur 4 de 2 à 5",
+        "Le chemin de 2 à 5 a pour longueur 4",
+        "Il y a 4 arcs entre 2 et 5"
+      ],
+      "bonneReponse": 0,
+      "explication": "L'exposant donne la longueur (3), le coefficient donne le nombre de chemins (4).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq2-s01-c009",
+      "section": "libre-maths-sq2-s01-s05",
+      "type": "question",
+      "recto": "Que représente la somme des coefficients de la ligne de $X$ dans $M^4$ ?",
+      "verso": "Le nombre de chemins de longueur 4 qui **partent** de $X$.",
+      "difficulte": 2
+    }
+  ]
+}

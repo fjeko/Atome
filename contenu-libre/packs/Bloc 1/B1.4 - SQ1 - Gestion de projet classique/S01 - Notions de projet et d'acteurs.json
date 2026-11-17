@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-14-sq1-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.4 – SQ1 – Gestion de projet classique",
+  "sequence": null,
+  "seance": "S01 – Notions de projet et d'acteurs",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Ce qui fait d'un travail un projet, les acteurs (maîtrise d'ouvrage, maîtrise d'œuvre, utilisateurs, chef de projet), le triangle qualité-coût-délai et les critères de réussite.",
+  "notions": [
+    "Définition d'un projet",
+    "Maîtrise d'ouvrage et maîtrise d'œuvre",
+    "Chef de projet et utilisateurs",
+    "Triangle qualité coût délai",
+    "Critères de réussite"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-14-sq1-s01-s01",
+      "titre": "Qu'est-ce qu'un projet ?",
+      "contenu": "Un **projet** réunit des activités **coordonnées** pour atteindre un **objectif précis**, un **début et une fin**, des **ressources limitées**, et un résultat **unique** (on ne le refait pas à l'identique tous les jours). Exemples : installer le réseau d'une nouvelle agence, développer une application de réservation.\n\nÀ l'inverse, **l'exploitation** (traiter les tickets chaque jour) est une activité **récurrente**, pas un projet.\n\nTout projet doit tenir trois contraintes liées — le **triangle qualité / coût / délai** :\n```text\n          Qualité\n           /\\\n          /  \\\n   Coût  /____\\  Délai\n```\nSi on raccourcit le délai, il faut souvent plus de moyens (coût) ou moins de fonctionnalités (qualité/périmètre).\n\nUn projet **réussi** : objectifs atteints, dans le **budget**, dans les **délais**, avec un résultat **utilisé** et satisfaisant pour les utilisateurs.",
+      "notions": [
+        "Définition d'un projet",
+        "Triangle qualité coût délai",
+        "Critères de réussite"
+      ]
+    },
+    {
+      "id": "libre-b1-14-sq1-s01-s02",
+      "titre": "Les acteurs",
+      "contenu": "| Acteur | Rôle | Exemple |\n| --- | --- | --- |\n| **Maîtrise d'ouvrage** (MOA) | le **client** : exprime le besoin, finance, **valide** le résultat | la direction de la coopérative laitière |\n| **Maîtrise d'œuvre** (MOE) | le **réalisateur** : conçoit et fabrique la solution | le service informatique ou l'ESN prestataire |\n| **Utilisateurs** | ceux qui utiliseront la solution ; ils précisent les besoins et testent | les agents de collecte |\n| **Chef de projet** | pilote : planifie, coordonne, suit les coûts et délais, communique | côté MOE (et souvent un référent côté MOA) |\n\nMoyen mnémotechnique : la maîtrise d'**ouvrage** commande l'**ouvrage** (le « quoi ») ; la maîtrise d'**œuvre** le **met en œuvre** (le « comment »).",
+      "notions": [
+        "Maîtrise d'ouvrage et maîtrise d'œuvre",
+        "Chef de projet et utilisateurs"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-14-sq1-s01-c001",
+      "section": "libre-b1-14-sq1-s01-s01",
+      "type": "qcm",
+      "question": "Lequel de ces travaux est un projet ?",
+      "choix": [
+        "Répondre chaque jour aux appels du support",
+        "Faire la sauvegarde de chaque nuit",
+        "Migrer la messagerie de la mairie vers une nouvelle solution d'ici juin",
+        "Vider les corbeilles des postes chaque semaine"
+      ],
+      "bonneReponse": 2,
+      "explication": "Objectif unique, date de fin, ressources dédiées : c'est un projet. Les autres sont des activités récurrentes.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-14-sq1-s01-c002",
+      "section": "libre-b1-14-sq1-s01-s01",
+      "type": "question",
+      "recto": "Quelles sont les trois contraintes du triangle d'un projet ?",
+      "verso": "La qualité (ou le périmètre), le coût et le délai.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-14-sq1-s01-c003",
+      "section": "libre-b1-14-sq1-s01-s02",
+      "type": "qcm",
+      "question": "Une clinique commande à une société de services le développement d'une application de prise de rendez-vous. Qui est la maîtrise d'ouvrage ?",
+      "choix": [
+        "La société de services",
+        "La clinique",
+        "Les patients",
+        "Le chef de projet de la société de services"
+      ],
+      "bonneReponse": 1,
+      "explication": "La MOA est le commanditaire qui exprime le besoin et valide : la clinique.",
+      "difficulte": 2
+    }
+  ]
+}

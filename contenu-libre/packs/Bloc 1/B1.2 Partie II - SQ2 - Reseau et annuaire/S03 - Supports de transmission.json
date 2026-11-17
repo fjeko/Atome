@@ -1,0 +1,113 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq2-s03",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ2 – Réseaux, adressage IP et annuaire de domaine",
+  "sequence": null,
+  "seance": "S03 – Supports de transmission",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. La couche physique : signal analogique et numérique, perturbations (atténuation, bruit, diaphonie), câbles à paires torsadées et blindages, fibres multimode et monomode, supports sans fil et topologies.",
+  "notions": [
+    "Signal analogique et numérique",
+    "Atténuation bruit diaphonie",
+    "Paires torsadées et blindage",
+    "Fibre multimode et monomode",
+    "Sans fil",
+    "Topologies"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq2-s03-s01",
+      "titre": "Signal et perturbations",
+      "contenu": "- Un signal **analogique** varie de façon continue (comme le son d'une voix).\n- Un signal **numérique** ne prend que quelques valeurs distinctes, qui représentent des bits.\n\nSur un support, le signal subit des **perturbations** :\n- **Atténuation** : le signal s'affaiblit avec la distance → d'où les longueurs maximales (100 m pour un câble Ethernet en cuivre).\n- **Bruit** : perturbations électromagnétiques extérieures (moteurs, néons, câbles électriques).\n- **Diaphonie** : une paire de fils perturbe sa voisine dans le même câble.",
+      "notions": [
+        "Signal analogique et numérique",
+        "Atténuation bruit diaphonie"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s03-s02",
+      "titre": "Les câbles à paires torsadées",
+      "contenu": "Le câble réseau le plus courant contient **4 paires** de fils **torsadés** : la torsade réduit la diaphonie et le bruit. Connecteur **RJ45**.\n\n**Catégories** (performances) :\n| Catégorie | Débit typique sur 100 m |\n| --- | --- |\n| 5e | 1 Gbit/s |\n| 6 | 1 Gbit/s (10 Gbit/s sur courte distance) |\n| 6a | 10 Gbit/s |\n\n**Blindage** : notation `X/YTP` — la première lettre pour le câble entier, la seconde pour chaque paire. U = non blindé, F = feuillard (aluminium), S = tresse.\n- **U/UTP** : aucun blindage (bureaux) ;\n- **F/UTP** : un écran global ;\n- **S/FTP** : tresse globale + écran par paire (environnement perturbé, atelier avec machines).",
+      "notions": [
+        "Paires torsadées et blindage"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s03-s03",
+      "titre": "La fibre optique et le sans-fil",
+      "contenu": "La **fibre optique** transporte de la **lumière** : insensible aux perturbations électromagnétiques, très haut débit, longues distances.\n| | Multimode | Monomode |\n| --- | --- | --- |\n| Cœur | large (50 ou 62,5 µm) | très fin (environ 9 µm) |\n| Source | LED ou laser bon marché | laser |\n| Distance | quelques centaines de mètres | dizaines de km |\n| Usage | entre bâtiments d'un site, baie de serveurs | opérateurs, liaisons longues |\n\n**Sans fil** : Wi-Fi (normes IEEE 802.11, bandes 2,4 / 5 / 6 GHz), Bluetooth, réseaux mobiles (4G, 5G). Pratique mais débit partagé, sensible aux obstacles et à sécuriser (chiffrement WPA2/WPA3).",
+      "notions": [
+        "Fibre multimode et monomode",
+        "Sans fil"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq2-s03-s04",
+      "titre": "Les topologies",
+      "contenu": "La **topologie** est la forme du réseau :\n- **bus** : tous sur un même câble (ancien) ;\n- **anneau** : chaque équipement relié à deux voisins ;\n- **étoile** : tout le monde relié à un équipement central (commutateur) — **la plus courante** aujourd'hui ;\n- **maillée** : plusieurs chemins possibles (Internet, cœur de réseau) — tolérante aux pannes.\n\nEn étoile, une panne de câble ne touche qu'un poste, mais la panne du commutateur central touche tout le monde.",
+      "notions": [
+        "Topologies"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq2-s03-c001",
+      "section": "libre-b1-12b-sq2-s03-s01",
+      "type": "qcm",
+      "question": "Pourquoi un câble Ethernet en cuivre est-il limité à environ 100 mètres ?",
+      "choix": [
+        "À cause de la diaphonie uniquement",
+        "À cause de l'atténuation du signal avec la distance",
+        "Parce que les switchs n'ont pas assez de ports",
+        "Pour des raisons de prix"
+      ],
+      "bonneReponse": 1,
+      "explication": "Au-delà, le signal devient trop faible pour être interprété correctement.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s03-c002",
+      "section": "libre-b1-12b-sq2-s03-s02",
+      "type": "qcm",
+      "question": "Un atelier contient de gros moteurs électriques. Quel câble choisir ?",
+      "choix": [
+        "U/UTP catégorie 5e",
+        "S/FTP catégorie 6a",
+        "Un câble téléphonique",
+        "Un câble coaxial de télévision"
+      ],
+      "bonneReponse": 1,
+      "explication": "Un câble blindé (tresse + écran par paire) protège mieux contre les perturbations électromagnétiques.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s03-c003",
+      "section": "libre-b1-12b-sq2-s03-s03",
+      "type": "qcm",
+      "question": "Quelle fibre convient pour relier deux sites distants de 15 km ?",
+      "choix": [
+        "Multimode",
+        "Monomode",
+        "Paire torsadée catégorie 6",
+        "Wi-Fi 6"
+      ],
+      "bonneReponse": 1,
+      "explication": "Seule la monomode atteint les dizaines de kilomètres.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq2-s03-c004",
+      "section": "libre-b1-12b-sq2-s03-s04",
+      "type": "question",
+      "recto": "Quelle topologie est la plus utilisée dans les réseaux locaux actuels ?",
+      "verso": "L'étoile (ou l'étoile étendue), avec un commutateur au centre.",
+      "difficulte": 1
+    }
+  ]
+}

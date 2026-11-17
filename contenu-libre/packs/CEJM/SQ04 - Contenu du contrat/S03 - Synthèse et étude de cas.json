@@ -1,0 +1,67 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq04-s03",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 4 – Contenu, classification et clauses du contrat",
+  "sequence": null,
+  "seance": "S3 – Synthèse et étude de cas",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif des principes et des clauses du contrat, puis analyse d'un contrat de prestation inventé.",
+  "notions": [
+    "Synthèse contenu du contrat",
+    "Application à un cas"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq04-s03-s01",
+      "titre": "L'essentiel",
+      "contenu": "- **Liberté contractuelle**, **force obligatoire** (limite : imprévision), **effet relatif** (seules les parties), **opposabilité** (les tiers respectent).\n- **Consensualisme** en principe ; écrit de **validité** (solennel) ≠ écrit de **preuve**.\n- Classer : synallagmatique/unilatéral, onéreux/gratuit, commutatif/aléatoire, instantané/successif, gré à gré/adhésion.\n- Clauses : pénale (révisable par le juge), limitative (≠ exonératoire), condition suspensive, force majeure ; clause abusive réputée non écrite.",
+      "notions": [
+        "Synthèse contenu du contrat"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq04-s03-s02",
+      "titre": "Étude de cas : contrat de développement d'application",
+      "contenu": "*Extrait inventé* — Entre *Codalis* (prestataire) et la boulangerie *Au Pain Doré* (client) :\n- Art. 1 : développement d'une application de commande en ligne, livrée le 1er mars, pour 6 000 € HT.\n- Art. 3 : en cas de retard de livraison, 50 € par jour de retard.\n- Art. 5 : la responsabilité de Codalis est limitée au montant du contrat.\n- Art. 7 : le contrat n'entrera en vigueur que si le client obtient la subvention numérique de la région.",
+      "notions": [
+        "Application à un cas"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq04-s03-c001",
+      "section": "libre-cejm-sq04-s03-s01",
+      "type": "qcm",
+      "question": "Une clause abusive dans un contrat de consommation est…",
+      "choix": [
+        "Réputée non écrite, le reste du contrat s'applique",
+        "Cause de nullité de tout le contrat",
+        "Valable si le consommateur a signé",
+        "Transformée en clause pénale"
+      ],
+      "bonneReponse": 0,
+      "explication": "Seule la clause disparaît.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq04-s03-c002",
+      "section": "libre-cejm-sq04-s03-s02",
+      "type": "exercice",
+      "enonce": "Analyse l'extrait (classement, nature des articles 3, 5 et 7).",
+      "etapes": [
+        "Classement : synallagmatique, à titre onéreux, commutatif, instantané (une livraison), de gré à gré entre professionnels.",
+        "Art. 3 : clause pénale (indemnité forfaitaire de retard), révisable par le juge si manifestement excessive ou dérisoire.",
+        "Art. 5 : clause limitative de responsabilité, valable entre professionnels sauf faute lourde ou si elle vide l'obligation essentielle.",
+        "Art. 7 : condition suspensive (événement futur et incertain : la subvention)."
+      ],
+      "reponse": "Contrat synallagmatique et onéreux avec une clause pénale, une clause limitative et une condition suspensive.",
+      "difficulte": 3
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "formatVersion": 1,
+  "id": "libre-algo-p2-s03",
+  "matiere": "Algorithmique appliquée",
+  "bloc": "Bloc 6",
+  "partie": "Partie 2 – Tableaux",
+  "sequence": null,
+  "seance": "S3 – Matrices : concepts et parcours",
+  "ordre": 3,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le tableau à deux dimensions : ordre des indices ligne puis colonne, déclaration, accès, et parcours par deux boucles imbriquées.",
+  "notions": [
+    "Matrice : indices ligne et colonne",
+    "Création et copie de matrices en Python",
+    "Parcours par boucles imbriquées"
+  ],
+  "sections": [
+    {
+      "id": "libre-algo-p2-s03-s01",
+      "titre": "Un tableau à deux dimensions",
+      "contenu": "Une **matrice** (tableau à deux dimensions) range des valeurs en **lignes** et **colonnes**. On repère une case par **deux indices** : `m[ligne][colonne]`, **toujours ligne d'abord**.\n\nExemple : les ventes de 3 produits (colonnes) dans 2 magasins (lignes).\n\n```text\nVARIABLES\n    ventes : tableau[2, 3] d'entiers\n```\n\n| | col 0 | col 1 | col 2 |\n|---|---|---|---|\n| **ligne 0** | 4 | 7 | 2 |\n| **ligne 1** | 9 | 1 | 5 |\n\nEn Python, une matrice est une **liste de listes** (une liste par ligne) :\n```python\nventes = [[4, 7, 2],\n          [9, 1, 5]]\nprint(ventes[1][2])       # 5 : ligne 1, colonne 2\nprint(len(ventes))        # 2 : nombre de lignes\nprint(len(ventes[0]))     # 3 : nombre de colonnes\n```",
+      "notions": [
+        "Matrice : indices ligne et colonne"
+      ]
+    },
+    {
+      "id": "libre-algo-p2-s03-s02",
+      "titre": "Créer une matrice en Python (attention au piège)",
+      "contenu": "Pour créer une matrice de 2 lignes et 3 colonnes remplie de 0 :\n\n```python\nm = [[0] * 3 for _ in range(2)]   # correct : 2 listes distinctes\n```\n\n⚠️ Piège classique :\n```python\nm = [[0] * 3] * 2                 # FAUX : 2 fois LA MÊME liste\nm[0][0] = 5\nprint(m)                          # [[5, 0, 0], [5, 0, 0]]  ← les deux lignes ont changé\n```\n\n`* 2` duplique la **référence** vers la ligne, pas la ligne elle-même. C'est le même phénomène d'alias que `b = a` sur les vecteurs. Pour copier une matrice entière, utilise `copy.deepcopy(m)` (module `copy`).",
+      "notions": [
+        "Création et copie de matrices en Python"
+      ]
+    },
+    {
+      "id": "libre-algo-p2-s03-s03",
+      "titre": "Parcourir avec deux boucles imbriquées",
+      "contenu": "On parcourt toutes les cases avec une boucle sur les lignes **qui contient** une boucle sur les colonnes :\n\n```text\nPOUR i DE 0 À nbLignes - 1 FAIRE\n    POUR j DE 0 À nbColonnes - 1 FAIRE\n        AFFICHER m[i, j]\n    FINPOUR\nFINPOUR\n```\n\n```python\nfor i in range(len(m)):            # lignes\n    for j in range(len(m[0])):     # colonnes\n        print(m[i][j], end=\" \")    # end=\" \" : reste sur la même ligne\n    print()                        # retour à la ligne après chaque ligne\n```\n\nAffichage pour `ventes` :\n```text\n4 7 2\n9 1 5\n```\n\nPour un parcours **colonne par colonne**, on inverse l'ordre des boucles (boucle externe sur `j`) mais on accède toujours à `m[i][j]`.",
+      "notions": [
+        "Parcours par boucles imbriquées"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-algo-p2-s03-c001",
+      "section": "libre-algo-p2-s03-s01",
+      "type": "qcm",
+      "question": "Avec `m = [[3, 8], [6, 1], [2, 9]]`, que vaut `m[2][0]` ?",
+      "choix": [
+        "2",
+        "6",
+        "8",
+        "9"
+      ],
+      "bonneReponse": 0,
+      "explication": "Ligne 2 = `[2, 9]`, colonne 0 = 2.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p2-s03-c002",
+      "section": "libre-algo-p2-s03-s01",
+      "type": "question",
+      "recto": "Comment obtenir le nombre de colonnes d'une matrice Python `m` ?",
+      "verso": "`len(m[0])` : la longueur de la première ligne (`len(m)` donne le nombre de lignes).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p2-s03-c003",
+      "section": "libre-algo-p2-s03-s02",
+      "type": "qcm",
+      "question": "Pourquoi `[[0] * 3] * 2` est-il une mauvaise façon de créer une matrice ?",
+      "choix": [
+        "Les deux lignes sont la même liste : modifier l'une modifie l'autre",
+        "Cela crée 3 lignes et 2 colonnes",
+        "Cela provoque une erreur de syntaxe",
+        "Les cases ne valent pas 0"
+      ],
+      "bonneReponse": 0,
+      "explication": "La multiplication duplique la référence. Il faut une compréhension de liste ou une boucle avec `append`.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-algo-p2-s03-c004",
+      "section": "libre-algo-p2-s03-s03",
+      "type": "qcm",
+      "question": "Combien de fois s'exécute l'instruction de la boucle interne pour une matrice de 4 lignes et 5 colonnes ?",
+      "choix": [
+        "20",
+        "9",
+        "5",
+        "4"
+      ],
+      "bonneReponse": 0,
+      "explication": "4 tours externes × 5 tours internes = 20.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-algo-p2-s03-c005",
+      "section": "libre-algo-p2-s03-s03",
+      "type": "exercice",
+      "enonce": "Écris la saisie au clavier d'une matrice d'entiers de 3 lignes et 2 colonnes, avec un message indiquant la case.",
+      "etapes": [
+        "Créer la matrice vide correctement.",
+        "Deux boucles imbriquées, `input` à l'intérieur, converti en `int`."
+      ],
+      "reponse": "```python\nm = [[0] * 2 for _ in range(3)]\nfor i in range(3):\n    for j in range(2):\n        m[i][j] = int(input(f\"Case ({i}, {j}) ? \"))\n```",
+      "difficulte": 2
+    }
+  ]
+}

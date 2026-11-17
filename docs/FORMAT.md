@@ -90,7 +90,7 @@ Exemple : `packs/Mathematiques/SQ1 - Calcul matriciel/S03 - Multiplication de ma
 | `sequence` | non | Niveau intermédiaire si la partie en contient plusieurs. |
 | `seance` | oui | Titre de la séance. |
 | `ordre` | non | Entier pour trier les séances d'une même partie. |
-| `source.fichier` | oui | Chemin du document d'origine, **relatif au dossier `Cours`**. |
+| `source.fichier` | non | Chemin du document d'origine, **relatif au dossier `Cours`**. `null` (ou absent) pour un cours sans document d'origine, comme les cours libres : le bouton PDF est alors masqué. |
 | `source.pages` | non | Nombre de pages du PDF. |
 | `resume` | oui | 1 à 3 phrases. |
 | `notions` | oui | Toutes les notions de la séance. Chacune doit être couverte par au moins une section et une carte. |

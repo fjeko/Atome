@@ -189,6 +189,15 @@
 
             <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
                 <StackPanel>
+                    <TextBlock Text="Cours libres intégrés" Style="{StaticResource SousTitre}" />
+                    <CheckBox Content="Cours libres intégrés" IsChecked="{Binding CoursLibres}" IsEnabled="{Binding CoursLibresDisponibles}" Margin="0,12,0,0" />
+                    <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="0,4,0,0" TextWrapping="Wrap"
+                               Text="440 cours originaux du programme de 1re année, livrés avec Atome sous licence libre (CC BY-SA 4.0). Ils portent un badge « Libre » dans la Bibliothèque. Les décocher les masque sans rien effacer : ta progression est conservée. Ils ne touchent jamais à tes propres packs." />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+                <StackPanel>
                     <TextBlock Text="Mises à jour" Style="{StaticResource SousTitre}" />
                     <TextBlock Text="{Binding VersionInstallee}" Style="{StaticResource Discret}" Margin="0,4,0,0" />
                     <CheckBox Content="Vérifier les mises à jour au démarrage" IsChecked="{Binding VerifierMisesAJour}" Margin="0,12,0,0" />

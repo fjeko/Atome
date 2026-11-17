@@ -1,0 +1,87 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-32-sq3-s08",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.2 – SQ3 – Signature numérique, hachage et certificats",
+  "sequence": null,
+  "seance": "S08 – Synthèse : signature et certificats",
+  "ordre": 8,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Récapitulatif : signature numérique et niveaux eIDAS, propriétés du hachage, OpenSSL, poignée de main TLS, types et cycle de vie des certificats, infrastructure à clés publiques et conditions de fiabilité.",
+  "notions": [
+    "PKI",
+    "Conditions de fiabilité",
+    "Pièges signature et certificats",
+    "Exercice de synthèse certificats"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-32-sq3-s08-s01",
+      "titre": "Infrastructure à clés publiques",
+      "contenu": "Une **infrastructure à clés publiques** (**PKI**, ou IGC) organise la gestion des certificats :\n- **AC** (racine et intermédiaires) qui signent ;\n- **autorité d'enregistrement** qui vérifie l'identité des demandeurs ;\n- **annuaire / publication** des certificats et des listes de révocation ;\n- **politiques** et procédures (protection des clés des AC, souvent dans des modules matériels **HSM**).\n\nUn schéma de signature repose sur trois algorithmes : **génération** des clés, **signature**, **vérification**.\n\nConditions de fiabilité : clé privée réellement secrète, algorithmes et tailles de clés à jour, fonction de hachage robuste, certificat valide et non révoqué, AC digne de confiance, horodatage pour prouver la date de signature.",
+      "notions": [
+        "PKI",
+        "Conditions de fiabilité"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s08-s02",
+      "titre": "Les pièges à éviter",
+      "contenu": "| Piège | Bonne idée |\n| --- | --- |\n| « signer = chiffrer le message » | signer = chiffrer **l'empreinte** avec la clé **privée** |\n| vérifier avec la clé privée | on vérifie avec la clé **publique** |\n| EV = meilleur chiffrement | EV = meilleure vérification d'identité |\n| MD5/SHA-1 pour l'intégrité | SHA-256 ou SHA-3 |\n| hacher les mots de passe sans sel | sel + fonction lente |\n| autosigné en production | AC reconnue |\n| oublier l'expiration | renouvellement automatisé et supervision |",
+      "notions": [
+        "Pièges signature et certificats"
+      ]
+    },
+    {
+      "id": "libre-b3-32-sq3-s08-s03",
+      "titre": "Exercice de synthèse",
+      "contenu": "Pour un projet réel, enchaîne : besoin de sécurité → choix du certificat → génération → installation → vérification → supervision de l'expiration.",
+      "notions": [
+        "Exercice de synthèse certificats"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-32-sq3-s08-c001",
+      "section": "libre-b3-32-sq3-s08-s01",
+      "type": "question",
+      "recto": "Citer trois conditions pour qu'une signature numérique soit fiable.",
+      "verso": "Clé privée gardée secrète ; algorithmes et hachage robustes (pas MD5/SHA-1) ; certificat valide, non révoqué, émis par une AC de confiance (et horodatage).",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq3-s08-c002",
+      "section": "libre-b3-32-sq3-s08-s02",
+      "type": "qcm",
+      "question": "Laquelle de ces affirmations est vraie ?",
+      "choix": [
+        "Une empreinte SHA-256 se déchiffre avec la clé publique",
+        "Un certificat EV utilise un chiffrement plus fort",
+        "Le sel protège surtout contre les tables précalculées",
+        "La signature numérique rend le message confidentiel"
+      ],
+      "bonneReponse": 2,
+      "explication": "Le sel rend chaque empreinte unique, ce qui annule l'intérêt des tables précalculées.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-32-sq3-s08-c003",
+      "section": "libre-b3-32-sq3-s08-s03",
+      "type": "exercice",
+      "enonce": "L'association fictive **Les Jardins de Sainte-Eulalie** ouvre un site d'inscription en ligne et veut aussi que sa présidente signe les conventions avec la mairie. Propose les solutions techniques.",
+      "etapes": [
+        "Site : certificat DV d'une AC reconnue via ACME (renouvellement automatique), Apache/Nginx en TLS 1.2/1.3, redirection HTTP → HTTPS.",
+        "Mots de passe des comptes adhérents : hachage lent et salé (bcrypt/Argon2).",
+        "Conventions : signature électronique **avancée** (ou qualifiée si exigée) via un prestataire de confiance eIDAS, avec certificat au nom de la présidente.",
+        "Vérification : la mairie contrôle la signature (certificat valide, document intègre) ; horodatage.",
+        "Supervision : alerte avant expiration du certificat du site."
+      ],
+      "reponse": "HTTPS par certificat DV automatisé, mots de passe hachés et salés, signature eIDAS avancée/qualifiée pour les conventions.",
+      "difficulte": 3
+    }
+  ]
+}

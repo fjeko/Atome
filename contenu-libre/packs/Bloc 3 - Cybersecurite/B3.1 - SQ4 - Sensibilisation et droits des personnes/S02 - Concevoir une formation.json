@@ -1,0 +1,91 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq4-s02",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ4 – Sensibilisation et droits des personnes",
+  "sequence": null,
+  "seance": "S02 – Concevoir une formation",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Une session de sensibilisation se conçoit comme un projet : public, objectifs, plan, contenu, supports, documentation, charte et suivi. Le DPO en est souvent le pilote.",
+  "notions": [
+    "Plan de formation",
+    "Objectifs pédagogiques",
+    "Charte informatique",
+    "Documentation de sensibilisation",
+    "Suivi de la sensibilisation",
+    "Mission du DPO"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq4-s02-s01",
+      "titre": "Plan et contenu",
+      "contenu": "Étapes de conception :\n1. **Public** : qui (accueil, direction, développeurs) ? quel niveau ?\n2. **Objectifs** formulés en actions observables : « à la fin, le participant sait reconnaître trois indices d'hameçonnage ».\n3. **Plan** : introduction concrète (un incident réaliste), apports courts, exercices, synthèse.\n4. **Contenu** : exemples proches du métier du public, pas de jargon.\n5. **Durée et format** : séances courtes (30 à 60 min) plutôt qu'une longue journée.\n6. **Évaluation** : quiz de fin, indicateurs de suivi.",
+      "notions": [
+        "Plan de formation",
+        "Objectifs pédagogiques"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq4-s02-s02",
+      "titre": "Documentation et charte",
+      "contenu": "On laisse au public une **documentation** : fiche réflexe d'une page, guide, page intranet.\n\nLa **charte informatique** :\n- fixe les **règles d'usage** des outils (messagerie, Internet, équipements, données) ;\n- précise les **droits et devoirs** des utilisateurs et de l'organisation (y compris les contrôles possibles) ;\n- prévoit les **sanctions** ;\n- est **annexée au règlement intérieur** pour être opposable, et communiquée à chacun.",
+      "notions": [
+        "Charte informatique",
+        "Documentation de sensibilisation"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq4-s02-s03",
+      "titre": "Suivi, contrôle et rôle du DPO",
+      "contenu": "Le **suivi** mesure l'effet : taux de participation, résultats des quiz, taux de clic lors des simulations d'hameçonnage, nombre de signalements (qui doit **augmenter**). On adapte les actions selon les résultats.\n\nLe **DPO** a pour mission d'**informer et sensibiliser** le personnel sur la protection des données ; il conçoit ou pilote ces actions, souvent avec le responsable de la sécurité (RSSI).",
+      "notions": [
+        "Suivi de la sensibilisation",
+        "Mission du DPO"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq4-s02-c001",
+      "section": "libre-b3-31-sq4-s02-s01",
+      "type": "question",
+      "recto": "Comment formuler un bon objectif de sensibilisation ?",
+      "verso": "Par une **action observable** : « le participant sait… / est capable de… » (ex. signaler un message suspect au bon interlocuteur).",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq4-s02-c002",
+      "section": "libre-b3-31-sq4-s02-s02",
+      "type": "qcm",
+      "question": "Pour qu'une charte informatique soit opposable aux salariés, il faut en général :",
+      "choix": [
+        "l'afficher dans le hall",
+        "l'annexer au règlement intérieur et la porter à la connaissance des salariés",
+        "la publier sur le site public",
+        "la faire valider par la CNIL"
+      ],
+      "bonneReponse": 1,
+      "explication": "Annexée au règlement intérieur, elle a valeur contraignante.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq4-s02-c003",
+      "section": "libre-b3-31-sq4-s02-s03",
+      "type": "exercice",
+      "enonce": "Conçois le plan d'une session de 45 minutes pour les 12 agents d'accueil de la mairie fictive de **Saint-Aubert-les-Prés**, qui manipulent des dossiers d'état civil.",
+      "etapes": [
+        "5 min : introduction par un cas concret (un faux courriel « mise à jour de votre messagerie »).",
+        "10 min : test de positionnement (5 questions).",
+        "15 min : apports : indices d'hameçonnage, mots de passe et verrouillage de poste, données personnelles des usagers (ne pas les envoyer par e-mail non sécurisé, minimisation).",
+        "10 min : exercice : trier 6 messages réels/faux, que faire si on a cliqué.",
+        "5 min : synthèse, fiche réflexe distribuée, contact du DPO ; quiz de suivi dans un mois."
+      ],
+      "reponse": "Session courte et concrète : cas, test, apports ciblés, exercice, fiche réflexe et suivi.",
+      "difficulte": 2
+    }
+  ]
+}

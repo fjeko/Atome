@@ -1,0 +1,105 @@
+{
+  "formatVersion": 1,
+  "id": "libre-maths-sq3-s05",
+  "matiere": "Mathématiques pour l'informatique",
+  "bloc": "Bloc 6",
+  "partie": "SQ3 – Ordonnancement",
+  "sequence": null,
+  "seance": "S5 – Entraînement chemin critique",
+  "ordre": 5,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Identifier et justifier les tâches et chemins critiques sur plusieurs projets, y compris quand il y en a plusieurs, et détecter les erreurs.",
+  "notions": [
+    "Identification du chemin critique",
+    "Plusieurs chemins critiques",
+    "Vérification"
+  ],
+  "sections": [
+    {
+      "id": "libre-maths-sq3-s05-s01",
+      "titre": "Identifier et justifier",
+      "contenu": "Méthode de rédaction :\n1. Compléter le tableau des dates $t$ et $T$.\n2. Lister les tâches avec $t = T$ : ce sont les tâches critiques.\n3. Suivre les arcs du graphe pour relier ces tâches de Début à Fin.\n4. Vérifier : la somme des durées du chemin = durée du projet.\n5. Conclure par une phrase : « Le chemin critique est … ; tout retard sur ces tâches retarde la livraison. »\n\n**Exemple *Pixel & Dés*** (A 2, B 5, C 1, D 2, E 1) : $t$ = A 0, B 2, C 2, D 3, E 7 ; $T$ = A 0, B 2, C 4, D 5, E 7. Tâches critiques : A, B, E. Chemin critique : $A \\to B \\to E$, $2 + 5 + 1 = 8$ semaines ✔️",
+      "notions": [
+        "Identification du chemin critique"
+      ]
+    },
+    {
+      "id": "libre-maths-sq3-s05-s02",
+      "titre": "Plusieurs chemins critiques",
+      "contenu": "Quand deux branches parallèles ont exactement la même durée, elles sont **toutes les deux** critiques.\n\nDans *Les Sentiers Partagés*, B + D ($2 + 2 = 4$ jours) et C (4 jours) relient A à E en exactement le même temps : deux chemins critiques, $A \\to B \\to D \\to E \\to G$ et $A \\to C \\to E \\to G$.\n\nConséquence pratique : le chef de projet doit surveiller **deux** branches. Accélérer une seule d'entre elles ne raccourcit pas le projet.",
+      "notions": [
+        "Plusieurs chemins critiques"
+      ]
+    },
+    {
+      "id": "libre-maths-sq3-s05-s03",
+      "titre": "Détecter une erreur",
+      "contenu": "Indices d'une erreur dans une correction ou dans ta copie :\n- $T_{\\text{Début}} \\neq 0$ : erreur dans les dates au plus tard ;\n- une tâche avec $T < t$ : impossible (marge négative) ;\n- un « chemin critique » dont la somme des durées ne vaut pas la durée du projet ;\n- un chemin critique qui saute une tâche ou qui emprunte un arc inexistant.",
+      "notions": [
+        "Vérification"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-maths-sq3-s05-c001",
+      "section": "libre-maths-sq3-s05-s01",
+      "type": "exercice",
+      "enonce": "Pour *Studio Nébuleuse* (A 0/0, B 2/3, C 2/2, D 6/6, E 6/10, F 12/12 ; durées A 2, B 3, C 4, D 6, E 2, F 2 ; durée totale 14), donne le chemin critique.",
+      "etapes": [
+        "Tâches avec t = T : A, C, D, F.",
+        "Arcs : A → C (C a pour antérieure A), C → D, D → F : le chemin s'enchaîne.",
+        "Vérification : $2 + 4 + 6 + 2 = 14$ ✔️"
+      ],
+      "reponse": "$A \\to C \\to D \\to F$",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-maths-sq3-s05-c002",
+      "section": "libre-maths-sq3-s05-s01",
+      "type": "qcm",
+      "question": "Pour *Studio Nébuleuse*, quelle tâche n'est pas critique alors qu'elle est sur un chemin menant à D ?",
+      "choix": [
+        "B",
+        "C",
+        "A",
+        "F"
+      ],
+      "bonneReponse": 0,
+      "explication": "$t_B = 2$ et $T_B = 3$ : B a une marge totale de 1 jour.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-maths-sq3-s05-c003",
+      "section": "libre-maths-sq3-s05-s02",
+      "type": "qcm",
+      "question": "Un projet a deux chemins critiques. On réduit d'un jour une tâche qui n'est que sur l'un des deux. Que devient la durée du projet ?",
+      "choix": [
+        "Elle ne change pas",
+        "Elle baisse d'un jour",
+        "Elle baisse de deux jours",
+        "Elle augmente d'un jour"
+      ],
+      "bonneReponse": 0,
+      "explication": "L'autre chemin critique impose toujours la même durée. Il faudrait raccourcir les deux.",
+      "difficulte": 3
+    },
+    {
+      "id": "libre-maths-sq3-s05-c004",
+      "section": "libre-maths-sq3-s05-s03",
+      "type": "qcm",
+      "question": "Dans un tableau, on lit pour une tâche : $t = 9$ et $T = 7$. Que dire ?",
+      "choix": [
+        "C'est impossible : il y a une erreur de calcul",
+        "La tâche est hypercritique",
+        "La tâche a une marge de 2",
+        "La tâche est en avance"
+      ],
+      "bonneReponse": 0,
+      "explication": "On a toujours $T \\ge t$. Ici l'erreur vient souvent d'un min pris à la place d'un max (ou l'inverse).",
+      "difficulte": 2
+    }
+  ]
+}

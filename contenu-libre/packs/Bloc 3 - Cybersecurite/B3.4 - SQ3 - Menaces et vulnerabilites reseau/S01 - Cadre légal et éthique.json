@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-34-sq3-s01",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.4 – SQ3 – Menaces et vulnérabilités réseau",
+  "sequence": null,
+  "seance": "S01 – Cadre légal et éthique",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Connaître son réseau pour le défendre suppose d'utiliser les outils des attaquants, mais uniquement dans un cadre légal : sur ses propres systèmes ou avec une autorisation écrite. Le Code pénal punit l'accès frauduleux et l'usage d'outils sans motif légitime.",
+  "notions": [
+    "Analyse défensive",
+    "Accès frauduleux",
+    "Article 323-1 du Code pénal",
+    "Autorisation écrite",
+    "Éthique du testeur"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-34-sq3-s01-s01",
+      "titre": "Connaître son réseau pour le défendre",
+      "contenu": "Un administrateur qui veut protéger son réseau doit savoir **ce qu'un attaquant y verrait** : machines visibles, services ouverts, versions vulnérables, informations circulant en clair.\n\nLes mêmes outils (scanner de ports, analyseur de trafic) servent à l'attaque et à la défense : c'est l'**intention** et surtout l'**autorisation** qui font la différence.",
+      "notions": [
+        "Analyse défensive"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq3-s01-s02",
+      "titre": "Ce que dit la loi",
+      "contenu": "En France, le Code pénal (articles **323-1 et suivants**, issus de la loi « Godfrain » de 1988) punit notamment :\n- l'**accès ou le maintien frauduleux** dans tout ou partie d'un système de traitement automatisé de données ;\n- l'**entrave** au fonctionnement d'un système (déni de service) ;\n- l'**introduction, la modification ou la suppression** frauduleuse de données ;\n- la **détention ou la mise à disposition**, **sans motif légitime**, d'outils conçus pour commettre ces infractions.\n\nLes peines (prison et amendes) sont **aggravées** si des données personnelles ou des systèmes de l'État sont visés.\n\nScanner le réseau d'un tiers « pour voir », même sans rien casser, peut constituer une infraction.",
+      "notions": [
+        "Accès frauduleux",
+        "Article 323-1 du Code pénal"
+      ]
+    },
+    {
+      "id": "libre-b3-34-sq3-s01-s03",
+      "titre": "Le cadre d'une mission",
+      "contenu": "Une mission de test se fait avec :\n- une **autorisation écrite** du responsable du système (et de l'hébergeur s'il y a lieu) ;\n- un **périmètre** précis (adresses, applications), des **dates**, des **techniques** autorisées ou exclues (pas de déni de service) ;\n- des **contacts** en cas d'incident ;\n- la **confidentialité** des résultats ;\n- un **rapport** remis au client uniquement.\n\nPour s'entraîner : un **laboratoire personnel** (machines virtuelles) ou des plateformes d'entraînement prévues pour cela.",
+      "notions": [
+        "Autorisation écrite",
+        "Éthique du testeur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-34-sq3-s01-c001",
+      "section": "libre-b3-34-sq3-s01-s01",
+      "type": "question",
+      "recto": "Pourquoi un administrateur utilise-t-il des outils d'attaquant ?",
+      "verso": "Pour voir son réseau **comme un attaquant le verrait** et corriger les faiblesses avant qu'elles soient exploitées.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-34-sq3-s01-c002",
+      "section": "libre-b3-34-sq3-s01-s02",
+      "type": "qcm",
+      "question": "Un étudiant scanne les ports du serveur de son ancien lycée « pour s'entraîner ». Est-ce légal ?",
+      "choix": [
+        "Oui, s'il ne casse rien",
+        "Oui, car les ports sont publics",
+        "Non, sans autorisation du propriétaire, c'est un risque pénal",
+        "Oui, si c'est le soir"
+      ],
+      "bonneReponse": 2,
+      "explication": "Il faut l'autorisation écrite du responsable du système.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-34-sq3-s01-c003",
+      "section": "libre-b3-34-sq3-s01-s03",
+      "type": "question",
+      "recto": "Que doit préciser l'autorisation d'un test d'intrusion ?",
+      "verso": "Le **périmètre** (cibles), les **dates**, les **techniques** autorisées, les **contacts**, et la confidentialité des résultats.",
+      "difficulte": 1
+    }
+  ]
+}

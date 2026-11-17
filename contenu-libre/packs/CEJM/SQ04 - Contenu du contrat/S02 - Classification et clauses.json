@@ -1,0 +1,83 @@
+{
+  "formatVersion": 1,
+  "id": "libre-cejm-sq04-s02",
+  "matiere": "CEJM – Culture économique, juridique et managériale",
+  "bloc": "Bloc 7",
+  "partie": "Séquence 4 – Contenu, classification et clauses du contrat",
+  "sequence": null,
+  "seance": "S2 – Classification et clauses",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Classer un contrat selon plusieurs critères et reconnaître les principales clauses : prix, garanties, clause pénale, limitation de responsabilité, fin du contrat, force majeure.",
+  "notions": [
+    "Classification des contrats",
+    "Clauses particulières",
+    "Clauses abusives"
+  ],
+  "sections": [
+    {
+      "id": "libre-cejm-sq04-s02-s01",
+      "titre": "Classer un contrat",
+      "contenu": "| Critère | Catégories |\n|---|---|\n| obligations | **synallagmatique** (réciproques : vente) / **unilatéral** (une seule partie s'oblige : donation) |\n| contrepartie | à titre **onéreux** (chacun reçoit un avantage) / à titre **gratuit** (une partie procure un avantage sans contrepartie) |\n| équivalence | **commutatif** (prestations connues dès le départ) / **aléatoire** (dépend d'un événement incertain : assurance) |\n| durée | **instantané** (une prestation unique) / à **exécution successive** (abonnement, bail, contrat de travail) |\n| négociation | **de gré à gré** (négocié) / **d'adhésion** (conditions générales imposées par une partie) |\n| contractants | entre professionnels, entre professionnel et consommateur, entre particuliers |",
+      "notions": [
+        "Classification des contrats"
+      ]
+    },
+    {
+      "id": "libre-cejm-sq04-s02-s02",
+      "titre": "Les clauses particulières",
+      "contenu": "| Clause | Rôle | Point de vigilance |\n|---|---|---|\n| **prix et révision** | fixer le prix, prévoir son indexation ou une renégociation | le prix doit être déterminé ou déterminable |\n| **garanties** (caution, gage) | protéger le **créancier** contre le non-paiement | |\n| **clause pénale** | fixer à l'avance une indemnité forfaitaire en cas d'inexécution | le juge peut la **réduire ou l'augmenter** quand son montant est nettement disproportionné, trop élevé ou trop faible (art. 1231-5) |\n| **limitative** de responsabilité | plafonner l'indemnisation | inefficace en cas de faute lourde ou si elle vide l'obligation essentielle de sa substance |\n| **exonératoire** | supprimer la responsabilité | interdite dans de nombreux cas (contrats avec consommateurs, dommages corporels) |\n| **résiliation / retrait** | organiser la fin du contrat, la sortie d'un associé | préavis, forme |\n| **condition suspensive** | l'exécution dépend d'un événement futur et incertain | « sous réserve d'obtention du prêt » |\n| **force majeure** | préciser les événements qui libèrent le débiteur | événement imprévisible, irrésistible, extérieur (art. 1218) |\n| clauses du **contrat de travail** | période d'essai, non-concurrence, mobilité | la non-concurrence doit être limitée et rémunérée |\n\n**Clauses abusives** : dans un contrat avec un consommateur ou un contrat d'adhésion, une clause qui crée un **déséquilibre significatif** entre les droits et obligations des parties est **réputée non écrite** (elle disparaît, le reste du contrat demeure).",
+      "notions": [
+        "Clauses particulières",
+        "Clauses abusives"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-cejm-sq04-s02-c001",
+      "section": "libre-cejm-sq04-s02-s01",
+      "type": "exercice",
+      "enonce": "Classe un contrat d'assurance habitation souscrit en ligne par un particulier selon trois critères.",
+      "etapes": [
+        "Contrepartie : à titre onéreux (prime contre garantie).",
+        "Équivalence : aléatoire (dépend d'un sinistre éventuel).",
+        "Durée : à exécution successive ; négociation : d'adhésion (conditions générales)."
+      ],
+      "reponse": "Onéreux, aléatoire, successif, d'adhésion, entre professionnel et consommateur.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq04-s02-c002",
+      "section": "libre-cejm-sq04-s02-s02",
+      "type": "qcm",
+      "question": "Un contrat prévoit 500 € par jour de retard pour une prestation de 300 €. Que peut faire le juge ?",
+      "choix": [
+        "Réduire cette clause pénale manifestement excessive",
+        "Rien, le contrat fait la loi des parties",
+        "Annuler tout le contrat",
+        "La doubler"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le juge peut modérer une clause pénale manifestement excessive.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-cejm-sq04-s02-c003",
+      "section": "libre-cejm-sq04-s02-s02",
+      "type": "qcm",
+      "question": "Quelle différence entre clause limitative et clause exonératoire ?",
+      "choix": [
+        "La première plafonne la responsabilité, la seconde la supprime",
+        "Ce sont des synonymes",
+        "La première protège le créancier",
+        "La seconde fixe une pénalité"
+      ],
+      "bonneReponse": 0,
+      "explication": "Limiter n'est pas exonérer : la clause exonératoire est plus souvent interdite.",
+      "difficulte": 2
+    }
+  ]
+}

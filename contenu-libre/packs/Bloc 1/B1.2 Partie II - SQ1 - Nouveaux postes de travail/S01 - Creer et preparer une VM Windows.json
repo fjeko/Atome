@@ -1,0 +1,121 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b1-12b-sq1-s01",
+  "matiere": "Bloc 1 – Support et mise à disposition de services informatiques",
+  "bloc": "Bloc 1",
+  "partie": "B1.2 Partie II – SQ1 – Installer et configurer de nouveaux postes",
+  "sequence": null,
+  "seance": "S01 – Créer et préparer une VM Windows",
+  "ordre": 1,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Définir une configuration standard de poste, créer une machine virtuelle Windows, choisir son mode réseau, la préparer après installation, faire des instantanés et des exports, et assister un utilisateur à distance.",
+  "notions": [
+    "Configuration standard d'un poste",
+    "Création d'une VM Windows",
+    "Modes réseau NAT et pont",
+    "Réglages post-installation",
+    "Instantané et export",
+    "Assistance à distance"
+  ],
+  "sections": [
+    {
+      "id": "libre-b1-12b-sq1-s01-s01",
+      "titre": "La configuration standard d'un poste",
+      "contenu": "Quand une organisation installe des dizaines de postes, elle définit une **configuration standard** (on dit aussi « master ») : le même système, les mêmes logiciels, les mêmes réglages pour tous les postes d'un même usage.\n\nExemple pour la mutuelle Entraide Santé :\n| Élément | Choix |\n| --- | --- |\n| Système | Windows 11 Professionnel 64 bits |\n| Logiciels | suite bureautique, navigateur, lecteur PDF, client de visioconférence, antivirus |\n| Réglages | mises à jour automatiques, écran de veille verrouillé après 10 min, compte local administrateur renommé |\n| Nommage | `ES-<site>-<numéro>` (ex. `ES-LYO-014`) |\n\nIntérêts : **installation plus rapide**, **support plus simple** (tous les postes se ressemblent), **sécurité homogène**.",
+      "notions": [
+        "Configuration standard d'un poste"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s01-s02",
+      "titre": "Créer la VM Windows et choisir son réseau",
+      "contenu": "Pour préparer et tester la configuration, on travaille dans une **VM** (VirtualBox, VMware Workstation, Hyper-V). Il faut :\n- une **image d'installation** (fichier ISO) téléchargée depuis le site de l'éditeur ;\n- une **licence** valide (clé de produit, ou licence en volume de l'organisation) ;\n- dimensionner la VM : 2 processeurs virtuels, 4 à 8 Go de RAM, disque de 64 Go (dynamique).\n\n**Modes réseau** de la carte virtuelle (noms VirtualBox) :\n| Mode | La VM… | Usage |\n| --- | --- | --- |\n| **NAT** (traduction d'adresses) | accède à Internet via l'hôte, mais **n'est pas joignable** depuis le réseau | installer, mettre à jour |\n| **Accès par pont** | est branchée **directement sur le réseau physique**, obtient une adresse comme un vrai poste | tester un poste « comme en vrai », être joignable |\n| **Réseau interne** | ne communique qu'avec les autres VM du même réseau interne | maquette isolée (serveur + clients) |\n| **Réseau privé hôte** | communique avec l'hôte et les VM de ce réseau | tests entre hôte et VM |",
+      "notions": [
+        "Création d'une VM Windows",
+        "Modes réseau NAT et pont"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s01-s03",
+      "titre": "Après l'installation",
+      "contenu": "Une fois Windows installé, on prépare la VM :\n1. installer les **outils invités** de l'hyperviseur (*Additions invité* pour VirtualBox) : meilleur affichage, presse-papiers partagé, souris fluide ;\n2. faire les **mises à jour** Windows ;\n3. **renommer** le poste selon la convention, régler le fuseau horaire et la langue du clavier ;\n4. installer les **logiciels** de la configuration standard (par exemple avec le gestionnaire de paquets `winget`) :\n```powershell\nwinget install --id Mozilla.Firefox -e\nwinget install --id TheDocumentFoundation.LibreOffice -e\n```\n5. prendre un **instantané** (*snapshot*) : un point de retour si un essai tourne mal ;\n6. **exporter** la VM (format OVA) pour la transmettre ou l'archiver : c'est un fichier unique qui contient la configuration et les disques.\n\n**Instantané ≠ sauvegarde** : il est stocké avec la VM ; si le disque de l'hôte meurt, il disparaît aussi.",
+      "notions": [
+        "Réglages post-installation",
+        "Instantané et export"
+      ]
+    },
+    {
+      "id": "libre-b1-12b-sq1-s01-s04",
+      "titre": "Assister un utilisateur à distance",
+      "contenu": "Le technicien n'a pas toujours besoin de se déplacer : il peut **voir et piloter l'écran** de l'utilisateur à distance.\n- **Assistance rapide** (Quick Assist) intégrée à Windows : l'utilisateur donne un code à 6 chiffres au technicien et **accepte** le partage.\n- **Bureau à distance** (RDP, `mstsc`) : ouverture d'une session sur la machine distante (doit être activé, réservé aux comptes autorisés).\n- Logiciels tiers de prise en main.\n\nRègles : **toujours obtenir l'accord** de l'utilisateur, ne pas consulter ses fichiers personnels, mettre fin à la session après l'intervention, tracer l'intervention dans le ticket.",
+      "notions": [
+        "Assistance à distance"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b1-12b-sq1-s01-c001",
+      "section": "libre-b1-12b-sq1-s01-s01",
+      "type": "question",
+      "recto": "Donne deux intérêts d'une configuration standard de poste.",
+      "verso": "Installation plus rapide et reproductible, support simplifié (postes identiques), sécurité et réglages homogènes.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b1-12b-sq1-s01-c002",
+      "section": "libre-b1-12b-sq1-s01-s02",
+      "type": "qcm",
+      "question": "Tu veux qu'un collègue puisse se connecter depuis son poste au partage créé dans ta VM. Quel mode réseau choisis-tu ?",
+      "choix": [
+        "NAT",
+        "Accès par pont",
+        "Réseau interne",
+        "Aucun réseau"
+      ],
+      "bonneReponse": 1,
+      "explication": "En pont, la VM est un poste à part entière du réseau, joignable par les autres. En NAT, elle est cachée derrière l'hôte.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq1-s01-c003",
+      "section": "libre-b1-12b-sq1-s01-s02",
+      "type": "qcm",
+      "question": "Quel mode réseau isole complètement une maquette de 3 VM du réseau de l'entreprise, tout en les laissant communiquer entre elles ?",
+      "choix": [
+        "Accès par pont",
+        "NAT",
+        "Réseau interne",
+        "Réseau privé hôte"
+      ],
+      "bonneReponse": 2,
+      "explication": "Le réseau interne ne relie que les VM entre elles, sans accès à l'hôte ni au réseau physique.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq1-s01-c004",
+      "section": "libre-b1-12b-sq1-s01-s03",
+      "type": "question",
+      "recto": "Quelle différence entre un instantané et un export de VM ?",
+      "verso": "L'instantané enregistre l'état de la VM pour y revenir, mais reste stocké avec elle. L'export produit un fichier autonome (OVA) qu'on peut copier ailleurs, transmettre ou réimporter.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b1-12b-sq1-s01-c005",
+      "section": "libre-b1-12b-sq1-s01-s04",
+      "type": "qcm",
+      "question": "Avant de prendre la main à distance sur le poste d'une utilisatrice, que dois-tu faire ?",
+      "choix": [
+        "Rien, l'outil s'en charge",
+        "Obtenir son accord explicite et lui expliquer ce que tu vas faire",
+        "Désactiver son antivirus",
+        "Lui demander son mot de passe"
+      ],
+      "bonneReponse": 1,
+      "explication": "La prise en main à distance se fait avec l'accord de l'utilisateur. On ne demande jamais son mot de passe.",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-31-sq1-s06",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.1 – SQ1 – Cybermenaces et bonnes pratiques",
+  "sequence": null,
+  "seance": "S06 – Télétravail et nomadisme",
+  "ordre": 6,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Le travail hors des locaux et l'usage d'équipements personnels augmentent la surface d'attaque. L'organisation fixe des règles et des moyens ; l'utilisateur applique des bonnes pratiques ; un audit vérifie le dispositif.",
+  "notions": [
+    "Nomadisme",
+    "Télétravail",
+    "Équipement personnel",
+    "Recommandations pour l'organisation",
+    "VPN",
+    "Bonnes pratiques nomades"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-31-sq1-s06-s01",
+      "titre": "Facteurs de risque",
+      "contenu": "- **Nomadisme** : travailler en déplacement (train, hôtel, client) avec un ordinateur ou un téléphone.\n- **Télétravail** : travailler depuis chez soi.\n- **BYOD** (*Bring Your Own Device*) : utiliser un appareil **personnel** pour le travail.\n\nRisques : **vol ou perte** de l'appareil, **réseaux** non maîtrisés (Wi-Fi public, box familiale), **regards indiscrets** dans les lieux publics, **mélange** des usages personnels et professionnels (jeux, téléchargements, partage avec la famille), appareils personnels non mis à jour.",
+      "notions": [
+        "Nomadisme",
+        "Télétravail",
+        "Équipement personnel"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s06-s02",
+      "titre": "Mesures pour l'organisation",
+      "contenu": "L'organisation doit :\n- fournir si possible des **équipements professionnels** gérés (mises à jour, antivirus, chiffrement du disque) ;\n- imposer un **VPN** pour accéder au SI depuis l'extérieur, avec **authentification multifacteur** ;\n- n'ouvrir que les **services nécessaires** à distance ;\n- définir une **charte** ou politique de télétravail (usages autorisés, BYOD, que faire en cas de perte) ;\n- prévoir le **support** et une procédure de signalement d'incident ;\n- sensibiliser les télétravailleurs.",
+      "notions": [
+        "Recommandations pour l'organisation",
+        "VPN"
+      ]
+    },
+    {
+      "id": "libre-b3-31-sq1-s06-s03",
+      "titre": "Bonnes pratiques de l'utilisateur",
+      "contenu": "- Verrouiller sa session (Windows + L) dès qu'on s'éloigne ; ne jamais laisser l'appareil sans surveillance.\n- Utiliser un **filtre de confidentialité** sur l'écran ; ne pas parler de sujets sensibles en public.\n- Préférer le **partage de connexion** de son téléphone à un Wi-Fi public ; toujours passer par le VPN.\n- Ne pas brancher de clé USB inconnue ; ne pas installer de logiciels non autorisés.\n- **Séparer** usages personnels et professionnels (sessions ou appareils distincts).\n- Signaler immédiatement une **perte** ou un vol.",
+      "notions": [
+        "Bonnes pratiques nomades"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-31-sq1-s06-c001",
+      "section": "libre-b3-31-sq1-s06-s01",
+      "type": "qcm",
+      "question": "Lequel est un risque spécifique du nomadisme ?",
+      "choix": [
+        "La lecture de l'écran par un voisin dans le train",
+        "Une panne du serveur de messagerie",
+        "Une erreur dans une formule de tableur",
+        "Un conflit de version Git"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les lieux publics exposent l'écran et l'appareil.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-b3-31-sq1-s06-c002",
+      "section": "libre-b3-31-sq1-s06-s02",
+      "type": "question",
+      "recto": "À quoi sert un VPN en télétravail ?",
+      "verso": "À créer un **tunnel chiffré** entre le poste distant et le réseau de l'organisation, pour accéder au SI comme si on était sur place, sans exposer les échanges.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-31-sq1-s06-c003",
+      "section": "libre-b3-31-sq1-s06-s03",
+      "type": "exercice",
+      "enonce": "Audit du télétravail chez **Atelier Graphique Céladon** : les salariés utilisent leurs PC personnels partagés avec la famille, se connectent au serveur de fichiers via un accès bureau à distance ouvert sur Internet avec mot de passe simple, et aucune procédure n'existe en cas de vol. Liste les non-conformités et les corrections.",
+      "etapes": [
+        "PC personnels partagés : risque de fuite et de logiciels malveillants → fournir des postes professionnels ou au minimum une session dédiée, chiffrée, à jour.",
+        "Bureau à distance exposé, mot de passe simple : cible privilégiée des rançongiciels → fermer l'accès direct, imposer un VPN avec authentification multifacteur.",
+        "Pas de procédure de vol/perte → rédiger une procédure (signalement, révocation des accès, effacement à distance) et une charte de télétravail.",
+        "Ajouter une sensibilisation des salariés."
+      ],
+      "reponse": "3 non-conformités majeures : équipements non maîtrisés, accès distant exposé, absence de procédure.",
+      "difficulte": 2
+    }
+  ]
+}

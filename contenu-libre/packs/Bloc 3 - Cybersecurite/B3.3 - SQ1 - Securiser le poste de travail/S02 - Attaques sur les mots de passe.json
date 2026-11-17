@@ -1,0 +1,111 @@
+{
+  "formatVersion": 1,
+  "id": "libre-b3-33-sq1-s02",
+  "matiere": "Bloc 3 – Cybersécurité des services informatiques",
+  "bloc": "Bloc 3",
+  "partie": "B3.3 – SQ1 – Sécuriser le poste de travail",
+  "sequence": null,
+  "seance": "S02 – Attaques sur les mots de passe",
+  "ordre": 2,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Contenu original – licence CC BY-SA 4.0. Un attaquant qui obtient des empreintes peut les attaquer par dictionnaire, force brute, méthode hybride ou tables précalculées. L'entropie mesure la résistance d'un mot de passe ; la longueur compte plus que la complexité.",
+  "notions": [
+    "Attaque par dictionnaire",
+    "Force brute",
+    "Attaque hybride",
+    "Tables précalculées",
+    "Entropie",
+    "Espace de recherche",
+    "Temps de craquage",
+    "Attaques physiques",
+    "Démonstration de craquage"
+  ],
+  "sections": [
+    {
+      "id": "libre-b3-33-sq1-s02-s01",
+      "titre": "Les types d'attaques",
+      "contenu": "| Attaque | Principe |\n| --- | --- |\n| **Dictionnaire** | tester une liste de mots de passe courants ou déjà fuités (`soleil`, `azerty`, `123456`) |\n| **Force brute** | tester **toutes** les combinaisons possibles d'une longueur donnée |\n| **Hybride** | dictionnaire + variations (`Soleil2026!`, `s0l3il`) |\n| **Tables précalculées** (*rainbow tables*) | empreintes calculées à l'avance pour retrouver instantanément un mot de passe à partir de son empreinte |\n| **Bourrage d'identifiants** | réessayer sur d'autres sites des couples identifiant/mot de passe volés |\n\nLe **salage** rend les tables précalculées inutiles (il faudrait une table par sel), mais **n'empêche pas** la force brute sur un compte donné : seuls la **longueur** et une fonction de hachage **lente** la ralentissent.",
+      "notions": [
+        "Attaque par dictionnaire",
+        "Force brute",
+        "Attaque hybride",
+        "Tables précalculées"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s02-s02",
+      "titre": "Entropie et espace de recherche",
+      "contenu": "L'**espace de recherche** est le nombre de combinaisons possibles : $N = A^L$, où $A$ est la taille de l'alphabet et $L$ la longueur.\n\nL'**entropie** en bits : $H = L \\times \\log_2(A)$.\n\n| Alphabet | $A$ |\n| --- | --- |\n| chiffres | 10 |\n| minuscules | 26 |\n| minuscules + majuscules | 52 |\n| + chiffres | 62 |\n| + ~33 symboles | ~95 |\n\nComparaison : 8 caractères parmi 95 : $95^8 \\approx 6{,}6 \\times 10^{15}$ ; 14 minuscules seulement : $26^{14} \\approx 6{,}5 \\times 10^{19}$, environ **10 000 fois plus**. La **longueur** l'emporte sur la complexité.\n\n**Temps de craquage** = $N$ / (essais par seconde). À $10^{10}$ essais/s (cartes graphiques sur une empreinte rapide), $6{,}6 \\times 10^{15}$ combinaisons demandent environ $6{,}6 \\times 10^5$ s, soit **moins de 8 jours** (en moyenne la moitié).",
+      "notions": [
+        "Entropie",
+        "Espace de recherche",
+        "Temps de craquage"
+      ]
+    },
+    {
+      "id": "libre-b3-33-sq1-s02-s03",
+      "titre": "Attaques physiques et démonstration",
+      "contenu": "Attaques **physiques** : regarder par-dessus l'épaule, post-it sous le clavier, enregistreur de frappe matériel, démarrage du poste sur une clé USB pour copier la base de comptes si le disque n'est pas chiffré.\n\nUne **démonstration** sur une machine de test (à soi ou autorisée) avec John the Ripper ou Hashcat montre : les mots de passe du dictionnaire tombent instantanément, les phrases de passe longues résistent. C'est un bon support de sensibilisation, à réaliser uniquement dans un cadre légal.",
+      "notions": [
+        "Attaques physiques",
+        "Démonstration de craquage"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "libre-b3-33-sq1-s02-c001",
+      "section": "libre-b3-33-sq1-s02-s01",
+      "type": "qcm",
+      "question": "`Printemps2026!` est cassé en quelques minutes. Quelle attaque est la plus probable ?",
+      "choix": [
+        "Force brute exhaustive",
+        "Attaque hybride (mot du dictionnaire + année + symbole)",
+        "Déni de service",
+        "Rançongiciel"
+      ],
+      "bonneReponse": 1,
+      "explication": "Ce schéma mot + date + symbole est exactement ce que testent les attaques hybrides.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq1-s02-c002",
+      "section": "libre-b3-33-sq1-s02-s01",
+      "type": "qcm",
+      "question": "Le salage protège principalement contre :",
+      "choix": [
+        "la force brute sur un seul compte",
+        "les tables précalculées et la détection de mots de passe identiques",
+        "l'enregistreur de frappe",
+        "l'hameçonnage"
+      ],
+      "bonneReponse": 1,
+      "explication": "Avec un sel unique, chaque empreinte doit être attaquée séparément.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq1-s02-c003",
+      "section": "libre-b3-33-sq1-s02-s02",
+      "type": "exercice",
+      "enonce": "Calcule l'espace de recherche et l'entropie d'un code PIN de 6 chiffres, puis le temps maximal pour l'épuiser à 1 000 essais par seconde.",
+      "etapes": [
+        "Alphabet : $A = 10$, longueur $L = 6$.",
+        "Espace : $10^6 = 1\\,000\\,000$ combinaisons.",
+        "Entropie : $6 \\times \\log_2(10) \\approx 6 \\times 3{,}32 \\approx 19{,}9$ bits.",
+        "Temps : $10^6 / 1\\,000 = 1\\,000$ s ≈ 17 minutes."
+      ],
+      "reponse": "$10^6$ combinaisons, environ 20 bits, épuisé en environ 17 minutes : d'où le blocage après quelques essais ratés.",
+      "difficulte": 2
+    },
+    {
+      "id": "libre-b3-33-sq1-s02-c004",
+      "section": "libre-b3-33-sq1-s02-s03",
+      "type": "question",
+      "recto": "Pourquoi chiffrer le disque protège-t-il aussi les mots de passe ?",
+      "verso": "Sans chiffrement, un attaquant qui démarre le poste sur un autre système peut **copier la base des comptes** (SAM, shadow) pour l'attaquer hors ligne.",
+      "difficulte": 2
+    }
+  ]
+}
