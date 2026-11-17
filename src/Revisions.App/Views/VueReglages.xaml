@@ -15,7 +15,7 @@
         </Style>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer x:Name="Defilement" VerticalScrollBarVisibility="Auto">
         <StackPanel MaxWidth="940" Margin="32,28,32,28">
             <TextBlock Text="Réglages" Style="{StaticResource Titre}" />
             <TextBlock Text="Chaque changement est enregistré tout de suite." Style="{StaticResource Discret}" Margin="0,4,0,0" />

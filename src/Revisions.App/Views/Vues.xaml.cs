@@ -39,7 +39,30 @@ public partial class VueAide : UserControl
 
 public partial class VueReglages : UserControl
 {
-    public VueReglages() => InitializeComponent();
+    private double _dernierDefilement;   // dernière position connue de la page
+    private bool _restauration;          // vrai pendant qu'on remet la page où elle était
+
+    public VueReglages()
+    {
+        InitializeComponent();
+        // Changer de thème recalcule tout l'affichage et ramène la page tout en haut :
+        // on mémorise la position et on la remet juste après, pour pouvoir essayer les thèmes à la suite.
+        Defilement.ScrollChanged += (_, e) => { if (!_restauration && e.VerticalChange != 0) _dernierDefilement = Defilement.VerticalOffset; };
+        Loaded += (_, _) => { if (App.Services.GetService(typeof(Services.EtatApplication)) is Services.EtatApplication etat) etat.ThemeChange += Restaurer; };
+        Unloaded += (_, _) => { if (App.Services.GetService(typeof(Services.EtatApplication)) is Services.EtatApplication etat) etat.ThemeChange -= Restaurer; };
+    }
+
+    private void Restaurer()
+    {
+        double position = _dernierDefilement;
+        _restauration = true;
+        Dispatcher.BeginInvoke(() =>
+        {
+            Defilement.ScrollToVerticalOffset(position);
+            _dernierDefilement = position;
+            Dispatcher.BeginInvoke(() => _restauration = false, System.Windows.Threading.DispatcherPriority.ContextIdle);
+        }, System.Windows.Threading.DispatcherPriority.Loaded);
+    }
 }
 
 public partial class FenetreLecture : Window
