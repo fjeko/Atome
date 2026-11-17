@@ -134,6 +134,7 @@ public partial class App : Application
             services.AddSingleton<Planificateur>();
             services.AddSingleton<EtatApplication>();
             services.AddSingleton<MainViewModel>();
+            services.AddTransient<PartageViewModel>();
             Services = services.BuildServiceProvider();
 
             Services.GetRequiredService<EtatApplication>().Initialiser();

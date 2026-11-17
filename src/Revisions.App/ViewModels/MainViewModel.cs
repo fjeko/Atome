@@ -162,7 +162,7 @@ public partial class MainViewModel(
     /// Lit le dossier « planning » (à côté de « packs », comme dans le dossier Cours) :
     /// un fichier nouveau ou modifié est validé puis enregistré. Renvoie vrai si un planning a été enregistré.
     /// </summary>
-    private bool ImporterPlanning()
+    public bool ImporterPlanning()
     {
         if (etat.Reglages.DossierPacks is not { Length: > 0 } packs) return false;
         string? cours = Path.GetDirectoryName(packs.TrimEnd('\\', '/'));
@@ -175,6 +175,26 @@ public partial class MainViewModel(
                 Journal.Erreur("Planning", new InvalidDataException($"{r.Fichier} : {string.Join(" ; ", r.Lecture.Erreurs)}"));
         }
         return enregistre;
+    }
+
+    /// <summary>
+    /// Après l'arrivée d'un contenu partagé : import habituel des packs et du planning (la progression est
+    /// conservée), recalcul des acquis, puis on rouvre l'écran en cours pour qu'il montre le nouveau contenu.
+    /// </summary>
+    public async Task ApresImportContenuAsync()
+    {
+        var jour = etat.Jour;
+        var resultats = await Task.Run(() =>
+        {
+            var r = ImporterDossier();
+            ImporterPlanning();
+            services.GetRequiredService<DepotAcquis>().Recalculer(jour);
+            return r;
+        });
+        Bandeau = null;
+        if (resultats.Any(r => r.Statut == StatutImport.Refuse)) AnnoncerImport(resultats, afficherRapportSiRien: false);
+        // On rouvre l'écran : il se recalcule avec les nouveaux packs.
+        if (Rubrique == "bibliotheque") AllerBibliotheque(); else AllerAccueil();
     }
 
     /// <summary>Parcourt le dossier des packs (réglage) et importe ce qui est nouveau ou modifié.</summary>

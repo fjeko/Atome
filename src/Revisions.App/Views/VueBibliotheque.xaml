@@ -59,9 +59,16 @@
             </ItemsControl>
         </DockPanel>
 
-        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Discret}" FontSize="15"
-                   Text="Aucun cours pour l'instant. Clique sur « Importer… » pour ajouter un pack, ou vérifie le dossier des packs dans les réglages."
-                   Visibility="{Binding EstVide, Converter={StaticResource VisibleSi}}" />
+        <!-- Premier lancement, aucun pack : on met en avant l'import du contenu d'un camarade. -->
+        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,14" Visibility="{Binding EstVide, Converter={StaticResource VisibleSi}}">
+            <TextBlock Style="{StaticResource Discret}" FontSize="15" TextWrapping="Wrap"
+                       Text="Aucun cours pour l'instant. Si un camarade t'a envoyé un fichier .atome, importe-le : tu auras tous les cours d'un coup. Sinon, ajoute un pack avec « Importer… » ou vérifie le dossier des packs dans les réglages." />
+            <Button Content="Importer du contenu" Command="{Binding Partage.ImporterCommand}"                    HorizontalAlignment="Left" Padding="24,10" Margin="0,12,0,0" FontSize="16" FontWeight="SemiBold" IsDefault="True" />
+            <ProgressBar Value="{Binding Partage.Progression, Mode=OneWay}" Maximum="1" Height="6" Margin="0,10,0,0"
+                         Visibility="{Binding Partage.EnCours, Converter={StaticResource VisibleSi}}" />
+            <TextBlock Text="{Binding Partage.Message}" Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,6,0,0"
+                       Visibility="{Binding Partage.Message, Converter={StaticResource VisibleSi}}" />
+        </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>

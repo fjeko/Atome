@@ -158,6 +158,27 @@
             </Border>
 
             <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+                <StackPanel DataContext="{Binding Partage}">
+                    <TextBlock Text="Partager avec un camarade" Style="{StaticResource SousTitre}" />
+                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
+                               Text="Crée un seul fichier .atome avec tous tes packs et ton planning. Ta progression, tes réglages et ton historique n'y sont jamais. Les cours du CNED sont à usage privé : ne les partage qu'avec tes camarades." />
+                    <CheckBox IsChecked="{Binding InclureDocuments}" Margin="0,10,0,0">
+                        <TextBlock>
+                            <Run Text="Inclure aussi les documents d'origine (PDF) : " /><Run Text="{Binding TailleDocuments, Mode=OneWay}" FontWeight="SemiBold" />
+                        </TextBlock>
+                    </CheckBox>
+                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                        <Button Content="Exporter mon contenu…" Command="{Binding ExporterCommand}" IsEnabled="{Binding PeutExporter}" Padding="16,7" />
+                        <Button Content="Importer du contenu…" Command="{Binding ImporterCommand}" Padding="16,7" Margin="10,0,0,0" />
+                    </StackPanel>
+                    <ProgressBar Value="{Binding Progression, Mode=OneWay}" Maximum="1" Height="6" Margin="0,12,0,0"
+                                 Visibility="{Binding EnCours, Converter={StaticResource VisibleSi}}" />
+                    <TextBlock Text="{Binding Message}" Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,8,0,0"
+                               Visibility="{Binding Message, Converter={StaticResource VisibleSi}}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
                 <StackPanel>
                     <TextBlock Text="Dossiers" Style="{StaticResource SousTitre}" />
 

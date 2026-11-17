@@ -86,12 +86,16 @@ public partial class BibliothequeViewModel : ObservableObject
     /// <summary>Texte de recherche : remplace les tuiles par la liste des séances trouvées.</summary>
     [ObservableProperty] private string _recherche = "";
 
+    /// <summary>Import du contenu d'un camarade (bouton mis en avant quand la bibliothèque est vide).</summary>
+    public PartageViewModel Partage { get; }
+
     [ObservableProperty] private bool _estVide;
     [ObservableProperty] private bool _importEnCours;
 
     public BibliothequeViewModel(MainViewModel main, EtatApplication etat, DepotBibliotheque bibliotheque,
-        DepotRevisions revisions, ImportateurPacks importateur)
+        DepotRevisions revisions, ImportateurPacks importateur, PartageViewModel partage)
     {
+        Partage = partage;
         _main = main;
         _etat = etat;
         _bibliotheque = bibliotheque;

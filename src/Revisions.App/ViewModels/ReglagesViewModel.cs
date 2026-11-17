@@ -62,9 +62,14 @@ public partial class ReglagesViewModel : ObservableObject
 
     public string DossierDonnees => BaseDeDonnees.DossierDonnees;
 
-    public ReglagesViewModel(EtatApplication etat)
+    /// <summary>Partage du contenu avec un camarade (export et import).</summary>
+    public PartageViewModel Partage { get; }
+
+    public ReglagesViewModel(EtatApplication etat, PartageViewModel partage)
     {
         _etat = etat;
+        Partage = partage;
+        _ = partage.EstimerAsync(); // taille des documents, calculée en arrière-plan
         var r = etat.Reglages;
 #pragma warning disable MVVMTK0034 // on remplit les champs directement : rien à enregistrer pendant la construction
         _objectifMinimal = r.ObjectifMinimal;
