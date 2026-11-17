@@ -12,6 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Logo du menu et icône des petites tailles (barre de titre, barre des tâches). -->
+    <Resource Include="Ressourcesogo.png" />
+    <Resource Include="Ressourcesmini.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Revisions.Core\Revisions.Core.csproj" />
     <ProjectReference Include="..\Revisions.Data\Revisions.Data.csproj" />
   </ItemGroup>
