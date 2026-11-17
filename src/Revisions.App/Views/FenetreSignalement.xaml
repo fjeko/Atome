@@ -1,0 +1,28 @@
+<Window x:Class="Revisions.App.Views.FenetreSignalement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Signaler une erreur" Width="480" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
+    <StackPanel Margin="24,20,24,20">
+        <TextBlock Text="Signaler une erreur" Style="{StaticResource SousTitre}" />
+        <TextBlock Text="{Binding Cible}" Style="{StaticResource Discret}" FontSize="12" Margin="0,2,0,12" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+
+        <TextBlock Text="Qu'est-ce qui ne va pas ?" Margin="0,0,0,4" />
+        <ItemsControl ItemsSource="{Binding Motifs}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton GroupName="motif" Content="{Binding Libelle}" IsChecked="{Binding EstChoisi}" Margin="0,3" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBlock Text="Un détail à ajouter ? (facultatif)" Margin="0,14,0,4" />
+        <TextBox Text="{Binding Commentaire, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap"
+                 MinHeight="84" MaxHeight="160" VerticalScrollBarVisibility="Auto" />
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
+            <Button Content="Annuler" IsCancel="True" Padding="22,8" Margin="0,0,10,0" />
+            <Button Content="Envoyer" Click="Envoyer" IsEnabled="{Binding PeutEnvoyer}" Style="{DynamicResource AccentButtonStyle}" Padding="26,8" />
+        </StackPanel>
+    </StackPanel>
+</Window>

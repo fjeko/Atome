@@ -37,12 +37,19 @@
                     <TextBlock Text="À revoir" Style="{StaticResource SousTitre}" />
                     <TextBlock Text="Ces cartes reviendront bientôt toutes seules. Tu peux relire la notion maintenant si tu veux."
                                Style="{StaticResource Discret}" Margin="0,2,0,10" />
+                    <TextBlock Text="{Binding MessageSignalement}" Margin="0,0,0,8"
+                               Visibility="{Binding MessageSignalement, Converter={StaticResource VisibleSi}}" />
                     <ItemsControl ItemsSource="{Binding Ratees}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <DockPanel Margin="0,5">
                                     <Button DockPanel.Dock="Right" Content="Revoir la notion" Padding="14,6" Margin="12,0,0,0" VerticalAlignment="Center"
                                             Command="{Binding DataContext.RevoirNotionCommand, ElementName=Racine}" CommandParameter="{Binding}" />
+                                    <Button DockPanel.Dock="Right" Background="Transparent" BorderThickness="0" Padding="8,4" VerticalAlignment="Center"
+                                            ToolTip="Signaler une erreur dans cette carte"
+                                            Command="{Binding DataContext.SignalerCommand, ElementName=Racine}" CommandParameter="{Binding}">
+                                        <TextBlock Text="&#xE7C1;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="16" Opacity="0.65" />
+                                    </Button>
                                     <StackPanel VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Texte}" TextWrapping="Wrap" />
                                         <TextBlock Text="{Binding Seance}" Style="{StaticResource Discret}" FontSize="12" />

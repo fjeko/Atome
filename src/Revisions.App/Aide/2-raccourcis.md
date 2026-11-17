@@ -10,6 +10,7 @@ Une session peut se faire entièrement au clavier.
 | **1**, **2**, **3**, **4** | noter : Raté, Difficile, Bien, Facile (rangée du haut, avec ou sans Maj, ou pavé numérique) |
 | **A** à **E** | choisir une réponse de QCM |
 | **Entrée** | la suite logique : révéler, continuer, ou noter « Bien » |
+| **S** | signaler une erreur dans la carte (pas dans la zone de réponse écrite) |
 
 ### Écrire sa réponse (cartes « question »)
 

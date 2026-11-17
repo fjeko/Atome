@@ -38,6 +38,7 @@ public sealed partial class ChoixAccent(string nom, string? hex) : ObservableObj
 public partial class ReglagesViewModel : ObservableObject
 {
     private readonly EtatApplication _etat;
+    private readonly MainViewModel _main;
     private readonly bool _initialise;
     private string _cleTheme;
     private string? _couleurAccent;
@@ -65,8 +66,13 @@ public partial class ReglagesViewModel : ObservableObject
     /// <summary>Partage du contenu avec un camarade (export et import).</summary>
     public PartageViewModel Partage { get; }
 
-    public ReglagesViewModel(EtatApplication etat, PartageViewModel partage)
+    /// <summary>Ouvre l'écran « Mes signalements ».</summary>
+    [RelayCommand]
+    private void AllerSignalements() => _main.AllerSignalements();
+
+    public ReglagesViewModel(EtatApplication etat, PartageViewModel partage, MainViewModel main)
     {
+        _main = main;
         _etat = etat;
         Partage = partage;
         _ = partage.EstimerAsync(); // taille des documents, calculée en arrière-plan

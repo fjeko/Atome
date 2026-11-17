@@ -87,6 +87,23 @@ public partial class FenetreRapport : Window
     private void Fermer(object sender, RoutedEventArgs e) => Close();
 }
 
+public partial class FenetreSignalement : Window
+{
+    public FenetreSignalement()
+    {
+        InitializeComponent();
+        Services.ServiceTheme.Habiller(this);
+    }
+
+    /// <summary>« Envoyer » ferme la fenêtre avec le résultat « oui » ; le service lit alors la saisie.</summary>
+    private void Envoyer(object sender, RoutedEventArgs e) => DialogResult = true;
+}
+
+public partial class VueMesSignalements : UserControl
+{
+    public VueMesSignalements() => InitializeComponent();
+}
+
 public partial class VueAcquis : UserControl
 {
     public VueAcquis() => InitializeComponent();

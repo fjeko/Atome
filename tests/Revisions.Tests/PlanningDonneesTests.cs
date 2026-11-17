@@ -165,7 +165,7 @@ public sealed class PlanningDonneesTests : IDisposable
         {
             cx.Open();
             // On ramène la base à la version 2, puis on y met des données.
-            cx.Execute("DROP TABLE planning; DROP TABLE planning_surcharge; ALTER TABLE pack DROP COLUMN fichier_taille; ALTER TABLE pack DROP COLUMN fichier_modifie; PRAGMA user_version = 2;");
+            cx.Execute("DROP TABLE signalement; DROP TABLE planning; DROP TABLE planning_surcharge; ALTER TABLE pack DROP COLUMN fichier_taille; ALTER TABLE pack DROP COLUMN fichier_modifie; PRAGMA user_version = 2;");
             cx.Execute("INSERT INTO reglage (cle, valeur) VALUES ('plafond_quotidien', '25')");
             cx.Execute("INSERT INTO acquis (chemin, avancement, date_maj) VALUES ('x', 'vu', 'd')");
             cx.Execute("UPDATE profil SET xp_total = 1234");
@@ -174,7 +174,7 @@ public sealed class PlanningDonneesTests : IDisposable
 
         var base3 = new BaseDeDonnees(chemin);
         using var connexion = base3.Ouvrir();
-        Assert.Equal(4L, connexion.ExecuteScalar<long>("PRAGMA user_version;"));
+        Assert.Equal(5L, connexion.ExecuteScalar<long>("PRAGMA user_version;"));
         Assert.Equal(1234L, connexion.ExecuteScalar<long>("SELECT xp_total FROM profil"));
         Assert.Equal("25", connexion.ExecuteScalar<string>("SELECT valeur FROM reglage WHERE cle = 'plafond_quotidien'"));
         Assert.Equal(1L, connexion.ExecuteScalar<long>("SELECT COUNT(*) FROM acquis"));

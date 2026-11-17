@@ -108,7 +108,7 @@
     // AZERTY la rangée du haut donne « & é " ' » sans Maj. Le pavé numérique marche aussi.
     const chiffre = /^(?:Digit|Numpad)([1-4])$/.exec(e.code);
     if (chiffre) touche = chiffre[1];
-    if (/^[1-4a-e ]$/.test(touche) || ["Enter", "ArrowLeft", "ArrowRight", "Tab"].includes(touche)) {
+    if (/^[1-4a-es ]$/.test(touche) || ["Enter", "ArrowLeft", "ArrowRight", "Tab"].includes(touche)) {
       e.preventDefault();
       envoyer({ type: "touche", touche: touche });
     }

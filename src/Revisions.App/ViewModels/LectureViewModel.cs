@@ -23,6 +23,7 @@ public partial class LectureViewModel : ObservableObject
     private readonly EtatApplication _etat;
     private readonly DepotRevisions _revisions;
     private readonly SeanceALire _seance;
+    private readonly ServiceSignalement _signalements;
 
     public string Matiere => _seance.Matiere;
     public string Titre => _seance.Seance;
@@ -43,8 +44,9 @@ public partial class LectureViewModel : ObservableObject
     public string Position => Sections.Count == 0 ? "" : $"{Index + 1} / {Sections.Count}";
 
     public LectureViewModel(ParametresLecture parametres, MainViewModel main, EtatApplication etat,
-        DepotBibliotheque bibliotheque, DepotRevisions revisions)
+        DepotBibliotheque bibliotheque, DepotRevisions revisions, ServiceSignalement signalements)
     {
+        _signalements = signalements;
         _main = main;
         _etat = etat;
         _revisions = revisions;
@@ -60,8 +62,23 @@ public partial class LectureViewModel : ObservableObject
         Rendre();
     }
 
+    /// <summary>Remerciement affiché près du drapeau après un signalement (effacé au changement de section).</summary>
+    [ObservableProperty]
+    private string? _messageSignalement;
+
+    /// <summary>Signale une erreur dans la section affichée.</summary>
+    [RelayCommand]
+    private void Signaler()
+    {
+        if (Sections.Count == 0) return;
+        var section = Sections[Index];
+        if (_signalements.SignalerSection(section.Id, _seance.PackId, section.Titre, section.Contenu))
+            MessageSignalement = ServiceSignalement.Merci;
+    }
+
     partial void OnIndexChanged(int value)
     {
+        MessageSignalement = null;
         // La liste du sommaire met -1 quand rien n'est sélectionné : on l'ignore.
         if (value >= 0 && value < Sections.Count) Rendre();
     }

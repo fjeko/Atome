@@ -180,6 +180,15 @@
 
             <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
                 <StackPanel>
+                    <TextBlock Text="Erreurs dans les cours" Style="{StaticResource SousTitre}" />
+                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
+                               Text="Tu as repéré une erreur dans une carte ou un cours ? Le petit drapeau permet de la signaler. Ici, tu retrouves tes signalements et tu peux les exporter." />
+                    <Button Content="Mes signalements…" Command="{Binding AllerSignalementsCommand}" Padding="16,7" Margin="0,12,0,0" HorizontalAlignment="Left" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+                <StackPanel>
                     <TextBlock Text="Dossiers" Style="{StaticResource SousTitre}" />
 
                     <TextBlock Text="Dossier des packs" Style="{StaticResource Libelle}" />

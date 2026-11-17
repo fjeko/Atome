@@ -17,6 +17,7 @@
         <DataTemplate DataType="{x:Type vm:StatistiquesViewModel}"><v:VueStatistiques /></DataTemplate>
         <DataTemplate DataType="{x:Type vm:ReglagesViewModel}"><v:VueReglages /></DataTemplate>
         <DataTemplate DataType="{x:Type vm:AideViewModel}"><v:VueAide /></DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MesSignalementsViewModel}"><v:VueMesSignalements /></DataTemplate>
         <DataTemplate DataType="{x:Type vm:AcquisViewModel}"><v:VueAcquis /></DataTemplate>
         <DataTemplate DataType="{x:Type vm:PlanningViewModel}"><v:VuePlanning /></DataTemplate>
         <DataTemplate DataType="{x:Type vm:QuestionnaireViewModel}"><v:VueQuestionnaire /></DataTemplate>

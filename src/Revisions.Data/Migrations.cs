@@ -153,5 +153,28 @@ internal static class Migrations
         ALTER TABLE pack ADD COLUMN fichier_taille INTEGER;
         ALTER TABLE pack ADD COLUMN fichier_modifie TEXT;
         """,
+
+        // ---- 5 : signalements d'erreurs dans les cartes et les sections -----------------------
+        """
+        CREATE TABLE signalement (
+          id              TEXT PRIMARY KEY,          -- GUID
+          date_heure      TEXT NOT NULL,
+          cible           TEXT NOT NULL CHECK (cible IN ('carte','section')),
+          cible_id        TEXT NOT NULL,             -- id de la carte ou de la section dans le pack
+          pack_id         TEXT NOT NULL,
+          motif           TEXT NOT NULL,             -- reponse_fausse | question_pas_claire | faute | affichage | autre
+          commentaire     TEXT,
+          titre           TEXT,                      -- titre de la section
+          texte_recto     TEXT NOT NULL,             -- texte affiché : recto de la carte, ou contenu de la section
+          texte_verso     TEXT,
+          pack_empreinte  TEXT,                      -- SHA-256 du pack au moment du signalement
+          pack_date_maj   TEXT,
+          matiere         TEXT,
+          seance          TEXT,
+          source_fichier  TEXT,
+          page_source     INTEGER,
+          etat            TEXT NOT NULL DEFAULT 'nouveau' CHECK (etat IN ('nouveau','exporte'))
+        );
+        """,
     ];
 }

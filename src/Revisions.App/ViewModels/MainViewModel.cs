@@ -82,6 +82,10 @@ public partial class MainViewModel(
     [RelayCommand]
     public void AllerReglages() => Afficher(Creer<ReglagesViewModel>(), "reglages");
 
+    /// <summary>« Mes signalements » : rangé sous la rubrique Réglages de la barre de gauche.</summary>
+    [RelayCommand]
+    public void AllerSignalements() => Afficher(Creer<MesSignalementsViewModel>(), "reglages");
+
     [RelayCommand]
     public void AllerAcquis() => Afficher(Creer<AcquisViewModel>(), "acquis");
 

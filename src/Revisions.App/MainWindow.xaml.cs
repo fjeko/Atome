@@ -37,6 +37,7 @@ public partial class MainWindow : Window
             Key.D2 or Key.NumPad2 => "2",
             Key.D3 or Key.NumPad3 => "3",
             Key.D4 or Key.NumPad4 => "4",
+            Key.S => "s",
             >= Key.A and <= Key.E => ((char)('a' + (e.Key - Key.A))).ToString(),
             _ => null,
         };

@@ -7,6 +7,7 @@ using Revisions.Core.Gamification;
 using Revisions.Core.Modeles;
 using Revisions.Core.Planification;
 using Revisions.Core.Sessions;
+using Revisions.Core.Signalements;
 using Revisions.Data;
 
 namespace Revisions.App.ViewModels;
@@ -15,7 +16,8 @@ namespace Revisions.App.ViewModels;
 public sealed record ParametresSession(IReadOnlyList<CarteAReviser> Cartes, string Mode);
 
 /// <summary>Une carte ratée, rappelée sur l'écran de fin.</summary>
-public sealed record CarteRatee(string Texte, string Seance, string SectionId);
+/// <remarks>Le recto et le verso sont gardés pour pouvoir signaler la carte depuis l'écran de fin.</remarks>
+public sealed record CarteRatee(string Texte, string Seance, string SectionId, string CarteId, string PackId, string Recto, string Verso);
 
 /// <summary>Résumé d'une session, affiché sur l'écran de fin.</summary>
 public sealed record BilanSession(int CartesRevues, int Reussies, int XpGagnee, int NiveauAvant, int NiveauApres,
@@ -33,6 +35,7 @@ public partial class SessionViewModel : ObservableObject
     private readonly DepotRevisions _revisions;
     private readonly DepotProfil _profil;
     private readonly Planificateur _planificateur;
+    private readonly ServiceSignalement _signalements;
     private readonly SessionEnCours _session;
     private readonly long _sessionId;
     private readonly DateOnly _jour;
@@ -79,6 +82,9 @@ public partial class SessionViewModel : ObservableObject
     /// <summary>Message d'encouragement quand l'objectif du jour est atteint.</summary>
     [ObservableProperty] private string? _bandeau;
 
+    /// <summary>Remerciement affiché à côté du drapeau après un signalement (effacé à la carte suivante).</summary>
+    [ObservableProperty] private string? _messageSignalement;
+
     /// <summary>
     /// Réponse écrite par l'étudiant sur une carte « question » (facultatif). Elle n'est pas enregistrée :
     /// elle sert seulement à comparer avec la bonne réponse avant de se noter.
@@ -88,8 +94,9 @@ public partial class SessionViewModel : ObservableObject
     [ObservableProperty] private bool _saisieVisible;
 
     public SessionViewModel(ParametresSession parametres, MainViewModel main, EtatApplication etat,
-        DepotRevisions revisions, DepotProfil profil, Planificateur planificateur)
+        DepotRevisions revisions, DepotProfil profil, Planificateur planificateur, ServiceSignalement signalements)
     {
+        _signalements = signalements;
         _main = main;
         _etat = etat;
         _revisions = revisions;
@@ -113,6 +120,7 @@ public partial class SessionViewModel : ObservableObject
         _choixFait = null;
         _reponseVisible = false;
         ReponseSaisie = "";
+        MessageSignalement = null;
         _ordreChoix = Enumerable.Range(0, Courante.Carte.Contenu.Choix?.Count ?? 0).ToArray();
         Random.Shared.Shuffle(_ordreChoix);
         _chrono.Restart();
@@ -286,6 +294,18 @@ public partial class SessionViewModel : ObservableObject
         return revele;
     }
 
+    /// <summary>
+    /// Signale une erreur dans la carte affichée (bouton drapeau ou touche S). Le recto et le verso sont
+    /// toujours enregistrés, même si la réponse n'est pas encore visible à l'écran.
+    /// </summary>
+    [RelayCommand]
+    private void Signaler()
+    {
+        var carte = Courante;
+        if (_signalements.SignalerCarte(carte.Carte.Id, carte.PackId, $"{carte.Seance}", TexteCarte.Recto(carte.Carte), TexteCarte.Verso(carte.Carte)))
+            MessageSignalement = ServiceSignalement.Merci;
+    }
+
     [RelayCommand]
     private void RevoirNotion() => _main.RevoirLaNotion(Courante.Carte.SectionId);
 
@@ -314,6 +334,10 @@ public partial class SessionViewModel : ObservableObject
             case "Tab":
                 DemanderSaisie();
                 break;
+            case "s":
+                // Jamais pendant la saisie d'une réponse : MainWindow ne relaie pas les touches d'une zone de texte.
+                Signaler();
+                break;
             case "a" or "b" or "c" or "d" or "e":
                 Choisir(touche[0] - 'a');
                 break;
@@ -339,7 +363,8 @@ public partial class SessionViewModel : ObservableObject
         if (_cartesVues.Add(carte.Carte.Id))
         {
             if (note != Note.Rate) _reussies++;
-            else _ratees.Add(new CarteRatee(Extrait(carte.Carte), carte.Seance, carte.Carte.SectionId));
+            else _ratees.Add(new CarteRatee(Extrait(carte.Carte), carte.Seance, carte.Carte.SectionId, carte.Carte.Id, carte.PackId,
+                TexteCarte.Recto(carte.Carte), TexteCarte.Verso(carte.Carte)));
         }
 
         VerifierObjectif();

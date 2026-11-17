@@ -166,6 +166,8 @@ public partial class App : Application
             services.AddSingleton<DepotProfil>();
             services.AddSingleton<DepotAcquis>();
             services.AddSingleton<DepotPlanning>();
+            services.AddSingleton<DepotSignalements>();
+            services.AddSingleton<ServiceSignalement>();
             services.AddSingleton<SelectionDuJour>();
             services.AddSingleton<ImportateurPacks>();
             services.AddSingleton(new Fsrs());
