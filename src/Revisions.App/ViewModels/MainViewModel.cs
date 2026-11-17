@@ -127,7 +127,13 @@ public partial class MainViewModel(
     /// <summary>Au démarrage : accueil tout de suite, puis import des packs et sauvegarde en arrière-plan.</summary>
     public async Task DemarrerAsync()
     {
+        // La fenêtre est déjà visible : on affiche « Chargement… » et on laisse WPF la dessiner avant de calculer l'accueil.
+        Bandeau = "Chargement…";
+        await Application.Current.Dispatcher.InvokeAsync(() => { }, System.Windows.Threading.DispatcherPriority.Background);
+        Journal.Etape("Fenêtre dessinée");
         AllerAccueil();
+        Bandeau = null;
+        Journal.Etape("Accueil calculé");
         try
         {
             var jour = etat.Jour;
@@ -135,13 +141,17 @@ public partial class MainViewModel(
             var resultats = await Task.Run(() =>
             {
                 baseDeDonnees.SauvegarderSiNecessaire(jour);
+                Journal.Etape("Sauvegarde quotidienne finie");
                 var resultatsImport = ImporterDossier();
+                Journal.Etape($"Scan des packs fini ({resultatsImport.Count} fichiers)");
                 // Planning du CNED : dossier « planning » à côté du dossier « packs » (facultatif).
                 planningArrive = ImporterPlanning();
+                Journal.Etape("Planning chargé");
                 // Les acquis déjà déclarés s'appliquent aussi aux cartes qui viennent d'arriver.
                 services.GetRequiredService<DepotAcquis>().Recalculer(jour);
                 return resultatsImport;
             });
+            Journal.Etape("Import terminé");
             AnnoncerImport(resultats, afficherRapportSiRien: false);
             // L'accueil a été calculé avant l'import : on le rafraîchit si des packs sont arrivés.
             if (VueCourante is AccueilViewModel && (planningArrive || resultats.Any(r => r.Statut is StatutImport.Importe or StatutImport.MisAJour)))

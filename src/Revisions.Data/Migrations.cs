@@ -147,5 +147,11 @@ internal static class Migrations
           PRIMARY KEY (planning_id, element)
         );
         """,
+
+        // ---- 4 : taille et date du fichier de pack (le scan évite de relire un fichier inchangé) ----
+        """
+        ALTER TABLE pack ADD COLUMN fichier_taille INTEGER;
+        ALTER TABLE pack ADD COLUMN fichier_modifie TEXT;
+        """,
     ];
 }

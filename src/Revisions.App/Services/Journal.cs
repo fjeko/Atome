@@ -10,6 +10,23 @@ public static class Journal
 
     public static string Chemin => Path.Combine(BaseDeDonnees.DossierDonnees, "journal.log");
 
+    /// <summary>Chronomètre depuis le lancement de l'application (pour mesurer le démarrage).</summary>
+    private static readonly System.Diagnostics.Stopwatch Depuis = System.Diagnostics.Stopwatch.StartNew();
+
+    /// <summary>Note une étape du démarrage avec le temps écoulé depuis le lancement.</summary>
+    public static void Etape(string nom)
+    {
+        try
+        {
+            lock (Verrou)
+            {
+                Directory.CreateDirectory(BaseDeDonnees.DossierDonnees);
+                File.AppendAllText(Chemin, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [Chrono] {nom} : {Depuis.ElapsedMilliseconds} ms\n");
+            }
+        }
+        catch (IOException) { }
+    }
+
     public static void Erreur(string contexte, Exception exception)
     {
         try

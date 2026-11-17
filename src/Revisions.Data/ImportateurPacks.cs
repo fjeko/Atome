@@ -42,10 +42,27 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
 
         // Pour repérer deux fichiers qui portent le même identifiant de pack.
         var fichierParPack = new Dictionary<string, string>();
+        // Packs déjà connus avec la taille et la date de leur fichier : un fichier inchangé n'est même pas relu.
+        Dictionary<string, (string Id, string Seance, long Taille, string Modifie)> connus;
+        using (var connexion = baseDeDonnees.Ouvrir())
+            connus = connexion.Query<(string Chemin, string Id, string Seance, long? Taille, string? Modifie)>(
+                    "SELECT chemin_fichier, id, seance, fichier_taille, fichier_modifie FROM pack WHERE chemin_fichier IS NOT NULL AND fichier_taille IS NOT NULL")
+                .GroupBy(x => x.Chemin).ToDictionary(g => g.Key, g => (g.First().Id, g.First().Seance, g.First().Taille!.Value, g.First().Modifie!));
         foreach (string fichier in Directory.EnumerateFiles(dossierPacks, "*.json", SearchOption.AllDirectories).Order())
+        {
+            var info = new FileInfo(fichier);
+            if (connus.TryGetValue(fichier, out var c) && c.Taille == info.Length && c.Modifie == Horodatage(info))
+            {
+                fichierParPack.TryAdd(c.Id, fichier);
+                resultats.Add(new ResultatImport(fichier, c.Id, c.Seance, StatutImport.Inchange, []));
+                continue;
+            }
             resultats.Add(ImporterFichier(fichier, dossierCours, fichierParPack));
+        }
         return resultats;
     }
+
+    private static string Horodatage(FileInfo info) => info.LastWriteTimeUtc.Ticks.ToString();
 
     /// <summary>Importe un fichier de pack.</summary>
     public ResultatImport ImporterFichier(string fichier, string? dossierCours, Dictionary<string, string>? fichierParPack = null)
@@ -70,6 +87,7 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
         {
             var p = connus[0];
             fichierParPack?.TryAdd(p.Id, fichier);
+            Marquer(connexion, p.Id, fichier);
             return new ResultatImport(fichier, p.Id, p.Seance, StatutImport.Inchange, []);
         }
 
@@ -107,11 +125,20 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
         using var transaction = connexion.BeginTransaction();
         bool existait = connexion.ExecuteScalar<long>("SELECT COUNT(*) FROM pack WHERE id = @Id", new { pack.Id }, transaction) > 0;
         Enregistrer(connexion, transaction, pack, fichier, empreinte, maintenant);
+        Marquer(connexion, pack.Id, fichier, transaction);
         var statut = existait ? StatutImport.MisAJour : StatutImport.Importe;
         Journaliser(connexion, transaction, fichier, pack.Id, statut, problemes, maintenant);
         transaction.Commit();
 
         return new ResultatImport(fichier, pack.Id, pack.Seance, statut, problemes);
+    }
+
+    /// <summary>Retient la taille et la date du fichier, pour que le prochain scan puisse l'ignorer sans le relire.</summary>
+    private static void Marquer(SqliteConnection connexion, string packId, string fichier, SqliteTransaction? transaction = null)
+    {
+        var info = new FileInfo(fichier);
+        connexion.Execute("UPDATE pack SET fichier_taille = @taille, fichier_modifie = @modifie WHERE id = @packId AND chemin_fichier = @fichier",
+            new { taille = info.Length, modifie = Horodatage(info), fichier, packId }, transaction);
     }
 
     private static void Enregistrer(SqliteConnection connexion, SqliteTransaction transaction, Pack pack,

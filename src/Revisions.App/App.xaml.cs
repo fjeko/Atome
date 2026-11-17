@@ -95,9 +95,46 @@ public partial class App : Application
     }
 #endif
 
+    // ---- Instance unique -----------------------------------------------------------------------
+    // Un Mutex nommé empêche de lancer Atome deux fois (deux instances sur la même base se gêneraient).
+    // Le second lancement réveille la première fenêtre via un EventWaitHandle nommé, puis s'arrête sans bruit.
+    private const string NomMutex = "Atome-instance-unique-RevisionsBTS";
+    private const string NomSignal = "Atome-instance-unique-RevisionsBTS-signal";
+    private Mutex? _mutex;
+    private EventWaitHandle? _signal;
+
+    /// <summary>Vrai si on est la première instance ; sinon, prévient l'autre de passer au premier plan.</summary>
+    private bool PrendreLaPlace()
+    {
+        _mutex = new Mutex(initiallyOwned: true, NomMutex, out bool premiere);
+        _signal = new EventWaitHandle(false, EventResetMode.AutoReset, NomSignal);
+        if (!premiere)
+        {
+            _signal.Set();
+            return false;
+        }
+        var fil = new Thread(() =>
+        {
+            while (_signal.WaitOne())
+                Dispatcher.BeginInvoke(() =>
+                {
+                    if (MainWindow is not { } fenetre) return;
+                    if (fenetre.WindowState == WindowState.Minimized) fenetre.WindowState = WindowState.Normal;
+                    fenetre.Activate();
+                    fenetre.Topmost = true; // astuce classique : force le passage au premier plan
+                    fenetre.Topmost = false;
+                    fenetre.Focus();
+                });
+        }) { IsBackground = true };
+        fil.Start();
+        return true;
+    }
+
     protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+        if (!PrendreLaPlace()) { Shutdown(); return; }
+        Journal.Etape("Lancement");
 
         // Une erreur imprévue ne ferme pas l'application : on la note et on prévient simplement.
         DispatcherUnhandledException += (_, args) =>
@@ -123,6 +160,7 @@ public partial class App : Application
             services.AddSingleton(TimeProvider.System);
 #endif
             services.AddSingleton(new BaseDeDonnees(BaseDeDonnees.CheminParDefaut));
+            Journal.Etape("Base prête (migrations)");
             services.AddSingleton<DepotBibliotheque>();
             services.AddSingleton<DepotRevisions>();
             services.AddSingleton<DepotProfil>();
@@ -138,10 +176,13 @@ public partial class App : Application
             Services = services.BuildServiceProvider();
 
             Services.GetRequiredService<EtatApplication>().Initialiser();
+            Journal.Etape("Services et réglages prêts");
 
             var principal = Services.GetRequiredService<MainViewModel>();
             MainWindow = new MainWindow { DataContext = principal };
+            Journal.Etape("Fenêtre créée");
             MainWindow.Show();
+            Journal.Etape("Fenêtre affichée");
             await principal.DemarrerAsync();
 #if DEBUG
             OuvrirEcranDeTest(principal, e.Args);

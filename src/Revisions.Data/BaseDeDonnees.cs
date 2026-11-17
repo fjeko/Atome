@@ -22,6 +22,7 @@ public sealed class BaseDeDonnees
         _chaineDeConnexion = new SqliteConnectionStringBuilder
         {
             DataSource = chemin,
+            DefaultTimeout = 15, // attend un verrou occupé au lieu d'échouer tout de suite
             ForeignKeys = true, // SQLite ne vérifie les clés étrangères que si on le demande
         }.ToString();
         Migrer();
@@ -49,18 +50,36 @@ public sealed class BaseDeDonnees
         return connexion;
     }
 
+    /// <summary>
+    /// Met le schéma à jour. Chaque migration se fait sous un verrou d'écriture pris AVANT de lire la version
+    /// (BEGIN IMMEDIATE) : si deux processus démarrent ensemble, le second attend, relit la version
+    /// et constate que le travail est déjà fait.
+    /// </summary>
     private void Migrer()
     {
         using var connexion = Ouvrir();
+        connexion.Execute("PRAGMA busy_timeout = 15000;");
         // WAL : écritures plus rapides et plus sûres en cas de coupure.
         connexion.Execute("PRAGMA journal_mode=WAL;");
-        long version = connexion.ExecuteScalar<long>("PRAGMA user_version;");
-        for (int i = (int)version; i < Migrations.Scripts.Length; i++)
+        // Chemin rapide : base déjà à jour, aucun verrou nécessaire.
+        if (connexion.ExecuteScalar<long>("PRAGMA user_version;") >= Migrations.Scripts.Length) return;
+
+        while (true)
         {
-            using var transaction = connexion.BeginTransaction();
-            connexion.Execute(Migrations.Scripts[i], transaction: transaction);
-            connexion.Execute($"PRAGMA user_version = {i + 1};", transaction: transaction);
-            transaction.Commit();
+            connexion.Execute("BEGIN IMMEDIATE;");
+            try
+            {
+                int version = (int)connexion.ExecuteScalar<long>("PRAGMA user_version;");
+                if (version >= Migrations.Scripts.Length) { connexion.Execute("COMMIT;"); return; }
+                connexion.Execute(Migrations.Scripts[version]);
+                connexion.Execute($"PRAGMA user_version = {version + 1};");
+                connexion.Execute("COMMIT;");
+            }
+            catch
+            {
+                connexion.Execute("ROLLBACK;");
+                throw;
+            }
         }
     }
 
