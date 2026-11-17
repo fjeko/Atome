@@ -1,14 +1,52 @@
-# Révisions BTS SIO
+# Atome
 
-Application Windows de révision pour le BTS SIO : elle importe des **packs** de cours (fichiers JSON),
-permet de **lire le cours** (Markdown et formules LaTeX, hors ligne) et de **réviser** avec des cartes
-planifiées par **répétition espacée**, le tout avec une gamification qui ne punit jamais une absence.
+> Application Windows de révision pour le **BTS SIO** : tu importes tes cours sous forme de « packs »,
+> tu les lis dans l'application (Markdown et formules LaTeX, hors ligne), puis tu révises avec des cartes
+> planifiées par **répétition espacée**, avec une gamification qui ne punit jamais une absence.
 
-- Cahier des charges : `../docs/cahier-des-charges.md`
-- Format des packs : `../packs/FORMAT.md`
+**Atome** est mon tout premier projet. Il a été **entièrement généré par une IA (Claude, d'Anthropic)** :
+je l'ai imaginé, guidé et testé, mais je n'ai pas écrit le code moi-même. Je l'ai fait pour mes propres
+révisions de 1re année de BTS SIO option SLAM (CNED), et je le partage à mes camarades.
+
+## Ce qu'il faut savoir avant de commencer
+
+- **Aucun cours n'est fourni.** Les cours du CNED sont réservés à leurs destinataires : ils ne sont ni dans
+  ce dépôt, ni dans l'application. Chacun utilise **ses propres cours**.
+- Un **pack d'exemple** est inclus ([`samples/exemple.json`](samples/exemple.json)) pour essayer l'application.
+- Pour fabriquer tes propres packs à partir de tes PDF, il suffit de les donner à Claude avec un prompt
+  prêt à l'emploi : voir [Créer ses propres packs](#créer-ses-propres-packs).
+- L'application fonctionne **hors ligne**, sans compte, et tes données restent sur ton PC.
+
+## Télécharger et installer
+
+1. Va dans l'onglet **[Releases](../../releases)** de ce dépôt et télécharge la dernière version.
+2. Lance `Atome-Setup-x.y.z.exe` et suis l'assistant (aucun droit administrateur nécessaire). Rien d'autre à installer.
+3. **Windows peut afficher « Windows a protégé votre ordinateur »** (SmartScreen) : l'application n'est pas
+   signée numériquement, ce qui coûte cher pour un projet personnel. Clique sur **Informations complémentaires**
+   puis **Exécuter quand même**. Le code source est entièrement visible ici si tu veux vérifier.
+4. Prérequis : Windows 10/11 et le **WebView2 Runtime** (déjà inclus dans Windows 11).
+
+Pour essayer : **Bibliothèque** → importer `samples/exemple.json`.
+
+## Créer ses propres packs
+
+Un pack est un fichier JSON qui décrit une séance : le cours découpé en sections et des cartes de révision.
+Claude peut le générer à partir de tes PDF :
+
+1. Ouvre l'**Aide** dans l'application et clique sur **Copier le prompt** (ou ouvre [`docs/prompt-type.md`](docs/prompt-type.md)).
+2. Colle-le dans une conversation avec Claude, en joignant le PDF de ta séance.
+3. Enregistre le fichier JSON obtenu, puis dépose-le dans le dossier des packs (modifiable dans **Réglages**)
+   ou importe-le depuis la **Bibliothèque**.
+
+Le format exact est décrit dans [`docs/FORMAT.md`](docs/FORMAT.md).
+**Ne publie jamais tes packs** : ils contiennent le contenu de tes cours.
+
+## Documentation
+
+- Format des packs : [`docs/FORMAT.md`](docs/FORMAT.md)
 - Conception détaillée : [`PLAN.md`](PLAN.md)
 
-## Lancer l'application
+## Lancer depuis le code source (développeurs)
 
 Prérequis : Windows 10/11, **SDK .NET 10**, **WebView2 Runtime** (inclus dans Windows 11).
 
@@ -24,8 +62,7 @@ Pour fabriquer la version de tous les jours (dossier `app/publish`) et créer un
 powershell -ExecutionPolicy Bypass -File publier.ps1 -Raccourci
 ```
 
-Au démarrage, l'application importe automatiquement les packs du dossier `packs/` (trouvé tout seul en
-remontant depuis l'exécutable ; modifiable dans Réglages).
+Au démarrage, l'application importe automatiquement les packs de son dossier de packs (modifiable dans Réglages).
 
 ## Lancer les tests
 
@@ -71,7 +108,7 @@ app/
       Controles/        VueMarkdown : la zone qui affiche Markdown + LaTeX.
       Services/         État partagé, thème (ServiceTheme), WebView2, journal d'erreurs.
       Aide/             Pages de l'aide en Markdown, incorporées dans l'exécutable.
-                        prompt-type.md est une copie de ../docs/prompt-type.md : la recopier si le prompt change.
+                        prompt-type.md est une copie de docs/prompt-type.md : la recopier si le prompt change.
       Web/              Page de rendu locale + markdown-it, KaTeX, highlight.js (hors ligne).
   tests/Revisions.Tests/  Tests xUnit.
   samples/exemple.json    Petit pack de démonstration (à importer depuis la Bibliothèque).
@@ -131,10 +168,14 @@ Pour restaurer une sauvegarde : fermer l'application, puis remplacer `revisions.
 
 ## Outils de développement (version Debug uniquement)
 
-- `Revisions.exe --ecran=bibliotheque` (ou `statistiques`, `reglages`, `lecture:<id du pack>`,
+- `Atome.exe --ecran=bibliotheque` (ou `statistiques`, `reglages`, `lecture:<id du pack>`,
   `session:<id du pack>`, `aide:<numéro de page>`, `bibliotheque:0,1` pour descendre dans les tuiles,
   `bibliotheque:?texte` pour une recherche) ouvre directement un écran.
 - `--theme=ocean` et `--accent=#D8498F` (ou `--accent=auto`) changent l'apparence au lancement ;
   `--hauteur=1700` agrandit la fenêtre pour capturer un écran long.
 - Variable d'environnement `REVISIONS_DONNEES` : utilise un autre dossier de données, pour essayer
   sans toucher à son vrai historique.
+
+## Licence
+
+[MIT](LICENSE) © 2026 fjeko. La licence ne couvre que le code d'Atome, pas les cours du CNED.

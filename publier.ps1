@@ -12,17 +12,16 @@ $racine = $PSScriptRoot
 $sortie = Join-Path $racine "publish"
 
 # L'application ne doit pas tourner pendant qu'on remplace ses fichiers.
-Get-Process Revisions -ErrorAction SilentlyContinue | Stop-Process -Force
+Get-Process Atome,Revisions -ErrorAction SilentlyContinue | Stop-Process -Force
 
 dotnet publish (Join-Path $racine "src\Revisions.App") -c Release -o $sortie --nologo -v q
 if ($LASTEXITCODE -ne 0) { throw "La publication a echoue." }
 
-$exe = Join-Path $sortie "Revisions.exe"
+$exe = Join-Path $sortie "Atome.exe"
 Write-Host "Application publiee : $exe"
 
 if ($Raccourci) {
-    # [char]0xE9 = e accent aigu, pour que le raccourci s'appelle bien "Revisions" avec son accent.
-    $nom = "R$([char]0xE9)visions BTS SIO"
+    $nom = "Atome"
     $lien = Join-Path ([Environment]::GetFolderPath("Desktop")) "$nom.lnk"
     $shell = New-Object -ComObject WScript.Shell
     # Attention : ne pas appeler cette variable $raccourci, PowerShell la confondrait avec l'option -Raccourci.

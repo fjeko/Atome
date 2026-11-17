@@ -1,0 +1,42 @@
+# Fabrique l'installateur Atome-Setup-<version>.exe dans installateur\sortie.
+#
+#   .\creer-setup.ps1              -> version lue dans Revisions.App.csproj
+#   .\creer-setup.ps1 -Version 1.1.0
+#
+# 1) publie l'application en mode "autonome" (le runtime .NET est inclus : rien a installer pour l'utilisateur)
+#    dans publish-setup (separe de publish, utilise au quotidien) ;
+# 2) lance Inno Setup pour emballer le tout.
+# (Pas d'accents dans ce fichier : Windows PowerShell 5.1 les lit mal dans un script sans BOM.)
+param([string]$Version)
+
+$ErrorActionPreference = "Stop"
+$racine = $PSScriptRoot
+$projet = Join-Path $racine "src\Revisions.App"
+
+if (-not $Version) {
+    $csproj = [xml](Get-Content (Join-Path $projet "Revisions.App.csproj"))
+    $Version = @($csproj.Project.PropertyGroup.Version | Where-Object { $_ })[0]
+}
+
+# Recherche d'Inno Setup (installation pour l'utilisateur ou pour tout le PC).
+$iscc = @(
+    "$env:LOCALAPPDATA\Programs\Inno Setup 7\ISCC.exe",
+    "$env:ProgramFiles\Inno Setup 7\ISCC.exe",
+    "${env:ProgramFiles(x86)}\Inno Setup 7\ISCC.exe",
+    "$env:LOCALAPPDATA\Programs\Inno Setup 6\ISCC.exe",
+    "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+) | Where-Object { Test-Path $_ } | Select-Object -First 1
+if (-not $iscc) { throw "Inno Setup est introuvable. Installe-le depuis https://jrsoftware.org/isdl.php" }
+
+$sortie = Join-Path $racine "publish-setup"
+if (Test-Path $sortie) { Remove-Item $sortie -Recurse -Force }
+
+Write-Host "Publication autonome (version $Version)..."
+dotnet publish $projet -c Release -r win-x64 --self-contained true -o $sortie --nologo -v q
+if ($LASTEXITCODE -ne 0) { throw "La publication a echoue." }
+
+Write-Host "Creation de l'installateur..."
+& $iscc "/DVersion=$Version" (Join-Path $racine "installateur\atome.iss")
+if ($LASTEXITCODE -ne 0) { throw "Inno Setup a echoue." }
+
+Write-Host "Termine : $(Join-Path $racine "installateur\sortie\Atome-Setup-$Version.exe")"

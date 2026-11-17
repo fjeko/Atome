@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyName>Revisions</AssemblyName>
+    <AssemblyName>Atome</AssemblyName>
     <RootNamespace>Revisions.App</RootNamespace>
     <Version>1.0.0</Version>
     <!-- Icône de l'exécutable, reprise par la barre des tâches, les fenêtres et le raccourci. -->
