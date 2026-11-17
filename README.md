@@ -18,13 +18,16 @@
 
 <p align="center">
   <img src="docs/images/accueil.png" alt="Accueil : la session du jour en un clic" width="49%">
-  <img src="docs/images/statistiques.png" alt="Statistiques et régularité" width="49%">
+  <img src="docs/images/lecture.png" alt="Lecture d'un cours avec formule et tableau" width="49%">
 </p>
 <p align="center">
-  <img src="docs/images/reglages.png" alt="Réglages : rythme et reprise après une pause" width="49%">
+  <img src="docs/images/session.png" alt="Session de révision avec cartes" width="49%">
   <img src="docs/images/themes.png" alt="Neuf thèmes et couleurs d'accent au choix" width="49%">
 </p>
-
+<p align="center">
+  <img src="docs/images/statistiques.png" alt="Statistiques et régularité" width="49%">
+  <img src="docs/images/reglages.png" alt="Réglages : rythme et reprise après une pause" width="49%">
+</p>
 **Version de test** : un bug, une idée ? Ouvre un [Issue](../../issues) sur ce dépôt.
 
 **Atome** est mon tout premier projet. Il a été **entièrement généré par une IA (Claude, d'Anthropic)** :
