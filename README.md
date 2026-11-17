@@ -33,13 +33,19 @@ remontant depuis l'exécutable ; modifiable dans Réglages).
 dotnet test
 ```
 
-335 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
+511 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
 construction des sessions, mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
-bibliothèque en niveaux, couleurs et contrastes de chaque thème, enregistrement des réglages.
+bibliothèque en niveaux, couleurs et contrastes de chaque thème, enregistrement des réglages,
+ordre du cours (tri naturel, chiffres romains) et tourniquet des matières, planning du CNED (priorités,
+devoirs, avancement avant une échéance, dates personnelles, migration).
 
 ## Ce que fait l'application
 
 - **Accueil** : la session du jour en un clic, objectif minimal, série en semaines, XP et niveau.
+  Avec un planning : 1 à 3 séances « Au programme » et les prochaines échéances, sur un ton neutre.
+- **Planning** : la proposition du CNED en frises par matière (fichier `../planning/*.json`, format décrit dans
+  `../planning/FORMAT.md`). Dates modifiables (gardées dans la base, le fichier n'est jamais modifié),
+  interrupteur général et par matière, quiz masquables. Sans planning, l'application suit l'ordre du cours.
 - **Bibliothèque en tuiles** : matière → compétence (B1.2…) → séquence (SQ1…) → séances, avec fil
   d'Ariane, recherche, nombre de cartes à revoir et barre de maîtrise sur chaque tuile.
 - **Lecture** : le cours section par section (Markdown, LaTeX, code coloré), PDF d'origine à la bonne page.
@@ -56,7 +62,8 @@ app/
   src/
     Revisions.Core/     Cœur métier, sans interface ni base : modèles, validation des packs,
                         FSRS, construction des sessions, gamification, niveaux de la bibliothèque
-                        (Bibliotheque/), couleurs et thèmes (Apparence/). Entièrement testable.
+                        (Bibliotheque/), couleurs et thèmes (Apparence/), ordre du cours (Ordre/),
+                        planning du CNED (Planning/). Entièrement testable.
     Revisions.Data/     SQLite (Microsoft.Data.Sqlite + Dapper) : schéma, import, requêtes.
     Revisions.App/      Interface WPF en MVVM (CommunityToolkit.Mvvm) + rendu WebView2.
       ViewModels/       Un ViewModel par écran : toute la logique d'affichage.
@@ -118,6 +125,7 @@ Pour restaurer une sauvegarde : fermer l'application, puis remplacer `revisions.
 - [ ] Changer de thème et de couleur d'accent : tout change tout de suite, et le choix est gardé au redémarrage.
 - [ ] Carte « question » : écrire une réponse (Tab), Ctrl+Entrée, comparaison affichée, puis note au clavier.
 - [ ] Bibliothèque : descendre dans les tuiles, revenir par « Retour » et par le fil d'Ariane, rechercher.
+- [ ] Planning : changer une date, redémarrer, la date est gardée ; « Dates du fichier » la remet.
 - [ ] Aide : « Copier le prompt » puis coller dans un éditeur de texte.
 - [ ] Réimport d'un pack modifié : l'historique des cartes est conservé.
 

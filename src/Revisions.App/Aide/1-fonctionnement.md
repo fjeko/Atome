@@ -12,7 +12,7 @@ Quand tu as fini de lire, **Réviser cette séance** te fait passer ses cartes t
 
 ### La session du jour
 
-Sur l'**Accueil**, le bouton **Commencer** lance la session du jour : les cartes à revoir aujourd'hui, toutes matières mélangées, plus quelques nouvelles cartes. Tu n'as rien à choisir.
+Sur l'**Accueil**, le bouton **Commencer** lance la session du jour : les cartes à revoir aujourd'hui, toutes matières mélangées, plus quelques nouvelles cartes, dans l'ordre du cours et en alternant les matières (voir la page *Le planning*). Tu n'as rien à choisir.
 
 Il y a trois sortes de cartes :
 
