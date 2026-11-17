@@ -1,6 +1,7 @@
 <UserControl x:Class="Revisions.App.Views.LogoArbre"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- Logo de l'application (image fournie par Florian, fond transparent : Ressources\logo.png). -->
-    <Image Source="/Ressources/logo.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" />
+    <!-- Logo de l'application (image fournie par Florian, fond transparent : Ressources\logo.png).
+         Ses couleurs sont décalées selon le thème : voir LogoArbre.xaml.cs. -->
+    <Image x:Name="Image" Source="/Ressources/logo.png" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" />
 </UserControl>
