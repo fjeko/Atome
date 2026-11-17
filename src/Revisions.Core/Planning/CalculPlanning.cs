@@ -112,7 +112,7 @@ public sealed class PlanningEffectif
     /// <summary>
     /// Périodes sur lesquelles porte un devoir :
     /// celles de la même matière qui ont commencé au plus tard à sa date limite
-    /// et après la date limite du devoir précédent de cette matière (quiz compris).
+    /// et après la date limite du devoir précédent de cette matière (pour un devoir noté : le devoir noté précédent).
     /// Pour le premier devoir, tout ce qui a commencé avant sa date limite.
     /// Si la matière a une période « continue » (anglais), le devoir porte sur toutes les périodes de la matière.
     /// </summary>
@@ -121,10 +121,12 @@ public sealed class PlanningEffectif
         var periodesMatiere = Complet.Periodes.Where(p => p.Matiere == devoir.Matiere).ToList();
         if (periodesMatiere.Any(p => p.Continu)) return periodesMatiere;
 
-        // Le devoir précédent est cherché parmi TOUS les devoirs de la matière (même les quiz masqués) :
-        // masquer les quiz ne change pas ce sur quoi porte un devoir noté.
+        // Devoir précédent : pour un devoir noté, le devoir NOTÉ précédent (les quiz d'auto-évaluation sont des points
+        // d'étape : sinon un DV placé juste après un QZ, comme le DV1 de CEJM ou le DV2 de maths, ne porterait sur rien) ;
+        // pour un quiz, le devoir précédent quel qu'il soit. Cherché dans tout le planning, quiz masqués compris :
+        // masquer les quiz ne change donc pas ce sur quoi porte un devoir.
         DateOnly? precedent = Complet.Devoirs
-            .Where(d => d.Matiere == devoir.Matiere && d.DateLimite < devoir.DateLimite)
+            .Where(d => d.Matiere == devoir.Matiere && d.DateLimite < devoir.DateLimite && (!devoir.Note || d.Note))
             .Select(d => (DateOnly?)d.DateLimite)
             .Max();
         return periodesMatiere

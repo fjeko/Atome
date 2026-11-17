@@ -33,7 +33,7 @@ public class PlanningTests
     /// <summary>
     /// Planning d'essai (au 17/11/2026) :
     /// Maths SQ1 passée, SQ2 en cours, SQ3 future ; Bloc 1 B1.1 passée, B1.3 en cours ;
-    /// Anglais en continu ; devoirs Maths QZ1 (05/10) et DV1 (30/11), Bloc 1 QZ1 (02/11) et QZ2 (30/11).
+    /// Anglais en continu ; devoirs Maths DV0 (05/10) et DV1 (30/11), Bloc 1 QZ1 (02/11) et QZ2 (30/11).
     /// </summary>
     private static PlanningCned Planning() => new("essai", 1, "Essai",
         [
@@ -45,7 +45,7 @@ public class PlanningTests
             new Periode("periode:Anglais|B2", "Anglais", "B2", J(2026, 9, 7), J(2027, 5, 16), ["ang"], Continu: true),
         ],
         [
-            D("Maths", "QZ1", J(2026, 10, 5)),
+            D("Maths", "DV0", J(2026, 10, 5)),
             D("Maths", "DV1", J(2026, 11, 30)),
             D("Bloc 1", "QZ1", J(2026, 11, 2)),
             D("Bloc 1", "QZ2", J(2026, 11, 30)),
@@ -128,14 +128,14 @@ public class PlanningTests
     {
         // Bloc 1 QZ1 : date limite dimanche 08/11. B1.1 (21/09) oui ; B1.3 (09/11) non.
         Assert.Equal(["B1.1"], Couverture(Effectif(), "Bloc 1", "QZ1"));
-        // Maths QZ1 : date limite 11/10. Seule la SQ1 a commencé.
-        Assert.Equal(["SQ1"], Couverture(Effectif(), "Maths", "QZ1"));
+        // Maths DV0 : date limite 11/10. Seule la SQ1 a commencé.
+        Assert.Equal(["SQ1"], Couverture(Effectif(), "Maths", "DV0"));
     }
 
     [Fact]
     public void Un_devoir_porte_sur_ce_qui_a_commence_apres_le_devoir_precedent()
     {
-        // Maths DV1 (limite 06/12) : SQ2 a commencé après QZ1 (11/10) ; SQ1 avant ; SQ3 après la date limite.
+        // Maths DV1 (limite 06/12) : SQ2 a commencé après DV0 (11/10) ; SQ1 avant ; SQ3 après la date limite.
         Assert.Equal(["SQ2"], Couverture(Effectif(), "Maths", "DV1"));
         Assert.Equal(["B1.3"], Couverture(Effectif(), "Bloc 1", "QZ2"));
     }
@@ -150,8 +150,29 @@ public class PlanningTests
                 P("M", "Le jour de la date limite", J(2026, 11, 8), J(2026, 11, 22), "c"),      // inclus
                 P("M", "Le lendemain de la date limite", J(2026, 11, 9), J(2026, 11, 22), "d"),  // exclu
             ],
-            [D("M", "QZ1", J(2026, 10, 5)), D("M", "DV1", J(2026, 11, 2))]), new ReglagesPlanning());
+            [D("M", "DV0", J(2026, 10, 5)), D("M", "DV1", J(2026, 11, 2))]), new ReglagesPlanning());
         Assert.Equal(["Le lendemain", "Le jour de la date limite"], Couverture(planning, "M", "DV1"));
+    }
+
+    [Fact]
+    public void Un_devoir_note_compte_depuis_le_devoir_note_precedent_un_quiz_depuis_le_devoir_precedent()
+    {
+        // Comme en CEJM : QZ1 puis DV1 la semaine suivante sur le même thème, puis QZ2 et DV2 sur le thème suivant.
+        var planning = new PlanningEffectif(new PlanningCned("p", 1, "p",
+            [
+                P("CEJM", "Thème 1", J(2026, 9, 14), J(2026, 11, 15), "cejm-sq01"),
+                P("CEJM", "Thème 4", J(2026, 11, 30), J(2027, 1, 31), "cejm-sq07"),
+            ],
+            [D("CEJM", "QZ1", J(2026, 11, 9)), D("CEJM", "DV1", J(2026, 11, 16)), D("CEJM", "QZ2", J(2027, 1, 25)), D("CEJM", "DV2", J(2027, 2, 1))]),
+            new ReglagesPlanning());
+        Assert.Equal(["Thème 1"], Couverture(planning, "CEJM", "QZ1"));
+        Assert.Equal(["Thème 1"], Couverture(planning, "CEJM", "DV1"));   // et non « rien » : le QZ1 ne compte pas pour un DV
+        Assert.Equal(["Thème 4"], Couverture(planning, "CEJM", "QZ2"));
+        Assert.Equal(["Thème 4"], Couverture(planning, "CEJM", "DV2"));
+        // Masquer les quiz ne change rien à la couverture.
+        var masques = new PlanningEffectif(planning.Complet, new ReglagesPlanning { MasquerQuiz = true });
+        Assert.Equal(["Thème 1"], Couverture(masques, "CEJM", "DV1"));
+        Assert.Equal(["Thème 4"], Couverture(masques, "CEJM", "DV2"));
     }
 
     [Fact]
@@ -522,7 +543,7 @@ public class PlanningTests
     public void Pas_d_avancement_hors_du_contenu_du_devoir()
     {
         var jour = J(2026, 11, 22);
-        // maths-sq1 : couverte par QZ1, pas par DV1 ; algo-ref : hors planning.
+        // maths-sq1 : couverte par DV0, pas par DV1 ; algo-ref : hors planning.
         Assert.Empty(AvanceeDevoir.CartesAAvancer([Vue("a", 1, "maths-sq1-s01"), Vue("b", 1, "algo-ref-memento")], Effectif(), jour));
     }
 
