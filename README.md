@@ -6,12 +6,12 @@
 
 **Atome** est mon tout premier projet. Il a été **entièrement généré par une IA (Claude, d'Anthropic)** :
 je l'ai imaginé, guidé et testé, mais je n'ai pas écrit le code moi-même. Je l'ai fait pour mes propres
-révisions de 1re année de BTS SIO option SLAM (CNED), et je le partage à mes camarades.
+révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je le partage à mes camarades.
 
 ## Ce qu'il faut savoir avant de commencer
 
-- **Aucun cours n'est fourni.** Les cours du CNED sont réservés à leurs destinataires : ils ne sont ni dans
-  ce dépôt, ni dans l'application. Chacun utilise **ses propres cours**.
+- **Aucun cours n'est fourni** : ni dans ce dépôt, ni dans l'application. Les cours sont réservés à leurs
+  destinataires, et chacun utilise **ses propres cours**.
 - Un **pack d'exemple** est inclus ([`samples/exemple.json`](samples/exemple.json)) pour essayer l'application.
 - Pour fabriquer tes propres packs à partir de tes PDF, il suffit de les donner à Claude avec un prompt
   prêt à l'emploi : voir [Créer ses propres packs](#créer-ses-propres-packs).
@@ -73,15 +73,15 @@ dotnet test
 511 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
 construction des sessions, mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
 bibliothèque en niveaux, couleurs et contrastes de chaque thème, enregistrement des réglages,
-ordre du cours (tri naturel, chiffres romains) et tourniquet des matières, planning du CNED (priorités,
+ordre du cours (tri naturel, chiffres romains) et tourniquet des matières, planning de l'année (priorités,
 devoirs, avancement avant une échéance, dates personnelles, migration).
 
 ## Ce que fait l'application
 
 - **Accueil** : la session du jour en un clic, objectif minimal, série en semaines, XP et niveau.
   Avec un planning : 1 à 3 séances « Au programme » et les prochaines échéances, sur un ton neutre.
-- **Planning** : la proposition du CNED en frises par matière (fichier `../planning/*.json`, format décrit dans
-  `../planning/FORMAT.md`). Dates modifiables (gardées dans la base, le fichier n'est jamais modifié),
+- **Planning** : la proposition de ton organisme de formation en frises par matière (import direct d'un fichier Excel, voir l'aide).
+  Dates modifiables (gardées dans la base, le fichier n'est jamais modifié),
   interrupteur général et par matière, quiz masquables. Sans planning, l'application suit l'ordre du cours.
 - **Bibliothèque en tuiles** : matière → compétence (B1.2…) → séquence (SQ1…) → séances, avec fil
   d'Ariane, recherche, nombre de cartes à revoir et barre de maîtrise sur chaque tuile.
@@ -100,7 +100,7 @@ app/
     Revisions.Core/     Cœur métier, sans interface ni base : modèles, validation des packs,
                         FSRS, construction des sessions, gamification, niveaux de la bibliothèque
                         (Bibliotheque/), couleurs et thèmes (Apparence/), ordre du cours (Ordre/),
-                        planning du CNED (Planning/). Entièrement testable.
+                        planning (Planning/). Entièrement testable.
     Revisions.Data/     SQLite (Microsoft.Data.Sqlite + Dapper) : schéma, import, requêtes.
     Revisions.App/      Interface WPF en MVVM (CommunityToolkit.Mvvm) + rendu WebView2.
       ViewModels/       Un ViewModel par écran : toute la logique d'affichage.
@@ -178,4 +178,4 @@ Pour restaurer une sauvegarde : fermer l'application, puis remplacer `revisions.
 
 ## Licence
 
-[MIT](LICENSE) © 2026 fjeko. La licence ne couvre que le code d'Atome, pas les cours du CNED.
+[MIT](LICENSE) © 2026 fjeko. La licence ne couvre que le code d'Atome, pas les cours.
