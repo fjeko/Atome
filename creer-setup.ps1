@@ -1,7 +1,8 @@
 # Fabrique l'installateur Atome-Setup-<version>.exe dans installateur\sortie.
 #
 #   .\creer-setup.ps1              -> version lue dans Revisions.App.csproj
-#   .\creer-setup.ps1 -Version 1.1.0
+#   .\creer-setup.ps1 -Version 1.1.0  -> ce numero est donne a l'application ET au setup
+#                                        (c'est ce que fait le workflow de release, avec le numero du tag)
 #
 # 1) publie l'application en mode "autonome" (le runtime .NET est inclus : rien a installer pour l'utilisateur)
 #    dans publish-setup (separe de publish, utilise au quotidien) ;
@@ -32,7 +33,9 @@ $sortie = Join-Path $racine "publish-setup"
 if (Test-Path $sortie) { Remove-Item $sortie -Recurse -Force }
 
 Write-Host "Publication autonome (version $Version)..."
-dotnet publish $projet -c Release -r win-x64 --self-contained true -o $sortie --nologo -v q
+# -p:Version impose le numero a l'application : avec le workflow de release, c'est celui du tag (v0.3.0 -> 0.3.0).
+# Plus besoin de modifier <Version> dans le .csproj a chaque version (il ne sert qu'en developpement).
+dotnet publish $projet -c Release -r win-x64 --self-contained true -o $sortie --nologo -v q "-p:Version=$Version"
 if ($LASTEXITCODE -ne 0) { throw "La publication a echoue." }
 
 Write-Host "Creation de l'installateur..."
