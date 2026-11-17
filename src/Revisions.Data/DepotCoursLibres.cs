@@ -24,7 +24,16 @@ public sealed class DepotCoursLibres(BaseDeDonnees baseDeDonnees, ImportateurPac
     public int NombreVisibles()
     {
         using var connexion = baseDeDonnees.Ouvrir();
-        return connexion.ExecuteScalar<int>("SELECT COUNT(*) FROM pack WHERE id LIKE 'libre-%' AND masque = 0");
+        return connexion.ExecuteScalar<int>(
+            "SELECT COUNT(*) FROM pack p JOIN collection c ON c.cle = p.collection WHERE p.id LIKE 'libre-%' AND c.masque = 0");
+    }
+
+    /// <summary>La collection « Cours libres » existe-t-elle en base, et est-elle visible ? (null = jamais chargée)</summary>
+    public bool? EstVisible()
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        long? masque = connexion.ExecuteScalar<long?>("SELECT masque FROM collection WHERE cle = @cle", new { cle = Collections.Libres });
+        return masque is null ? null : masque == 0;
     }
 
     /// <summary>Charge (ou met à jour) les cours libres depuis le dossier donné, et les rend visibles.</summary>

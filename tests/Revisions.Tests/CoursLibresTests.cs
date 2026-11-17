@@ -66,12 +66,12 @@ public sealed class CoursLibresTests : IDisposable
     }
 
     [Fact]
-    public void Le_choix_est_enregistre_dans_les_reglages()
+    public void L_ancien_reglage_cours_libres_reste_lisible()
     {
         var profil = new DepotProfil(_base);
         foreach (bool? valeur in new bool?[] { true, false, null })
         {
-            profil.EnregistrerReglages(new Reglages { CoursLibres = valeur });
+            profil.EcrireValeur("cours_libres", valeur is { } v ? (v ? "1" : "0") : null);   // plus écrit par Atome : lecture seule
             Assert.Equal(valeur, profil.ChargerReglages().CoursLibres);
         }
     }

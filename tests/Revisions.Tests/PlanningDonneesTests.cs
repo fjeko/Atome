@@ -174,7 +174,7 @@ public sealed class PlanningDonneesTests : IDisposable
 
         var base3 = new BaseDeDonnees(chemin);
         using var connexion = base3.Ouvrir();
-        Assert.Equal(8L, connexion.ExecuteScalar<long>("PRAGMA user_version;"));
+        Assert.Equal(9L, connexion.ExecuteScalar<long>("PRAGMA user_version;"));
         Assert.Equal(1234L, connexion.ExecuteScalar<long>("SELECT xp_total FROM profil"));
         Assert.Equal("25", connexion.ExecuteScalar<string>("SELECT valeur FROM reglage WHERE cle = 'plafond_quotidien'"));
         Assert.Equal(1L, connexion.ExecuteScalar<long>("SELECT COUNT(*) FROM acquis"));

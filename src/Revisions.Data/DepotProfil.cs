@@ -111,7 +111,6 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
         EcrireValeur("retention_cible", r.RetentionCible.ToString(CultureInfo.InvariantCulture));
         EcrireValeur("dossier_packs", r.DossierPacks);
         EcrireValeur("dossier_cours", r.DossierCours);
-        EcrireValeur("cours_libres", r.CoursLibres is { } libres ? (libres ? "1" : "0") : null);
         EcrireValeur("nouvelles_non_lues", r.NouvellesNonLues ? "1" : "0");
         EcrireValeur("theme", r.Theme);
         EcrireValeur("couleur_accent", r.CouleurAccent);
@@ -196,8 +195,9 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
             FROM revision r
             JOIN carte c ON c.id = r.carte_id
             JOIN pack p ON p.id = c.pack_id
+            LEFT JOIN collection col ON col.cle = p.collection
             JOIN matiere m ON m.id = p.matiere_id
-            WHERE r.jour >= @depuis AND r.stabilite_avant IS NOT NULL AND p.masque = 0
+            WHERE r.jour >= @depuis AND r.stabilite_avant IS NOT NULL AND COALESCE(col.masque, 0) = 0
             GROUP BY m.nom ORDER BY m.nom
             """, new { depuis = BaseDeDonnees.Iso(depuis) }).ToList();
     }

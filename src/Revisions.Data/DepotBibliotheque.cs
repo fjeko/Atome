@@ -19,6 +19,13 @@ public sealed record SeanceALire(
 /// <summary>Lecture des cours : liste des séances et contenu d'une séance.</summary>
 public sealed class DepotBibliotheque(BaseDeDonnees baseDeDonnees)
 {
+    /// <summary>Nombre de packs en base, visibles ou non (sert à distinguer « rien d'importé » de « tout est masqué »).</summary>
+    public int CompterPacks()
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.ExecuteScalar<int>("SELECT COUNT(*) FROM pack");
+    }
+
     /// <summary>Toutes les séances, triées pour l'arbre bloc &gt; matière &gt; partie &gt; séance.</summary>
     public List<ResumeSeance> ListerSeances(DateOnly jour)
     {
@@ -33,9 +40,10 @@ public sealed class DepotBibliotheque(BaseDeDonnees baseDeDonnees)
                    COALESCE(SUM(c.id IS NOT NULL AND e.stabilite IS NULL), 0) AS NbNouvelles
             FROM pack p
             JOIN matiere m ON m.id = p.matiere_id
+            LEFT JOIN collection col ON col.cle = p.collection   -- visibilité : uniquement la collection
             LEFT JOIN carte c ON c.pack_id = p.id AND c.archivee = 0
             LEFT JOIN etat_carte e ON e.carte_id = c.id
-            WHERE p.masque = 0
+            WHERE COALESCE(col.masque, 0) = 0
             GROUP BY p.id
             ORDER BY m.bloc, m.nom, p.partie, p.sequence, p.ordre, p.seance
             """, new { jour = BaseDeDonnees.Iso(jour) }).ToList();

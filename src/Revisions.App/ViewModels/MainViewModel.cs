@@ -285,17 +285,12 @@ public partial class MainViewModel(
         proposer = false;
         var depot = services.GetRequiredService<DepotCoursLibres>();
         string? dossier = etat.DossierCoursLibres;
-        switch (ContenuLibre.Evaluer(etat.Reglages.CoursLibres, depot.NombrePacksPrives(), dossier is not null))
-        {
-            case ActionCoursLibres.DesactiverParDefaut:
-                etat.Reglages.CoursLibres = false;
-                services.GetRequiredService<DepotProfil>().EcrireValeur("cours_libres", "0");
-                break;
-            case ActionCoursLibres.Proposer:
-                proposer = true;
-                break;
-        }
-        return etat.Reglages.CoursLibres == true && dossier is not null
+        // Source de vérité : la collection « Cours libres » en base. L'ancien réglage « cours_libres » n'est lu que
+        // tant que cette collection n'existe pas (base jamais passée par les collections).
+        bool? choix = depot.EstVisible() ?? etat.Reglages.CoursLibres;
+        if (ContenuLibre.Evaluer(choix, depot.NombrePacksPrives(), dossier is not null) == ActionCoursLibres.Proposer)
+            proposer = true;
+        return choix == true && dossier is not null
             ? importateur.ImporterDossier(dossier, null)
             : [];
     }
@@ -305,12 +300,7 @@ public partial class MainViewModel(
     {
         int nombre = etat.DossierCoursLibres is { } d ? Directory.EnumerateFiles(d, "*.json", SearchOption.AllDirectories).Count() : 0;
         bool oui = new FenetreCoursLibres(nombre) { Owner = Application.Current.MainWindow }.ShowDialog() == true;
-        if (oui)
-        {
-            etat.Reglages.CoursLibres = true;
-            services.GetRequiredService<DepotProfil>().EcrireValeur("cours_libres", "1");
-        }
-        return Task.FromResult(oui);
+        return Task.FromResult(oui);   // l'activation crée et affiche la collection « Cours libres » : rien d'autre à mémoriser
     }
 
     private async Task<List<ResultatImport>> ChargerCoursLibresAsync(DateOnly jour)
@@ -337,8 +327,6 @@ public partial class MainViewModel(
         int livres = etat.DossierCoursLibres is { } d && Directory.Exists(d)
             ? Directory.EnumerateFiles(d, "*.json", SearchOption.AllDirectories).Count() : 0;
         var liste = services.GetRequiredService<DepotCollections>().Lister();
-        // Cours libres jamais chargés, ou désactivés avant l'arrivée des collections : ils comptent comme masqués.
-        if (etat.Reglages.CoursLibres != true) liste = liste.Select(c => c.Cle == Collections.Libres ? c with { Visible = false } : c).ToList();
         return Collections.AvecLibresAbsents(liste, livres);
     }
 
@@ -359,8 +347,6 @@ public partial class MainViewModel(
             {
                 if (visible) resultats = await ChargerCoursLibresAsync(jour);
                 else await Task.Run(() => { services.GetRequiredService<DepotCoursLibres>().Masquer(jour); services.GetRequiredService<DepotAcquis>().Recalculer(jour); });
-                etat.Reglages.CoursLibres = visible;
-                services.GetRequiredService<DepotProfil>().EcrireValeur("cours_libres", visible ? "1" : "0");
             }
             else
             {
@@ -412,7 +398,7 @@ public partial class MainViewModel(
         var resultats = await Task.Run(() =>
         {
             // Les packs reçus sont importés d'abord, avec leur collection ; le scan du dossier les trouve ensuite « inchangés ».
-            var r = (fichiersPacks ?? []).Select(f => importateur.ImporterFichier(f, etat.Reglages.DossierCours, null, cle, nom)).ToList();
+            var r = (fichiersPacks ?? []).Select(f => importateur.ImporterFichier(f, etat.Reglages.DossierCours, null, cle, nom, reafficherSiMasquee: true)).ToList();
             r.AddRange(ImporterDossier());
             ImporterPlanning();
             services.GetRequiredService<DepotAcquis>().Recalculer(jour);
@@ -420,6 +406,7 @@ public partial class MainViewModel(
         });
         Bandeau = null;
         if (resultats.Any(r => r.Statut == StatutImport.Refuse)) AnnoncerImport(resultats, afficherRapportSiRien: false);
+        else AnnoncerReaffichage(resultats);
         // On rouvre l'écran : il se recalcule avec les nouveaux packs.
         if (Rubrique == "bibliotheque") AllerBibliotheque(); else AllerAccueil();
     }
@@ -429,6 +416,16 @@ public partial class MainViewModel(
         etat.Reglages.DossierPacks is { Length: > 0 } dossier
             ? importateur.ImporterDossier(dossier, etat.Reglages.DossierCours)
             : [];
+
+    /// <summary>Prévient l'étudiant quand un import a réaffiché une collection qu'il avait masquée.</summary>
+    private void AnnoncerReaffichage(IReadOnlyList<ResultatImport> resultats)
+    {
+        var noms = resultats.Select(r => r.CollectionReaffichee).Where(n => n is not null).Distinct().ToList();
+        if (noms.Count == 0) return;
+        string liste = string.Join(", ", noms.Select(n => $"« {n} »"));
+        Bandeau = (Bandeau is { Length: > 0 } b ? b + " " : "")
+            + $"La collection {liste} était masquée : je l'ai réaffichée pour que tu voies ce que tu viens d'importer (tu peux la masquer à nouveau dans Réglages → Mes collections).";
+    }
 
     /// <summary>Résume un import dans le bandeau ; ouvre le rapport détaillé s'il y a des refus.</summary>
     public void AnnoncerImport(IReadOnlyList<ResultatImport> resultats, bool afficherRapportSiRien)
@@ -442,6 +439,7 @@ public partial class MainViewModel(
         if (misAJour > 0) morceaux.Add(misAJour == 1 ? "1 pack mis à jour" : $"{misAJour} packs mis à jour");
         if (refuses > 0) morceaux.Add(refuses == 1 ? "1 pack refusé" : $"{refuses} packs refusés");
         Bandeau = morceaux.Count > 0 ? string.Join(", ", morceaux) + "." : null;
+        AnnoncerReaffichage(resultats);
 
         if (refuses > 0 || afficherRapportSiRien)
             new FenetreRapport { DataContext = new RapportImportViewModel(resultats), Owner = Application.Current.MainWindow }.ShowDialog();

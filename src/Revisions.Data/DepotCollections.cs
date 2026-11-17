@@ -49,7 +49,20 @@ public sealed class DepotCollections(BaseDeDonnees baseDeDonnees)
     {
         connexion.Execute("UPDATE carte SET archivee = 2 WHERE archivee = 0 AND pack_id = @packId", new { packId }, transaction);
         connexion.Execute("UPDATE section SET archivee = 2 WHERE archivee = 0 AND pack_id = @packId", new { packId }, transaction);
-        connexion.Execute("UPDATE pack SET masque = 1 WHERE id = @packId", new { packId }, transaction);
+    }
+
+    /// <summary>
+    /// Réaffiche une collection masquée, dans la transaction de l'appelant (import manuel ou .atome).
+    /// Même effet que <see cref="DefinirVisible"/> : cartes et sections remises en place, retards étalés.
+    /// </summary>
+    internal static void Reafficher(SqliteConnection connexion, SqliteTransaction transaction, string cle, DateOnly jour, int parJour = 20)
+    {
+        const string DuPack = "SELECT id FROM pack WHERE collection = @cle";
+        string? depuis = connexion.ExecuteScalar<string?>("SELECT masque_depuis FROM collection WHERE cle = @cle", new { cle }, transaction);
+        connexion.Execute($"UPDATE carte SET archivee = 0 WHERE archivee = 2 AND pack_id IN ({DuPack})", new { cle }, transaction);
+        connexion.Execute($"UPDATE section SET archivee = 0 WHERE archivee = 2 AND pack_id IN ({DuPack})", new { cle }, transaction);
+        connexion.Execute("UPDATE collection SET masque = 0, masque_depuis = NULL WHERE cle = @cle", new { cle }, transaction);
+        EtalerRetards(connexion, transaction, cle, jour, BaseDeDonnees.Jour(depuis), parJour);
     }
 
     /// <summary>Affiche ou masque une collection.</summary>
@@ -72,7 +85,6 @@ public sealed class DepotCollections(BaseDeDonnees baseDeDonnees)
             string? depuis = connexion.ExecuteScalar<string?>("SELECT masque_depuis FROM collection WHERE cle = @cle", new { cle }, transaction);
             connexion.Execute($"UPDATE carte SET archivee = 0 WHERE archivee = 2 AND pack_id IN ({DuPack})", new { cle }, transaction);
             connexion.Execute($"UPDATE section SET archivee = 0 WHERE archivee = 2 AND pack_id IN ({DuPack})", new { cle }, transaction);
-            connexion.Execute("UPDATE pack SET masque = 0 WHERE collection = @cle", new { cle }, transaction);
             connexion.Execute("UPDATE collection SET masque = 0, masque_depuis = NULL WHERE cle = @cle", new { cle }, transaction);
             EtalerRetards(connexion, transaction, cle, jour, BaseDeDonnees.Jour(depuis), parJour);
         }
@@ -80,7 +92,6 @@ public sealed class DepotCollections(BaseDeDonnees baseDeDonnees)
         {
             connexion.Execute($"UPDATE carte SET archivee = 2 WHERE archivee = 0 AND pack_id IN ({DuPack})", new { cle }, transaction);
             connexion.Execute($"UPDATE section SET archivee = 2 WHERE archivee = 0 AND pack_id IN ({DuPack})", new { cle }, transaction);
-            connexion.Execute("UPDATE pack SET masque = 1 WHERE collection = @cle", new { cle }, transaction);
             connexion.Execute("UPDATE collection SET masque = 1, masque_depuis = @jour WHERE cle = @cle",
                 new { cle, jour = BaseDeDonnees.Iso(jour) }, transaction);
         }

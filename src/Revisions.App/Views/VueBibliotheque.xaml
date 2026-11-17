@@ -77,6 +77,14 @@
             </ItemsControl>
         </DockPanel>
 
+        <!-- Des cours existent mais toutes les collections sont masquées. -->
+        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,14" Visibility="{Binding CollectionsToutesMasquees, Converter={StaticResource VisibleSi}}">
+            <TextBlock Style="{StaticResource Discret}" FontSize="15" TextWrapping="Wrap"
+                       Text="Tes cours sont toujours là, mais toutes tes collections sont masquées. Rien n'est perdu : ta progression est intacte." />
+            <Button Content="Afficher mes collections" Command="{Binding AfficherMesCollectionsCommand}"
+                    HorizontalAlignment="Left" Padding="24,10" Margin="0,12,0,0" FontSize="16" FontWeight="SemiBold" />
+        </StackPanel>
+
         <!-- Premier lancement, aucun pack : on met en avant l'import du contenu d'un camarade. -->
         <StackPanel DockPanel.Dock="Top" Margin="0,0,0,14" Visibility="{Binding EstVide, Converter={StaticResource VisibleSi}}">
             <TextBlock Style="{StaticResource Discret}" FontSize="15" TextWrapping="Wrap"

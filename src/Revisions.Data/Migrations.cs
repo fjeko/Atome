@@ -203,5 +203,39 @@ internal static class Migrations
         ALTER TABLE pack ADD COLUMN derniere_lecture TEXT;   -- dernière ouverture en lecture (date_lecture = la première)
         UPDATE pack SET derniere_lecture = date_lecture;
         """,
+
+        // ---- 9 : une seule source de vérité pour la visibilité : collection.masque -------------
+        // pack.masque (ancien interrupteur « cours libres », migration 6) n'est plus lu ni écrit ; il est remis à 0.
+        // Aucune progression n'est touchée : seuls des drapeaux d'affichage (archivee 0 <-> 2) sont resynchronisés.
+        """
+        -- La collection « libres » reprend l'ancien réglage cours_libres (s'il existe).
+        UPDATE collection SET masque = 1, masque_depuis = COALESCE(masque_depuis, date('now'))
+          WHERE cle = 'libres' AND (SELECT valeur FROM reglage WHERE cle = 'cours_libres') = '0';
+        UPDATE collection SET masque = 0, masque_depuis = NULL
+          WHERE cle = 'libres' AND (SELECT valeur FROM reglage WHERE cle = 'cours_libres') = '1';
+
+        -- Si plus aucune collection ne montre de cours, on réactive « Mes packs », à défaut la première qui a des packs.
+        UPDATE collection SET masque = 0, masque_depuis = NULL
+          WHERE cle = (SELECT c.cle FROM collection c
+                       WHERE EXISTS (SELECT 1 FROM pack p WHERE p.collection = c.cle)
+                       ORDER BY (c.cle = 'mes-packs') DESC, c.rowid LIMIT 1)
+            AND NOT EXISTS (SELECT 1 FROM collection c
+                            WHERE c.masque = 0 AND EXISTS (SELECT 1 FROM pack p WHERE p.collection = c.cle));
+
+        -- Cartes et sections suivent la collection (visible : archivee 2 -> 0 ; masquée : 0 -> 2).
+        UPDATE carte SET archivee = 0 WHERE archivee = 2
+          AND pack_id IN (SELECT p.id FROM pack p JOIN collection c ON c.cle = p.collection WHERE c.masque = 0);
+        UPDATE carte SET archivee = 2 WHERE archivee = 0
+          AND pack_id IN (SELECT p.id FROM pack p JOIN collection c ON c.cle = p.collection WHERE c.masque <> 0);
+        UPDATE section SET archivee = 0 WHERE archivee = 2
+          AND pack_id IN (SELECT p.id FROM pack p JOIN collection c ON c.cle = p.collection WHERE c.masque = 0);
+        UPDATE section SET archivee = 2 WHERE archivee = 0
+          AND pack_id IN (SELECT p.id FROM pack p JOIN collection c ON c.cle = p.collection WHERE c.masque <> 0);
+
+        UPDATE pack SET masque = 0;
+
+        -- Le réglage fait doublon dès que la collection « libres » existe (il reste lisible s'il est absent de la base).
+        DELETE FROM reglage WHERE cle = 'cours_libres' AND EXISTS (SELECT 1 FROM collection WHERE cle = 'libres');
+        """,
     ];
 }

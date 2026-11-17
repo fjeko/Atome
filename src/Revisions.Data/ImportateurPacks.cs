@@ -19,7 +19,8 @@ public enum StatutImport
 }
 
 /// <summary>Compte rendu de l'import d'un fichier.</summary>
-public sealed record ResultatImport(string Fichier, string? PackId, string? Seance, StatutImport Statut, IReadOnlyList<Probleme> Problemes);
+/// <param name="CollectionReaffichee">Nom de la collection qui était masquée et que cet import a réaffichée (sinon null).</param>
+public sealed record ResultatImport(string Fichier, string? PackId, string? Seance, StatutImport Statut, IReadOnlyList<Probleme> Problemes, string? CollectionReaffichee = null);
 
 /// <summary>
 /// Importe les packs dans la base. Règle la plus importante : réimporter un pack ne fait
@@ -68,8 +69,10 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
     private static string Horodatage(FileInfo info) => info.LastWriteTimeUtc.Ticks.ToString();
 
     /// <summary>Importe un fichier de pack.</summary>
+    /// <param name="reafficherSiMasquee">Import voulu par l'étudiant (manuel ou .atome) : si la collection du pack est masquée,
+    /// elle est réaffichée pour que le contenu importé apparaisse (le résultat le signale). Faux pour le scan automatique.</param>
     public ResultatImport ImporterFichier(string fichier, string? dossierCours, Dictionary<string, string>? fichierParPack = null,
-        string? collection = null, string? nomCollection = null)
+        string? collection = null, string? nomCollection = null, bool reafficherSiMasquee = false)
     {
         byte[] octets;
         try
@@ -92,7 +95,14 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
             var p = connus[0];
             fichierParPack?.TryAdd(p.Id, fichier);
             Marquer(connexion, p.Id, fichier);
-            return new ResultatImport(fichier, p.Id, p.Seance, StatutImport.Inchange, []);
+            string? reaffichee = null;
+            if (reafficherSiMasquee)
+            {
+                using var t = connexion.BeginTransaction();
+                reaffichee = ReafficherCollectionDuPack(connexion, t, p.Id);
+                t.Commit();
+            }
+            return new ResultatImport(fichier, p.Id, p.Seance, StatutImport.Inchange, [], reaffichee);
         }
 
         var lecture = LecteurPack.Lire(Encoding.UTF8.GetString(octets));
@@ -134,13 +144,28 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
         string nom = cle == Collections.Libres ? Collections.NomLibres : nomCollection ?? Collections.NomParDefaut(cle);
         bool masquee = DepotCollections.DeclarerEtDireSiMasquee(connexion, transaction, cle, nom);
         Enregistrer(connexion, transaction, pack, fichier, empreinte, maintenant, cle);
-        if (masquee) DepotCollections.MasquerPack(connexion, transaction, pack.Id);
+        string? reafficheeNom = null;
+        if (masquee && reafficherSiMasquee)
+            reafficheeNom = ReafficherCollectionDuPack(connexion, transaction, pack.Id);
+        else if (masquee)
+            DepotCollections.MasquerPack(connexion, transaction, pack.Id);
         Marquer(connexion, pack.Id, fichier, transaction);
         var statut = existait ? StatutImport.MisAJour : StatutImport.Importe;
         Journaliser(connexion, transaction, fichier, pack.Id, statut, problemes, maintenant);
         transaction.Commit();
 
-        return new ResultatImport(fichier, pack.Id, pack.Seance, statut, problemes);
+        return new ResultatImport(fichier, pack.Id, pack.Seance, statut, problemes, reafficheeNom);
+    }
+
+    /// <summary>Si la collection du pack est masquée, la réaffiche et renvoie son nom ; sinon null.</summary>
+    private string? ReafficherCollectionDuPack(SqliteConnection connexion, SqliteTransaction transaction, string packId)
+    {
+        string? cle = connexion.ExecuteScalar<string?>(
+            "SELECT c.cle FROM collection c JOIN pack p ON p.collection = c.cle WHERE p.id = @packId AND c.masque <> 0", new { packId }, transaction);
+        if (cle is null) return null;
+        string nom = connexion.ExecuteScalar<string>("SELECT nom FROM collection WHERE cle = @cle", new { cle }, transaction)!;
+        DepotCollections.Reafficher(connexion, transaction, cle, DateOnly.FromDateTime(horloge.GetLocalNow().DateTime));
+        return nom;
     }
 
     /// <summary>Retient la taille et la date du fichier, pour que le prochain scan puisse l'ignorer sans le relire.</summary>

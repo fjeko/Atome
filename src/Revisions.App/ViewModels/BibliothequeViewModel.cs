@@ -131,9 +131,20 @@ public partial class BibliothequeViewModel : ObservableObject
         _toutes = _bibliotheque.ListerSeances(_etat.Jour);
         _racine = ArbreBibliotheque.Construire(_toutes);
         _chemin = ArbreBibliotheque.Suivre(_racine, _dernierChemin);
-        EstVide = _toutes.Count == 0;
+        // Bibliothèque vide : soit il n'y a aucun cours, soit ils sont tous dans des collections masquées.
+        bool vide = _toutes.Count == 0;
+        bool existent = _bibliotheque.CompterPacks() > 0;   // en base, pas les cours libres seulement proposés
+        EstVide = vide && !existent;
+        CollectionsToutesMasquees = vide && existent;
         Afficher();
     }
+
+    /// <summary>Des cours existent, mais toutes leurs collections sont masquées.</summary>
+    [ObservableProperty] private bool _collectionsToutesMasquees;
+
+    /// <summary>Bouton « Afficher mes collections » : ouvre les Réglages, où chaque collection a son interrupteur.</summary>
+    [RelayCommand]
+    private void AfficherMesCollections() => _main.AllerReglages();
 
     /// <summary>Met à jour ce qui est affiché : les résultats d'une recherche, ou le niveau courant.</summary>
     private void Afficher()
@@ -245,7 +256,7 @@ public partial class BibliothequeViewModel : ObservableObject
         if (dialogue.ShowDialog() != true) return;
 
         string[] fichiers = dialogue.FileNames;
-        await ImporterAsync(() => fichiers.Select(f => _importateur.ImporterFichier(f, _etat.Reglages.DossierCours, null, Collections.Manuel, Collections.NomManuel)).ToList());
+        await ImporterAsync(() => fichiers.Select(f => _importateur.ImporterFichier(f, _etat.Reglages.DossierCours, null, Collections.Manuel, Collections.NomManuel, reafficherSiMasquee: true)).ToList());
     }
 
     /// <summary>Relit le dossier des packs (utile quand de nouveaux packs viennent d'y être ajoutés).</summary>

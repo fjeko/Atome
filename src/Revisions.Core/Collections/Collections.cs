@@ -81,7 +81,10 @@ public static class Collections
         return Trier(liste).ToList();
     }
 
-    /// <summary>Peut-on masquer cette collection ? Non si elle est la seule à rester visible.</summary>
+    /// <summary>
+    /// Peut-on masquer cette collection ? Non si elle est la seule à rester réellement visible
+    /// (visible ET contenant au moins un cours : une collection vide ne montre rien à l'étudiant).
+    /// </summary>
     public static bool PeutMasquer(IEnumerable<InfoCollection> collections, string cle) =>
-        collections.Any(c => c.Visible && c.Cle != cle);
+        collections.Any(c => c.Visible && c.NbCours > 0 && c.Cle != cle);
 }
