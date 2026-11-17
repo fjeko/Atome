@@ -149,6 +149,7 @@ public partial class MainViewModel(
             case "reglages": AllerReglages(); break;
             case "acquis": AllerAcquis(); break;
             case "planning": AllerPlanning(); break;
+            case "td": AllerTdGroupe(); break;
             case "aide": AllerAide(); break;
         }
     }
@@ -174,6 +175,10 @@ public partial class MainViewModel(
 
     [RelayCommand]
     public void AllerPlanning() => Afficher(Creer<PlanningViewModel>(), "planning");
+
+    /// <summary>TD en groupe : faire le même TD à plusieurs, chacun sur son PC (un code suffit).</summary>
+    [RelayCommand]
+    public void AllerTdGroupe() => Afficher(Creer<TdGroupeViewModel>(), "td");
 
     /// <summary>Questionnaire des acquis : plein écran, sans la barre de gauche.</summary>
     public void AllerQuestionnaire() => Afficher(Creer<QuestionnaireViewModel>(), null);

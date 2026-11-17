@@ -94,3 +94,8 @@ section > eqn { display: block; overflow-x: auto; overflow-y: hidden; padding: .
 .choix.bon .lettre { color: var(--bon); }
 .choix.mauvais { border-color: var(--mauvais); background: var(--mauvais-fond); }
 .choix.mauvais .lettre { color: var(--mauvais); }
+
+/* ---- TD en groupe ---- */
+.sousquestion { margin: .7em 0; }
+.sousquestion p { margin: .3em 0; }
+.indice { border: 1px dashed var(--accent); border-radius: 8px; background: var(--fond-doux); padding: .2em 1em; margin: 1em 0; }

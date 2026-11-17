@@ -106,11 +106,12 @@ Au démarrage, l'application importe automatiquement les packs de son dossier de
 dotnet test
 ```
 
-511 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
+708 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
 construction des sessions, mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
 bibliothèque en niveaux, couleurs et contrastes de chaque thème, enregistrement des réglages,
 ordre du cours (tri naturel, chiffres romains) et tourniquet des matières, planning de l'année (priorités,
-devoirs, avancement avant une échéance, dates personnelles, migration).
+devoirs, avancement avant une échéance, dates personnelles, migration), TD en groupe (hasard maison
+figé, codes et chiffre de contrôle, calcul matriciel, déterminisme des TD, vérification de la saisie, versions).
 
 ## Ce que fait l'application
 
@@ -124,9 +125,14 @@ devoirs, avancement avant une échéance, dates personnelles, migration).
 - **Lecture** : le cours section par section (Markdown, LaTeX, code coloré), PDF d'origine à la bonne page.
 - **Session** : cartes question, QCM (choix mélangés) et exercice pas à pas ; sur une carte question,
   on peut **écrire sa réponse** pour la comparer à la bonne avant de se noter.
+- **TD en groupe** : le même TD à plusieurs, chacun sur son PC (en vocal sur Discord par exemple), sans réseau :
+  un **code court** à dicter (`MAT1-2-8-48217`) suffit à générer exactement les mêmes exercices partout.
+  Premier thème : les **matrices** (dimension, somme, réel, transposée, identité, produit, puissance, situation
+  concrète), avec grille de saisie, vérification case par case, indice et correction pas à pas ; second thème :
+  les exercices et QCM de **n'importe quelle séance**. Code : `Revisions.Core/TdGroupe`.
 - **Statistiques** : régularité, réussite par matière, points faibles avec session ciblée.
 - **Réglages** : rythme, reprise, **thèmes** (clair, sombre, six thèmes colorés) et **couleur d'accent**.
-- **Aide** : fonctionnement, raccourcis, ajout de cours, création d'un pack avec Claude (prompt à copier), données, signalement d'erreurs, mises à jour.
+- **Aide** : fonctionnement, raccourcis, ajout de cours, création d'un pack avec Claude (prompt à copier), données, signalement d'erreurs, mises à jour, TD à plusieurs sur Discord.
 - **Signaler une erreur** : un petit drapeau sur chaque carte (session, fin de session) et chaque section en lecture, touche **S** en session. L'écran **Mes signalements** (Réglages) liste les signalements et les exporte en `signalements-<prénom>-<date>.json`, pour corriger les packs en lot (le texte vu au moment du signalement est conservé). Code : `Revisions.Core/Signalements`, `Revisions.Data/DepotSignalements.cs`.
 
 ## Organisation du code
@@ -138,7 +144,8 @@ app/
                         FSRS, construction des sessions, gamification, niveaux de la bibliothèque
                         (Bibliotheque/), couleurs et thèmes (Apparence/), ordre du cours (Ordre/),
                         planning (Planning/), mises à jour (MisesAJour/ : SemVer, API GitHub,
-                        SHA-256, client HTTP injecté). Entièrement testable.
+                        SHA-256, client HTTP injecté). TD en groupe (TdGroupe/ : hasard
+                        SplitMix64, codes, générateurs de TD, matrices). Entièrement testable.
     Revisions.Data/     SQLite (Microsoft.Data.Sqlite + Dapper) : schéma, import, requêtes.
     Revisions.App/      Interface WPF en MVVM (CommunityToolkit.Mvvm) + rendu WebView2.
       ViewModels/       Un ViewModel par écran : toute la logique d'affichage.
@@ -188,6 +195,9 @@ Pour restaurer une sauvegarde : fermer l'application, puis remplacer `revisions.
 | Échap | Sortir de la zone (le texte est gardé) |
 | ← → | Section précédente / suivante en lecture |
 
+En **TD en groupe** : Tab et les flèches passent d'une case à l'autre, Ctrl + Entrée vérifie, Espace dit « go »
+puis dévoile la correction étape par étape, Entrée (hors des cases) fait la suite logique, I donne l'indice.
+
 ## Liste de vérification manuelle
 
 - [ ] Premier démarrage sans base : les packs sont importés, l'accueil propose une session.
@@ -204,12 +214,14 @@ Pour restaurer une sauvegarde : fermer l'application, puis remplacer `revisions.
 - [ ] Planning : changer une date, redémarrer, la date est gardée ; « Dates du fichier » la remet.
 - [ ] Aide : « Copier le prompt » puis coller dans un éditeur de texte.
 - [ ] Réimport d'un pack modifié : l'historique des cartes est conservé.
+- [ ] TD en groupe : créer un TD, le rejoindre avec le code sur un 2e PC (même empreinte), grille au clavier (Tab, flèches, nombres négatifs), Ctrl + Entrée, correction avec Espace, récap et XP.
 
 ## Outils de développement (version Debug uniquement)
 
 - `Atome.exe --ecran=bibliotheque` (ou `statistiques`, `reglages`, `lecture:<id du pack>`,
   `session:<id du pack>`, `aide:<numéro de page>`, `bibliotheque:0,1` pour descendre dans les tuiles,
-  `bibliotheque:?texte` pour une recherche) ouvre directement un écran.
+  `bibliotheque:?texte` pour une recherche), `td` ou `td:<code>` (rejoint ce TD ; `td:<code>:demo` remplit
+  une grille avec une erreur et vérifie, pour capturer l'écran de correction) ouvre directement un écran.
 - `--theme=ocean` et `--accent=#D8498F` (ou `--accent=auto`) changent l'apparence au lancement ;
   `--hauteur=1700` agrandit la fenêtre pour capturer un écran long.
 - Variable d'environnement `REVISIONS_DONNEES` : utilise un autre dossier de données, pour essayer

@@ -90,7 +90,7 @@ public partial class AideViewModel : ObservableObject
 
         return assemblage.GetManifestResourceNames()
             .Where(nom => nom.StartsWith("Aide/") && nom != "Aide/prompt-type.md")
-            .Order()
+            .Order(Core.Ordre.TriNaturel.Comparateur) // « 10-… » après « 9-… »
             .Select(nom =>
             {
                 // Les fichiers contiennent des repères remplacés par les vrais dossiers de cet ordinateur.

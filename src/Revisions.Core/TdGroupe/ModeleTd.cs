@@ -1,0 +1,110 @@
+using System.Text;
+
+namespace Revisions.Core.TdGroupe;
+
+/// <summary>
+/// Tout ce qu'il faut pour générer un TD : c'est exactement ce que contient le code partagé.
+/// </summary>
+/// <param name="Type">Préfixe du type de TD (« MAT » pour les matrices, « SEA » pour une séance).</param>
+/// <param name="Version">Version du générateur qui a créé le code.</param>
+/// <param name="Niveau">Niveau de difficulté, de 1 à 3.</param>
+/// <param name="Nombre">Nombre d'exercices.</param>
+/// <param name="Graine">Graine du hasard (0 à 9999).</param>
+/// <param name="PackId">Pour un TD « séance » : l'identifiant du pack (sinon null).</param>
+public sealed record ParametresTd(string Type, int Version, int Niveau, int Nombre, int Graine, string? PackId = null);
+
+/// <summary>Un TD généré : la liste des exercices à faire ensemble.</summary>
+/// <param name="Code">Code à dicter aux camarades.</param>
+/// <param name="Titre">Titre affiché (« Matrices · niveau 2 »).</param>
+/// <param name="Empreinte">Deux mots calculés à partir du contenu : si tout le monde lit les mêmes, c'est le même TD.</param>
+public sealed record Td(ParametresTd Parametres, string Code, string Titre, IReadOnlyList<ExerciceTd> Exercices, string Empreinte);
+
+/// <summary>Un exercice : un énoncé et ses sous-questions a), b), c).</summary>
+/// <param name="Titre">Titre court (« Produit de deux matrices »).</param>
+/// <param name="Enonce">Énoncé commun aux sous-questions (Markdown + LaTeX).</param>
+/// <param name="Indice">Rappel de méthode, montré seulement si on le demande (Markdown + LaTeX).</param>
+/// <param name="SectionId">Section du cours à revoir (« Revoir la notion »), ou null.</param>
+public sealed record ExerciceTd(string Titre, string Enonce, IReadOnlyList<QuestionTd> Questions, string Indice, string? SectionId);
+
+/// <summary>Une sous-question.</summary>
+/// <param name="Lettre">« a », « b », « c »…</param>
+/// <param name="Intitule">Texte de la question (Markdown + LaTeX).</param>
+/// <param name="Libelle">Rappel très court en texte simple, affiché à côté de la zone de réponse (« A + B »).</param>
+/// <param name="Attendu">Bonne réponse et forme de la saisie (grille, nombre, choix…).</param>
+/// <param name="Correction">Correction pas à pas : une étape par appui sur Espace (Markdown + LaTeX).</param>
+public sealed record QuestionTd(string Lettre, string Intitule, string Libelle, ReponseAttendue Attendu, IReadOnlyList<string> Correction);
+
+/// <summary>Forme de la réponse attendue. Chaque forme a sa zone de saisie à l'écran.</summary>
+public abstract record ReponseAttendue
+{
+    /// <summary>Réponse écrite en texte simple (pour la comparaison et l'empreinte).</summary>
+    public abstract string Texte { get; }
+}
+
+/// <summary>Une matrice, saisie dans une grille à la bonne dimension.</summary>
+public sealed record ReponseMatrice(Matrice Valeur) : ReponseAttendue
+{
+    public override string Texte => Valeur.ToString();
+}
+
+/// <summary>Un nombre entier, saisi dans un champ simple.</summary>
+public sealed record ReponseNombre(int Valeur) : ReponseAttendue
+{
+    public override string Texte => Valeur.ToString(System.Globalization.CultureInfo.InvariantCulture);
+}
+
+/// <summary>Un choix parmi quelques propositions (« Oui / Non », une dimension, un QCM de pack).</summary>
+/// <param name="Choix">Propositions (Markdown court ; texte simple pour les générateurs).</param>
+/// <param name="Bonne">Index de la bonne proposition.</param>
+public sealed record ReponseChoix(IReadOnlyList<string> Choix, int Bonne) : ReponseAttendue
+{
+    public override string Texte => Choix[Bonne];
+}
+
+/// <summary>
+/// Réponse rédigée, impossible à vérifier automatiquement (exercice d'un pack) :
+/// on montre la correction et chacun dit lui-même s'il avait juste.
+/// </summary>
+public sealed record ReponseLibre(string Reponse) : ReponseAttendue
+{
+    public override string Texte => Reponse;
+}
+
+/// <summary>
+/// Empreinte d'un TD : deux mots faciles à lire à l'oral, calculés à partir de tout son contenu.
+/// Si deux camarades ont le même code mais pas la même empreinte, leurs contenus diffèrent
+/// (par exemple un pack de séance qui n'est pas dans la même version).
+/// </summary>
+public static class EmpreinteTd
+{
+    // 64 mots : 64 × 64 = 4 096 empreintes possibles. NE PAS MODIFIER (les empreintes changeraient).
+    private static readonly string[] Mots =
+    [
+        "abricot", "baleine", "cactus", "dauphin", "éclair", "fougère", "girafe", "hibou",
+        "igloo", "jaguar", "kiwi", "lama", "mangue", "narval", "olive", "panda",
+        "quartz", "renard", "sapin", "tortue", "ukulélé", "volcan", "wapiti", "yaourt",
+        "zèbre", "ananas", "bison", "cerise", "dragon", "étoile", "flamant", "gecko",
+        "hérisson", "iris", "jonquille", "koala", "lotus", "marmotte", "noisette", "orque",
+        "pélican", "quiche", "radis", "saumon", "tulipe", "vanille", "yéti", "zénith",
+        "airelle", "boussole", "comète", "dune", "érable", "falaise", "glacier", "hamac",
+        "lagon", "myrtille", "nuage", "orage", "pivoine", "rivière", "savane", "tonnerre",
+    ];
+
+    /// <summary>Calcule l'empreinte (FNV-1a 32 bits sur le texte UTF-8 de tous les exercices).</summary>
+    public static string Calculer(IEnumerable<ExerciceTd> exercices)
+    {
+        var texte = new StringBuilder();
+        foreach (var e in exercices)
+        {
+            texte.Append(e.Enonce).Append('\u001F');
+            foreach (var q in e.Questions) texte.Append(q.Intitule).Append('\u001F').Append(q.Attendu.Texte).Append('\u001E');
+        }
+        uint hash = 2166136261;
+        foreach (byte octet in Encoding.UTF8.GetBytes(texte.ToString()))
+        {
+            hash ^= octet;
+            hash = unchecked(hash * 16777619);
+        }
+        return $"{Mots[hash % 64]}-{Mots[(hash >> 6) % 64]}";
+    }
+}

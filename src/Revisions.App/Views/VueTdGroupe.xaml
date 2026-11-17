@@ -1,0 +1,368 @@
+<UserControl x:Class="Revisions.App.Views.VueTdGroupe"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:Revisions.App.Controles"
+             xmlns:vm="clr-namespace:Revisions.App.ViewModels"
+             x:Name="Racine">
+    <UserControl.Resources>
+        <!-- Vert pour « juste », orange pour « à reprendre » : jamais de rouge (R1, pas de punition).
+             Fonds semi-transparents : lisibles en thème clair comme en thème sombre. -->
+        <SolidColorBrush x:Key="FondJuste" Color="#4D2EA043" />
+        <SolidColorBrush x:Key="BordJuste" Color="#2EA043" />
+        <SolidColorBrush x:Key="FondAReprendre" Color="#4DF0883E" />
+        <SolidColorBrush x:Key="BordAReprendre" Color="#E07A2E" />
+
+        <!-- Une case de la grille (ou le champ d'un nombre). -->
+        <Style x:Key="Case" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Width" Value="62" />
+            <Setter Property="MinHeight" Value="38" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="c:SaisieEntiere.Active" Value="True" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Modifiable}" Value="False">
+                    <Setter Property="IsReadOnly" Value="True" />
+                    <Setter Property="IsTabStop" Value="False" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Etat}" Value="{x:Static vm:EtatCase.Juste}">
+                    <Setter Property="Background" Value="{StaticResource FondJuste}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource BordJuste}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Etat}" Value="{x:Static vm:EtatCase.AReprendre}">
+                    <Setter Property="Background" Value="{StaticResource FondAReprendre}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource BordAReprendre}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Une proposition d'un choix (« 2 × 3 », « Oui »…). -->
+        <Style x:Key="BoutonChoix" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Padding" Value="12,6" />
+            <Setter Property="Margin" Value="0,0,8,8" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding EstChoisi}" Value="True">
+                    <Setter Property="BorderBrush" Value="{DynamicResource AccentFillColorDefaultBrush}" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="FontWeight" Value="SemiBold" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Etat}" Value="{x:Static vm:EtatCase.Juste}">
+                    <Setter Property="Background" Value="{StaticResource FondJuste}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource BordJuste}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Etat}" Value="{x:Static vm:EtatCase.AReprendre}">
+                    <Setter Property="Background" Value="{StaticResource FondAReprendre}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource BordAReprendre}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <!-- ==== 1. Créer ou rejoindre un TD ==================================================== -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Visibility="{Binding EstChoix, Converter={StaticResource VisibleSi}}">
+            <StackPanel MaxWidth="980" Margin="32,40,32,28">
+                <TextBlock Text="TD en groupe" Style="{StaticResource Titre}" />
+                <TextBlock Style="{StaticResource Discret}" FontSize="15" Margin="0,6,0,0"
+                           Text="Faites le même TD ensemble, chacun sur son PC, en vocal sur Discord. Pas de réseau ni de compte : l'un crée le TD et dicte le code, les autres le saisissent. Ça marche aussi en solo." />
+
+                <Grid Margin="0,22,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Créer. -->
+                    <Border Style="{StaticResource Carte}">
+                        <StackPanel>
+                            <TextBlock Text="Créer un TD" Style="{StaticResource SousTitre}" />
+                            <TextBlock Text="Thème" Margin="0,14,0,4" />
+                            <ComboBox ItemsSource="{Binding Themes}" SelectedItem="{Binding ThemeChoisi}" DisplayMemberPath="Nom" HorizontalAlignment="Stretch" />
+                            <StackPanel Visibility="{Binding ChoixSeanceVisible, Converter={StaticResource VisibleSi}}">
+                                <TextBlock Text="Séance" Margin="0,12,0,4" />
+                                <ComboBox ItemsSource="{Binding Seances}" SelectedItem="{Binding SeanceChoisie}" DisplayMemberPath="Libelle" HorizontalAlignment="Stretch" />
+                                <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="2,4,0,0"
+                                           Text="Ses cartes « exercice » et « QCM ». Tout le monde doit avoir le même pack." />
+                            </StackPanel>
+                            <Grid Margin="0,12,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="14" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Niveau" Margin="0,0,0,4" />
+                                    <ComboBox ItemsSource="{Binding NiveauxDuTheme}" SelectedIndex="{Binding NiveauIndex}" HorizontalAlignment="Stretch" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Exercices" Margin="0,0,0,4" />
+                                    <ComboBox ItemsSource="{Binding NombresPossibles}" SelectedItem="{Binding Nombre}" MinWidth="90" />
+                                </StackPanel>
+                            </Grid>
+                            <CheckBox Content="Compte à rebours de 3 secondes avant chaque exercice" IsChecked="{Binding CompteARebours}" Margin="0,14,0,0" />
+                            <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                                <CheckBox Content="Minuteur indicatif :" IsChecked="{Binding MinuteurActif}" VerticalAlignment="Center"
+                                          ToolTip="Un simple repère, sans aucune conséquence quand il arrive à zéro." />
+                                <ComboBox ItemsSource="{Binding MinutesPossibles}" SelectedItem="{Binding MinutesParExercice}" Margin="8,0,6,0" MinWidth="70"
+                                          IsEnabled="{Binding MinuteurActif}" />
+                                <TextBlock Text="min par exercice" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <Button Content="Créer le TD" Command="{Binding CreerCommand}" Style="{DynamicResource AccentButtonStyle}"
+                                    FontSize="15" Padding="28,10" Margin="0,18,0,0" HorizontalAlignment="Left" />
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Rejoindre. -->
+                    <Border Grid.Column="2" Style="{StaticResource Carte}" VerticalAlignment="Top">
+                        <StackPanel>
+                            <TextBlock Text="Rejoindre un camarade" Style="{StaticResource SousTitre}" />
+                            <TextBlock Text="Saisis le code qu'il te dicte (majuscules, minuscules et espaces : peu importe)." Style="{StaticResource Discret}" Margin="0,8,0,10" />
+                            <TextBox x:Name="ZoneCode" Text="{Binding CodeSaisi, UpdateSourceTrigger=PropertyChanged}" FontSize="22"
+                                     FontFamily="Cascadia Mono, Consolas" Padding="10,6" KeyDown="ZoneCode_KeyDown" />
+                            <Button Content="Rejoindre" Command="{Binding RejoindreCommand}" Style="{DynamicResource AccentButtonStyle}"
+                                    FontSize="15" Padding="28,10" Margin="0,14,0,0" HorizontalAlignment="Left" />
+                            <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="0,16,0,0"
+                                       Text="Astuce : comparez l'empreinte (deux mots, par exemple « volcan-panda ») affichée au début. Mêmes mots = même TD pour tout le monde." />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- Erreur (code mal dicté, version différente, pack manquant…). -->
+                <Border Style="{StaticResource Carte}" Padding="16,12" Margin="0,16,0,0"
+                        Visibility="{Binding MessageErreur, Converter={StaticResource VisibleSi}}">
+                    <DockPanel>
+                        <Button DockPanel.Dock="Right" Content="Vérifier les mises à jour" Command="{Binding VerifierMisesAJourCommand}" Padding="14,6"
+                                Margin="12,0,0,0" VerticalAlignment="Center"
+                                Visibility="{Binding MiseAJourConseillee, Converter={StaticResource VisibleSi}}" />
+                        <TextBlock Text="{Binding MessageErreur}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                    </DockPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- ==== 2. « Prêts ? » et compte à rebours ============================================== -->
+        <Grid Visibility="{Binding EstPret, Converter={StaticResource VisibleSi}}">
+            <Border Style="{StaticResource Carte}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="48,36" MinWidth="520">
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding TitreTd}" Style="{StaticResource Discret}" HorizontalAlignment="Center" FontSize="14" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,8,0,0">
+                        <TextBlock Text="{Binding Code}" FontFamily="Cascadia Mono, Consolas" FontSize="30" FontWeight="SemiBold" VerticalAlignment="Center" />
+                        <Button Command="{Binding CopierCodeCommand}" Margin="12,0,0,0" Padding="10,6" VerticalAlignment="Center" ToolTip="Copier le code (pour le coller sur Discord)">
+                            <TextBlock Text="&#xE8C8;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="16" />
+                        </Button>
+                    </StackPanel>
+                    <TextBlock HorizontalAlignment="Center" Margin="0,6,0,0" Style="{StaticResource Discret}">
+                        <Run Text="Empreinte :" />
+                        <Run Text="{Binding Empreinte, Mode=OneWay}" FontWeight="SemiBold" Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+                        <Run Text="(la même pour tout le monde ?)" />
+                    </TextBlock>
+                    <TextBlock Text="{Binding Confirmation}" HorizontalAlignment="Center" FontSize="12" Margin="0,4,0,0"
+                               Visibility="{Binding Confirmation, Converter={StaticResource VisibleSi}}" />
+
+                    <TextBlock Text="{Binding Avancement}" HorizontalAlignment="Center" FontSize="15" Margin="0,28,0,0" />
+                    <TextBlock Text="{Binding TitreExercice}" HorizontalAlignment="Center" Style="{StaticResource SousTitre}" Margin="0,2,0,0" />
+                    <TextBlock Text="Prêts ?" HorizontalAlignment="Center" FontSize="44" FontWeight="SemiBold" Margin="0,22,0,0" />
+                    <Button Content="Go !" Command="{Binding PartirCommand}" Style="{DynamicResource AccentButtonStyle}"
+                            FontSize="18" Padding="56,12" Margin="0,18,0,0" HorizontalAlignment="Center" />
+                    <TextBlock Text="{Binding Consigne}" Style="{StaticResource Discret}" HorizontalAlignment="Center" Margin="0,16,0,0" FontSize="12.5" />
+                    <Button Content="Quitter le TD" Command="{Binding QuitterCommand}" Margin="0,18,0,0" Padding="14,5" HorizontalAlignment="Center" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Visibility="{Binding EstCompte, Converter={StaticResource VisibleSi}}">
+            <TextBlock Text="{Binding CompteRestant}" FontSize="140" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Foreground="{DynamicResource AccentFillColorDefaultBrush}" />
+        </Grid>
+
+        <!-- ==== 3. L'exercice : « On cherche » puis « Correction » ============================== -->
+        <Grid Margin="28,18,28,18" Visibility="{Binding EnExercice, Converter={StaticResource VisibleSi}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Barre du haut. -->
+            <DockPanel>
+                <Button DockPanel.Dock="Left" Content="Quitter" Command="{Binding QuitterCommand}" Padding="14,6"
+                        ToolTip="Quitter le TD : les exercices faits comptent dans ton récap" />
+                <TextBlock DockPanel.Dock="Right" Text="{Binding Avancement}" FontWeight="SemiBold" VerticalAlignment="Center" />
+                <TextBlock DockPanel.Dock="Right" Text="{Binding Minuteur}" Style="{StaticResource Discret}" VerticalAlignment="Center" Margin="0,0,16,0"
+                           Visibility="{Binding Minuteur, Converter={StaticResource VisibleSi}}" />
+                <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Margin="0,0,16,0" Style="{StaticResource Discret}" FontSize="12.5">
+                    <Run Text="{Binding Code, Mode=OneWay}" FontFamily="Cascadia Mono, Consolas" />
+                    <Run Text="·" />
+                    <Run Text="{Binding TitreExercice, Mode=OneWay}" />
+                </TextBlock>
+                <ProgressBar Value="{Binding Progression, Mode=OneWay}" Maximum="1" Height="6" Margin="16,0" VerticalAlignment="Center" />
+            </DockPanel>
+
+            <Grid Grid.Row="1" Margin="0,14,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="16" />
+                    <ColumnDefinition Width="Auto" MinWidth="300" MaxWidth="440" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Énoncé, indice et correction pas à pas : Markdown + LaTeX (matrices rendues par KaTeX). -->
+                <Border BorderThickness="1" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
+                    <c:VueMarkdown Message="{Binding MessageRendu}" />
+                </Border>
+
+                <!-- Zone de réponse : une carte par sous-question. -->
+                <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto" Focusable="False">
+                    <ItemsControl ItemsSource="{Binding Questions}" Focusable="False">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource Carte}" Padding="16,12" Margin="0,0,0,10">
+                                    <StackPanel>
+                                        <TextBlock FontSize="15">
+                                            <Run Text="{Binding Lettre, Mode=OneWay}" FontWeight="SemiBold" />
+                                            <Run Text="{Binding Libelle, Mode=OneWay}" />
+                                        </TextBlock>
+
+                                        <!-- Grille d'une matrice (entre parenthèses) ou case d'un nombre. -->
+                                        <Border HorizontalAlignment="Left" Margin="0,10,0,0" Padding="6,2" CornerRadius="12" BorderThickness="2,0,2,0"
+                                                Visibility="{Binding EstGrille, Converter={StaticResource VisibleSi}}">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding EstNombre}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="Transparent" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <ItemsControl ItemsSource="{Binding Cases}" Focusable="False">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <UniformGrid Columns="{Binding Colonnes}" />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Margin="3">
+                                                            <TextBox Text="{Binding Valeur, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource Case}" />
+                                                            <TextBlock Text="{Binding TexteAttendu}" FontSize="12.5" FontWeight="SemiBold" HorizontalAlignment="Center"
+                                                                       Foreground="{StaticResource BordAReprendre}"
+                                                                       Visibility="{Binding TexteAttendu, Converter={StaticResource VisibleSi}}" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Border>
+
+                                        <!-- Choix. -->
+                                        <ItemsControl ItemsSource="{Binding Choix}" Margin="0,10,0,0" Focusable="False"
+                                                      Visibility="{Binding EstChoix, Converter={StaticResource VisibleSi}}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Button Command="{Binding ChoisirCommand}" Style="{StaticResource BoutonChoix}">
+                                                        <TextBlock TextWrapping="Wrap" MaxWidth="360">
+                                                            <Run Text="{Binding Lettre, Mode=OneWay}" FontWeight="SemiBold" />
+                                                            <Run Text="·" />
+                                                            <Run Text="{Binding Texte, Mode=OneWay}" />
+                                                        </TextBlock>
+                                                    </Button>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                        <!-- Réponse rédigée : chacun dit lui-même s'il avait juste, une fois la correction affichée. -->
+                                        <StackPanel Margin="0,8,0,0" Visibility="{Binding EstLibre, Converter={StaticResource VisibleSi}}">
+                                            <TextBlock Text="Cherche sur papier, puis compare avec la correction." Style="{StaticResource Discret}"
+                                                       Visibility="{Binding DataContext.EstRecherche, ElementName=Racine, Converter={StaticResource VisibleSi}}" />
+                                            <StackPanel Orientation="Horizontal"
+                                                        Visibility="{Binding DataContext.EstCorrection, ElementName=Racine, Converter={StaticResource VisibleSi}}">
+                                                <Button Content="J'avais juste" Command="{Binding AutoEvaluerCommand}" CommandParameter="oui" Padding="14,6" Margin="0,0,8,0" />
+                                                <Button Content="Pas tout à fait" Command="{Binding AutoEvaluerCommand}" CommandParameter="non" Padding="14,6" />
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <TextBlock Text="{Binding Bilan}" Margin="0,8,0,0" FontWeight="SemiBold"
+                                                   Visibility="{Binding Bilan, Converter={StaticResource VisibleSi}}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+
+            <TextBlock Grid.Row="2" Text="{Binding Consigne}" Style="{StaticResource Discret}" HorizontalAlignment="Center" Margin="0,12,0,8" />
+
+            <!-- Actions : « On cherche » puis « Correction ». -->
+            <Grid Grid.Row="3" MinHeight="50">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                            Visibility="{Binding EstRecherche, Converter={StaticResource VisibleSi}}">
+                    <Button Content="Indice" Command="{Binding IndiceCommand}" IsEnabled="{Binding IndiceDisponible}" FontSize="15" Padding="22,10" Margin="0,0,12,0"
+                            ToolTip="Un rappel de méthode tiré du cours (touche I hors des cases)" />
+                    <Button Content="Vérifier" Command="{Binding VerifierCommand}" Style="{DynamicResource AccentButtonStyle}" FontSize="16" Padding="40,10"
+                            ToolTip="Ctrl + Entrée" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                            Visibility="{Binding EstCorrection, Converter={StaticResource VisibleSi}}">
+                    <Button Content="Revoir la notion" Command="{Binding RevoirNotionCommand}" IsEnabled="{Binding NotionDisponible}" FontSize="15" Padding="18,10" Margin="0,0,12,0"
+                            ToolTip="La section du cours (pack de maths SQ1), dans une fenêtre à part" />
+                    <Button Content="Indice" Command="{Binding IndiceCommand}" IsEnabled="{Binding IndiceDisponible}" FontSize="15" Padding="18,10" Margin="0,0,12,0" />
+                    <Button Content="Tout voir" Command="{Binding ToutVoirCommand}" IsEnabled="{Binding ResteDesEtapes}" FontSize="15" Padding="18,10" Margin="0,0,12,0" />
+                    <Button Content="Étape suivante" Command="{Binding EtapeSuivanteCommand}" IsEnabled="{Binding ResteDesEtapes}" FontSize="15" Padding="22,10" Margin="0,0,12,0"
+                            ToolTip="Espace" />
+                    <Button Content="{Binding TexteSuivant}" Command="{Binding ExerciceSuivantCommand}" IsEnabled="{Binding PeutContinuer}"
+                            Style="{DynamicResource AccentButtonStyle}" FontSize="16" Padding="34,10" ToolTip="Entrée" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!-- ==== 4. Récap personnel ============================================================= -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Visibility="{Binding EstFin, Converter={StaticResource VisibleSi}}">
+            <StackPanel MaxWidth="820" Margin="32,44,32,28">
+                <TextBlock Text="TD terminé, bravo !" Style="{StaticResource Titre}" />
+                <TextBlock Style="{StaticResource Discret}" FontSize="14" Margin="0,4,0,0">
+                    <Run Text="{Binding TitreTd, Mode=OneWay}" />
+                    <Run Text="·" />
+                    <Run Text="{Binding Code, Mode=OneWay}" FontFamily="Cascadia Mono, Consolas" />
+                </TextBlock>
+
+                <Border Style="{StaticResource Carte}" Margin="0,22,0,0">
+                    <DockPanel>
+                        <Button DockPanel.Dock="Right" Content="Copier" Command="{Binding CopierPhraseCommand}" Padding="14,6" VerticalAlignment="Center"
+                                ToolTip="Pour la coller sur Discord" />
+                        <StackPanel>
+                            <TextBlock Text="{Binding PhraseRecap}" FontSize="24" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            <TextBlock Text="À dire aux autres pour comparer. Le but n'est pas de gagner : c'est de voir ce qu'on reprend ensemble." Style="{StaticResource Discret}" Margin="0,4,0,0" />
+                            <TextBlock Text="{Binding TexteXp}" FontSize="15" Margin="0,10,0,0" Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}" />
+                            <TextBlock Text="{Binding Confirmation}" FontSize="12" Margin="0,4,0,0"
+                                       Visibility="{Binding Confirmation, Converter={StaticResource VisibleSi}}" />
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+
+                <Border Style="{StaticResource Carte}" Margin="0,14,0,0">
+                    <ItemsControl ItemsSource="{Binding Recap}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel Margin="0,4">
+                                    <TextBlock DockPanel.Dock="Right" Text="{Binding Issue}" Style="{StaticResource Discret}" />
+                                    <TextBlock Text="{Binding Numero}" Width="30" Style="{StaticResource Discret}" />
+                                    <TextBlock Text="{Binding Titre}" />
+                                </DockPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+
+                <Button Content="Faire un autre TD" Command="{Binding RevenirAuChoixCommand}" Style="{DynamicResource AccentButtonStyle}"
+                        FontSize="15" Padding="28,10" Margin="0,20,0,0" HorizontalAlignment="Left" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

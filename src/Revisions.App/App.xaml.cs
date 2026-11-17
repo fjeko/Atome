@@ -77,6 +77,12 @@ public partial class App : Application
                 }
                 break;
             case "statistiques": principal.AllerStatistiques(); break;
+            case "td":
+                // « td » ouvre l'écran ; « td:MAT1-2-8-48217 » rejoint ce TD ; « td:CODE:demo » remplit en plus
+                // quelques cases (justes et fausses) et vérifie : pour capturer l'écran de correction.
+                principal.AllerTdGroupe();
+                if (morceaux.Length > 1 && principal.VueCourante is TdGroupeViewModel td) td.DemonstrationDev(morceaux[1]);
+                break;
             case "reglages": principal.AllerReglages(); break;
             case "planning": principal.AllerPlanning(); break;
             case "aide":
@@ -200,6 +206,9 @@ public partial class App : Application
                 s.GetRequiredService<HttpClient>(), s.GetRequiredService<DepotProfil>(),
                 s.GetRequiredService<TimeProvider>(), InfosApplication.Version));
             services.AddSingleton<ServiceInstallation>();
+            // TD en groupe : générateurs de TD (matrices, séance d'un pack).
+            services.AddSingleton(s => ServiceTdGroupe.CreerCatalogue(s.GetRequiredService<DepotBibliotheque>(),
+                s.GetRequiredService<DepotRevisions>(), s.GetRequiredService<EtatApplication>()));
             services.AddSingleton<MainViewModel>();
             services.AddTransient<PartageViewModel>();
             Services = services.BuildServiceProvider();

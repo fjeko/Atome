@@ -51,6 +51,12 @@
                             <TextBlock Text="Bibliothèque" VerticalAlignment="Center" />
                         </StackPanel>
                     </ListBoxItem>
+                    <ListBoxItem Tag="td" Padding="14,13" ToolTip="Faire un TD à plusieurs, chacun sur son PC (sur Discord par exemple)">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE716;" Style="{StaticResource Icone}" />
+                            <TextBlock Text="TD en groupe" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </ListBoxItem>
                     <ListBoxItem Tag="acquis" Padding="14,13">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="&#xE73E;" Style="{StaticResource Icone}" />

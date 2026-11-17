@@ -28,3 +28,13 @@ La zone de texte sous la carte est facultative. Zone vide, **Espace** voit la r�
 | Touche | Action |
 | --- | --- |
 | **←** et **→** | section précédente, section suivante |
+
+### En TD en groupe
+
+| Touche | Action |
+| --- | --- |
+| **Tab**, flèches | passer d'une case de la grille à l'autre |
+| **Ctrl + Entrée** | vérifier ses réponses |
+| **Espace** | « go », puis étape suivante de la correction |
+| **Entrée** (hors des cases) | la suite logique : go, vérifier, étape suivante, exercice suivant |
+| **I** (hors des cases) | indice |

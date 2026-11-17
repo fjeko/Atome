@@ -38,6 +38,7 @@ public partial class MainWindow : Window
             Key.D3 or Key.NumPad3 => "3",
             Key.D4 or Key.NumPad4 => "4",
             Key.S => "s",
+            Key.I => "i",
             >= Key.A and <= Key.E => ((char)('a' + (e.Key - Key.A))).ToString(),
             _ => null,
         };
@@ -56,6 +57,10 @@ public partial class MainWindow : Window
             case SessionViewModel session:
                 session.Touche(touche);
                 e.Handled = true;
+                break;
+            case TdGroupeViewModel td when touche != "Tab":
+                // Hors des cases de saisie : Espace, Entrée et I (indice). Les autres touches gardent leur rôle.
+                e.Handled = td.Touche(touche);
                 break;
             case LectureViewModel lecture when touche is "ArrowLeft" or "ArrowRight":
                 lecture.ToucheCommand.Execute(touche);
