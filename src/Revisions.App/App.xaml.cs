@@ -77,6 +77,7 @@ public partial class App : Application
                 break;
             case "statistiques": principal.AllerStatistiques(); break;
             case "reglages": principal.AllerReglages(); break;
+            case "planning": principal.AllerPlanning(); break;
             case "aide":
                 principal.AllerAide();
                 if (morceaux.Length > 1 && principal.VueCourante is AideViewModel aide) aide.Index = int.Parse(morceaux[1]);
@@ -126,6 +127,8 @@ public partial class App : Application
             services.AddSingleton<DepotRevisions>();
             services.AddSingleton<DepotProfil>();
             services.AddSingleton<DepotAcquis>();
+            services.AddSingleton<DepotPlanning>();
+            services.AddSingleton<SelectionDuJour>();
             services.AddSingleton<ImportateurPacks>();
             services.AddSingleton(new Fsrs());
             services.AddSingleton<Planificateur>();

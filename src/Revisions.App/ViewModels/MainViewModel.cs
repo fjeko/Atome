@@ -1,3 +1,4 @@
+using System.IO;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -64,6 +65,7 @@ public partial class MainViewModel(
             case "statistiques": AllerStatistiques(); break;
             case "reglages": AllerReglages(); break;
             case "acquis": AllerAcquis(); break;
+            case "planning": AllerPlanning(); break;
             case "aide": AllerAide(); break;
         }
     }
@@ -82,6 +84,9 @@ public partial class MainViewModel(
 
     [RelayCommand]
     public void AllerAcquis() => Afficher(Creer<AcquisViewModel>(), "acquis");
+
+    [RelayCommand]
+    public void AllerPlanning() => Afficher(Creer<PlanningViewModel>(), "planning");
 
     /// <summary>Questionnaire des acquis : plein écran, sans la barre de gauche.</summary>
     public void AllerQuestionnaire() => Afficher(Creer<QuestionnaireViewModel>(), null);
@@ -126,17 +131,20 @@ public partial class MainViewModel(
         try
         {
             var jour = etat.Jour;
+            bool planningArrive = false;
             var resultats = await Task.Run(() =>
             {
                 baseDeDonnees.SauvegarderSiNecessaire(jour);
                 var resultatsImport = ImporterDossier();
+                // Planning du CNED : dossier « planning » à côté du dossier « packs » (facultatif).
+                planningArrive = ImporterPlanning();
                 // Les acquis déjà déclarés s'appliquent aussi aux cartes qui viennent d'arriver.
                 services.GetRequiredService<DepotAcquis>().Recalculer(jour);
                 return resultatsImport;
             });
             AnnoncerImport(resultats, afficherRapportSiRien: false);
             // L'accueil a été calculé avant l'import : on le rafraîchit si des packs sont arrivés.
-            if (VueCourante is AccueilViewModel && resultats.Any(r => r.Statut is StatutImport.Importe or StatutImport.MisAJour))
+            if (VueCourante is AccueilViewModel && (planningArrive || resultats.Any(r => r.Statut is StatutImport.Importe or StatutImport.MisAJour)))
                 AllerAccueil();
             // Premier lancement : la mascotte propose le questionnaire des acquis (une fois les cours importés).
             if (VueCourante is AccueilViewModel && services.GetRequiredService<DepotAcquis>().QuestionnaireAProposer()
@@ -148,6 +156,25 @@ public partial class MainViewModel(
             Journal.Erreur("Démarrage", exception);
             Bandeau = "L'import automatique des packs a échoué : " + exception.Message;
         }
+    }
+
+    /// <summary>
+    /// Lit le dossier « planning » (à côté de « packs », comme dans le dossier Cours) :
+    /// un fichier nouveau ou modifié est validé puis enregistré. Renvoie vrai si un planning a été enregistré.
+    /// </summary>
+    private bool ImporterPlanning()
+    {
+        if (etat.Reglages.DossierPacks is not { Length: > 0 } packs) return false;
+        string? cours = Path.GetDirectoryName(packs.TrimEnd('\\', '/'));
+        if (cours is null) return false;
+        bool enregistre = false;
+        foreach (var r in services.GetRequiredService<DepotPlanning>().ImporterDossier(Path.Combine(cours, "planning")))
+        {
+            enregistre |= r.Enregistre;
+            if (!r.Enregistre)
+                Journal.Erreur("Planning", new InvalidDataException($"{r.Fichier} : {string.Join(" ; ", r.Lecture.Erreurs)}"));
+        }
+        return enregistre;
     }
 
     /// <summary>Parcourt le dossier des packs (réglage) et importe ce qui est nouveau ou modifié.</summary>

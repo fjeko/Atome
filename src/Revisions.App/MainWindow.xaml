@@ -57,6 +57,12 @@
                             <TextBlock Text="Mes acquis" VerticalAlignment="Center" />
                         </StackPanel>
                     </ListBoxItem>
+                    <ListBoxItem Tag="planning" Padding="14,13">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE787;" Style="{StaticResource Icone}" />
+                            <TextBlock Text="Planning" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </ListBoxItem>
                     <ListBoxItem Tag="statistiques" Padding="14,13">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="&#xE9D2;" Style="{StaticResource Icone}" />

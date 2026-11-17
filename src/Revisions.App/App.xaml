@@ -18,6 +18,7 @@
         <DataTemplate DataType="{x:Type vm:ReglagesViewModel}"><v:VueReglages /></DataTemplate>
         <DataTemplate DataType="{x:Type vm:AideViewModel}"><v:VueAide /></DataTemplate>
         <DataTemplate DataType="{x:Type vm:AcquisViewModel}"><v:VueAcquis /></DataTemplate>
+        <DataTemplate DataType="{x:Type vm:PlanningViewModel}"><v:VuePlanning /></DataTemplate>
         <DataTemplate DataType="{x:Type vm:QuestionnaireViewModel}"><v:VueQuestionnaire /></DataTemplate>
 
         <!-- Styles communs. Les couleurs viennent du thème Fluent : elles suivent le mode clair ou sombre. -->

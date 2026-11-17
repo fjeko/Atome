@@ -11,6 +11,9 @@ namespace Revisions.App.ViewModels;
 /// <summary>Un jour de la semaine sur l'accueil (pastille pleine s'il y a eu une révision).</summary>
 public sealed record JourDeSemaine(string Lettre, bool Actif, bool EstAujourdhui);
 
+/// <summary>Une séance proposée à la lecture dans le bloc « Au programme ».</summary>
+public sealed record SeanceAuProgramme(string PackId, string Seance, string Matiere, string Raison);
+
 /// <summary>
 /// Écran d'accueil : dit quoi faire aujourd'hui, sans jamais parler de « retard ».
 /// </summary>
@@ -18,7 +21,7 @@ public partial class AccueilViewModel : ObservableObject
 {
     private readonly MainViewModel _main;
     private readonly EtatApplication _etat;
-    private readonly DepotRevisions _revisions;
+    private readonly Journee _journee;
     private readonly PlanDuJour _plan;
 
     public string Titre { get; }
@@ -39,6 +42,14 @@ public partial class AccueilViewModel : ObservableObject
     public string SerieTexte { get; }
     public string SerieDetail { get; }
     public IReadOnlyList<JourDeSemaine> Semaine { get; }
+
+    /// <summary>Prochaines échéances du planning, sur un ton neutre (vide sans planning suivi).</summary>
+    public IReadOnlyList<string> Echeances { get; }
+    public bool AfficherEcheances => Echeances.Count > 0;
+
+    /// <summary>De 1 à 3 séances à lire, choisies selon le planning (vide sans planning suivi).</summary>
+    public IReadOnlyList<SeanceAuProgramme> AuProgramme { get; }
+    public bool AfficherAuProgramme => AuProgramme.Count > 0;
 
     // ---- Mascotte : un message par ouverture de l'application (pas à chaque retour sur l'accueil) ----
     private static string? _messageOuverture;
@@ -85,18 +96,19 @@ public partial class AccueilViewModel : ObservableObject
         (_messageOuverture, _expressionOuverture) = choix[Random.Shared.Next(choix.Length)];
     }
 
-    public AccueilViewModel(MainViewModel main, EtatApplication etat, DepotRevisions revisions, DepotProfil profil)
+    public AccueilViewModel(MainViewModel main, EtatApplication etat, SelectionDuJour selection, DepotProfil profil)
     {
         _main = main;
         _etat = etat;
-        _revisions = revisions;
+        _journee = selection.Charger(etat.Jour);
 
         var jour = etat.Jour;
         ChoisirMessage(profil, jour);
         var reglages = etat.Reglages;
         var joursActifs = profil.JoursActifs();
         int faites = profil.CartesFaites(jour);
-        int dues = revisions.NombreDeDues(jour);
+        // Cartes dues, plus celles avancées pour préparer un devoir proche (planning).
+        int dues = _journee.Dues().Count;
 
         // ---- Plan du jour (plafond, nouvelles cartes, mode reprise) ----
         _plan = CalculPlanDuJour.Calculer(new ContexteJour(
@@ -104,7 +116,7 @@ public partial class AccueilViewModel : ObservableObject
             dues, faites, profil.NouvellesVues(jour), reglages));
         if (_plan.DebutReprise != profil.DebutReprise) profil.DebutReprise = _plan.DebutReprise;
 
-        int nouvelles = revisions.NouvellesCartes(_plan.MaxNouvelles).Count;
+        int nouvelles = _journee.NombreDeNouvelles(_plan.MaxNouvelles);
         int duesProposees = Math.Min(dues, _plan.MaxCartes);
         int aFaire = duesProposees + Math.Min(nouvelles, _plan.MaxCartes - duesProposees);
         int minutes = Math.Max(1, (int)Math.Round(aFaire * profil.SecondesParCarte() / 60));
@@ -129,7 +141,7 @@ public partial class AccueilViewModel : ObservableObject
         {
             Titre = "C'est bien pour aujourd'hui !";
             Detail = $"Tu as révisé {faites} cartes. Le reste attendra demain.";
-            PeutContinuer = dues > 0 || revisions.NouvellesCartes(1).Count > 0;
+            PeutContinuer = dues > 0 || _journee.NombreDeNouvelles(1) > 0;
         }
         else
         {
@@ -169,6 +181,12 @@ public partial class AccueilViewModel : ObservableObject
             .Select(i => lundi.AddDays(i))
             .Select(j => new JourDeSemaine("LMMJVSD"[j.DayNumber - lundi.DayNumber].ToString(), actifs.Contains(j), j == jour))
             .ToList();
+
+        // ---- Planning du CNED : prochaines échéances et séances à lire (seulement s'il est suivi) ----
+        Echeances = _journee.Echeances(3).Select(Libelles.Echeance).ToList();
+        AuProgramme = _journee.Suggestions(3)
+            .Select(s => new SeanceAuProgramme(s.Seance.PackId, s.Seance.Seance, s.Seance.Matiere, s.Raison))
+            .ToList();
     }
 
     /// <summary>Lance la session du jour.</summary>
@@ -177,7 +195,7 @@ public partial class AccueilViewModel : ObservableObject
     {
         var jour = _etat.Jour;
         var cartes = ConstructeurSession.Construire(
-            _revisions.CartesDues(jour), _revisions.NouvellesCartes(_plan.MaxNouvelles), jour, _plan.MaxCartes, _plan.MaxNouvelles);
+            _journee.Dues(), _journee.Nouvelles(_plan.MaxNouvelles), jour, _plan.MaxCartes, _plan.MaxNouvelles);
         _main.DemarrerSession(cartes, _plan.ModeReprise ? "reprise" : "quotidienne");
     }
 
@@ -188,10 +206,17 @@ public partial class AccueilViewModel : ObservableObject
         var jour = _etat.Jour;
         int nouvelles = _plan.ModeReprise ? 0 : 5;
         var cartes = ConstructeurSession.Construire(
-            _revisions.CartesDues(jour), _revisions.NouvellesCartes(nouvelles), jour, 5, nouvelles);
+            _journee.Dues(), _journee.Nouvelles(nouvelles), jour, 5, nouvelles);
         _main.DemarrerSession(cartes, "bonus");
     }
 
     [RelayCommand]
     private void AllerBibliotheque() => _main.AllerBibliotheque();
+
+    [RelayCommand]
+    private void AllerPlanning() => _main.AllerPlanning();
+
+    /// <summary>Ouvre une séance du bloc « Au programme ».</summary>
+    [RelayCommand]
+    private void Lire(SeanceAuProgramme seance) => _main.OuvrirLecture(seance.PackId);
 }

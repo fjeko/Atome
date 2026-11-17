@@ -28,6 +28,69 @@
                 </StackPanel>
             </Border>
 
+            <!-- Planning du CNED : séances à lire et prochaines échéances (masqué sans planning suivi). -->
+            <Grid Margin="0,18,0,0">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding AfficherAuProgramme}" Value="False" />
+                                    <Condition Binding="{Binding AfficherEcheances}" Value="False" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="18" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Style="{StaticResource Carte}" Visibility="{Binding AfficherAuProgramme, Converter={StaticResource VisibleSi}}">
+                    <StackPanel>
+                        <TextBlock Text="Au programme" Style="{StaticResource SousTitre}" />
+                        <TextBlock Text="Des séances à lire quand tu veux : leurs cartes arriveront ensuite." Style="{StaticResource Discret}"
+                                   TextWrapping="Wrap" Margin="0,4,0,8" />
+                        <ItemsControl ItemsSource="{Binding AuProgramme}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding DataContext.LireCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                                            Padding="12,8" Margin="0,6,0,0" ToolTip="Ouvrir la séance">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Seance}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                            <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" FontSize="13">
+                                                <Run Text="{Binding Matiere, Mode=OneWay}" /> <Run Text="·" /> <Run Text="{Binding Raison, Mode=OneWay}" />
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource Carte}" Visibility="{Binding AfficherEcheances, Converter={StaticResource VisibleSi}}">
+                    <StackPanel>
+                        <TextBlock Text="Prochaines échéances" Style="{StaticResource SousTitre}" />
+                        <TextBlock Text="Proposition du CNED, pour te repérer." Style="{StaticResource Discret}" Margin="0,4,0,8" />
+                        <ItemsControl ItemsSource="{Binding Echeances}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" TextWrapping="Wrap" Margin="0,6,0,0" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Button Content="Voir le planning" Command="{Binding AllerPlanningCommand}" Padding="14,6" Margin="0,14,0,0"
+                                HorizontalAlignment="Left" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
             <Grid Margin="0,18,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

@@ -96,3 +96,8 @@ public partial class VueQuestionnaire : UserControl
 {
     public VueQuestionnaire() => InitializeComponent();
 }
+
+public partial class VuePlanning : UserControl
+{
+    public VuePlanning() => InitializeComponent();
+}
