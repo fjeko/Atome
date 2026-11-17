@@ -28,6 +28,7 @@
   <img src="docs/images/statistiques.png" alt="Statistiques et régularité" width="49%">
   <img src="docs/images/reglages.png" alt="Réglages : rythme et reprise après une pause" width="49%">
 </p>
+
 **Version de test** : un bug, une idée ? Ouvre un [Issue](../../issues) sur ce dépôt.
 
 **Atome** est mon tout premier projet. Il a été **entièrement généré par une IA (Claude, d'Anthropic)** :
