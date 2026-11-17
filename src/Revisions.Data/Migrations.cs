@@ -119,5 +119,16 @@ internal static class Migrations
         CREATE INDEX ix_revision_jour  ON revision(jour);
         CREATE INDEX ix_revision_carte ON revision(carte_id);
         """,
+
+        // ---- 2 : acquis (progression faite hors de l'application) ----------------------------
+        """
+        CREATE TABLE acquis (
+          chemin        TEXT PRIMARY KEY,            -- clés des niveaux séparées par U+001F ; « § » + id du pack pour une séance
+          avancement    TEXT,                        -- pas_vu | vu | revise ; NULL = hérité
+          comprehension TEXT,                        -- decouverte | fragile | correct | solide ; NULL = hérité
+          date_maj      TEXT NOT NULL
+        );
+        ALTER TABLE etat_carte ADD COLUMN prioritaire INTEGER NOT NULL DEFAULT 0;  -- nouvelle carte à montrer en premier
+        """,
     ];
 }

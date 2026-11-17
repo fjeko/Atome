@@ -125,6 +125,7 @@ public partial class App : Application
             services.AddSingleton<DepotBibliotheque>();
             services.AddSingleton<DepotRevisions>();
             services.AddSingleton<DepotProfil>();
+            services.AddSingleton<DepotAcquis>();
             services.AddSingleton<ImportateurPacks>();
             services.AddSingleton(new Fsrs());
             services.AddSingleton<Planificateur>();

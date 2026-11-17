@@ -86,3 +86,13 @@ public partial class FenetreRapport : Window
 
     private void Fermer(object sender, RoutedEventArgs e) => Close();
 }
+
+public partial class VueAcquis : UserControl
+{
+    public VueAcquis() => InitializeComponent();
+}
+
+public partial class VueQuestionnaire : UserControl
+{
+    public VueQuestionnaire() => InitializeComponent();
+}

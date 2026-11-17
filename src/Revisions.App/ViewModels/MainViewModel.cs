@@ -63,6 +63,7 @@ public partial class MainViewModel(
             case "bibliotheque": AllerBibliotheque(); break;
             case "statistiques": AllerStatistiques(); break;
             case "reglages": AllerReglages(); break;
+            case "acquis": AllerAcquis(); break;
             case "aide": AllerAide(); break;
         }
     }
@@ -78,6 +79,12 @@ public partial class MainViewModel(
 
     [RelayCommand]
     public void AllerReglages() => Afficher(Creer<ReglagesViewModel>(), "reglages");
+
+    [RelayCommand]
+    public void AllerAcquis() => Afficher(Creer<AcquisViewModel>(), "acquis");
+
+    /// <summary>Questionnaire des acquis : plein écran, sans la barre de gauche.</summary>
+    public void AllerQuestionnaire() => Afficher(Creer<QuestionnaireViewModel>(), null);
 
     [RelayCommand]
     public void AllerAide() => Afficher(Creer<AideViewModel>(), "aide");
@@ -122,12 +129,19 @@ public partial class MainViewModel(
             var resultats = await Task.Run(() =>
             {
                 baseDeDonnees.SauvegarderSiNecessaire(jour);
-                return ImporterDossier();
+                var resultatsImport = ImporterDossier();
+                // Les acquis déjà déclarés s'appliquent aussi aux cartes qui viennent d'arriver.
+                services.GetRequiredService<DepotAcquis>().Recalculer(jour);
+                return resultatsImport;
             });
             AnnoncerImport(resultats, afficherRapportSiRien: false);
             // L'accueil a été calculé avant l'import : on le rafraîchit si des packs sont arrivés.
             if (VueCourante is AccueilViewModel && resultats.Any(r => r.Statut is StatutImport.Importe or StatutImport.MisAJour))
                 AllerAccueil();
+            // Premier lancement : la mascotte propose le questionnaire des acquis (une fois les cours importés).
+            if (VueCourante is AccueilViewModel && services.GetRequiredService<DepotAcquis>().QuestionnaireAProposer()
+                && services.GetRequiredService<DepotBibliotheque>().ListerSeances(jour).Count > 0)
+                AllerQuestionnaire();
         }
         catch (Exception exception)
         {

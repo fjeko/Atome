@@ -48,7 +48,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
             : Charger(SelectCartes +
                       """
                        AND e.stabilite IS NULL
-                      ORDER BY (p.date_lecture IS NULL), COALESCE(p.ordre, 9999), p.id, c.difficulte, c.position
+                      ORDER BY e.prioritaire DESC, (p.date_lecture IS NULL), COALESCE(p.ordre, 9999), p.id, c.difficulte, c.position
                       LIMIT @maximum
                       """, new { maximum });
 

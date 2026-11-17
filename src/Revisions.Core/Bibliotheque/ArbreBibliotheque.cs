@@ -124,6 +124,9 @@ public static partial class ArbreBibliotheque
             : (null, partie.Trim());
     }
 
+    /// <summary>Clés des niveaux traversés puis de la séance elle-même (« § » + identifiant du pack) : sert à enregistrer les acquis.</summary>
+    public static List<string> Chemin(ResumeSeance s) => [.. Niveaux(s).Select(n => n.Cle), "§" + s.PackId];
+
     /// <summary>Les niveaux à traverser pour atteindre une séance (les niveaux absents sont omis).</summary>
     private static IEnumerable<NoeudBibliotheque> Niveaux(ResumeSeance s)
     {
