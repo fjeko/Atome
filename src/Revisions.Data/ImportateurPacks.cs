@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.Json;
 using Dapper;
 using Microsoft.Data.Sqlite;
+using Revisions.Core.Collections;
 using Revisions.Core.Modeles;
 using Revisions.Core.Packs;
 
@@ -35,7 +36,9 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
     /// <summary>Importe tous les fichiers .json d'un dossier (sous-dossiers compris).</summary>
     /// <param name="dossierPacks">Dossier à parcourir.</param>
     /// <param name="dossierCours">Dossier « Cours », pour vérifier que le document d'origine existe (facultatif).</param>
-    public List<ResultatImport> ImporterDossier(string dossierPacks, string? dossierCours)
+    /// <param name="collection">Collection des packs nouveaux (par défaut « Mes packs ») ; les cours libres vont toujours dans « Cours libres ».</param>
+    /// <param name="nomCollection">Nom de cette collection, si elle est créée à cette occasion.</param>
+    public List<ResultatImport> ImporterDossier(string dossierPacks, string? dossierCours, string? collection = null, string? nomCollection = null)
     {
         var resultats = new List<ResultatImport>();
         if (!Directory.Exists(dossierPacks)) return resultats;
@@ -57,7 +60,7 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
                 resultats.Add(new ResultatImport(fichier, c.Id, c.Seance, StatutImport.Inchange, []));
                 continue;
             }
-            resultats.Add(ImporterFichier(fichier, dossierCours, fichierParPack));
+            resultats.Add(ImporterFichier(fichier, dossierCours, fichierParPack, collection, nomCollection));
         }
         return resultats;
     }
@@ -65,7 +68,8 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
     private static string Horodatage(FileInfo info) => info.LastWriteTimeUtc.Ticks.ToString();
 
     /// <summary>Importe un fichier de pack.</summary>
-    public ResultatImport ImporterFichier(string fichier, string? dossierCours, Dictionary<string, string>? fichierParPack = null)
+    public ResultatImport ImporterFichier(string fichier, string? dossierCours, Dictionary<string, string>? fichierParPack = null,
+        string? collection = null, string? nomCollection = null)
     {
         byte[] octets;
         try
@@ -124,7 +128,13 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
         string maintenant = horloge.GetUtcNow().ToString("O");
         using var transaction = connexion.BeginTransaction();
         bool existait = connexion.ExecuteScalar<long>("SELECT COUNT(*) FROM pack WHERE id = @Id", new { pack.Id }, transaction) > 0;
-        Enregistrer(connexion, transaction, pack, fichier, empreinte, maintenant);
+        // Collection : un pack déjà connu garde la sienne ; si elle est masquée, le pack arrive masqué lui aussi.
+        string? deja = connexion.ExecuteScalar<string?>("SELECT collection FROM pack WHERE id = @Id", new { pack.Id }, transaction);
+        string cle = Collections.Resoudre(pack.Id, deja, collection);
+        string nom = cle == Collections.Libres ? Collections.NomLibres : nomCollection ?? Collections.NomParDefaut(cle);
+        bool masquee = DepotCollections.DeclarerEtDireSiMasquee(connexion, transaction, cle, nom);
+        Enregistrer(connexion, transaction, pack, fichier, empreinte, maintenant, cle);
+        if (masquee) DepotCollections.MasquerPack(connexion, transaction, pack.Id);
         Marquer(connexion, pack.Id, fichier, transaction);
         var statut = existait ? StatutImport.MisAJour : StatutImport.Importe;
         Journaliser(connexion, transaction, fichier, pack.Id, statut, problemes, maintenant);
@@ -142,7 +152,7 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
     }
 
     private static void Enregistrer(SqliteConnection connexion, SqliteTransaction transaction, Pack pack,
-        string fichier, string empreinte, string maintenant)
+        string fichier, string empreinte, string maintenant, string collection)
     {
         // Matière : créée si elle n'existe pas encore.
         connexion.Execute(
@@ -156,21 +166,22 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
         connexion.Execute(
             """
             INSERT INTO pack (id, matiere_id, partie, sequence, seance, ordre, source_fichier, source_pages, resume,
-                              notions_json, format_version, chemin_fichier, empreinte, date_import, date_maj)
+                              notions_json, format_version, chemin_fichier, empreinte, date_import, date_maj, collection)
             VALUES (@Id, @matiereId, @Partie, @Sequence, @Seance, @Ordre, @SourceFichier, @SourcePages, @Resume,
-                    @notions, @FormatVersion, @fichier, @empreinte, @maintenant, @maintenant)
+                    @notions, @FormatVersion, @fichier, @empreinte, @maintenant, @maintenant, @collection)
             ON CONFLICT(id) DO UPDATE SET
               matiere_id = excluded.matiere_id, partie = excluded.partie, sequence = excluded.sequence,
               seance = excluded.seance, ordre = excluded.ordre, source_fichier = excluded.source_fichier,
               source_pages = excluded.source_pages, resume = excluded.resume, notions_json = excluded.notions_json,
               format_version = excluded.format_version, chemin_fichier = excluded.chemin_fichier,
-              empreinte = excluded.empreinte, date_maj = excluded.date_maj
+              empreinte = excluded.empreinte, date_maj = excluded.date_maj,
+              collection = COALESCE(pack.collection, excluded.collection)
             """,
             new
             {
                 pack.Id, matiereId, pack.Partie, pack.Sequence, pack.Seance, pack.Ordre, pack.SourceFichier,
                 pack.SourcePages, pack.Resume, notions = JsonSerializer.Serialize(pack.Notions),
-                pack.FormatVersion, fichier, empreinte, maintenant,
+                pack.FormatVersion, fichier, empreinte, maintenant, collection,
             }, transaction);
 
         // Sections : mises à jour ou ajoutées ; « archivee = 0 » réactive une section revenue.

@@ -35,7 +35,7 @@ public sealed class FenetreCoursLibres : Window
         });
         contenu.Children.Add(new TextBlock
         {
-            Text = "Ce sont des cours originaux livrés avec Atome, avec leurs cartes de révision. Tu pourras les masquer ou les remettre à tout moment dans Réglages → Cours libres intégrés.",
+            Text = "Ce sont des cours originaux livrés avec Atome, avec leurs cartes de révision. Tu pourras les masquer ou les remettre à tout moment dans Réglages → Mes collections.",
             TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 10, 0, 0), Opacity = 0.75,
         });
         contenu.Children.Add(pied);

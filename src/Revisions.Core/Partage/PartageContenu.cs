@@ -10,13 +10,16 @@ namespace Revisions.Core.Partage;
 /// <param name="NbPacks">Nombre de fichiers de pack (.json) dans packs/.</param>
 /// <param name="DocumentsInclus">Vrai si le dossier cours/ (PDF d'origine, etc.) est dans l'archive.</param>
 /// <param name="NbDocuments">Nombre de fichiers dans cours/ (0 si non inclus).</param>
-public sealed record ManifesteContenu(int FormatVersion, string Application, DateTimeOffset Date, int NbPacks, bool DocumentsInclus, int NbDocuments);
+/// <param name="Auteur">Nom de l'auteur, facultatif (affiché comme nom de collection à l'import).</param>
+public sealed record ManifesteContenu(int FormatVersion, string Application, DateTimeOffset Date, int NbPacks, bool DocumentsInclus, int NbDocuments, string? Auteur = null);
 
 /// <summary>Ce qu'a fait une extraction.</summary>
 /// <param name="NbPacks">Packs extraits.</param>
 /// <param name="NbFichiers">Fichiers extraits en tout.</param>
 /// <param name="DocumentsInclus">Documents d'origine présents dans l'archive.</param>
-public sealed record ResumeExtraction(int NbPacks, int NbFichiers, bool DocumentsInclus);
+/// <param name="FichiersPacks">Chemins des fichiers de pack extraits (pour les ranger dans une collection).</param>
+/// <param name="Auteur">Auteur indiqué par le manifeste, ou null.</param>
+public sealed record ResumeExtraction(int NbPacks, int NbFichiers, bool DocumentsInclus, IReadOnlyList<string> FichiersPacks, string? Auteur = null);
 
 /// <summary>Archive illisible, trop récente ou dangereuse : le message est destiné à l'utilisateur.</summary>
 public sealed class ArchiveInvalideException(string message) : Exception(message);
@@ -181,17 +184,17 @@ public static class PartageContenu
         // 2) Extraction.
         long total = Math.Max(1, aExtraire.Sum(x => x.Entree.Length));
         long fait = 0;
-        int nbPacks = 0;
+        var fichiersPacks = new List<string>();
         foreach (var (entree, chemin) in aExtraire)
         {
             annulation.ThrowIfCancellationRequested();
             Directory.CreateDirectory(Path.GetDirectoryName(chemin)!);
             entree.ExtractToFile(chemin, overwrite: true);
-            if (entree.FullName.StartsWith(DossierPacks + "/") && chemin.EndsWith(".json", StringComparison.OrdinalIgnoreCase)) nbPacks++;
+            if (entree.FullName.StartsWith(DossierPacks + "/") && chemin.EndsWith(".json", StringComparison.OrdinalIgnoreCase)) fichiersPacks.Add(chemin);
             fait += entree.Length;
             progression?.Report((double)fait / total);
         }
         progression?.Report(1);
-        return new ResumeExtraction(nbPacks, aExtraire.Count, manifeste.DocumentsInclus);
+        return new ResumeExtraction(fichiersPacks.Count, aExtraire.Count, manifeste.DocumentsInclus, fichiersPacks, manifeste.Auteur);
     }
 }

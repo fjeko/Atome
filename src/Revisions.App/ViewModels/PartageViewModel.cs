@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
 using Revisions.App.Services;
+using Revisions.Core.Collections;
 using Revisions.Core.Partage;
 using Revisions.Data;
 
@@ -145,7 +146,10 @@ public partial class PartageViewModel(EtatApplication etat, MainViewModel main, 
             }
 
             // 5) Import habituel (la progression est conservée) puis récapitulatif.
-            await main.ApresImportContenuAsync();
+            // Les nouveaux cours forment une collection à part (nom de l'auteur si le fichier le donne, sinon nom du fichier).
+            await main.ApresImportContenuAsync(resume.FichiersPacks,
+                Collections.CleImportee(resume.Auteur ?? Path.GetFileNameWithoutExtension(archive)),
+                Collections.NomImporte(resume.Auteur, archive));
             int cartes = bibliotheque.ListerSeances(etat.Jour).Sum(s => s.NbCartes);
             Message = $"Contenu importé : {Texte.Pluriel(resume.NbPacks, "pack", "packs")}, {Texte.Pluriel(cartes, "carte", "cartes")}, "
                       + (resume.DocumentsInclus ? "documents d'origine inclus." : "sans les documents d'origine (le bouton « Voir le PDF » ne marchera pas).");

@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 using Revisions.App.Services;
 using Revisions.App.Views;
+using Revisions.Core.Collections;
 using Revisions.Core.MisesAJour;
 using Revisions.Core.Packs;
 using Revisions.Core.Sessions;
@@ -312,33 +313,70 @@ public partial class MainViewModel(
     private async Task<List<ResultatImport>> ChargerCoursLibresAsync(DateOnly jour)
     {
         Bandeau = "Chargement des cours libres…";
+        int parJour = CartesParJourAuReaffichage();
         return await Task.Run(() =>
         {
-            var r = etat.DossierCoursLibres is { } d ? services.GetRequiredService<DepotCoursLibres>().Activer(d) : [];
+            var r = etat.DossierCoursLibres is { } d ? services.GetRequiredService<DepotCoursLibres>().Activer(d, jour, parJour) : [];
             services.GetRequiredService<DepotAcquis>().Recalculer(jour);
             return r;
         });
     }
 
-    /// <summary>Interrupteur des Réglages : charge les cours libres, ou les masque (sans rien effacer).</summary>
-    public async Task ChangerCoursLibresAsync(bool actif)
+    /// <summary>Au réaffichage d'une collection, nombre de cartes en retard ramenées par jour (la moitié du plafond quotidien).</summary>
+    private int CartesParJourAuReaffichage() => Math.Max(5, etat.Reglages.PlafondQuotidien / 2);
+
+    /// <summary>
+    /// Les collections à proposer (Réglages, filtres de la Bibliothèque). Les cours libres livrés avec Atome
+    /// y figurent même s'ils n'ont encore jamais été chargés.
+    /// </summary>
+    public List<InfoCollection> ListerCollections()
     {
-        var depot = services.GetRequiredService<DepotCoursLibres>();
+        int livres = etat.DossierCoursLibres is { } d && Directory.Exists(d)
+            ? Directory.EnumerateFiles(d, "*.json", SearchOption.AllDirectories).Count() : 0;
+        var liste = services.GetRequiredService<DepotCollections>().Lister();
+        // Cours libres jamais chargés, ou désactivés avant l'arrivée des collections : ils comptent comme masqués.
+        if (etat.Reglages.CoursLibres != true) liste = liste.Select(c => c.Cle == Collections.Libres ? c with { Visible = false } : c).ToList();
+        return Collections.AvecLibresAbsents(liste, livres);
+    }
+
+    /// <summary>
+    /// Affiche ou masque une collection (Réglages et filtres de la Bibliothèque). Rien n'est effacé : la progression
+    /// est conservée, et au réaffichage les cartes devenues dues entre-temps sont étalées sur plusieurs jours.
+    /// </summary>
+    /// <returns>Un message à montrer à l'étudiant si le changement a été refusé, sinon null.</returns>
+    public async Task<string?> BasculerCollectionAsync(string cle, bool visible)
+    {
+        if (!visible && !Collections.PeutMasquer(ListerCollections(), cle)) return Collections.MessageDerniere;
         var jour = etat.Jour;
+        int parJour = CartesParJourAuReaffichage();
         List<ResultatImport> resultats = [];
         try
         {
-            if (actif) resultats = await ChargerCoursLibresAsync(jour);
-            else await Task.Run(() => { depot.Masquer(); services.GetRequiredService<DepotAcquis>().Recalculer(jour); });
+            if (cle == Collections.Libres)
+            {
+                if (visible) resultats = await ChargerCoursLibresAsync(jour);
+                else await Task.Run(() => { services.GetRequiredService<DepotCoursLibres>().Masquer(jour); services.GetRequiredService<DepotAcquis>().Recalculer(jour); });
+                etat.Reglages.CoursLibres = visible;
+                services.GetRequiredService<DepotProfil>().EcrireValeur("cours_libres", visible ? "1" : "0");
+            }
+            else
+            {
+                await Task.Run(() =>
+                {
+                    services.GetRequiredService<DepotCollections>().DefinirVisible(cle, visible, jour, parJour, imposerUneVisible: false);
+                    services.GetRequiredService<DepotAcquis>().Recalculer(jour);
+                });
+            }
         }
         catch (Exception exception)
         {
-            Journal.Erreur("Cours libres", exception);
-            Bandeau = "Les cours libres n'ont pas pu être mis à jour : " + exception.Message;
-            return;
+            Journal.Erreur("Collections", exception);
+            Bandeau = "La collection n'a pas pu être mise à jour : " + exception.Message;
+            return null;
         }
         AnnoncerImport(resultats, afficherRapportSiRien: false);
-        if (!actif) Bandeau = "Cours libres masqués. Ta progression est conservée.";
+        if (!visible) Bandeau = "Collection masquée. Ta progression est conservée.";
+        return null;
     }
 
     /// <summary>
@@ -364,12 +402,15 @@ public partial class MainViewModel(
     /// Après l'arrivée d'un contenu partagé : import habituel des packs et du planning (la progression est
     /// conservée), recalcul des acquis, puis on rouvre l'écran en cours pour qu'il montre le nouveau contenu.
     /// </summary>
-    public async Task ApresImportContenuAsync()
+    /// <param name="fichiersPacks">Fichiers de pack qui viennent d'être extraits d'un .atome : leurs nouveaux packs vont dans la collection <paramref name="cle"/>.</param>
+    public async Task ApresImportContenuAsync(IReadOnlyList<string>? fichiersPacks = null, string? cle = null, string? nom = null)
     {
         var jour = etat.Jour;
         var resultats = await Task.Run(() =>
         {
-            var r = ImporterDossier();
+            // Les packs reçus sont importés d'abord, avec leur collection ; le scan du dossier les trouve ensuite « inchangés ».
+            var r = (fichiersPacks ?? []).Select(f => importateur.ImporterFichier(f, etat.Reglages.DossierCours, null, cle, nom)).ToList();
+            r.AddRange(ImporterDossier());
             ImporterPlanning();
             services.GetRequiredService<DepotAcquis>().Recalculer(jour);
             return r;

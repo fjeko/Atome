@@ -189,13 +189,31 @@
 
             <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
                 <StackPanel>
-                    <TextBlock Text="Cours libres intégrés" Style="{StaticResource SousTitre}" />
-                    <CheckBox Content="Cours libres intégrés" IsChecked="{Binding CoursLibres}" IsEnabled="{Binding CoursLibresDisponibles}" Margin="0,12,0,0" />
-                    <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="0,4,0,0" TextWrapping="Wrap"
-                               Text="440 cours originaux du programme de 1re année, livrés avec Atome sous licence libre (CC BY-SA 4.0). Ils portent un badge « Libre » dans la Bibliothèque. Les décocher les masque sans rien effacer : ta progression est conservée. Ils ne touchent jamais à tes propres packs." />
+                    <TextBlock Text="Mes collections" Style="{StaticResource SousTitre}" />
+                    <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="0,4,0,8" TextWrapping="Wrap"
+                               Text="Choisis ce qu'Atome affiche et te fait réviser : les cours libres livrés avec l'application, tes propres packs, les contenus reçus d'un camarade. Une collection masquée disparaît de la Bibliothèque, des sessions et du planning, mais rien n'est effacé : ta progression est conservée, et en la réaffichant les cartes devenues dues entre-temps reviennent peu à peu, sans avalanche. Au moins une collection reste active." />
+                    <ItemsControl ItemsSource="{Binding MesCollections}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,6,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Nom}" FontSize="15" />
+                                        <TextBlock Text="{Binding Detail}" Style="{StaticResource Discret}" FontSize="12" />
+                                    </StackPanel>
+                                    <CheckBox Grid.Column="1" Content="Afficher et réviser" IsChecked="{Binding Visible}" VerticalAlignment="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Text="{Binding MessageCollections}" TextWrapping="Wrap" Margin="0,10,0,0"
+                               Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}"
+                               Visibility="{Binding MessageCollections, Converter={StaticResource VisibleSi}}" />
                 </StackPanel>
             </Border>
-
             <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
                 <StackPanel>
                     <TextBlock Text="Mises à jour" Style="{StaticResource SousTitre}" />

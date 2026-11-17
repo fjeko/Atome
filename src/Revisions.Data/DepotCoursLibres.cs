@@ -1,17 +1,17 @@
 using Dapper;
+using Revisions.Core.Collections;
 
 namespace Revisions.Data;
 
 /// <summary>
-/// Cours libres livrés avec Atome : chargement, masquage et réaffichage.
+/// Cours libres livrés avec Atome : chargement, masquage et réaffichage (c'est la collection « Cours libres »).
 /// Les packs sont lus en lecture seule dans le dossier d'installation ; un réimport (mise à jour d'Atome)
 /// les met à jour avec la logique habituelle, sans perdre la progression (ids stables « libre-… »).
-/// Masquer ne supprime rien : les packs sont cachés, leurs cartes et sections mises à l'écart (archivee = 2),
-/// et tout revient tel quel quand on réactive. Les packs privés ne sont jamais touchés.
+/// Masquer ne supprime rien : voir <see cref="DepotCollections"/>. Les packs privés ne sont jamais touchés.
 /// </summary>
 public sealed class DepotCoursLibres(BaseDeDonnees baseDeDonnees, ImportateurPacks importateur)
 {
-    private const string Libre = "SELECT id FROM pack WHERE id LIKE 'libre-%'";
+    private readonly DepotCollections _collections = new(baseDeDonnees);
 
     /// <summary>Nombre de packs en base qui ne sont pas des cours libres (packs privés de l'étudiant).</summary>
     public int NombrePacksPrives()
@@ -28,31 +28,17 @@ public sealed class DepotCoursLibres(BaseDeDonnees baseDeDonnees, ImportateurPac
     }
 
     /// <summary>Charge (ou met à jour) les cours libres depuis le dossier donné, et les rend visibles.</summary>
-    public List<ResultatImport> Activer(string dossierPacksLibres)
+    public List<ResultatImport> Activer(string dossierPacksLibres, DateOnly? jour = null, int parJour = 20)
     {
-        Reafficher();
+        Reafficher(jour, parJour);
         return importateur.ImporterDossier(dossierPacksLibres, null);
     }
 
     /// <summary>Rend visibles les cours libres déjà en base (sans relire le dossier).</summary>
-    public void Reafficher()
-    {
-        using var connexion = baseDeDonnees.Ouvrir();
-        using var transaction = connexion.BeginTransaction();
-        connexion.Execute($"UPDATE carte SET archivee = 0 WHERE archivee = 2 AND pack_id IN ({Libre})", transaction: transaction);
-        connexion.Execute($"UPDATE section SET archivee = 0 WHERE archivee = 2 AND pack_id IN ({Libre})", transaction: transaction);
-        connexion.Execute("UPDATE pack SET masque = 0 WHERE id LIKE 'libre-%'", transaction: transaction);
-        transaction.Commit();
-    }
+    public void Reafficher(DateOnly? jour = null, int parJour = 20) =>
+        _collections.DefinirVisible(Collections.Libres, true, jour ?? DateOnly.FromDateTime(DateTime.Now), parJour, imposerUneVisible: false);
 
     /// <summary>Cache les cours libres : plus de lecture, de cartes ni de statistiques ; la progression est conservée.</summary>
-    public void Masquer()
-    {
-        using var connexion = baseDeDonnees.Ouvrir();
-        using var transaction = connexion.BeginTransaction();
-        connexion.Execute($"UPDATE carte SET archivee = 2 WHERE archivee = 0 AND pack_id IN ({Libre})", transaction: transaction);
-        connexion.Execute($"UPDATE section SET archivee = 2 WHERE archivee = 0 AND pack_id IN ({Libre})", transaction: transaction);
-        connexion.Execute("UPDATE pack SET masque = 1 WHERE id LIKE 'libre-%'", transaction: transaction);
-        transaction.Commit();
-    }
+    public void Masquer(DateOnly? jour = null) =>
+        _collections.DefinirVisible(Collections.Libres, false, jour ?? DateOnly.FromDateTime(DateTime.Now), imposerUneVisible: false);
 }

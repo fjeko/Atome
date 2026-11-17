@@ -22,6 +22,24 @@
                     ToolTip="Importer un ou plusieurs fichiers de pack (.json)" />
         </Grid>
 
+        <!-- Filtres rapides par collection : les mêmes réglages que « Mes collections » dans les Réglages. -->
+        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,10" Visibility="{Binding AfficherFiltres, Converter={StaticResource VisibleSi}}">
+            <ItemsControl ItemsSource="{Binding MesCollections}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Nom}" IsChecked="{Binding Visible}" Margin="0,0,18,4"
+                                  ToolTip="{Binding Detail}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <TextBlock Text="{Binding MessageCollections}" TextWrapping="Wrap" Margin="0,2,0,0"
+                       Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}"
+                       Visibility="{Binding MessageCollections, Converter={StaticResource VisibleSi}}" />
+        </StackPanel>
+
         <ProgressBar DockPanel.Dock="Top" IsIndeterminate="True" Height="3" Margin="0,0,0,8"
                      Visibility="{Binding ImportEnCours, Converter={StaticResource VisibleSi}}" />
 

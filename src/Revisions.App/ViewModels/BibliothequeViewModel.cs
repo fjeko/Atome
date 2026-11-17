@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
 using Revisions.App.Services;
 using Revisions.Core.Bibliotheque;
+using Revisions.Core.Collections;
 using Revisions.Data;
 
 namespace Revisions.App.ViewModels;
@@ -94,6 +95,19 @@ public partial class BibliothequeViewModel : ObservableObject
     [ObservableProperty] private bool _estVide;
     [ObservableProperty] private bool _importEnCours;
 
+    /// <summary>Filtres rapides : une puce par collection (mêmes réglages que « Mes collections » dans les Réglages).</summary>
+    [ObservableProperty] private IReadOnlyList<ChoixCollection> _mesCollections = [];
+    /// <summary>Explication quand on essaie de décocher la dernière collection.</summary>
+    [ObservableProperty] private string? _messageCollections;
+    /// <summary>Vrai s'il y a au moins deux collections (sinon les puces n'ont pas d'intérêt).</summary>
+    [ObservableProperty] private bool _afficherFiltres;
+
+    private async Task ChangerCollectionAsync(ChoixCollection puce)
+    {
+        MessageCollections = await _main.BasculerCollectionAsync(puce.Cle, puce.Visible);
+        Charger();
+    }
+
     public BibliothequeViewModel(MainViewModel main, EtatApplication etat, DepotBibliotheque bibliotheque,
         DepotRevisions revisions, ImportateurPacks importateur, PartageViewModel partage)
     {
@@ -111,6 +125,9 @@ public partial class BibliothequeViewModel : ObservableObject
     /// <summary>Relit les séances en base et reconstruit l'arbre, en restant au même endroit.</summary>
     private void Charger()
     {
+        var collections = _main.ListerCollections();
+        MesCollections = collections.Select(i => new ChoixCollection(i, ChangerCollectionAsync)).ToList();
+        AfficherFiltres = collections.Count > 1;
         _toutes = _bibliotheque.ListerSeances(_etat.Jour);
         _racine = ArbreBibliotheque.Construire(_toutes);
         _chemin = ArbreBibliotheque.Suivre(_racine, _dernierChemin);
@@ -228,7 +245,7 @@ public partial class BibliothequeViewModel : ObservableObject
         if (dialogue.ShowDialog() != true) return;
 
         string[] fichiers = dialogue.FileNames;
-        await ImporterAsync(() => fichiers.Select(f => _importateur.ImporterFichier(f, _etat.Reglages.DossierCours)).ToList());
+        await ImporterAsync(() => fichiers.Select(f => _importateur.ImporterFichier(f, _etat.Reglages.DossierCours, null, Collections.Manuel, Collections.NomManuel)).ToList());
     }
 
     /// <summary>Relit le dossier des packs (utile quand de nouveaux packs viennent d'y être ajoutés).</summary>

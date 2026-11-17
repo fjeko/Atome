@@ -77,14 +77,17 @@ public partial class ReglagesViewModel : ObservableObject
 
     /// <summary>« Vérifier les mises à jour au démarrage » (activé par défaut).</summary>
     [ObservableProperty] private bool _verifierMisesAJour;
-    /// <summary>Cours libres intégrés : chargés (vrai) ou masqués (faux).</summary>
-    [ObservableProperty] private bool _coursLibres;
-    /// <summary>Faux si le dossier des cours libres est introuvable (l'interrupteur est alors grisé).</summary>
-    public bool CoursLibresDisponibles { get; }
 
-    partial void OnCoursLibresChanged(bool value)
+    /// <summary>« Mes collections » : une ligne par collection de packs, avec son interrupteur « Afficher et réviser ».</summary>
+    [ObservableProperty] private IReadOnlyList<ChoixCollection> _mesCollections = [];
+    /// <summary>Explication quand une collection ne peut pas être masquée (c'est la dernière).</summary>
+    [ObservableProperty] private string? _messageCollections;
+
+    private async Task ChangerCollectionAsync(ChoixCollection ligne)
     {
-        if (_initialise) _ = _main.ChangerCoursLibresAsync(value);
+        MessageCollections = await _main.BasculerCollectionAsync(ligne.Cle, ligne.Visible);
+        // On relit la liste : elle montre l'état réel (changement refusé, compteurs à jour).
+        MesCollections = _main.ListerCollections().Select(i => new ChoixCollection(i, ChangerCollectionAsync)).ToList();
     }
 
     /// <summary>Résultat de « Vérifier maintenant ».</summary>
@@ -134,8 +137,7 @@ public partial class ReglagesViewModel : ObservableObject
         _dossierCours = r.DossierCours ?? "";
         _accentLibre = r.CouleurAccent ?? "";
         _verifierMisesAJour = r.VerifierMisesAJour;
-        _coursLibres = r.CoursLibres == true;
-        CoursLibresDisponibles = etat.DossierCoursLibres is not null;
+        MesCollections = main.ListerCollections().Select(i => new ChoixCollection(i, ChangerCollectionAsync)).ToList();
 #pragma warning restore MVVMTK0034
         _cleTheme = r.Theme;
         _couleurAccent = r.CouleurAccent;
@@ -164,7 +166,8 @@ public partial class ReglagesViewModel : ObservableObject
     {
         base.OnPropertyChanged(e);
         // Le champ libre et son message d'erreur ne s'enregistrent pas tels quels (voir OnAccentLibreChanged).
-        if (!_initialise || e.PropertyName is nameof(AccentLibre) or nameof(ErreurAccent) or nameof(MessageMiseAJour)) return;
+        if (!_initialise || e.PropertyName is nameof(AccentLibre) or nameof(ErreurAccent) or nameof(MessageMiseAJour)
+            or nameof(MesCollections) or nameof(MessageCollections)) return;
         Enregistrer();
     }
 
@@ -182,8 +185,6 @@ public partial class ReglagesViewModel : ObservableObject
         r.Theme = _cleTheme;
         r.CouleurAccent = _couleurAccent;
         r.VerifierMisesAJour = VerifierMisesAJour;
-        // Tant que rien n'est décidé (null), on ne fige pas le choix à la modification d'un autre réglage.
-        if (r.CoursLibres is not null || CoursLibres) r.CoursLibres = CoursLibres;
         _etat.Enregistrer(); // enregistre et applique le thème immédiatement
     }
 

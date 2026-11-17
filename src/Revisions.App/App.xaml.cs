@@ -194,6 +194,7 @@ public partial class App : Application
             services.AddSingleton<SelectionDuJour>();
             services.AddSingleton<ImportateurPacks>();
             services.AddSingleton<DepotCoursLibres>();
+            services.AddSingleton<DepotCollections>();
             services.AddSingleton(new Fsrs());
             services.AddSingleton<Planificateur>();
             services.AddSingleton<EtatApplication>();

@@ -28,3 +28,18 @@ Tu peux changer ce dossier dans **Réglages**. Les packs y sont rangés par mati
 Elles ne tombent pas toutes d'un coup. Elles arrivent au rythme réglé dans **Réglages** (10 par jour par défaut), en commençant par les séances que tu as déjà ouvertes en lecture.
 
 Pour travailler une séance précise tout de suite : ouvre-la et clique sur **Réviser cette séance**.
+
+### Mes collections : choisir ce qui s'affiche
+
+Chaque pack appartient à une **collection**, selon d'où il vient :
+
+- **Cours libres** : ceux livrés avec Atome ;
+- **Mes packs** : ceux du dossier des packs ;
+- **Importé : …** (ou « Contenu de … ») : un fichier `.atome` reçu d'un camarade ;
+- **Imports manuels** : les fichiers ajoutés avec **Bibliothèque → Importer…**.
+
+Dans **Réglages → Mes collections**, chaque collection a son interrupteur **Afficher et réviser**, avec son nombre de cours et de cartes. Dans la **Bibliothèque**, les mêmes réglages sont en haut sous forme de cases à cocher : un changement à un endroit se voit à l'autre.
+
+Une collection masquée disparaît de la Bibliothèque, de la recherche, des statistiques, des sessions du jour, de « Au programme », du planning, de Mes acquis et du TD en groupe. **Rien n'est effacé** : ta progression est gardée telle quelle. Quand tu la réaffiches, les cartes devenues dues pendant son absence reviennent **petit à petit, étalées sur plusieurs jours**, sans avalanche.
+
+Au moins une collection doit rester active : Atome te l'explique si tu essaies de couper la dernière.

@@ -181,5 +181,21 @@ internal static class Migrations
         """
         ALTER TABLE pack ADD COLUMN masque INTEGER NOT NULL DEFAULT 0;
         """,
+
+        // ---- 7 : collections de packs (cours libres, mes packs, contenus importés, imports manuels) ----
+        """
+        CREATE TABLE collection (
+          cle            TEXT PRIMARY KEY,           -- libres | mes-packs | manuel | importe:<nom>
+          nom            TEXT NOT NULL,
+          masque         INTEGER NOT NULL DEFAULT 0, -- 1 = masquée (cartes et sections mises à l'écart, progression conservée)
+          masque_depuis  TEXT                        -- jour du masquage : sert à étaler les échéances au réaffichage
+        );
+        ALTER TABLE pack ADD COLUMN collection TEXT;
+        UPDATE pack SET collection = CASE WHEN id LIKE 'libre-%' THEN 'libres' ELSE 'mes-packs' END;
+        INSERT INTO collection (cle, nom, masque)
+          SELECT 'libres', 'Cours libres', MAX(masque) FROM pack WHERE collection = 'libres' GROUP BY collection;
+        INSERT INTO collection (cle, nom, masque)
+          SELECT 'mes-packs', 'Mes packs', 0 FROM pack WHERE collection = 'mes-packs' GROUP BY collection;
+        """,
     ];
 }

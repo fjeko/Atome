@@ -46,6 +46,7 @@ révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je
 - **TD en groupe** : le même TD à plusieurs, chacun sur son PC, avec un simple code à dicter (sans réseau).
 - **Signalements** : un petit drapeau sur chaque carte et chaque section pour signaler une erreur, exportable pour corriger les cours.
 - **Partage `.atome`** : tes cours et ton planning dans un seul fichier, à donner à un camarade.
+- **Collections** : tu choisis ce qui est affiché et révisé (cours libres, mes packs, contenus importés), sans perdre ta progression.
 - **Mise à jour automatique** : Atome propose lui-même les nouvelles versions (sans toucher à tes données).
 - **Cours libres intégrés** : 440 cours originaux du programme de 1re année, livrés avec l'application.
 - Neuf thèmes, **hors ligne**, sans compte : tes données restent sur ton PC.
@@ -83,9 +84,11 @@ option SLAM : Bloc 1, Bloc 2, Bloc 3, algorithmique, mathématiques, anglais et 
 - Licence **[CC BY-SA 4.0](contenu-libre/LICENSE)** : tu peux les réutiliser et les adapter en citant
   « Atome – packs libres BTS SIO » et en partageant tes modifications sous la même licence.
 - Premier lancement sans aucun pack : Atome propose de les charger (**Oui** / **Plus tard**).
-  Si tu as déjà tes propres packs, rien n'est chargé automatiquement : un interrupteur **Réglages → Cours libres
-  intégrés** les charge ou les masque, sans rien effacer. Ils portent un badge **Libre** dans la Bibliothèque et ne se
-  mélangent jamais à tes packs.
+  Si tu as déjà tes propres packs, rien n'est chargé automatiquement : **Réglages → Mes collections** (ou les cases en
+  haut de la Bibliothèque) permet d'afficher ou de masquer les cours libres, tes packs et les contenus importés, sans
+  rien effacer. Ils portent un badge **Libre** dans la Bibliothèque. Une collection masquée sort de la Bibliothèque, des
+  sessions, du planning et des statistiques, mais sa progression est conservée ; en la réaffichant, les cartes en retard
+  reviennent étalées sur plusieurs jours, sans avalanche.
 - Les mises à jour d'Atome mettent ces cours à jour, sans perdre ta progression.
 
 ## Ce qu'il faut savoir sur le contenu
