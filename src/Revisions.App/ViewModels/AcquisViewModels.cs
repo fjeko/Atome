@@ -43,6 +43,8 @@ public partial class NoeudAcquis : ObservableObject
     [ObservableProperty] private int _comprehension;
     /// <summary>Acquis effectif, en clair (« Vu · Fragile »), héritage compris.</summary>
     [ObservableProperty] private string _resume = "";
+    /// <summary>Case cochée dans le questionnaire (cours sans ordre).</summary>
+    [ObservableProperty] private bool _coche;
 
     /// <summary>Appelé quand l'étudiant change un menu (pas quand on charge les valeurs).</summary>
     internal Action<NoeudAcquis>? Modifie { get; set; }
@@ -205,6 +207,8 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
     private int _indice = -1;
     /// <summary>Les parties de la matière en cours, dans l'ordre du cours.</summary>
     private List<NoeudAcquis> _parties = [];
+    /// <summary>Les parties proposées pour « jusqu'où » (seulement celles qui sont numérotées).</summary>
+    private List<NoeudAcquis> _partiesAffichees = [];
     /// <summary>Ce à quoi s'applique la question de ressenti : les parties vues, ou toute la matière.</summary>
     private List<NoeudAcquis> _concernes = [];
 
@@ -215,6 +219,7 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
     [ObservableProperty] private bool _estIntro;
     [ObservableProperty] private bool _estQuestion;
     [ObservableProperty] private bool _estJusqua;
+    [ObservableProperty] private bool _estChoix;
     [ObservableProperty] private bool _estRessenti;
     [ObservableProperty] private bool _estRecap;
     [ObservableProperty] private string _recap = "";
@@ -234,9 +239,9 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
     private NoeudAcquis Matiere => _arbre.Racines[_indice];
 
     /// <summary>N'affiche qu'une seule étape à la fois.</summary>
-    private void ChangerEtape(bool intro = false, bool question = false, bool jusqua = false, bool ressenti = false, bool recap = false)
+    private void ChangerEtape(bool intro = false, bool question = false, bool jusqua = false, bool choix = false, bool ressenti = false, bool recap = false)
     {
-        EstIntro = intro; EstQuestion = question; EstJusqua = jusqua; EstRessenti = ressenti; EstRecap = recap;
+        EstIntro = intro; EstQuestion = question; EstJusqua = jusqua; EstChoix = choix; EstRessenti = ressenti; EstRecap = recap;
     }
 
     // ---- 1. Intro ------------------------------------------------------------------------
@@ -277,15 +282,47 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
         PoserQuestionRessenti();
     }
 
-    /// <summary>« Un peu » : l'étudiant montre jusqu'où il est allé.</summary>
+    /// <summary>Début d'un titre qui montre un vrai ordre dans le cours : « B1.2 », « SQ3 », « Séquence 05 ».</summary>
+    private static readonly System.Text.RegularExpressions.Regex Numerote =
+        new(@"^(B\d+\.\d+|SQ\s?\d+|S[ée]quence\s+\d+)", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+    /// <summary>
+    /// « Un peu » : l'étudiant dit ce qu'il a vu.
+    /// Cours numérotés (séquences) : un clic sur la dernière partie vue suffit, car on les suit dans l'ordre.
+    /// Cours sans ordre (l'anglais, par exemple, est une suite de thèmes indépendants) : il coche les parties vues.
+    /// </summary>
     [RelayCommand]
     private void UnPeu()
     {
-        Parties.Clear();
-        foreach (var p in _parties) Parties.Add(p);
-        ChangerEtape(jusqua: true);
+        var numerotees = _parties.Where(p => Numerote.IsMatch(p.Titre)).ToList();
+        // Le cours est « dans l'ordre » si au moins deux parties sur trois sont numérotées.
+        if (_parties.Count > 0 && numerotees.Count * 3 >= _parties.Count * 2)
+        {
+            _partiesAffichees = numerotees;
+            Parties.Clear();
+            foreach (var p in numerotees) Parties.Add(p);
+            ChangerEtape(jusqua: true);
+            Message = "Clique sur la dernière partie que tu as vue. Je compte tout ce qui est avant comme vu.";
+        }
+        else
+        {
+            _partiesAffichees = _parties;
+            Parties.Clear();
+            foreach (var p in _parties) { p.Coche = false; Parties.Add(p); }
+            ChangerEtape(choix: true);
+            Message = "Coche les parties que tu as déjà vues, dans l'ordre que tu veux.";
+        }
         Expression = "content";
-        Message = "Clique sur la dernière partie que tu as vue. Je compte tout ce qui est avant comme vu.";
+    }
+
+    /// <summary>Cours sans ordre : valide les parties cochées.</summary>
+    [RelayCommand]
+    private void ValiderChoix()
+    {
+        foreach (var p in _parties) _arbre.Definir(p, p.Coche ? Avancement.Vu : null, null, recalculer: false);
+        _concernes = _parties.Where(p => p.Coche).ToList();
+        if (_concernes.Count == 0) { _arbre.Recalculer(); MatiereSuivante(); }
+        else PoserQuestionRessenti();
     }
 
     // ---- 3. Jusqu'où ----------------------------------------------------------------------
@@ -294,11 +331,11 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
     [RelayCommand]
     private void JusquIci(NoeudAcquis derniere)
     {
-        int fin = _parties.IndexOf(derniere);
+        int fin = _partiesAffichees.IndexOf(derniere);
         if (fin < 0) return;
-        for (int i = 0; i < _parties.Count; i++)
-            _arbre.Definir(_parties[i], i <= fin ? Avancement.Vu : null, null, recalculer: false);
-        _concernes = _parties.Take(fin + 1).ToList();
+        for (int i = 0; i < _partiesAffichees.Count; i++)
+            _arbre.Definir(_partiesAffichees[i], i <= fin ? Avancement.Vu : null, null, recalculer: false);
+        _concernes = _partiesAffichees.Take(fin + 1).ToList();
         PoserQuestionRessenti();
     }
 

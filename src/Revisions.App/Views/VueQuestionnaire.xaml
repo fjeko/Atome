@@ -70,6 +70,21 @@
                 </ItemsControl>
             </StackPanel>
 
+            <!-- Cours sans ordre (anglais…) : on coche ce qui a été vu. -->
+            <StackPanel Visibility="{Binding EstChoix, Converter={StaticResource VisibleSi}}">
+                <ItemsControl ItemsSource="{Binding Parties}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Coche, Mode=TwoWay}" Margin="0,0,0,4" FontSize="15">
+                                <TextBlock Text="{Binding Titre}" TextWrapping="Wrap" />
+                            </CheckBox>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button Content="Valider" Command="{Binding ValiderChoixCommand}" Style="{DynamicResource AccentButtonStyle}"
+                        FontSize="16" Padding="40,11" Margin="0,16,0,0" HorizontalAlignment="Center" />
+            </StackPanel>
+
             <!-- Ressenti : une seule question pour tout ce qui a été vu. -->
             <StackPanel Visibility="{Binding EstRessenti, Converter={StaticResource VisibleSi}}">
                 <Button Style="{StaticResource Reponse}" Command="{Binding RessentiCommand}" CommandParameter="1">
