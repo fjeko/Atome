@@ -19,13 +19,8 @@
         <DataTemplate DataType="{x:Type vm:AideViewModel}"><v:VueAide /></DataTemplate>
 
         <!-- Styles communs. Les couleurs viennent du thème Fluent : elles suivent le mode clair ou sombre. -->
-        <!-- Toutes les cartes ont un léger dégradé à la couleur d'accent du thème : de la couleur, sans rien d'agressif. -->
-        <LinearGradientBrush x:Key="FondCarte" StartPoint="0,0" EndPoint="1,1" Opacity="0.2">
-            <GradientStop Color="{DynamicResource SystemAccentColor}" Offset="0" />
-            <GradientStop Color="Transparent" Offset="1" />
-        </LinearGradientBrush>
         <Style x:Key="Carte" TargetType="Border">
-            <Setter Property="Background" Value="{DynamicResource FondCarte}" />
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}" />
             <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="12" />
