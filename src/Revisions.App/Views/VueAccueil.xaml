@@ -85,6 +85,8 @@
                     </StackPanel>
                 </Border>
             </Grid>
+            <TextBlock Text="Atome : tes révisions, at home." Style="{StaticResource Discret}" FontSize="12"
+                       HorizontalAlignment="Center" Margin="0,22,0,0" Opacity="0.7" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

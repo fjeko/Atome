@@ -104,7 +104,7 @@ public partial class App : Application
             Journal.Erreur("Interface", args.Exception);
             MessageBox.Show(
                 "Une erreur inattendue s'est produite. Tes révisions déjà enregistrées ne sont pas perdues.\n\n" + args.Exception.Message,
-                "Révisions BTS SIO", MessageBoxButton.OK, MessageBoxImage.Warning);
+                "Atome", MessageBoxButton.OK, MessageBoxImage.Warning);
             args.Handled = true;
         };
 
@@ -146,7 +146,7 @@ public partial class App : Application
         {
             Journal.Erreur("Démarrage", exception);
             MessageBox.Show("L'application n'a pas pu démarrer :\n\n" + exception.Message + "\n\nDétails dans " + Journal.Chemin,
-                "Révisions BTS SIO", MessageBoxButton.OK, MessageBoxImage.Error);
+                "Atome", MessageBoxButton.OK, MessageBoxImage.Error);
             Shutdown();
         }
     }

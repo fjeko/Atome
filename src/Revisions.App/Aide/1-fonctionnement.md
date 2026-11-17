@@ -1,4 +1,5 @@
 # Comment ça marche
+n*Atome : tes révisions, at home.*
 
 L'application fait deux choses : te laisser **lire tes cours**, et te les faire **réviser au bon moment** pour que ça reste en mémoire.
 
