@@ -157,15 +157,15 @@
                     <ds:LigneReglage Libelle="Thème" Dessous="True">
                         <ItemsControl ItemsSource="{Binding Themes}" Focusable="False" AutomationProperties.Name="Thèmes">
                             <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                                <ItemsPanelTemplate><UniformGrid Columns="4" /></ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Button Command="{Binding DataContext.ChoisirThemeCommand, ElementName=Racine}" CommandParameter="{Binding}"
                                             Style="{StaticResource Bouton.Base}" Padding="0" Margin="{StaticResource Marge.Tuile}"
-                                            ToolTip="{Binding Nom}" AutomationProperties.Name="{Binding Nom}" ds:Forme.Rayon="{StaticResource Rayon.Carte}">
+                                            ToolTip="{Binding Nom}" AutomationProperties.Name="{Binding Nom}" ds:Forme.Rayon="{StaticResource Rayon.Carte}" HorizontalContentAlignment="Stretch">
                                         <Grid>
-                                            <Border Width="132" Height="84" CornerRadius="{StaticResource Rayon.Carte}" Background="{Binding Fond}" BorderThickness="2">
+                                            <Border Height="84" CornerRadius="{StaticResource Rayon.Carte}" Background="{Binding Fond}" BorderThickness="2">
                                                 <Border.Style>
                                                     <Style TargetType="Border">
                                                         <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.Bordure}" />

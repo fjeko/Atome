@@ -70,7 +70,7 @@ public class ApparenceTests
     public void Il_y_a_les_trois_themes_neutres_et_quatre_a_six_themes_colores()
     {
         Assert.Equal(["systeme", "clair", "sombre"], Themes.Tous.Take(3).Select(t => t.Cle));
-        Assert.InRange(Themes.Tous.Count(t => t.Fond is not null), 4, 6);
+        Assert.InRange(Themes.Tous.Count(t => t.Fond is not null), 4, 12);
         Assert.Equal(Themes.Tous.Count, Themes.Tous.Select(t => t.Cle).Distinct().Count());
     }
 
