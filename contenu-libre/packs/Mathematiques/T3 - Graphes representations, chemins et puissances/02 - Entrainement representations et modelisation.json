@@ -96,7 +96,7 @@
       "id": "libre-maths-sq2-s02-c005",
       "section": "libre-maths-sq2-s02-s03",
       "type": "qcm",
-      "question": "Une matrice d'adjacence $5 \\times 5$ contient huit 1, dont deux sur la diagonale, et sa 3e colonne est nulle. Quelle affirmation est fausse ?",
+      "question": "Une matrice d'adjacence $5 \\times 5$ contient huit 1, dont deux sur la diagonale, et sa 3e colonne est nulle. Quelle affirmation ne peut pas se déduire de ces informations ?",
       "choix": [
         "Le sommet 3 n'a pas de successeur",
         "Le graphe a 8 arcs",
@@ -104,7 +104,7 @@
         "Le sommet 3 n'a pas de prédécesseur"
       ],
       "bonneReponse": 0,
-      "explication": "Une colonne nulle signifie : aucun prédécesseur. Pour « aucun successeur », il faudrait une ligne nulle.",
+      "explication": "Une colonne nulle signifie : aucun prédécesseur. Pour savoir si le sommet 3 a des successeurs, il faudrait regarder la 3e ligne, dont on ne sait rien.",
       "difficulte": 2
     }
   ]

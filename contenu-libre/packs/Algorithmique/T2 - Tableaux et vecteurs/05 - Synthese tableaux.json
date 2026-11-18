@@ -62,7 +62,7 @@
       "id": "libre-algo-p2-s05-c002",
       "section": "libre-algo-p2-s05-s02",
       "type": "question",
-      "recto": "Pourquoi dit-on qu'un tableau C# est « statique » ?",
+      "recto": "Pourquoi dit-on qu'un tableau C# est de taille fixe (on dit parfois « statique », sans rapport avec le mot-clé `static`) ?",
       "verso": "Sa taille est fixée à la création et tous ses éléments ont le même type déclaré.",
       "difficulte": 2
     },

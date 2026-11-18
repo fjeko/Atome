@@ -22,7 +22,7 @@
     {
       "id": "libre-algo-p1-s02-s01",
       "titre": "Deux familles d'erreurs",
-      "contenu": "- **Erreur de syntaxe** : le programme est mal écrit, l'interpréteur refuse de l'exécuter (deux-points oublié, parenthèse non fermée, mauvaise indentation). Facile à repérer : Python indique la ligne.\n- **Erreur sémantique** (ou de logique) : le programme s'exécute, mais **donne un mauvais résultat** (condition inversée, `<` au lieu de `<=`, formule fausse). Plus traître : aucun message.\n\nEntre les deux, les **erreurs d'exécution** : le programme démarre puis plante sur une instruction impossible (division par zéro, conversion d'un texte non numérique).\n\n### Interprété ou compilé ?\n- Un langage **compilé** (C, C#) est entièrement traduit en code machine **avant** l'exécution ; les erreurs de syntaxe sont toutes signalées à la compilation.\n- Python est **interprété** : il traduit (en un code intermédiaire) et exécute au fur et à mesure. Une erreur dans une branche jamais atteinte peut passer inaperçue longtemps.",
+      "contenu": "- **Erreur de syntaxe** : le programme est mal écrit, l'interpréteur refuse de l'exécuter (deux-points oublié, parenthèse non fermée, mauvaise indentation). Facile à repérer : Python indique la ligne.\n- **Erreur sémantique** (ou de logique) : le programme s'exécute, mais **donne un mauvais résultat** (condition inversée, `<` au lieu de `<=`, formule fausse). Plus traître : aucun message.\n\nEntre les deux, les **erreurs d'exécution** : le programme démarre puis plante sur une instruction impossible (division par zéro, conversion d'un texte non numérique).\n\n### Interprété ou compilé ?\n- Un langage **compilé** (C, C#) est entièrement traduit en code machine **avant** l'exécution ; les erreurs de syntaxe sont toutes signalées à la compilation.\n- Python est dit **interprété** : au lancement, il vérifie et traduit **tout le fichier** en un code intermédiaire (*bytecode*), puis l'exécute instruction par instruction. Conséquence : une **erreur de syntaxe**, même en fin de fichier, empêche tout démarrage ; mais une **erreur d'exécution** (division par zéro, variable mal nommée…) dans une branche jamais atteinte peut passer inaperçue longtemps.",
       "notions": [
         "Erreurs de syntaxe et sémantiques",
         "Langage interprété ou compilé"
@@ -74,7 +74,7 @@
       "section": "libre-algo-p1-s02-s01",
       "type": "question",
       "recto": "Quelle différence entre un langage compilé et un langage interprété ?",
-      "verso": "Compilé : tout le programme est traduit avant l'exécution. Interprété : le code est traduit et exécuté au fur et à mesure.",
+      "verso": "Compilé : tout le programme est traduit en code machine avant l'exécution. Interprété : un interpréteur exécute le code instruction par instruction (Python traduit d'abord le fichier en bytecode : les erreurs de syntaxe bloquent le démarrage, les erreurs d'exécution n'apparaissent que quand la ligne est atteinte).",
       "difficulte": 2
     },
     {

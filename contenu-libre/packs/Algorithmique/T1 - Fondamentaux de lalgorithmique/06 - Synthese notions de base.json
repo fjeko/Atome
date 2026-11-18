@@ -28,7 +28,7 @@
     {
       "id": "libre-algo-p1-s06-s02",
       "titre": "Algorithmes classiques sur les chaînes et menu",
-      "contenu": "**Inverser une chaîne** en ajoutant chaque caractère à gauche :\n```python\nmot = \"python\"\ninverse = \"\"\nfor c in mot:\n    inverse = c + inverse\nprint(inverse)    # nohtyp\n```\n(En Python, `mot[::-1]` fait la même chose, mais l'épreuve attend souvent la boucle.)\n\n**Menu en boucle** :\n```python\nchoix = \"\"\nwhile choix != \"Q\":\n    print(\"1 - Convertir en binaire\")\n    print(\"2 - Calculer une factorielle\")\n    print(\"Q - Quitter\")\n    choix = input(\"Votre choix : \").upper()\n    if choix == \"1\":\n        print(\"conversion…\")\n    elif choix == \"2\":\n        print(\"factorielle…\")\n    elif choix != \"Q\":\n        print(\"Choix inconnu\")\n```",
+      "contenu": "**Inverser une chaîne** en ajoutant chaque caractère à gauche :\n```python\nmot = \"python\"\ninverse = \"\"\nfor c in mot:\n    inverse = c + inverse\nprint(inverse)    # nohtyp\n```\n(En Python, `mot[::-1]` fait la même chose, mais écrire la boucle soi-même montre que tu maîtrises l'algorithme.)\n\n**Menu en boucle** :\n```python\nchoix = \"\"\nwhile choix != \"Q\":\n    print(\"1 - Convertir en binaire\")\n    print(\"2 - Calculer une factorielle\")\n    print(\"Q - Quitter\")\n    choix = input(\"Votre choix : \").upper()\n    if choix == \"1\":\n        print(\"conversion…\")\n    elif choix == \"2\":\n        print(\"factorielle…\")\n    elif choix != \"Q\":\n        print(\"Choix inconnu\")\n```",
       "notions": [
         "Algorithmes classiques",
         "Menu en boucle"

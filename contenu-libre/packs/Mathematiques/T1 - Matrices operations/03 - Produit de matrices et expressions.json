@@ -136,7 +136,7 @@
     },
     {
       "id": "libre-maths-sq1-s03-c006",
-      "section": "libre-maths-sq1-s03-s03",
+      "section": "libre-maths-sq1-s03-s04",
       "type": "qcm",
       "question": "Soit $A$ et $B$ deux matrices carrées d'un même ordre : quelle est l'expression développée de $(A + B)^2$ ?",
       "choix": [

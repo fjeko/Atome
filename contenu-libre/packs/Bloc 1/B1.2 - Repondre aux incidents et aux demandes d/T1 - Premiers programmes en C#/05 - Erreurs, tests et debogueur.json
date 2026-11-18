@@ -116,7 +116,7 @@
       "id": "libre-b1-12a-sq1-s05-c005",
       "section": "libre-b1-12a-sq1-s05-s05",
       "type": "qcm",
-      "question": "Quelle touche, dans Visual Studio, passe à la ligne suivante en traitant d'un bloc les appels de fonctions, sans y descendre ?",
+      "question": "Dans Visual Studio, quelle touche exécute la ligne courante, appel de méthode compris, sans entrer dans cette méthode ?",
       "choix": [
         "F5",
         "F9",

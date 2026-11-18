@@ -21,7 +21,7 @@
     {
       "id": "libre-algo-p1-s01-s01",
       "titre": "Qu'est-ce qu'un algorithme ?",
-      "contenu": "Un **algorithme** est une suite finie d'instructions précises qui, à partir de **données d'entrée**, produit un **résultat**. Une recette de cuisine ou un itinéraire GPS en sont des exemples de la vie courante.\n\nEn informatique, on l'écrit d'abord en **pseudo-code** : un langage simple, en français, indépendant de tout langage de programmation. On le **traduit** ensuite dans un vrai langage (ici Python) pour le faire exécuter par l'ordinateur.\n\nPourquoi passer par le pseudo-code ?\n- on se concentre sur la **logique**, sans se battre avec la syntaxe ;\n- le même algorithme peut être traduit en Python, C#, PHP… ;\n- c'est la forme attendue à l'épreuve écrite.",
+      "contenu": "Un **algorithme** est une suite finie d'instructions précises qui, à partir de **données d'entrée**, produit un **résultat**. Une recette de cuisine ou un itinéraire GPS en sont des exemples de la vie courante.\n\nEn informatique, on l'écrit d'abord en **pseudo-code** : un langage simple, en français, indépendant de tout langage de programmation. On le **traduit** ensuite dans un vrai langage (ici Python) pour le faire exécuter par l'ordinateur.\n\nPourquoi passer par le pseudo-code ?\n- on se concentre sur la **logique**, sans se battre avec la syntaxe ;\n- le même algorithme peut être traduit en Python, C#, PHP… ;\n- il se lit sans connaître de langage de programmation.",
       "notions": [
         "Définition d'un algorithme"
       ]

@@ -41,7 +41,7 @@
     {
       "id": "libre-b1-12a-sq3-s01-s03",
       "titre": "Propriétés : accesseurs et mutateurs",
-      "contenu": "Pour **lire** ou **modifier** un attribut privé de façon contrôlée, on utilise des **accesseurs** (*getters*) et **mutateurs** (*setters*). En C#, on les écrit sous forme de **propriétés** :\n```csharp\nprivate string telephone;\n\npublic string Telephone\n{\n    get { return telephone; }\n    set\n    {\n        if (value.Length != 10)\n            throw new ArgumentException(\"Le numéro doit faire 10 chiffres\");\n        telephone = value;\n    }\n}\n\npublic int NbEmprunts => nbEmprunts;        // lecture seule\npublic string Nom { get; private set; }     // propriété automatique\n```\nUtilisation : `a1.Telephone = \"0612345678\";` appelle le `set` (avec `value` = la valeur affectée) ; `Console.WriteLine(a1.Telephone);` appelle le `get`.\n\nPar convention, l'attribut privé est en camelCase (`telephone`) et la propriété en PascalCase (`Telephone`).",
+      "contenu": "Pour **lire** ou **modifier** un attribut privé de façon contrôlée, on utilise des **accesseurs** (*getters*) et **mutateurs** (*setters*). En C#, on les écrit sous forme de **propriétés** :\n```csharp\nprivate string telephone;\n\npublic string Telephone\n{\n    get { return telephone; }\n    set\n    {\n        if (value.Length != 10)\n            throw new ArgumentException(\"Le numéro doit faire 10 chiffres\");\n        telephone = value;\n    }\n}\n\npublic string Nom => nom;                         // lecture seule\npublic int AnneeInscription => anneeInscription;  // lecture seule\npublic int NbEmprunts => nbEmprunts;              // lecture seule\npublic string Email { get; set; }                 // propriété automatique : l'attribut caché est créé par le compilateur\n```\nDans la suite, la classe `Adherent` expose ainsi `Nom`, `AnneeInscription` et `NbEmprunts` en lecture seule.\n\nUtilisation : `a1.Telephone = \"0612345678\";` appelle le `set` (avec `value` = la valeur affectée) ; `Console.WriteLine(a1.Telephone);` appelle le `get`.\n\nPar convention, l'attribut privé est en camelCase (`telephone`) et la propriété en PascalCase (`Telephone`).",
       "notions": [
         "Propriétés accesseurs mutateurs"
       ]
@@ -111,7 +111,7 @@
       "id": "libre-b1-12a-sq3-s01-c005",
       "section": "libre-b1-12a-sq3-s01-s04",
       "type": "qcm",
-      "question": "Trois objets `Adherent` ont été créés avec le constructeur ci-dessus. Que vaut `Adherent.NbAdherents` ?",
+      "question": "Trois objets `Adherent` ont été créés avec le constructeur de cette section, celui qui incrémente `nbAdherents`. Que vaut `Adherent.NbAdherents` ?",
       "choix": [
         "1, car chaque objet a son propre compteur",
         "3, car le compteur statique est partagé",

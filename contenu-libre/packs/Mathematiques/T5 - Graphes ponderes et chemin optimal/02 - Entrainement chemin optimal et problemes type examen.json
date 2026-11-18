@@ -53,10 +53,10 @@
       "type": "qcm",
       "question": "Dans un tableau de recherche du minimum, un élève écrit pour Q : « $\\min(5 ; 3) = 3$ » alors que l'arc P→Q vaut 1 et que P vaut 3. Quelle est son erreur ?",
       "choix": [
-        "Il a oublié d'ajouter la valeur de P avant de comparer",
+        "Il a pris la valeur de P sans lui ajouter celle de l'arc P→Q",
         "Il aurait dû prendre le maximum",
         "Il a oublié l'arc E→Q",
-        "Aucune"
+        "Il aurait dû comparer les arcs seuls (5 et 1)"
       ],
       "bonneReponse": 0,
       "explication": "On compare des valeurs de chemins complets : $0 + 5 = 5$ et $3 + 1 = 4$, donc le minimum est 4.",

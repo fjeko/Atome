@@ -29,7 +29,7 @@
     {
       "id": "libre-b1-12a-sq3-s05-s02",
       "titre": "Éviter les valeurs en dur",
-      "contenu": "Une **valeur en dur** est écrite directement dans le code (`Brushes.SeaGreen`, `\"Électrique\"`, `18.0`). Si on veut la changer, il faut la chercher partout.\n\nMieux :\n```csharp\n// Regroupées en un seul endroit\nprivate static readonly Color CouleurElectrique = Color.SeaGreen;\nprivate static readonly Color CouleurClassique = Color.Black;\nprivate const int HauteurLigne = 22;\n```\nOu dans les **paramètres de l'application** (*Settings*) si l'utilisateur doit pouvoir les modifier sans recompiler.\n\nBonus : laisser la **couleur de sélection du système** (`e.DrawBackground()` et `e.ForeColor` quand l'élément est sélectionné) respecte les réglages d'accessibilité de l'utilisateur.",
+      "contenu": "Une **valeur en dur** est écrite directement dans le code (`Brushes.SeaGreen`, `\"Électrique\"`, `18.0`). Si on veut la changer, il faut la chercher partout.\n\nMieux :\n```csharp\n// Regroupées en un seul endroit\nprivate static readonly Brush PinceauElectrique = Brushes.SeaGreen;\nprivate static readonly Brush PinceauClassique = Brushes.Black;\nprivate const int HauteurLigne = 22;\n\n// Dans DrawItem :\nBrush pinceau = v is VeloElectrique ? PinceauElectrique : PinceauClassique;\n```\nOu dans les **paramètres de l'application** (*Settings*) si l'utilisateur doit pouvoir les modifier sans recompiler.\n\nBonus : laisser la **couleur de sélection du système** (`e.DrawBackground()` et `e.ForeColor` quand l'élément est sélectionné) respecte les réglages d'accessibilité de l'utilisateur.",
       "notions": [
         "Éviter les valeurs en dur"
       ]

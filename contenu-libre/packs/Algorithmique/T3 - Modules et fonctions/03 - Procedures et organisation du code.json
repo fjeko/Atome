@@ -45,8 +45,8 @@
     },
     {
       "id": "libre-algo-p3-s03-s04",
-      "titre": "Factoriser saisies et affichages en procédures",
-      "contenu": "Quand le même bloc de saisie ou d'affichage revient plusieurs fois, on en fait une **procédure** paramétrée.\n\n```python\ndef saisir_vecteur(n):\n    '''Saisit n entiers au clavier et renvoie la liste.'''\n    t = []\n    for i in range(n):\n        t.append(int(input(f\"Valeur {i + 1} ? \")))\n    return t\n\ndef afficher_matrice(m):\n    '''Affiche la matrice m ligne par ligne.'''\n    for ligne in m:\n        for v in ligne:\n            print(f\"{v:4}\", end=\"\")   # chaque valeur sur 4 caractères\n        print()\n\n# Programme principal\nnotes = saisir_vecteur(3)\nafficher_matrice([notes, [x * 2 for x in notes]])\n```\n\nOrganisation d'un fichier : **en-tête**, **imports**, **constantes**, **fonctions et procédures**, puis le **programme principal** en bas, court et lisible comme un sommaire.",
+      "titre": "Factoriser saisies et affichages en sous-programmes",
+      "contenu": "Quand le même bloc de saisie ou d'affichage revient plusieurs fois, on en fait un **sous-programme** paramétré : une **fonction** s'il produit un résultat (`saisir_vecteur` renvoie la liste saisie), une **procédure** s'il agit seulement (`afficher_matrice` affiche).\n\n```python\ndef saisir_vecteur(n):\n    '''Saisit n entiers au clavier et renvoie la liste.'''\n    t = []\n    for i in range(n):\n        t.append(int(input(f\"Valeur {i + 1} ? \")))\n    return t\n\ndef afficher_matrice(m):\n    '''Affiche la matrice m ligne par ligne.'''\n    for ligne in m:\n        for v in ligne:\n            print(f\"{v:4}\", end=\"\")   # chaque valeur sur 4 caractères\n        print()\n\n# Programme principal\nnotes = saisir_vecteur(3)\nafficher_matrice([notes, [x * 2 for x in notes]])\n```\n\nOrganisation d'un fichier : **en-tête**, **imports**, **constantes**, **fonctions et procédures**, puis le **programme principal** en bas, court et lisible comme un sommaire.",
       "notions": [
         "Procédures de saisie et d'affichage",
         "Programme principal"
@@ -60,7 +60,8 @@
       "type": "exercice",
       "enonce": "Écris une fonction `est_dans_intervalle(x, a, b)` qui renvoie Vrai si $a \\le x \\le b$.",
       "etapes": [
-        "La comparaison chaînée de Python, `a <= x <= b`, renvoie directement un booléen."
+        "Python accepte la comparaison chaînée, écrite comme en maths : `a <= x <= b` est un raccourci pour `a <= x and x <= b`.",
+        "Cette comparaison vaut déjà `True` ou `False` : on la renvoie directement, sans `if`."
       ],
       "reponse": "```python\ndef est_dans_intervalle(x, a, b):\n    '''Renvoie True si a <= x <= b.'''\n    return a <= x <= b\n```",
       "difficulte": 1

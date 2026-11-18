@@ -42,7 +42,7 @@
     {
       "id": "libre-algo-p3-s02-s03",
       "titre": "Portée des variables",
-      "contenu": "- Une variable créée **dans** une fonction est **locale** : elle n'existe que pendant l'appel.\n- Les paramètres sont aussi des variables locales.\n- Une variable créée hors de toute fonction est **globale**.\n\n```python\nx = 10\ndef f(y):\n    x = y * 2        # crée un x LOCAL qui masque le x global\n    return x + 1\n\nr = f(3)\nprint(x, r)          # 10 7\n```\n\nPour modifier une globale dans une fonction, il faut écrire `global x`… mais c'est **à éviter** : la fonction dépend alors d'un état extérieur caché. Préfère passer la valeur en paramètre et la renvoyer.\n\n**Types simples passés par valeur** : modifier un paramètre entier dans la fonction ne change pas la variable de l'appelant.\n```python\ndef ajouter_un(n):\n    n = n + 1\na = 5\najouter_un(a)\nprint(a)             # 5\n```\n\n**Tableaux modifiés en place** : la fonction reçoit la **même liste**, ses modifications sont visibles dehors.\n```python\ndef doubler(t):\n    for i in range(len(t)):\n        t[i] = t[i] * 2\nv = [1, 2, 3]\ndoubler(v)\nprint(v)             # [2, 4, 6]\n```",
+      "contenu": "- Une variable créée **dans** une fonction est **locale** : elle n'existe que pendant l'appel.\n- Les paramètres sont aussi des variables locales.\n- Une variable créée hors de toute fonction est **globale**.\n\n```python\nx = 10\ndef f(y):\n    x = y * 2        # crée un x LOCAL qui masque le x global\n    return x + 1\n\nr = f(3)\nprint(x, r)          # 10 7\n```\n\nPour modifier une globale dans une fonction, il faut écrire `global x`… mais c'est **à éviter** : la fonction dépend alors d'un état extérieur caché. Préfère passer la valeur en paramètre et la renvoyer.\n\n**Réaffecter un paramètre ne change pas l'appelant** : en Python, la fonction reçoit une référence vers la valeur de l'appelant ; mais un entier est **immuable**, donc `n = n + 1` crée un nouvel entier, et seul le `n` local le désigne. Le `a` de l'appelant n'est pas touché (même effet qu'un passage par valeur).\n```python\ndef ajouter_un(n):\n    n = n + 1\na = 5\najouter_un(a)\nprint(a)             # 5\n```\n\n**Listes modifiées en place** : une liste est modifiable. La fonction reçoit la **même liste** ; si elle change ses cases (sans réaffecter `t`), les modifications sont visibles dehors.\n```python\ndef doubler(t):\n    for i in range(len(t)):\n        t[i] = t[i] * 2\nv = [1, 2, 3]\ndoubler(v)\nprint(v)             # [2, 4, 6]\n```",
       "notions": [
         "Variables locales et globales",
         "Passage des paramètres"
@@ -120,7 +120,7 @@
         "Erreur"
       ],
       "bonneReponse": 0,
-      "explication": "La liste est passée par référence : la fonction agit sur la liste de l'appelant.",
+      "explication": "La fonction reçoit une référence vers la même liste ; `clear()` la modifie en place, donc `notes` est vidée.",
       "difficulte": 2
     },
     {

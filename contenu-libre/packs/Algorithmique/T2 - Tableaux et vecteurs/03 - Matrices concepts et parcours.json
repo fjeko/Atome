@@ -28,7 +28,7 @@
     {
       "id": "libre-algo-p2-s03-s02",
       "titre": "Créer une matrice en Python (attention au piège)",
-      "contenu": "Pour créer une matrice de 2 lignes et 3 colonnes remplie de 0 :\n\n```python\nm = [[0] * 3 for _ in range(2)]   # correct : 2 listes distinctes\n```\n\n⚠️ Piège classique :\n```python\nm = [[0] * 3] * 2                 # FAUX : 2 fois LA MÊME liste\nm[0][0] = 5\nprint(m)                          # [[5, 0, 0], [5, 0, 0]]  ← les deux lignes ont changé\n```\n\n`* 2` duplique la **référence** vers la ligne, pas la ligne elle-même. C'est le même phénomène d'alias que `b = a` sur les vecteurs. Pour copier une matrice entière, utilise `copy.deepcopy(m)` (module `copy`).",
+      "contenu": "Pour créer une matrice de 2 lignes et 3 colonnes remplie de 0 :\n\n```python\nm = [[0] * 3 for _ in range(2)]   # correct : 2 listes distinctes\n```\n\n⚠️ Piège classique :\n```python\nm = [[0] * 3] * 2                 # FAUX : 2 fois LA MÊME liste\nm[0][0] = 5\nprint(m)                          # [[5, 0, 0], [5, 0, 0]]  ← les deux lignes ont changé\n```\n\n`[[0] * 3 for _ in range(2)]` est une **liste en compréhension** : elle évalue `[0] * 3` à chaque tour de boucle, donc crée une **nouvelle** ligne à chaque fois (`_` est une variable dont on ne se sert pas). Version équivalente avec une boucle classique :\n```python\nm = []\nfor _ in range(2):\n    m.append([0] * 3)\n```\n\nDans la version fausse, `* 2` duplique la **référence** vers la ligne, pas la ligne elle-même. C'est le même phénomène d'alias que `b = a` sur les vecteurs. Pour copier une matrice entière, utilise `copy.deepcopy(m)` (module `copy`).",
       "notions": [
         "Création et copie de matrices en Python"
       ]

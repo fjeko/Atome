@@ -22,7 +22,7 @@
     {
       "id": "libre-algo-p1-s04-s01",
       "titre": "Les types simples",
-      "contenu": "| Type (pseudo-code) | Python | Exemples |\n|---|---|---|\n| entier | `int` | `42`, `-7` |\n| réel | `float` | `3.14`, `2.0` |\n| booléen | `bool` | `True`, `False` |\n| caractère | `str` de longueur 1 | `'A'` |\n| chaîne | `str` | `\"Bonjour\"` |\n\nPython devine le type à l'affectation (**typage dynamique**) : `x = 5` crée un `int`. La fonction `type(x)` l'affiche.\n\n⚠️ `\"3\" + \"4\"` donne `\"34\"` (concaténation de textes) alors que `3 + 4` donne `7`. Et `\"3\" + 4` provoque une `TypeError`.",
+      "contenu": "| Type (pseudo-code) | Python | Exemples |\n|---|---|---|\n| entier | `int` | `42`, `-7` |\n| réel | `float` | `3.14`, `2.0` |\n| booléen | `bool` | `True`, `False` |\n| caractère | `str` de longueur 1 | `'A'` |\n| chaîne | `str` | `\"Bonjour\"` |\n\nPython devine le type à l'affectation (**typage dynamique**) : `x = 5` crée un `int`. La fonction `type(x)` l'affiche.\n\n⚠️ `\"3\" + \"4\"` donne `\"34\"` (concaténation de textes) alors que `3 + 4` donne `7`. Et `\"3\" + 4` provoque une `TypeError`. En revanche, `\"5\" * 3` donne `\"555\"` : multiplier une chaîne par un entier la **répète**.",
       "notions": [
         "Types simples"
       ]
@@ -30,7 +30,7 @@
     {
       "id": "libre-algo-p1-s04-s02",
       "titre": "Manipuler une chaîne",
-      "contenu": "Une chaîne est une suite de caractères numérotés **à partir de 0**. Avec `nom = \"rapport_2026.pdf\"` :\n\n| Besoin | Python | Résultat |\n|---|---|---|\n| longueur | `len(nom)` | `16` |\n| premier caractère | `nom[0]` | `\"r\"` |\n| début (extraction) | `nom[:7]` | `\"rapport\"` |\n| milieu | `nom[8:12]` | `\"2026\"` |\n| fin | `nom[-3:]` | `\"pdf\"` |\n| position d'un caractère | `nom.find(\".\")` | `12` (−1 si absent) |\n| compter | `nom.count(\"p\")` | `3` |\n| majuscules | `nom.upper()` | `\"RAPPORT_2026.PDF\"` |\n| découper en mots | `\"Le chat dort\".split()` | `[\"Le\", \"chat\", \"dort\"]` |\n\nDans `nom[a:b]`, l'indice `a` est inclus et `b` **exclu**. Le dernier caractère est `nom[len(nom) - 1]`, ou plus simplement `nom[-1]`.\n\n**Extraire l'extension**, quelle que soit sa longueur :\n```python\npoint = nom.find(\".\")\nextension = nom[point + 1:]   # \"pdf\"\n```",
+      "contenu": "Une chaîne est une suite de caractères numérotés **à partir de 0**. Avec `nom = \"rapport_2026.pdf\"` :\n\n| Besoin | Python | Résultat |\n|---|---|---|\n| longueur | `len(nom)` | `16` |\n| premier caractère | `nom[0]` | `\"r\"` |\n| début (extraction) | `nom[:7]` | `\"rapport\"` |\n| milieu | `nom[8:12]` | `\"2026\"` |\n| fin | `nom[-3:]` | `\"pdf\"` |\n| position d'un caractère | `nom.find(\".\")` | `12` (−1 si absent) |\n| compter | `nom.count(\"p\")` | `3` |\n| majuscules | `nom.upper()` | `\"RAPPORT_2026.PDF\"` |\n| découper en mots | `\"Le chat dort\".split()` | `[\"Le\", \"chat\", \"dort\"]` |\n\nDans `nom[a:b]`, l'indice `a` est inclus et `b` **exclu**. Le dernier caractère est `nom[len(nom) - 1]`, ou plus simplement `nom[-1]`.\n\nOn peut aussi **parcourir** une chaîne caractère par caractère avec `for c in nom:`, et tester si un texte en contient un autre avec `in` : `\"a\" in \"chat\"` vaut `True`.\n\n**Extraire l'extension**, quelle que soit sa longueur :\n```python\npoint = nom.find(\".\")\nextension = nom[point + 1:]   # \"pdf\"\n```",
       "notions": [
         "Chaînes : longueur, extraction, recherche"
       ]

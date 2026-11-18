@@ -39,7 +39,7 @@
     {
       "id": "libre-b1-12a-sq1-s08-s03",
       "titre": "Fonctions et return",
-      "contenu": "Une **fonction** calcule et **renvoie une valeur** avec `return`. Son type de retour est celui de la valeur renvoyée.\n```csharp\nstatic double CalculerPenalite(int joursRetard)\n{\n    const double TarifJour = 0.15;\n    if (joursRetard <= 0)\n        return 0;\n    return joursRetard * TarifJour;\n}\n\n// Appel : on récupère la valeur\ndouble p = CalculerPenalite(12);   // 1.8\n```\n- `return` **termine** immédiatement la fonction.\n- **Tous les chemins** doivent mener à un `return`, sinon le compilateur refuse : *« tous les chemins de code ne retournent pas nécessairement une valeur »*.",
+      "contenu": "Une **fonction** calcule et **renvoie une valeur** avec `return`. Son type de retour est celui de la valeur renvoyée.\n```csharp\nstatic double CalculerPenalite(int joursRetard)\n{\n    const double TarifJour = 0.15;\n    if (joursRetard <= 0)\n        return 0;\n    return joursRetard * TarifJour;\n}\n\n// Appel : on récupère la valeur\ndouble p = CalculerPenalite(12);   // environ 1.8 (un double n'est pas toujours exact)\n```\n- `return` **termine** immédiatement la fonction.\n- **Tous les chemins** doivent mener à un `return`, sinon le compilateur refuse : *« tous les chemins de code ne retournent pas nécessairement une valeur »*.",
       "notions": [
         "Fonction et return"
       ]
