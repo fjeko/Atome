@@ -44,7 +44,7 @@ public sealed class GenerateurSeance(Func<string, ContenuSeance?> charger) : IGe
         return new Td(p, CodeTd.Ecrire(p), contenu.Titre, exercices, EmpreinteTd.Calculer(exercices));
     }
 
-    private static ExerciceTd Convertir(Carte carte, GenerateurAleatoire r, ContenuSeance contenu)
+    internal static ExerciceTd Convertir(Carte carte, GenerateurAleatoire r, ContenuSeance contenu)
     {
         var c = carte.Contenu;
         string section = contenu.TitresSections.GetValueOrDefault(carte.SectionId, "");

@@ -237,5 +237,18 @@ internal static class Migrations
         -- Le réglage fait doublon dès que la collection « libres » existe (il reste lisible s'il est absent de la base).
         DELETE FROM reglage WHERE cle = 'cours_libres' AND EXISTS (SELECT 1 FROM collection WHERE cle = 'libres');
         """,
+
+        // ---- 10 : historique des exercices de TD solo (pondère les prochains TD) -------------------
+        """
+        CREATE TABLE IF NOT EXISTS td_exercice (
+          id          INTEGER PRIMARY KEY,
+          jour        TEXT NOT NULL,                 -- AAAA-MM-JJ
+          generateur  TEXT NOT NULL,                 -- préfixe : MAT, GRA, ORD, IPV…
+          sujet       TEXT NOT NULL,                 -- clé du sujet (ou identifiant de carte pour RED)
+          section_id  TEXT,                          -- notion du cours, ou NULL
+          issue       INTEGER NOT NULL               -- 0 premier coup, 1 avec indice, 2 à retravailler
+        );
+        CREATE INDEX IF NOT EXISTS td_exercice_sujet ON td_exercice (generateur, sujet);
+        """,
     ];
 }

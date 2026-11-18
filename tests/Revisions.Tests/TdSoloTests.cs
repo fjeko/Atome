@@ -133,3 +133,119 @@ public class TdSoloTests
         Assert.Equal(g.Generer(p).Empreinte, g.Generer(p).Empreinte);
     }
 }
+
+/// <summary>TD solo : composition d'une feuille selon la durée et l'historique.</summary>
+public class CompositeurTdTests
+{
+    private static readonly IGenerateurASujets[] Themes = [new GenerateurGraphes(), new GenerateurOrdonnancement()];
+
+    [Theory]
+    [InlineData(15)]
+    [InlineData(30)]
+    [InlineData(60)]
+    [InlineData(120)]
+    public void La_duree_est_respectee_a_10_pourcent(int minutes)
+    {
+        for (ulong graine = 0; graine < 20; graine++)
+        {
+            var td = CompositeurTd.Composer(new DemandeTdSolo(Themes, minutes, 2), new GenerateurAleatoire(graine));
+            int total = td.Sum(e => e.Minutes);
+            Assert.InRange(total, minutes * 0.9 - 8, minutes * 1.1); // 8 min : le plus long exercice peut ne pas rentrer
+            Assert.NotEmpty(td);
+        }
+    }
+
+    [Fact]
+    public void Rangement_par_theme_puis_ordre_du_cours_et_jamais_deux_fois_de_suite_au_tirage()
+    {
+        var td = CompositeurTd.Composer(new DemandeTdSolo(Themes, 120, 2), new GenerateurAleatoire(7));
+        var rangs = td.Select(e => (Array.IndexOf(Themes.Select(t => t.Prefixe).ToArray(), e.Prefixe),
+            Themes.First(t => t.Prefixe == e.Prefixe).Sujets.ToList().IndexOf(e.Sujet))).ToList();
+        Assert.Equal(rangs.OrderBy(r => r.Item1).ThenBy(r => r.Item2), rangs);
+    }
+
+    [Fact]
+    public void Un_sujet_rate_revient_plus_souvent()
+    {
+        Dictionary<string, BilanSujet> Historique(bool rate) => Themes.SelectMany(t => t.Sujets.Select(s => (Cle: CompositeurTd.Cle(t.Prefixe, s.Cle), Sujet: s.Cle)))
+            .ToDictionary(x => x.Cle, x => new BilanSujet(4, rate && x.Sujet == "fermeture"));
+        int Compter(bool rate) => Enumerable.Range(0, 200).Sum(graine => CompositeurTd.Composer(
+            new DemandeTdSolo(Themes, 30, 2, Historique: Historique(rate)), new GenerateurAleatoire((ulong)graine)).Count(e => e.Sujet.Cle == "fermeture"));
+        int avecEchec = Compter(true), sansEchec = Compter(false);
+        Assert.True(avecEchec > sansEchec * 1.5, $"raté : {avecEchec}, réussi : {sansEchec}");
+    }
+
+    [Fact]
+    public void Filtre_des_sujets_et_aucun_sujet_permis()
+    {
+        var td = CompositeurTd.Composer(new DemandeTdSolo(Themes, 30, 1, (g, _) => g.Prefixe == "ORD"), new GenerateurAleatoire(1));
+        Assert.All(td, e => Assert.Equal("ORD", e.Prefixe));
+        Assert.DoesNotContain(td, e => e.Sujet.Cle == "projet"); // niveau 3 seulement
+        Assert.Empty(CompositeurTd.Composer(new DemandeTdSolo(Themes, 30, 1, (_, _) => false), new GenerateurAleatoire(1)));
+    }
+
+    [Fact]
+    public void Exercices_rediges_ne_gardent_que_les_cartes_exercice()
+    {
+        var cartes = new List<Revisions.Core.Modeles.Carte>
+        {
+            new("c1", "s1", Revisions.Core.Modeles.TypeCarte.Exercice, 2, new() { Enonce = "Calculer…", Reponse = "42", Etapes = ["Étape"] }),
+            new("c2", "s1", Revisions.Core.Modeles.TypeCarte.Question, 1, new() { Recto = "?", Verso = "!" }),
+        };
+        var red = new GenerateurRediges("CEJM", cartes, new Dictionary<string, string> { ["s1"] = "Le contrat" });
+        var sujet = Assert.Single(red.Sujets);
+        Assert.Equal("Le contrat", sujet.Nom);
+        Assert.IsType<ReponseLibre>(red.CreerExercice("c1", new GenerateurAleatoire(0), 1).Questions[0].Attendu);
+    }
+}
+
+/// <summary>TD solo : historique et remise en révision (base SQLite).</summary>
+public sealed class DepotTdTests : IDisposable
+{
+    private readonly string _dossier = Path.Combine(Path.GetTempPath(), "atome-td-" + Guid.NewGuid().ToString("N"));
+    private readonly Revisions.Data.BaseDeDonnees _base;
+    private readonly Revisions.Data.DepotTd _depot;
+    private static readonly DateOnly Jour = new(2026, 11, 18);
+
+    public DepotTdTests()
+    {
+        Directory.CreateDirectory(_dossier);
+        _base = new Revisions.Data.BaseDeDonnees(Path.Combine(_dossier, "test.db"));
+        File.WriteAllText(Path.Combine(_dossier, "pack.json"), PackExemple.Json);
+        new Revisions.Data.ImportateurPacks(_base, new Microsoft.Extensions.Time.Testing.FakeTimeProvider(new DateTimeOffset(2026, 11, 1, 9, 0, 0, TimeSpan.Zero)))
+            .ImporterFichier(Path.Combine(_dossier, "pack.json"), null);
+        _depot = new Revisions.Data.DepotTd(_base);
+    }
+
+    public void Dispose()
+    {
+        Microsoft.Data.Sqlite.SqliteConnection.ClearAllPools();
+        try { Directory.Delete(_dossier, true); } catch (IOException) { }
+    }
+
+    [Fact]
+    public void Historique_compte_et_repere_les_echecs_recents()
+    {
+        _depot.EnregistrerExercice(Jour, "GRA", "fermeture", "maths-sq2-s04-s05", IssueExercice.PasEncore);
+        _depot.EnregistrerExercice(Jour, "GRA", "fermeture", "maths-sq2-s04-s05", IssueExercice.PremierCoup);
+        _depot.EnregistrerExercice(Jour, "IPV", "masque", null, IssueExercice.PremierCoup);
+        var h = _depot.Historique();
+        Assert.Equal(new BilanSujet(2, true), h["GRA/fermeture"]);
+        Assert.Equal(new BilanSujet(1, false), h["IPV/masque"]);
+    }
+
+    [Fact]
+    public void Remise_en_revision_des_cartes_deja_vues_seulement()
+    {
+        using (var c = _base.Ouvrir())
+        {
+            Dapper.SqlMapper.Execute(c, "INSERT OR REPLACE INTO etat_carte (carte_id, stabilite, difficulte_fsrs, echeance, repetitions, oublis) VALUES ('maths-sq1-s03-c001', 12, 5, '2026-12-20', 2, 0)");
+            Dapper.SqlMapper.Execute(c, "INSERT OR REPLACE INTO etat_carte (carte_id, stabilite, difficulte_fsrs, echeance, repetitions, oublis) VALUES ('maths-sq1-s03-c002', NULL, NULL, NULL, 0, 0)");
+        }
+        Assert.Equal(1, _depot.RemettreEnRevision("maths-sq1-s03-s01", Jour));
+        using var cx = _base.Ouvrir();
+        Assert.Equal("2026-11-18", Dapper.SqlMapper.ExecuteScalar<string>(cx, "SELECT echeance FROM etat_carte WHERE carte_id = 'maths-sq1-s03-c001'"));
+        Assert.Equal(12.0, Dapper.SqlMapper.ExecuteScalar<double>(cx, "SELECT stabilite FROM etat_carte WHERE carte_id = 'maths-sq1-s03-c001'"));
+        Assert.Equal(0, _depot.RemettreEnRevision("maths-sq1-s03-s01", Jour)); // déjà due aujourd'hui : rien à faire
+    }
+}
