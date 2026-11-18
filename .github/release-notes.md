@@ -17,7 +17,5 @@ Le code est entièrement visible dans ce dépôt si tu veux vérifier.
 Atome est livré avec **440 cours libres**, basés sur le référentiel officiel du programme de 1ère année de BTS SIO option SLAM, pour commencer tout de suite (voir « Nouveautés »). Pour réviser tes propres cours, lis la section « Créer ses propres packs » du README ; le pack d’exemple (`samples/exemple.json`) permet aussi d’essayer l’application.
 
 ## Nouveautés
-**TD en groupe** :
-- Les propositions des choix passent à la ligne au lieu d'être coupées à droite.
-- Les exercices hors cours deviennent une option (case décochée par défaut).
+- **Communauté** : logo Discord dans le menu latéral et dans l'Aide, avec le lien vers le serveur Discord d'Atome (bug, coquille, idée).
 - Aucune donnée ni progression touchée.
