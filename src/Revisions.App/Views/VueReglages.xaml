@@ -10,10 +10,6 @@
         Chaque changement est enregistré et appliqué tout de suite.
     -->
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="{StaticResource Largeur.Navigation}" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -21,21 +17,10 @@
 
         <!-- ===== Navigation : recherche, puis les sections (ou les résultats de la recherche) ===== -->
         <StackPanel DataContext="{Binding Navigation}" Margin="{StaticResource Marge.Navigation}"
-                    Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" KeyboardNavigation.TabNavigation="Local">
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Compacte}" Value="True">
-                            <Setter Property="Grid.RowSpan" Value="1" />
-                            <Setter Property="Grid.ColumnSpan" Value="2" />
-                            <Setter Property="Margin" Value="{StaticResource Marge.Ecran}" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
+                    Grid.Row="0" MaxWidth="{StaticResource Largeur.Contenu}" HorizontalAlignment="Stretch" KeyboardNavigation.TabNavigation="Local">
 
             <Grid>
-                <TextBox x:Name="ChampRecherche" HorizontalAlignment="Left" MaxWidth="{StaticResource Largeur.Bulle}" Text="{Binding Recherche, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox x:Name="ChampRecherche" HorizontalAlignment="Left" Width="{StaticResource Largeur.Bulle}" Text="{Binding Recherche, UpdateSourceTrigger=PropertyChanged}"
                          Padding="{StaticResource Remplissage.Bouton}"
                          AutomationProperties.Name="Rechercher un réglage" ToolTip="Rechercher un réglage" />
                 <TextBlock Text="Rechercher un réglage" Style="{StaticResource Texte.Meta}" IsHitTestVisible="False"
@@ -101,19 +86,7 @@
 
         <!-- ===== Contenu : la section choisie ===== -->
         <ScrollViewer x:Name="Defilement" VerticalScrollBarVisibility="Auto" Focusable="False"
-                      Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
-            <ScrollViewer.Style>
-                <Style TargetType="ScrollViewer">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Navigation.Compacte}" Value="True">
-                            <Setter Property="Grid.Row" Value="1" />
-                            <Setter Property="Grid.RowSpan" Value="1" />
-                            <Setter Property="Grid.Column" Value="0" />
-                            <Setter Property="Grid.ColumnSpan" Value="2" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ScrollViewer.Style>
+                      Grid.Row="1">
             <StackPanel MaxWidth="{StaticResource Largeur.Contenu}" Margin="{StaticResource Marge.Ecran}" HorizontalAlignment="Stretch">
                 <TextBlock Text="{Binding Navigation.SectionChoisie.Titre}" Style="{StaticResource Texte.Titre}"
                            AutomationProperties.HeadingLevel="Level1" />
