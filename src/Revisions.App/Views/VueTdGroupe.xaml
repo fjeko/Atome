@@ -149,14 +149,12 @@
                             </Style>
                         </Button.Style>
                         <StackPanel HorizontalAlignment="Center">
-                            <!-- La même personne trois fois, en profondeur : deux derrière (plus petites, estompées), une devant. -->
-                            <Grid Width="96" Height="52" HorizontalAlignment="Center">
+                            <!-- La même personne trois fois : deux sur les côtés (plus petites, estompées), une devant. Pas de disque de masquage : il ne suivait pas la couleur au survol. -->
+                            <Grid Width="116" Height="52" HorizontalAlignment="Center">
                                 <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource IconeMode}" FontSize="32" Opacity="0.45"
-                                           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,0,0,0" />
+                                           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0" />
                                 <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource IconeMode}" FontSize="32" Opacity="0.45"
-                                           HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,6,0" />
-                                <Ellipse Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2"
-                                         Fill="{Binding Background, RelativeSource={RelativeSource AncestorType=Button}}" />
+                                           HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0" />
                                 <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource IconeMode}" FontSize="44"
                                            HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                             </Grid>
