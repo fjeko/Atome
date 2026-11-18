@@ -18,9 +18,6 @@ public enum PhaseTd
     Choix,
     /// <summary>« Prêts ? » : on attend que quelqu'un dise « go » sur Discord.</summary>
     Pret,
-    /// <summary>Ajoute les exercices « en plus du cours » (décoché par défaut) ; porté par la version du code.</summary>
-    [ObservableProperty] private bool _inclureHorsCours;
-
     /// <summary>Compte à rebours de 3 secondes (facultatif).</summary>
     CompteARebours,
     /// <summary>« On cherche » : chacun répond de son côté.</summary>
@@ -116,6 +113,9 @@ public partial class TdGroupeViewModel : ObservableObject
 
     /// <summary>Le code vient d'une version plus récente : on propose d'aller vérifier les mises à jour.</summary>
     [ObservableProperty] private bool _miseAJourConseillee;
+
+    /// <summary>Ajoute les exercices « en plus du cours » (décoché par défaut) ; porté par la version du code.</summary>
+    [ObservableProperty] private bool _inclureHorsCours;
 
     /// <summary>Compte à rebours de 3 secondes avant chaque exercice (désactivé par défaut).</summary>
     [ObservableProperty] private bool _compteARebours;
