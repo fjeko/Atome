@@ -594,7 +594,7 @@ public sealed class GenerateurMatrices : IGenerateurASujets
     /// « $c_{12} = a_{11}b_{12} + a_{12}b_{22} = 1 \times 1 + 5 \times 2 = 11$ ».
     /// Sans lettres (puissances), on écrit « ligne 1 de A × colonne 2 de A ».
     /// </summary>
-    private static List<string> EtapesProduit(Matrice x, Matrice y, string nomX, string nomY, string? lettreX, string? lettreY, string? nomResultat = null)
+    internal static List<string> EtapesProduit(Matrice x, Matrice y, string nomX, string nomY, string? lettreX, string? lettreY, string? nomResultat = null)
     {
         var resultat = x * y;
         var etapes = new List<string>();
