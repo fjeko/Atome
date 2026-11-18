@@ -10,7 +10,8 @@ namespace Revisions.App.Controles;
 /// <summary>
 /// Comportement des cases de saisie du TD en groupe (propriété attachée, à poser sur une TextBox) :
 /// <list type="bullet">
-/// <item>seuls les chiffres et les signes « - » et « + » passent (entiers négatifs acceptés) ;</item>
+/// <item>seuls les chiffres, les signes « - » et « + », la virgule et le point passent ; le texte n'est jamais reformaté
+/// pendant la frappe (« - », « -0, » restent tels quels) : il n'est lu qu'à la vérification ;</item>
 /// <item>← et → passent à la case voisine quand le curseur est au bord du texte ; ↑ et ↓ changent de ligne ;</item>
 /// <item>Entrée passe à la case suivante, comme Tab ;</item>
 /// <item>en arrivant dans une case, son contenu est sélectionné : on tape directement par-dessus.</item>
@@ -32,10 +33,10 @@ public static class SaisieEntiere
         {
             if (!args.Text.All(VerificationSaisie.CaractereAutorise)) args.Handled = true;
         };
-        // Coller du texte : on ne garde que s'il s'agit d'un entier.
+        // Coller du texte : seulement des chiffres, signes et séparateurs (la conversion attend la vérification).
         DataObject.AddPastingHandler(zone, (_, args) =>
         {
-            if (args.DataObject.GetData(DataFormats.UnicodeText) is not string texte || VerificationSaisie.LireEntier(texte) is null)
+            if (args.DataObject.GetData(DataFormats.UnicodeText) is not string texte || !VerificationSaisie.SaisieAutorisee(texte))
                 args.CancelCommand();
         });
         zone.GotKeyboardFocus += (_, _) => zone.SelectAll();

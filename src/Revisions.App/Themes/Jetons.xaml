@@ -73,6 +73,11 @@
     <sys:Double x:Key="Largeur.Bulle">520</sys:Double>
     <sys:Double x:Key="Largeur.Tuile">228</sys:Double>
     <sys:Double x:Key="Hauteur.Barre">8</sys:Double>
+    <!-- Case de saisie d'un nombre (grille du TD en groupe) : « -12,75 » tient sans être coupé ;
+         6 colonnes passent encore dans une fenêtre de 960 px. -->
+    <sys:Double x:Key="Largeur.CaseNombre">104</sys:Double>
+    <sys:Double x:Key="Hauteur.CaseNombre">40</sys:Double>
+    <Thickness x:Key="Remplissage.CaseNombre">8,4</Thickness>
 
     <!-- Durées : 150 ms pour les survols et changements d'état. -->
     <Duration x:Key="Duree.Survol">0:0:0.15</Duration>

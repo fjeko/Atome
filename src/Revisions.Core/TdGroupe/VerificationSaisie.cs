@@ -12,33 +12,47 @@ public sealed record ResultatVerification(bool Juste, IReadOnlyList<bool> Cases,
 public static class VerificationSaisie
 {
     /// <summary>
-    /// Lit un entier saisi : espaces ignorés, signe moins ordinaire « - » ou typographique « − » (copié d'un PDF), « + » toléré.
-    /// Renvoie null si la case est vide ou ne contient pas un entier.
+    /// Lit un nombre saisi, seulement au moment de la vérification (jamais pendant la frappe) :
+    /// espaces ignorés, signe moins ordinaire « - » ou typographique « − » (copié d'un PDF), « + » toléré,
+    /// virgule ou point comme séparateur décimal (« -0,5 » = « -0.5 »).
+    /// Renvoie null si la case est vide ou ne contient pas un nombre complet (« - » ou « 3, » : frappe pas finie).
     /// </summary>
-    public static int? LireEntier(string? saisie)
+    public static decimal? LireNombre(string? saisie)
     {
         if (saisie is null) return null;
-        string texte = saisie.Replace(" ", "").Replace(" ", "").Replace('−', '-').Replace('–', '-');
-        if (texte.Length == 0) return null;
-        return int.TryParse(texte, NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out int valeur) ? valeur : null;
+        string texte = saisie.Replace(" ", "").Replace(" ", "").Replace('−', '-').Replace('–', '-').Replace(',', '.');
+        if (texte.Length == 0 || texte.EndsWith('.')) return null;
+        return decimal.TryParse(texte, NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture,
+            out decimal valeur) ? valeur : null;
     }
 
-    /// <summary>Caractère accepté pendant la frappe dans une case : chiffre ou signe.</summary>
-    public static bool CaractereAutorise(char c) => char.IsAsciiDigit(c) || c is '-' or '−' or '+';
+    /// <summary>Lit un entier saisi (« 4,0 » compte comme 4). Renvoie null si la case est vide ou ne contient pas un entier.</summary>
+    public static int? LireEntier(string? saisie) =>
+        LireNombre(saisie) is { } n && n == decimal.Truncate(n) && n >= int.MinValue && n <= int.MaxValue ? (int)n : null;
+
+    /// <summary>Caractère accepté pendant la frappe dans une case : chiffre, signe ou séparateur décimal.</summary>
+    public static bool CaractereAutorise(char c) => char.IsAsciiDigit(c) || c is '-' or '−' or '–' or '+' or ',' or '.';
+
+    /// <summary>
+    /// Texte acceptable dans une case pendant la frappe ou un collage, même incomplet (« - », « -0, », « 3, ») :
+    /// on filtre seulement les caractères ; la conversion en nombre attend la vérification.
+    /// </summary>
+    public static bool SaisieAutorisee(string? texte) =>
+        texte is not null && texte.All(c => CaractereAutorise(c) || c is ' ' or ' ');
 
     /// <summary>Vérifie une grille : <paramref name="saisies"/> contient les cases ligne après ligne.</summary>
     public static ResultatVerification Matrice(Matrice attendue, IReadOnlyList<string?> saisies)
     {
         if (saisies.Count != attendue.Lignes * attendue.Colonnes)
             throw new ArgumentException("La grille n'a pas la dimension de la matrice attendue.", nameof(saisies));
-        var cases = attendue.Coefficients().Select((valeur, k) => LireEntier(saisies[k]) == valeur).ToList();
-        return new ResultatVerification(cases.All(c => c), cases, saisies.All(s => LireEntier(s) is not null));
+        var cases = attendue.Coefficients().Select((valeur, k) => LireNombre(saisies[k]) == valeur).ToList();
+        return new ResultatVerification(cases.All(c => c), cases, saisies.All(s => LireNombre(s) is not null));
     }
 
     /// <summary>Vérifie un nombre.</summary>
     public static ResultatVerification Nombre(int attendu, string? saisie)
     {
-        int? lu = LireEntier(saisie);
+        decimal? lu = LireNombre(saisie);
         return new ResultatVerification(lu == attendu, [lu == attendu], lu is not null);
     }
 

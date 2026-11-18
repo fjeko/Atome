@@ -9,14 +9,39 @@
         <!-- Vert (succès) pour « juste », ambre (attention) pour « à reprendre » : jamais de rouge (R1, pas de punition).
              Couleurs du système de design : contrastes vérifiés dans chaque thème. -->
 
-        <!-- Une case de la grille (ou le champ d'un nombre). -->
+        <!-- Une case de la grille (ou le champ d'un nombre).
+             Gabarit simple : celui du thème Fluent ajoute un bouton « × » qui mangeait la moitié de la case,
+             et le début du texte (le signe « - ») sortait de la zone visible. -->
         <Style x:Key="Case" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-            <Setter Property="Width" Value="62" />
-            <Setter Property="MinHeight" Value="38" />
+            <Setter Property="Width" Value="{StaticResource Largeur.CaseNombre}" />
+            <Setter Property="MinHeight" Value="{StaticResource Hauteur.CaseNombre}" />
+            <Setter Property="Padding" Value="{StaticResource Remplissage.CaseNombre}" />
             <Setter Property="FontSize" Value="{DynamicResource Taille.SousTitre}" />
             <Setter Property="TextAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource Pinceau.Texte}" />
+            <Setter Property="Background" Value="{DynamicResource Pinceau.Controle}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.Bordure}" />
+            <Setter Property="BorderThickness" Value="1" />
             <Setter Property="c:SaisieEntiere.Active" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="Cadre" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{StaticResource Rayon.Controle}">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}" Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="Cadre" Property="BorderBrush" Value="{DynamicResource Pinceau.Accent}" />
+                                <Setter TargetName="Cadre" Property="BorderThickness" Value="2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Modifiable}" Value="False">
                     <Setter Property="IsReadOnly" Value="True" />

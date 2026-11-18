@@ -406,7 +406,39 @@ public class TdGroupeTests
         Assert.True(VerificationSaisie.CaractereAutorise('7'));
         Assert.True(VerificationSaisie.CaractereAutorise('-'));
         Assert.False(VerificationSaisie.CaractereAutorise('a'));
-        Assert.False(VerificationSaisie.CaractereAutorise(','));
+        Assert.True(VerificationSaisie.CaractereAutorise(','));
+        Assert.True(VerificationSaisie.CaractereAutorise('.'));
+    }
+    /// <summary>
+    /// Saisie d'un négatif (bug signalé : le « - » disparaissait) : les étapes intermédiaires de la frappe
+    /// sont acceptées telles quelles, et seule la vérification convertit (virgule ou point).
+    /// </summary>
+    [Theory]
+    [InlineData("-")]
+    [InlineData("-0,")]
+    [InlineData("3,")]
+    [InlineData("-7")]
+    [InlineData("-12.5")]
+    public void Saisie_intermediaire_acceptee_pendant_la_frappe(string texte) => Assert.True(VerificationSaisie.SaisieAutorisee(texte));
+
+    [Theory]
+    [InlineData("-", null)]
+    [InlineData("3,", null)]
+    [InlineData("-7", -7.0)]
+    [InlineData("-0,5", -0.5)]
+    [InlineData("-0.5", -0.5)]
+    [InlineData("4,0", 4.0)]
+    public void Lecture_d_un_nombre_a_la_verification(string saisie, double? attendu) =>
+        Assert.Equal((decimal?)attendu, VerificationSaisie.LireNombre(saisie));
+
+    [Fact]
+    public void Coefficient_negatif_juste_dans_la_grille()
+    {
+        var attendue = M([1, 2], [3, -7]);
+        Assert.True(VerificationSaisie.Matrice(attendue, ["1", "2", "3", "-7"]).Juste);
+        Assert.True(VerificationSaisie.Matrice(attendue, ["1", "2,0", "3", "-7"]).Juste);
+        Assert.False(VerificationSaisie.Matrice(attendue, ["1", "2", "3", "-"]).Complete);
+        Assert.False(VerificationSaisie.SaisieAutorisee("7a"));
     }
 
     // ---- Récap et XP ------------------------------------------------------------------------
