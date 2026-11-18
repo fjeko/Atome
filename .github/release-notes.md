@@ -17,6 +17,8 @@ Le code est entièrement visible dans ce dépôt si tu veux vérifier.
 Atome est livré avec **440 cours libres**, basés sur le référentiel officiel du programme de 1ère année de BTS SIO option SLAM, pour commencer tout de suite (voir « Nouveautés »). Pour réviser tes propres cours, lis la section « Créer ses propres packs » du README ; le pack d’exemple (`samples/exemple.json`) permet aussi d’essayer l’application.
 
 ## Nouveautés
-- **Bibliothèque → Importer…** accepte maintenant aussi les fichiers **.atome** (comme « Importer du contenu » dans les Réglages).
-- Aide mise à jour.
+**TD en groupe** :
+- Le signe moins est bien visible et les cases de saisie sont plus larges (la virgule et le point sont acceptés).
+- La correction est séparée par sous-question (intertitre « a) »).
+- L'écran défile automatiquement vers l'étape révélée.
 - Aucune donnée ni progression touchée.
