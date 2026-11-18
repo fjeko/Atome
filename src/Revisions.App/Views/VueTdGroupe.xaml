@@ -6,14 +6,12 @@
              xmlns:ds="clr-namespace:Revisions.App.Controles"
              x:Name="Racine">
     <UserControl.Resources>
-        <!-- Un thème du TD solo : case à cocher, nom et petite ligne de détail. -->
-        <DataTemplate x:Key="ThemeSoloModele">
-            <CheckBox IsChecked="{Binding Coche}" Margin="0,4,12,4" VerticalContentAlignment="Top">
-                <StackPanel>
-                    <TextBlock Text="{Binding Nom}" TextWrapping="Wrap" />
-                    <TextBlock Text="{Binding Detail}" Style="{StaticResource Texte.Meta}" TextWrapping="Wrap" />
-                </StackPanel>
-            </CheckBox>
+        <!-- Un choix du TD solo (domaine, thème, notion) : nom et petite ligne de détail. -->
+        <DataTemplate x:Key="ChoixSoloModele">
+            <StackPanel Margin="0,2">
+                <TextBlock Text="{Binding Nom}" TextWrapping="Wrap" />
+                <TextBlock Text="{Binding Detail}" Style="{StaticResource Texte.Meta}" TextWrapping="Wrap" />
+            </StackPanel>
         </DataTemplate>
 
         <!-- Vert (succès) pour « juste », ambre (attention) pour « à reprendre » : jamais de rouge (R1, pas de punition).
@@ -108,7 +106,11 @@
                             <Setter Property="BorderThickness" Value="1" />
                         </Style>
                     </StackPanel.Resources>
-                    <Button Content="Seul" Command="{Binding ChoisirModeCommand}" CommandParameter="solo" AutomationProperties.Name="TD seul">
+                    <Button Command="{Binding ChoisirModeCommand}" CommandParameter="solo" AutomationProperties.Name="TD seul">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource Texte.Icone}" FontSize="18" VerticalAlignment="Center" Margin="0,0,8,0" />
+                            <TextBlock Text="Seul" VerticalAlignment="Center" />
+                        </StackPanel>
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource Onglet}">
                                 <Style.Triggers>
@@ -121,7 +123,21 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button Content="À plusieurs" Command="{Binding ChoisirModeCommand}" CommandParameter="groupe" AutomationProperties.Name="TD à plusieurs">
+                    <Button Command="{Binding ChoisirModeCommand}" CommandParameter="groupe" AutomationProperties.Name="TD à plusieurs">
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Trois fois la même personne, en profondeur : deux derrière (plus petites, estompées), une devant. -->
+                            <Grid Width="34" Height="22" VerticalAlignment="Center" Margin="0,0,8,0">
+                                <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource Texte.Icone}" FontSize="14" Opacity="0.5"
+                                           HorizontalAlignment="Left" VerticalAlignment="Top" />
+                                <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource Texte.Icone}" FontSize="14" Opacity="0.5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Top" />
+                                <Border Background="{Binding Background, RelativeSource={RelativeSource AncestorType=Button}}" CornerRadius="9"
+                                        Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                                <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource Texte.Icone}" FontSize="18"
+                                           HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                            </Grid>
+                            <TextBlock Text="À plusieurs" VerticalAlignment="Center" />
+                        </StackPanel>
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource Onglet}">
                                 <Style.Triggers>
@@ -141,19 +157,14 @@
                         Visibility="{Binding ModeSolo, Converter={StaticResource VisibleSi}}">
                     <StackPanel>
                         <TextBlock Text="Mon TD" Style="{StaticResource Texte.SousTitre}" />
-                        <TextBlock Text="Exercices générés par Atome (correction automatique)" Margin="0,14,0,6" />
-                        <ItemsControl ItemsSource="{Binding ThemesGeneres}" Focusable="False" ItemTemplate="{StaticResource ThemeSoloModele}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate><UniformGrid Columns="2" /></ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
-                        <StackPanel Visibility="{Binding ADesRediges, Converter={StaticResource VisibleSi}}">
-                            <TextBlock Text="Exercices rédigés de tes packs (tu compares avec la correction)" Margin="0,14,0,6" />
-                            <ItemsControl ItemsSource="{Binding ThemesRediges}" Focusable="False" ItemTemplate="{StaticResource ThemeSoloModele}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate><UniformGrid Columns="3" /></ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                            </ItemsControl>
+                        <TextBlock Text="Domaine" Margin="0,14,0,4" />
+                        <ComboBox ItemsSource="{Binding Domaines}" SelectedItem="{Binding DomaineChoisi}" ItemTemplate="{StaticResource ChoixSoloModele}" HorizontalAlignment="Stretch" />
+                        <TextBlock Text="Thème" Margin="0,12,0,4" />
+                        <ComboBox ItemsSource="{Binding ThemesDuDomaine}" SelectedItem="{Binding ThemeSoloChoisi}" ItemTemplate="{StaticResource ChoixSoloModele}" HorizontalAlignment="Stretch" />
+                        <StackPanel Visibility="{Binding ChoixNotionPossible, Converter={StaticResource VisibleSi}}">
+                            <TextBlock Text="Notion" Margin="0,12,0,4" />
+                            <ComboBox ItemsSource="{Binding NotionsDuTheme}" SelectedItem="{Binding NotionChoisie}" ItemTemplate="{StaticResource ChoixSoloModele}" HorizontalAlignment="Stretch"
+                                      MaxDropDownHeight="420" />
                         </StackPanel>
 
                         <Grid Margin="{StaticResource Marge.Haut.16}">

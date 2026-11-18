@@ -78,6 +78,8 @@ public static class Icones
     public const string Accueil = "";
     public const string Bibliotheque = "";
     public const string Groupe = "";
+    /// <summary>Une personne seule (U+E77B, « Contact ») : TD seul ; trois superposées font « À plusieurs ».</summary>
+    public const string Personne = "";
     public const string Acquis = "";
     public const string Planning = "";
     public const string Statistiques = "";

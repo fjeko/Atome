@@ -7,20 +7,18 @@ using Revisions.Core.TdGroupe;
 
 namespace Revisions.App.ViewModels;
 
-/// <summary>Un thème proposé pour le TD solo (case à cocher).</summary>
-public sealed partial class ThemeSolo(IGenerateurASujets? generateur, string matiere, string nom, string detail, string? matiereRedigee) : ObservableObject
-{
-    /// <summary>Générateur intégré, ou null pour les exercices rédigés d'une matière (chargés à la création du TD).</summary>
-    public IGenerateurASujets? Generateur { get; } = generateur;
-    public string Matiere { get; } = matiere;
-    public string Nom { get; } = nom;
-    /// <summary>Petite ligne sous le nom (« 6 sujets », « 42 exercices »).</summary>
-    public string Detail { get; } = detail;
-    /// <summary>Pour les exercices rédigés : la matière des packs.</summary>
-    public string? MatiereRedigee { get; } = matiereRedigee;
+/// <summary>
+/// Un thème du TD solo : un générateur intégré (Matrices, Graphes…), les exercices rédigés d'une matière des packs,
+/// ou « Tout le domaine » (<see cref="EstTout"/>).
+/// </summary>
+public sealed record ThemeSolo(string Nom, string Detail, IGenerateurASujets? Generateur = null, string? MatiereRedigee = null, bool EstTout = false);
 
-    [ObservableProperty] private bool _coche;
-}
+/// <summary>Une notion d'un thème (un sujet d'exercice, ou une séance pour les exercices rédigés).</summary>
+/// <param name="Cles">Sujets retenus ; null = toutes les notions du thème.</param>
+public sealed record NotionSolo(string Nom, string Detail, IReadOnlySet<string>? Cles);
+
+/// <summary>Un grand domaine (Mathématiques, Réseau…) et ses thèmes.</summary>
+public sealed record DomaineSolo(string Nom, string Detail, IReadOnlyList<ThemeSolo> Themes);
 
 /// <summary>Une durée proposée (« 30 min »).</summary>
 public sealed record DureeTd(int Minutes, string Libelle);
@@ -33,7 +31,7 @@ public partial class TdGroupeViewModel
 {
     // Réglages gardés le temps que l'application est ouverte.
     private static bool _dernierModeSolo = true;
-    private static HashSet<string>? _derniersThemes;
+    private static string? _dernierDomaine, _dernierTheme, _derniereNotion;
     private static int _derniereDuree = 30, _dernierNiveauSolo = 1;
     private static bool? _derniereCorrectionFin, _dernierSeulementLu;
 
@@ -59,15 +57,56 @@ public partial class TdGroupeViewModel
     /// <summary>TD solo corrigé à la fin : on valide chaque exercice sans voir la correction.</summary>
     public bool EnExamen => _examen;
 
-    public ObservableCollection<ThemeSolo> ThemesSolo { get; } = [];
+    // ---- Choix en trois niveaux : domaine › thème › notion ----------------------------------
 
-    /// <summary>Thèmes générés par Atome (correction automatique).</summary>
-    public IEnumerable<ThemeSolo> ThemesGeneres => ThemesSolo.Where(t => t.Generateur is not null);
+    public IReadOnlyList<DomaineSolo> Domaines { get; private set; } = [];
 
-    /// <summary>Exercices rédigés des packs, par matière (auto-évalués).</summary>
-    public IEnumerable<ThemeSolo> ThemesRediges => ThemesSolo.Where(t => t.Generateur is null);
+    [ObservableProperty] private DomaineSolo? _domaineChoisi;
+    [ObservableProperty] private IReadOnlyList<ThemeSolo> _themesDuDomaine = [];
+    [ObservableProperty] private ThemeSolo? _themeSoloChoisi;
+    [ObservableProperty] private IReadOnlyList<NotionSolo> _notionsDuTheme = [];
+    [ObservableProperty] private NotionSolo? _notionChoisie;
 
-    public bool ADesRediges => ThemesRediges.Any();
+    /// <summary>La liste des notions a un sens (un seul thème choisi).</summary>
+    public bool ChoixNotionPossible => NotionsDuTheme.Count > 1;
+
+    /// <summary>Cartes « exercice » des packs, chargées une fois par matière.</summary>
+    private readonly Dictionary<string, List<Revisions.Core.Sessions.CarteAReviser>> _cartesRedigees = [];
+
+    partial void OnDomaineChoisiChanged(DomaineSolo? value)
+    {
+        if (value is null) return;
+        _dernierDomaine = value.Nom;
+        ThemesDuDomaine = [new ThemeSolo(value.Themes.Count > 1 ? "Tout le domaine" : value.Themes[0].Nom,
+            value.Themes.Count > 1 ? "Un mélange de tous ses thèmes" : value.Themes[0].Detail, EstTout: true), .. value.Themes.Count > 1 ? value.Themes : []];
+        ThemeSoloChoisi = ThemesDuDomaine.FirstOrDefault(t => t.Nom == _dernierTheme) ?? ThemesDuDomaine[0];
+    }
+
+    partial void OnThemeSoloChoisiChanged(ThemeSolo? value)
+    {
+        if (value is null) return;
+        _dernierTheme = value.Nom;
+        var theme = value.EstTout && DomaineChoisi!.Themes.Count == 1 ? DomaineChoisi.Themes[0] : value;
+        var notions = new List<NotionSolo> { new("Toutes les notions", "Dans l'ordre du cours, comme une feuille de révision", null) };
+        if (!theme.EstTout && theme.Generateur is { } g)
+            notions.AddRange(g.Sujets.Select(s => new NotionSolo(s.Nom,
+                s.NiveauMin > 1 ? "Niveau « Comme à l'examen » seulement" : $"Environ {s.MinutesPour(2)} min par exercice", new HashSet<string> { s.Cle })));
+        else if (!theme.EstTout && theme.MatiereRedigee is { } matiere)
+            notions.AddRange(CartesRedigees(matiere).GroupBy(c => (c.PackId, c.Seance)).Select(gr =>
+                new NotionSolo(gr.Key.Seance, $"{gr.Count()} exercice{(gr.Count() > 1 ? "s" : "")}", gr.Select(c => c.Carte.Id).ToHashSet())));
+        NotionsDuTheme = notions;
+        NotionChoisie = notions.FirstOrDefault(n => n.Nom == _derniereNotion) ?? notions[0];
+        OnPropertyChanged(nameof(ChoixNotionPossible));
+    }
+
+    partial void OnNotionChoisieChanged(NotionSolo? value) { if (value is not null) _derniereNotion = value.Nom; }
+
+    private List<Revisions.Core.Sessions.CarteAReviser> CartesRedigees(string matiere)
+    {
+        if (!_cartesRedigees.TryGetValue(matiere, out var cartes))
+            _cartesRedigees[matiere] = cartes = _revisions.CartesExerciceDeLaMatiere(matiere);
+        return cartes;
+    }
 
     public IReadOnlyList<DureeTd> Durees { get; } =
         [new(15, "15 min"), new(30, "30 min"), new(60, "1 h"), new(120, "2 h (comme à l'examen)")];
@@ -111,12 +150,20 @@ public partial class TdGroupeViewModel
     private void InitialiserSolo()
     {
         _modeSolo = _dernierModeSolo;
-        foreach (var g in _catalogue.Generateurs.OfType<IGenerateurASujets>())
-            ThemesSolo.Add(new ThemeSolo(g, g.Matiere, g.Theme, $"{g.Matiere} · {g.Sujets.Count} sortes d'exercices", null));
-        foreach (var (matiere, nombre) in _depotTd.MatieresAvecExercices())
-            ThemesSolo.Add(new ThemeSolo(null, matiere, matiere, $"{nombre} exercice{(nombre > 1 ? "s" : "")} rédigé{(nombre > 1 ? "s" : "")}", matiere));
-        foreach (var t in ThemesSolo)
-            t.Coche = _derniersThemes?.Contains(t.Nom) ?? t.Matiere == "Mathématiques" && t.Generateur is not null;
+
+        // Un domaine par matière des générateurs (dans l'ordre du catalogue), puis les exercices rédigés des packs.
+        var domaines = _catalogue.Generateurs.OfType<IGenerateurASujets>()
+            .GroupBy(g => g.Matiere)
+            .Select(gr => new DomaineSolo(gr.Key, string.Join(", ", gr.Select(g => g.Theme)),
+                gr.Select(g => new ThemeSolo(g.Theme, $"{g.Sujets.Count} notions", g)).ToList()))
+            .ToList();
+        var rediges = _depotTd.MatieresAvecExercices()
+            .Select(m => new ThemeSolo(m.Matiere, $"{m.Nombre} exercice{(m.Nombre > 1 ? "s" : "")} rédigé{(m.Nombre > 1 ? "s" : "")}", MatiereRedigee: m.Matiere))
+            .ToList();
+        if (rediges.Count > 0)
+            domaines.Add(new DomaineSolo("Exercices rédigés de mes packs", "Tu compares toi-même avec la correction", rediges));
+        Domaines = domaines;
+        DomaineChoisi = domaines.FirstOrDefault(d => d.Nom == _dernierDomaine) ?? domaines[0];
 
         ADesSeancesLues = _bibliotheque.DernieresLectures().Count > 0;
         _seulementLu = _dernierSeulementLu ?? ADesSeancesLues;
@@ -134,33 +181,35 @@ public partial class TdGroupeViewModel
     private void CreerSolo()
     {
         MessageErreur = null;
-        var coches = ThemesSolo.Where(t => t.Coche).ToList();
-        _derniersThemes = coches.Select(t => t.Nom).ToHashSet();
-        if (coches.Count == 0) { MessageErreur = "Coche au moins un thème."; return; }
+        if (DomaineChoisi is null || ThemeSoloChoisi is null) return;
+        var themes = ThemeSoloChoisi.EstTout ? DomaineChoisi.Themes : [ThemeSoloChoisi];
 
         var generateurs = new List<IGenerateurASujets>();
         var sections = _depotTd.Sections();
-        foreach (var t in coches)
+        foreach (var t in themes)
         {
             if (t.Generateur is not null) { generateurs.Add(t.Generateur); continue; }
-            var cartes = _revisions.CartesExerciceDeLaMatiere(t.MatiereRedigee!).Select(c => c.Carte).ToList();
+            var cartes = CartesRedigees(t.MatiereRedigee!).Select(c => c.Carte).ToList();
             var titres = cartes.Select(c => c.SectionId).Distinct()
                 .Where(sections.ContainsKey).ToDictionary(s => s, s => sections[s].Titre);
             generateurs.Add(new GenerateurRediges(t.MatiereRedigee!, cartes, titres));
         }
 
         var lus = _bibliotheque.DernieresLectures().Keys.ToHashSet();
-        Func<IGenerateurASujets, SujetTd, bool>? permis = SeulementLu && ADesSeancesLues
-            ? (_, s) => s.SectionId is { } id && sections.TryGetValue(id, out var sec) && lus.Contains(sec.PackId)
+        bool filtreLu = SeulementLu && ADesSeancesLues;
+        var cles = NotionChoisie?.Cles;
+        Func<IGenerateurASujets, SujetTd, bool>? permis = filtreLu || cles is not null
+            ? (_, s) => (cles is null || cles.Contains(s.Cle))
+                        && (!filtreLu || s.SectionId is { } id && sections.TryGetValue(id, out var sec) && lus.Contains(sec.PackId))
             : null;
         int niveau = Math.Clamp(NiveauSolo + 1, 1, 3);
         var exercices = CompositeurTd.Composer(new DemandeTdSolo(generateurs, DureeChoisie.Minutes, niveau, permis, _depotTd.Historique()),
             new GenerateurAleatoire((ulong)Random.Shared.NextInt64()));
         if (exercices.Count == 0)
         {
-            MessageErreur = permis is not null
-                ? "Aucun exercice pour ces thèmes dans les séances que tu as lues. Lis la séance du cours, ou décoche « Seulement ce que j'ai lu »."
-                : "Aucun exercice disponible pour ces thèmes à ce niveau.";
+            MessageErreur = filtreLu
+                ? "Aucun exercice ici dans les séances que tu as lues. Lis la séance du cours, ou décoche « Seulement ce que j'ai lu »."
+                : "Aucun exercice disponible ici à ce niveau (le « projet complet » demande le niveau « Comme à l'examen »).";
             return;
         }
 
@@ -170,9 +219,9 @@ public partial class TdGroupeViewModel
         _reponses.Clear();
         _indicesVusExamen.Clear();
         NotionsARevoir = null;
-        string themes = string.Join(", ", exercices.Select(e => e.Theme).Distinct());
+        string titre = cles is not null ? NotionChoisie!.Nom : ThemeSoloChoisi.EstTout ? DomaineChoisi.Nom : ThemeSoloChoisi.Nom;
         var parametres = new ParametresTd("SOLO", 1, niveau, exercices.Count, 0);
-        var td = new Td(parametres, "", $"TD solo · {DureeChoisie.Libelle} · {themes}", exercices.Select(e => e.Exercice).ToList(), "");
+        var td = new Td(parametres, "", $"TD · {titre} · {DureeChoisie.Libelle}", exercices.Select(e => e.Exercice).ToList(), "");
         OnPropertyChanged(nameof(EstSolo));
         OnPropertyChanged(nameof(EnExamen));
         OnPropertyChanged(nameof(TexteVerifier));

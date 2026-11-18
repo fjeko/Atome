@@ -471,12 +471,14 @@ public partial class TdGroupeViewModel : ObservableObject
     /// </summary>
     public void DemonstrationDev(string argument)
     {
-        // « td:solo:ORD,GRA » : TD solo de 15 min sur ces thèmes ; « td:solo:ORD:examen » corrige à la fin.
+        // « td:solo:MAT » : TD solo de 15 min sur ce thème ; « td:solo:MAT:Produit » sur une notion ; « :examen » corrige à la fin.
         if (argument.StartsWith("solo"))
         {
             string[] options = argument.Split(':');
-            var prefixes = options.Length > 1 ? options[1].Split(',') : ["GRA"];
-            foreach (var t in ThemesSolo) t.Coche = t.Generateur is { } g && prefixes.Contains(g.Prefixe);
+            string prefixe = options.Length > 1 ? options[1] : "GRA";
+            DomaineChoisi = Domaines.First(d => d.Themes.Any(t => t.Generateur?.Prefixe == prefixe));
+            ThemeSoloChoisi = ThemesDuDomaine.FirstOrDefault(t => t.Generateur?.Prefixe == prefixe) ?? ThemesDuDomaine[0];
+            NotionChoisie = options.Length > 2 && options[2] != "examen" ? NotionsDuTheme.FirstOrDefault(n => n.Cles?.Contains(options[2]) == true) ?? NotionsDuTheme[0] : NotionsDuTheme[0];
             SeulementLu = false;
             DureeChoisie = Durees[0];
             CorrectionALaFin = options.Contains("examen");

@@ -29,8 +29,12 @@ Décisions prises avec Florian (18/11/2026) :
 
 Écran **TD** avec deux onglets : **Seul** (par défaut) et **À plusieurs** (le TD en groupe actuel, inchangé).
 
-Onglet **Seul** :
-1. **Thèmes** : cases à cocher (voir le tableau plus bas), groupées par matière.
+Onglet **Seul** (icône : une personne ; « À plusieurs » : la même personne, trois fois, en profondeur) :
+1. **Domaine › Thème › Notion** (décision du 18/11 : un TD = une notion travaillée à fond, comme les TD du CNED) :
+   - domaine : Mathématiques, Réseau, Cybersécurité, SLAM, ou « Exercices rédigés de mes packs » ;
+   - thème : « Tout le domaine » (mélange, façon examen) ou un thème (Matrices, Graphes…) ;
+   - notion : « Toutes les notions » ou une seule (Produit de deux matrices, Dates au plus tôt…) ; pour les
+     exercices rédigés, la notion est une séance.
 2. **Durée** : 15 min · 30 min · 1 h · 2 h.
 3. **Niveau** : Découverte · Entraînement · Comme à l'examen.
 4. **Correction** : *après chaque exercice* (défaut jusqu'à 30 min) ou *à la fin, comme à l'examen*
