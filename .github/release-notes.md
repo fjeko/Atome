@@ -18,7 +18,6 @@ Atome est livré avec **440 cours libres**, basés sur le référentiel officiel
 
 ## Nouveautés
 **TD en groupe** :
-- Le signe moins est bien visible et les cases de saisie sont plus larges (la virgule et le point sont acceptés).
-- La correction est séparée par sous-question (intertitre « a) »).
-- L'écran défile automatiquement vers l'étape révélée.
+- Les propositions des choix passent à la ligne au lieu d'être coupées à droite.
+- Les exercices hors cours deviennent une option (case décochée par défaut).
 - Aucune donnée ni progression touchée.
