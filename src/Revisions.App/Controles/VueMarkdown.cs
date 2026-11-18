@@ -18,6 +18,12 @@ public sealed class VueMarkdown : ContentControl
     private readonly WebView2 _web = new();
     private bool _pagePrete;
 
+    /// <summary>Mesure du temps d'affichage (de l'arrivée à l'écran jusqu'à la page prête), notée dans le journal.</summary>
+    private readonly System.Diagnostics.Stopwatch _chrono = new();
+
+    /// <summary>Seuls les 3 premiers affichages de chaque lancement sont notés (le journal ne doit pas grossir sans fin).</summary>
+    private static int _contenusMesures;
+
     /// <summary>Message JSON à afficher : { "elements": [ { "genre", "markdown", … } ] }.</summary>
     public static readonly DependencyProperty MessageProperty = DependencyProperty.Register(
         nameof(Message), typeof(string), typeof(VueMarkdown),
@@ -75,6 +81,7 @@ public sealed class VueMarkdown : ContentControl
         Etat.ThemeChange += AppliquerTheme;
         if (_web.CoreWebView2 is not null) { AppliquerTheme(); return; }
 
+        _chrono.Restart();
         try
         {
             // Couleur de fond avant le premier affichage : évite un éclair blanc en thème sombre.
@@ -157,6 +164,11 @@ public sealed class VueMarkdown : ContentControl
         {
             case "pret":
                 _pagePrete = true;
+                if (_chrono.IsRunning && _contenusMesures++ < 3)
+                {
+                    _chrono.Stop();
+                    Journal.Etape($"Contenu web prêt en {_chrono.ElapsedMilliseconds} ms");
+                }
                 AppliquerTheme();
                 Envoyer();
                 break;

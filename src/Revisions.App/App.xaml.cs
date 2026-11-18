@@ -47,6 +47,19 @@ public partial class App : Application
         }
         await Task.Yield();
 
+        // « --chrono-web=<pack> » : lecture, accueil, lecture, session, à 4 s d'intervalle, pour chronométrer
+        // l'affichage des contenus web (lignes « Contenu web prêt » du journal).
+        if (arguments.FirstOrDefault(a => a.StartsWith("--chrono-web=")) is { } chronoWeb)
+        {
+            string pack = chronoWeb["--chrono-web=".Length..];
+            await Task.Delay(4000); principal.OuvrirLecture(pack);
+            await Task.Delay(4000); principal.AllerAccueil();
+            await Task.Delay(4000); principal.OuvrirLecture(pack);
+            await Task.Delay(4000);
+            principal.DemarrerSession(Services.GetRequiredService<DepotRevisions>().CartesDuPack(pack), "seance");
+            return;
+        }
+
         if (arguments.Contains("--sans-galerie")) principal.GalerieVisible = false;
 
         // « --hauteur=1700 » agrandit la fenêtre (pour capturer un écran long en entier).

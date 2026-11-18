@@ -38,7 +38,7 @@ public sealed class FenetrePdf : Window
             var web = _web.CoreWebView2;
             ServiceWeb.Securiser(web);
             ServiceWeb.AppliquerTheme(web, sombre);
-            // Le dossier « Cours » devient lisible à l'adresse https://cours.local/…
+            // Le dossier « Cours » devient lisible à l'adresse https://cours.atome.example/…
             web.SetVirtualHostNameToFolderMapping(ServiceWeb.HoteCours, dossierCours, CoreWebView2HostResourceAccessKind.Deny);
 
             // Chaque morceau du chemin est encodé (espaces, accents, apostrophes…).

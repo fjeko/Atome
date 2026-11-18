@@ -10,11 +10,15 @@ namespace Revisions.App.Services;
 /// </summary>
 public static class ServiceWeb
 {
+    // Noms de domaine fictifs : en « .example » (réservé, jamais résolu sur le réseau), et surtout pas en « .local » :
+    // Windows tente alors une résolution mDNS sur le réseau local, et chaque page attendait ~2 s avant de charger
+    // ses scripts (mesuré : HTML reçu à 6 ms, markdown-it et KaTeX demandés à 2 010 ms).
+
     /// <summary>Nom de domaine fictif qui pointe vers le dossier Web local.</summary>
-    public const string HoteApplication = "app.local";
+    public const string HoteApplication = "app.atome.example";
 
     /// <summary>Nom de domaine fictif qui pointe vers le dossier « Cours » (pour les PDF).</summary>
-    public const string HoteCours = "cours.local";
+    public const string HoteCours = "cours.atome.example";
 
     private static Task<CoreWebView2Environment>? _environnement;
 
@@ -24,6 +28,33 @@ public static class ServiceWeb
     public static Task<CoreWebView2Environment> Environnement =>
         _environnement ??= CoreWebView2Environment.CreateAsync(
             userDataFolder: Path.Combine(BaseDeDonnees.DossierDonnees, "WebView2"));
+
+    /// <summary>Zone web invisible gardée en vie : le navigateur intégré reste démarré entre deux écrans.</summary>
+    private static CoreWebView2Controller? _veilleuse;
+
+    /// <summary>
+    /// Préchauffage, une fois l'accueil affiché : crée l'environnement et une zone web invisible qui charge la page
+    /// de rendu. Le premier cours ou la première carte s'ouvrent ensuite sans attendre le démarrage du navigateur
+    /// intégré, et les scripts (markdown-it, KaTeX, highlight.js) sont déjà en cache. Sans effet en cas d'échec.
+    /// </summary>
+    public static async Task PrechaufferAsync(IntPtr fenetre)
+    {
+        if (_veilleuse is not null || fenetre == IntPtr.Zero) return;
+        try
+        {
+            var environnement = await Environnement;
+            _veilleuse = await environnement.CreateCoreWebView2ControllerAsync(fenetre);
+            _veilleuse.IsVisible = false;
+            Securiser(_veilleuse.CoreWebView2);
+            _veilleuse.CoreWebView2.SetVirtualHostNameToFolderMapping(HoteApplication, DossierWeb, CoreWebView2HostResourceAccessKind.Deny);
+            _veilleuse.CoreWebView2.Navigate($"https://{HoteApplication}/rendu.html");
+            Journal.Etape("Navigateur intégré préchauffé");
+        }
+        catch (Exception exception)
+        {
+            Journal.Erreur("Préchauffage WebView2", exception);
+        }
+    }
 
     /// <summary>Réglages communs : pas de menu contextuel, pas d'outils de développement, pas de nouvelle fenêtre.</summary>
     public static void Securiser(CoreWebView2 web)

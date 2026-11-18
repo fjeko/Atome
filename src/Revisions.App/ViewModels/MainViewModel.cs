@@ -300,6 +300,8 @@ public partial class MainViewModel(
                 return resultatsImport;
             });
             Journal.Etape("Import terminé");
+            // Navigateur intégré : démarré maintenant, en tâche de fond, pour que le premier cours s'ouvre sans attendre.
+            _ = ServiceWeb.PrechaufferAsync(new System.Windows.Interop.WindowInteropHelper(Application.Current.MainWindow).Handle);
             // Mises à jour : en tâche de fond, sans attendre (ni le rapport d'import qui peut s'ouvrir juste après).
             _ = VerifierMisesAJourAuDemarrageAsync();
             AnnoncerImport(resultats, afficherRapportSiRien: false);
