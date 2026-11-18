@@ -9,7 +9,7 @@ Il n'y a **ni réseau, ni serveur, ni compte** : le seul lien entre vous est un 
 Dans **TD en groupe** (barre de gauche) :
 
 1. choisis le **thème** : *Matrices* ou *Une séance de ma bibliothèque* ;
-2. choisis le **niveau** et le **nombre d'exercices** ;
+2. choisis le **niveau** et le **nombre d'exercices** (la case « Inclure les exercices hors cours », décochée par défaut, ajoute des exercices en plus du programme, comme la transposée ; elle est mémorisée dans le code, donc tout le groupe a le même TD) ;
 3. clique sur **Créer le TD**.
 
 Atome affiche un code, par exemple `MAT1-2-8-48217`. Dicte-le aux autres (ou copie-le sur Discord avec le bouton à côté).

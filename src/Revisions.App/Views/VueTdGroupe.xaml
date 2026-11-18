@@ -123,6 +123,9 @@
                                     <ComboBox ItemsSource="{Binding NombresPossibles}" SelectedItem="{Binding Nombre}" MinWidth="90" />
                                 </StackPanel>
                             </Grid>
+                            <CheckBox Content="Inclure les exercices hors cours" IsChecked="{Binding InclureHorsCours}" Style="{StaticResource Interrupteur}"
+                                      Margin="{StaticResource Marge.Haut.12}" Visibility="{Binding ChoixHorsCoursVisible, Converter={StaticResource VisibleSi}}"
+                                      ToolTip="Des exercices en plus du programme (par exemple la transposée). Le code s'en souvient : tout le groupe aura le même TD." />
                             <CheckBox Content="Compte à rebours de 3 secondes avant chaque exercice" IsChecked="{Binding CompteARebours}" Style="{StaticResource Interrupteur}" Margin="{StaticResource Marge.Haut.12}" />
                             <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.8}">
                                 <CheckBox Content="Minuteur indicatif :" IsChecked="{Binding MinuteurActif}" Style="{StaticResource Interrupteur}" VerticalAlignment="Center"

@@ -17,6 +17,12 @@ public interface IGenerateurTd
     /// <summary>Version utilisée pour créer un nouveau TD.</summary>
     int VersionActuelle { get; }
 
+    /// <summary>Ce générateur a des exercices « en plus du cours » (la case « Inclure… » a alors un sens).</summary>
+    bool ProposeHorsCours => false;
+
+    /// <summary>Version à écrire dans le code selon la case « Inclure les exercices hors cours ».</summary>
+    int VersionPour(bool inclureHorsCours) => VersionActuelle;
+
     /// <summary>Versions que ce générateur sait encore reproduire à l'identique.</summary>
     IReadOnlyCollection<int> VersionsPrisesEnCharge { get; }
 
@@ -44,8 +50,8 @@ public sealed class CatalogueTd(IEnumerable<IGenerateurTd> generateurs)
         _generateurs.FirstOrDefault(g => string.Equals(g.Prefixe, prefixe, StringComparison.OrdinalIgnoreCase));
 
     /// <summary>Crée un nouveau TD avec la version actuelle du générateur.</summary>
-    public Td Creer(IGenerateurTd generateur, int niveau, int nombre, int graine, string? packId = null) =>
-        generateur.Generer(new ParametresTd(generateur.Prefixe, generateur.VersionActuelle, niveau, nombre, graine, packId));
+    public Td Creer(IGenerateurTd generateur, int niveau, int nombre, int graine, string? packId = null, bool inclureHorsCours = false) =>
+        generateur.Generer(new ParametresTd(generateur.Prefixe, generateur.VersionPour(inclureHorsCours), niveau, nombre, graine, packId));
 
     /// <summary>Ouvre un code dicté par un camarade : lecture, contrôle de version, puis génération.</summary>
     public OuvertureTd Ouvrir(string? code)

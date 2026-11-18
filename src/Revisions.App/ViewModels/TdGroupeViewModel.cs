@@ -18,6 +18,9 @@ public enum PhaseTd
     Choix,
     /// <summary>« Prêts ? » : on attend que quelqu'un dise « go » sur Discord.</summary>
     Pret,
+    /// <summary>Ajoute les exercices « en plus du cours » (décoché par défaut) ; porté par la version du code.</summary>
+    [ObservableProperty] private bool _inclureHorsCours;
+
     /// <summary>Compte à rebours de 3 secondes (facultatif).</summary>
     CompteARebours,
     /// <summary>« On cherche » : chacun répond de son côté.</summary>
@@ -51,7 +54,7 @@ public partial class TdGroupeViewModel : ObservableObject
 
     // Réglages gardés le temps que l'application est ouverte (on refait souvent plusieurs TD d'affilée).
     private static int _dernierThemeIndex, _dernierNiveauIndex, _dernierNombre = 6;
-    private static bool _dernierCompte, _dernierMinuteur;
+    private static bool _dernierCompte, _dernierMinuteur, _dernierHorsCours;
 
     private Td? _td;
     private int _index;
@@ -83,6 +86,7 @@ public partial class TdGroupeViewModel : ObservableObject
         _niveauIndex = _dernierNiveauIndex;
         _nombre = _dernierNombre;
         _compteARebours = _dernierCompte;
+        _inclureHorsCours = _dernierHorsCours;
         _minuteurActif = _dernierMinuteur;
         _seanceChoisie = Seances.FirstOrDefault();
     }
@@ -94,10 +98,11 @@ public partial class TdGroupeViewModel : ObservableObject
     public IReadOnlyList<int> NombresPossibles { get; } = Enumerable.Range(3, 10).ToList(); // 3 à 12
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(NiveauxDuTheme), nameof(ChoixSeanceVisible))]
+    [NotifyPropertyChangedFor(nameof(NiveauxDuTheme), nameof(ChoixSeanceVisible), nameof(ChoixHorsCoursVisible))]
     private ThemeTd _themeChoisi;
 
     public IReadOnlyList<string> NiveauxDuTheme => ThemeChoisi.Niveaux;
+    public bool ChoixHorsCoursVisible => ThemeChoisi.Generateur.ProposeHorsCours;
     public bool ChoixSeanceVisible => ThemeChoisi.DemandeUneSeance;
 
     [ObservableProperty] private int _niveauIndex;
@@ -124,6 +129,7 @@ public partial class TdGroupeViewModel : ObservableObject
     partial void OnThemeChoisiChanged(ThemeTd value) => _dernierThemeIndex = Themes.ToList().IndexOf(value);
     partial void OnNiveauIndexChanged(int value) { if (value >= 0) _dernierNiveauIndex = value; }
     partial void OnNombreChanged(int value) => _dernierNombre = value;
+    partial void OnInclureHorsCoursChanged(bool value) => _dernierHorsCours = value;
     partial void OnCompteAReboursChanged(bool value) => _dernierCompte = value;
     partial void OnMinuteurActifChanged(bool value) => _dernierMinuteur = value;
 
@@ -141,7 +147,7 @@ public partial class TdGroupeViewModel : ObservableObject
         }
         try
         {
-            Commencer(_catalogue.Creer(ThemeChoisi.Generateur, Math.Clamp(NiveauIndex + 1, 1, 3), Nombre, CatalogueTd.NouvelleGraine(), packId));
+            Commencer(_catalogue.Creer(ThemeChoisi.Generateur, Math.Clamp(NiveauIndex + 1, 1, 3), Nombre, CatalogueTd.NouvelleGraine(), packId, InclureHorsCours));
         }
         catch (TdImpossibleException exception)
         {

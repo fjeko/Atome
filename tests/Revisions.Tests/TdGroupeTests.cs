@@ -120,7 +120,7 @@ public class TdGroupeTests
     public void Version_plus_recente_demande_une_mise_a_jour()
     {
         var catalogue = new CatalogueTd([Matrices]);
-        var ouverture = catalogue.Ouvrir(CodeTd.Ecrire(new ParametresTd("MAT", 2, 1, 5, 12)));
+        var ouverture = catalogue.Ouvrir(CodeTd.Ecrire(new ParametresTd("MAT", 3, 1, 5, 12)));
         Assert.Null(ouverture.Td);
         Assert.True(ouverture.MiseAJourNecessaire);
         Assert.Contains("Mets Atome à jour", ouverture.Erreur);
@@ -239,6 +239,54 @@ public class TdGroupeTests
     private const string PremierEnonceReference = "On considère la matrice\n\n$$A = \\begin{pmatrix} -6 & 4 & -2 \\\\ 3 & 6 & -8 \\end{pmatrix}$$";
     private const string ProduitReference = "(18 17 ; 13 -18)";
 
+
+    // ---- Exercices « hors cours » (option « Inclure les exercices hors cours ») ----------------
+
+    [Fact]
+    public void Hors_cours_decoche_aucune_transposee_meme_sur_beaucoup_de_td()
+    {
+        var catalogue = new CatalogueTd([Matrices]);
+        for (int graine = 0; graine < 60; graine++)
+            foreach (int nombre in new[] { 3, 9, 10, 12 })
+            {
+                var td = catalogue.Creer(Matrices, 2, nombre, graine); // option décochée par défaut
+                Assert.Equal(2, td.Parametres.Version);
+                Assert.DoesNotContain(td.Exercices, e => e.Titre == "Transposée");
+            }
+    }
+
+    [Fact]
+    public void Hors_cours_coche_garde_la_transposee_et_le_meme_td_pour_tous()
+    {
+        var catalogue = new CatalogueTd([Matrices]);
+        var td = catalogue.Creer(Matrices, 2, 10, 4821, inclureHorsCours: true);
+        Assert.Equal(1, td.Parametres.Version);
+        Assert.Contains(td.Exercices, e => e.Titre == "Transposée");
+        var ouvert = catalogue.Ouvrir(td.Code).Td!;
+        Assert.Equal(td.Empreinte, ouvert.Empreinte);
+        Assert.Equal(Resume(td), Resume(ouvert));
+    }
+
+    [Fact]
+    public void Hors_cours_decoche_meme_code_meme_td()
+    {
+        var catalogue = new CatalogueTd([Matrices]);
+        var td = catalogue.Creer(Matrices, 3, 8, 1234);
+        Assert.StartsWith("MAT2-", td.Code);
+        var ouvert = catalogue.Ouvrir(td.Code).Td!;
+        Assert.Equal(td.Empreinte, ouvert.Empreinte);
+        Assert.Equal(Resume(td), Resume(ouvert));
+    }
+
+    [Fact]
+    public void Ancien_code_MAT1_reproduit_le_td_d_origine_avec_les_exercices_hors_cours()
+    {
+        // Même empreinte que la valeur figée de la version 1 : les anciens codes donnent le même TD qu'avant.
+        var ouverture = new CatalogueTd([Matrices]).Ouvrir(CodeTd.Ecrire(new ParametresTd("MAT", 1, 2, 10, 4821)));
+        Assert.Null(ouverture.Erreur);
+        Assert.Equal(EmpreinteReference, ouverture.Td!.Empreinte);
+        Assert.Contains(ouverture.Td.Exercices, e => e.Titre == "Transposée");
+    }
     [Fact]
     public void Dix_exercices_couvrent_tous_les_genres_dans_l_ordre_du_cours()
     {

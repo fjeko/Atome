@@ -11,16 +11,31 @@ namespace Revisions.Core.TdGroupe;
 /// Version 1 du générateur. Toute modification qui change un TD généré (ordre des tirages, bornes,
 /// textes…) impose de passer à la version 2 et de garder la version 1 telle quelle tant qu'on veut
 /// accepter ses codes. Les tests de déterminisme le rappellent.
+/// <para>
+/// Version 1 = tous les exercices, « hors cours » compris (façon d'origine, gardée à l'identique).
+/// Version 2 = seulement ce qui est vu en cours, sauf si on a coché « Inclure les exercices hors cours »
+/// (le code est alors en version 1). La case est donc portée par la version du code : rien de plus à dicter.
+/// </para>
 /// </remarks>
 public sealed class GenerateurMatrices : IGenerateurTd
 {
     public string Prefixe => "MAT";
     public string Nom => "Matrices (SQ1 Calcul matriciel)";
-    public int VersionActuelle => 1;
-    public IReadOnlyCollection<int> VersionsPrisesEnCharge { get; } = [1];
+    public int VersionActuelle => 2;
+    public IReadOnlyCollection<int> VersionsPrisesEnCharge { get; } = [1, 2];
+    public bool ProposeHorsCours => true;
+
+    /// <summary>Version 1 : avec les exercices hors cours (comme avant) ; version 2 : cours seulement.</summary>
+    public int VersionPour(bool inclureHorsCours) => inclureHorsCours ? 1 : 2;
 
     /// <summary>Noms des niveaux 1, 2 et 3.</summary>
     public static IReadOnlyList<string> NomsNiveaux { get; } = ["Découverte", "Entraînement", "Comme à l'examen"];
+
+    /// <summary>
+    /// Sortes d'exercices « en plus du cours » : absentes de la fiche du programme (calcul matriciel).
+    /// Elles ne sont proposées que sur option.
+    /// </summary>
+    public static bool EstHorsCours(Genre genre) => genre == Genre.Transposee;
 
     /// <summary>Les sortes d'exercices, dans l'ordre du cours (le TD les présente dans cet ordre).</summary>
     public enum Genre
@@ -45,7 +60,7 @@ public sealed class GenerateurMatrices : IGenerateurTd
             throw new TdImpossibleException("Version du générateur de matrices inconnue : mets Atome à jour.");
 
         var r = new GenerateurAleatoire(p.GraineInterne);
-        var exercices = ChoisirGenres(r, p.Nombre).Select(g => Creer(g, r, p.Niveau)).ToList();
+        var exercices = ChoisirGenres(r, p.Nombre, inclureHorsCours: p.Version == 1).Select(g => Creer(g, r, p.Niveau)).ToList();
         return new Td(p, CodeTd.Ecrire(p), $"Matrices · {NomsNiveaux[p.Niveau - 1].ToLowerInvariant()}",
             exercices, EmpreinteTd.Calculer(exercices));
     }
@@ -54,9 +69,9 @@ public sealed class GenerateurMatrices : IGenerateurTd
     /// Choisit les sortes d'exercices : chaque tour complet passe par toutes les sortes, dans l'ordre du cours ;
     /// le dernier tour, incomplet, en tire quelques-unes au hasard (toujours remises dans l'ordre du cours).
     /// </summary>
-    public static List<Genre> ChoisirGenres(GenerateurAleatoire r, int nombre)
+    public static List<Genre> ChoisirGenres(GenerateurAleatoire r, int nombre, bool inclureHorsCours = true)
     {
-        var tous = Enum.GetValues<Genre>();
+        var tous = Enum.GetValues<Genre>().Where(g => inclureHorsCours || !EstHorsCours(g)).ToArray();
         var choisis = new List<Genre>();
         while (nombre - choisis.Count >= tous.Length) choisis.AddRange(tous);
         int reste = nombre - choisis.Count;
