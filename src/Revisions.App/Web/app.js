@@ -21,12 +21,20 @@
   const hote = window.chrome && window.chrome.webview;
   const envoyer = (message) => { if (hote) hote.postMessage(message); };
 
+  /** Nombre d'éléments affichés juste avant : ceux qui arrivent ensuite sont « révélés » (animation). */
+  let precedent = 0;
+
   /** Affiche la liste d'éléments envoyée par l'application. */
   function afficher(message) {
+    const nouvelleCarte = message.defiler !== "bas";
     contenu.replaceChildren();
+    let rang = 0;
     for (const element of message.elements || []) {
       const bloc = document.createElement("div");
       bloc.className = element.genre + (element.etat ? " " + element.etat : "");
+      // Révélation (réponse, étape, explication) : le nouveau bloc se retourne comme une carte (300 ms).
+      if (!nouvelleCarte && rang >= precedent) bloc.classList.add("apparait");
+      rang++;
 
       if (element.genre === "titre") {
         const titre = document.createElement("h1");
@@ -78,6 +86,13 @@
       }
       contenu.appendChild(bloc);
     }
+    precedent = rang;
+    // Nouvelle carte de session : elle arrive en se retournant ; nouvelle page de cours : un simple fondu.
+    if (nouvelleCarte) {
+      contenu.classList.remove("arrive-carte", "arrive-page");
+      void contenu.offsetWidth; // relance l'animation
+      contenu.classList.add(message.animation === "carte" ? "arrive-carte" : "arrive-page");
+    }
     // Nouvelle carte ou nouvelle page : on repart du haut ; révélation : on montre la suite.
     if (message.defiler === "bas") {
       const dernier = contenu.lastElementChild;
@@ -92,6 +107,8 @@
     for (const nom of Object.keys(variables || {})) {
       document.documentElement.style.setProperty(nom, variables[nom]);
     }
+    // Animations réduites (réglage d'Atome ou de Windows) : de simples fondus très courts.
+    document.documentElement.classList.toggle("reduit", (variables || {})["--animations"] === "0");
   }
 
   if (hote) hote.addEventListener("message", (e) => {

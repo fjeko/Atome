@@ -18,8 +18,8 @@ public partial class VueSession : UserControl
         // Quand le ViewModel le demande (touche Tab), le curseur va dans la zone de saisie.
         DataContextChanged += (_, e) =>
         {
-            if (e.OldValue is SessionViewModel ancien) ancien.SaisieDemandee -= EntrerDansLaZone;
-            if (e.NewValue is SessionViewModel nouveau) nouveau.SaisieDemandee += EntrerDansLaZone;
+            if (e.OldValue is SessionViewModel ancien) { ancien.SaisieDemandee -= EntrerDansLaZone; ancien.ReponseEnregistree -= ApresReponse; }
+            if (e.NewValue is SessionViewModel nouveau) { nouveau.SaisieDemandee += EntrerDansLaZone; nouveau.ReponseEnregistree += ApresReponse; }
         };
 
         // Quand la zone disparaît (réponse révélée), le focus revient à la fenêtre :
@@ -28,6 +28,14 @@ public partial class VueSession : UserControl
         {
             if (!(bool)e.NewValue) Dispatcher.BeginInvoke(SortirDeLaZone);
         };
+    }
+
+    /// <summary>Après une note : « +10 » qui monte près du compteur, et le son de la bonne réponse (si les sons sont activés).</summary>
+    private void ApresReponse(int xp, bool reussie)
+    {
+        if (xp > 0)
+            Services.Mouvement.FaireMonter(SceneXp, $"+{xp}", new Point(-40, -6), (System.Windows.Media.Brush)FindResource("Pinceau.AccentTexte"));
+        if (reussie) Services.ServiceSons.Jouer(Services.ServiceSons.Son.BonneReponse);
     }
 
     private void EntrerDansLaZone()

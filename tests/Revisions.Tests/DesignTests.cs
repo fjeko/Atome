@@ -160,6 +160,70 @@ public class DesignTests
         Assert.Equal(Humeur.Contente, BanqueMessages.Tirer("inconnu").Humeur);
     }
 
+    // ---- Contexte du message d'accueil -------------------------------------------------------------
+
+    private static SituationAccueil Situation(bool retour = false, bool plafond = false, bool rien = false, bool deja = false,
+        bool debutSemaine = false, int serie = 0, string? devoir = null, int joursDevoir = -1) =>
+        new(retour, retour ? 9 : 1, plafond, rien, deja, debutSemaine, serie, devoir, joursDevoir);
+
+    [Fact]
+    public void Le_retour_apres_une_pause_passe_avant_tout()
+    {
+        var (contexte, valeurs) = ContexteAccueil.Choisir(Situation(retour: true, plafond: true, serie: 4, debutSemaine: true));
+        Assert.Equal(BanqueMessages.BonRetour, contexte);
+        Assert.Equal("9", valeurs["jours"]);
+    }
+
+    [Theory]
+    [InlineData(false, true, false, BanqueMessages.PlafondAtteint)]
+    [InlineData(false, false, true, BanqueMessages.RienAFaire)]
+    [InlineData(true, false, false, BanqueMessages.Rebonjour)]
+    [InlineData(false, false, false, BanqueMessages.Bonjour)]
+    public void Le_contexte_suit_la_journee(bool deja, bool plafond, bool rien, string attendu) =>
+        Assert.Equal(attendu, ContexteAccueil.Choisir(Situation(deja: deja, plafond: plafond, rien: rien)).Contexte);
+
+    [Fact]
+    public void Un_devoir_dans_la_semaine_et_une_serie_en_debut_de_semaine_sont_mentionnes()
+    {
+        Assert.Equal(BanqueMessages.DevoirProche, ContexteAccueil.Choisir(Situation(devoir: "le DV1 (Maths)", joursDevoir: 4)).Contexte);
+        Assert.Equal(BanqueMessages.Bonjour, ContexteAccueil.Choisir(Situation(devoir: "le DV1 (Maths)", joursDevoir: 20)).Contexte);
+        Assert.Equal(BanqueMessages.Serie, ContexteAccueil.Choisir(Situation(serie: 3, debutSemaine: true)).Contexte);
+        // Une série d'une seule semaine, ou au milieu de la semaine : un simple bonjour.
+        Assert.Equal(BanqueMessages.Bonjour, ContexteAccueil.Choisir(Situation(serie: 1, debutSemaine: true)).Contexte);
+        Assert.Equal(BanqueMessages.Bonjour, ContexteAccueil.Choisir(Situation(serie: 3)).Contexte);
+    }
+
+    [Fact]
+    public void Un_devoir_en_tete_de_phrase_prend_une_majuscule()
+    {
+        for (int graine = 0; graine < 30; graine++)
+        {
+            var m = BanqueMessages.Tirer(BanqueMessages.DevoirProche, new Random(graine), new Dictionary<string, string> { ["devoir"] = "le DV1 (Maths)" });
+            Assert.True(char.IsUpper(m.Texte[0]), m.Texte);
+        }
+    }
+
+    // ---- Données d'affichage de l'accueil ----------------------------------------------------------
+
+    [Fact]
+    public void La_session_du_jour_est_repartie_par_matiere_de_la_plus_presente_a_la_moins_presente()
+    {
+        var parts = Revisions.Core.Sessions.Repartition.ParMatiere(["Maths", "Anglais", "Maths", "CEJM", "Anglais", "Maths"]);
+        Assert.Equal(["Maths", "Anglais", "CEJM"], parts.Select(p => p.Matiere));
+        Assert.Equal([3, 2, 1], parts.Select(p => p.Nombre));
+    }
+
+    [Fact]
+    public void Toutes_les_collections_masquees_se_reconnaissent()
+    {
+        static Revisions.Core.Collections.InfoCollection Col(string cle, int cours, bool visible) => new(cle, cle, cours, cours * 10, visible);
+        Assert.True(Revisions.Core.Collections.Collections.ToutesMasquees([Col("libres", 440, false), Col("mes-packs", 12, false)]));
+        Assert.False(Revisions.Core.Collections.Collections.ToutesMasquees([Col("libres", 440, false), Col("mes-packs", 12, true)]));
+        // Une collection vide visible ne compte pas ; aucune collection du tout, ce n'est pas « masqué ».
+        Assert.True(Revisions.Core.Collections.Collections.ToutesMasquees([Col("libres", 440, false), Col("manuel", 0, true)]));
+        Assert.False(Revisions.Core.Collections.Collections.ToutesMasquees([]));
+    }
+
     // ---- Réglages d'apparence ----------------------------------------------------------------------
 
     private static void AvecBase(Action<DepotProfil, string> essai)

@@ -116,15 +116,27 @@ public sealed class VueMarkdown : ContentControl
         ServiceWeb.AppliquerTheme(web, palette.Sombre);
         if (!_pagePrete) return;
 
-        // Les noms sont ceux des variables CSS de Web/app.css.
+        // Les noms sont ceux des variables CSS de Web/app.css : la charte du système de design (Core/Apparence/Charte).
+        var c = ServiceTheme.CharteCourante ?? Revisions.Core.Apparence.Charte.Calculer(palette);
         var variables = new Dictionary<string, string>
         {
             ["--fond"] = palette.Feuille.Hex,
-            ["--texte"] = palette.Texte.Hex,
-            ["--discret"] = palette.Discret.Hex,
-            ["--bord"] = palette.Bord.Hex,
-            ["--fond-doux"] = palette.FondDoux.Hex,
-            ["--accent"] = palette.AccentTexte.Hex,
+            ["--texte"] = c.Texte.Hex,
+            ["--discret"] = c.TexteSecondaire.Hex,
+            ["--bord"] = c.Bordure.Hex,
+            ["--fond-doux"] = c.Surface.Melanger(c.Texte, c.Sombre ? 0.06 : 0.035).Hex,
+            ["--accent"] = c.AccentTexte.Hex,
+            ["--accent-trait"] = c.AccentTrait.Hex,
+            ["--accent-pale"] = c.AccentDoux.Pale.Hex,
+            ["--bon"] = c.Succes.Texte.Hex,
+            ["--bon-trait"] = c.Succes.Trait.Hex,
+            ["--bon-fond"] = c.Succes.Pale.Hex,
+            ["--mauvais"] = c.Erreur.Texte.Hex,
+            ["--mauvais-trait"] = c.Erreur.Trait.Hex,
+            ["--mauvais-fond"] = c.Erreur.Pale.Hex,
+            // Taille du texte choisie dans les Réglages (90 à 150 %).
+            ["--taille"] = $"{16 * Etat.Reglages.TailleTexte / 100.0:0.#}px".Replace(',', '.'),
+            ["--animations"] = Mouvement.Reduit ? "0" : "1",
         };
         web.PostWebMessageAsJson(JsonSerializer.Serialize(new { type = "theme", variables }));
     }

@@ -64,6 +64,19 @@ public partial class SessionViewModel : ObservableObject
     /// <summary>Pourquoi cette carte est là (« À revoir · vue il y a 6 jours »…), ou null.</summary>
     [ObservableProperty] private string? _motif;
     [ObservableProperty] private string? _messageRendu;
+    /// <summary>Matière et partie de la carte : pour sa pastille de couleur (système de design).</summary>
+    [ObservableProperty] private string _matiere = "";
+    [ObservableProperty] private string _partie = "";
+    /// <summary>« Partie › Séance » : le fil sans la matière, déjà dans la pastille.</summary>
+    [ObservableProperty] private string _filCourt = "";
+    /// <summary>La carte revient après un « Raté » dans la même session.</summary>
+    [ObservableProperty] private bool _estUnRetour;
+    /// <summary>« Quitter la session ? » : confirmation douce avant d'arrêter.</summary>
+    [ObservableProperty] private bool _confirmationQuitter;
+
+    /// <summary>Levé après chaque note : l'écran fait monter « +10 » et joue le son de la bonne réponse (si activé).</summary>
+    public event Action<int, bool>? ReponseEnregistree;
+
 
     /// <summary>Bouton principal avant la réponse : « Voir la réponse » ou « Étape suivante ».</summary>
     [ObservableProperty] private string _texteReveler = "";
@@ -132,6 +145,10 @@ public partial class SessionViewModel : ObservableObject
         Avancement = (double)_session.Faites / _session.Total;
         Fil = Courante.Fil;
         Motif = _session.CouranteEstUnRetour ? "On la revoit · pour bien l'ancrer" : Courante.Motif?.Texte;
+        EstUnRetour = _session.CouranteEstUnRetour;
+        Matiere = Courante.Matiere;
+        Partie = Courante.Partie;
+        FilCourt = string.Join(" › ", new[] { Courante.Partie, Courante.Seance }.Where(t => !string.IsNullOrWhiteSpace(t)));
         MettreAJourEcran(defilerEnBas: false);
     }
 
@@ -173,7 +190,7 @@ public partial class SessionViewModel : ObservableObject
                 }
                 if (_reponseVisible)
                 {
-                    elements.Add(new { genre = "etiquette", markdown = _choixFait == c.BonneReponse ? "Bonne réponse ;)" : "Explication :(" });
+                    elements.Add(new { genre = "etiquette", markdown = _choixFait == c.BonneReponse ? "Bonne réponse !" : "Explication" });
                     elements.Add(new { genre = "explication", markdown = c.Explication });
                 }
                 break;
@@ -189,7 +206,7 @@ public partial class SessionViewModel : ObservableObject
                 }
                 break;
         }
-        MessageRendu = JsonSerializer.Serialize(new { elements, defiler = defilerEnBas ? "bas" : "haut" });
+        MessageRendu = JsonSerializer.Serialize(new { elements, defiler = defilerEnBas ? "bas" : "haut", animation = "carte" });
 
         bool mauvaisChoix = qcm && _reponseVisible && _choixFait != c.BonneReponse;
         RevelerVisible = !_reponseVisible && !qcm;
@@ -313,16 +330,42 @@ public partial class SessionViewModel : ObservableObject
     [RelayCommand]
     private void RevoirNotion() => _main.RevoirLaNotion(Courante.Carte.SectionId);
 
-    /// <summary>Arrête la session : ce qui est fait est enregistré, le reste reviendra plus tard.</summary>
+    /// <summary>
+    /// « Arrêter » : si des cartes ont déjà été notées, on demande doucement confirmation
+    /// (ce qui est fait est enregistré, le reste reviendra plus tard) ; sinon on quitte tout de suite.
+    /// </summary>
     [RelayCommand]
-    private void Arreter() => Terminer();
+    private void Arreter()
+    {
+        if (_cartesVues.Count == 0) Terminer();
+        else ConfirmationQuitter = true;
+    }
 
-    /// <summary>Raccourcis clavier : Espace (révéler), 1 à 4 (noter), A à E (QCM), Entrée (suite logique).</summary>
+    [RelayCommand]
+    private void ConfirmerQuitter()
+    {
+        ConfirmationQuitter = false;
+        Terminer();
+    }
+
+    [RelayCommand]
+    private void Rester() => ConfirmationQuitter = false;
+
+    /// <summary>Raccourcis clavier : Espace (révéler), 1 à 4 (noter), A à E (QCM), Entrée (suite logique), Échap (quitter).</summary>
     [RelayCommand]
     public void Touche(string touche)
     {
+        // Pendant la confirmation « Quitter la session ? » : Échap ou Entrée font rester, rien d'autre ne compte.
+        if (ConfirmationQuitter)
+        {
+            if (touche is "Escape" or "Enter" or " ") Rester();
+            return;
+        }
         switch (touche)
         {
+            case "Escape":
+                Arreter();
+                break;
             case " ":
                 if (RevelerVisible) Reveler();
                 else if (ContinuerVisible) Continuer();
@@ -362,6 +405,7 @@ public partial class SessionViewModel : ObservableObject
         _revisions.EnregistrerReponse(_sessionId, carte.Etat, resultat, note, _jour, _etat.Maintenant,
             (int)_chrono.ElapsedMilliseconds, due || nouvelle, xp);
         _xpGagnee += xp;
+        ReponseEnregistree?.Invoke(xp, note != Note.Rate);
 
         // Bilan : on ne compte que le premier passage de chaque carte.
         if (_cartesVues.Add(carte.Carte.Id))

@@ -66,6 +66,7 @@ public partial class MainWindow : Window
             Key.Tab => "Tab",
             Key.Space => " ",
             Key.Enter => "Enter",
+            Key.Escape => "Escape",
             Key.Left => "ArrowLeft",
             Key.Right => "ArrowRight",
             Key.D1 or Key.NumPad1 => "1",

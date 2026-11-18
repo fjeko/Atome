@@ -28,6 +28,8 @@
     <sys:Double x:Key="Espace.16">16</sys:Double>
     <sys:Double x:Key="Espace.24">24</sys:Double>
     <sys:Double x:Key="Espace.32">32</sys:Double>
+    <!-- Espace entre deux colonnes de cartes. -->
+    <GridLength x:Key="Gouttiere">16</GridLength>
 
     <!-- Marges toutes faites (haut, droite, gauche…), pour ne jamais écrire de chiffres dans les écrans. -->
     <Thickness x:Key="Marge.Haut.4">0,4,0,0</Thickness>
@@ -48,7 +50,10 @@
     <Thickness x:Key="Marge.Droite.24">0,0,24,0</Thickness>
     <Thickness x:Key="Marge.Gauche.8">8,0,0,0</Thickness>
     <Thickness x:Key="Marge.Gauche.12">12,0,0,0</Thickness>
+    <Thickness x:Key="Marge.Gauche.4">4,0,0,0</Thickness>
     <Thickness x:Key="Marge.Gauche.16">16,0,0,0</Thickness>
+    <Thickness x:Key="Marge.Gauche.24">24,0,0,0</Thickness>
+    <Thickness x:Key="Marge.Gauche.32">32,0,0,0</Thickness>
     <Thickness x:Key="Marge.Tuile">0,0,16,16</Thickness>
     <!-- Marges de l'écran : le contenu est centré, avec une largeur maximale lisible. -->
     <Thickness x:Key="Marge.Ecran">32,28,32,32</Thickness>

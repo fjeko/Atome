@@ -1,51 +1,94 @@
 <UserControl x:Class="Revisions.App.Views.VueChoixRevision"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ds="clr-namespace:Revisions.App.Controles">
+    <!--
+        « Autre révision » : chaque type de session est une carte avec son icône, ce qu'il contient,
+        son nombre de cartes et sa durée. Un type indisponible (pas de planning, rien à revoir) reste visible,
+        estompé, avec son bouton désactivé et la raison écrite.
+    -->
     <UserControl.Resources>
         <!-- Liste simple de séances (points faibles, lectures récentes). -->
         <DataTemplate x:Key="LigneSeance">
-            <TextBlock TextWrapping="Wrap" Margin="0,4,0,0">
-                <Run Text="{Binding Titre, Mode=OneWay}" /> <Run Text="·" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                <Run Text="{Binding Detail, Mode=OneWay}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-            </TextBlock>
+            <DockPanel Margin="{StaticResource Marge.Haut.4}">
+                <TextBlock DockPanel.Dock="Left" Text="•" Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Droite.8}" />
+                <TextBlock Style="{StaticResource Texte.Base}">
+                    <Run Text="{Binding Titre, Mode=OneWay}" />
+                    <Run Text="{Binding Detail, Mode=OneWay}" Foreground="{DynamicResource Pinceau.TexteDiscret}" FontSize="{DynamicResource Taille.Meta}" />
+                </TextBlock>
+            </DockPanel>
         </DataTemplate>
-        <Style x:Key="BoutonLancer" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+
+        <!-- Une option : icône dans un rond coloré, titre, explication (le contenu propre vient dessous). -->
+        <Style x:Key="Option" TargetType="HeaderedContentControl">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Margin" Value="{StaticResource Marge.Haut.16}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="HeaderedContentControl">
+                        <Border Style="{StaticResource CarteSurface}">
+                            <DockPanel>
+                                <Border DockPanel.Dock="Left" Width="44" Height="44" CornerRadius="22" VerticalAlignment="Top"
+                                        Background="{Binding (ds:Ton.Pale), RelativeSource={RelativeSource TemplatedParent}}">
+                                    <TextBlock Style="{StaticResource Texte.Icone}" HorizontalAlignment="Center" FontSize="{DynamicResource Taille.IconeGrande}"
+                                               Text="{Binding (ds:Forme.Icone), RelativeSource={RelativeSource TemplatedParent}}"
+                                               Foreground="{Binding (ds:Ton.Texte), RelativeSource={RelativeSource TemplatedParent}}" />
+                                </Border>
+                                <StackPanel Margin="{StaticResource Marge.Gauche.16}">
+                                    <ContentPresenter ContentSource="Header" TextElement.FontSize="{DynamicResource Taille.SousTitre}" TextElement.FontWeight="SemiBold" />
+                                    <ContentPresenter Margin="{StaticResource Marge.Haut.4}" />
+                                </StackPanel>
+                            </DockPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Nombre de cartes et durée, mis en avant dans une pastille. -->
+        <Style x:Key="Resume" TargetType="Border" BasedOn="{StaticResource PastilleNeutre}">
+            <Setter Property="Margin" Value="{StaticResource Marge.Haut.12}" />
+            <Setter Property="Padding" Value="10,4" />
+            <Setter Property="TextElement.FontSize" Value="{DynamicResource Taille.Interface}" />
+        </Style>
+
+        <Style x:Key="BoutonLancer" TargetType="Button" BasedOn="{StaticResource BoutonSecondaire}">
             <Setter Property="Content" Value="Commencer" />
-            <Setter Property="Padding" Value="22,8" />
-            <Setter Property="Margin" Value="0,14,0,0" />
+            <Setter Property="ds:Forme.Icone" Value="{x:Static ds:Icones.Jouer}" />
+            <Setter Property="Margin" Value="{StaticResource Marge.Haut.16}" />
             <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel MaxWidth="940" Margin="32,28,32,28">
-            <DockPanel>
-                <Button DockPanel.Dock="Left" Content="Retour" Command="{Binding RetourCommand}" Padding="14,6" VerticalAlignment="Center" />
-                <TextBlock Text="Autre révision" Style="{StaticResource Titre}" Margin="18,0,0,0" VerticalAlignment="Center" />
-            </DockPanel>
-            <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,10,0,0"
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Focusable="False">
+        <StackPanel MaxWidth="{StaticResource Largeur.Contenu}" Margin="{StaticResource Marge.Ecran}">
+            <Button Content="Accueil" Command="{Binding RetourCommand}" Style="{StaticResource BoutonFantome}" ds:Forme.Icone="{x:Static ds:Icones.Retour}"
+                    HorizontalAlignment="Left" Margin="-10,0,0,8" />
+            <TextBlock Text="Autre révision" Style="{StaticResource Texte.Titre}" />
+            <TextBlock Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
                        Text="Choisis ce que tu veux réviser. Chaque choix indique son nombre de cartes et une durée estimée. Tes limites du jour s'appliquent partout." />
-            <TextBlock Text="{Binding Remarque}" TextWrapping="Wrap" Margin="0,8,0,0" FontWeight="SemiBold"
-                       Visibility="{Binding Remarque, Converter={StaticResource VisibleSi}}" />
+            <ds:Bandeau Texte="{Binding Remarque}" Icone="{x:Static ds:Icones.Info}" Margin="{StaticResource Marge.Haut.16}"
+                        Visibility="{Binding Remarque, Converter={StaticResource VisibleSi}}" />
 
             <!-- Session du jour (recommandée). -->
-            <Border Style="{StaticResource Carte}" Margin="0,18,0,0">
+            <HeaderedContentControl Style="{StaticResource Option}" ds:Ton.Nom="Info" ds:Forme.Icone="{x:Static ds:Icones.Jouer}"
+                                    Header="Session du jour (recommandée)">
                 <StackPanel>
-                    <TextBlock Text="Session du jour (recommandée)" Style="{StaticResource SousTitre}" />
-                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
+                    <TextBlock Style="{StaticResource Texte.Secondaire}"
                                Text="Les cartes à revoir de toutes les matières, puis des nouvelles cartes des cours que tu as lus. Rangées par petits paquets de la même matière." />
-                    <TextBlock Text="{Binding ResumeDuJour}" FontWeight="SemiBold" Margin="0,10,0,0" />
+                    <Border Style="{StaticResource Resume}"><TextBlock Text="{Binding ResumeDuJour}" /></Border>
                     <Button Style="{StaticResource BoutonLancer}" Command="{Binding LancerDuJourCommand}" IsEnabled="{Binding PeutDuJour}" />
                 </StackPanel>
-            </Border>
+            </HeaderedContentControl>
 
             <!-- Une matière ou une partie. -->
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+            <HeaderedContentControl Style="{StaticResource Option}" ds:Ton.Nom="Bleu" ds:Forme.Icone="{x:Static ds:Icones.Bibliotheque}"
+                                    Header="Une matière ou une partie">
                 <StackPanel>
-                    <TextBlock Text="Une matière ou une partie" Style="{StaticResource SousTitre}" />
-                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,8"
+                    <TextBlock Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Bas.8}"
                                Text="Ses cartes à revoir d'abord, puis ses nouvelles cartes, dans la limite de ton réglage." />
-                    <TreeView ItemsSource="{Binding Arbre}" MaxHeight="300" BorderThickness="0" Background="Transparent">
+                    <TreeView ItemsSource="{Binding Arbre}" MaxHeight="320" BorderThickness="0" Background="Transparent"
+                              AutomationProperties.Name="Matières et parties">
                         <TreeView.ItemContainerStyle>
                             <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                                 <Setter Property="IsSelected" Value="{Binding EstChoisi, Mode=TwoWay}" />
@@ -53,54 +96,78 @@
                         </TreeView.ItemContainerStyle>
                         <TreeView.ItemTemplate>
                             <HierarchicalDataTemplate ItemsSource="{Binding Enfants}">
-                                <TextBlock Margin="0,2">
+                                <TextBlock Margin="0,2" Style="{StaticResource Texte.Base}">
                                     <Run Text="{Binding Titre, Mode=OneWay}" />
-                                    <Run Text="{Binding Detail, Mode=OneWay}" Foreground="{DynamicResource TextFillColorSecondaryBrush}" FontSize="12" />
+                                    <Run Text="{Binding Detail, Mode=OneWay}" Foreground="{DynamicResource Pinceau.TexteDiscret}" FontSize="{DynamicResource Taille.Meta}" />
                                 </TextBlock>
                             </HierarchicalDataTemplate>
                         </TreeView.ItemTemplate>
                     </TreeView>
-                    <TextBlock Text="{Binding ResumePerimetre}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,10,0,0" />
+                    <Border Style="{StaticResource Resume}"><TextBlock Text="{Binding ResumePerimetre}" /></Border>
                     <Button Style="{StaticResource BoutonLancer}" Command="{Binding LancerPerimetreCommand}" />
                 </StackPanel>
-            </Border>
+            </HeaderedContentControl>
 
             <!-- Mes points faibles. -->
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+            <HeaderedContentControl ds:Ton.Nom="Attention" ds:Forme.Icone="{x:Static ds:Icones.Cible}" Header="Mes points faibles">
+                <HeaderedContentControl.Style>
+                    <Style TargetType="HeaderedContentControl" BasedOn="{StaticResource Option}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding PeutPointsFaibles}" Value="False">
+                                <Setter Property="Opacity" Value="0.7" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </HeaderedContentControl.Style>
                 <StackPanel>
-                    <TextBlock Text="Mes points faibles" Style="{StaticResource SousTitre}" />
-                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
+                    <TextBlock Style="{StaticResource Texte.Secondaire}"
                                Text="Les cartes que tu as le plus souvent ratées, et celles des séances où tu réussis moins de 70 %. Pas de nouvelle carte." />
-                    <ItemsControl ItemsSource="{Binding SeancesFaibles}" ItemTemplate="{StaticResource LigneSeance}" Margin="0,8,0,0" />
-                    <TextBlock Text="{Binding ResumePointsFaibles}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,10,0,0" />
+                    <ItemsControl ItemsSource="{Binding SeancesFaibles}" ItemTemplate="{StaticResource LigneSeance}" Margin="{StaticResource Marge.Haut.8}" Focusable="False" />
+                    <Border Style="{StaticResource Resume}"><TextBlock Text="{Binding ResumePointsFaibles}" /></Border>
                     <Button Style="{StaticResource BoutonLancer}" Command="{Binding LancerPointsFaiblesCommand}" IsEnabled="{Binding PeutPointsFaibles}" />
                 </StackPanel>
-            </Border>
+            </HeaderedContentControl>
 
             <!-- Ce que je viens de lire. -->
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+            <HeaderedContentControl ds:Ton.Nom="Succes" ds:Forme.Icone="{x:Static ds:Icones.Lire}" Header="Ce que je viens de lire">
+                <HeaderedContentControl.Style>
+                    <Style TargetType="HeaderedContentControl" BasedOn="{StaticResource Option}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding PeutLecture}" Value="False">
+                                <Setter Property="Opacity" Value="0.7" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </HeaderedContentControl.Style>
                 <StackPanel>
-                    <TextBlock Text="Ce que je viens de lire" Style="{StaticResource SousTitre}" />
-                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
+                    <TextBlock Style="{StaticResource Texte.Secondaire}"
                                Text="Les cours ouverts dans Atome ces 7 derniers jours : leurs cartes à revoir, leurs nouvelles cartes, puis les autres pour consolider." />
-                    <ItemsControl ItemsSource="{Binding SeancesLues}" ItemTemplate="{StaticResource LigneSeance}" Margin="0,8,0,0" />
-                    <TextBlock Text="{Binding ResumeLecture}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,10,0,0" />
+                    <ItemsControl ItemsSource="{Binding SeancesLues}" ItemTemplate="{StaticResource LigneSeance}" Margin="{StaticResource Marge.Haut.8}" Focusable="False" />
+                    <Border Style="{StaticResource Resume}"><TextBlock Text="{Binding ResumeLecture}" /></Border>
                     <Button Style="{StaticResource BoutonLancer}" Command="{Binding LancerLectureCommand}" IsEnabled="{Binding PeutLecture}" />
                 </StackPanel>
-            </Border>
+            </HeaderedContentControl>
 
             <!-- Préparer un devoir. -->
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+            <HeaderedContentControl ds:Ton.Nom="Violet" ds:Forme.Icone="{x:Static ds:Icones.Calendrier}" Header="Préparer un devoir">
+                <HeaderedContentControl.Style>
+                    <Style TargetType="HeaderedContentControl" BasedOn="{StaticResource Option}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding PeutDevoir}" Value="False">
+                                <Setter Property="Opacity" Value="0.7" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </HeaderedContentControl.Style>
                 <StackPanel>
-                    <TextBlock Text="Préparer un devoir" Style="{StaticResource SousTitre}" />
-                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
+                    <TextBlock Style="{StaticResource Texte.Secondaire}"
                                Text="Le contenu couvert par ton prochain devoir du planning : les cartes à revoir, celles que tu risques d'avoir oubliées le jour J, puis des nouvelles cartes des cours lus." />
-                    <TextBlock Text="{Binding NomDevoir}" TextWrapping="Wrap" Margin="0,8,0,0"
+                    <TextBlock Text="{Binding NomDevoir}" Style="{StaticResource Texte.Fort}" Margin="{StaticResource Marge.Haut.8}"
                                Visibility="{Binding NomDevoir, Converter={StaticResource VisibleSi}}" />
-                    <TextBlock Text="{Binding ResumeDevoir}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,10,0,0" />
+                    <Border Style="{StaticResource Resume}"><TextBlock Text="{Binding ResumeDevoir}" /></Border>
                     <Button Style="{StaticResource BoutonLancer}" Command="{Binding LancerDevoirCommand}" IsEnabled="{Binding PeutDevoir}" />
                 </StackPanel>
-            </Border>
+            </HeaderedContentControl>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

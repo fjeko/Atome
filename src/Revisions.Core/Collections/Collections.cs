@@ -30,6 +30,16 @@ public static class Collections
     public const string MessageDerniere =
         "Il faut garder au moins une collection active : sinon Atome n'aurait plus rien à te montrer. Active-en une autre avant de couper celle-ci.";
 
+    /// <summary>
+    /// Vrai si des cours existent mais que toutes les collections qui en contiennent sont masquées
+    /// (l'accueil propose alors de rouvrir les Réglages plutôt que de dire « rien à réviser »).
+    /// </summary>
+    public static bool ToutesMasquees(IEnumerable<InfoCollection> collections)
+    {
+        var avecCours = collections.Where(c => c.NbCours > 0).ToList();
+        return avecCours.Count > 0 && avecCours.All(c => !c.Visible);
+    }
+
     /// <summary>Clé d'une collection créée par l'import d'un fichier .atome (« importe:nom-du-fichier »).</summary>
     public static string CleImportee(string nom)
     {

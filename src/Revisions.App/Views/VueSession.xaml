@@ -1,8 +1,14 @@
 <UserControl x:Class="Revisions.App.Views.VueSession"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:c="clr-namespace:Revisions.App.Controles">
-    <Grid Margin="28,18,28,20" MaxWidth="1040">
+             xmlns:c="clr-namespace:Revisions.App.Controles"
+             xmlns:ds="clr-namespace:Revisions.App.Controles">
+    <!--
+        Session de révision, en mode concentration (sans barre latérale ; F11 pour le plein écran).
+        De haut en bas : avancement, d'où vient la carte et pourquoi, la carte, la saisie facultative,
+        puis une seule rangée d'actions à la fois (révéler, continuer, noter, ou confirmer la pause).
+    -->
+    <Grid Margin="{StaticResource Marge.Ecran}" MaxWidth="{StaticResource Largeur.Contenu}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -12,105 +18,169 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- Avancement. -->
+        <!-- ===== Avancement ===== -->
         <DockPanel>
-            <Button DockPanel.Dock="Left" Content="Arrêter" Command="{Binding ArreterCommand}" Padding="14,6"
-                    ToolTip="Arrêter la session : ce qui est fait est enregistré" />
-            <TextBlock DockPanel.Dock="Right" Text="{Binding Compteur}" FontWeight="SemiBold" VerticalAlignment="Center" />
-            <!-- Signalement discret : un petit drapeau (touche S). -->
-            <Button DockPanel.Dock="Right" Command="{Binding SignalerCommand}" Background="Transparent" BorderThickness="0"
-                    Padding="8,4" Margin="0,0,8,0" VerticalAlignment="Center" ToolTip="Signaler une erreur : tu as repéré une faute ou une réponse fausse dans cette carte ? Dis-le-nous (touche S)">
-                <TextBlock Text="&#xE7C1;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="16" Opacity="0.65" />
-            </Button>
-            <TextBlock DockPanel.Dock="Right" Text="{Binding MessageSignalement}" Style="{StaticResource Discret}" FontSize="12"
-                       VerticalAlignment="Center" TextWrapping="NoWrap" Margin="0,0,4,0"
-                       Visibility="{Binding MessageSignalement, Converter={StaticResource VisibleSi}}" />
-            <ProgressBar Value="{Binding Avancement, Mode=OneWay}" Maximum="1" Height="6" Margin="16,0" VerticalAlignment="Center" />
+            <Button DockPanel.Dock="Left" Content="Pause" Command="{Binding ArreterCommand}" Style="{StaticResource BoutonFantome}"
+                    ds:Forme.Icone="{x:Static ds:Icones.Pause}" Foreground="{DynamicResource Pinceau.TexteSecondaire}"
+                    ToolTip="Faire une pause : ce qui est fait est enregistré (Échap)" />
+            <Grid DockPanel.Dock="Right">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding MessageSignalement}" Style="{StaticResource Texte.Meta}" VerticalAlignment="Center"
+                               Margin="{StaticResource Marge.Droite.4}" TextWrapping="NoWrap"
+                               Visibility="{Binding MessageSignalement, Converter={StaticResource VisibleSi}}" />
+                    <!-- Signalement discret : un petit drapeau (touche S). -->
+                    <Button Style="{StaticResource BoutonIcone}" ds:Forme.Icone="{x:Static ds:Icones.Drapeau}" Command="{Binding SignalerCommand}"
+                            Margin="{StaticResource Marge.Droite.8}" AutomationProperties.Name="Signaler une erreur"
+                            ToolTip="Signaler une erreur dans cette carte : une faute, une réponse fausse ? (touche S)" />
+                    <Border Style="{StaticResource PastilleNeutre}" Padding="10,3">
+                        <TextBlock Text="{Binding Compteur}" FontSize="{DynamicResource Taille.Interface}" />
+                    </Border>
+                </StackPanel>
+                <!-- Scène des « +10 » qui montent après chaque note. -->
+                <Canvas x:Name="SceneXp" IsHitTestVisible="False" HorizontalAlignment="Right" Width="1" />
+            </Grid>
+            <ProgressBar Style="{StaticResource BarreProgression}" Value="{Binding Avancement, Mode=OneWay}" Margin="16,0" VerticalAlignment="Center"
+                         AutomationProperties.Name="Avancement de la session" />
         </DockPanel>
 
-        <!-- D'où vient la carte et pourquoi elle est là : en petit, discret. Un clic sur le fil ouvre la section du cours. -->
-        <StackPanel Grid.Row="1" Margin="0,12,0,8">
-            <TextBlock TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" FontSize="12">
+        <!-- ===== D'où vient la carte et pourquoi elle est là. Un clic sur le fil ouvre la section du cours. ===== -->
+        <WrapPanel Grid.Row="1" Margin="0,16,0,12">
+            <Border Style="{StaticResource Pastille}" ds:Ton.Matiere="{Binding Matiere}" ds:Ton.Partie="{Binding Partie}"
+                    Margin="{StaticResource Marge.Droite.8}" Padding="8,3">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource Texte.Icone}" FontSize="{DynamicResource Taille.Meta}"
+                               Text="{Binding (ds:Ton.Icone), RelativeSource={RelativeSource Self}}" Margin="{StaticResource Marge.Droite.4}" />
+                    <TextBlock Text="{Binding Matiere}" MaxWidth="260" TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+            </Border>
+            <TextBlock VerticalAlignment="Center" Margin="{StaticResource Marge.Droite.8}" MaxWidth="520"
+                       TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" FontSize="{DynamicResource Taille.Meta}">
                 <Hyperlink Command="{Binding RevoirNotionCommand}" TextDecorations="{x:Null}"
-                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" ToolTip="Ouvrir la section du cours">
-                    <Run Text="{Binding Fil, Mode=OneWay}" />
+                           Foreground="{DynamicResource Pinceau.TexteSecondaire}" ToolTip="Ouvrir la section du cours">
+                    <Run Text="{Binding FilCourt, Mode=OneWay}" />
                 </Hyperlink>
             </TextBlock>
-            <TextBlock Text="{Binding Motif}" Style="{StaticResource Discret}" FontSize="12" Margin="0,2,0,0"
-                       TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"
-                       Visibility="{Binding Motif, Converter={StaticResource VisibleSi}}" />
-        </StackPanel>
+            <Border Visibility="{Binding Motif, Converter={StaticResource VisibleSi}}">
+                <Border.Style>
+                    <Style TargetType="Border" BasedOn="{StaticResource PastilleNeutre}">
+                        <Style.Triggers>
+                            <!-- Carte ratée qui revient : ton ambre, et le texte le dit. -->
+                            <DataTrigger Binding="{Binding EstUnRetour}" Value="True">
+                                <Setter Property="ds:Ton.Nom" Value="Attention" />
+                                <Setter Property="Background" Value="{DynamicResource Ton.Attention.Pale}" />
+                                <Setter Property="TextElement.Foreground" Value="{DynamicResource Ton.Attention.Texte}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <TextBlock Text="{Binding Motif}" TextTrimming="CharacterEllipsis" MaxWidth="420" />
+            </Border>
+        </WrapPanel>
 
-        <!-- La carte. -->
-        <Border Grid.Row="2" BorderThickness="1" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}">
-            <c:VueMarkdown Message="{Binding MessageRendu}" CommandeChoix="{Binding ChoisirCommand}" CommandeTouche="{Binding ToucheCommand}" />
-        </Border>
+        <!-- ===== La carte : un liseré aux couleurs de la matière, puis le contenu (Markdown et LaTeX). ===== -->
+        <Grid Grid.Row="2" ds:Ton.Matiere="{Binding Matiere}" ds:Ton.Partie="{Binding Partie}">
+            <Border Style="{StaticResource CarteSurface}" Padding="12,16,12,8" Background="{DynamicResource Pinceau.Surface}">
+                <c:VueMarkdown Message="{Binding MessageRendu}" CommandeChoix="{Binding ChoisirCommand}" CommandeTouche="{Binding ToucheCommand}" />
+            </Border>
+            <Border Height="4" VerticalAlignment="Top" Margin="12,0" CornerRadius="0,0,4,4"
+                    Background="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource Self}}" />
+        </Grid>
 
         <StackPanel Grid.Row="3">
             <!-- Réponse écrite, facultative (cartes « question »). Quand le curseur est dans la zone,
                  Espace (une fois du texte écrit) et 1-4 écrivent du texte : on révèle avec Entrée, on sort avec Échap. -->
-            <StackPanel Margin="0,10,0,0" Visibility="{Binding SaisieVisible, Converter={StaticResource VisibleSi}}">
-                <TextBox x:Name="ZoneSaisie" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="36" MaxHeight="96"
-                         VerticalScrollBarVisibility="Auto" FontSize="15"
+            <StackPanel Margin="{StaticResource Marge.Haut.12}" Visibility="{Binding SaisieVisible, Converter={StaticResource VisibleSi}}">
+                <TextBox x:Name="ZoneSaisie" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="40" MaxHeight="110"
+                         VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource Taille.Corps}"
                          Text="{Binding ReponseSaisie, UpdateSourceTrigger=PropertyChanged}"
+                         AutomationProperties.Name="Ta réponse (facultatif)"
                          ToolTip="Écris ta réponse si tu veux la comparer à la bonne (facultatif)"
-                         PreviewKeyDown="ZoneSaisie_PreviewKeyDown">
-                </TextBox>
-                <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="2,4,0,0"
-                           Text="Facultatif : écris ta réponse pour la comparer (Tab pour écrire, Entrée pour voir la réponse, Maj+Entrée pour un saut de ligne, Échap pour sortir)." />
+                         PreviewKeyDown="ZoneSaisie_PreviewKeyDown" />
+                <TextBlock Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.4}"
+                           Text="Facultatif : écris ta réponse pour la comparer. Tab pour écrire, Entrée pour voir la réponse, Maj+Entrée pour un saut de ligne, Échap pour sortir." />
             </StackPanel>
 
             <!-- Encouragement (objectif du jour atteint). -->
-            <Border Style="{StaticResource Carte}" Padding="14,8" Margin="0,10,0,0"
-                    Visibility="{Binding Bandeau, Converter={StaticResource VisibleSi}}">
-                <TextBlock Text="{Binding Bandeau}" TextWrapping="Wrap" />
-            </Border>
+            <ds:Bandeau ds:Ton.Nom="Succes" Icone="{x:Static ds:Icones.Etoile}" Texte="{Binding Bandeau}" Margin="{StaticResource Marge.Haut.12}"
+                        Visibility="{Binding Bandeau, Converter={StaticResource VisibleSi}}" />
         </StackPanel>
 
-        <TextBlock Grid.Row="4" Text="{Binding Consigne}" Style="{StaticResource Discret}" HorizontalAlignment="Center" Margin="0,12,0,8" />
+        <TextBlock Grid.Row="4" Text="{Binding Consigne}" Style="{StaticResource Texte.Secondaire}" HorizontalAlignment="Center"
+                   TextAlignment="Center" Margin="0,16,0,12" />
 
-        <!-- Actions : une seule rangée visible à la fois. -->
-        <Grid Grid.Row="5" MinHeight="62">
-            <Button Content="{Binding TexteReveler}" Command="{Binding RevelerCommand}" Style="{DynamicResource AccentButtonStyle}"
-                    FontSize="16" Padding="40,12" HorizontalAlignment="Center"
-                    Visibility="{Binding RevelerVisible, Converter={StaticResource VisibleSi}}" />
+        <!-- ===== Actions : une seule rangée visible à la fois. ===== -->
+        <Grid Grid.Row="5" MinHeight="64">
+            <Grid Visibility="{Binding ConfirmationQuitter, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}">
+                <Button Content="{Binding TexteReveler}" Command="{Binding RevelerCommand}" Style="{StaticResource BoutonHeros}"
+                        ds:Forme.Raccourci="Espace" HorizontalAlignment="Center" MinWidth="280"
+                        Visibility="{Binding RevelerVisible, Converter={StaticResource VisibleSi}}" />
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                        Visibility="{Binding ContinuerVisible, Converter={StaticResource VisibleSi}}">
-                <Button Content="Revoir la notion" Command="{Binding RevoirNotionCommand}" FontSize="15" Padding="22,12" Margin="0,0,12,0" />
-                <Button Content="Continuer" Command="{Binding ContinuerCommand}" Style="{DynamicResource AccentButtonStyle}" FontSize="16" Padding="40,12" />
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                            Visibility="{Binding ContinuerVisible, Converter={StaticResource VisibleSi}}">
+                    <Button Content="Revoir la notion" Command="{Binding RevoirNotionCommand}" Style="{StaticResource BoutonSecondaire}"
+                            ds:Forme.Icone="{x:Static ds:Icones.Lire}" Margin="{StaticResource Marge.Droite.12}" VerticalAlignment="Center" />
+                    <Button Content="Continuer" Command="{Binding ContinuerCommand}" Style="{StaticResource BoutonHeros}" ds:Forme.Raccourci="Entrée" />
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                        Visibility="{Binding NotesVisibles, Converter={StaticResource VisibleSi}}">
-                <Button Content="Revoir la notion" Command="{Binding RevoirNotionCommand}" Padding="16,10" Margin="0,0,24,0" VerticalAlignment="Center" />
-                <Button Command="{Binding NoterCommand}" CommandParameter="1" Width="118" Margin="4,0" Padding="0,8"
-                        Visibility="{Binding RateVisible, Converter={StaticResource VisibleSi}}">
-                    <StackPanel>
-                        <TextBlock Text="1 · Raté" FontSize="15" HorizontalAlignment="Center" />
-                        <TextBlock Text="{Binding DelaiRate}" FontSize="11" Opacity="0.7" HorizontalAlignment="Center" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                            Visibility="{Binding NotesVisibles, Converter={StaticResource VisibleSi}}">
+                    <StackPanel.Resources>
+                        <Style x:Key="Delai" TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="{DynamicResource Taille.Meta}" />
+                            <Setter Property="FontWeight" Value="Normal" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Command="{Binding RevoirNotionCommand}" Style="{StaticResource BoutonIcone}" ds:Forme.Icone="{x:Static ds:Icones.Lire}"
+                            Margin="{StaticResource Marge.Droite.12}" VerticalAlignment="Center"
+                            ToolTip="Revoir la notion dans le cours" AutomationProperties.Name="Revoir la notion" />
+                    <Button Command="{Binding NoterCommand}" CommandParameter="1" Style="{StaticResource BoutonRate}" ds:Forme.Raccourci="1"
+                            MinWidth="132" Margin="{StaticResource Marge.Droite.8}" HorizontalContentAlignment="Left"
+                            Visibility="{Binding RateVisible, Converter={StaticResource VisibleSi}}" AutomationProperties.Name="Raté">
+                        <StackPanel>
+                            <TextBlock Text="Raté" />
+                            <TextBlock Text="{Binding DelaiRate}" Style="{StaticResource Delai}" />
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding NoterCommand}" CommandParameter="2" Style="{StaticResource BoutonDifficile}" ds:Forme.Raccourci="2"
+                            MinWidth="132" Margin="{StaticResource Marge.Droite.8}" HorizontalContentAlignment="Left" AutomationProperties.Name="Difficile">
+                        <StackPanel>
+                            <TextBlock Text="Difficile" />
+                            <TextBlock Text="{Binding DelaiDifficile}" Style="{StaticResource Delai}" />
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding NoterCommand}" CommandParameter="3" Style="{StaticResource BoutonBien}" ds:Forme.Raccourci="3"
+                            MinWidth="132" Margin="{StaticResource Marge.Droite.8}" HorizontalContentAlignment="Left" AutomationProperties.Name="Bien">
+                        <StackPanel>
+                            <TextBlock Text="Bien" />
+                            <TextBlock Text="{Binding DelaiBien}" Style="{StaticResource Delai}" />
+                        </StackPanel>
+                    </Button>
+                    <Button Command="{Binding NoterCommand}" CommandParameter="4" Style="{StaticResource BoutonFacile}" ds:Forme.Raccourci="4"
+                            MinWidth="132" HorizontalContentAlignment="Left" AutomationProperties.Name="Facile">
+                        <StackPanel>
+                            <TextBlock Text="Facile" />
+                            <TextBlock Text="{Binding DelaiFacile}" Style="{StaticResource Delai}" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- Pause : confirmation douce, à la place des actions (rien ne passe au-dessus de la carte). -->
+            <Border Style="{StaticResource CarteFlottante}" Padding="{StaticResource Remplissage.Compact}" HorizontalAlignment="Center"
+                    Visibility="{Binding ConfirmationQuitter, Converter={StaticResource VisibleSi}}">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.24}">
+                        <Button Content="Arrêter là" Command="{Binding ConfirmerQuitterCommand}" Style="{StaticResource BoutonSecondaire}"
+                                Margin="{StaticResource Marge.Droite.8}" />
+                        <Button Content="Continuer" Command="{Binding ResterCommand}" Style="{StaticResource BoutonPrincipal}" ds:Forme.Raccourci="Échap" />
                     </StackPanel>
-                </Button>
-                <Button Command="{Binding NoterCommand}" CommandParameter="2" Width="118" Margin="4,0" Padding="0,8">
-                    <StackPanel>
-                        <TextBlock Text="2 · Difficile" FontSize="15" HorizontalAlignment="Center" />
-                        <TextBlock Text="{Binding DelaiDifficile}" FontSize="11" Opacity="0.7" HorizontalAlignment="Center" />
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Faire une pause ?" Style="{StaticResource Texte.SousTitre}" />
+                        <TextBlock Text="Tes cartes déjà notées sont enregistrées. Le reste t'attendra." Style="{StaticResource Texte.Secondaire}" />
                     </StackPanel>
-                </Button>
-                <Button Command="{Binding NoterCommand}" CommandParameter="3" Width="118" Margin="4,0" Padding="0,8"
-                        Style="{DynamicResource AccentButtonStyle}">
-                    <StackPanel>
-                        <TextBlock Text="3 · Bien" FontSize="15" HorizontalAlignment="Center" />
-                        <TextBlock Text="{Binding DelaiBien}" FontSize="11" Opacity="0.8" HorizontalAlignment="Center" />
-                    </StackPanel>
-                </Button>
-                <Button Command="{Binding NoterCommand}" CommandParameter="4" Width="118" Margin="4,0" Padding="0,8">
-                    <StackPanel>
-                        <TextBlock Text="4 · Facile" FontSize="15" HorizontalAlignment="Center" />
-                        <TextBlock Text="{Binding DelaiFacile}" FontSize="11" Opacity="0.7" HorizontalAlignment="Center" />
-                    </StackPanel>
-                </Button>
-            </StackPanel>
+                </DockPanel>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>

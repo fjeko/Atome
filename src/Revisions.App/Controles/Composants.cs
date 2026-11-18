@@ -71,7 +71,7 @@ public static class Icones
     public const string Telecharger = "";
     public const string Drapeau = "";
     public const string Livre = "";
-    public const string Lire = "";
+    public const string Lire = ""; // livre : revoir la notion dans le cours
     public const string Pdf = "";
     public const string Recherche = "";
     public const string Jouer = "";

@@ -1,6 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Revisions.App.Services;
+using Revisions.Core.Collections;
 using Revisions.Core.Gamification;
 using Revisions.Core.Mascotte;
 using Revisions.Core.Planning;
@@ -64,6 +65,19 @@ public partial class AccueilViewModel : ObservableObject
     public string TitreAuProgramme { get; }
     public string DetailAuProgramme { get; }
 
+    // ---- Données d'affichage du relooking (docs/design-atome.md) ----
+
+    /// <summary>Mode reprise après une pause : un bandeau doux l'explique.</summary>
+    public bool ModeReprise { get; }
+    /// <summary>Objectif du jour : part accomplie (0 à 1) pour l'anneau, et « 3 / 5 » au centre.</summary>
+    public double ObjectifProgression { get; }
+    public string ObjectifCourt { get; }
+    /// <summary>Matières de la session du jour, avec leur nombre de cartes (tuiles « Au menu »).</summary>
+    public IReadOnlyList<PartMatiere> MatieresDuJour { get; }
+    public bool AfficherMatieresDuJour => MatieresDuJour.Count > 0;
+    /// <summary>Des cours existent, mais toutes leurs collections sont masquées (Réglages → Mes collections).</summary>
+    public bool CollectionsToutesMasquees { get; }
+
     // ---- Mascotte (banque de messages : Core/Mascotte/messages-mascotte.json) ----
     // Le message est tiré une fois par contexte et par lancement : revenir sur l'accueil ne le change pas.
     private static readonly Dictionary<string, MessageMascotte> MessagesDuLancement = [];
@@ -94,7 +108,7 @@ public partial class AccueilViewModel : ObservableObject
         return $"le {d.Code} ({matiere})";
     }
 
-    public AccueilViewModel(MainViewModel main, EtatApplication etat, SelectionDuJour selection, DepotProfil profil)
+    public AccueilViewModel(MainViewModel main, EtatApplication etat, SelectionDuJour selection, DepotProfil profil, DepotCollections collections)
     {
         _main = main;
         var jour = etat.Jour;
@@ -151,6 +165,20 @@ public partial class AccueilViewModel : ObservableObject
             ? $"Objectif du jour atteint ({faites} / {reglages.ObjectifMinimal})"
             : $"Objectif du jour : {faites} / {reglages.ObjectifMinimal} cartes";
 
+        ObjectifProgression = Math.Min(1, (double)faites / Math.Max(1, reglages.ObjectifMinimal));
+        ObjectifCourt = $"{Math.Min(faites, reglages.ObjectifMinimal)} / {reglages.ObjectifMinimal}";
+        ModeReprise = _plan.ModeReprise;
+        var matiereDuPack = _journee.Journee.Seances.GroupBy(s => s.PackId).ToDictionary(g => g.Key, g => g.First().Matiere);
+        MatieresDuJour = Repartition.ParMatiere(_duJour.Cartes.Select(c => matiereDuPack.GetValueOrDefault(c.PackId, "")));
+        // Rien à proposer alors que des cours existent : peut-être que toutes les collections sont masquées.
+        CollectionsToutesMasquees = aFaire == 0 && !_plan.PlafondAtteint && Collections.ToutesMasquees(collections.Lister());
+        if (CollectionsToutesMasquees)
+        {
+            Titre = "Tes cours sont masqués";
+            Detail = "Toutes tes collections sont masquées : rien ne peut être proposé. Rouvre-en une dans les Réglages (ta progression est gardée).";
+            ProposerLecture = false;
+            PeutContinuer = false;
+        }
         // ---- XP et niveau ----
         int xp = profil.XpTotal();
         Niveau = Niveaux.NiveauPour(xp);
@@ -225,6 +253,7 @@ public partial class AccueilViewModel : ObservableObject
 
     [RelayCommand]
     private void AllerPlanning() => _main.AllerPlanning();
+/// <summary>Collections toutes masquées : ouvre les Réglages, où chaque collection a son interrupteur.</summary>    [RelayCommand]    private void AllerReglages() => _main.AllerReglages();
 
     /// <summary>Ouvre une séance du bloc « Au programme ».</summary>
     [RelayCommand]
