@@ -13,6 +13,8 @@ public sealed partial class ChoixTheme(ThemeApp theme, string fond, string feuil
 {
     public string Cle => theme.Cle;
     public string Nom => theme.Nom;
+    /// <summary>Vrai : thème sombre ; faux : clair ; null : suit Windows (sert à ranger les tuiles en blocs).</summary>
+    public bool? Sombre => theme.Sombre;
     public string Fond => fond;
     public string Feuille => feuille;
     public string Accent => accent;
@@ -60,6 +62,10 @@ public partial class ReglagesViewModel : ObservableObject
     [ObservableProperty] private string? _erreurAccent;
 
     public IReadOnlyList<ChoixTheme> Themes { get; }
+    // Les tuiles sont rangées en trois blocs : « Comme Windows », les sombres, les clairs (mêmes objets que Themes).
+    public IReadOnlyList<ChoixTheme> ThemesAuto => Themes.Where(t => t.Sombre is null).ToList();
+    public IReadOnlyList<ChoixTheme> ThemesSombres => Themes.Where(t => t.Sombre == true).ToList();
+    public IReadOnlyList<ChoixTheme> ThemesClairs => Themes.Where(t => t.Sombre == false).ToList();
     public IReadOnlyList<ChoixAccent> Accents { get; }
 
     /// <summary>Navigation de l'écran (sections, recherche) : état d'interface, rien n'est enregistré.</summary>

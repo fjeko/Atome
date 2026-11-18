@@ -40,7 +40,10 @@ public static class Themes
     /// <summary>Thème du premier lancement : sombre (choix de Florian, cahier de design). Un thème déjà choisi est toujours gardé.</summary>
     public const string CleParDefaut = "sombre";
 
-    /// <summary>Les trois thèmes neutres, puis neuf thèmes colorés tout faits (six sombres, puis trois clairs de teintes bien différentes) : douze tuiles, soit trois lignes de quatre.</summary>
+    /// <summary>
+    /// « Comme Windows », puis six thèmes sombres (Sombre + cinq colorés) et six clairs (Clair + cinq colorés) :
+    /// l'écran Réglages les range en blocs « Sombres » et « Clairs » de même taille, d'après <see cref="ThemeApp.Sombre"/>.
+    /// </summary>
     public static readonly IReadOnlyList<ThemeApp> Tous =
     [
         new("systeme", "Comme Windows", null),
@@ -49,12 +52,13 @@ public static class Themes
         new("ocean", "Océan", true, Couleur.Parse("#4CC2FF"), Couleur.Parse("#0E1A2B"), Couleur.Parse("#132338")),
         new("foret", "Forêt", true, Couleur.Parse("#6CCB5F"), Couleur.Parse("#111D16"), Couleur.Parse("#17271D")),
         new("crepuscule", "Crépuscule", true, Couleur.Parse("#B69CFF"), Couleur.Parse("#19142B"), Couleur.Parse("#211B38")),
-        new("ambre", "Ambre", true, Couleur.Parse("#E8C547"), Couleur.Parse("#1B170C"), Couleur.Parse("#252011")),
         new("braise", "Braise", true, Couleur.Parse("#FF7A59"), Couleur.Parse("#1F1311"), Couleur.Parse("#2B1B17")),
         new("framboise", "Framboise", true, Couleur.Parse("#FF6FB1"), Couleur.Parse("#210F1B"), Couleur.Parse("#2E1827")),
         new("sable", "Sable", false, Couleur.Parse("#9A5B13"), Couleur.Parse("#F3EBDD"), Couleur.Parse("#FBF6EC")),
         new("menthe", "Menthe", false, Couleur.Parse("#0F7B5F"), Couleur.Parse("#E8F3EE"), Couleur.Parse("#F6FBF8")),
         new("lavande", "Lavande", false, Couleur.Parse("#6B4FBB"), Couleur.Parse("#EDE9F7"), Couleur.Parse("#F8F6FD")),
+        new("ciel", "Ciel", false, Couleur.Parse("#1B5FAA"), Couleur.Parse("#DCE8F5"), Couleur.Parse("#F2F7FC")),
+        new("rose", "Rose", false, Couleur.Parse("#B02F68"), Couleur.Parse("#F5DFE8"), Couleur.Parse("#FCF3F7")),
     ];
 
     /// <summary>Couleurs d'accent proposées en un clic (un champ libre « #RRGGBB » existe aussi).</summary>
