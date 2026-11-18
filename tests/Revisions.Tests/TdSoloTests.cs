@@ -90,7 +90,7 @@ public class TdSoloTests
 
     // ---- Sujets ----------------------------------------------------------------------------
 
-    private static readonly IGenerateurASujets[] Tous = [new GenerateurMatrices(), new GenerateurGraphes(), new GenerateurOrdonnancement(), new GenerateurInverse(), new GenerateurIpv4(), new GenerateurDroitsLinux()];
+    private static readonly IGenerateurASujets[] Tous = [new GenerateurMatrices(), new GenerateurGraphes(), new GenerateurOrdonnancement(), new GenerateurInverse(), new GenerateurIpv4(), new GenerateurDroitsLinux(), new GenerateurSql()];
 
     public static TheoryData<string> Generateurs() => [.. Tous.Select(g => g.Prefixe)];
 
