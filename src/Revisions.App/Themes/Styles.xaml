@@ -267,6 +267,8 @@
                 <Setter Property="Background" Value="{DynamicResource Ton.Info.Pale}" />
                 <Setter Property="BorderBrush" Value="{DynamicResource Ton.Info.Trait}" />
                 <Setter Property="Foreground" Value="{DynamicResource Ton.Info.Texte}" />
+                <!-- Pas la couleur seule : une coche dit aussi « actif ». -->
+                <Setter Property="ds:Forme.Icone" Value="{x:Static ds:Icones.Coche}" />
             </Trigger>
         </Style.Triggers>
     </Style>

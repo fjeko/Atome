@@ -39,7 +39,7 @@ public partial class LectureViewModel : ObservableObject
 
     /// <summary>Section affichée (liée à la sélection du sommaire).</summary>
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(Position))]
+    [NotifyPropertyChangedFor(nameof(Position), nameof(Progression))]
     [NotifyCanExecuteChangedFor(nameof(PrecedentCommand), nameof(SuivantCommand))]
     private int _index;
 
@@ -48,6 +48,27 @@ public partial class LectureViewModel : ObservableObject
     private string? _messageRendu;
 
     public string Position => Sections.Count == 0 ? "" : $"{Index + 1} / {Sections.Count}";
+
+    /// <summary>Progression de lecture dans la séance (0 à 1) : la barre au-dessus du texte.</summary>
+    public double Progression => Sections.Count == 0 ? 0 : (Index + 1.0) / Sections.Count;
+
+    /// <summary>Taille du texte (réglage général, 90 à 150 %) : « A- » et « A+ » de la lecture la changent partout.</summary>
+    public string TailleTexte => $"{_etat.Reglages.TailleTexte} %";
+
+    [RelayCommand]
+    private void AgrandirTexte() => ChangerTaille(+10);
+
+    [RelayCommand]
+    private void RetrecirTexte() => ChangerTaille(-10);
+
+    private void ChangerTaille(int pas)
+    {
+        int nouvelle = Math.Clamp(_etat.Reglages.TailleTexte + pas, Reglages.TailleTexteMin, Reglages.TailleTexteMax);
+        if (nouvelle == _etat.Reglages.TailleTexte) return;
+        _etat.Reglages.TailleTexte = nouvelle;
+        _etat.Enregistrer(); // réapplique les tailles partout, contenu web compris
+        OnPropertyChanged(nameof(TailleTexte));
+    }
 
     public LectureViewModel(ParametresLecture parametres, MainViewModel main, EtatApplication etat,
         DepotBibliotheque bibliotheque, DepotRevisions revisions, ServiceSignalement signalements)

@@ -51,6 +51,15 @@ public sealed class NoeudBibliotheque
     /// <summary>Part des cartes maîtrisées, entre 0 et 1.</summary>
     public double Maitrise => NbCartes == 0 ? 0 : (double)NbMaitrisees / NbCartes;
 
+    /// <summary>Toutes les séances du niveau, sous-niveaux compris.</summary>
+    public IEnumerable<ResumeSeance> ToutesLesSeances() => Seances.Concat(Enfants.SelectMany(e => e.ToutesLesSeances()));
+
+    /// <summary>Matière du niveau (celle de sa première séance) : elle donne sa couleur à la tuile.</summary>
+    public ResumeSeance? PremiereSeance => ToutesLesSeances().FirstOrDefault();
+
+    /// <summary>Vrai si toutes les séances du niveau sont des cours libres (badge « Libre » sur la tuile).</summary>
+    public bool ToutLibre => ToutesLesSeances().All(s => s.Libre) && PremiereSeance is not null;
+
     /// <summary>Trie les enfants et les séances, puis additionne les compteurs en remontant.</summary>
     internal void Finaliser()
     {

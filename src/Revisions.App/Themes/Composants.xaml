@@ -64,8 +64,10 @@
                                 </Border>
                             </DockPanel>
                             <StackPanel Grid.Row="1" Margin="{StaticResource Marge.Haut.12}">
+                                <TextBlock x:Name="EtiquetteTexte" Text="{TemplateBinding Etiquette}" FontSize="{DynamicResource Taille.Meta}" FontWeight="SemiBold"
+                                           Foreground="{Binding (ds:Ton.Texte), RelativeSource={RelativeSource TemplatedParent}}" Margin="{StaticResource Marge.Bas.4}" />
                                 <TextBlock Text="{TemplateBinding Titre}" FontSize="{DynamicResource Taille.Corps}" FontWeight="SemiBold"
-                                           TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxHeight="72" />
+                                           TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxHeight="66" />
                                 <TextBlock x:Name="DetailTexte" Text="{TemplateBinding Detail}" Margin="{StaticResource Marge.Haut.4}"
                                            FontSize="{DynamicResource Taille.Meta}" TextWrapping="Wrap"
                                            Foreground="{Binding (ds:Ton.Texte), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -95,6 +97,9 @@
                         </Trigger>
                         <Trigger Property="Mention" Value="">
                             <Setter TargetName="MentionPastille" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="Etiquette" Value="{x:Null}">
+                            <Setter TargetName="EtiquetteTexte" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="Detail" Value="{x:Null}">
                             <Setter TargetName="DetailTexte" Property="Visibility" Value="Collapsed" />

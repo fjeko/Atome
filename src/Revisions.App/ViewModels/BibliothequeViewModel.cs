@@ -20,6 +20,9 @@ public sealed class LigneSeance(ResumeSeance seance, string? emplacement = null)
     public bool EstLibre => seance.Libre;
     public bool ADesCartes => seance.NbCartes > 0;
     public double Maitrise => seance.NbCartes == 0 ? 0 : (double)seance.NbMaitrisees / seance.NbCartes;
+    /// <summary>Matière et partie : donnent sa couleur à la ligne (système de design).</summary>
+    public string Matiere => seance.Matiere;
+    public string Partie => seance.Partie;
 
     public string Detail
     {
@@ -46,6 +49,13 @@ public sealed class TuileBibliotheque(NoeudBibliotheque noeud)
     public string? Dues => noeud.NbDues > 0 ? $"{noeud.NbDues} à revoir" : null;
     public double Maitrise => noeud.Maitrise;
     public string InfoMaitrise => $"{Texte.Pluriel(noeud.NbMaitrisees, "carte maîtrisée", "cartes maîtrisées")} sur {noeud.NbCartes}";
+    /// <summary>Matière (et partie) du niveau : donne sa couleur et son icône à la tuile.</summary>
+    public string? Matiere => noeud.PremiereSeance?.Matiere;
+    /// <summary>Partie, seulement sous la matière (à la racine, une matière garde sa couleur à elle).</summary>
+    public string? Partie => noeud.Icone is null ? noeud.PremiereSeance?.Partie : null;
+    /// <summary>Tout est maîtrisé : la tuile se coche.</summary>
+    public bool Finie => noeud.NbCartes > 0 && noeud.NbMaitrisees >= noeud.NbCartes;
+    public bool Libre => noeud.ToutLibre;
 }
 
 /// <summary>Un maillon du fil d'Ariane (« Bibliothèque › Bloc 1 › B1.2 »).</summary>

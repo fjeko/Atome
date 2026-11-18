@@ -23,7 +23,17 @@ public partial class VueLecture : UserControl
 
 public partial class VueFinSession : UserControl
 {
-    public VueFinSession() => InitializeComponent();
+    public VueFinSession()
+    {
+        InitializeComponent();
+        // Son de fin de session (si les sons sont activés) ; niveau gagné : petite célébration du compteur et son « niveau ».
+        Loaded += (_, _) =>
+        {
+            if (DataContext is not ViewModels.FinSessionViewModel fin) return;
+            Services.ServiceSons.Jouer(fin.NiveauGagne ? Services.ServiceSons.Son.Niveau : Services.ServiceSons.Son.FinSession);
+            if (fin.NiveauGagne) Services.Mouvement.Celebrer(Compteur);
+        };
+    }
 }
 
 public partial class VueStatistiques : UserControl

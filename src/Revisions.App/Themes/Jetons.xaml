@@ -71,7 +71,7 @@
     <sys:Double x:Key="Largeur.Etroite">720</sys:Double>
     <sys:Double x:Key="Largeur.Lecture">760</sys:Double>
     <sys:Double x:Key="Largeur.Bulle">520</sys:Double>
-    <sys:Double x:Key="Largeur.Tuile">232</sys:Double>
+    <sys:Double x:Key="Largeur.Tuile">228</sys:Double>
     <sys:Double x:Key="Hauteur.Barre">8</sys:Double>
 
     <!-- Durées : 150 ms pour les survols et changements d'état. -->

@@ -10,6 +10,8 @@ namespace Revisions.App.Controles;
 public class TuileMatiere : Button
 {
     public static readonly DependencyProperty TitreProperty = DependencyProperty.Register(nameof(Titre), typeof(string), typeof(TuileMatiere));
+    /// <summary>Petite mention au-dessus du titre (« Bloc 1 »), ou rien.</summary>
+    public static readonly DependencyProperty EtiquetteProperty = DependencyProperty.Register(nameof(Etiquette), typeof(string), typeof(TuileMatiere));
     public static readonly DependencyProperty DetailProperty = DependencyProperty.Register(nameof(Detail), typeof(string), typeof(TuileMatiere));
     /// <summary>Maîtrise de 0 à 1, affichée dans l'anneau ; une valeur négative masque l'anneau.</summary>
     public static readonly DependencyProperty ProgressionProperty = DependencyProperty.Register(nameof(Progression), typeof(double), typeof(TuileMatiere), new PropertyMetadata(-1.0));
@@ -21,6 +23,7 @@ public class TuileMatiere : Button
     public static readonly DependencyProperty LibreProperty = DependencyProperty.Register(nameof(Libre), typeof(bool), typeof(TuileMatiere));
 
     public string? Titre { get => (string?)GetValue(TitreProperty); set => SetValue(TitreProperty, value); }
+    public string? Etiquette { get => (string?)GetValue(EtiquetteProperty); set => SetValue(EtiquetteProperty, value); }
     public string? Detail { get => (string?)GetValue(DetailProperty); set => SetValue(DetailProperty, value); }
     public double Progression { get => (double)GetValue(ProgressionProperty); set => SetValue(ProgressionProperty, value); }
     public string? Mention { get => (string?)GetValue(MentionProperty); set => SetValue(MentionProperty, value); }

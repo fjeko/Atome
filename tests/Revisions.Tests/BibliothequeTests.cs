@@ -58,6 +58,20 @@ public class BibliothequeTests
         Assert.Equal(["Thème 2", "Thème 10"], competence.Enfants.Select(e => e.TitreCourt));
     }
 
+    [Fact]
+    public void Une_tuile_connait_sa_matiere_et_sait_si_tout_est_libre()
+    {
+        var libre = Seance("Bloc 1", Bloc1, "B1.2 – Répondre aux incidents › Thème 2 – C#", "S2");
+        libre.PackId = Revisions.Core.Packs.ContenuLibre.PrefixeId + "b12-s2";
+        var racine = ArbreBibliotheque.Construire([libre, Seance("Bloc 6", "Anglais", "Grammaire", "S1")]);
+
+        var bloc1 = racine.Enfants.Single(e => e.Titre.Contains("Support"));
+        Assert.Equal(Bloc1, bloc1.PremiereSeance!.Matiere);
+        Assert.True(bloc1.ToutLibre);
+        Assert.False(racine.Enfants.Single(e => e.Titre == "Anglais").ToutLibre);
+        Assert.Equal(2, racine.ToutesLesSeances().Count());
+    }
+
     // ---- Niveaux ---------------------------------------------------------------------------
 
     [Fact]

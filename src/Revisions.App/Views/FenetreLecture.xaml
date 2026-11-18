@@ -7,7 +7,7 @@
     <!-- Même écran que la lecture, mais dans une fenêtre : la session en cours reste intacte derrière. -->
     <DockPanel>
         <Button DockPanel.Dock="Bottom" Content="Retour à la session" IsCancel="True" IsDefault="True" Click="Fermer"
-                Style="{DynamicResource AccentButtonStyle}" Padding="28,9" Margin="0,0,20,14" HorizontalAlignment="Right" />
+                Style="{StaticResource BoutonPrincipal}" Margin="0,0,24,16" HorizontalAlignment="Right" />
         <v:VueLecture />
     </DockPanel>
 </Window>
