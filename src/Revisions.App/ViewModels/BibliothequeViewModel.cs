@@ -1,3 +1,4 @@
+using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
@@ -257,14 +258,30 @@ public partial class BibliothequeViewModel : ObservableObject
         var dialogue = new OpenFileDialog
         {
             Title = "Importer des packs",
-            Filter = "Packs (*.json)|*.json",
+            Filter = "Packs et contenu Atome (*.json;*.atome)|*.json;*.atome|Packs (*.json)|*.json|Contenu Atome (*.atome)|*.atome",
             Multiselect = true,
             InitialDirectory = _etat.Reglages.DossierPacks ?? "",
         };
         if (dialogue.ShowDialog() != true) return;
 
-        string[] fichiers = dialogue.FileNames;
-        await ImporterAsync(() => fichiers.Select(f => _importateur.ImporterFichier(f, _etat.Reglages.DossierCours, null, Collections.Manuel, Collections.NomManuel, reafficherSiMasquee: true)).ToList());
+        // Les .atome suivent le même flux que « Importer du contenu » des Réglages ; les .json, l'import de packs habituel.
+        // Si les deux sont choisis, les packs sont importés d'abord, puis chaque .atome.
+        var (packs, atomes) = SeparerFichiers(dialogue.FileNames);
+        if (packs.Count > 0)
+            await ImporterAsync(() => packs.Select(f => _importateur.ImporterFichier(f, _etat.Reglages.DossierCours, null, Collections.Manuel, Collections.NomManuel, reafficherSiMasquee: true)).ToList());
+        foreach (string atome in atomes)
+        {
+            await Partage.ImporterFichierAsync(atome);
+            Charger();
+        }
+    }
+
+    /// <summary>Sépare les fichiers choisis : packs (.json et autres) d'un côté, contenus .atome de l'autre.</summary>
+    internal static (List<string> Packs, List<string> Atomes) SeparerFichiers(IEnumerable<string> fichiers)
+    {
+        var atomes = fichiers.Where(f => string.Equals(Path.GetExtension(f), ".atome", StringComparison.OrdinalIgnoreCase)).ToList();
+        var packs = fichiers.Except(atomes).ToList();
+        return (packs, atomes);
     }
 
     /// <summary>Relit le dossier des packs (utile quand de nouveaux packs viennent d'y être ajoutés).</summary>

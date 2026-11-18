@@ -98,8 +98,15 @@ public partial class PartageViewModel(EtatApplication etat, MainViewModel main, 
     {
         var dialogue = new OpenFileDialog { Title = "Importer du contenu", Filter = "Contenu Atome (*.atome;*.zip)|*.atome;*.zip" };
         if (dialogue.ShowDialog() != true) return;
-        string archive = dialogue.FileName;
+        await ImporterFichierAsync(dialogue.FileName);
+    }
 
+    /// <summary>
+    /// Importe un fichier .atome déjà choisi : vérification, fusionner ou nouveau dossier, extraction, récapitulatif.
+    /// Appelé par les Réglages et par le bouton « Importer… » de la Bibliothèque (qui accepte aussi les .atome).
+    /// </summary>
+    public async Task ImporterFichierAsync(string archive)
+    {
         EnCours = true;
         Progression = 0;
         Message = null;

@@ -15,7 +15,7 @@ Le fichier contient les packs, le planning et, si tu l'as coché, les documents.
 ### Recevoir le contenu d'un camarade
 
 1. Clique sur **Importer du contenu** (au premier lancement, le bouton est en grand dans la Bibliothèque ; sinon dans **Réglages**).
-2. Choisis le fichier `.atome`. L'application vérifie qu'il est valide avant d'y toucher.
+2. Choisis le fichier `.atome` (le bouton **Bibliothèque → Importer…** l'accepte aussi, avec le même déroulé). L'application vérifie qu'il est valide avant d'y toucher.
 3. Le contenu est rangé dans `{{DOSSIER_DONNEES}}\contenu`. Si tu avais déjà un dossier de packs, l'application te demande de **fusionner** (on ajoute au dossier existant) ou de **remplacer** (on utilise le nouveau dossier, l'ancien n'est pas effacé).
 4. Un récapitulatif indique le nombre de packs et de cartes, et si les documents sont inclus.
 

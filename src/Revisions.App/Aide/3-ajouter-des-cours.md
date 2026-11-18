@@ -14,7 +14,7 @@ Tu peux changer ce dossier dans **Réglages**. Les packs y sont rangés par mati
 
 1. **Le déposer dans le dossier des packs**, puis relancer l'application : il est importé tout seul.
 2. Si l'application est déjà ouverte : **Bibliothèque → Actualiser** relit le dossier.
-3. **Bibliothèque → Importer…** pour choisir un ou plusieurs fichiers rangés n'importe où.
+3. **Bibliothèque → Importer…** pour choisir un ou plusieurs fichiers rangés n'importe où. Ce bouton accepte aussi un fichier `.atome` (voir « Partager le contenu »).
 
 ### Ce qui se passe à l'import
 
