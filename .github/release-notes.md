@@ -17,7 +17,6 @@ Le code est entièrement visible dans ce dépôt si tu veux vérifier.
 Atome est livré avec **440 cours libres**, basés sur le référentiel officiel du programme de 1ère année de BTS SIO option SLAM, pour commencer tout de suite (voir « Nouveautés »). Pour réviser tes propres cours, lis la section « Créer ses propres packs » du README ; le pack d’exemple (`samples/exemple.json`) permet aussi d’essayer l’application.
 
 ## Nouveautés
-- **Démarrage beaucoup plus rapide** : le premier lancement après une mise à jour prend environ 0,15 s au lieu de 10 à 20 s (Atome est maintenant un seul fichier).
-- **Cours et cartes** qui s'ouvrent presque instantanément.
-- **Bandeau de mise à jour plus fiable** : Atome vérifie à chaque lancement (au plus une fois par heure).
+- **Bibliothèque → Importer…** accepte maintenant aussi les fichiers **.atome** (comme « Importer du contenu » dans les Réglages).
+- Aide mise à jour.
 - Aucune donnée ni progression touchée.
