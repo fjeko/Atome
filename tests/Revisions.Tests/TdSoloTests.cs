@@ -40,9 +40,57 @@ public class TdSoloTests
         Assert.False(vide.Complete);
     }
 
+    // ---- Calculs : exemples du cours --------------------------------------------------------
+
+    [Fact]
+    public void Mpm_exemple_du_cours()
+    {
+        // A..H : durées 2,2,2,4,1,2,2,1 ; C:A, D:A, E:B+D, F:D, G:E, H:C+F+G.
+        List<int>[] ant = [[], [], [0], [0], [1, 3], [3], [4], [2, 5, 6]];
+        var p = new ProjetMpm([2, 2, 2, 4, 1, 2, 2, 1], ant);
+        Assert.Equal([0, 0, 2, 2, 6, 6, 7, 9, 10], p.Tot);
+        Assert.Equal([0, 4, 7, 2, 6, 7, 7, 9, 10], p.Tard);
+        Assert.Equal([0, 0, 1, 1, 2, 2, 3, 4], p.Niveaux);
+        Assert.Equal(10, p.Duree);
+        Assert.Equal(4, p.MargeTotale(1));            // B : 4 − 0
+        Assert.Equal(5, p.MargeLibre(2));             // C : 9 − 2 − 2
+        var chemin = Assert.Single(p.CheminsCritiques());
+        Assert.Equal([0, 3, 4, 6, 7, 8], chemin);     // A-D-E-G-H-FIN
+    }
+
+    [Fact]
+    public void Graphes_fermeture_et_niveaux()
+    {
+        // A → B → C → D : la fermeture ajoute A→C, A→D, B→D.
+        var g = new bool[4, 4];
+        g[0, 1] = g[1, 2] = g[2, 3] = true;
+        var chapeau = GenerateurGraphes.FermetureTransitive(GenerateurGraphes.Adjacence(g));
+        Assert.Equal(6, chapeau.Coefficients().Sum());
+        Assert.Equal(1, chapeau[0, 3]);
+        Assert.Equal(0, chapeau[3, 0]);
+        Assert.Equal([0, 1, 2, 3], GenerateurGraphes.CalculerNiveaux(g).Niveaux);
+        Assert.Single(GenerateurGraphes.TousLesChemins(g, 0, 3));
+    }
+
+    [Fact]
+    public void Graphes_les_reponses_concordent_avec_les_calculs()
+    {
+        var gra = new GenerateurGraphes();
+        for (ulong graine = 0; graine < 30; graine++)
+        {
+            var e = gra.CreerExercice("fermeture", new GenerateurAleatoire(graine), 2);
+            var m2 = Assert.IsType<ReponseMatrice>(e.Questions[0].Attendu).Valeur;
+            var chapeau = Assert.IsType<ReponseMatrice>(e.Questions[1].Attendu).Valeur;
+            // M̂ contient M[2] (tout chemin de longueur 2 existe dans la fermeture).
+            for (int i = 0; i < m2.Lignes; i++)
+            for (int j = 0; j < m2.Colonnes; j++)
+                Assert.True(m2[i, j] <= chapeau[i, j]);
+        }
+    }
+
     // ---- Sujets ----------------------------------------------------------------------------
 
-    private static readonly IGenerateurASujets[] Tous = [new GenerateurMatrices()];
+    private static readonly IGenerateurASujets[] Tous = [new GenerateurMatrices(), new GenerateurGraphes(), new GenerateurOrdonnancement()];
 
     public static TheoryData<string> Generateurs() => [.. Tous.Select(g => g.Prefixe)];
 
