@@ -32,8 +32,8 @@ public sealed partial class NavigationReglagesViewModel : ObservableObject
     [ObservableProperty] private SectionReglages _sectionChoisie;
     [ObservableProperty] private string _recherche = "";
     [ObservableProperty] private IReadOnlyList<EntreeReglage> _resultats = [];
-    /// <summary>Vrai sous 1100 px : la navigation passe au-dessus du contenu.</summary>
-    [ObservableProperty] private bool _compacte;
+    /// <summary>Vrai : les sections sont en bandeau au-dessus du contenu (une seule colonne de menu à gauche, celle de l'application).</summary>
+    [ObservableProperty] private bool _compacte = true;
 
     public bool RechercheActive => Recherche.Trim().Length > 0;
     public bool AucunResultat => RechercheActive && Resultats.Count == 0;

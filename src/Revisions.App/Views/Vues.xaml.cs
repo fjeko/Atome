@@ -60,34 +60,18 @@ public partial class VueReglages : UserControl
         Defilement.ScrollChanged += (_, e) => { if (!_restauration && e.VerticalChange != 0) _dernierDefilement = Defilement.VerticalOffset; };
         Loaded += (_, _) => { if (App.Services.GetService(typeof(Services.EtatApplication)) is Services.EtatApplication etat) etat.ThemeChange += Restaurer; };
         Unloaded += (_, _) => { if (App.Services.GetService(typeof(Services.EtatApplication)) is Services.EtatApplication etat) etat.ThemeChange -= Restaurer; };
-        Loaded += (_, _) => SuivreFenetre(true);
-        Unloaded += (_, _) => SuivreFenetre(false);
+        Loaded += (_, _) => Suivre(true);
+        Unloaded += (_, _) => Suivre(false);
     }
 
-    // La navigation passe au-dessus du contenu quand la fenêtre est étroite (sous 1100 px, comme la barre latérale),
-    // et on remonte en haut de page quand on change de section.
-    private void SuivreFenetre(bool suivre)
+    // On remonte en haut de page quand on change de section.
+    private void Suivre(bool suivre)
     {
-        if (Window.GetWindow(this)?.DataContext is ViewModels.MainViewModel principal)
-        {
-            principal.PropertyChanged -= FenetreChange;
-            if (suivre) { principal.PropertyChanged += FenetreChange; MettreAJourCompacte(principal); }
-        }
         if (DataContext is ViewModels.ReglagesViewModel vm)
         {
             vm.Navigation.PropertyChanged -= NavigationChange;
             if (suivre) vm.Navigation.PropertyChanged += NavigationChange;
         }
-    }
-
-    private void FenetreChange(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
-    {
-        if (sender is ViewModels.MainViewModel principal && e.PropertyName == nameof(ViewModels.MainViewModel.FenetreEtroite)) MettreAJourCompacte(principal);
-    }
-
-    private void MettreAJourCompacte(ViewModels.MainViewModel principal)
-    {
-        if (DataContext is ViewModels.ReglagesViewModel vm) vm.Navigation.Compacte = principal.FenetreEtroite;
     }
 
     private void NavigationChange(object? sender, System.ComponentModel.PropertyChangedEventArgs e)

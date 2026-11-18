@@ -35,7 +35,7 @@
             </StackPanel.Style>
 
             <Grid>
-                <TextBox x:Name="ChampRecherche" Text="{Binding Recherche, UpdateSourceTrigger=PropertyChanged}"
+                <TextBox x:Name="ChampRecherche" HorizontalAlignment="Left" MaxWidth="{StaticResource Largeur.Bulle}" Text="{Binding Recherche, UpdateSourceTrigger=PropertyChanged}"
                          Padding="{StaticResource Remplissage.Bouton}"
                          AutomationProperties.Name="Rechercher un réglage" ToolTip="Rechercher un réglage" />
                 <TextBlock Text="Rechercher un réglage" Style="{StaticResource Texte.Meta}" IsHitTestVisible="False"
