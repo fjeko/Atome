@@ -143,7 +143,6 @@ Le format exact est décrit dans [`docs/FORMAT.md`](docs/FORMAT.md).
 ## Documentation
 
 - Format des packs : [`docs/FORMAT.md`](docs/FORMAT.md)
-- Conception détaillée : [`PLAN.md`](PLAN.md)
 
 ## Lancer depuis le code source (développeurs)
 
