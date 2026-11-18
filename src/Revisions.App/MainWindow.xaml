@@ -106,10 +106,10 @@
                         <TextBlock Text="Bibliothèque" Style="{StaticResource Libelle}" />
                     </StackPanel>
                 </ListBoxItem>
-                <ListBoxItem Tag="td" ToolTip="TD en groupe : le même TD à plusieurs, chacun sur son PC" AutomationProperties.Name="TD en groupe">
+                <ListBoxItem Tag="td" ToolTip="TD : de vrais exercices corrigés pas à pas, seul ou à plusieurs" AutomationProperties.Name="TD">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{x:Static ds:Icones.Groupe}" Style="{StaticResource IconeNav}" />
-                        <TextBlock Text="TD en groupe" Style="{StaticResource Libelle}" />
+                        <TextBlock Text="TD" Style="{StaticResource Libelle}" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Tag="acquis" ToolTip="Mes acquis" AutomationProperties.Name="Mes acquis">

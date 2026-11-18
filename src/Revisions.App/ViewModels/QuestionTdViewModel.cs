@@ -18,6 +18,9 @@ public partial class CaseTdViewModel(int index, int colonnes, int? attendue) : O
     /// <summary>Nombre de colonnes de la grille (flèches haut et bas : on saute d'une ligne entière).</summary>
     public int Colonnes { get; } = colonnes;
 
+    /// <summary>Largeur de la case (plus étroite dans une grande grille de 0 et de 1).</summary>
+    public double Largeur { get; init; } = QuestionTdViewModel.LargeurNormale;
+
     /// <summary>Texte saisi.</summary>
     [ObservableProperty] private string _valeur = "";
 
@@ -71,6 +74,16 @@ public partial class QuestionTdViewModel : ObservableObject
 
     /// <summary>Saisie dans des cases : la grille d'une matrice, ou la case unique d'un nombre.</summary>
     public bool EstGrille => EstMatrice || EstNombre;
+
+    public const double LargeurNormale = 104, LargeurEtroite = 56;
+
+    /// <summary>Largeur des cases de cette grille (étroite au-delà de 4 colonnes, pour tenir dans la zone de réponse).</summary>
+    public double LargeurCase { get; } = LargeurNormale;
+
+    /// <summary>Grille sans parenthèses : un simple nombre, ou une liste de valeurs (une par tâche ou par sommet).</summary>
+    public bool SansParentheses => EstNombre || _enListe;
+
+    private readonly bool _enListe;
 
     /// <summary>Dimension de la grille (1 × 1 pour un nombre).</summary>
     public int Lignes { get; }
@@ -127,10 +140,19 @@ public partial class QuestionTdViewModel : ObservableObject
             case ReponseMatrice m:
                 Lignes = m.Valeur.Lignes;
                 Colonnes = m.Valeur.Colonnes;
-                int k = 0;
-                foreach (int valeur in m.Valeur.Coefficients()) Cases.Add(new CaseTdViewModel(k++, Colonnes, valeur));
                 EnTetesColonnes = m.EnTetesColonnes ?? [];
                 EnTetesLignes = m.EnTetesLignes ?? [];
+                // Une ligne de valeurs nommées (dates des tâches A, B, C…) : affichée en liste verticale, un nom par case.
+                // Les cases gardent le même ordre, donc la vérification ne change pas.
+                if (Lignes == 1 && EnTetesColonnes.Count > 0 && Colonnes > 4)
+                {
+                    _enListe = true;
+                    (Lignes, Colonnes) = (Colonnes, 1);
+                    (EnTetesLignes, EnTetesColonnes) = (EnTetesColonnes, []);
+                }
+                LargeurCase = Colonnes > 4 ? LargeurEtroite : LargeurNormale;
+                int k = 0;
+                foreach (int valeur in m.Valeur.Coefficients()) Cases.Add(new CaseTdViewModel(k++, Colonnes, valeur) { Largeur = LargeurCase });
                 break;
             case ReponseNombre n:
                 Lignes = Colonnes = 1;

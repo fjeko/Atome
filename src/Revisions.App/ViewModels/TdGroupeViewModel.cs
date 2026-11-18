@@ -48,6 +48,9 @@ public partial class TdGroupeViewModel : ObservableObject
     private readonly CatalogueTd _catalogue;
     private readonly DepotBibliotheque _bibliotheque;
     private readonly DepotProfil _profil;
+    private readonly EtatApplication _etat;
+    private readonly DepotTd _depotTd;
+    private readonly DepotRevisions _revisions;
 
     // Réglages gardés le temps que l'application est ouverte (on refait souvent plusieurs TD d'affilée).
     private static int _dernierThemeIndex, _dernierNiveauIndex, _dernierNombre = 6;
@@ -63,16 +66,21 @@ public partial class TdGroupeViewModel : ObservableObject
     private DispatcherTimer? _timerCompte, _timerMinuteur;
     private TimeSpan _tempsRestant;
 
-    public TdGroupeViewModel(MainViewModel main, CatalogueTd catalogue, DepotBibliotheque bibliotheque, DepotProfil profil, EtatApplication etat)
+    public TdGroupeViewModel(MainViewModel main, CatalogueTd catalogue, DepotBibliotheque bibliotheque, DepotProfil profil, EtatApplication etat,
+        DepotTd depotTd, DepotRevisions revisions)
     {
         _main = main;
         _catalogue = catalogue;
         _bibliotheque = bibliotheque;
         _profil = profil;
+        _etat = etat;
+        _depotTd = depotTd;
+        _revisions = revisions;
 
         Themes =
         [
             new ThemeTd("Matrices (SQ1 Calcul matriciel)", catalogue.Trouver("MAT")!, GenerateurMatrices.NomsNiveaux, false),
+            .. catalogue.Generateurs.OfType<GenerateurASujets>().Select(g => new ThemeTd(g.Nom, g, GenerateurASujets.NomsNiveaux, false)),
             new ThemeTd("Une séance de ma bibliothèque", catalogue.Trouver("SEA")!, GenerateurSeance.NomsNiveaux, true),
         ];
         Seances = bibliotheque.ListerSeances(etat.Jour)
@@ -86,6 +94,7 @@ public partial class TdGroupeViewModel : ObservableObject
         _inclureHorsCours = _dernierHorsCours;
         _minuteurActif = _dernierMinuteur;
         _seanceChoisie = Seances.FirstOrDefault();
+        InitialiserSolo();
     }
 
     // ==== Écran de choix ========================================================================
@@ -214,7 +223,7 @@ public partial class TdGroupeViewModel : ObservableObject
     [ObservableProperty] private bool _notionDisponible;
 
     /// <summary>Texte du bouton « Exercice suivant » (ou « Voir mon récap » au dernier).</summary>
-    public string TexteSuivant => _td is not null && _index >= _td.Exercices.Count - 1 ? "Voir mon récap" : "Exercice suivant";
+    public string TexteSuivant => _td is not null && _index >= (_passeCorrection ? _reponses.Count : _td.Exercices.Count) - 1 ? "Voir mon récap" : "Exercice suivant";
 
     /// <summary>Rappel des touches, en bas de l'écran.</summary>
     public string Consigne => Phase switch
@@ -254,6 +263,7 @@ public partial class TdGroupeViewModel : ObservableObject
         Progression = (double)_index / _td.Exercices.Count;
         TitreExercice = _td.Exercices[_index].Titre;
         Confirmation = null;
+        if (EstSolo) { AfficherExercice(); return; } // seul : pas de « Prêts ? », on enchaîne
         Phase = PhaseTd.Pret;
     }
 
@@ -316,6 +326,7 @@ public partial class TdGroupeViewModel : ObservableObject
     public void Verifier()
     {
         if (Phase != PhaseTd.Recherche) return;
+        if (EnExamen && !_passeCorrection) { ValiderSansCorriger(); return; }
         foreach (var q in Questions) q.Verifier();
         ArreterMinuteur();
 
@@ -365,7 +376,8 @@ public partial class TdGroupeViewModel : ObservableObject
         if (Phase != PhaseTd.Correction || !PeutContinuer) return;
         _issues.Add(IssueDeLExercice());
         _index++;
-        if (_index < _td!.Exercices.Count) AllerAuPret();
+        if (_passeCorrection) { if (_index < _reponses.Count) AfficherCorrectionSauvee(); else Terminer(); }
+        else if (_index < _td!.Exercices.Count) AllerAuPret();
         else Terminer();
     }
 
@@ -380,6 +392,8 @@ public partial class TdGroupeViewModel : ObservableObject
     {
         ArreterMinuteur();
         _timerCompte?.Stop();
+        // Examen en cours : on corrige ce qui a déjà été validé.
+        if (EnExamen && !_passeCorrection && _reponses.Count > 0) { CommencerPasseCorrection(); return; }
         if (Phase == PhaseTd.Correction && PeutContinuer) _issues.Add(IssueDeLExercice());
         if (_issues.Count > 0) Terminer();
         else RevenirAuChoix();
@@ -411,6 +425,7 @@ public partial class TdGroupeViewModel : ObservableObject
         _profil.AjouterXp(xp); // l'XP habituelle ; le planning FSRS des cartes n'est pas touché
         int niveauApres = Niveaux.NiveauPour(_profil.XpTotal());
         TexteXp = $"+{xp} XP" + (niveauApres > niveauAvant ? $" · niveau {niveauApres} atteint !" : "");
+        if (EstSolo) TerminerSolo();
         Progression = 1;
         Confirmation = null;
         _main.NavigationVisible = true;
@@ -421,6 +436,7 @@ public partial class TdGroupeViewModel : ObservableObject
     [RelayCommand]
     private void RevenirAuChoix()
     {
+        OublierSolo();
         _td = null;
         Questions.Clear();
         CodeSaisi = "";
@@ -455,6 +471,18 @@ public partial class TdGroupeViewModel : ObservableObject
     /// </summary>
     public void DemonstrationDev(string argument)
     {
+        // « td:solo:ORD,GRA » : TD solo de 15 min sur ces thèmes ; « td:solo:ORD:examen » corrige à la fin.
+        if (argument.StartsWith("solo"))
+        {
+            string[] options = argument.Split(':');
+            var prefixes = options.Length > 1 ? options[1].Split(',') : ["GRA"];
+            foreach (var t in ThemesSolo) t.Coche = t.Generateur is { } g && prefixes.Contains(g.Prefixe);
+            SeulementLu = false;
+            DureeChoisie = Durees[0];
+            CorrectionALaFin = options.Contains("examen");
+            CreerSolo();
+            return;
+        }
         string[] morceaux = argument.Split(':');
         CodeSaisi = morceaux[0];
         Rejoindre();
@@ -514,7 +542,7 @@ public partial class TdGroupeViewModel : ObservableObject
     private void DemarrerMinuteur()
     {
         ArreterMinuteur();
-        if (!MinuteurActif) { Minuteur = null; return; }
+        if (!MinuteurActif || EstSolo) { Minuteur = null; return; }
         _tempsRestant = TimeSpan.FromMinutes(MinutesParExercice);
         Minuteur = Format(_tempsRestant);
         _timerMinuteur = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };

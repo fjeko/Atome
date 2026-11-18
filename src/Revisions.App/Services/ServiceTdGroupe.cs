@@ -11,7 +11,11 @@ namespace Revisions.App.Services;
 public static class ServiceTdGroupe
 {
     public static CatalogueTd CreerCatalogue(DepotBibliotheque bibliotheque, DepotRevisions revisions, EtatApplication etat) =>
-        new([new GenerateurMatrices(), new GenerateurSeance(id => ChargerSeance(id, bibliotheque, revisions, etat))]);
+        new([
+            new GenerateurMatrices(), new GenerateurInverse(), new GenerateurGraphes(), new GenerateurOrdonnancement(),
+            new GenerateurIpv4(), new GenerateurDroitsLinux(), new GenerateurSql(),
+            new GenerateurSeance(id => ChargerSeance(id, bibliotheque, revisions, etat)),
+        ]);
 
     /// <summary>
     /// Contenu d'une séance pour un TD « séance ». L'identifiant du code est en minuscules :

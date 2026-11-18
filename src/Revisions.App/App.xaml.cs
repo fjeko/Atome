@@ -243,6 +243,7 @@ public partial class App : Application
             services.AddSingleton<DepotAcquis>();
             services.AddSingleton<DepotPlanning>();
             services.AddSingleton<DepotSignalements>();
+            services.AddSingleton<DepotTd>();
             services.AddSingleton<ServiceSignalement>();
             services.AddSingleton<SelectionDuJour>();
             services.AddSingleton<ImportateurPacks>();

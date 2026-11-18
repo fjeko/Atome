@@ -6,6 +6,16 @@
              xmlns:ds="clr-namespace:Revisions.App.Controles"
              x:Name="Racine">
     <UserControl.Resources>
+        <!-- Un thème du TD solo : case à cocher, nom et petite ligne de détail. -->
+        <DataTemplate x:Key="ThemeSoloModele">
+            <CheckBox IsChecked="{Binding Coche}" Margin="0,4,12,4" VerticalContentAlignment="Top">
+                <StackPanel>
+                    <TextBlock Text="{Binding Nom}" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Detail}" Style="{StaticResource Texte.Meta}" TextWrapping="Wrap" />
+                </StackPanel>
+            </CheckBox>
+        </DataTemplate>
+
         <!-- Vert (succès) pour « juste », ambre (attention) pour « à reprendre » : jamais de rouge (R1, pas de punition).
              Couleurs du système de design : contrastes vérifiés dans chaque thème. -->
 
@@ -13,7 +23,7 @@
              Gabarit simple : celui du thème Fluent ajoute un bouton « × » qui mangeait la moitié de la case,
              et le début du texte (le signe « - ») sortait de la zone visible. -->
         <Style x:Key="Case" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-            <Setter Property="Width" Value="{StaticResource Largeur.CaseNombre}" />
+            <Setter Property="Width" Value="{Binding Largeur}" />
             <Setter Property="MinHeight" Value="{StaticResource Hauteur.CaseNombre}" />
             <Setter Property="Padding" Value="{StaticResource Remplissage.CaseNombre}" />
             <Setter Property="FontSize" Value="{DynamicResource Taille.SousTitre}" />
@@ -85,11 +95,100 @@
         <!-- ==== 1. Créer ou rejoindre un TD ==================================================== -->
         <ScrollViewer VerticalScrollBarVisibility="Auto" Visibility="{Binding EstChoix, Converter={StaticResource VisibleSi}}">
             <StackPanel MaxWidth="{StaticResource Largeur.Contenu}" Margin="{StaticResource Marge.Ecran}">
-                <TextBlock Text="TD en groupe" Style="{StaticResource Texte.Titre}" />
+                <TextBlock Text="TD" Style="{StaticResource Texte.Titre}" />
                 <TextBlock Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
-                           Text="Faites le même TD ensemble, chacun sur son PC, en vocal sur Discord. Pas de réseau ni de compte : l'un crée le TD et dicte le code, les autres le saisissent. Ça marche aussi en solo." />
+                           Text="De vrais exercices de TD, générés à chaque fois, avec une correction pas à pas. Seul, à ton rythme, ou à plusieurs sur Discord." />
 
-                <Grid Margin="{StaticResource Marge.Haut.24}">
+                <!-- Onglets : Seul / À plusieurs. -->
+                <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.16}">
+                    <StackPanel.Resources>
+                        <Style x:Key="Onglet" TargetType="Button" BasedOn="{StaticResource BoutonSecondaire}">
+                            <Setter Property="Padding" Value="18,8" />
+                            <Setter Property="Margin" Value="{StaticResource Marge.Droite.8}" />
+                            <Setter Property="BorderThickness" Value="1" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Content="Seul" Command="{Binding ChoisirModeCommand}" CommandParameter="solo" AutomationProperties.Name="TD seul">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource Onglet}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModeSolo}" Value="True">
+                                        <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.AccentTrait}" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                        <Setter Property="FontWeight" Value="SemiBold" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Content="À plusieurs" Command="{Binding ChoisirModeCommand}" CommandParameter="groupe" AutomationProperties.Name="TD à plusieurs">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource Onglet}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ModeGroupe}" Value="True">
+                                        <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.AccentTrait}" />
+                                        <Setter Property="BorderThickness" Value="2" />
+                                        <Setter Property="FontWeight" Value="SemiBold" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+
+                <!-- ==== Seul ==== -->
+                <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.16}"
+                        Visibility="{Binding ModeSolo, Converter={StaticResource VisibleSi}}">
+                    <StackPanel>
+                        <TextBlock Text="Mon TD" Style="{StaticResource Texte.SousTitre}" />
+                        <TextBlock Text="Exercices générés par Atome (correction automatique)" Margin="0,14,0,6" />
+                        <ItemsControl ItemsSource="{Binding ThemesGeneres}" Focusable="False" ItemTemplate="{StaticResource ThemeSoloModele}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate><UniformGrid Columns="2" /></ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                        <StackPanel Visibility="{Binding ADesRediges, Converter={StaticResource VisibleSi}}">
+                            <TextBlock Text="Exercices rédigés de tes packs (tu compares avec la correction)" Margin="0,14,0,6" />
+                            <ItemsControl ItemsSource="{Binding ThemesRediges}" Focusable="False" ItemTemplate="{StaticResource ThemeSoloModele}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate><UniformGrid Columns="3" /></ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </StackPanel>
+
+                        <Grid Margin="{StaticResource Marge.Haut.16}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="14" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="Durée" Margin="0,0,0,4" />
+                                <ComboBox ItemsSource="{Binding Durees}" SelectedItem="{Binding DureeChoisie}" DisplayMemberPath="Libelle" HorizontalAlignment="Stretch" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="Niveau" Margin="0,0,0,4" />
+                                <ComboBox ItemsSource="{Binding NiveauxSolo}" SelectedIndex="{Binding NiveauSolo}" HorizontalAlignment="Stretch" />
+                            </StackPanel>
+                        </Grid>
+                        <CheckBox Content="Correction à la fin, comme à l'examen" IsChecked="{Binding CorrectionALaFin}" Style="{StaticResource Interrupteur}"
+                                  Margin="{StaticResource Marge.Haut.12}"
+                                  ToolTip="Tu valides chaque exercice sans voir le résultat ; tout est corrigé à la fin. Sinon : correction après chaque exercice." />
+                        <CheckBox Content="Seulement ce que j'ai déjà lu" IsChecked="{Binding SeulementLu}" Style="{StaticResource Interrupteur}"
+                                  Margin="{StaticResource Marge.Haut.8}" Visibility="{Binding ADesSeancesLues, Converter={StaticResource VisibleSi}}"
+                                  ToolTip="Ne garde que les exercices des notions dont tu as ouvert la séance du cours." />
+                        <TextBlock Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.8}" TextWrapping="Wrap"
+                                   Text="Les exercices que tu rates reviennent plus souvent dans tes prochains TD, et leurs notions repassent dans tes révisions." />
+                        <Button Content="Commencer le TD" Command="{Binding CreerSoloCommand}" Style="{StaticResource BoutonPrincipal}"
+                                Margin="{StaticResource Marge.Haut.16}" HorizontalAlignment="Left" />
+                    </StackPanel>
+                </Border>
+
+                <!-- ==== À plusieurs ==== -->
+                <TextBlock Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.16}" TextWrapping="Wrap"
+                           Visibility="{Binding ModeGroupe, Converter={StaticResource VisibleSi}}"
+                           Text="Faites le même TD ensemble, chacun sur son PC, en vocal sur Discord. Pas de réseau ni de compte : l'un crée le TD et dicte le code, les autres le saisissent." />
+                <Grid Margin="{StaticResource Marge.Haut.16}" Visibility="{Binding ModeGroupe, Converter={StaticResource VisibleSi}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="20" />
@@ -214,11 +313,12 @@
                 <Button DockPanel.Dock="Left" Content="Quitter" Command="{Binding QuitterCommand}" Style="{StaticResource BoutonFantome}" ds:Forme.Icone="{x:Static ds:Icones.Fermer}" Foreground="{DynamicResource Pinceau.TexteSecondaire}"
                         ToolTip="Quitter le TD : les exercices faits comptent dans ton récap" />
                 <TextBlock DockPanel.Dock="Right" Text="{Binding Avancement}" FontWeight="SemiBold" VerticalAlignment="Center" />
+                <TextBlock DockPanel.Dock="Right" Text="{Binding Chrono}" Style="{StaticResource Texte.Secondaire}" VerticalAlignment="Center" Margin="0,0,16,0"
+                           Visibility="{Binding Chrono, Converter={StaticResource VisibleSi}}" ToolTip="Temps passé / durée choisie : un simple repère" />
                 <TextBlock DockPanel.Dock="Right" Text="{Binding Minuteur}" Style="{StaticResource Texte.Secondaire}" VerticalAlignment="Center" Margin="0,0,16,0"
                            Visibility="{Binding Minuteur, Converter={StaticResource VisibleSi}}" />
                 <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Margin="0,0,16,0" Style="{StaticResource Texte.Meta}">
                     <Run Text="{Binding Code, Mode=OneWay}" FontFamily="{DynamicResource Police.Code}" />
-                    <Run Text="·" />
                     <Run Text="{Binding TitreExercice, Mode=OneWay}" />
                 </TextBlock>
                 <ProgressBar Style="{StaticResource BarreProgression}" Value="{Binding Progression, Mode=OneWay}" Margin="16,0" VerticalAlignment="Center" />
@@ -298,7 +398,7 @@
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding}" Width="{StaticResource Largeur.CaseNombre}" Margin="3,0" TextAlignment="Center"
+                                                        <TextBlock Text="{Binding}" Width="{Binding DataContext.LargeurCase, RelativeSource={RelativeSource AncestorType=ItemsControl}}" Margin="3,0" TextAlignment="Center"
                                                                    Style="{StaticResource Texte.Secondaire}" FontWeight="SemiBold" />
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
@@ -321,7 +421,7 @@
                                                 <Style TargetType="Border">
                                                     <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.TexteSecondaire}" />
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding EstNombre}" Value="True">
+                                                        <DataTrigger Binding="{Binding SansParentheses}" Value="True">
                                                             <Setter Property="BorderBrush" Value="Transparent" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
@@ -395,7 +495,7 @@
                             Visibility="{Binding EstRecherche, Converter={StaticResource VisibleSi}}">
                     <Button Content="Indice" Command="{Binding IndiceCommand}" ds:Forme.Icone="{x:Static ds:Icones.Ampoule}" IsEnabled="{Binding IndiceDisponible}" Margin="{StaticResource Marge.Droite.12}"
                             ToolTip="Un rappel de méthode tiré du cours (touche I hors des cases)" />
-                    <Button Content="Vérifier" Command="{Binding VerifierCommand}" Style="{StaticResource BoutonPrincipal}"
+                    <Button Content="{Binding TexteVerifier}" Command="{Binding VerifierCommand}" Style="{StaticResource BoutonPrincipal}"
                             ToolTip="Ctrl + Entrée" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
@@ -424,11 +524,13 @@
 
                 <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.24}">
                     <DockPanel>
-                        <Button DockPanel.Dock="Right" Content="Copier" Command="{Binding CopierPhraseCommand}" ds:Forme.Icone="{x:Static ds:Icones.Copier}" VerticalAlignment="Center"
+                        <Button DockPanel.Dock="Right" Content="Copier" Command="{Binding CopierPhraseCommand}" Visibility="{Binding EstSolo, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}" ds:Forme.Icone="{x:Static ds:Icones.Copier}" VerticalAlignment="Center"
                                 ToolTip="Pour la coller sur Discord" />
                         <StackPanel>
                             <TextBlock Text="{Binding PhraseRecap}" Style="{StaticResource Texte.Salut}" />
-                            <TextBlock Text="À dire aux autres pour comparer. Le but n'est pas de gagner : c'est de voir ce qu'on reprend ensemble." Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.4}" />
+                            <TextBlock Text="À dire aux autres pour comparer. Le but n'est pas de gagner : c'est de voir ce qu'on reprend ensemble." Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.4}" Visibility="{Binding EstSolo, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}" />
+                            <TextBlock Text="{Binding NotionsARevoir}" Style="{StaticResource Texte.Corps}" Margin="{StaticResource Marge.Haut.12}" TextWrapping="Wrap"
+                                       Visibility="{Binding NotionsARevoir, Converter={StaticResource VisibleSi}}" />
                             <TextBlock Text="{Binding TexteXp}" Style="{StaticResource Texte.Corps}" Margin="{StaticResource Marge.Haut.12}" Foreground="{DynamicResource Pinceau.AccentTexte}" />
                             <TextBlock Text="{Binding Confirmation}" Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.4}"
                                        Visibility="{Binding Confirmation, Converter={StaticResource VisibleSi}}" />

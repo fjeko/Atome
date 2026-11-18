@@ -31,6 +31,26 @@ public sealed class DepotTd(BaseDeDonnees baseDeDonnees)
             .ToDictionary(g => g.Key, g => new BilanSujet(g.Count(), g.Take(3).Any(l => l.Issue == (long)IssueExercice.PasEncore)));
     }
 
+    /// <summary>Matières qui ont des cartes « exercice » visibles, avec leur nombre (thèmes « Exercices rédigés »).</summary>
+    public List<(string Matiere, int Nombre)> MatieresAvecExercices()
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.Query<(string, long)>(
+            """
+            SELECT m.nom, COUNT(*) FROM carte c JOIN pack p ON p.id = c.pack_id JOIN matiere m ON m.id = p.matiere_id
+            WHERE c.archivee = 0 AND c.type = 'exercice'
+            GROUP BY m.nom ORDER BY m.nom
+            """).Select(l => (l.Item1, (int)l.Item2)).ToList();
+    }
+
+    /// <summary>Pack de chaque section visible, et titre de chaque section (une seule requête).</summary>
+    public Dictionary<string, (string PackId, string Titre)> Sections()
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.Query<(string Id, string PackId, string Titre)>("SELECT id, pack_id, titre FROM section WHERE archivee = 0")
+            .ToDictionary(s => s.Id, s => (s.PackId, s.Titre));
+    }
+
     /// <summary>
     /// Ramène à aujourd'hui l'échéance des cartes déjà vues d'une section (au plus <see cref="CartesParNotion"/>,
     /// les plus proches de leur échéance d'abord) : elles reviennent dans la prochaine révision. La stabilité FSRS ne change pas.

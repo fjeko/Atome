@@ -118,6 +118,10 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
     public List<CarteAReviser> CartesDuPack(string packId) =>
         Charger(SelectCartes + " AND c.pack_id = @packId ORDER BY c.position", new { packId });
 
+    /// <summary>Cartes « exercice » d'une matière, dans l'ordre du cours (TD solo, exercices rédigés).</summary>
+    public List<CarteAReviser> CartesExerciceDeLaMatiere(string matiere) =>
+        Charger(SelectCartes + " AND c.type = 'exercice' AND m.nom = @matiere ORDER BY p.ordre, p.id, c.position", new { matiere });
+
     /// <summary>Cartes déjà vues d'une section (session « point faible »).</summary>
     public List<CarteAReviser> CartesDeLaSection(string sectionId) =>
         Charger(SelectCartes + " AND c.section_id = @sectionId ORDER BY c.position", new { sectionId });
