@@ -4,7 +4,7 @@ Atome peut te prévenir quand une nouvelle version est publiée, et l'installer 
 
 ### La vérification au démarrage
 
-Quand le réglage **Vérifier les mises à jour au démarrage** est activé (c'est le cas au départ), Atome demande à **GitHub** (`api.github.com`), **une fois par jour au plus**, quel est le numéro de la dernière version publiée.
+Quand le réglage **Vérifier les mises à jour au démarrage** est activé (c'est le cas au départ), Atome demande à **GitHub** (`api.github.com`), **à chaque lancement, une fois par heure au plus**, quel est le numéro de la dernière version publiée.
 
 - C'est la **seule** connexion à Internet d'Atome.
 - Rien de personnel n'est envoyé : ni tes données, ni ton nom, ni tes réglages. GitHub voit seulement une demande anonyme venant de ta connexion, comme pour n'importe quelle page web.

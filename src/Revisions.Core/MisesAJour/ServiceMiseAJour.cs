@@ -32,7 +32,7 @@ public enum IssueVerification
 /// <param name="Issue">Ce qui s'est passé.</param>
 /// <param name="Release">La dernière Release connue (si GitHub en a renvoyé une).</param>
 /// <param name="Detail">Explication technique, pour le journal.</param>
-/// <param name="DepuisMemoire">Vrai si GitHub n'a pas été contacté (dernière vérification il y a moins de 24 h).</param>
+/// <param name="DepuisMemoire">Vrai si GitHub n'a pas été contacté (dernière vérification il y a moins d'une heure).</param>
 public sealed record ResultatVerification(IssueVerification Issue, ReleaseGitHub? Release = null, string? Detail = null, bool DepuisMemoire = false)
 {
     /// <summary>Vrai s'il faut afficher le bandeau.</summary>
@@ -61,8 +61,12 @@ public sealed class ErreurMiseAJour(string message, Exception? cause = null) : E
 /// </remarks>
 public sealed class ServiceMiseAJour(HttpClient http, IStockageCleValeur stockage, TimeProvider horloge, VersionSemantique versionActuelle)
 {
-    /// <summary>Au plus une vérification automatique par intervalle.</summary>
-    public static readonly TimeSpan Intervalle = TimeSpan.FromHours(24);
+    /// <summary>
+    /// Au plus une demande automatique à GitHub par intervalle : une heure, pour que le bandeau apparaisse dès le
+    /// lancement qui suit une nouvelle version. Sans compte, GitHub accepte 60 demandes par heure et par connexion,
+    /// et une réponse « inchangé » (HTTP 304, grâce à l'ETag) ne compte même pas.
+    /// </summary>
+    public static readonly TimeSpan Intervalle = TimeSpan.FromHours(1);
 
     /// <summary>Délai d'attente de la vérification : court, pour ne jamais faire attendre.</summary>
     public static readonly TimeSpan DelaiVerification = TimeSpan.FromSeconds(8);
@@ -78,13 +82,14 @@ public sealed class ServiceMiseAJour(HttpClient http, IStockageCleValeur stockag
     internal const string CleReleaseConnue = "maj_release_connue";
     internal const string CleVersionIgnoree = "maj_version_ignoree";
     internal const string CleInstallationLancee = "maj_installation_lancee";
+    internal const string CleEtag = "maj_etag";
 
     public VersionSemantique VersionActuelle => versionActuelle;
 
     // ---- Vérification --------------------------------------------------------------------------
 
     /// <summary>
-    /// Vrai si une vérification automatique est due : jamais faite, faite il y a 24 h ou plus,
+    /// Vrai si une vérification automatique est due : jamais faite, faite il y a une heure ou plus,
     /// ou datée dans le futur (horloge du PC changée entre-temps).
     /// </summary>
     public static bool VerificationDue(DateTimeOffset? derniere, DateTimeOffset maintenant) =>
@@ -98,7 +103,7 @@ public sealed class ServiceMiseAJour(HttpClient http, IStockageCleValeur stockag
     /// <summary>
     /// Vérifie s'il existe une version plus récente.
     /// <list type="bullet">
-    /// <item>Automatique (<paramref name="manuelle"/> = false) : GitHub n'est contacté qu'une fois par 24 h ; entre deux,
+    /// <item>Automatique (<paramref name="manuelle"/> = false) : GitHub n'est contacté qu'une fois par heure ; entre deux,
     /// on réutilise la dernière Release connue (c'est ce qui fait revenir la proposition après « Plus tard »).
     /// Une version ignorée n'est pas proposée.</item>
     /// <item>Manuelle (bouton « Vérifier maintenant ») : GitHub est toujours contacté, et une version ignorée est quand même montrée.</item>
@@ -112,11 +117,11 @@ public sealed class ServiceMiseAJour(HttpClient http, IStockageCleValeur stockag
         {
             var connue = ReleaseConnue();
             return connue is null
-                ? new ResultatVerification(IssueVerification.AJour, null, "Vérifié il y a moins de 24 h.", DepuisMemoire: true)
+                ? new ResultatVerification(IssueVerification.AJour, null, "Vérifié il y a moins d'une heure.", DepuisMemoire: true)
                 : Evaluer(connue, manuelle) with { DepuisMemoire = true };
         }
 
-        // La date est notée dès la tentative : au plus une demande par 24 h, même hors ligne.
+        // La date est notée dès la tentative : au plus une demande par heure, même hors ligne.
         stockage.EcrireValeur(CleDerniereVerification, maintenant.ToString("o", CultureInfo.InvariantCulture));
 
         var resultat = await DemanderDerniereReleaseAsync(annulation);
@@ -148,7 +153,16 @@ public sealed class ServiceMiseAJour(HttpClient http, IStockageCleValeur stockag
             using var requete = Requete(DepotAtome.DerniereRelease);
             requete.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
             requete.Headers.Add("X-GitHub-Api-Version", "2022-11-28");
+            // Demande conditionnelle : si rien n'a changé depuis la dernière réponse, GitHub répond 304 sans contenu
+            // (plus léger, et sans entamer le quota).
+            var connue = ReleaseConnue();
+            if (connue is not null && stockage.LireValeur(CleEtag) is { Length: > 0 } etag
+                && EntityTagHeaderValue.TryParse(etag, out var entite))
+                requete.Headers.IfNoneMatch.Add(entite);
             using var reponse = await http.SendAsync(requete, HttpCompletionOption.ResponseHeadersRead, delai.Token);
+
+            if (reponse.StatusCode == HttpStatusCode.NotModified && connue is not null)
+                return new ResultatVerification(IssueVerification.AJour, connue, "Dernière version inchangée (HTTP 304).");
 
             if (EstQuotaDepasse(reponse))
                 return new ResultatVerification(IssueVerification.QuotaDepasse, null,
@@ -159,9 +173,10 @@ public sealed class ServiceMiseAJour(HttpClient http, IStockageCleValeur stockag
                 return new ResultatVerification(IssueVerification.Erreur, null, $"Réponse inattendue de GitHub : HTTP {(int)reponse.StatusCode}.");
 
             string json = await reponse.Content.ReadAsStringAsync(delai.Token);
-            return ReleaseGitHub.Lire(json) is { } release
-                ? new ResultatVerification(IssueVerification.AJour, release)
-                : new ResultatVerification(IssueVerification.Erreur, null, "Réponse de GitHub illisible (tag ou JSON invalide).");
+            if (ReleaseGitHub.Lire(json) is not { } release)
+                return new ResultatVerification(IssueVerification.Erreur, null, "Réponse de GitHub illisible (tag ou JSON invalide).");
+            stockage.EcrireValeur(CleEtag, reponse.Headers.ETag?.ToString());
+            return new ResultatVerification(IssueVerification.AJour, release);
         }
         catch (OperationCanceledException) when (!annulation.IsCancellationRequested)
         {

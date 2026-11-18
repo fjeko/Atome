@@ -76,7 +76,7 @@ charger les cours libres.
 
 ### Mises à jour
 
-Installé avec le setup, Atome vérifie au démarrage (une fois par jour au plus, désactivable dans les Réglages) s'il
+Installé avec le setup, Atome vérifie au démarrage (à chaque lancement, une fois par heure au plus, désactivable dans les Réglages) s'il
 existe une nouvelle version et la propose dans un bandeau : **Mettre à jour**, **Plus tard** ou **Ignorer cette version**.
 Le setup téléchargé est vérifié par son empreinte SHA-256, la base est sauvegardée, puis Atome se réinstalle et se
 relance. Tes données et ta progression ne sont jamais touchées. C'est la seule connexion Internet d'Atome.
@@ -164,7 +164,7 @@ Au démarrage, l'application importe automatiquement les packs de son dossier de
 dotnet test
 ```
 
-1031 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
+1032 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
 construction des sessions (types de session, paquets de matière, motifs, verrouillage des cours non lus, durée estimée), mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
 bibliothèque en niveaux, couleurs et contrastes de chaque thème, système de design (contrastes WCAG AA de toutes les paires
 texte / fond pour chaque thème et chaque accent, couleurs des matières, banque de messages de la mascotte), enregistrement des réglages,

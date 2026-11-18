@@ -369,20 +369,20 @@ public class ServiceMiseAJourTests
     }
 
     [Fact]
-    public async Task Une_seule_verification_par_24h_mais_la_proposition_revient_au_lancement_suivant()
+    public async Task Une_seule_verification_par_heure_mais_la_proposition_revient_au_lancement_suivant()
     {
         var serveur = new FauxServeur(_ => Reponse(HttpStatusCode.OK, JsonRelease()));
         Assert.True((await Service(serveur).VerifierAsync(false)).AProposer);
 
-        // « Plus tard », puis nouveau lancement 3 h après : pas de nouvelle requête, mais toujours proposé.
-        _horloge.Advance(TimeSpan.FromHours(3));
+        // « Plus tard », puis nouveau lancement 20 min après : pas de nouvelle requête, mais toujours proposé.
+        _horloge.Advance(TimeSpan.FromMinutes(20));
         var resultat = await Service(serveur).VerifierAsync(false);
         Assert.True(resultat.AProposer);
         Assert.True(resultat.DepuisMemoire);
         Assert.Single(serveur.Requetes);
 
-        // 24 h après la première vérification : on redemande à GitHub.
-        _horloge.Advance(TimeSpan.FromHours(21));
+        // Une heure après la première vérification : on redemande à GitHub.
+        _horloge.Advance(TimeSpan.FromMinutes(40));
         await Service(serveur).VerifierAsync(false);
         Assert.Equal(2, serveur.Requetes.Count);
     }
@@ -396,14 +396,32 @@ public class ServiceMiseAJourTests
         Assert.Equal(2, serveur.Requetes.Count);
     }
 
+    [Fact]
+    public async Task Demande_conditionnelle_avec_l_ETag_et_reponse_304_reutilise_la_release_connue()
+    {
+        var serveur = new FauxServeur(requete => requete.Headers.IfNoneMatch.Count > 0
+            ? new HttpResponseMessage(HttpStatusCode.NotModified)
+            : Reponse(HttpStatusCode.OK, JsonRelease(), ("ETag", "W/\"abc123\"")));
+        Assert.True((await Service(serveur).VerifierAsync(false)).AProposer);
+        Assert.Empty(serveur.Requetes[0].Headers.IfNoneMatch);
+
+        // Une heure plus tard : la demande porte l'ETag, GitHub répond 304, la version reste proposée.
+        _horloge.Advance(TimeSpan.FromHours(1));
+        var resultat = await Service(serveur).VerifierAsync(false);
+        Assert.Equal("W/\"abc123\"", serveur.Requetes[1].Headers.IfNoneMatch.Single().ToString());
+        Assert.True(resultat.AProposer);
+        Assert.False(resultat.DepuisMemoire);
+        Assert.Equal("1.2.0", resultat.Release!.Version.ToString());
+    }
+
     [Theory]
     [InlineData(null, true)]
-    [InlineData(-23.9, false)]
-    [InlineData(-24.0, true)]
+    [InlineData(-0.9, false)]
+    [InlineData(-1.0, true)]
     [InlineData(-100.0, true)]
     [InlineData(5.0, true)]    // date dans le futur : l'horloge a été reculée, on revérifie
     [InlineData(0.5, false)]
-    public void Intervalle_de_24h(double? decalageHeures, bool due)
+    public void Intervalle_d_une_heure(double? decalageHeures, bool due)
     {
         DateTimeOffset? derniere = decalageHeures is { } h ? Maintenant.AddHours(h) : null;
         Assert.Equal(due, ServiceMiseAJour.VerificationDue(derniere, Maintenant));
@@ -443,7 +461,7 @@ public class ServiceMiseAJourTests
         Assert.Equal(IssueVerification.Erreur, resultat.Issue);
         Assert.False(resultat.AProposer);
         Assert.Contains("injoignable", resultat.Detail);
-        // La tentative compte : pas de nouvel essai avant 24 h.
+        // La tentative compte : pas de nouvel essai avant une heure.
         Assert.False(ServiceMiseAJour.VerificationDue(Service(new ServeurEnPanne(new Exception())).DerniereVerification, Maintenant));
     }
 

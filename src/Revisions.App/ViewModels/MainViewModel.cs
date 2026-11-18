@@ -126,7 +126,7 @@ public partial class MainViewModel(
     // ---- Mises à jour ------------------------------------------------------------------------
 
     /// <summary>
-    /// Au lancement, en tâche de fond : bilan de la dernière installation, puis vérification (une fois par 24 h
+    /// Au lancement, en tâche de fond : bilan de la dernière installation, puis vérification (une fois par heure
     /// au plus, si le réglage est activé). Les problèmes réseau ne s'affichent pas : une ligne dans le journal suffit.
     /// </summary>
     public async Task VerifierMisesAJourAuDemarrageAsync()
