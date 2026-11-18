@@ -2,6 +2,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Revisions.App.Services;
 using Revisions.Core.Gamification;
+using Revisions.Core.Mascotte;
+using Revisions.Core.Planning;
 using Revisions.Core.Sessions;
 using Revisions.Core.Temps;
 using Revisions.Data;
@@ -9,7 +11,11 @@ using Revisions.Data;
 namespace Revisions.App.ViewModels;
 
 /// <summary>Un jour de la semaine sur l'accueil (pastille pleine s'il y a eu une révision).</summary>
-public sealed record JourDeSemaine(string Lettre, bool Actif, bool EstAujourdhui);
+public sealed record JourDeSemaine(string Lettre, bool Actif, bool EstAujourdhui, string Nom = "")
+{
+    /// <summary>Lu par le lecteur d'écran : « mercredi, aujourd'hui, révisé ».</summary>
+    public string NomAccessible => $"{Nom}{(EstAujourdhui ? ", aujourd'hui" : "")}, {(Actif ? "révisé" : "pas de révision")}";
+}
 
 /// <summary>Une séance proposée à la lecture dans le bloc « Au programme ».</summary>
 public sealed record SeanceAuProgramme(string PackId, string Seance, string Matiere, string Raison);
@@ -58,56 +64,40 @@ public partial class AccueilViewModel : ObservableObject
     public string TitreAuProgramme { get; }
     public string DetailAuProgramme { get; }
 
-    // ---- Mascotte : un message par ouverture de l'application (pas à chaque retour sur l'accueil) ----
-    private static string? _messageOuverture;
-    private static string _expressionOuverture = "content";
+    // ---- Mascotte (banque de messages : Core/Mascotte/messages-mascotte.json) ----
+    // Le message est tiré une fois par contexte et par lancement : revenir sur l'accueil ne le change pas.
+    private static readonly Dictionary<string, MessageMascotte> MessagesDuLancement = [];
+    /// <summary>L'application avait-elle déjà été ouverte aujourd'hui avant ce lancement ? (lu une seule fois)</summary>
+    private static bool? _dejaOuvertAuLancement;
 
-    private static readonly (string Message, string Expression)[] PremieresOuvertures =
+    /// <summary>Phrase dite par la mascotte.</summary>
+    public string MessageMascotte { get; private set; } = "";
+    /// <summary>Humeur de la mascotte, qui va avec la phrase.</summary>
+    public Humeur HumeurMascotte { get; private set; }
+
+    /// <summary>Choisit ce que dit la mascotte, d'après la journée (voir Core/Mascotte/ContexteAccueil).</summary>
+    private void ChoisirMessage(DepotProfil profil, DateOnly jour, SituationAccueil situation)
     {
-        ("Bonjour ! Prêt à apprendre ?", "content"),
-        ("Coucou ! Content que t'aies ouvert l'application !", "joie"),
-        ("Salut ! On s'y met tranquillement ?", "clin"),
-        ("Hello ! Un petit coup de cerveau aujourd'hui ?", "content"),
-        ("Te revoilà ! On fait pousser l'arbre ?", "clin"),
-    };
+        var (contexte, valeurs) = ContexteAccueil.Choisir(situation);
+        if (!MessagesDuLancement.TryGetValue(contexte, out var message))
+            MessagesDuLancement[contexte] = message = BanqueMessages.Tirer(contexte, valeurs: valeurs);
+        MessageMascotte = message.Texte;
+        HumeurMascotte = message.Humeur;
+    }
 
-    private static readonly (string Message, string Expression)[] OuverturesDuMemeJour =
+    /// <summary>« le DV1 (Mathématiques) » : code du devoir et début du nom de la matière.</summary>
+    private static string NomCourtDevoir(Devoir d)
     {
-        ("Ça faisait longtemps ! Non, j'déconne. On s'y remet ?", "malin"),
-        ("Déjà de retour ? J'adore. On s'y remet ?", "joie"),
-        ("Tu m'as manqué ! Bon, depuis tout à l'heure. On s'y remet ?", "malin"),
-    };
-
-    /// <summary>Phrases pour rire (on se moque gentiment des applis qui harcèlent leurs utilisateurs). Une ouverture sur cinq.</summary>
-    private static readonly (string Message, string Expression)[] Blagues =
-    {
-        ("Si tu veux que j'arrête de te montrer des pubs, souscris à mon abonnement à seulement 199,99 € hebdomadaires !", "malin"),
-        ("Ton arbre dépérit si tu ne révises pas… Je rigole, il est en plastique. Mais révise quand même.", "malin"),
-        ("Pas de notification menaçante ici. Juste moi, qui te regarde fixement. Sans clignoter.", "clin"),
-        ("Passe en version Premium+ pour débloquer… exactement les mêmes cartes, mais plus chères !", "malin"),
-        ("Une chouette vengeresse m'a proposé un partenariat. J'ai refusé. Tu as de la chance.", "clin"),
-    };
-
-    /// <summary>Phrase dite par la mascotte (la même tant que l'application reste ouverte).</summary>
-    public string MessageMascotte => _messageOuverture!;
-    /// <summary>Expression de la mascotte : content, clin, joie ou malin.</summary>
-    public string ExpressionMascotte => _expressionOuverture;
-
-    /// <summary>Choisit le message à la première visite de l'accueil après le lancement.</summary>
-    private static void ChoisirMessage(DepotProfil profil, DateOnly jour)
-    {
-        if (_messageOuverture is not null) return;
-        bool dejaOuvert = profil.DernierJourOuverture == jour;
-        profil.DernierJourOuverture = jour;
-        var choix = Random.Shared.Next(5) == 0 ? Blagues : dejaOuvert ? OuverturesDuMemeJour : PremieresOuvertures;
-        (_messageOuverture, _expressionOuverture) = choix[Random.Shared.Next(choix.Length)];
+        string matiere = d.Matiere;
+        foreach (string coupure in new[] { " – ", " - ", " pour ", " : " })
+            if (matiere.IndexOf(coupure, StringComparison.Ordinal) is > 0 and var i) matiere = matiere[..i];
+        return $"le {d.Code} ({matiere})";
     }
 
     public AccueilViewModel(MainViewModel main, EtatApplication etat, SelectionDuJour selection, DepotProfil profil)
     {
         _main = main;
         var jour = etat.Jour;
-        ChoisirMessage(profil, jour);
         var reglages = etat.Reglages;
         var joursActifs = profil.JoursActifs();
 
@@ -182,11 +172,13 @@ public partial class AccueilViewModel : ObservableObject
         var actifs = joursActifs.ToHashSet();
         Semaine = Enumerable.Range(0, 7)
             .Select(i => lundi.AddDays(i))
-            .Select(j => new JourDeSemaine("LMMJVSD"[j.DayNumber - lundi.DayNumber].ToString(), actifs.Contains(j), j == jour))
+            .Select(j => new JourDeSemaine("LMMJVSD"[j.DayNumber - lundi.DayNumber].ToString(), actifs.Contains(j), j == jour,
+                j.ToString("dddd", System.Globalization.CultureInfo.GetCultureInfo("fr-FR"))))
             .ToList();
 
         // ---- Planning du CNED : prochaines échéances et séances à lire (seulement s'il est suivi) ----
-        Echeances = _journee.Journee.Echeances(3).Select(Libelles.Echeance).ToList();
+        var devoirs = _journee.Journee.Echeances(3);
+        Echeances = devoirs.Select(Libelles.Echeance).ToList();
 
         // Pas assez de nouvelles cartes parce que leurs cours n'ont pas été lus : on propose 1 à 3 séances à lire.
         bool debloquer = _duJour.DebloquerUtile || (aFaire == 0 && !_plan.PlafondAtteint && _bonus.DebloquerUtile);
@@ -198,6 +190,22 @@ public partial class AccueilViewModel : ObservableObject
         DetailAuProgramme = debloquer
             ? "Les nouvelles cartes arrivent après la lecture de leur cours. Ouvre une de ces séances quand tu veux."
             : "Des séances à lire quand tu veux : leurs cartes arriveront ensuite.";
+
+        // ---- Mascotte : ce qu'elle dit dépend de la journée ----
+        _dejaOuvertAuLancement ??= profil.DernierJourOuverture == jour;
+        profil.DernierJourOuverture = jour;
+        var avant = joursActifs.Where(j => j < jour).ToList();
+        var prochain = devoirs.FirstOrDefault();
+        ChoisirMessage(profil, jour, new SituationAccueil(
+            RetourApresPause: _plan.RetourApresPause,
+            JoursAbsence: avant.Count > 0 ? jour.DayNumber - avant.Max().DayNumber : 0,
+            PlafondAtteint: aFaire == 0 && _plan.PlafondAtteint,
+            RienAFaire: aFaire == 0 && !_plan.PlafondAtteint,
+            DejaOuvertAujourdhui: _dejaOuvertAuLancement.Value,
+            PremiereOuvertureDeLaSemaine: !avant.Any(j => j >= lundi),
+            SerieSemaines: serie.Actuelle,
+            ProchainDevoir: prochain is null ? null : NomCourtDevoir(prochain),
+            JoursAvantDevoir: prochain is null ? -1 : prochain.DateLimite.DayNumber - jour.DayNumber));
     }
 
     /// <summary>Lance la session du jour.</summary>

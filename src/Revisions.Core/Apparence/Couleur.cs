@@ -65,6 +65,46 @@ public readonly record struct Couleur(byte R, byte G, byte B)
         return new Couleur(Canal(R, autre.R), Canal(G, autre.G), Canal(B, autre.B));
     }
 
+    /// <summary>
+    /// Couleur décrite par sa teinte (0 à 360°), sa saturation et sa luminosité (0 à 1) : le modèle TSL,
+    /// plus parlant que le RVB pour fabriquer des nuances d'une même couleur (une tuile pâle, un trait vif…).
+    /// </summary>
+    public static Couleur DepuisTsl(double teinte, double saturation, double luminosite)
+    {
+        teinte = ((teinte % 360) + 360) % 360;
+        saturation = Math.Clamp(saturation, 0, 1);
+        luminosite = Math.Clamp(luminosite, 0, 1);
+        double chroma = (1 - Math.Abs(2 * luminosite - 1)) * saturation;
+        double x = chroma * (1 - Math.Abs(teinte / 60 % 2 - 1));
+        double m = luminosite - chroma / 2;
+        var (r, g, b) = (int)(teinte / 60) switch
+        {
+            0 => (chroma, x, 0.0),
+            1 => (x, chroma, 0.0),
+            2 => (0.0, chroma, x),
+            3 => (0.0, x, chroma),
+            4 => (x, 0.0, chroma),
+            _ => (chroma, 0.0, x),
+        };
+        static byte Octet(double v) => (byte)Math.Round(Math.Clamp(v, 0, 1) * 255);
+        return new Couleur(Octet(r + m), Octet(g + m), Octet(b + m));
+    }
+
+    /// <summary>Teinte (0 à 360°) et saturation (0 à 1) de cette couleur, dans le modèle TSL.</summary>
+    public (double Teinte, double Saturation) Tsl
+    {
+        get
+        {
+            double r = R / 255.0, g = G / 255.0, b = B / 255.0;
+            double max = Math.Max(r, Math.Max(g, b)), min = Math.Min(r, Math.Min(g, b)), d = max - min;
+            if (d < 1e-9) return (0, 0);
+            double l = (max + min) / 2;
+            double s = d / (1 - Math.Abs(2 * l - 1));
+            double t = max == r ? 60 * (((g - b) / d) % 6) : max == g ? 60 * ((b - r) / d + 2) : 60 * ((r - g) / d + 4);
+            return ((t + 360) % 360, s);
+        }
+    }
+
     /// <summary>Noir ou blanc : celui qui se lit le mieux posé sur cette couleur (texte d'un bouton coloré).</summary>
     public Couleur TexteLisible => Contraste(this, Noir) >= Contraste(this, Blanc) ? Noir : Blanc;
 

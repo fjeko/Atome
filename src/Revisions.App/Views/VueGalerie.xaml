@@ -1,0 +1,288 @@
+<UserControl x:Class="Revisions.App.Views.VueGalerie"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:v="clr-namespace:Revisions.App.Views"
+             xmlns:ds="clr-namespace:Revisions.App.Controles">
+    <!--
+        Galerie (version de développement seulement) : chaque composant du système de design, dans tous ses états.
+        La même planche est affichée deux fois, avec les couleurs du thème Sombre puis du thème Clair (VueGalerie.xaml.cs).
+    -->
+    <UserControl.Resources>
+        <Style x:Key="TitreSection" TargetType="TextBlock" BasedOn="{StaticResource Texte.SousTitre}">
+            <Setter Property="Margin" Value="{StaticResource Marge.Haut.32}" />
+        </Style>
+        <Style x:Key="Ligne" TargetType="WrapPanel">
+            <Setter Property="Margin" Value="{StaticResource Marge.Haut.12}" />
+        </Style>
+
+        <DataTemplate x:Key="Planche">
+            <StackPanel Margin="{StaticResource Remplissage.Carte}">
+                <TextBlock x:Name="NomTheme" Text="{Binding Tag, RelativeSource={RelativeSource AncestorType=ContentControl}}" Style="{StaticResource Texte.Meta}" />
+
+                <!-- Typographie -->
+                <TextBlock Text="Typographie" Style="{StaticResource TitreSection}" />
+                <TextBlock Text="Bonjour, on s'y met ?" Style="{StaticResource Texte.Salut}" Margin="{StaticResource Marge.Haut.12}" />
+                <TextBlock Text="Titre d'écran (22)" Style="{StaticResource Texte.Titre}" />
+                <TextBlock Text="Titre de cours, à empattements" Style="{StaticResource Texte.TitreCours}" />
+                <TextBlock Text="Sous-titre (18)" Style="{StaticResource Texte.SousTitre}" />
+                <TextBlock Text="Corps et cartes (16) : une matrice carrée a autant de lignes que de colonnes." Style="{StaticResource Texte.Corps}" />
+                <TextBlock Text="Interface (14) : réglages, boutons, listes." Style="{StaticResource Texte.Base}" />
+                <TextBlock Text="Texte secondaire (14) : explications sous un titre." Style="{StaticResource Texte.Secondaire}" />
+                <TextBlock Text="Métadonnées (12) : vue il y a 6 jours · 3 min" Style="{StaticResource Texte.Meta}" />
+                <TextBlock Style="{StaticResource Texte.Chiffre}" Text="24" />
+
+                <!-- Couleurs -->
+                <TextBlock Text="Neutres et accent" Style="{StaticResource TitreSection}" />
+                <WrapPanel Style="{StaticResource Ligne}">
+                    <WrapPanel.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="Width" Value="44" />
+                            <Setter Property="Height" Value="44" />
+                            <Setter Property="CornerRadius" Value="{StaticResource Rayon.Controle}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.Bordure}" />
+                            <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="Margin" Value="{StaticResource Marge.Droite.8}" />
+                        </Style>
+                    </WrapPanel.Resources>
+                    <Border Background="{DynamicResource Pinceau.Fond}" ToolTip="Fond" />
+                    <Border Background="{DynamicResource Pinceau.Surface}" ToolTip="Surface" />
+                    <Border Background="{DynamicResource Pinceau.Surelevee}" ToolTip="Surélevée" />
+                    <Border Background="{DynamicResource Pinceau.Controle}" ToolTip="Contrôle" />
+                    <Border Background="{DynamicResource Pinceau.Bordure}" ToolTip="Bordure" />
+                    <Border Background="{DynamicResource Pinceau.TexteDiscret}" ToolTip="Texte discret" />
+                    <Border Background="{DynamicResource Pinceau.TexteSecondaire}" ToolTip="Texte secondaire" />
+                    <Border Background="{DynamicResource Pinceau.Texte}" ToolTip="Texte" />
+                    <Border Background="{DynamicResource Pinceau.Accent}" ToolTip="Accent" />
+                    <Border Background="{DynamicResource Pinceau.AccentTexte}" ToolTip="Accent (texte)" />
+                </WrapPanel>
+
+                <TextBlock Text="Tons : sens et matières (pâle, trait, texte)" Style="{StaticResource TitreSection}" />
+                <ItemsControl ItemsSource="{Binding Tons}" Margin="{StaticResource Marge.Haut.12}" Focusable="False">
+                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border ds:Ton.Nom="{Binding}" Style="{StaticResource EncadreTon}" Width="118" Margin="{StaticResource Marge.Tuile}">
+                                <StackPanel>
+                                    <Border Height="6" CornerRadius="3" Background="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource Self}}" />
+                                    <TextBlock Text="{Binding}" Foreground="{Binding (ds:Ton.Texte), RelativeSource={RelativeSource Self}}"
+                                               FontWeight="SemiBold" Margin="{StaticResource Marge.Haut.8}" />
+                                    <TextBlock Text="Texte principal" Style="{StaticResource Texte.Meta}" Foreground="{DynamicResource Pinceau.Texte}" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- Icônes -->
+                <TextBlock Text="Icônes (Segoe Fluent Icons)" Style="{StaticResource TitreSection}" />
+                <ItemsControl ItemsSource="{Binding IconesMatieres}" Margin="{StaticResource Marge.Haut.12}" Focusable="False">
+                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Width="84" Margin="{StaticResource Marge.Bas.8}">
+                                <TextBlock Text="{Binding Glyphe}" Style="{StaticResource Texte.Icone}" FontSize="{DynamicResource Taille.Titre}" HorizontalAlignment="Center" Foreground="{DynamicResource Pinceau.Texte}" />
+                                <TextBlock Text="{Binding Nom}" Style="{StaticResource Texte.Meta}" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding IconesInterface}" Margin="{StaticResource Marge.Haut.12}" Focusable="False">
+                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Width="84" Margin="{StaticResource Marge.Bas.8}">
+                                <TextBlock Text="{Binding Glyphe}" Style="{StaticResource Texte.Icone}" FontSize="{DynamicResource Taille.IconeGrande}" HorizontalAlignment="Center" Foreground="{DynamicResource Pinceau.Texte}" />
+                                <TextBlock Text="{Binding Nom}" Style="{StaticResource Texte.Meta}" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- Boutons -->
+                <TextBlock Text="Boutons" Style="{StaticResource TitreSection}" />
+                <WrapPanel Style="{StaticResource Ligne}">
+                    <Button Content="Session du jour" Style="{StaticResource BoutonHeros}" ds:Forme.Icone="{x:Static ds:Icones.Jouer}" Margin="{StaticResource Marge.Tuile}" />
+                    <Button Content="Principal" Style="{StaticResource BoutonPrincipal}" Margin="{StaticResource Marge.Tuile}" />
+                    <Button Content="Principal désactivé" Style="{StaticResource BoutonPrincipal}" IsEnabled="False" Margin="{StaticResource Marge.Tuile}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <Button Content="Secondaire" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Tuile}" />
+                    <Button Content="Avec icône" Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Lire}" Margin="{StaticResource Marge.Tuile}" />
+                    <Button Content="Désactivé" Style="{StaticResource BoutonSecondaire}" IsEnabled="False" Margin="{StaticResource Marge.Tuile}" />
+                    <Button Content="Fantôme" Style="{StaticResource BoutonFantome}" Margin="{StaticResource Marge.Tuile}" />
+                    <Button Content="Retour" Style="{StaticResource BoutonFantome}" ds:Forme.Icone="{x:Static ds:Icones.Retour}" Margin="{StaticResource Marge.Tuile}" />
+                    <Button Style="{StaticResource BoutonIcone}" ds:Forme.Icone="{x:Static ds:Icones.Drapeau}" ToolTip="Signaler une erreur"
+                            AutomationProperties.Name="Signaler une erreur" Margin="{StaticResource Marge.Tuile}" />
+                    <ToggleButton Content="Filtre actif" Style="{StaticResource BoutonBascule}" IsChecked="True" Margin="{StaticResource Marge.Tuile}" />
+                    <ToggleButton Content="Filtre inactif" Style="{StaticResource BoutonBascule}" Margin="{StaticResource Marge.Tuile}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <Button Content="Raté" Style="{StaticResource BoutonRate}" ds:Forme.Raccourci="1" Margin="{StaticResource Marge.Tuile}" />
+                    <Button Content="Difficile" Style="{StaticResource BoutonDifficile}" ds:Forme.Raccourci="2" Margin="{StaticResource Marge.Tuile}" />
+                    <Button Content="Bien" Style="{StaticResource BoutonBien}" ds:Forme.Raccourci="3" Margin="{StaticResource Marge.Tuile}" />
+                    <Button Content="Facile" Style="{StaticResource BoutonFacile}" ds:Forme.Raccourci="4" Margin="{StaticResource Marge.Tuile}" />
+                </WrapPanel>
+
+                <!-- Pastilles et badges -->
+                <TextBlock Text="Pastilles et badges" Style="{StaticResource TitreSection}" />
+                <WrapPanel Style="{StaticResource Ligne}">
+                    <Border Style="{StaticResource Pastille}" ds:Ton.Matiere="Mathématiques" Margin="{StaticResource Marge.Droite.8}"><TextBlock Text="Mathématiques" /></Border>
+                    <Border Style="{StaticResource Pastille}" ds:Ton.Matiere="CEJM" Margin="{StaticResource Marge.Droite.8}"><TextBlock Text="CEJM" /></Border>
+                    <Border Style="{StaticResource Pastille}" ds:Ton.Matiere="Anglais" Margin="{StaticResource Marge.Droite.8}"><TextBlock Text="Anglais" /></Border>
+                    <Border Style="{StaticResource Pastille}" ds:Ton.Nom="Succes" Margin="{StaticResource Marge.Droite.8}"><TextBlock Text="✓ Acquis" /></Border>
+                    <Border Style="{StaticResource Pastille}" ds:Ton.Nom="Attention" Margin="{StaticResource Marge.Droite.8}"><TextBlock Text="Point faible" /></Border>
+                    <Border Style="{StaticResource PastilleNeutre}" Margin="{StaticResource Marge.Droite.8}"><TextBlock Text="12 cartes" /></Border>
+                    <Border Style="{StaticResource BadgeLibre}"><TextBlock Text="Libre" /></Border>
+                </WrapPanel>
+
+                <!-- Progression -->
+                <TextBlock Text="Barres et anneaux" Style="{StaticResource TitreSection}" />
+                <StackPanel Margin="{StaticResource Marge.Haut.12}" MaxWidth="360" HorizontalAlignment="Left">
+                    <ProgressBar Style="{StaticResource BarreProgression}" Value="0" Width="360" />
+                    <ProgressBar Style="{StaticResource BarreProgression}" Value="0.45" Margin="{StaticResource Marge.Haut.12}" />
+                    <ProgressBar Style="{StaticResource BarreTon}" ds:Ton.Matiere="Anglais" Value="0.7" Margin="{StaticResource Marge.Haut.12}" />
+                    <ProgressBar Style="{StaticResource BarreTon}" ds:Ton.Matiere="Bloc 3 – Cybersécurité" Value="1" Margin="{StaticResource Marge.Haut.12}" />
+                </StackPanel>
+                <WrapPanel Style="{StaticResource Ligne}">
+                    <ds:Anneau Width="64" Height="64" Valeur="0" Trait="{DynamicResource Pinceau.AccentTrait}" Piste="{DynamicResource Pinceau.Voile}" Margin="{StaticResource Marge.Droite.16}">
+                        <TextBlock Text="0 %" Style="{StaticResource Texte.Meta}" />
+                    </ds:Anneau>
+                    <ds:Anneau Width="64" Height="64" Valeur="0.35" Trait="{DynamicResource Pinceau.AccentTrait}" Piste="{DynamicResource Pinceau.Voile}" Margin="{StaticResource Marge.Droite.16}">
+                        <TextBlock Text="35 %" Style="{StaticResource Texte.Meta}" />
+                    </ds:Anneau>
+                    <ds:Anneau Width="64" Height="64" Valeur="0.8" ds:Ton.Matiere="Mathématiques" Trait="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource Self}}" Piste="{DynamicResource Pinceau.Voile}" Margin="{StaticResource Marge.Droite.16}">
+                        <TextBlock Text="80 %" Style="{StaticResource Texte.Meta}" />
+                    </ds:Anneau>
+                    <ds:Anneau Width="96" Height="96" Valeur="1" Epaisseur="10" Trait="{DynamicResource Ton.Succes.Trait}" Piste="{DynamicResource Pinceau.Voile}">
+                        <TextBlock Text="100 %" Style="{StaticResource Texte.SousTitre}" />
+                    </ds:Anneau>
+                </WrapPanel>
+
+                <!-- Interrupteurs -->
+                <TextBlock Text="Interrupteurs" Style="{StaticResource TitreSection}" />
+                <StackPanel Margin="{StaticResource Marge.Haut.12}">
+                    <CheckBox Style="{StaticResource Interrupteur}" Content="Sons (désactivés)" />
+                    <CheckBox Style="{StaticResource Interrupteur}" Content="Réduire les animations (activé)" IsChecked="True" Margin="{StaticResource Marge.Haut.12}" />
+                    <CheckBox Style="{StaticResource Interrupteur}" Content="Indisponible" IsEnabled="False" Margin="{StaticResource Marge.Haut.12}" />
+                </StackPanel>
+
+                <!-- Fil d'Ariane -->
+                <TextBlock Text="Fil d'Ariane" Style="{StaticResource TitreSection}" />
+                <ItemsControl Style="{StaticResource FilAriane}" ItemsSource="{Binding Fil}" Tag="{Binding RienCommand}" Margin="{StaticResource Marge.Haut.12}" />
+
+                <!-- Tuiles -->
+                <TextBlock Text="Tuiles de matière" Style="{StaticResource TitreSection}" />
+                <ItemsControl ItemsSource="{Binding Tuiles}" Margin="{StaticResource Marge.Haut.12}" Focusable="False">
+                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ds:TuileMatiere Width="{StaticResource Largeur.Tuile}" Height="190" Margin="{StaticResource Marge.Tuile}"
+                                             ds:Ton.Matiere="{Binding Matiere}" ds:Ton.Partie="{Binding Partie}"
+                                             Titre="{Binding Titre}" Detail="{Binding Detail}" Progression="{Binding Progression}"
+                                             Mention="{Binding Mention}" Cochee="{Binding Cochee}" Libre="{Binding Libre}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- Bandeaux -->
+                <TextBlock Text="Bandeaux" Style="{StaticResource TitreSection}" />
+                <StackPanel Margin="{StaticResource Marge.Haut.12}">
+                    <ds:Bandeau Titre="12 nouveaux cours importés" Texte="Ils sont dans la bibliothèque." Icone="{x:Static ds:Icones.Info}">
+                        <ds:Bandeau.Actions><Button Content="OK" Style="{StaticResource BoutonSecondaire}" /></ds:Bandeau.Actions>
+                    </ds:Bandeau>
+                    <ds:Bandeau Titre="Atome 0.6.0 est disponible" Texte="Tu as la version 0.5.1." Icone="{x:Static ds:Icones.Telecharger}" Margin="{StaticResource Marge.Haut.16}">
+                        <ds:Bandeau.Actions>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Mettre à jour" Style="{StaticResource BoutonPrincipal}" />
+                                <Button Content="Plus tard" Style="{StaticResource BoutonFantome}" Margin="{StaticResource Marge.Gauche.8}" />
+                            </StackPanel>
+                        </ds:Bandeau.Actions>
+                        <TextBlock Text="• Nouveau look, thème sombre par défaut" Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.4}" />
+                    </ds:Bandeau>
+                    <ds:Bandeau ds:Ton.Nom="Succes" Titre="On reprend en douceur" Texte="10 cartes par jour pendant quelques jours, sans nouvelle carte."
+                                Icone="{x:Static ds:Icones.Coeur}" Margin="{StaticResource Marge.Haut.16}" />
+                    <ds:Bandeau ds:Ton.Nom="Attention" Titre="Le fichier n'a pas pu être lu" Texte="Vérifie qu'il s'agit bien d'un pack Atome."
+                                Icone="{x:Static ds:Icones.Attention}" Margin="{StaticResource Marge.Haut.16}" />
+                </StackPanel>
+
+                <!-- Toast -->
+                <TextBlock Text="Toast" Style="{StaticResource TitreSection}" />
+                <WrapPanel Style="{StaticResource Ligne}">
+                    <ContentControl ContentTemplate="{StaticResource Modele.Toast}" Content="{Binding ExempleToast}" Focusable="False" />
+                    <Button Content="Afficher un toast" Command="{Binding ToastCommand}" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Gauche.16}" VerticalAlignment="Center" />
+                </WrapPanel>
+
+                <!-- Semaine, XP -->
+                <TextBlock Text="Semaine et compteur d'XP" Style="{StaticResource TitreSection}" />
+                <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.12}" MaxWidth="420" HorizontalAlignment="Left">
+                    <StackPanel>
+                        <v:Semaine Jours="{Binding Semaine}" />
+                        <v:CompteurXp x:Name="Xp" Niveau="4" Progression="0.62" Texte="620 XP · niveau 5 à 800" Margin="{StaticResource Marge.Haut.24}" />
+                        <Button Content="+10 XP" Style="{StaticResource BoutonFantome}" Click="GagnerXp" Tag="{Binding ElementName=Xp}" HorizontalAlignment="Left" Margin="{StaticResource Marge.Haut.8}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Mascotte -->
+                <TextBlock Text="Mascotte : humeurs" Style="{StaticResource TitreSection}" />
+                <ItemsControl ItemsSource="{Binding Humeurs}" Margin="{StaticResource Marge.Haut.12}" Focusable="False">
+                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Width="104" Margin="{StaticResource Marge.Bas.16}">
+                                <v:Mascotte Width="88" Height="88" Humeur="{Binding}" />
+                                <TextBlock Text="{Binding}" Style="{StaticResource Texte.Meta}" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <v:BandeauMascotte Contexte="bonjour" Taille="72" HorizontalAlignment="Left" Margin="{StaticResource Marge.Haut.12}" />
+
+                <!-- État vide -->
+                <TextBlock Text="État vide" Style="{StaticResource TitreSection}" />
+                <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.12}">
+                    <v:EtatVide Titre="Rien à réviser pour l'instant" Texte="Et si tu lisais un nouveau cours ? Ses cartes arriveront ensuite.">
+                        <v:EtatVide.Action>
+                            <Button Content="Aller à la bibliothèque" Style="{StaticResource BoutonPrincipal}" />
+                        </v:EtatVide.Action>
+                    </v:EtatVide>
+                </Border>
+
+                <!-- Dialogue -->
+                <TextBlock Text="Dialogue" Style="{StaticResource TitreSection}" />
+                <Border Style="{StaticResource CarteFlottante}" Margin="{StaticResource Marge.Haut.12}" MaxWidth="440" HorizontalAlignment="Left">
+                    <StackPanel>
+                        <TextBlock Text="Quitter la session ?" Style="{StaticResource Texte.SousTitre}" />
+                        <TextBlock Text="Les cartes déjà notées sont enregistrées. Tu pourras reprendre quand tu veux." Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Marge.Haut.24}">
+                            <Button Content="Continuer" Style="{StaticResource BoutonFantome}" Margin="{StaticResource Marge.Droite.8}" />
+                            <Button Content="Quitter" Style="{StaticResource BoutonPrincipal}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <!-- Saisie (contrôle standard du thème Fluent, à nos couleurs) -->
+                <TextBlock Text="Saisie" Style="{StaticResource TitreSection}" />
+                <TextBlock Text="Les zones de saisie (thème Fluent) suivent le thème de l'application : seule la moitié de ce thème est fidèle." Style="{StaticResource Texte.Meta}" />
+                <TextBox Text="Ta réponse…" Margin="{StaticResource Marge.Haut.12}" MaxWidth="360" HorizontalAlignment="Left" Width="360" />
+                <ComboBox Margin="{StaticResource Marge.Haut.12}" Width="240" HorizontalAlignment="Left" SelectedIndex="0">
+                    <ComboBoxItem Content="Comme Windows" />
+                    <ComboBoxItem Content="Sombre" />
+                </ComboBox>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border x:Name="CadreSombre" Background="{DynamicResource Pinceau.Fond}">
+                <ContentControl x:Name="Sombre" Content="{Binding}" ContentTemplate="{StaticResource Planche}" Tag="Thème Sombre" Focusable="False" />
+            </Border>
+            <Border x:Name="CadreClair" Grid.Column="1" Background="{DynamicResource Pinceau.Fond}">
+                <ContentControl x:Name="Clair" Content="{Binding}" ContentTemplate="{StaticResource Planche}" Tag="Thème Clair" Focusable="False" />
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

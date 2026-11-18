@@ -1,0 +1,117 @@
+{
+  "_lisezmoi": "Banque de messages de la mascotte (cahier de design, section 3). Ton : tutoiement, chaleureux, court, jamais culpabilisant. 5 à 10 variantes par contexte, tirées au hasard. {jours}, {semaines}, {devoir} et {niveau} sont remplacés par l'application.",
+  "bonjour": {
+    "humeur": "contente",
+    "messages": [
+      "Bonjour ! On s'y met tranquillement ?",
+      "Salut ! Content de te voir.",
+      "Hello ! Quelques cartes et c'est parti.",
+      "Bonjour ! Envie d'un petit tour de révision ?",
+      "Salut ! Une session courte, ça compte déjà.",
+      "Coucou ! On avance à ton rythme.",
+      "Bonjour ! Ton cerveau va apprécier."
+    ]
+  },
+  "rebonjour": {
+    "humeur": "contente",
+    "messages": [
+      "Re-bonjour ! On continue ?",
+      "Déjà de retour ? Avec plaisir.",
+      "Te revoilà ! Encore un petit tour ?",
+      "Rebonjour ! Je n'ai pas bougé.",
+      "Ah, c'est toi ! On reprend où on en était ?"
+    ]
+  },
+  "bon_retour": {
+    "humeur": "endormie",
+    "messages": [
+      "Content de te revoir ! On reprend doucement.",
+      "Te revoilà ! On repart en douceur, sans pression.",
+      "Bon retour ! Une petite session pour se remettre dans le bain ?",
+      "Ça fait {jours} jours : on reprend tranquillement, rien ne presse.",
+      "Bon retour ! J'ai gardé tes cartes au chaud.",
+      "Te revoilà ! On recommence petit, c'est parfait comme ça."
+    ]
+  },
+  "serie": {
+    "humeur": "encourageante",
+    "messages": [
+      "{semaines} semaines de suite, joli !",
+      "Ta série tient depuis {semaines} semaines. Belle régularité.",
+      "Semaine après semaine, ça rentre. Continue comme ça !",
+      "{semaines} semaines d'affilée : c'est la régularité qui paie.",
+      "Tu tiens le rythme, et ça se voit."
+    ]
+  },
+  "devoir_proche": {
+    "humeur": "encourageante",
+    "messages": [
+      "{devoir} approche : une petite session pour le préparer ?",
+      "Bientôt {devoir}. On révise ce qui pourrait tomber ?",
+      "Pour {devoir}, quelques cartes ciblées peuvent aider.",
+      "{devoir} arrive : « Autre révision » peut le préparer avec toi.",
+      "On prépare {devoir} ensemble, tranquillement ?"
+    ]
+  },
+  "plafond_atteint": {
+    "humeur": "fiere",
+    "messages": [
+      "C'est bien pour aujourd'hui ! Ta mémoire a de quoi digérer.",
+      "Belle journée de révision. Le reste attendra demain.",
+      "Tu as fait le plein pour aujourd'hui. Bravo !",
+      "Mission du jour remplie. La pause fait aussi partie de l'apprentissage.",
+      "Assez pour aujourd'hui : la mémoire travaille aussi au repos."
+    ]
+  },
+  "rien_a_faire": {
+    "humeur": "curieuse",
+    "messages": [
+      "Rien à réviser pour l'instant. Et si tu lisais un nouveau cours ?",
+      "Tout est à jour ! Un nouveau cours te tente ?",
+      "Pas de carte en attente. C'est le bon moment pour découvrir une séance.",
+      "Tout est révisé. Un petit tour dans la bibliothèque ?",
+      "Calme plat côté cartes. Une lecture, peut-être ?"
+    ]
+  },
+  "fin_session": {
+    "humeur": "fiere",
+    "messages": [
+      "Bien joué ! Session terminée.",
+      "Et voilà, c'est fait. Bravo !",
+      "Session bouclée. Chaque carte compte.",
+      "Beau travail ! Tes cartes reviendront au bon moment.",
+      "Session finie ! Ta mémoire te remercie.",
+      "C'est dans la boîte. Merci pour cette session !"
+    ]
+  },
+  "niveau_gagne": {
+    "humeur": "fiere",
+    "messages": [
+      "Niveau {niveau} ! Belle progression.",
+      "Et hop, niveau {niveau}. Bravo !",
+      "Te voilà au niveau {niveau}. Ça avance bien.",
+      "Niveau {niveau} atteint : tout ce travail se voit.",
+      "Nouveau niveau : {niveau} ! Chapeau."
+    ]
+  },
+  "bibliotheque": {
+    "humeur": "contente",
+    "messages": [
+      "On lit quoi aujourd'hui ?",
+      "Un cours à lire, ou direct des cartes ?",
+      "Choisis une séance, je m'occupe du reste.",
+      "Tout ce savoir n'attend que toi.",
+      "Une matière te fait de l'œil ?"
+    ]
+  },
+  "statistiques": {
+    "humeur": "fiere",
+    "messages": [
+      "Regarde le chemin parcouru !",
+      "Les chiffres, c'est juste pour te repérer.",
+      "Ça avance, et ça se voit.",
+      "Chaque petite session s'additionne.",
+      "Pas de note ici : seulement ta progression."
+    ]
+  }
+}

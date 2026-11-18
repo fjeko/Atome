@@ -2,9 +2,17 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:v="clr-namespace:Revisions.App.Views"
+        xmlns:ds="clr-namespace:Revisions.App.Controles"
+        xmlns:s="clr-namespace:Revisions.App.Services"
         Title="Atome" Icon="Ressources/mini.ico"
-        Width="1180" Height="780" MinWidth="900" MinHeight="600"
+        Width="1240" Height="800" MinWidth="960" MinHeight="600"
         WindowStartupLocation="CenterScreen">
+    <!--
+        Fenêtre principale (docs/design-atome.md, section 5) : barre latérale à gauche (icônes et libellés,
+        repliable, repliée d'office sous 1100 px), écran courant au centre, bandeaux et toasts par-dessus.
+        En session et en lecture, la barre disparaît (mode concentration) ; F11 passe en plein écran.
+        Le fond est celui du thème Fluent : l'effet Mica de Windows 11, ou la couleur unie du thème.
+    -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -15,162 +23,165 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- Barre de navigation (masquée pendant une session ou une lecture). -->
-        <Border Grid.RowSpan="2" Width="232" Margin="14,14,0,14" Padding="10,22,10,14" CornerRadius="12"
-                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1"
-                Visibility="{Binding NavigationVisible, Converter={StaticResource VisibleSi}}">
-            <DockPanel>
-                <!-- Logo, puis nom de l'application. -->
-                <v:LogoArbre DockPanel.Dock="Top" Width="112" Height="112" />
-                <TextBlock DockPanel.Dock="Top" Text="Atome" FontSize="22" FontWeight="SemiBold"
-                           HorizontalAlignment="Center" Margin="0,12,0,0" />
-                <TextBlock DockPanel.Dock="Top" Text="Atome : tes révisions, at home." Style="{StaticResource Discret}"
-                           FontSize="11.5" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,2,0,22" />
-
-                <!-- Rubriques : une icône (police d'icônes de Windows) et un libellé. -->
-                <ListBox SelectedValue="{Binding Rubrique, Mode=TwoWay}" SelectedValuePath="Tag"
-                         Background="Transparent" BorderThickness="0" FontSize="15.5">
-                    <ListBox.Resources>
-                        <Style x:Key="Icone" TargetType="TextBlock">
-                            <Setter Property="FontFamily" Value="Segoe Fluent Icons, Segoe MDL2 Assets" />
-                            <Setter Property="FontSize" Value="18" />
-                            <Setter Property="Width" Value="34" />
-                            <Setter Property="VerticalAlignment" Value="Center" />
-                        </Style>
-                    </ListBox.Resources>
-                    <ListBoxItem Tag="accueil" Padding="14,13">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE80F;" Style="{StaticResource Icone}" />
-                            <TextBlock Text="Accueil" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Tag="bibliotheque" Padding="14,13">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE8F1;" Style="{StaticResource Icone}" />
-                            <TextBlock Text="Bibliothèque" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Tag="td" Padding="14,13" ToolTip="Faire un TD à plusieurs, chacun sur son PC (sur Discord par exemple)">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE716;" Style="{StaticResource Icone}" />
-                            <TextBlock Text="TD en groupe" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Tag="acquis" Padding="14,13">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE73E;" Style="{StaticResource Icone}" />
-                            <TextBlock Text="Mes acquis" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Tag="planning" Padding="14,13">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE787;" Style="{StaticResource Icone}" />
-                            <TextBlock Text="Planning" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Tag="statistiques" Padding="14,13">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE9D2;" Style="{StaticResource Icone}" />
-                            <TextBlock Text="Statistiques" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Tag="reglages" Padding="14,13">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE713;" Style="{StaticResource Icone}" />
-                            <TextBlock Text="Réglages" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </ListBoxItem>
-                    <ListBoxItem Tag="aide" Padding="14,13">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE897;" Style="{StaticResource Icone}" />
-                            <TextBlock Text="Aide" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </ListBoxItem>
-                </ListBox>
-            </DockPanel>
-        </Border>
-
-        <!-- Écran courant : la vue est choisie d'après le type du ViewModel (voir App.xaml). -->
-        <!-- Chaque nouvel écran apparaît en fondu, en remontant légèrement : l'appli paraît plus vivante. -->
-        <ContentControl Grid.Column="1" Content="{Binding VueCourante, NotifyOnTargetUpdated=True}" Focusable="False">
-            <ContentControl.Style>
-                <Style TargetType="ContentControl">
-                    <Setter Property="RenderTransform"><Setter.Value><TranslateTransform /></Setter.Value></Setter>
+        <!-- ===== Barre latérale ===== -->
+        <DockPanel x:Name="Barre" Grid.RowSpan="2" Margin="12,12,0,12" Visibility="{Binding NavigationVisible, Converter={StaticResource VisibleSi}}">
+            <DockPanel.Style>
+                <Style TargetType="DockPanel">
+                    <Setter Property="Width" Value="224" />
                     <Style.Triggers>
-                        <EventTrigger RoutedEvent="Binding.TargetUpdated">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.28" />
-                                    <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)" From="14" To="0" Duration="0:0:0.28">
-                                        <DoubleAnimation.EasingFunction><CubicEase EasingMode="EaseOut" /></DoubleAnimation.EasingFunction>
-                                    </DoubleAnimation>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
+                        <DataTrigger Binding="{Binding NavigationCompacte}" Value="True">
+                            <Setter Property="Width" Value="60" />
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </ContentControl.Style>
-        </ContentControl>
+            </DockPanel.Style>
 
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <!-- Bandeau « nouvelle version disponible » : jamais pendant une session (voir MiseAJourVisible). -->
-            <Border Style="{StaticResource Carte}" Padding="18,12" Margin="28,0,28,14"
-                    Visibility="{Binding MiseAJourVisible, Converter={StaticResource VisibleSi}}">
-                <DockPanel DataContext="{Binding MiseAJour}">
-                    <!-- Pictogramme « téléchargement » de la police d'icônes de Windows. -->
-                    <TextBlock DockPanel.Dock="Left" Text="&#xE896;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="22"
-                               Foreground="{DynamicResource AccentFillColorDefaultBrush}" VerticalAlignment="Top" Margin="0,2,14,0" />
+            <!-- Bouton ☰ (replier / déplier), logo et nom. -->
+            <StackPanel DockPanel.Dock="Top" Margin="{StaticResource Marge.Bas.16}">
+                <Button Style="{StaticResource BoutonIcone}" ds:Forme.Icone="{x:Static ds:Icones.Menu}" HorizontalAlignment="Left"
+                        Margin="6,0,0,0" Command="{Binding BasculerNavigationCommand}"
+                        ToolTip="Replier ou déplier le menu" AutomationProperties.Name="Replier ou déplier le menu" />
+                <StackPanel Orientation="Horizontal" Margin="10,16,0,0">
+                    <v:LogoArbre Width="32" Height="32" />
+                    <StackPanel Margin="{StaticResource Marge.Gauche.12}" VerticalAlignment="Center"
+                                Visibility="{Binding NavigationCompacte, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}">
+                        <TextBlock Text="Atome" Style="{StaticResource Texte.SousTitre}" />
+                        <TextBlock Text="Tes révisions, at home." Style="{StaticResource Texte.Meta}" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
 
-                    <!-- Boutons à droite : les trois choix, ou « Annuler » pendant le téléchargement. -->
-                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="14,0,0,0">
+            <!-- Rubriques : une icône et un libellé (le libellé disparaît quand la barre est repliée, l'infobulle reste). -->
+            <ListBox SelectedValue="{Binding Rubrique, Mode=TwoWay}" SelectedValuePath="Tag" Style="{StaticResource ListeNue}"
+                     ItemContainerStyle="{StaticResource ElementNavigation}" AutomationProperties.Name="Menu principal">
+                <ListBox.Resources>
+                    <Style x:Key="Libelle" TargetType="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="{StaticResource Marge.Gauche.12}" />
+                        <Setter Property="Visibility" Value="{Binding DataContext.NavigationCompacte, RelativeSource={RelativeSource AncestorType=ListBox}, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}" />
+                    </Style>
+                    <Style x:Key="IconeNav" TargetType="TextBlock" BasedOn="{StaticResource Texte.Icone}">
+                        <Setter Property="FontSize" Value="{DynamicResource Taille.IconeGrande}" />
+                        <Setter Property="Width" Value="24" />
+                        <Setter Property="TextAlignment" Value="Center" />
+                    </Style>
+                </ListBox.Resources>
+                <ListBoxItem Tag="accueil" ToolTip="Accueil" AutomationProperties.Name="Accueil">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static ds:Icones.Accueil}" Style="{StaticResource IconeNav}" />
+                        <TextBlock Text="Accueil" Style="{StaticResource Libelle}" />
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Tag="bibliotheque" ToolTip="Bibliothèque" AutomationProperties.Name="Bibliothèque">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static ds:Icones.Bibliotheque}" Style="{StaticResource IconeNav}" />
+                        <TextBlock Text="Bibliothèque" Style="{StaticResource Libelle}" />
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Tag="td" ToolTip="TD en groupe : le même TD à plusieurs, chacun sur son PC" AutomationProperties.Name="TD en groupe">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static ds:Icones.Groupe}" Style="{StaticResource IconeNav}" />
+                        <TextBlock Text="TD en groupe" Style="{StaticResource Libelle}" />
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Tag="acquis" ToolTip="Mes acquis" AutomationProperties.Name="Mes acquis">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static ds:Icones.Acquis}" Style="{StaticResource IconeNav}" />
+                        <TextBlock Text="Mes acquis" Style="{StaticResource Libelle}" />
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Tag="planning" ToolTip="Planning" AutomationProperties.Name="Planning">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static ds:Icones.Planning}" Style="{StaticResource IconeNav}" />
+                        <TextBlock Text="Planning" Style="{StaticResource Libelle}" />
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Tag="statistiques" ToolTip="Statistiques" AutomationProperties.Name="Statistiques">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static ds:Icones.Statistiques}" Style="{StaticResource IconeNav}" />
+                        <TextBlock Text="Statistiques" Style="{StaticResource Libelle}" />
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Tag="reglages" ToolTip="Réglages" AutomationProperties.Name="Réglages">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static ds:Icones.Reglages}" Style="{StaticResource IconeNav}" />
+                        <TextBlock Text="Réglages" Style="{StaticResource Libelle}" />
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Tag="aide" ToolTip="Aide" AutomationProperties.Name="Aide">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static ds:Icones.Aide}" Style="{StaticResource IconeNav}" />
+                        <TextBlock Text="Aide" Style="{StaticResource Libelle}" />
+                    </StackPanel>
+                </ListBoxItem>
+                <!-- Version de développement seulement : la Galerie des composants. -->
+                <ListBoxItem Tag="galerie" ToolTip="Galerie des composants (développement)" AutomationProperties.Name="Galerie"
+                             Visibility="{Binding GalerieVisible, Converter={StaticResource VisibleSi}}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{x:Static ds:Icones.Galerie}" Style="{StaticResource IconeNav}" />
+                        <TextBlock Text="Galerie" Style="{StaticResource Libelle}" />
+                    </StackPanel>
+                </ListBoxItem>
+            </ListBox>
+        </DockPanel>
+
+        <!-- ===== Écran courant (vue choisie d'après le type du ViewModel, voir App.xaml) ===== -->
+        <!-- Chaque nouvel écran apparaît en fondu avec un léger glissement (Services/Mouvement.cs). -->
+        <ContentControl x:Name="Ecran" Grid.Column="1" Content="{Binding VueCourante, NotifyOnTargetUpdated=True}"
+                        Binding.TargetUpdated="EcranChange" Focusable="False" />
+
+        <!-- ===== Bandeaux, posés en bas du contenu ===== -->
+        <StackPanel Grid.Column="1" Grid.Row="1" MaxWidth="{StaticResource Largeur.Contenu}" Margin="32,0,32,12">
+            <!-- Nouvelle version disponible : jamais pendant une session (voir MiseAJourVisible). -->
+            <ds:Bandeau DataContext="{Binding MiseAJour}" Icone="{x:Static ds:Icones.Telecharger}"
+                        Titre="{Binding Titre}" Texte="{Binding SousTitre}" Margin="{StaticResource Marge.Haut.12}"
+                        Visibility="{Binding DataContext.MiseAJourVisible, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource VisibleSi}}">
+                <ds:Bandeau.Actions>
+                    <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Horizontal" Visibility="{Binding ChoixVisibles, Converter={StaticResource VisibleSi}}">
-                            <Button Content="{Binding TexteBoutonPrincipal}" Command="{Binding MettreAJourCommand}"
-                                    Style="{DynamicResource AccentButtonStyle}" Padding="16,6" />
-                            <Button Content="Plus tard" Command="{Binding PlusTardCommand}" Padding="14,6" Margin="8,0,0,0"
+                            <Button Content="{Binding TexteBoutonPrincipal}" Command="{Binding MettreAJourCommand}" Style="{StaticResource BoutonPrincipal}" />
+                            <Button Content="Plus tard" Command="{Binding PlusTardCommand}" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Gauche.8}"
                                     ToolTip="La proposition reviendra au prochain lancement d'Atome." />
-                            <Button Content="Ignorer cette version" Command="{Binding IgnorerCommand}" Padding="14,6" Margin="8,0,0,0"
+                            <Button Content="Ignorer cette version" Command="{Binding IgnorerCommand}" Style="{StaticResource BoutonFantome}" Margin="{StaticResource Marge.Gauche.8}"
                                     ToolTip="Cette version ne sera plus proposée. Les suivantes, si." />
                         </StackPanel>
-                        <Button Content="Annuler" Command="{Binding AnnulerCommand}" Padding="14,6"
+                        <Button Content="Annuler" Command="{Binding AnnulerCommand}" Style="{StaticResource BoutonSecondaire}"
                                 Visibility="{Binding EnTelechargement, Converter={StaticResource VisibleSi}}" />
-                        <Button Content="Installer maintenant" Command="{Binding InstallerCommand}" Style="{DynamicResource AccentButtonStyle}" Padding="16,6"
+                        <Button Content="Installer maintenant" Command="{Binding InstallerCommand}" Style="{StaticResource BoutonPrincipal}"
                                 Visibility="{Binding PretAInstaller, Converter={StaticResource VisibleSi}}" />
                     </StackPanel>
+                </ds:Bandeau.Actions>
+                <StackPanel>
+                    <!-- Résumé des notes de version (texte simple, quelques lignes). -->
+                    <ItemsControl ItemsSource="{Binding Notes}" Margin="{StaticResource Marge.Haut.4}" Focusable="False">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Style="{StaticResource Texte.Meta}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Margin="{StaticResource Marge.Haut.4}" FontSize="{DynamicResource Taille.Meta}">
+                        <Hyperlink Command="{Binding OuvrirPageReleaseCommand}" Style="{StaticResource Texte.Lien}">Voir toutes les nouveautés</Hyperlink>
+                    </TextBlock>
+                    <ProgressBar Style="{StaticResource BarreProgression}" Value="{Binding Progression, Mode=OneWay}" Margin="{StaticResource Marge.Haut.8}"
+                                 Visibility="{Binding EnTelechargement, Converter={StaticResource VisibleSi}}" />
+                    <TextBlock Text="{Binding Message}" Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
+                               Visibility="{Binding Message, Converter={StaticResource VisibleSi}}" />
+                </StackPanel>
+            </ds:Bandeau>
 
-                    <StackPanel>
-                        <TextBlock FontSize="15" FontWeight="SemiBold" TextWrapping="Wrap">
-                            <Run Text="{Binding Titre, Mode=OneWay}" />
-                            <Run Text="{Binding SousTitre, Mode=OneWay}" FontWeight="Normal" FontSize="13"
-                                 Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                        </TextBlock>
-                        <!-- Résumé des notes de version (texte simple, quelques lignes). -->
-                        <ItemsControl ItemsSource="{Binding Notes}" Margin="0,4,0,0">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding}" Style="{StaticResource Discret}" FontSize="12.5" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <TextBlock FontSize="12.5" Margin="0,4,0,0">
-                            <Hyperlink Command="{Binding OuvrirPageReleaseCommand}">Voir toutes les nouveautés</Hyperlink>
-                        </TextBlock>
-                        <ProgressBar Value="{Binding Progression, Mode=OneWay}" Maximum="1" Height="6" Margin="0,8,0,0"
-                                     Visibility="{Binding EnTelechargement, Converter={StaticResource VisibleSi}}" />
-                        <TextBlock Text="{Binding Message}" TextWrapping="Wrap" FontSize="12.5" Margin="0,6,0,0"
-                                   Visibility="{Binding Message, Converter={StaticResource VisibleSi}}" />
-                    </StackPanel>
-                </DockPanel>
-            </Border>
-
-            <!-- Bandeau d'information (résultat d'un import). -->
-            <Border Style="{StaticResource Carte}" Padding="14,8" Margin="28,0,28,14"
-                    Visibility="{Binding Bandeau, Converter={StaticResource VisibleSi}}">
-                <DockPanel>
-                    <Button DockPanel.Dock="Right" Content="OK" Command="{Binding FermerBandeauCommand}" Padding="14,4" />
-                    <TextBlock Text="{Binding Bandeau}" VerticalAlignment="Center" TextWrapping="Wrap" />
-                </DockPanel>
-            </Border>
+            <!-- Information (résultat d'un import, bilan d'une mise à jour). -->
+            <ds:Bandeau Texte="{Binding Bandeau}" Icone="{x:Static ds:Icones.Info}" Margin="{StaticResource Marge.Haut.12}"
+                        Visibility="{Binding Bandeau, Converter={StaticResource VisibleSi}}">
+                <ds:Bandeau.Actions>
+                    <Button Content="OK" Command="{Binding FermerBandeauCommand}" Style="{StaticResource BoutonSecondaire}" />
+                </ds:Bandeau.Actions>
+            </ds:Bandeau>
         </StackPanel>
+
+        <!-- ===== Toasts (notifications brèves) ===== -->
+        <ItemsControl Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="{StaticResource Marge.Bas.24}"
+                      ItemsSource="{x:Static s:ServiceToast.Visibles}" ItemTemplate="{StaticResource Modele.Toast}"
+                      IsHitTestVisible="False" Focusable="False" />
     </Grid>
 </Window>

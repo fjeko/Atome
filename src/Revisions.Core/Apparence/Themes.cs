@@ -37,7 +37,8 @@ public sealed record Palette(
 /// <summary>Liste des thèmes et calcul de la palette finale.</summary>
 public static class Themes
 {
-    public const string CleParDefaut = "systeme";
+    /// <summary>Thème du premier lancement : sombre (choix de Florian, cahier de design). Un thème déjà choisi est toujours gardé.</summary>
+    public const string CleParDefaut = "sombre";
 
     /// <summary>Les trois thèmes neutres, puis six thèmes colorés tout faits.</summary>
     public static readonly IReadOnlyList<ThemeApp> Tous =
@@ -69,7 +70,7 @@ public static class Themes
     ];
 
     // Couleurs de base des thèmes neutres (les mêmes que dans Web/app.css).
-    private static readonly Couleur FeuilleClaire = Couleur.Blanc, FeuilleSombre = Couleur.Parse("#1F1F1F");
+    private static readonly Couleur FeuilleClaire = Couleur.Blanc, FeuilleSombre = Couleur.Parse("#26262B");
     private static readonly Couleur TexteClair = Couleur.Parse("#1B1B1B"), TexteSombre = Couleur.Parse("#F2F2F2");
 
     /// <summary>Thème correspondant à une clé ; une clé inconnue donne le thème par défaut.</summary>

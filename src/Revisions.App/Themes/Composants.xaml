@@ -1,0 +1,219 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ds="clr-namespace:Revisions.App.Controles"
+                    xmlns:s="clr-namespace:Revisions.App.Services">
+    <!-- Apparence des composants écrits en C# (Controles/) : TuileMatiere, Bandeau, AnneauProgression, Toast. -->
+
+    <!-- ===== AnneauProgression : le contenu (pourcentage) est centré dans le cercle ===== -->
+    <Style TargetType="ds:Anneau">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ds:Anneau">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ===== TuileMatiere ===== -->
+    <Style TargetType="ds:TuileMatiere">
+        <Setter Property="Background" Value="{Binding (ds:Ton.Pale), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Foreground" Value="{DynamicResource Pinceau.Texte}" />
+        <Setter Property="Padding" Value="{StaticResource Remplissage.Tuile}" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisible}" />
+        <Setter Property="FontSize" Value="{DynamicResource Taille.Interface}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ds:TuileMatiere">
+                    <Grid x:Name="Racine" SnapsToDevicePixels="True">
+                        <Grid.RenderTransform><TranslateTransform x:Name="Decalage" /></Grid.RenderTransform>
+                        <Border x:Name="Fond" Background="{TemplateBinding Background}" CornerRadius="{StaticResource Rayon.Tuile}" />
+                        <Border x:Name="Voile" Background="{DynamicResource Pinceau.Voile}" CornerRadius="{StaticResource Rayon.Tuile}" Opacity="0" />
+                        <Border x:Name="Appui" Background="{DynamicResource Pinceau.Voile}" CornerRadius="{StaticResource Rayon.Tuile}" Visibility="Collapsed" />
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <!-- Icône de la matière, et anneau de maîtrise (ou coche quand c'est fini). -->
+                            <DockPanel>
+                                <Grid DockPanel.Dock="Right" Width="44" Height="44">
+                                    <ds:Anneau x:Name="AnneauMaitrise" Epaisseur="4" Valeur="{TemplateBinding Progression}"
+                                               Trait="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource TemplatedParent}}"
+                                               Piste="{DynamicResource Pinceau.Voile}">
+                                        <TextBlock x:Name="Pourcentage" FontSize="{DynamicResource Taille.Meta}" FontWeight="SemiBold"
+                                                   Foreground="{Binding (ds:Ton.Texte), RelativeSource={RelativeSource TemplatedParent}}"
+                                                   Text="{Binding Progression, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:P0}}" />
+                                    </ds:Anneau>
+                                    <Border x:Name="Coche" CornerRadius="22" Visibility="Collapsed"
+                                            Background="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource TemplatedParent}}"
+                                            AutomationProperties.Name="Terminé">
+                                        <TextBlock Style="{StaticResource Texte.Icone}" Text="{x:Static ds:Icones.Coche}" HorizontalAlignment="Center"
+                                                   FontSize="{DynamicResource Taille.IconeGrande}" Foreground="{DynamicResource Pinceau.Surface}" />
+                                    </Border>
+                                </Grid>
+                                <Border Width="40" Height="40" CornerRadius="20" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                        Background="{DynamicResource Pinceau.Surface}">
+                                    <TextBlock Style="{StaticResource Texte.Icone}" HorizontalAlignment="Center" FontSize="{DynamicResource Taille.IconeGrande}"
+                                               Text="{Binding (ds:Ton.Icone), RelativeSource={RelativeSource TemplatedParent}}"
+                                               Foreground="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource TemplatedParent}}" />
+                                </Border>
+                            </DockPanel>
+                            <StackPanel Grid.Row="1" Margin="{StaticResource Marge.Haut.12}">
+                                <TextBlock Text="{TemplateBinding Titre}" FontSize="{DynamicResource Taille.Corps}" FontWeight="SemiBold"
+                                           TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxHeight="72" />
+                                <TextBlock x:Name="DetailTexte" Text="{TemplateBinding Detail}" Margin="{StaticResource Marge.Haut.4}"
+                                           FontSize="{DynamicResource Taille.Meta}" TextWrapping="Wrap"
+                                           Foreground="{Binding (ds:Ton.Texte), RelativeSource={RelativeSource TemplatedParent}}" />
+                                <ContentPresenter Margin="{StaticResource Marge.Haut.8}" />
+                            </StackPanel>
+                            <WrapPanel Grid.Row="2" Margin="{StaticResource Marge.Haut.12}">
+                                <Border x:Name="MentionPastille" Style="{StaticResource Pastille}" Margin="{StaticResource Marge.Droite.8}"
+                                        Background="{DynamicResource Pinceau.Surface}">
+                                    <TextBlock Text="{TemplateBinding Mention}" />
+                                </Border>
+                                <Border x:Name="Libre" Style="{StaticResource BadgeLibre}" Visibility="Collapsed">
+                                    <TextBlock Text="Libre" />
+                                </Border>
+                            </WrapPanel>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Progression" Value="-1">
+                            <Setter TargetName="AnneauMaitrise" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="Cochee" Value="True">
+                            <Setter TargetName="AnneauMaitrise" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Coche" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="Mention" Value="{x:Null}">
+                            <Setter TargetName="MentionPastille" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="Mention" Value="">
+                            <Setter TargetName="MentionPastille" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="Detail" Value="{x:Null}">
+                            <Setter TargetName="DetailTexte" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="Libre" Value="True">
+                            <Setter TargetName="Libre" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Voile" Storyboard.TargetProperty="Opacity" To="1" Duration="{StaticResource Duree.Survol}" />
+                                        <DoubleAnimation Storyboard.TargetName="Decalage" Storyboard.TargetProperty="Y" To="-2" Duration="{StaticResource Duree.Survol}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Voile" Storyboard.TargetProperty="Opacity" To="0" Duration="{StaticResource Duree.Survol}" />
+                                        <DoubleAnimation Storyboard.TargetName="Decalage" Storyboard.TargetProperty="Y" To="0" Duration="{StaticResource Duree.Survol}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Appui" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ===== Bandeau (information, mise à jour, reprise) ===== -->
+    <Style TargetType="ds:Bandeau">
+        <Setter Property="ds:Ton.Nom" Value="Info" />
+        <Setter Property="Foreground" Value="{DynamicResource Pinceau.Texte}" />
+        <Setter Property="FontSize" Value="{DynamicResource Taille.Interface}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ds:Bandeau">
+                    <Border Style="{StaticResource CarteFlottante}" Padding="{StaticResource Remplissage.Compact}">
+                        <DockPanel>
+                            <Border DockPanel.Dock="Left" Width="36" Height="36" CornerRadius="18" VerticalAlignment="Top"
+                                    Background="{Binding (ds:Ton.Pale), RelativeSource={RelativeSource TemplatedParent}}">
+                                <TextBlock Style="{StaticResource Texte.Icone}" HorizontalAlignment="Center" Text="{TemplateBinding Icone}"
+                                           Foreground="{Binding (ds:Ton.Texte), RelativeSource={RelativeSource TemplatedParent}}" />
+                            </Border>
+                            <ContentPresenter DockPanel.Dock="Right" Content="{TemplateBinding Actions}" VerticalAlignment="Center"
+                                              Margin="{StaticResource Marge.Gauche.16}" />
+                            <StackPanel Margin="{StaticResource Marge.Gauche.12}" VerticalAlignment="Center">
+                                <TextBlock x:Name="TitreTexte" Text="{TemplateBinding Titre}" Style="{StaticResource Texte.Fort}"
+                                           FontSize="{DynamicResource Taille.Corps}" />
+                                <TextBlock x:Name="CorpsTexte" Text="{TemplateBinding Texte}" Style="{StaticResource Texte.Secondaire}" />
+                                <ContentPresenter />
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Titre" Value="{x:Null}">
+                            <Setter TargetName="TitreTexte" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="Texte" Value="{x:Null}">
+                            <Setter TargetName="CorpsTexte" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ===== FilAriane =====
+         Éléments attendus : Titre, Profondeur (0 = racine) et EstCourant. La commande de navigation se donne dans Tag
+         (elle reçoit le maillon cliqué) ; le maillon courant n'est pas cliquable. -->
+    <Style x:Key="FilAriane" TargetType="ItemsControl">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="Separateur" Style="{StaticResource Texte.Icone}" Text="{x:Static ds:Icones.Chevron}"
+                                   FontSize="{DynamicResource Taille.Meta}" Foreground="{DynamicResource Pinceau.TexteDiscret}" Margin="2,0" />
+                        <Button x:Name="Lien" Style="{StaticResource BoutonFantome}" Content="{Binding Titre}" Padding="6,4"
+                                Command="{Binding Tag, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" />
+                        <TextBlock x:Name="Courant" Text="{Binding Titre}" Style="{StaticResource Texte.Fort}" VerticalAlignment="Center"
+                                   Margin="6,4" Visibility="Collapsed" />
+                    </StackPanel>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Profondeur}" Value="0">
+                            <Setter TargetName="Separateur" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding EstCourant}" Value="True">
+                            <Setter TargetName="Lien" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Courant" Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ===== Toast (notification brève, en bas de la fenêtre) ===== -->
+    <DataTemplate x:Key="Modele.Toast" DataType="{x:Type s:Toast}">
+        <Border Style="{StaticResource CarteFlottante}" CornerRadius="{StaticResource Rayon.Pilule}" Padding="16,10"
+                Margin="{StaticResource Marge.Haut.8}" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource Texte.Icone}" Text="{Binding Icone}" Foreground="{DynamicResource Ton.Succes.Trait}"
+                           Margin="{StaticResource Marge.Droite.8}" />
+                <TextBlock Text="{Binding Texte}" Style="{StaticResource Texte.Base}" />
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+</ResourceDictionary>

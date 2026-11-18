@@ -91,13 +91,18 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
             DossierCours = valeurs.GetValueOrDefault("dossier_cours"),
             CoursLibres = valeurs.GetValueOrDefault("cours_libres") switch { "1" => true, "0" => false, _ => null },
             // Une valeur abîmée ou inconnue retombe sur un choix sûr plutôt que de faire planter l'affichage.
-            // Jamais choisi (premier lancement) : Crépuscule.
-            Theme = valeurs.TryGetValue("theme", out var cleTheme) ? Themes.Trouver(cleTheme).Cle : "crepuscule",
+            // Jamais choisi (premier lancement) : le thème par défaut, sombre. Un thème déjà enregistré est gardé tel quel.
+            Theme = valeurs.TryGetValue("theme", out var cleTheme) ? Themes.Trouver(cleTheme).Cle : Themes.CleParDefaut,
             CouleurAccent = Couleur.TryParse(valeurs.GetValueOrDefault("couleur_accent"), out var accent) ? accent.Hex : null,
             // Activé tant qu'on ne l'a pas explicitement désactivé.
             VerifierMisesAJour = valeurs.GetValueOrDefault("verifier_mises_a_jour") != "0",
             // Désactivé tant qu'on ne l'a pas explicitement activé.
             NouvellesNonLues = valeurs.GetValueOrDefault("nouvelles_non_lues") == "1",
+            TailleTexte = Entier("taille_texte", defaut.TailleTexte, Reglages.TailleTexteMin, Reglages.TailleTexteMax),
+            ReduireAnimations = valeurs.GetValueOrDefault("reduire_animations") == "1",
+            Sons = valeurs.GetValueOrDefault("sons") == "1",
+            Mascotte = valeurs.GetValueOrDefault("mascotte") is "reduite" or "masquee" ? valeurs["mascotte"] : "normale",
+            NavigationRepliee = valeurs.GetValueOrDefault("navigation_repliee") == "1",
         };
     }
 
@@ -115,6 +120,11 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
         EcrireValeur("theme", r.Theme);
         EcrireValeur("couleur_accent", r.CouleurAccent);
         EcrireValeur("verifier_mises_a_jour", r.VerifierMisesAJour ? "1" : "0");
+        EcrireValeur("taille_texte", r.TailleTexte.ToString(CultureInfo.InvariantCulture));
+        EcrireValeur("reduire_animations", r.ReduireAnimations ? "1" : "0");
+        EcrireValeur("sons", r.Sons ? "1" : "0");
+        EcrireValeur("mascotte", r.Mascotte);
+        EcrireValeur("navigation_repliee", r.NavigationRepliee ? "1" : "0");
     }
 
     /// <summary>Jour où le mode reprise a commencé, ou null s'il n'est pas actif.</summary>

@@ -54,6 +54,9 @@ public sealed class EtatApplication(TimeProvider horloge, DepotProfil profil)
         AppliquerTheme();
     }
 
+    /// <summary>Enregistre les réglages sans réappliquer le thème (choix sans effet sur les couleurs, comme la barre repliée).</summary>
+    public void EnregistrerSansAppliquer() => profil.EnregistrerReglages(Reglages);
+
     public void Enregistrer()
     {
         profil.EnregistrerReglages(Reglages);
@@ -98,7 +101,9 @@ public sealed class EtatApplication(TimeProvider horloge, DepotProfil profil)
         var theme = Themes.Trouver(Reglages.Theme);
         Couleur? accentPerso = Couleur.TryParse(Reglages.CouleurAccent, out var accent) ? accent : null;
         Palette = Themes.Resoudre(theme, accentPerso, SystemeEnSombre(), ServiceTheme.AccentWindows());
-        ServiceTheme.Appliquer(Palette, theme.Sombre);
+        ServiceTheme.Appliquer(Palette, theme.Sombre, Reglages.TailleTexte / 100.0);
+        Mouvement.ReductionDemandee = Reglages.ReduireAnimations;
+        ServiceSons.Actifs = Reglages.Sons;
         ThemeChange?.Invoke();
     }
 

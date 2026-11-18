@@ -1,0 +1,25 @@
+<UserControl x:Class="Revisions.App.Views.CompteurXp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ds="clr-namespace:Revisions.App.Controles"
+             x:Name="Racine" Focusable="False" IsTabStop="False">
+    <!-- CompteurXP : niveau dans une pastille, barre vers le niveau suivant, XP en clair. -->
+    <Grid>
+        <StackPanel>
+            <DockPanel>
+                <Border x:Name="Badge" DockPanel.Dock="Left" Style="{StaticResource Pastille}" ds:Ton.Nom="Info">
+                    <TextBlock>
+                        <Run Text="Niveau" /> <Run Text="{Binding Niveau, ElementName=Racine, Mode=OneWay}" />
+                    </TextBlock>
+                </Border>
+                <TextBlock Text="{Binding Texte, ElementName=Racine}" Style="{StaticResource Texte.Meta}" TextAlignment="Right"
+                           VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.12}" />
+            </DockPanel>
+            <ProgressBar Style="{StaticResource BarreProgression}" Value="{Binding Progression, ElementName=Racine, Mode=OneWay}"
+                         Margin="{StaticResource Marge.Haut.12}"
+                         AutomationProperties.Name="Progression vers le niveau suivant" />
+        </StackPanel>
+        <!-- Scène des « +10 » qui montent. -->
+        <Canvas x:Name="Scene" IsHitTestVisible="False" />
+    </Grid>
+</UserControl>

@@ -51,6 +51,24 @@ public partial class App : Application
         if (arguments.FirstOrDefault(a => a.StartsWith("--hauteur=")) is { } hauteur)
             Current.MainWindow!.Height = double.Parse(hauteur["--hauteur=".Length..]);
 
+        // « --defiler=1800 » fait défiler l'écran affiché (pour capturer le bas d'une longue page).
+        if (arguments.FirstOrDefault(a => a.StartsWith("--defiler=")) is { } defiler)
+        {
+            double decalage = double.Parse(defiler["--defiler=".Length..]);
+            _ = Current.Dispatcher.InvokeAsync(async () =>
+            {
+                await Task.Delay(1500);
+                static System.Windows.Controls.ScrollViewer? Chercher(DependencyObject o)
+                {
+                    if (o is System.Windows.Controls.ScrollViewer sv && sv.ScrollableHeight > 0) return sv;
+                    for (int i = 0; i < System.Windows.Media.VisualTreeHelper.GetChildrenCount(o); i++)
+                        if (Chercher(System.Windows.Media.VisualTreeHelper.GetChild(o, i)) is { } trouve) return trouve;
+                    return null;
+                }
+                Chercher(Current.MainWindow!)?.ScrollToVerticalOffset(decalage);
+            });
+        }
+
         // « --theme=ocean » et « --accent=#D8498F » (ou « --accent=auto ») changent l'apparence au vol.
         var etat = Services.GetRequiredService<EtatApplication>();
         string? theme = arguments.FirstOrDefault(a => a.StartsWith("--theme="))?["--theme=".Length..];
@@ -84,6 +102,7 @@ public partial class App : Application
                 if (morceaux.Length > 1 && principal.VueCourante is TdGroupeViewModel td) td.DemonstrationDev(morceaux[1]);
                 break;
             case "reglages": principal.AllerReglages(); break;
+            case "galerie": principal.AllerGalerie(); break;
             case "choix": principal.AllerChoixRevision(); break;
             case "planning": principal.AllerPlanning(); break;
             case "aide":
@@ -106,8 +125,16 @@ public partial class App : Application
     // ---- Instance unique -----------------------------------------------------------------------
     // Un Mutex nommé empêche de lancer Atome deux fois (deux instances sur la même base se gêneraient).
     // Le second lancement réveille la première fenêtre via un EventWaitHandle nommé, puis s'arrête sans bruit.
-    private const string NomMutex = "Atome-instance-unique-RevisionsBTS";
-    private const string NomSignal = "Atome-instance-unique-RevisionsBTS-signal";
+#if DEBUG
+    // En développement, un autre dossier de données (REVISIONS_DONNEES) compte comme une autre instance :
+    // on peut ainsi essayer la version de travail pendant que l'Atome installé reste ouvert.
+    private static readonly string SuffixeEssai = Environment.GetEnvironmentVariable("REVISIONS_DONNEES") is { Length: > 0 } d
+        ? "-essai-" + (uint)StringComparer.OrdinalIgnoreCase.GetHashCode(d) : "";
+#else
+    private const string SuffixeEssai = "";
+#endif
+    private static readonly string NomMutex = "Atome-instance-unique-RevisionsBTS" + SuffixeEssai;
+    private static readonly string NomSignal = "Atome-instance-unique-RevisionsBTS-signal" + SuffixeEssai;
     private Mutex? _mutex;
     private EventWaitHandle? _signal;
 

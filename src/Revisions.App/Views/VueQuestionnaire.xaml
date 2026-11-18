@@ -20,7 +20,7 @@
 
             <!-- La mascotte pose les questions. -->
             <v:BandeauMascotte Taille="112" HorizontalAlignment="Center" Margin="0,0,0,22"
-                               Message="{Binding Message}" Expression="{Binding Expression}" />
+                               Message="{Binding Message}" Humeur="{Binding Humeur}" />
 
             <!-- Intro : partir de zéro ou non. -->
             <StackPanel Visibility="{Binding EstIntro, Converter={StaticResource VisibleSi}}">

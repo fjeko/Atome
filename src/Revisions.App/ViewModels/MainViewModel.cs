@@ -49,6 +49,48 @@ public partial class MainViewModel(
 
     partial void OnNavigationVisibleChanged(bool value) => OnPropertyChanged(nameof(MiseAJourVisible));
 
+    // ---- Barre latérale : repliable en icônes seules, repliée d'office sous 1100 px de large ----
+
+    /// <summary>Choix de l'utilisateur (bouton ☰), gardé d'un lancement à l'autre.</summary>
+    public bool NavigationRepliee
+    {
+        get => etat.Reglages.NavigationRepliee;
+        set
+        {
+            if (etat.Reglages.NavigationRepliee == value) return;
+            etat.Reglages.NavigationRepliee = value;
+            etat.EnregistrerSansAppliquer();
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(NavigationCompacte));
+        }
+    }
+
+    /// <summary>La fenêtre fait moins de 1100 px de large (mis à jour par la fenêtre).</summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(NavigationCompacte))]
+    private bool _fenetreEtroite;
+
+    /// <summary>Barre latérale en icônes seules.</summary>
+    public bool NavigationCompacte => NavigationRepliee || FenetreEtroite;
+
+    [RelayCommand]
+    private void BasculerNavigation()
+    {
+        // Fenêtre étroite : le bouton déplie quand même la barre, le temps d'y lire les libellés.
+        if (FenetreEtroite && NavigationCompacte) { FenetreEtroite = false; NavigationRepliee = false; return; }
+        NavigationRepliee = !NavigationRepliee;
+    }
+
+    /// <summary>La Galerie des composants n'existe que dans la version de développement.</summary>
+#if DEBUG
+    public bool GalerieVisible => true;
+#else
+    public bool GalerieVisible => false;
+#endif
+
+    [RelayCommand]
+    public void AllerGalerie() => Afficher(new GalerieViewModel(), "galerie");
+
     /// <summary>Proposition trouvée au démarrage, qui attend que l'accueil soit affiché.</summary>
     private MiseAJourViewModel? _propositionEnAttente;
 
@@ -153,6 +195,7 @@ public partial class MainViewModel(
             case "planning": AllerPlanning(); break;
             case "td": AllerTdGroupe(); break;
             case "aide": AllerAide(); break;
+            case "galerie": AllerGalerie(); break;
         }
     }
 

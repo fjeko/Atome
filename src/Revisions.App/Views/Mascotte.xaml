@@ -1,40 +1,82 @@
 <UserControl x:Class="Revisions.App.Views.Mascotte"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- Petit personnage tout simple : une bouille ronde avec une pousse (un nœud de l'arbre de compétences) sur la tête.
-         Il suit la couleur du texte (blanc en thème sombre). Quatre expressions, voir Mascotte.xaml.cs. Grille : 100 × 100. -->
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Focusable="False" IsTabStop="False">
+    <!--
+        La mascotte d'Atome : un petit atome souriant (docs/design-atome.md, section 3).
+        Le noyau forme le visage, les trois orbites tournent lentement autour (sauf en animations réduites).
+        Dessinée en vecteurs sur une grille de 100 × 100 : nette à toutes les tailles, sans image externe.
+        Elle suit les couleurs du thème : accent pour les orbites, texte pour le visage.
+        Cinq humeurs (voir Mascotte.xaml.cs) : contente, encourageante, endormie, fière, curieuse.
+    -->
     <UserControl.Resources>
         <Style x:Key="Trait" TargetType="Path">
-            <Setter Property="Stroke" Value="{DynamicResource TextFillColorPrimaryBrush}" />
-            <Setter Property="StrokeThickness" Value="5" />
+            <Setter Property="Stroke" Value="{DynamicResource Pinceau.Texte}" />
+            <Setter Property="StrokeThickness" Value="2.6" />
             <Setter Property="StrokeStartLineCap" Value="Round" />
             <Setter Property="StrokeEndLineCap" Value="Round" />
+            <Setter Property="StrokeLineJoin" Value="Round" />
         </Style>
-        <Style x:Key="Oeil" TargetType="Ellipse">
-            <Setter Property="Width" Value="9" />
-            <Setter Property="Height" Value="9" />
-            <Setter Property="Fill" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+        <Style x:Key="Orbite" TargetType="Ellipse">
+            <Setter Property="Width" Value="96" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Canvas.Left" Value="2" />
+            <Setter Property="Canvas.Top" Value="40" />
+            <Setter Property="Stroke" Value="{DynamicResource Pinceau.AccentTrait}" />
+            <Setter Property="StrokeThickness" Value="2" />
+            <Setter Property="Opacity" Value="0.55" />
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+        </Style>
+        <Style x:Key="Electron" TargetType="Ellipse">
+            <Setter Property="Width" Value="8" />
+            <Setter Property="Height" Value="8" />
+            <Setter Property="Fill" Value="{DynamicResource Pinceau.AccentTrait}" />
         </Style>
     </UserControl.Resources>
     <Viewbox>
         <Canvas Width="100" Height="100">
-            <!-- Pousse. -->
-            <Path Style="{StaticResource Trait}" Stroke="{DynamicResource AccentFillColorDefaultBrush}" Data="M50,30 L50,19" />
-            <Ellipse Width="14" Height="14" Canvas.Left="43" Canvas.Top="5" StrokeThickness="4.5"
-                     Stroke="{DynamicResource AccentFillColorDefaultBrush}" />
-            <!-- Tête. -->
-            <Ellipse Width="76" Height="68" Canvas.Left="12" Canvas.Top="28" StrokeThickness="5"
-                     Stroke="{DynamicResource TextFillColorPrimaryBrush}" />
-            <!-- Yeux. -->
-            <Ellipse x:Name="OeilG" Style="{StaticResource Oeil}" Canvas.Left="33.5" Canvas.Top="52" />
-            <Ellipse x:Name="OeilD" Style="{StaticResource Oeil}" Canvas.Left="57.5" Canvas.Top="52" />
-            <Path x:Name="ArcG" Style="{StaticResource Trait}" Data="M31,58 Q38,48 45,58" Visibility="Collapsed" />
-            <Path x:Name="ArcD" Style="{StaticResource Trait}" Data="M55,58 Q62,48 69,58" Visibility="Collapsed" />
+            <!-- Orbites et électrons : un groupe qui tourne doucement autour du noyau. -->
+            <Canvas x:Name="Orbites" Width="100" Height="100" RenderTransformOrigin="0.5,0.54">
+                <Canvas.RenderTransform><RotateTransform x:Name="Rotation" /></Canvas.RenderTransform>
+                <Ellipse Style="{StaticResource Orbite}" />
+                <Ellipse Style="{StaticResource Orbite}"><Ellipse.RenderTransform><RotateTransform Angle="60" /></Ellipse.RenderTransform></Ellipse>
+                <Ellipse Style="{StaticResource Orbite}"><Ellipse.RenderTransform><RotateTransform Angle="-60" /></Ellipse.RenderTransform></Ellipse>
+                <!-- Deux électrons aux bouts de l'orbite horizontale (les « mains »), un sur une orbite oblique. -->
+                <Ellipse Style="{StaticResource Electron}" Canvas.Left="-1" Canvas.Top="50" />
+                <Ellipse Style="{StaticResource Electron}" Canvas.Left="93" Canvas.Top="50" />
+                <Ellipse Style="{StaticResource Electron}" Canvas.Left="70" Canvas.Top="91" />
+            </Canvas>
+
+            <!-- Noyau = visage. -->
+            <Ellipse Width="54" Height="54" Canvas.Left="23" Canvas.Top="27" StrokeThickness="2.6"
+                     Fill="{DynamicResource Pinceau.Surelevee}" Stroke="{DynamicResource Pinceau.AccentTrait}" />
+            <!-- Joues. -->
+            <Ellipse x:Name="JoueG" Width="8" Height="5" Canvas.Left="31" Canvas.Top="58" Fill="{DynamicResource Ton.Rose.Trait}" Opacity="0.45" />
+            <Ellipse x:Name="JoueD" Width="8" Height="5" Canvas.Left="61" Canvas.Top="58" Fill="{DynamicResource Ton.Rose.Trait}" Opacity="0.45" />
+
+            <!-- Yeux ouverts (points), ou fermés en arcs. -->
+            <Ellipse x:Name="OeilG" Width="6" Height="7" Canvas.Left="39" Canvas.Top="47" Fill="{DynamicResource Pinceau.Texte}" />
+            <Ellipse x:Name="OeilD" Width="6" Height="7" Canvas.Left="55" Canvas.Top="47" Fill="{DynamicResource Pinceau.Texte}" />
+            <Path x:Name="ClinD" Style="{StaticResource Trait}" Data="M54,51 Q58,48 62,51" />
+            <Path x:Name="JoieG" Style="{StaticResource Trait}" Data="M38,52 Q42,46 46,52" />
+            <Path x:Name="JoieD" Style="{StaticResource Trait}" Data="M54,52 Q58,46 62,52" />
+            <Path x:Name="SommeilG" Style="{StaticResource Trait}" Data="M38,50 Q42,54 46,50" />
+            <Path x:Name="SommeilD" Style="{StaticResource Trait}" Data="M54,50 Q58,54 62,50" />
+            <Path x:Name="Sourcil" Style="{StaticResource Trait}" Data="M38,42 Q42,39 46,41" />
+
             <!-- Bouches. -->
-            <Path x:Name="Sourire" Style="{StaticResource Trait}" Data="M37,69 Q50,81 63,69" />
-            <Path x:Name="Rire" Style="{StaticResource Trait}" Fill="{DynamicResource TextFillColorPrimaryBrush}"
-                  Data="M36,67 Q50,88 64,67 Z" Visibility="Collapsed" />
-            <Path x:Name="EnCoin" Style="{StaticResource Trait}" Data="M38,72 Q54,78 64,66" Visibility="Collapsed" />
+            <Path x:Name="Sourire" Style="{StaticResource Trait}" Data="M43,60 Q50,66 57,60" />
+            <Path x:Name="GrandSourire" Style="{StaticResource Trait}" Data="M42,59 Q50,68 58,59" />
+            <Path x:Name="Rire" Style="{StaticResource Trait}" Fill="{DynamicResource Pinceau.Texte}" Data="M42,59 Q50,70 58,59 Z" />
+            <Ellipse x:Name="BoucheO" Width="5" Height="5" Canvas.Left="47.5" Canvas.Top="60" StrokeThickness="2.2" Stroke="{DynamicResource Pinceau.Texte}" />
+
+            <!-- Petits signes : « z » du sommeil, « ? » de la curiosité. -->
+            <TextBlock x:Name="Zzz" Canvas.Left="70" Canvas.Top="8" FontSize="15" FontWeight="SemiBold"
+                       Foreground="{DynamicResource Pinceau.TexteSecondaire}" Text="z" />
+            <TextBlock x:Name="Zzz2" Canvas.Left="80" Canvas.Top="0" FontSize="11" FontWeight="SemiBold"
+                       Foreground="{DynamicResource Pinceau.TexteSecondaire}" Text="z" />
+            <TextBlock x:Name="Question" Canvas.Left="74" Canvas.Top="4" FontSize="18" FontWeight="SemiBold"
+                       Foreground="{DynamicResource Pinceau.AccentTexte}" Text="?" />
         </Canvas>
     </Viewbox>
 </UserControl>

@@ -6,45 +6,33 @@
              xmlns:v="clr-namespace:Revisions.App.Views"
              ThemeMode="System">
     <Application.Resources>
-        <local:VisibleSiConvertisseur x:Key="VisibleSi" />
+        <ResourceDictionary>
+            <!-- Système de design (docs/design-atome.md) : jetons, styles de base, composants.
+                 Les couleurs et les tailles de texte sont posées par Services/ServiceTheme.cs. -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Jetons.xaml" />
+                <ResourceDictionary Source="Themes/Styles.xaml" />
+                <ResourceDictionary Source="Themes/Composants.xaml" />
+            </ResourceDictionary.MergedDictionaries>
 
-        <!-- Quel écran (vue) afficher pour chaque ViewModel. -->
-        <DataTemplate DataType="{x:Type vm:AccueilViewModel}"><v:VueAccueil /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:BibliothequeViewModel}"><v:VueBibliotheque /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:LectureViewModel}"><v:VueLecture /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:SessionViewModel}"><v:VueSession /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:FinSessionViewModel}"><v:VueFinSession /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:StatistiquesViewModel}"><v:VueStatistiques /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:ReglagesViewModel}"><v:VueReglages /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:AideViewModel}"><v:VueAide /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:ChoixRevisionViewModel}"><v:VueChoixRevision /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:MesSignalementsViewModel}"><v:VueMesSignalements /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:AcquisViewModel}"><v:VueAcquis /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:PlanningViewModel}"><v:VuePlanning /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:QuestionnaireViewModel}"><v:VueQuestionnaire /></DataTemplate>
-        <DataTemplate DataType="{x:Type vm:TdGroupeViewModel}"><v:VueTdGroupe /></DataTemplate>
+            <local:VisibleSiConvertisseur x:Key="VisibleSi" />
 
-        <!-- Styles communs. Les couleurs viennent du thème Fluent : elles suivent le mode clair ou sombre. -->
-        <Style x:Key="Carte" TargetType="Border">
-            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}" />
-            <Setter Property="BorderBrush" Value="{DynamicResource CardStrokeColorDefaultBrush}" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="CornerRadius" Value="12" />
-            <Setter Property="Padding" Value="26,24" />
-        </Style>
-        <Style x:Key="Titre" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="30" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-        </Style>
-        <Style x:Key="SousTitre" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-        </Style>
-        <Style x:Key="Discret" TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-        </Style>
+            <!-- Quel écran (vue) afficher pour chaque ViewModel. -->
+            <DataTemplate DataType="{x:Type vm:AccueilViewModel}"><v:VueAccueil /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:BibliothequeViewModel}"><v:VueBibliotheque /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:LectureViewModel}"><v:VueLecture /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SessionViewModel}"><v:VueSession /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:FinSessionViewModel}"><v:VueFinSession /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:StatistiquesViewModel}"><v:VueStatistiques /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ReglagesViewModel}"><v:VueReglages /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AideViewModel}"><v:VueAide /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ChoixRevisionViewModel}"><v:VueChoixRevision /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:MesSignalementsViewModel}"><v:VueMesSignalements /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AcquisViewModel}"><v:VueAcquis /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:PlanningViewModel}"><v:VuePlanning /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:QuestionnaireViewModel}"><v:VueQuestionnaire /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:TdGroupeViewModel}"><v:VueTdGroupe /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:GalerieViewModel}"><v:VueGalerie /></DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

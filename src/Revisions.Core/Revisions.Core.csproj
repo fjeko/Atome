@@ -11,4 +11,9 @@
     <InternalsVisibleTo Include="Revisions.Tests" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Banque de messages de la mascotte (fichier de ressources, voir Mascotte/BanqueMessages.cs). -->
+    <EmbeddedResource Include="Mascotte\messages-mascotte.json" LogicalName="Mascotte/messages-mascotte.json" />
+  </ItemGroup>
+
 </Project>

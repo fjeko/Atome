@@ -112,7 +112,7 @@ public sealed class Reglages
     /// <summary>Cours libres intégrés : null = pas encore décidé, vrai = chargés, faux = masqués.</summary>
     public bool? CoursLibres { get; set; }
     /// <summary>Clé du thème choisi : « systeme », « clair », « sombre », « ocean »… (voir Apparence.Themes).</summary>
-    public string Theme { get; set; } = "crepuscule";
+    public string Theme { get; set; } = Apparence.Themes.CleParDefaut;
     /// <summary>Couleur d'accent choisie, au format « #RRGGBB », ou null pour celle du thème.</summary>
     public string? CouleurAccent { get; set; }
     /// <summary>Vérifier au démarrage (une fois par jour au plus) s'il existe une nouvelle version sur GitHub.</summary>
@@ -122,4 +122,20 @@ public sealed class Reglages
     /// Désactivé par défaut : on découvre une carte après avoir lu son cours.
     /// </summary>
     public bool NouvellesNonLues { get; set; }
+
+    // ---- Apparence (cahier de design) ----
+
+    /// <summary>Taille du texte en pourcentage (90 à 150), appliquée partout : interface, cartes et lecture.</summary>
+    public int TailleTexte { get; set; } = 100;
+    /// <summary>Réduire les animations : les transitions deviennent de simples fondus très courts.</summary>
+    public bool ReduireAnimations { get; set; }
+    /// <summary>Trois sons courts et doux (bonne réponse, fin de session, niveau). Désactivés par défaut.</summary>
+    public bool Sons { get; set; }
+    /// <summary>Place de la mascotte : « normale », « reduite » ou « masquee ».</summary>
+    public string Mascotte { get; set; } = "normale";
+    /// <summary>Barre latérale repliée en icônes seules (choix de l'utilisateur sur une fenêtre large).</summary>
+    public bool NavigationRepliee { get; set; }
+
+    /// <summary>Bornes de la taille du texte.</summary>
+    public const int TailleTexteMin = 90, TailleTexteMax = 150;
 }

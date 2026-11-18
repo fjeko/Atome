@@ -6,7 +6,7 @@
         <StackPanel MaxWidth="940" Margin="32,32,32,28">
 
             <!-- La mascotte et sa bulle, centrées en haut. -->
-            <v:BandeauMascotte Taille="112" Message="{Binding MessageMascotte}" Expression="{Binding ExpressionMascotte}"
+            <v:BandeauMascotte Taille="112" Message="{Binding MessageMascotte}" Humeur="{Binding HumeurMascotte}"
                                HorizontalAlignment="Center" Margin="0,0,0,18" />
 
             <!-- La seule décision de l'écran : commencer. -->

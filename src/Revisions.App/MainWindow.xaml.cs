@@ -11,7 +11,36 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        Services.ServiceTheme.Habiller(this); // fond du thème choisi
+        Services.ServiceTheme.Habiller(this); // fond, police et couleurs du thème choisi
+        // Sous 1100 px de large, la barre latérale se replie d'elle-même en icônes seules.
+        SizeChanged += (_, e) =>
+        {
+            if (DataContext is MainViewModel principal) principal.FenetreEtroite = e.NewSize.Width < 1100;
+        };
+    }
+
+    /// <summary>Nouvel écran : il apparaît en fondu, avec un léger glissement (ou un fondu très court, animations réduites).</summary>
+    private void EcranChange(object? sender, System.Windows.Data.DataTransferEventArgs e) => Services.Mouvement.Apparaitre(Ecran);
+
+    // ---- Plein écran (F11) : pratique en session, pour se concentrer ----
+    private WindowState _etatAvantPleinEcran;
+    private bool _pleinEcran;
+
+    private void BasculerPleinEcran()
+    {
+        _pleinEcran = !_pleinEcran;
+        if (_pleinEcran)
+        {
+            _etatAvantPleinEcran = WindowState;
+            WindowState = WindowState.Normal; // passer par « Normal » : sinon Windows garde la barre des tâches
+            WindowStyle = WindowStyle.None;
+            WindowState = WindowState.Maximized;
+        }
+        else
+        {
+            WindowStyle = WindowStyle.SingleBorderWindow;
+            WindowState = _etatAvantPleinEcran;
+        }
     }
 
     /// <summary>
@@ -21,6 +50,12 @@ public partial class MainWindow : Window
     protected override void OnPreviewKeyDown(KeyEventArgs e)
     {
         base.OnPreviewKeyDown(e);
+        if (e.Key == Key.F11 || (e.Key == Key.Escape && _pleinEcran && e.OriginalSource is not TextBoxBase))
+        {
+            BasculerPleinEcran();
+            e.Handled = true;
+            return;
+        }
         if (e.OriginalSource is TextBoxBase) return;
         // Ctrl, Alt et Windows annoncent un autre raccourci : on ne s'en mêle pas. Maj, elle, est permise :
         // sur un clavier AZERTY, les chiffres de la rangée du haut se tapent avec Maj.

@@ -1,0 +1,16 @@
+<UserControl x:Class="Revisions.App.Views.EtatVide"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:v="clr-namespace:Revisions.App.Views"
+             x:Name="Racine" Focusable="False" IsTabStop="False">
+    <!-- EtatVide : quand il n'y a rien à montrer. La mascotte, une phrase, une action (jamais un écran muet). -->
+    <StackPanel HorizontalAlignment="Center" MaxWidth="{StaticResource Largeur.Bulle}" Margin="{StaticResource Remplissage.Carte}">
+        <v:Mascotte x:Name="Perso" Width="96" Height="96" Humeur="{Binding Humeur, ElementName=Racine}" />
+        <TextBlock Text="{Binding Titre, ElementName=Racine}" Style="{StaticResource Texte.SousTitre}" TextAlignment="Center"
+                   Margin="{StaticResource Marge.Haut.16}" />
+        <TextBlock Text="{Binding Texte, ElementName=Racine}" Style="{StaticResource Texte.Secondaire}" TextAlignment="Center"
+                   Margin="{StaticResource Marge.Haut.8}"
+                   Visibility="{Binding Texte, ElementName=Racine, Converter={StaticResource VisibleSi}}" />
+        <ContentPresenter Content="{Binding Action, ElementName=Racine}" HorizontalAlignment="Center" Margin="{StaticResource Marge.Haut.16}" />
+    </StackPanel>
+</UserControl>

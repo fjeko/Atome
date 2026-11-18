@@ -147,9 +147,9 @@ public class ApparenceTests
             string chemin = Path.Combine(dossier, "test.db");
             var profil = new DepotProfil(new BaseDeDonnees(chemin));
 
-            // Par défaut : thème de Windows, pas de couleur imposée.
+            // Par défaut : thème sombre, pas de couleur imposée.
             var defaut = profil.ChargerReglages();
-            Assert.Equal("crepuscule", defaut.Theme);
+            Assert.Equal("sombre", defaut.Theme);
             Assert.Null(defaut.CouleurAccent);
 
             profil.EnregistrerReglages(new Reglages { Theme = "foret", CouleurAccent = "#d8498f", PlafondQuotidien = 55 });

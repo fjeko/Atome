@@ -213,7 +213,7 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
     private List<NoeudAcquis> _concernes = [];
 
     [ObservableProperty] private string _message = "";
-    [ObservableProperty] private string _expression = "content";
+    [ObservableProperty] private Revisions.Core.Mascotte.Humeur _humeur = Revisions.Core.Mascotte.Humeur.Contente;
     /// <summary>Petit repère au-dessus de la mascotte : « Bloc 1 · matière 2 sur 7 ».</summary>
     [ObservableProperty] private string _repere = "";
     [ObservableProperty] private bool _estIntro;
@@ -232,7 +232,7 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
         _depot = depot;
         _arbre = new ArbreAcquis(depot, bibliotheque, etat.Jour);
         ChangerEtape(intro: true);
-        Expression = "joie";
+        Humeur = Revisions.Core.Mascotte.Humeur.Fiere;
         Message = "Salut, moi c'est Atome ! Une minute pour que je cale tes premières cartes sur ton niveau. Tu pars de zéro ?";
     }
 
@@ -267,7 +267,7 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
         _parties = m.Enfants.Count > 0 ? [.. m.Enfants] : [];
         Repere = $"{(string.IsNullOrWhiteSpace(m.Etiquette) ? "" : m.Etiquette + " · ")}matière {_indice + 1} sur {_arbre.Racines.Count}";
         ChangerEtape(question: true);
-        Expression = _indice % 2 == 0 ? "content" : "clin";
+        Humeur = _indice % 2 == 0 ? Revisions.Core.Mascotte.Humeur.Contente : Revisions.Core.Mascotte.Humeur.Encourageante;
         Message = $"« {m.Titre} » : où en es-tu ?";
     }
 
@@ -312,7 +312,7 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
             ChangerEtape(choix: true);
             Message = "Coche les parties que tu as déjà vues, dans l'ordre que tu veux.";
         }
-        Expression = "content";
+        Humeur = Revisions.Core.Mascotte.Humeur.Contente;
     }
 
     /// <summary>Cours sans ordre : valide les parties cochées.</summary>
@@ -344,7 +344,7 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
     private void PoserQuestionRessenti()
     {
         ChangerEtape(ressenti: true);
-        Expression = "clin";
+        Humeur = Revisions.Core.Mascotte.Humeur.Encourageante;
         Message = "Et ce que tu as vu, tu le sens comment ? (Pas de bonne réponse, c'est juste pour régler le rythme des révisions.)";
     }
 
@@ -366,7 +366,7 @@ public sealed partial class QuestionnaireViewModel : ObservableObject
     {
         ChangerEtape(recap: true);
         Repere = "";
-        Expression = "joie";
+        Humeur = Revisions.Core.Mascotte.Humeur.Fiere;
         var (pasVu, vu, revise) = _arbre.Bilan();
         Message = "Parfait, c'est noté ! Tes premières révisions seront adaptées à ça.";
         Recap = $"{revise} séance(s) révisée(s), {vu} vue(s), {pasVu} pas encore vue(s).\n"
