@@ -113,23 +113,24 @@ public partial class PartageViewModel(EtatApplication etat, MainViewModel main, 
             bool changerReglages = true;
             if (RacineActuelle() is { } racine && DossierPacksValide())
             {
-                var choix = MessageBox.Show(Application.Current.MainWindow,
+                string? choix = Views.ServiceDialogue.Demander("Importer du contenu",
                     "Tu as déjà un dossier de packs :\n" + etat.Reglages.DossierPacks +
-                    "\n\nOui = FUSIONNER : le contenu reçu est ajouté à ce dossier (les fichiers de même nom sont mis à jour).\n" +
-                    "Non = REMPLACER : le contenu reçu va dans un nouveau dossier que l'application utilise désormais. L'ancien n'est pas touché.",
-                    "Importer du contenu", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
-                if (choix == MessageBoxResult.Cancel) return;
+                    "\n\nFusionner : le contenu reçu est ajouté à ce dossier (les fichiers de même nom sont mis à jour).\n" +
+                    "Nouveau dossier : le contenu reçu va dans un nouveau dossier que l'application utilise désormais. L'ancien n'est pas touché.",
+                    new Views.ChoixDialogue("Annuler", "annuler", Annulation: true),
+                    new Views.ChoixDialogue("Nouveau dossier", "remplacer"),
+                    new Views.ChoixDialogue("Fusionner", "fusionner", Principal: true));
+                if (choix is null or "annuler") return;
                 // On ne peut fusionner que si le dossier des packs est bien « <racine>\packs ».
-                if (choix == MessageBoxResult.Yes && EstSousLaRacine(racine))
+                if (choix == "fusionner" && EstSousLaRacine(racine))
                 {
                     cible = racine;
                     changerReglages = false;
                 }
-                else if (choix == MessageBoxResult.Yes)
+                else if (choix == "fusionner")
                 {
-                    MessageBox.Show(Application.Current.MainWindow,
-                        "Ton dossier des packs n'est pas rangé comme celui du contenu partagé (un dossier « packs » à côté de « cours »), la fusion n'est pas possible. Le contenu va dans un nouveau dossier.",
-                        "Importer du contenu", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Views.ServiceDialogue.Informer("Importer du contenu",
+                        "Ton dossier des packs n'est pas rangé comme celui du contenu partagé (un dossier « packs » à côté de « cours »), la fusion n'est pas possible. Le contenu va dans un nouveau dossier.");
                 }
             }
 
@@ -153,12 +154,12 @@ public partial class PartageViewModel(EtatApplication etat, MainViewModel main, 
             int cartes = bibliotheque.ListerSeances(etat.Jour).Sum(s => s.NbCartes);
             Message = $"Contenu importé : {Texte.Pluriel(resume.NbPacks, "pack", "packs")}, {Texte.Pluriel(cartes, "carte", "cartes")}, "
                       + (resume.DocumentsInclus ? "documents d'origine inclus." : "sans les documents d'origine (le bouton « Voir le PDF » ne marchera pas).");
-            MessageBox.Show(Application.Current.MainWindow, Message, "Importer du contenu", MessageBoxButton.OK, MessageBoxImage.Information);
+            Views.ServiceDialogue.Informer("Importer du contenu", Message);
         }
         catch (ArchiveInvalideException e)
         {
             Message = e.Message;
-            MessageBox.Show(Application.Current.MainWindow, e.Message, "Importer du contenu", MessageBoxButton.OK, MessageBoxImage.Warning);
+            Views.ServiceDialogue.Informer("Importer du contenu", e.Message);
         }
         catch (Exception e)
         {

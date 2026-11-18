@@ -73,6 +73,7 @@ public partial class AideViewModel : ObservableObject
         {
             Clipboard.SetText(prompt);
             Confirmation = "Prompt copié : colle-le dans ta conversation avec Claude.";
+            ServiceToast.Afficher("Prompt copié dans le presse-papiers");
         }
         catch (System.Runtime.InteropServices.COMException)
         {

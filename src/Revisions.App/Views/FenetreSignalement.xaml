@@ -1,30 +1,41 @@
 <Window x:Class="Revisions.App.Views.FenetreSignalement"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Signaler une erreur" Width="480" SizeToContent="Height" ResizeMode="NoResize"
+        xmlns:ds="clr-namespace:Revisions.App.Controles"
+        Title="Signaler une erreur" Width="500" SizeToContent="Height" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner" ShowInTaskbar="False">
-    <StackPanel Margin="24,20,24,20">
-        <TextBlock Text="Signaler une erreur" Style="{StaticResource SousTitre}" />
-        <TextBlock Text="{Binding Cible}" Style="{StaticResource Discret}" FontSize="12" Margin="0,2,0,8" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
-        <TextBlock Style="{StaticResource Discret}" Margin="0,0,0,12"
-                   Text="Les cours ont été mis en cartes par une IA, donc des erreurs sont possibles. Ton signalement est gardé sur ton PC avec le texte que tu vois ; tu pourras l'envoyer plus tard (Réglages › Mes signalements) pour que le cours soit corrigé." />
+    <!-- Dialogue de signalement, aux couleurs d'Atome. -->
+    <Border Background="{DynamicResource Pinceau.Surelevee}" Padding="{StaticResource Remplissage.Carte}">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Border Width="36" Height="36" CornerRadius="18" Background="{DynamicResource Ton.Attention.Pale}">
+                    <TextBlock Style="{StaticResource Texte.Icone}" Text="{x:Static ds:Icones.Drapeau}" HorizontalAlignment="Center"
+                               Foreground="{DynamicResource Ton.Attention.Texte}" />
+                </Border>
+                <TextBlock Text="Signaler une erreur" Style="{StaticResource Texte.SousTitre}" VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.12}" />
+            </StackPanel>
+            <TextBlock Text="{Binding Cible}" Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.8}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+            <TextBlock Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
+                       Text="Les cours ont été mis en cartes par une IA, donc des erreurs sont possibles. Ton signalement est gardé sur ton PC avec le texte que tu vois ; tu pourras l'envoyer plus tard (Réglages › Mes signalements) pour que le cours soit corrigé." />
 
-        <TextBlock Text="Qu'est-ce qui ne va pas ?" Margin="0,0,0,4" />
-        <ItemsControl ItemsSource="{Binding Motifs}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <RadioButton GroupName="motif" Content="{Binding Libelle}" IsChecked="{Binding EstChoisi}" Margin="0,3" />
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            <TextBlock Text="Qu'est-ce qui ne va pas ?" Style="{StaticResource Texte.Fort}" Margin="{StaticResource Marge.Haut.16}" />
+            <ItemsControl ItemsSource="{Binding Motifs}" Margin="{StaticResource Marge.Haut.4}" Focusable="False">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton GroupName="motif" Content="{Binding Libelle}" IsChecked="{Binding EstChoisi}" Margin="0,3" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-        <TextBlock Text="Un détail à ajouter ? (facultatif)" Margin="0,14,0,4" />
-        <TextBox Text="{Binding Commentaire, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap"
-                 MinHeight="84" MaxHeight="160" VerticalScrollBarVisibility="Auto" />
+            <TextBlock Text="Un détail à ajouter ? (facultatif)" Style="{StaticResource Texte.Fort}" Margin="{StaticResource Marge.Haut.16}" />
+            <TextBox Text="{Binding Commentaire, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap"
+                     MinHeight="84" MaxHeight="160" VerticalScrollBarVisibility="Auto" Margin="{StaticResource Marge.Haut.8}"
+                     AutomationProperties.Name="Détail du signalement" />
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
-            <Button Content="Annuler" IsCancel="True" Padding="22,8" Margin="0,0,10,0" />
-            <Button Content="Envoyer" Click="Envoyer" IsEnabled="{Binding PeutEnvoyer}" Style="{DynamicResource AccentButtonStyle}" Padding="26,8" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="{StaticResource Marge.Haut.24}">
+                <Button Content="Annuler" IsCancel="True" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Droite.8}" />
+                <Button Content="Envoyer" Click="Envoyer" IsEnabled="{Binding PeutEnvoyer}" Style="{StaticResource BoutonPrincipal}" />
+            </StackPanel>
         </StackPanel>
-    </StackPanel>
+    </Border>
 </Window>

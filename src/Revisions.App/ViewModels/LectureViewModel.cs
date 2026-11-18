@@ -165,9 +165,8 @@ public partial class LectureViewModel : ObservableObject
         string chemin = dossierCours is null ? "" : Path.Combine(dossierCours, _seance.SourceFichier);
         if (!File.Exists(chemin))
         {
-            MessageBox.Show(
-                $"Le document d'origine est introuvable :\n{_seance.SourceFichier}\n\nVérifie le dossier « Cours » dans les réglages.",
-                "Document introuvable", MessageBoxButton.OK, MessageBoxImage.Information);
+            ServiceDialogue.Informer("Document introuvable",
+                $"Le document d'origine est introuvable :\n{_seance.SourceFichier}\n\nVérifie le dossier « Cours » dans les réglages.");
             return;
         }
 

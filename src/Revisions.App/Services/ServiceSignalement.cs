@@ -33,6 +33,7 @@ public sealed class ServiceSignalement(DepotSignalements depot, EtatApplication 
         if (fenetre.ShowDialog() != true || modele.MotifChoisi is not { } motif) return false;
 
         depot.Enregistrer(cible, cibleId, packId, motif, modele.Commentaire, titre, recto, verso, etat.Maintenant);
+        ServiceToast.Afficher("Signalement enregistré, merci !", Controles.Icones.Drapeau);
         return true;
     }
 }

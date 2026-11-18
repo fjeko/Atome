@@ -1,7 +1,8 @@
 <UserControl x:Class="Revisions.App.Views.VuePlanning"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:ds="clr-namespace:Revisions.App.Controles">
+             xmlns:ds="clr-namespace:Revisions.App.Controles"
+             xmlns:v="clr-namespace:Revisions.App.Views">
     <!-- Planning : la proposition du CNED en frises, une carte par matière à sa couleur ; la période en cours est
          colorée et en gras, la barre verticale d'accent marque aujourd'hui, chaque date reste modifiable. -->
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
@@ -71,8 +72,8 @@
 
             <!-- Aucun planning : l'application fonctionne comme avant. -->
             <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.16}" Visibility="{Binding SansPlanning, Converter={StaticResource VisibleSi}}">
-                <TextBlock TextWrapping="Wrap"
-                           Text="Aucun planning pour l'instant. Place un fichier de planning dans le dossier « planning » (à côté du dossier « packs »), ou importe-le avec le bouton ci-dessus. Sans planning, les nouvelles cartes suivent simplement l'ordre du cours." />
+                <v:EtatVide Titre="Aucun planning pour l'instant"
+                            Texte="Importe l'Excel du CNED avec le bouton ci-dessus, ou place un fichier de planning dans le dossier « planning » (à côté du dossier « packs »). Sans planning, les nouvelles cartes suivent simplement l'ordre du cours." />
             </Border>
 
             <StackPanel Visibility="{Binding APlanning, Converter={StaticResource VisibleSi}}">

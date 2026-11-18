@@ -104,9 +104,9 @@ public sealed partial class MesSignalementsViewModel : ObservableObject
 
         var nouveaux = signalements.Where(s => !s.Exporte).ToList();
         Message = $"C'est fait : {signalements.Count} signalement(s) dans {Path.GetFileName(dialogue.FileName)}. Envoie ce fichier à la personne qui s'occupe des cours.";
-        if (nouveaux.Count > 0 && MessageBox.Show(
+        if (nouveaux.Count > 0 && Views.ServiceDialogue.Confirmer("Signalements exportés",
                 $"Fichier enregistré. Marquer ces {nouveaux.Count} signalement(s) comme exportés ?\n\n(Ils restent dans la liste ; tu pourras les supprimer si tu veux.)",
-                "Signalements exportés", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                oui: "Marquer comme exportés", non: "Pas maintenant"))
         {
             _depot.MarquerExportes(nouveaux.Select(s => s.Id));
             Recharger();

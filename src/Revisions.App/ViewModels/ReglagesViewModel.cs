@@ -64,6 +64,28 @@ public partial class ReglagesViewModel : ObservableObject
 
     public string DossierDonnees => BaseDeDonnees.DossierDonnees;
 
+    // ---- Apparence (cahier de design) ----
+    /// <summary>Taille du texte en pourcentage (90 à 150), appliquée partout.</summary>
+    [ObservableProperty] private double _tailleTexte;
+    [ObservableProperty] private bool _reduireAnimations;
+    [ObservableProperty] private bool _sons;
+    /// <summary>Mascotte : 0 = normale, 1 = réduite, 2 = masquée.</summary>
+    [ObservableProperty] private int _mascotteIndex;
+    public IReadOnlyList<string> ChoixMascotte { get; } = ["Normale", "Réduite", "Masquée"];
+    private static readonly string[] ClesMascotte = ["normale", "reduite", "masquee"];
+
+    /// <summary>En activant les sons, on en joue un tout de suite : on entend ce qu'on vient de choisir.</summary>
+    partial void OnSonsChanged(bool value)
+    {
+        if (!_initialise || !value) return;
+        ServiceSons.Actifs = true;
+        ServiceSons.Jouer(ServiceSons.Son.BonneReponse);
+    }
+
+    /// <summary>Les réglages du planning sont dans l'écran Planning.</summary>
+    [RelayCommand]
+    private void AllerPlanning() => _main.AllerPlanning();
+
     /// <summary>Partage du contenu avec un camarade (export et import).</summary>
     public PartageViewModel Partage { get; }
 
@@ -140,6 +162,10 @@ public partial class ReglagesViewModel : ObservableObject
         _accentLibre = r.CouleurAccent ?? "";
         _verifierMisesAJour = r.VerifierMisesAJour;
         _nouvellesNonLues = r.NouvellesNonLues;
+        _tailleTexte = r.TailleTexte;
+        _reduireAnimations = r.ReduireAnimations;
+        _sons = r.Sons;
+        _mascotteIndex = Math.Max(0, Array.IndexOf(ClesMascotte, r.Mascotte));
         MesCollections = main.ListerCollections().Select(i => new ChoixCollection(i, ChangerCollectionAsync)).ToList();
 #pragma warning restore MVVMTK0034
         _cleTheme = r.Theme;
@@ -151,8 +177,9 @@ public partial class ReglagesViewModel : ObservableObject
         Themes = Core.Apparence.Themes.Tous.Select(t =>
         {
             var p = Core.Apparence.Themes.Resoudre(t, null, systemeSombre, accentWindows);
-            var fond = p.Fond ?? (p.Sombre ? Couleur.Parse("#202020") : Couleur.Parse("#F3F3F3"));
-            var feuille = t.Feuille ?? (p.Sombre ? Couleur.Parse("#2D2D2D") : Couleur.Blanc);
+            var charte = Charte.Calculer(p);
+            var fond = charte.Fond;
+            var feuille = charte.Surface;
             return new ChoixTheme(t, fond.Hex, feuille.Hex, p.Accent.Hex, p.Texte.Hex) { EstChoisi = t.Cle == _cleTheme };
         }).ToList();
 
@@ -189,6 +216,10 @@ public partial class ReglagesViewModel : ObservableObject
         r.CouleurAccent = _couleurAccent;
         r.VerifierMisesAJour = VerifierMisesAJour;
         r.NouvellesNonLues = NouvellesNonLues;
+        r.TailleTexte = (int)Math.Round(TailleTexte);
+        r.ReduireAnimations = ReduireAnimations;
+        r.Sons = Sons;
+        r.Mascotte = ClesMascotte[Math.Clamp(MascotteIndex, 0, 2)];
         _etat.Enregistrer(); // enregistre et applique le thème immédiatement
     }
 

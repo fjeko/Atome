@@ -1,124 +1,154 @@
 <UserControl x:Class="Revisions.App.Views.VueReglages"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ds="clr-namespace:Revisions.App.Controles"
              x:Name="Racine">
+    <!--
+        Réglages, en sections claires : Révision, Apparence, Collections, Planning, Données, Mises à jour, À propos.
+        Chaque changement est enregistré et appliqué tout de suite.
+    -->
     <UserControl.Resources>
-        <Style x:Key="Libelle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="15" />
-            <Setter Property="Margin" Value="0,16,0,0" />
+        <!-- En-tête de section : une icône dans un rond, un titre. -->
+        <Style x:Key="Section" TargetType="HeaderedContentControl">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Margin" Value="{StaticResource Marge.Haut.16}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="HeaderedContentControl">
+                        <Border Style="{StaticResource CarteSurface}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Width="36" Height="36" CornerRadius="18" Background="{DynamicResource Ton.Info.Pale}">
+                                        <TextBlock Style="{StaticResource Texte.Icone}" HorizontalAlignment="Center" Foreground="{DynamicResource Ton.Info.Texte}"
+                                                   Text="{Binding (ds:Forme.Icone), RelativeSource={RelativeSource TemplatedParent}}" />
+                                    </Border>
+                                    <ContentPresenter ContentSource="Header" VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.12}"
+                                                      TextElement.FontSize="{DynamicResource Taille.SousTitre}" TextElement.FontWeight="SemiBold" />
+                                </StackPanel>
+                                <ContentPresenter Margin="{StaticResource Marge.Haut.8}" />
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
-        <Style x:Key="Valeur" TargetType="TextBlock">
-            <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="Width" Value="44" />
+        <Style x:Key="Libelle" TargetType="TextBlock" BasedOn="{StaticResource Texte.Fort}">
+            <Setter Property="Margin" Value="{StaticResource Marge.Haut.16}" />
+        </Style>
+        <Style x:Key="Aide" TargetType="TextBlock" BasedOn="{StaticResource Texte.Meta}">
+            <Setter Property="Margin" Value="{StaticResource Marge.Haut.4}" />
+        </Style>
+        <Style x:Key="Valeur" TargetType="TextBlock" BasedOn="{StaticResource Texte.Fort}">
+            <Setter Property="Width" Value="56" />
             <Setter Property="TextAlignment" Value="Right" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+        <Style x:Key="Reglage" TargetType="DockPanel">
+            <Setter Property="Margin" Value="{StaticResource Marge.Haut.8}" />
+        </Style>
     </UserControl.Resources>
 
-    <ScrollViewer x:Name="Defilement" VerticalScrollBarVisibility="Auto">
-        <StackPanel MaxWidth="940" Margin="32,28,32,28">
-            <TextBlock Text="Réglages" Style="{StaticResource Titre}" />
-            <TextBlock Text="Chaque changement est enregistré tout de suite." Style="{StaticResource Discret}" Margin="0,4,0,0" />
+    <ScrollViewer x:Name="Defilement" VerticalScrollBarVisibility="Auto" Focusable="False">
+        <StackPanel MaxWidth="{StaticResource Largeur.Contenu}" Margin="{StaticResource Marge.Ecran}">
+            <TextBlock Text="Réglages" Style="{StaticResource Texte.Titre}" />
+            <TextBlock Text="Chaque changement est enregistré tout de suite." Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.4}" />
 
-            <Border Style="{StaticResource Carte}" Margin="0,18,0,0">
+            <!-- ===== Révision ===== -->
+            <HeaderedContentControl Style="{StaticResource Section}" Header="Révision" ds:Forme.Icone="{x:Static ds:Icones.Jouer}">
                 <StackPanel>
-                    <TextBlock Text="Rythme" Style="{StaticResource SousTitre}" />
-
                     <TextBlock Text="Objectif minimal du jour (cartes)" Style="{StaticResource Libelle}" />
-                    <TextBlock Text="Le nombre de cartes qui suffit pour réussir ta journée." Style="{StaticResource Discret}" FontSize="12" />
-                    <DockPanel Margin="0,6,0,0">
+                    <TextBlock Text="Le nombre de cartes qui suffit pour réussir ta journée." Style="{StaticResource Aide}" />
+                    <DockPanel Style="{StaticResource Reglage}">
                         <TextBlock DockPanel.Dock="Right" Text="{Binding ObjectifMinimal}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding ObjectifMinimal}" Minimum="1" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" />
+                        <Slider Value="{Binding ObjectifMinimal}" Minimum="1" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" AutomationProperties.Name="Objectif minimal du jour" />
                     </DockPanel>
 
                     <TextBlock Text="Plafond quotidien (cartes)" Style="{StaticResource Libelle}" />
-                    <TextBlock Text="Au-delà, l'application propose de s'arrêter." Style="{StaticResource Discret}" FontSize="12" />
-                    <DockPanel Margin="0,6,0,0">
+                    <TextBlock Text="Au-delà, l'application propose de s'arrêter." Style="{StaticResource Aide}" />
+                    <DockPanel Style="{StaticResource Reglage}">
                         <TextBlock DockPanel.Dock="Right" Text="{Binding PlafondQuotidien}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding PlafondQuotidien}" Minimum="10" Maximum="150" TickFrequency="5" IsSnapToTickEnabled="True" />
+                        <Slider Value="{Binding PlafondQuotidien}" Minimum="10" Maximum="150" TickFrequency="5" IsSnapToTickEnabled="True" AutomationProperties.Name="Plafond quotidien" />
                     </DockPanel>
 
                     <TextBlock Text="Nouvelles cartes par jour" Style="{StaticResource Libelle}" />
-                    <DockPanel Margin="0,6,0,0">
+                    <DockPanel Style="{StaticResource Reglage}">
                         <TextBlock DockPanel.Dock="Right" Text="{Binding NouvellesParJour}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding NouvellesParJour}" Minimum="0" Maximum="40" TickFrequency="1" IsSnapToTickEnabled="True" />
+                        <Slider Value="{Binding NouvellesParJour}" Minimum="0" Maximum="40" TickFrequency="1" IsSnapToTickEnabled="True" AutomationProperties.Name="Nouvelles cartes par jour" />
                     </DockPanel>
 
-                    <CheckBox Content="Proposer des nouvelles cartes de cours non lus" IsChecked="{Binding NouvellesNonLues}" Margin="0,14,0,0" />
-                    <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="0,4,0,0"
+                    <CheckBox Content="Proposer des nouvelles cartes de cours non lus" IsChecked="{Binding NouvellesNonLues}" Style="{StaticResource Interrupteur}"
+                              Margin="{StaticResource Marge.Haut.16}" />
+                    <TextBlock Style="{StaticResource Aide}"
                                Text="Désactivé : une nouvelle carte n'arrive qu'une fois son cours ouvert dans Atome, ou marqué « Vu » ou « Révisé » dans Mes acquis. Les cartes déjà vues reviennent toujours." />
-                </StackPanel>
-            </Border>
 
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
-                <StackPanel>
-                    <TextBlock Text="Reprise après une pause" Style="{StaticResource SousTitre}" />
-
+                    <Border Style="{StaticResource Separateur}" Margin="0,24,0,0" />
+                    <TextBlock Text="Reprise après une pause" Style="{StaticResource Texte.Fort}" FontSize="{DynamicResource Taille.Corps}" Margin="{StaticResource Marge.Haut.16}" />
                     <TextBlock Text="Jours d'absence avant le mode reprise" Style="{StaticResource Libelle}" />
-                    <DockPanel Margin="0,6,0,0">
+                    <DockPanel Style="{StaticResource Reglage}">
                         <TextBlock DockPanel.Dock="Right" Text="{Binding JoursAvantReprise}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding JoursAvantReprise}" Minimum="3" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" />
+                        <Slider Value="{Binding JoursAvantReprise}" Minimum="3" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" AutomationProperties.Name="Jours d'absence avant le mode reprise" />
                     </DockPanel>
-
                     <TextBlock Text="Taille de la première session de reprise (cartes)" Style="{StaticResource Libelle}" />
-                    <DockPanel Margin="0,6,0,0">
+                    <DockPanel Style="{StaticResource Reglage}">
                         <TextBlock DockPanel.Dock="Right" Text="{Binding TailleReprise}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding TailleReprise}" Minimum="5" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" />
+                        <Slider Value="{Binding TailleReprise}" Minimum="5" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" AutomationProperties.Name="Taille de la session de reprise" />
                     </DockPanel>
-                </StackPanel>
-            </Border>
 
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
-                <StackPanel>
-                    <TextBlock Text="Mémorisation" Style="{StaticResource SousTitre}" />
+                    <Border Style="{StaticResource Separateur}" Margin="0,24,0,0" />
                     <TextBlock Text="Réussite visée (%)" Style="{StaticResource Libelle}" />
-                    <TextBlock Text="Plus c'est haut, plus les cartes reviennent souvent. 90 % est un bon équilibre."
-                               Style="{StaticResource Discret}" FontSize="12" />
-                    <DockPanel Margin="0,6,0,0">
+                    <TextBlock Text="Plus c'est haut, plus les cartes reviennent souvent. 90 % est un bon équilibre." Style="{StaticResource Aide}" />
+                    <DockPanel Style="{StaticResource Reglage}">
                         <TextBlock DockPanel.Dock="Right" Text="{Binding Retention}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding Retention}" Minimum="80" Maximum="95" TickFrequency="1" IsSnapToTickEnabled="True" />
+                        <Slider Value="{Binding Retention}" Minimum="80" Maximum="95" TickFrequency="1" IsSnapToTickEnabled="True" AutomationProperties.Name="Réussite visée" />
                     </DockPanel>
                 </StackPanel>
-            </Border>
+            </HeaderedContentControl>
 
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+            <!-- ===== Apparence ===== -->
+            <HeaderedContentControl Style="{StaticResource Section}" Header="Apparence" ds:Forme.Icone="{x:Static ds:Icones.Galerie}">
                 <StackPanel>
-                    <TextBlock Text="Personnalisation" Style="{StaticResource SousTitre}" />
-
-                    <!-- Thèmes : chaque tuile est un aperçu (fond, feuille de lecture, accent). -->
+                    <!-- Thèmes : chaque tuile est un aperçu (fond, surface, accent). -->
                     <TextBlock Text="Thème" Style="{StaticResource Libelle}" />
-                    <ItemsControl ItemsSource="{Binding Themes}" Margin="-5,6,-5,0">
+                    <ItemsControl ItemsSource="{Binding Themes}" Margin="{StaticResource Marge.Haut.8}" Focusable="False">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Button Command="{Binding DataContext.ChoisirThemeCommand, ElementName=Racine}" CommandParameter="{Binding}"
-                                        Margin="5" Padding="0" Background="Transparent" BorderThickness="0" Cursor="Hand"
-                                        ToolTip="{Binding Nom}">
-                                    <Border Width="132" Height="84" CornerRadius="8" Background="{Binding Fond}" BorderThickness="3">
-                                        <Border.Style>
-                                            <Style TargetType="Border">
-                                                <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeColorDefaultBrush}" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding EstChoisi}" Value="True">
-                                                        <Setter Property="BorderBrush" Value="{DynamicResource AccentFillColorDefaultBrush}" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-                                        <Grid Margin="9,8">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="*" />
-                                                <RowDefinition Height="Auto" />
-                                            </Grid.RowDefinitions>
-                                            <Border Background="{Binding Feuille}" CornerRadius="4" Margin="0,0,0,6">
-                                                <Rectangle Fill="{Binding Accent}" Width="34" Height="10" RadiusX="3" RadiusY="3"
-                                                           HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="7" />
-                                            </Border>
-                                            <TextBlock Grid.Row="1" Text="{Binding Nom}" Foreground="{Binding Texte}" FontSize="13" FontWeight="SemiBold" />
-                                        </Grid>
-                                    </Border>
+                                        Style="{StaticResource Bouton.Base}" Padding="0" Margin="{StaticResource Marge.Tuile}"
+                                        ToolTip="{Binding Nom}" AutomationProperties.Name="{Binding Nom}" ds:Forme.Rayon="{StaticResource Rayon.Carte}">
+                                    <Grid>
+                                        <Border Width="132" Height="84" CornerRadius="{StaticResource Rayon.Carte}" Background="{Binding Fond}" BorderThickness="2">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.Bordure}" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding EstChoisi}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.AccentTrait}" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <Grid Margin="9,8">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Border Background="{Binding Feuille}" CornerRadius="6" Margin="0,0,0,6">
+                                                    <Rectangle Fill="{Binding Accent}" Width="34" Height="10" RadiusX="3" RadiusY="3"
+                                                               HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="7" />
+                                                </Border>
+                                                <TextBlock Grid.Row="1" Text="{Binding Nom}" Foreground="{Binding Texte}" FontSize="{DynamicResource Taille.Meta}" FontWeight="SemiBold" />
+                                            </Grid>
+                                        </Border>
+                                        <!-- Thème choisi : une coche en plus du cadre (pas la couleur seule). -->
+                                        <Border Width="20" Height="20" CornerRadius="10" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,6,6,0"
+                                                Background="{DynamicResource Pinceau.AccentTrait}" Visibility="{Binding EstChoisi, Converter={StaticResource VisibleSi}}">
+                                            <TextBlock Style="{StaticResource Texte.Icone}" Text="{x:Static ds:Icones.Coche}" FontSize="{DynamicResource Taille.Meta}"
+                                                       HorizontalAlignment="Center" Foreground="{DynamicResource Pinceau.Surface}" />
+                                        </Border>
+                                    </Grid>
                                 </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -126,134 +156,183 @@
 
                     <!-- Couleur d'accent : pastilles toutes faites, ou couleur libre. -->
                     <TextBlock Text="Couleur d'accent" Style="{StaticResource Libelle}" />
-                    <TextBlock Text="Celle des boutons principaux, de la sélection et des barres de progression."
-                               Style="{StaticResource Discret}" FontSize="12" />
-                    <ItemsControl ItemsSource="{Binding Accents}" Margin="-4,6,-4,0">
+                    <TextBlock Text="Celle des boutons principaux, de la sélection et des barres de progression. Les couleurs des matières, elles, ne changent pas."
+                               Style="{StaticResource Aide}" />
+                    <ItemsControl ItemsSource="{Binding Accents}" Margin="{StaticResource Marge.Haut.8}" Focusable="False">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Button Command="{Binding DataContext.ChoisirAccentCommand, ElementName=Racine}" CommandParameter="{Binding}"
-                                        Margin="4" Padding="0" Background="Transparent" BorderThickness="0" Cursor="Hand" ToolTip="{Binding Nom}">
+                                        Style="{StaticResource Bouton.Base}" Padding="0" Margin="{StaticResource Marge.Droite.4}" ds:Forme.Rayon="19"
+                                        ToolTip="{Binding Nom}" AutomationProperties.Name="{Binding Nom}">
                                     <Grid Width="38" Height="38">
                                         <!-- Anneau autour de la pastille choisie. -->
-                                        <Ellipse StrokeThickness="2.5" Stroke="{DynamicResource TextFillColorPrimaryBrush}"
+                                        <Ellipse StrokeThickness="2.5" Stroke="{DynamicResource Pinceau.Texte}"
                                                  Visibility="{Binding EstChoisi, Converter={StaticResource VisibleSi}}" />
                                         <Ellipse Margin="6" Fill="{Binding Hex}" />
-                                        <!-- « Celle du thème » : pastille vide barrée d'un A. -->
+                                        <!-- « Celle du thème » : pastille vide marquée d'un A. -->
                                         <Grid Visibility="{Binding EstAutomatique, Converter={StaticResource VisibleSi}}">
-                                            <Ellipse Margin="6" StrokeThickness="1.5" Stroke="{DynamicResource TextFillColorSecondaryBrush}" />
-                                            <TextBlock Text="A" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            <Ellipse Margin="6" StrokeThickness="1.5" Stroke="{DynamicResource Pinceau.TexteSecondaire}" />
+                                            <TextBlock Text="A" FontSize="{DynamicResource Taille.Meta}" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                         </Grid>
                                     </Grid>
                                 </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                        <TextBlock Text="Ou une couleur précise :" VerticalAlignment="Center" Margin="0,0,10,0" />
+                    <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.8}">
+                        <TextBlock Text="Ou une couleur précise :" Style="{StaticResource Texte.Base}" VerticalAlignment="Center" Margin="{StaticResource Marge.Droite.8}" />
                         <TextBox Text="{Binding AccentLibre, UpdateSourceTrigger=PropertyChanged}" Width="120" MaxLength="7"
-                                 ToolTip="Code de la couleur, par exemple #2F7DE1" />
+                                 ToolTip="Code de la couleur, par exemple #2F7DE1" AutomationProperties.Name="Couleur d'accent précise" />
                     </StackPanel>
-                    <TextBlock Text="{Binding ErreurAccent}" Style="{StaticResource Discret}" FontSize="12" Margin="0,4,0,0"
+                    <TextBlock Text="{Binding ErreurAccent}" Style="{StaticResource Aide}" Foreground="{DynamicResource Ton.Attention.Texte}"
                                Visibility="{Binding ErreurAccent, Converter={StaticResource VisibleSi}}" />
-                </StackPanel>
-            </Border>
 
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
-                <StackPanel DataContext="{Binding Partage}">
-                    <TextBlock Text="Partager avec un camarade" Style="{StaticResource SousTitre}" />
-                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
-                               Text="Crée un seul fichier .atome avec tous tes packs et ton planning. Ta progression, tes réglages et ton historique n'y sont jamais. Les cours du CNED sont à usage privé : ne les partage qu'avec tes camarades." />
-                    <CheckBox IsChecked="{Binding InclureDocuments}" Margin="0,10,0,0">
-                        <TextBlock>
-                            <Run Text="Inclure aussi les documents d'origine (PDF) : " /><Run Text="{Binding TailleDocuments, Mode=OneWay}" FontWeight="SemiBold" />
-                        </TextBlock>
-                    </CheckBox>
-                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
-                        <Button Content="Exporter mon contenu…" Command="{Binding ExporterCommand}" IsEnabled="{Binding PeutExporter}" Padding="16,7" />
-                        <Button Content="Importer du contenu…" Command="{Binding ImporterCommand}" Padding="16,7" Margin="10,0,0,0" />
-                    </StackPanel>
-                    <ProgressBar Value="{Binding Progression, Mode=OneWay}" Maximum="1" Height="6" Margin="0,12,0,0"
-                                 Visibility="{Binding EnCours, Converter={StaticResource VisibleSi}}" />
-                    <TextBlock Text="{Binding Message}" Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,8,0,0"
-                               Visibility="{Binding Message, Converter={StaticResource VisibleSi}}" />
-                </StackPanel>
-            </Border>
+                    <TextBlock Text="Taille du texte" Style="{StaticResource Libelle}" />
+                    <TextBlock Text="Partout : interface, cartes et lecture. Aussi réglable avec A− / A+ pendant la lecture." Style="{StaticResource Aide}" />
+                    <DockPanel Style="{StaticResource Reglage}">
+                        <TextBlock DockPanel.Dock="Right" Style="{StaticResource Valeur}"><Run Text="{Binding TailleTexte, Mode=OneWay}" /> %</TextBlock>
+                        <Slider Value="{Binding TailleTexte}" Minimum="90" Maximum="150" TickFrequency="10" IsSnapToTickEnabled="True" AutomationProperties.Name="Taille du texte" />
+                    </DockPanel>
 
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+                    <CheckBox Content="Réduire les animations" IsChecked="{Binding ReduireAnimations}" Style="{StaticResource Interrupteur}" Margin="{StaticResource Marge.Haut.16}" />
+                    <TextBlock Style="{StaticResource Aide}" Text="Les transitions deviennent de simples fondus très courts. Atome suit aussi le réglage « Effets d'animation » de Windows." />
+                    <CheckBox Content="Sons" IsChecked="{Binding Sons}" Style="{StaticResource Interrupteur}" Margin="{StaticResource Marge.Haut.16}" />
+                    <TextBlock Style="{StaticResource Aide}" Text="Trois sons courts et doux : bonne réponse, fin de session et niveau gagné." />
+
+                    <TextBlock Text="Mascotte" Style="{StaticResource Libelle}" />
+                    <ListBox ItemsSource="{Binding ChoixMascotte}" SelectedIndex="{Binding MascotteIndex}" Style="{StaticResource ListeNue}"
+                             Margin="{StaticResource Marge.Haut.8}" AutomationProperties.Name="Taille de la mascotte">
+                        <ListBox.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal" /></ItemsPanelTemplate></ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisible}" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <ToggleButton Content="{Binding}" Style="{StaticResource BoutonBascule}" Margin="{StaticResource Marge.Droite.8}" IsTabStop="False"
+                                                          IsChecked="{Binding IsSelected, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </StackPanel>
+            </HeaderedContentControl>
+
+            <!-- ===== Collections ===== -->
+            <HeaderedContentControl Style="{StaticResource Section}" Header="Mes collections" ds:Forme.Icone="{x:Static ds:Icones.Bibliotheque}">
                 <StackPanel>
-                    <TextBlock Text="Erreurs dans les cours" Style="{StaticResource SousTitre}" />
-                    <TextBlock Style="{StaticResource Discret}" TextWrapping="Wrap" Margin="0,4,0,0"
-                               Text="Tu as repéré une erreur dans une carte ou un cours ? Le petit drapeau permet de la signaler. Ici, tu retrouves tes signalements et tu peux les exporter." />
-                    <Button Content="Mes signalements…" Command="{Binding AllerSignalementsCommand}" Padding="16,7" Margin="0,12,0,0" HorizontalAlignment="Left" />
-                </StackPanel>
-            </Border>
-
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
-                <StackPanel>
-                    <TextBlock Text="Mes collections" Style="{StaticResource SousTitre}" />
-                    <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="0,4,0,8" TextWrapping="Wrap"
+                    <TextBlock Style="{StaticResource Texte.Secondaire}"
                                Text="Choisis ce qu'Atome affiche et te fait réviser : les cours libres livrés avec l'application, tes propres packs, les contenus reçus d'un camarade. Une collection masquée disparaît de la Bibliothèque, des sessions et du planning, mais rien n'est effacé : ta progression est conservée, et en la réaffichant les cartes devenues dues entre-temps reviennent peu à peu, sans avalanche. Au moins une collection reste active." />
-                    <ItemsControl ItemsSource="{Binding MesCollections}">
+                    <ItemsControl ItemsSource="{Binding MesCollections}" Margin="{StaticResource Marge.Haut.8}" Focusable="False">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="0,6,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Nom}" FontSize="15" />
-                                        <TextBlock Text="{Binding Detail}" Style="{StaticResource Discret}" FontSize="12" />
-                                    </StackPanel>
-                                    <CheckBox Grid.Column="1" Content="Afficher et réviser" IsChecked="{Binding Visible}" VerticalAlignment="Center" />
-                                </Grid>
+                                <Border BorderBrush="{DynamicResource Pinceau.Bordure}" BorderThickness="0,1,0,0" Padding="0,12,0,4">
+                                    <DockPanel>
+                                        <CheckBox DockPanel.Dock="Right" Content="Afficher et réviser" IsChecked="{Binding Visible}" Style="{StaticResource Interrupteur}" VerticalAlignment="Center" />
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Nom}" Style="{StaticResource Texte.Fort}" />
+                                            <TextBlock Text="{Binding Detail}" Style="{StaticResource Texte.Meta}" />
+                                        </StackPanel>
+                                    </DockPanel>
+                                </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <TextBlock Text="{Binding MessageCollections}" TextWrapping="Wrap" Margin="0,10,0,0"
-                               Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}"
+                    <TextBlock Text="{Binding MessageCollections}" Style="{StaticResource Texte.Base}" Margin="{StaticResource Marge.Haut.12}"
+                               Foreground="{DynamicResource Pinceau.AccentTexte}"
                                Visibility="{Binding MessageCollections, Converter={StaticResource VisibleSi}}" />
                 </StackPanel>
-            </Border>
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+            </HeaderedContentControl>
+
+            <!-- ===== Planning ===== -->
+            <HeaderedContentControl Style="{StaticResource Section}" Header="Planning" ds:Forme.Icone="{x:Static ds:Icones.Planning}">
+                <DockPanel>
+                    <Button DockPanel.Dock="Right" Content="Ouvrir le planning" Command="{Binding AllerPlanningCommand}" Style="{StaticResource BoutonSecondaire}"
+                            ds:Forme.Icone="{x:Static ds:Icones.Suivant}" VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.16}" />
+                    <TextBlock Style="{StaticResource Texte.Secondaire}" VerticalAlignment="Center"
+                               Text="Suivre ou non le planning, matière par matière, masquer les quiz et changer les dates : tout se règle dans l'écran Planning." />
+                </DockPanel>
+            </HeaderedContentControl>
+
+            <!-- ===== Données ===== -->
+            <HeaderedContentControl Style="{StaticResource Section}" Header="Données" ds:Forme.Icone="{x:Static ds:Icones.Exporter}">
                 <StackPanel>
-                    <TextBlock Text="Mises à jour" Style="{StaticResource SousTitre}" />
-                    <TextBlock Text="{Binding VersionInstallee}" Style="{StaticResource Discret}" Margin="0,4,0,0" />
-                    <CheckBox Content="Vérifier les mises à jour au démarrage" IsChecked="{Binding VerifierMisesAJour}" Margin="0,12,0,0" />
-                    <TextBlock Style="{StaticResource Discret}" FontSize="12" Margin="0,4,0,0"
+                    <StackPanel DataContext="{Binding Partage}">
+                        <TextBlock Text="Partager avec un camarade" Style="{StaticResource Libelle}" Margin="0" />
+                        <TextBlock Style="{StaticResource Aide}"
+                                   Text="Crée un seul fichier .atome avec tous tes packs et ton planning. Ta progression, tes réglages et ton historique n'y sont jamais. Les cours du CNED sont à usage privé : ne les partage qu'avec tes camarades." />
+                        <CheckBox IsChecked="{Binding InclureDocuments}" Style="{StaticResource Interrupteur}" Margin="{StaticResource Marge.Haut.12}">
+                            <TextBlock>
+                                <Run Text="Inclure aussi les documents d'origine (PDF) : " /><Run Text="{Binding TailleDocuments, Mode=OneWay}" FontWeight="SemiBold" />
+                            </TextBlock>
+                        </CheckBox>
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.12}">
+                            <Button Content="Exporter mon contenu…" Command="{Binding ExporterCommand}" IsEnabled="{Binding PeutExporter}"
+                                    Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Exporter}" Margin="{StaticResource Marge.Droite.8}" />
+                            <Button Content="Importer du contenu…" Command="{Binding ImporterCommand}" Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Importer}" />
+                        </StackPanel>
+                        <ProgressBar Style="{StaticResource BarreProgression}" Value="{Binding Progression, Mode=OneWay}" Margin="{StaticResource Marge.Haut.12}"
+                                     Visibility="{Binding EnCours, Converter={StaticResource VisibleSi}}" />
+                        <TextBlock Text="{Binding Message}" Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
+                                   Visibility="{Binding Message, Converter={StaticResource VisibleSi}}" />
+                    </StackPanel>
+
+                    <Border Style="{StaticResource Separateur}" Margin="0,24,0,0" />
+                    <TextBlock Text="Erreurs dans les cours" Style="{StaticResource Libelle}" Margin="0" />
+                    <TextBlock Style="{StaticResource Aide}"
+                               Text="Tu as repéré une erreur dans une carte ou un cours ? Le petit drapeau permet de la signaler. Ici, tu retrouves tes signalements et tu peux les exporter." />
+                    <Button Content="Mes signalements…" Command="{Binding AllerSignalementsCommand}" Style="{StaticResource BoutonSecondaire}"
+                            ds:Forme.Icone="{x:Static ds:Icones.Drapeau}" Margin="{StaticResource Marge.Haut.12}" HorizontalAlignment="Left" />
+
+                    <Border Style="{StaticResource Separateur}" Margin="0,24,0,0" />
+                    <TextBlock Text="Dossier des packs" Style="{StaticResource Libelle}" Margin="0" />
+                    <DockPanel Style="{StaticResource Reglage}">
+                        <Button DockPanel.Dock="Right" Content="Choisir…" Command="{Binding ChoisirDossierPacksCommand}" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Gauche.8}" />
+                        <TextBox Text="{Binding DossierPacks, Mode=OneWay}" IsReadOnly="True" AutomationProperties.Name="Dossier des packs" />
+                    </DockPanel>
+                    <TextBlock Text="Dossier « Cours » (pour ouvrir les PDF d'origine)" Style="{StaticResource Libelle}" />
+                    <DockPanel Style="{StaticResource Reglage}">
+                        <Button DockPanel.Dock="Right" Content="Choisir…" Command="{Binding ChoisirDossierCoursCommand}" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Gauche.8}" />
+                        <TextBox Text="{Binding DossierCours, Mode=OneWay}" IsReadOnly="True" AutomationProperties.Name="Dossier des cours" />
+                    </DockPanel>
+                    <TextBlock Text="Mes données (base et sauvegardes automatiques)" Style="{StaticResource Libelle}" />
+                    <TextBlock Text="Une sauvegarde par jour d'utilisation, les 7 dernières sont gardées." Style="{StaticResource Aide}" />
+                    <DockPanel Style="{StaticResource Reglage}">
+                        <Button DockPanel.Dock="Right" Content="Ouvrir" Command="{Binding OuvrirDossierDonneesCommand}" Style="{StaticResource BoutonSecondaire}"
+                                ds:Forme.Icone="{x:Static ds:Icones.Ouvrir}" Margin="{StaticResource Marge.Gauche.8}" />
+                        <TextBox Text="{Binding DossierDonnees, Mode=OneWay}" IsReadOnly="True" AutomationProperties.Name="Dossier des données" />
+                    </DockPanel>
+                </StackPanel>
+            </HeaderedContentControl>
+
+            <!-- ===== Mises à jour ===== -->
+            <HeaderedContentControl Style="{StaticResource Section}" Header="Mises à jour" ds:Forme.Icone="{x:Static ds:Icones.Telecharger}">
+                <StackPanel>
+                    <TextBlock Text="{Binding VersionInstallee}" Style="{StaticResource Texte.Secondaire}" />
+                    <CheckBox Content="Vérifier les mises à jour au démarrage" IsChecked="{Binding VerifierMisesAJour}" Style="{StaticResource Interrupteur}" Margin="{StaticResource Marge.Haut.12}" />
+                    <TextBlock Style="{StaticResource Aide}"
                                Text="Une fois par jour au plus, Atome demande à GitHub (api.github.com) le numéro de la dernière version. C'est la seule fois où Atome se connecte à Internet. Rien d'autre n'est envoyé : ni tes données, ni ton nom." />
-                    <Button Content="Vérifier maintenant" Command="{Binding VerifierMaintenantCommand}" Padding="16,7" Margin="0,12,0,0" HorizontalAlignment="Left" />
-                    <TextBlock Text="{Binding MessageMiseAJour}" Style="{StaticResource Discret}" Margin="0,8,0,0"
+                    <Button Content="Vérifier maintenant" Command="{Binding VerifierMaintenantCommand}" Style="{StaticResource BoutonSecondaire}"
+                            ds:Forme.Icone="{x:Static ds:Icones.Actualiser}" Margin="{StaticResource Marge.Haut.12}" HorizontalAlignment="Left" />
+                    <TextBlock Text="{Binding MessageMiseAJour}" Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
                                Visibility="{Binding MessageMiseAJour, Converter={StaticResource VisibleSi}}" />
                 </StackPanel>
-            </Border>
+            </HeaderedContentControl>
 
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+            <!-- ===== À propos ===== -->
+            <HeaderedContentControl Style="{StaticResource Section}" Header="À propos" ds:Forme.Icone="{x:Static ds:Icones.Info}">
                 <StackPanel>
-                    <TextBlock Text="Dossiers" Style="{StaticResource SousTitre}" />
-
-                    <TextBlock Text="Dossier des packs" Style="{StaticResource Libelle}" />
-                    <DockPanel Margin="0,6,0,0">
-                        <Button DockPanel.Dock="Right" Content="Choisir…" Command="{Binding ChoisirDossierPacksCommand}" Padding="14,6" Margin="10,0,0,0" />
-                        <TextBox Text="{Binding DossierPacks, Mode=OneWay}" IsReadOnly="True" />
-                    </DockPanel>
-
-                    <TextBlock Text="Dossier « Cours » (pour ouvrir les PDF d'origine)" Style="{StaticResource Libelle}" />
-                    <DockPanel Margin="0,6,0,0">
-                        <Button DockPanel.Dock="Right" Content="Choisir…" Command="{Binding ChoisirDossierCoursCommand}" Padding="14,6" Margin="10,0,0,0" />
-                        <TextBox Text="{Binding DossierCours, Mode=OneWay}" IsReadOnly="True" />
-                    </DockPanel>
-
-                    <TextBlock Text="Mes données (base et sauvegardes automatiques)" Style="{StaticResource Libelle}" />
-                    <DockPanel Margin="0,6,0,0">
-                        <Button DockPanel.Dock="Right" Content="Ouvrir" Command="{Binding OuvrirDossierDonneesCommand}" Padding="14,6" Margin="10,0,0,0" />
-                        <TextBox Text="{Binding DossierDonnees, Mode=OneWay}" IsReadOnly="True" />
-                    </DockPanel>
+                    <TextBlock Style="{StaticResource Texte.Secondaire}"
+                               Text="Atome : tes révisions, at home. Un projet étudiant de BTS SIO option SLAM, hors ligne et sans compte : tes données restent sur ton PC." />
+                    <TextBlock Style="{StaticResource Aide}" Margin="{StaticResource Marge.Haut.8}"
+                               Text="Code sous licence MIT. Cours libres intégrés sous licence CC BY-SA 4.0 (« Atome – packs libres BTS SIO »). Les cours du CNED ne sont pas fournis." />
                 </StackPanel>
-            </Border>
+            </HeaderedContentControl>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

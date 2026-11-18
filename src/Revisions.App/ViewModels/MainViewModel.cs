@@ -342,7 +342,8 @@ public partial class MainViewModel(
     private Task<bool> ProposerCoursLibresAsync()
     {
         int nombre = etat.DossierCoursLibres is { } d ? Directory.EnumerateFiles(d, "*.json", SearchOption.AllDirectories).Count() : 0;
-        bool oui = new FenetreCoursLibres(nombre) { Owner = Application.Current.MainWindow }.ShowDialog() == true;
+        var fenetre = new FenetreCoursLibres(nombre) { Owner = Application.Current.MainWindow };
+        bool oui = fenetre.ShowDialog() == true && fenetre.Reponse == "oui";
         return Task.FromResult(oui);   // l'activation crée et affiche la collection « Cours libres » : rien d'autre à mémoriser
     }
 
