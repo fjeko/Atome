@@ -34,6 +34,10 @@ public partial class NoeudAcquis : ObservableObject
     public List<NoeudAcquis> Enfants { get; } = [];
 
     public string Chemin => CalculAcquis.Chemin(Cles);
+    /// <summary>Matière du niveau (première clé) : donne la couleur de la ligne.</summary>
+    public string? Matiere => Cles.Count > 0 ? Cles[0] : null;
+    /// <summary>Premier niveau (une matière) : titre en gras.</summary>
+    public bool EstMatiere => Profondeur <= 1;
     /// <summary>Retrait de la ligne dans la liste à plat du questionnaire (le premier niveau n'est pas décalé).</summary>
     public Thickness Retrait => new(Math.Max(0, Profondeur - 1) * 22, 0, 0, 0);
 

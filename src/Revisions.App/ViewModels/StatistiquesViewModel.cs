@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.Input;
 using Revisions.App.Services;
+using Revisions.Core.Gamification;
 using Revisions.Core.Temps;
 using Revisions.Data;
 
@@ -39,6 +40,13 @@ public partial class StatistiquesViewModel
     public bool AucuneDonnee { get; }
     public bool AucunPointFaible => PointsFaibles.Count == 0;
 
+    /// <summary>Calendrier de régularité : 12 colonnes (semaines) de 7 cases (jours).</summary>
+    public IReadOnlyList<IReadOnlyList<JourCalendrier>> Calendrier { get; }
+    /// <summary>Cartes révisées par jour, sur les 30 derniers jours (courbe), et le texte de chaque point.</summary>
+    public IReadOnlyList<int> Courbe { get; }
+    public IReadOnlyList<string> EtiquettesCourbe { get; }
+    public string ResumeCourbe { get; }
+
     public StatistiquesViewModel(MainViewModel main, EtatApplication etat, DepotProfil profil, DepotRevisions revisions)
     {
         _main = main;
@@ -61,6 +69,15 @@ public partial class StatistiquesViewModel
         int actives = totaux.Count(t => t.Total > 0);
         Regularite = $"{Texte.Pluriel(actives, "semaine active", "semaines actives")} sur les {NombreDeSemaines} dernières";
         AucuneDonnee = actives == 0;
+
+        // ---- Calendrier et courbe sur 30 jours (mêmes données que la régularité) ----
+        Calendrier = Core.Gamification.Calendrier.Construire(premierLundi, NombreDeSemaines, parJour, jour);
+        var fr = System.Globalization.CultureInfo.GetCultureInfo("fr-FR");
+        var trente = Enumerable.Range(0, 30).Select(i => jour.AddDays(i - 29)).ToList();
+        Courbe = trente.Select(j => parJour.GetValueOrDefault(j)).ToList();
+        EtiquettesCourbe = trente.Select(j => $"{j.ToString("dddd d MMMM", fr)} : {Texte.Pluriel(parJour.GetValueOrDefault(j), "carte", "cartes")}").ToList();
+        int total = Courbe.Sum();
+        ResumeCourbe = $"{Texte.Pluriel(total, "carte révisée", "cartes révisées")} en 30 jours, sur {Texte.Pluriel(Courbe.Count(n => n > 0), "jour", "jours")}";
 
         // ---- Réussite par matière : 30 derniers jours ----
         Reussites = profil.ReussiteParMatiere(jour.AddDays(-30))

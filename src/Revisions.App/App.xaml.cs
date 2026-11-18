@@ -103,6 +103,8 @@ public partial class App : Application
                 break;
             case "reglages": principal.AllerReglages(); break;
             case "galerie": principal.AllerGalerie(); break;
+            case "acquis": principal.AllerAcquis(); break;
+            case "questionnaire": principal.AllerQuestionnaire(); break;
             case "choix": principal.AllerChoixRevision(); break;
             case "planning": principal.AllerPlanning(); break;
             case "aide":

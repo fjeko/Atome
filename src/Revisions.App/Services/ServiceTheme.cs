@@ -123,6 +123,11 @@ public static class ServiceTheme
         yield return ("Pinceau.SurAccent", Pinceau(c.SurAccent));
         yield return ("Pinceau.AccentTexte", Pinceau(c.AccentTexte));
         yield return ("Pinceau.AccentTrait", Pinceau(c.AccentTrait));
+        // Calendrier de régularité : une seule teinte (l'accent), du plus clair au plus soutenu.
+        yield return ("Pinceau.Niveau1", Pinceau(c.Surface.Melanger(c.AccentTrait, 0.30)));
+        yield return ("Pinceau.Niveau2", Pinceau(c.Surface.Melanger(c.AccentTrait, 0.52)));
+        yield return ("Pinceau.Niveau3", Pinceau(c.Surface.Melanger(c.AccentTrait, 0.76)));
+        yield return ("Pinceau.Niveau4", Pinceau(c.AccentTrait));
 
         // Tons : couleurs de sens et de matière, trois nuances chacune (voir Controles/Ton.cs).
         foreach (var (nom, n) in TousLesTons(c))

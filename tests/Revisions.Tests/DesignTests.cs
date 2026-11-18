@@ -214,6 +214,23 @@ public class DesignTests
     }
 
     [Fact]
+    public void Le_calendrier_de_regularite_couvre_les_semaines_avec_des_niveaux_relatifs()
+    {
+        var lundi = new DateOnly(2026, 11, 2);
+        var parJour = new Dictionary<DateOnly, int> { [lundi] = 40, [lundi.AddDays(1)] = 10, [lundi.AddDays(8)] = 1 };
+        var semaines = Revisions.Core.Gamification.Calendrier.Construire(lundi, 3, parJour, lundi.AddDays(9));
+
+        Assert.Equal(3, semaines.Count);
+        Assert.All(semaines, s => Assert.Equal(7, s.Count));
+        Assert.Equal(4, semaines[0][0].Niveau);          // le maximum
+        Assert.Equal(1, semaines[0][1].Niveau);          // un quart
+        Assert.Equal(1, semaines[1][1].Niveau);          // une seule réponse compte quand même
+        Assert.Equal(0, semaines[0][2].Niveau);          // rien
+        Assert.True(semaines[2][0].Futur);
+        Assert.False(semaines[1][2].Futur);
+    }
+
+    [Fact]
     public void Toutes_les_collections_masquees_se_reconnaissent()
     {
         static Revisions.Core.Collections.InfoCollection Col(string cle, int cours, bool visible) => new(cle, cle, cours, cours * 10, visible);

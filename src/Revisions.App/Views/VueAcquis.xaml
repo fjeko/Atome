@@ -1,43 +1,61 @@
 <UserControl x:Class="Revisions.App.Views.VueAcquis"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:vm="clr-namespace:Revisions.App.ViewModels">
-    <DockPanel Margin="28,28,28,16">
-        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,14">
-            <Grid>
-                <TextBlock Text="Mes acquis" Style="{StaticResource Titre}" />
-                <Button Content="Refaire le questionnaire" Command="{Binding RefaireQuestionnaireCommand}"
-                        HorizontalAlignment="Right" VerticalAlignment="Center" />
-            </Grid>
-            <TextBlock Style="{StaticResource Discret}" Margin="0,6,0,0" FontSize="14"
+             xmlns:v="clr-namespace:Revisions.App.Views"
+             xmlns:vm="clr-namespace:Revisions.App.ViewModels"
+             xmlns:ds="clr-namespace:Revisions.App.Controles">
+    <!-- Mes acquis : l'arbre des cours aux couleurs des matières, avec deux réglages rapides par ligne
+         (avancement, compréhension) et l'acquis effectif en pastille. L'arbre est virtualisé. -->
+    <DockPanel Margin="{StaticResource Marge.Ecran}" MaxWidth="{StaticResource Largeur.Contenu}">
+        <StackPanel DockPanel.Dock="Top" Margin="{StaticResource Marge.Bas.16}">
+            <DockPanel>
+                <Button DockPanel.Dock="Right" Content="Refaire le questionnaire" Command="{Binding RefaireQuestionnaireCommand}"
+                        Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Bulle}" VerticalAlignment="Center" />
+                <TextBlock Text="Mes acquis" Style="{StaticResource Texte.Titre}" VerticalAlignment="Center" />
+            </DockPanel>
+            <TextBlock Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
                        Text="Indique ce que tu as déjà vu ou révisé en dehors de l'application. Un réglage posé sur un niveau s'applique à tout ce qu'il contient, sauf à ce que tu règles séparément. Seules les cartes jamais révisées sont concernées : celles qui ont un historique ne bougent pas." />
         </StackPanel>
 
-        <TextBlock DockPanel.Dock="Top" Style="{StaticResource Discret}" Text="Importe d'abord des cours : l'arbre apparaîtra ici."
-                   Visibility="{Binding Vide, Converter={StaticResource VisibleSi}}" />
+        <Border DockPanel.Dock="Top" Style="{StaticResource CarteSurface}" Visibility="{Binding Vide, Converter={StaticResource VisibleSi}}">
+            <v:EtatVide Titre="Pas encore de cours" Texte="Importe d'abord des cours : l'arbre apparaîtra ici." />
+        </Border>
 
         <!-- L'arbre : une ligne par niveau, avec deux menus (avancement, compréhension) et l'acquis effectif. -->
-        <TreeView ItemsSource="{Binding Racines}" BorderThickness="0" Background="Transparent"
-                  VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling">
-            <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Enfants}">
-                    <Grid Width="840" Margin="0,2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="330" />
-                            <ColumnDefinition Width="120" />
-                            <ColumnDefinition Width="140" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Titre}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
-                                   ToolTip="{Binding Titre}" Margin="0,0,10,0" />
-                        <ComboBox Grid.Column="1" ItemsSource="{x:Static vm:ListesAcquis.Avancements}"
-                                  SelectedIndex="{Binding Avancement, Mode=TwoWay}" Margin="0,0,8,0" MinWidth="108" />
-                        <ComboBox Grid.Column="2" ItemsSource="{x:Static vm:ListesAcquis.Comprehensions}"
-                                  SelectedIndex="{Binding Comprehension, Mode=TwoWay}" Margin="0,0,8,0" MinWidth="128" />
-                        <TextBlock Grid.Column="3" Text="{Binding Resume}" Style="{StaticResource Discret}" VerticalAlignment="Center" />
-                    </Grid>
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
-        </TreeView>
+        <Border Style="{StaticResource CarteSurface}" Padding="8" Visibility="{Binding Vide, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}">
+            <TreeView ItemsSource="{Binding Racines}" BorderThickness="0" Background="Transparent" AutomationProperties.Name="Mes acquis"
+                      VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Enfants}">
+                        <Grid Width="820" Margin="0,3" ds:Ton.Matiere="{Binding Matiere}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="330" />
+                                <ColumnDefinition Width="130" />
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="{StaticResource Marge.Droite.12}">
+                                <Ellipse Width="10" Height="10" Margin="{StaticResource Marge.Droite.8}"
+                                         Fill="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource Self}}" />
+                                <TextBlock x:Name="TitreLigne" Text="{Binding Titre}" Style="{StaticResource Texte.Base}" TextTrimming="CharacterEllipsis"
+                                           TextWrapping="NoWrap" MaxWidth="300" ToolTip="{Binding Titre}" />
+                            </StackPanel>
+                            <ComboBox Grid.Column="1" ItemsSource="{x:Static vm:ListesAcquis.Avancements}" AutomationProperties.Name="Avancement"
+                                      SelectedIndex="{Binding Avancement, Mode=TwoWay}" Margin="{StaticResource Marge.Droite.8}" />
+                            <ComboBox Grid.Column="2" ItemsSource="{x:Static vm:ListesAcquis.Comprehensions}" AutomationProperties.Name="Compréhension"
+                                      SelectedIndex="{Binding Comprehension, Mode=TwoWay}" Margin="{StaticResource Marge.Droite.8}" />
+                            <Border Grid.Column="3" Style="{StaticResource PastilleNeutre}" Visibility="{Binding Resume, Converter={StaticResource VisibleSi}}">
+                                <TextBlock Text="{Binding Resume}" />
+                            </Border>
+                        </Grid>
+                        <HierarchicalDataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding EstMatiere}" Value="True">
+                                <Setter TargetName="TitreLigne" Property="FontWeight" Value="SemiBold" />
+                            </DataTrigger>
+                        </HierarchicalDataTemplate.Triggers>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </Border>
     </DockPanel>
 </UserControl>

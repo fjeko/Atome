@@ -2,11 +2,17 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:v="clr-namespace:Revisions.App.Views"
+             xmlns:ds="clr-namespace:Revisions.App.Controles"
              x:Name="Racine">
+    <!--
+        Statistiques : le « tableau de bord » (jamais à l'accueil). Calendrier de régularité sur 12 semaines,
+        courbe des 30 derniers jours, réussite et maîtrise par matière (aux couleurs des matières),
+        points faibles avec un bouton « Réviser ». Chaque valeur est écrite, jamais portée par la couleur seule.
+    -->
     <UserControl.Resources>
-        <!-- Une matière avec sa barre de progression. -->
+        <!-- Une matière avec sa barre, à sa couleur. -->
         <DataTemplate x:Key="LigneMatiere">
-            <Grid Margin="0,6">
+            <Grid Margin="{StaticResource Marge.Haut.12}" ds:Ton.Matiere="{Binding Matiere}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
@@ -15,98 +21,160 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding Matiere}" TextTrimming="CharacterEllipsis" />
-                <TextBlock Grid.Column="1" Text="{Binding Detail}" Style="{StaticResource Discret}" Margin="12,0,0,0" />
-                <ProgressBar Grid.Row="1" Grid.ColumnSpan="2" Value="{Binding Valeur, Mode=OneWay}" Maximum="1" Height="6" Margin="0,5,0,0" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource Texte.Icone}" FontSize="{DynamicResource Taille.Meta}" Margin="{StaticResource Marge.Droite.8}"
+                               Text="{Binding (ds:Ton.Icone), RelativeSource={RelativeSource Self}}"
+                               Foreground="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource Self}}" />
+                    <TextBlock Text="{Binding Matiere}" Style="{StaticResource Texte.Base}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" />
+                </StackPanel>
+                <TextBlock Grid.Column="1" Text="{Binding Detail}" Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Gauche.12}" VerticalAlignment="Center" />
+                <ProgressBar Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource BarreTon}" Value="{Binding Valeur, Mode=OneWay}"
+                             Margin="{StaticResource Marge.Haut.8}" AutomationProperties.Name="{Binding Detail}" />
             </Grid>
+        </DataTemplate>
+
+        <!-- Case du calendrier : une teinte (l'accent) du plus clair au plus soutenu ; le nombre exact en infobulle. -->
+        <DataTemplate x:Key="CaseJour">
+            <Border x:Name="Case" Width="16" Height="16" Margin="2" CornerRadius="4" Background="{DynamicResource Pinceau.Voile}">
+                <Border.ToolTip>
+                    <TextBlock>
+                        <Run Text="{Binding Jour, Mode=OneWay, StringFormat={}{0:dddd d MMMM}, ConverterCulture=fr-FR}" /> :
+                        <Run Text="{Binding Reponses, Mode=OneWay}" /> cartes
+                    </TextBlock>
+                </Border.ToolTip>
+            </Border>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Niveau}" Value="1"><Setter TargetName="Case" Property="Background" Value="{DynamicResource Pinceau.Niveau1}" /></DataTrigger>
+                <DataTrigger Binding="{Binding Niveau}" Value="2"><Setter TargetName="Case" Property="Background" Value="{DynamicResource Pinceau.Niveau2}" /></DataTrigger>
+                <DataTrigger Binding="{Binding Niveau}" Value="3"><Setter TargetName="Case" Property="Background" Value="{DynamicResource Pinceau.Niveau3}" /></DataTrigger>
+                <DataTrigger Binding="{Binding Niveau}" Value="4"><Setter TargetName="Case" Property="Background" Value="{DynamicResource Pinceau.Niveau4}" /></DataTrigger>
+                <DataTrigger Binding="{Binding Futur}" Value="True"><Setter TargetName="Case" Property="Background" Value="Transparent" /></DataTrigger>
+            </DataTemplate.Triggers>
         </DataTemplate>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel MaxWidth="980" Margin="32,28,32,28">
-            <v:BandeauMascotte Contexte="statistiques" Taille="72" HorizontalAlignment="Left" Margin="0,0,0,10" />
-            <TextBlock Text="Statistiques" Style="{StaticResource Titre}" />
-            <TextBlock Style="{StaticResource Discret}" FontSize="15" Margin="0,6,0,0"
-                       Text="Les chiffres apparaîtront ici après ta première session."
-                       Visibility="{Binding AucuneDonnee, Converter={StaticResource VisibleSi}}" />
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Focusable="False">
+        <StackPanel MaxWidth="{StaticResource Largeur.Contenu}" Margin="{StaticResource Marge.Ecran}">
+            <TextBlock Text="Statistiques" Style="{StaticResource Texte.Titre}" />
+            <v:BandeauMascotte Contexte="statistiques" Taille="56" HorizontalAlignment="Left" Margin="{StaticResource Marge.Haut.12}" />
 
-            <!-- Régularité : une barre par semaine. -->
-            <Border Style="{StaticResource Carte}" Margin="0,18,0,0">
-                <StackPanel>
-                    <TextBlock Text="Régularité" Style="{StaticResource SousTitre}" />
-                    <TextBlock Text="{Binding Regularite}" Style="{StaticResource Discret}" Margin="0,2,0,12" />
-                    <ItemsControl ItemsSource="{Binding Semaines}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate><UniformGrid Rows="1" /></ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel VerticalAlignment="Bottom" Margin="4,0" ToolTip="{Binding Reponses}">
-                                    <TextBlock Text="{Binding Reponses}" FontSize="11" HorizontalAlignment="Center" Margin="0,0,0,3"
-                                               Visibility="{Binding Active, Converter={StaticResource VisibleSi}}" />
-                                    <Border Height="{Binding Hauteur}" CornerRadius="3" Background="{DynamicResource AccentFillColorDefaultBrush}">
-                                        <Border.Style>
-                                            <Style TargetType="Border">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Active}" Value="False">
-                                                        <Setter Property="Opacity" Value="0.25" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-                                    </Border>
-                                    <TextBlock Text="{Binding Etiquette}" FontSize="11" HorizontalAlignment="Center" Margin="0,5,0,0"
-                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
+            <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.16}"
+                    Visibility="{Binding AucuneDonnee, Converter={StaticResource VisibleSi}}">
+                <v:EtatVide Titre="Pas encore de chiffres" Texte="Ils apparaîtront ici après ta première session. Pas de note : seulement ta progression." />
             </Border>
+
+            <!-- Régularité (calendrier) et activité des 30 derniers jours (courbe). -->
+            <Grid Margin="{StaticResource Marge.Haut.16}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="{StaticResource Gouttiere}" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border Style="{StaticResource CarteSurface}">
+                    <StackPanel>
+                        <TextBlock Text="Régularité" Style="{StaticResource Texte.SousTitre}" />
+                        <TextBlock Text="{Binding Regularite}" Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.4}" />
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.16}">
+                            <!-- Jours de la semaine. -->
+                            <StackPanel Margin="{StaticResource Marge.Droite.4}">
+                                <StackPanel.Resources>
+                                    <Style TargetType="TextBlock" BasedOn="{StaticResource Texte.Meta}">
+                                        <Setter Property="Height" Value="20" />
+                                    </Style>
+                                </StackPanel.Resources>
+                                <TextBlock Text="L" /><TextBlock Text="" /><TextBlock Text="M" /><TextBlock Text="" /><TextBlock Text="V" /><TextBlock Text="" /><TextBlock Text="D" />
+                            </StackPanel>
+                            <ItemsControl ItemsSource="{Binding Calendrier}" Focusable="False" AutomationProperties.Name="Calendrier de régularité, 12 semaines">
+                                <ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal" /></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource CaseJour}" Focusable="False" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                        <!-- Légende de l'échelle. -->
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.12}" HorizontalAlignment="Right">
+                            <TextBlock Text="Moins" Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Droite.4}" />
+                            <Border Width="12" Height="12" CornerRadius="3" Margin="2,0" Background="{DynamicResource Pinceau.Voile}" />
+                            <Border Width="12" Height="12" CornerRadius="3" Margin="2,0" Background="{DynamicResource Pinceau.Niveau1}" />
+                            <Border Width="12" Height="12" CornerRadius="3" Margin="2,0" Background="{DynamicResource Pinceau.Niveau2}" />
+                            <Border Width="12" Height="12" CornerRadius="3" Margin="2,0" Background="{DynamicResource Pinceau.Niveau3}" />
+                            <Border Width="12" Height="12" CornerRadius="3" Margin="2,0" Background="{DynamicResource Pinceau.Niveau4}" />
+                            <TextBlock Text="Plus" Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Gauche.4}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource CarteSurface}">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top">
+                            <TextBlock Text="Cartes révisées par jour" Style="{StaticResource Texte.SousTitre}" />
+                            <TextBlock Text="{Binding ResumeCourbe}" Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.4}" />
+                        </StackPanel>
+                        <DockPanel DockPanel.Dock="Bottom" Margin="{StaticResource Marge.Haut.8}">
+                            <TextBlock DockPanel.Dock="Right" Text="aujourd'hui" Style="{StaticResource Texte.Meta}" />
+                            <TextBlock Text="il y a 30 jours" Style="{StaticResource Texte.Meta}" />
+                        </DockPanel>
+                        <ds:Courbe Valeurs="{Binding Courbe}" Etiquettes="{Binding EtiquettesCourbe}" MinHeight="120" Margin="{StaticResource Marge.Haut.16}"
+                                   Trait="{DynamicResource Pinceau.AccentTrait}" Grille="{DynamicResource Pinceau.Bordure}"
+                                   AutomationProperties.Name="{Binding ResumeCourbe}" />
+                    </DockPanel>
+                </Border>
+            </Grid>
 
             <!-- Points faibles. -->
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
+            <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.16}">
                 <StackPanel>
-                    <TextBlock Text="Points faibles" Style="{StaticResource SousTitre}" />
+                    <TextBlock Text="Points faibles" Style="{StaticResource Texte.SousTitre}" />
                     <TextBlock Text="Les notions les plus fragiles en ce moment. Une petite session ciblée suffit à les consolider."
-                               Style="{StaticResource Discret}" Margin="0,2,0,8" />
-                    <TextBlock Text="Rien de fragile pour l'instant." Visibility="{Binding AucunPointFaible, Converter={StaticResource VisibleSi}}" />
-                    <ItemsControl ItemsSource="{Binding PointsFaibles}">
+                               Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.4}" />
+                    <TextBlock Text="Rien de fragile pour l'instant." Style="{StaticResource Texte.Base}" Margin="{StaticResource Marge.Haut.12}"
+                               Visibility="{Binding AucunPointFaible, Converter={StaticResource VisibleSi}}" />
+                    <ItemsControl ItemsSource="{Binding PointsFaibles}" Margin="{StaticResource Marge.Haut.8}" Focusable="False">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <DockPanel Margin="0,5">
-                                    <Button DockPanel.Dock="Right" Content="Travailler" Padding="14,6" Margin="12,0,0,0" VerticalAlignment="Center"
-                                            Command="{Binding DataContext.TravaillerCommand, ElementName=Racine}" CommandParameter="{Binding}" />
-                                    <StackPanel VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Titre}" TextWrapping="Wrap" />
-                                        <TextBlock Text="{Binding Detail}" Style="{StaticResource Discret}" FontSize="12" />
-                                    </StackPanel>
-                                </DockPanel>
+                                <Border BorderBrush="{DynamicResource Pinceau.Bordure}" BorderThickness="0,1,0,0" Padding="0,12,0,4">
+                                    <DockPanel>
+                                        <Button DockPanel.Dock="Right" Content="Réviser" Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Jouer}"
+                                                Margin="{StaticResource Marge.Gauche.12}" VerticalAlignment="Center"
+                                                Command="{Binding DataContext.TravaillerCommand, ElementName=Racine}" CommandParameter="{Binding}" />
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Titre}" Style="{StaticResource Texte.Fort}" />
+                                            <TextBlock Text="{Binding Detail}" Style="{StaticResource Texte.Meta}" />
+                                        </StackPanel>
+                                    </DockPanel>
+                                </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </StackPanel>
             </Border>
 
-            <!-- Réussite par matière. -->
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
-                <StackPanel>
-                    <TextBlock Text="Réussite par matière" Style="{StaticResource SousTitre}" />
-                    <TextBlock Text="Bonnes réponses aux cartes revues ces 30 derniers jours (objectif : 80 % ou plus)."
-                               Style="{StaticResource Discret}" Margin="0,2,0,8" />
-                    <ItemsControl ItemsSource="{Binding Reussites}" ItemTemplate="{StaticResource LigneMatiere}" />
-                </StackPanel>
-            </Border>
-
-            <!-- Avancement par matière. -->
-            <Border Style="{StaticResource Carte}" Margin="0,16,0,0">
-                <StackPanel>
-                    <TextBlock Text="Cartes maîtrisées" Style="{StaticResource SousTitre}" />
-                    <TextBlock Text="Une carte est maîtrisée quand elle tient au moins 3 semaines en mémoire."
-                               Style="{StaticResource Discret}" Margin="0,2,0,8" />
-                    <ItemsControl ItemsSource="{Binding Maitrises}" ItemTemplate="{StaticResource LigneMatiere}" />
-                </StackPanel>
-            </Border>
+            <!-- Réussite et maîtrise par matière. -->
+            <Grid Margin="{StaticResource Marge.Haut.16}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="{StaticResource Gouttiere}" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border Style="{StaticResource CarteSurface}">
+                    <StackPanel>
+                        <TextBlock Text="Réussite par matière" Style="{StaticResource Texte.SousTitre}" />
+                        <TextBlock Text="Bonnes réponses ces 30 derniers jours (repère : 80 % ou plus)."
+                                   Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.4}" />
+                        <ItemsControl ItemsSource="{Binding Reussites}" ItemTemplate="{StaticResource LigneMatiere}" Focusable="False" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource CarteSurface}">
+                    <StackPanel>
+                        <TextBlock Text="Cartes maîtrisées" Style="{StaticResource Texte.SousTitre}" />
+                        <TextBlock Text="Une carte est maîtrisée quand elle tient au moins 3 semaines en mémoire."
+                                   Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.4}" />
+                        <ItemsControl ItemsSource="{Binding Maitrises}" ItemTemplate="{StaticResource LigneMatiere}" Focusable="False" />
+                    </StackPanel>
+                </Border>
+            </Grid>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

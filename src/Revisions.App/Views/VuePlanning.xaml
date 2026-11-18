@@ -1,44 +1,48 @@
 <UserControl x:Class="Revisions.App.Views.VuePlanning"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ds="clr-namespace:Revisions.App.Controles">
+    <!-- Planning : la proposition du CNED en frises, une carte par matière à sa couleur ; la période en cours est
+         colorée et en gras, la barre verticale d'accent marque aujourd'hui, chaque date reste modifiable. -->
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <StackPanel Margin="28,28,28,24" MaxWidth="1000" HorizontalAlignment="Left">
+        <StackPanel Margin="{StaticResource Marge.Ecran}" MaxWidth="{StaticResource Largeur.Contenu}">
             <Grid>
-                <TextBlock Text="Planning" Style="{StaticResource Titre}" />
+                <TextBlock Text="Planning" Style="{StaticResource Texte.Titre}" VerticalAlignment="Center" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Button Content="Importer l'Excel du CNED…" Command="{Binding ImporterExcelCommand}" Margin="0,0,8,0"
+                    <Button Content="Importer l'Excel du CNED…" Command="{Binding ImporterExcelCommand}" Margin="{StaticResource Marge.Droite.8}"
+                            Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Importer}"
                             ToolTip="Le fichier « Proposition de planning » reçu du CNED (.xlsx) : Atome le convertit tout seul." />
-                    <Button Content="Importer un planning…" Command="{Binding ImporterCommand}"
+                    <Button Content="Importer un planning…" Command="{Binding ImporterCommand}" Style="{StaticResource BoutonFantome}"
                             ToolTip="Un fichier de planning .json (déjà converti)." />
                 </StackPanel>
             </Grid>
-            <TextBlock Style="{StaticResource Discret}" FontSize="14" TextWrapping="Wrap" Margin="0,6,0,0"
+            <TextBlock Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
                        Text="La proposition de planning du CNED, pour te repérer. Ce n'est pas une obligation : tu avances à ton rythme. Quand tu le suis, les nouvelles cartes viennent d'abord de ce qui est au programme, et le contenu d'un devoir proche est révisé un peu plus." />
-            <TextBlock Text="{Binding MessageImport}" TextWrapping="Wrap" Margin="0,10,0,0"
+            <ds:Bandeau Texte="{Binding MessageImport}" Icone="{x:Static ds:Icones.Info}" Margin="{StaticResource Marge.Haut.16}"
                        Visibility="{Binding MessageImport, Converter={StaticResource VisibleSi}}" />
 
             <!-- Aperçu de l'import de l'Excel : rien n'est enregistré avant « Valider l'import ». -->
-            <Border Style="{StaticResource Carte}" Margin="0,18,0,0" Visibility="{Binding ApercuVisible, Converter={StaticResource VisibleSi}}">
+            <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.16}" Visibility="{Binding ApercuVisible, Converter={StaticResource VisibleSi}}">
                 <StackPanel DataContext="{Binding Apercu}">
-                    <TextBlock Text="Aperçu de l'import" Style="{StaticResource SousTitre}" />
-                    <TextBlock Text="{Binding Titre}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,6,0,0" />
-                    <TextBlock Text="{Binding Resume}" TextWrapping="Wrap" Style="{StaticResource Discret}" Margin="0,2,0,0" />
-                    <TextBlock Text="{Binding Remplacement}" TextWrapping="Wrap" Style="{StaticResource Discret}" Margin="0,2,0,0" />
+                    <TextBlock Text="Aperçu de l'import" Style="{StaticResource Texte.SousTitre}" />
+                    <TextBlock Text="{Binding Titre}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="{StaticResource Marge.Haut.8}" />
+                    <TextBlock Text="{Binding Resume}" TextWrapping="Wrap" Style="{StaticResource Texte.Secondaire}" Margin="0,2,0,0" />
+                    <TextBlock Text="{Binding Remplacement}" TextWrapping="Wrap" Style="{StaticResource Texte.Secondaire}" Margin="0,2,0,0" />
 
-                    <Expander Header="Points à vérifier" IsExpanded="True" Margin="0,10,0,0"
+                    <Expander Header="Points à vérifier" IsExpanded="True" Margin="{StaticResource Marge.Haut.12}"
                               Visibility="{Binding AAvertissements, Converter={StaticResource VisibleSi}}">
                         <ItemsControl ItemsSource="{Binding Avertissements}" Margin="8,4,0,0">
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate><TextBlock Text="{Binding StringFormat='• {0}'}" TextWrapping="Wrap" Style="{StaticResource Discret}" /></DataTemplate>
+                                <DataTemplate><TextBlock Text="{Binding StringFormat='• {0}'}" TextWrapping="Wrap" Style="{StaticResource Texte.Secondaire}" /></DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </Expander>
 
-                    <Expander Header="Périodes et devoirs" Margin="0,6,0,0">
+                    <Expander Header="Périodes et devoirs" Margin="{StaticResource Marge.Haut.8}">
                         <ItemsControl ItemsSource="{Binding Lignes}" Margin="8,4,0,0">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Texte}" TextWrapping="Wrap" FontSize="13">
+                                    <TextBlock Text="{Binding Texte}" TextWrapping="Wrap" FontSize="{DynamicResource Taille.Meta}">
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock" BasedOn="{StaticResource Discret}">
                                                 <Setter Property="Margin" Value="12,0,0,0" />
@@ -56,54 +60,58 @@
                         </ItemsControl>
                     </Expander>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                    <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.12}">
                         <Button Content="Valider l'import" Command="{Binding DataContext.ValiderImportExcelCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                Padding="14,5" Margin="0,0,8,0" />
+                                Style="{StaticResource BoutonPrincipal}" Margin="{StaticResource Marge.Droite.8}" />
                         <Button Content="Annuler" Command="{Binding DataContext.AnnulerImportExcelCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                Padding="14,5" />
+                                Style="{StaticResource BoutonFantome}" />
                     </StackPanel>
                 </StackPanel>
             </Border>
 
             <!-- Aucun planning : l'application fonctionne comme avant. -->
-            <Border Style="{StaticResource Carte}" Margin="0,18,0,0" Visibility="{Binding SansPlanning, Converter={StaticResource VisibleSi}}">
+            <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.16}" Visibility="{Binding SansPlanning, Converter={StaticResource VisibleSi}}">
                 <TextBlock TextWrapping="Wrap"
                            Text="Aucun planning pour l'instant. Place un fichier de planning dans le dossier « planning » (à côté du dossier « packs »), ou importe-le avec le bouton ci-dessus. Sans planning, les nouvelles cartes suivent simplement l'ordre du cours." />
             </Border>
 
             <StackPanel Visibility="{Binding APlanning, Converter={StaticResource VisibleSi}}">
-                <Border Style="{StaticResource Carte}" Margin="0,18,0,0">
+                <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.16}">
                     <StackPanel>
                         <TextBlock Text="{Binding Titre}" FontWeight="SemiBold" TextWrapping="Wrap" />
-                        <TextBlock Text="{Binding Source}" Style="{StaticResource Discret}" FontSize="12" TextWrapping="Wrap" Margin="0,2,0,10" />
-                        <CheckBox Content="Suivre le planning" IsChecked="{Binding Suivre}" />
-                        <CheckBox Content="Masquer les quiz d'auto-évaluation" IsChecked="{Binding MasquerQuiz}" Margin="0,6,0,0" />
-                        <TextBlock Style="{StaticResource Discret}" FontSize="12" TextWrapping="Wrap" Margin="0,10,0,0"
-                                   Text="Dans les frises : la période en cours est colorée, les barres plus pâles ont des dates à confirmer, la barre verticale marque aujourd'hui. Survole une barre pour voir ses dates." />
+                        <TextBlock Text="{Binding Source}" Style="{StaticResource Texte.Meta}" TextWrapping="Wrap" Margin="0,2,0,10" />
+                        <CheckBox Content="Suivre le planning" IsChecked="{Binding Suivre}" Style="{StaticResource Interrupteur}" />
+                        <CheckBox Content="Masquer les quiz d'auto-évaluation" IsChecked="{Binding MasquerQuiz}" Style="{StaticResource Interrupteur}" Margin="{StaticResource Marge.Haut.8}" />
+                        <TextBlock Style="{StaticResource Texte.Meta}" TextWrapping="Wrap" Margin="{StaticResource Marge.Haut.12}"
+                                   Text="Dans les frises : la période en cours est colorée et en gras, les barres plus pâles ont des dates à confirmer, la barre verticale d'accent marque aujourd'hui. Survole une barre pour voir ses dates." />
                         <Button Content="Remettre toutes les dates du fichier" Command="{Binding ReinitialiserDatesCommand}"
-                                HorizontalAlignment="Left" Padding="12,5" Margin="0,12,0,0" />
+                                HorizontalAlignment="Left" Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Actualiser}" Margin="{StaticResource Marge.Haut.12}" />
                     </StackPanel>
                 </Border>
 
                 <!-- Points à vérifier dans le fichier. -->
-                <Expander Header="Points à vérifier dans le fichier" Margin="0,12,0,0"
+                <Expander Header="Points à vérifier dans le fichier" Margin="{StaticResource Marge.Haut.12}"
                           Visibility="{Binding AAvertissements, Converter={StaticResource VisibleSi}}">
                     <ItemsControl ItemsSource="{Binding Avertissements}" Margin="8,4,0,0">
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate><TextBlock Text="{Binding StringFormat='• {0}'}" TextWrapping="Wrap" Style="{StaticResource Discret}" /></DataTemplate>
+                            <DataTemplate><TextBlock Text="{Binding StringFormat='• {0}'}" TextWrapping="Wrap" Style="{StaticResource Texte.Secondaire}" /></DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </Expander>
 
                 <!-- Une carte par matière : interrupteur, frise, puis les dates modifiables. -->
-                <ItemsControl ItemsSource="{Binding Matieres}" Margin="0,6,0,0">
+                <ItemsControl ItemsSource="{Binding Matieres}" Margin="{StaticResource Marge.Haut.8}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Style="{StaticResource Carte}" Margin="0,12,0,0">
+                            <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.12}" ds:Ton.Matiere="{Binding Nom}">
                                 <StackPanel>
                                     <Grid>
-                                        <TextBlock Text="{Binding Nom}" Style="{StaticResource SousTitre}" />
-                                        <CheckBox Content="Suivre cette matière" IsChecked="{Binding Suivie}" HorizontalAlignment="Right" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Width="4" Height="22" CornerRadius="2" Margin="{StaticResource Marge.Droite.12}"
+                                                    Background="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource Self}}" />
+                                            <TextBlock Text="{Binding Nom}" Style="{StaticResource Texte.SousTitre}" />
+                                        </StackPanel>
+                                        <CheckBox Content="Suivre cette matière" IsChecked="{Binding Suivie}" HorizontalAlignment="Right" Style="{StaticResource Interrupteur}" />
                                     </Grid>
 
                                     <!-- Frise : mois, périodes, devoirs, et la ligne d'aujourd'hui. -->
@@ -119,8 +127,8 @@
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
-                                                        <Rectangle Width="1" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Canvas, AncestorLevel=2}}" Fill="{DynamicResource ControlStrokeColorDefaultBrush}" Margin="0,0,3,0" />
-                                                        <TextBlock Text="{Binding Nom}" FontSize="11" Style="{StaticResource Discret}" />
+                                                        <Rectangle Width="1" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Canvas, AncestorLevel=2}}" Fill="{DynamicResource Pinceau.Bordure}" Margin="0,0,3,0" />
+                                                        <TextBlock Text="{Binding Nom}" Style="{StaticResource Texte.Meta}" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
@@ -137,13 +145,15 @@
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
                                                     <Border Width="{Binding Largeur}" Height="22" CornerRadius="4" ToolTip="{Binding Bulle}"
-                                                            BorderBrush="{DynamicResource AccentFillColorDefaultBrush}" BorderThickness="1">
+                                                            BorderBrush="{DynamicResource Pinceau.Bordure}" BorderThickness="1">
                                                         <Border.Style>
                                                             <Style TargetType="Border">
-                                                                <Setter Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
+                                                                <Setter Property="Background" Value="{DynamicResource Pinceau.Voile}" />
                                                                 <Style.Triggers>
                                                                     <DataTrigger Binding="{Binding EnCours}" Value="True">
-                                                                        <Setter Property="Background" Value="{DynamicResource AccentFillColorDefaultBrush}" />
+                                                                        <Setter Property="Background" Value="{Binding (ds:Ton.Pale), RelativeSource={RelativeSource Self}}" />
+                                                                        <Setter Property="BorderBrush" Value="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource Self}}" />
+                                                                        <Setter Property="BorderThickness" Value="2" />
                                                                     </DataTrigger>
                                                                     <DataTrigger Binding="{Binding AConfirmer}" Value="True">
                                                                         <Setter Property="Opacity" Value="0.75" />
@@ -151,12 +161,13 @@
                                                                 </Style.Triggers>
                                                             </Style>
                                                         </Border.Style>
-                                                        <TextBlock Text="{Binding Libelle}" FontSize="11" Margin="5,0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
+                                                        <TextBlock Text="{Binding Libelle}" FontSize="{DynamicResource Taille.Meta}" Margin="6,0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
                                                             <TextBlock.Style>
                                                                 <Style TargetType="TextBlock">
                                                                     <Style.Triggers>
                                                                         <DataTrigger Binding="{Binding EnCours}" Value="True">
-                                                                            <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}" />
+                                                                            <Setter Property="Foreground" Value="{Binding (ds:Ton.Texte), RelativeSource={RelativeSource Self}}" />
+                                                                            <Setter Property="FontWeight" Value="SemiBold" />
                                                                         </DataTrigger>
                                                                     </Style.Triggers>
                                                                 </Style>
@@ -178,21 +189,21 @@
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal" ToolTip="{Binding Bulle}">
-                                                        <Path Data="M 5,0 L 10,8 L 0,8 Z" Fill="{DynamicResource TextFillColorSecondaryBrush}" VerticalAlignment="Center" />
-                                                        <TextBlock Text="{Binding Code}" FontSize="11" Margin="2,0,0,0" Style="{StaticResource Discret}" />
+                                                        <Path Data="M 5,0 L 10,8 L 0,8 Z" Fill="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource Self}}" VerticalAlignment="Center" />
+                                                        <TextBlock Text="{Binding Code}" Margin="{StaticResource Marge.Gauche.4}" Style="{StaticResource Texte.Meta}" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
 
-                                        <Rectangle Width="2" Height="{Binding HauteurFrise}" Fill="{DynamicResource TextFillColorPrimaryBrush}" Opacity="0.6"
+                                        <Rectangle Width="2" Height="{Binding HauteurFrise}" Fill="{DynamicResource Pinceau.AccentTrait}"
                                                    Canvas.Left="{Binding DataContext.PositionAujourdhui, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                    ToolTip="Aujourd'hui" />
                                     </Canvas>
 
                                     <!-- Dates modifiables. -->
-                                    <Expander Header="Changer les dates" Margin="0,8,0,0">
-                                        <StackPanel Margin="0,6,0,0">
+                                    <Expander Header="Changer les dates" Margin="{StaticResource Marge.Haut.8}">
+                                        <StackPanel Margin="{StaticResource Marge.Haut.8}">
                                             <ItemsControl ItemsSource="{Binding Periodes}">
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
@@ -205,19 +216,19 @@
                                                             </Grid.ColumnDefinitions>
                                                             <StackPanel VerticalAlignment="Center" Margin="0,0,10,0">
                                                                 <TextBlock Text="{Binding Libelle}" TextWrapping="Wrap" />
-                                                                <TextBlock Text="{Binding InfoConfirmer}" Style="{StaticResource Discret}" FontSize="12"
+                                                                <TextBlock Text="{Binding InfoConfirmer}" Style="{StaticResource Texte.Meta}"
                                                                            Visibility="{Binding AConfirmer, Converter={StaticResource VisibleSi}}" />
                                                             </StackPanel>
                                                             <DatePicker Grid.Column="1" SelectedDate="{Binding Debut}" Margin="0,0,8,0" ToolTip="Début" />
                                                             <DatePicker Grid.Column="2" SelectedDate="{Binding Fin}" Margin="0,0,8,0" ToolTip="Fin" />
                                                             <Button Grid.Column="3" Content="Dates du fichier" Command="{Binding ReinitialiserCommand}"
-                                                                    HorizontalAlignment="Left" Padding="10,4"
+                                                                    HorizontalAlignment="Left" Style="{StaticResource BoutonFantome}"
                                                                     Visibility="{Binding Modifiee, Converter={StaticResource VisibleSi}}" />
                                                         </Grid>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
-                                            <ItemsControl ItemsSource="{Binding Devoirs}" Margin="0,8,0,0">
+                                            <ItemsControl ItemsSource="{Binding Devoirs}" Margin="{StaticResource Marge.Haut.8}">
                                                 <ItemsControl.ItemContainerStyle>
                                                     <Style TargetType="ContentPresenter">
                                                         <Setter Property="Visibility" Value="{Binding Visible, Converter={StaticResource VisibleSi}}" />
@@ -234,13 +245,13 @@
                                                             </Grid.ColumnDefinitions>
                                                             <StackPanel VerticalAlignment="Center" Margin="0,0,10,0">
                                                                 <TextBlock TextWrapping="Wrap"><Run Text="{Binding Type, Mode=OneWay}" /> <Run Text="{Binding Code, Mode=OneWay}" /></TextBlock>
-                                                                <TextBlock Text="{Binding Remarque}" Style="{StaticResource Discret}" FontSize="12" TextWrapping="Wrap"
+                                                                <TextBlock Text="{Binding Remarque}" Style="{StaticResource Texte.Meta}" TextWrapping="Wrap"
                                                                            Visibility="{Binding Remarque, Converter={StaticResource VisibleSi}}" />
                                                             </StackPanel>
                                                             <DatePicker Grid.Column="1" SelectedDate="{Binding Semaine}" Margin="0,0,8,0" ToolTip="Un jour de la semaine du devoir" />
-                                                            <TextBlock Grid.Column="2" Text="{Binding Texte}" Style="{StaticResource Discret}" VerticalAlignment="Center" />
+                                                            <TextBlock Grid.Column="2" Text="{Binding Texte}" Style="{StaticResource Texte.Secondaire}" VerticalAlignment="Center" />
                                                             <Button Grid.Column="3" Content="Date du fichier" Command="{Binding ReinitialiserCommand}"
-                                                                    HorizontalAlignment="Left" Padding="10,4"
+                                                                    HorizontalAlignment="Left" Style="{StaticResource BoutonFantome}"
                                                                     Visibility="{Binding Modifie, Converter={StaticResource VisibleSi}}" />
                                                         </Grid>
                                                     </DataTemplate>
