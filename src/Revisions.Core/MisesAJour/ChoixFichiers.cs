@@ -11,6 +11,10 @@ public static class DepotAtome
 
     /// <summary>Page des Releases, pour un téléchargement à la main.</summary>
     public const string PageReleases = $"https://github.com/{Proprietaire}/{Nom}/releases";
+
+    /// <summary>Invitation permanente au serveur Discord « Atome – Communauté » (signaler un bug, une coquille, une idée).
+    /// Lien public : une seule constante, utilisée par le menu latéral et par l'Aide.</summary>
+    public const string LienDiscord = "https://discord.gg/PkXXNhDvTm";
 }
 
 /// <summary>Les deux fichiers nécessaires à une mise à jour automatique.</summary>

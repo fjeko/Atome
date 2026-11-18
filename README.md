@@ -118,6 +118,11 @@ option SLAM : Bloc 1, Bloc 2, Bloc 3, algorithmique, mathématiques, anglais et 
   (format dans [`docs/FORMAT.md`](docs/FORMAT.md)). Une *pull request* est la bienvenue, sous la même licence CC BY-SA 4.0.
 - **Ne publie jamais de contenu tiré de cours protégés** (CNED ou autre).
 
+## Communauté
+
+Un bug, une coquille, un souci d'affichage, une idée ? Rejoins le serveur Discord d'Atome : **https://discord.gg/PkXXNhDvTm**
+(tu y trouveras aussi les annonces de chaque nouvelle version).
+
 ## Créer ses propres packs
 
 Un pack est un fichier JSON qui décrit une séance : le cours découpé en sections et des cartes de révision.

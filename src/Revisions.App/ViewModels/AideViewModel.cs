@@ -64,6 +64,13 @@ public partial class AideViewModel : ObservableObject
         MessageRendu = JsonSerializer.Serialize(new { elements });
     }
 
+    /// <summary>Ouvre le Discord de la communauté dans le navigateur.</summary>
+    [RelayCommand]
+    private void OuvrirDiscord()
+    {
+        if (!Liens.OuvrirDiscord()) Confirmation = "Impossible d'ouvrir le navigateur.";
+    }
+
     /// <summary>Copie le prompt dans le presse-papiers, prêt à être collé dans une conversation avec Claude.</summary>
     [RelayCommand]
     private void CopierPrompt()

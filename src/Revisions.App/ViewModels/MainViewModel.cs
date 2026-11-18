@@ -73,6 +73,13 @@ public partial class MainViewModel(
     /// <summary>Barre latérale en icônes seules.</summary>
     public bool NavigationCompacte => NavigationRepliee || FenetreEtroite;
 
+    /// <summary>Ouvre le Discord de la communauté dans le navigateur (icône discrète du menu latéral).</summary>
+    [RelayCommand]
+    private void OuvrirDiscord()
+    {
+        if (!Liens.OuvrirDiscord()) ServiceToast.Afficher("Impossible d'ouvrir le navigateur");
+    }
+
     [RelayCommand]
     private void BasculerNavigation()
     {

@@ -26,6 +26,13 @@
 
         <!-- Sommaire. -->
         <DockPanel Grid.Row="1" Margin="{StaticResource Marge.Droite.16}">
+            <!-- Sous le sommaire : une phrase et le bouton vers le Discord. -->
+            <StackPanel DockPanel.Dock="Bottom" Margin="12,12,0,0">
+                <TextBlock Text="Un bug, une coquille, une idée ? Signale-le sur le Discord." Style="{StaticResource Texte.Meta}"
+                           TextWrapping="Wrap" Margin="{StaticResource Marge.Bas.8}" />
+                <Button Content="Rejoindre le Discord" Command="{Binding OuvrirDiscordCommand}" Style="{StaticResource BoutonSecondaire}"
+                        ds:Forme.Icone="{x:Static ds:Icones.Discord}" HorizontalAlignment="Left" />
+            </StackPanel>
             <TextBlock DockPanel.Dock="Top" Text="Sommaire" Style="{StaticResource Texte.Meta}" FontWeight="SemiBold" Margin="12,0,0,8" />
             <ListBox ItemsSource="{Binding Pages}" SelectedIndex="{Binding Index, Mode=TwoWay}" Style="{StaticResource ListeNue}"
                      ItemContainerStyle="{StaticResource ElementNavigation}" AutomationProperties.Name="Pages de l'aide">
