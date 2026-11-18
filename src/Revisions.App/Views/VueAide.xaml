@@ -34,7 +34,19 @@
                         AutomationProperties.Name="Rejoindre le Discord">
                     <StackPanel Orientation="Horizontal">
                         <Viewbox Width="18" Height="18">
-                            <Path Data="{StaticResource Logo.Discord}" Fill="{StaticResource Pinceau.Discord}" />
+<Path Data="{StaticResource Logo.Discord}">
+                            <!-- Couleur d'accent du thème au repos (contraste garanti, comme les liens) ; blurple Discord au survol. -->
+                            <Path.Style>
+                                <Style TargetType="Path">
+                                    <Setter Property="Fill" Value="{DynamicResource Pinceau.AccentTexte}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                                            <Setter Property="Fill" Value="{StaticResource Pinceau.Discord}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Path.Style>
+                        </Path>
                         </Viewbox>
                         <TextBlock Text="Rejoindre le Discord" Margin="{StaticResource Marge.Gauche.8}" VerticalAlignment="Center" />
                     </StackPanel>

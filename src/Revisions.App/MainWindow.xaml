@@ -59,7 +59,19 @@
                 <StackPanel Orientation="Horizontal">
                     <!-- Logo officiel en blurple ; le libellé disparaît quand le menu est replié (l'infobulle reste). -->
                     <Viewbox Width="20" Height="20">
-                        <Path Data="{StaticResource Logo.Discord}" Fill="{StaticResource Pinceau.Discord}" />
+<Path Data="{StaticResource Logo.Discord}">
+                            <!-- Couleur d'accent du thème au repos (contraste garanti, comme les liens) ; blurple Discord au survol. -->
+                            <Path.Style>
+                                <Style TargetType="Path">
+                                    <Setter Property="Fill" Value="{DynamicResource Pinceau.AccentTexte}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                                            <Setter Property="Fill" Value="{StaticResource Pinceau.Discord}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Path.Style>
+                        </Path>
                     </Viewbox>
                     <TextBlock Text="Discord" Margin="{StaticResource Marge.Gauche.12}" VerticalAlignment="Center"
                                Foreground="{DynamicResource Pinceau.TexteSecondaire}"
