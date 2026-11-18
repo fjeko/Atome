@@ -50,7 +50,9 @@ public abstract record ReponseAttendue
 }
 
 /// <summary>Une matrice, saisie dans une grille à la bonne dimension.</summary>
-public sealed record ReponseMatrice(Matrice Valeur) : ReponseAttendue
+/// <param name="EnTetesLignes">Noms affichés devant chaque ligne (sommets « A », « B »…), ou null.</param>
+/// <param name="EnTetesColonnes">Noms affichés au-dessus de chaque colonne (tâches, sommets…), ou null.</param>
+public sealed record ReponseMatrice(Matrice Valeur, IReadOnlyList<string>? EnTetesLignes = null, IReadOnlyList<string>? EnTetesColonnes = null) : ReponseAttendue
 {
     public override string Texte => Valeur.ToString();
 }
@@ -76,6 +78,28 @@ public sealed record ReponseChoix(IReadOnlyList<string> Choix, int Bonne) : Repo
 public sealed record ReponseLibre(string Reponse) : ReponseAttendue
 {
     public override string Texte => Reponse;
+}
+
+/// <summary>Façon de comparer une réponse texte.</summary>
+public enum FormeTexte
+{
+    /// <summary>Caractère par caractère, sans tenir compte des espaces ni des majuscules (« 192.168.1.0 », « rwxr-x--- »).</summary>
+    Exacte,
+    /// <summary>Suite de sommets ou de tâches : séparateurs ignorés, l'ordre compte (« A-C-F » = « A C F » = « ACF »).</summary>
+    Chemin,
+    /// <summary>Ensemble de lettres : séparateurs et ordre ignorés (« B, D » = « D B »).</summary>
+    Ensemble,
+}
+
+/// <summary>Réponse courte vérifiée automatiquement : adresse IP, droits Linux, chemin, ensemble de sommets.</summary>
+/// <param name="Attendue">Bonne réponse, telle qu'on l'écrit dans la correction.</param>
+/// <param name="Forme">Façon de comparer.</param>
+/// <param name="Exemple">Exemple de forme attendue, affiché dans la zone vide (« 192.168.0.0 »), ou null.</param>
+/// <param name="Variantes">Autres écritures acceptées (« -rwxr-x--- » pour « rwxr-x--- »), ou null.</param>
+public sealed record ReponseTexte(string Attendue, FormeTexte Forme = FormeTexte.Exacte, string? Exemple = null, IReadOnlyList<string>? Variantes = null)
+    : ReponseAttendue
+{
+    public override string Texte => Attendue;
 }
 
 /// <summary>

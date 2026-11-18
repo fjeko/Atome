@@ -57,6 +57,41 @@ public static class VerificationSaisie
     }
 
     /// <summary>Vérifie un choix (index de la proposition choisie, ou null si rien n'est choisi).</summary>
+    /// <summary>Réponse texte : comparée selon sa forme (voir <see cref="FormeTexte"/>).</summary>
+    public static ResultatVerification Texte(ReponseTexte attendue, string? saisie)
+    {
+        string? lue = NormaliserTexte(saisie, attendue.Forme);
+        bool juste = lue is { Length: > 0 } && new[] { attendue.Attendue }.Concat(attendue.Variantes ?? [])
+            .Any(bonne => NormaliserTexte(bonne, attendue.Forme) == lue);
+        return new ResultatVerification(juste, [juste], lue is { Length: > 0 });
+    }
+
+    /// <summary>
+    /// Forme comparable d'une réponse texte : minuscules, sans espaces, tirets et flèches unifiés.
+    /// Pour un chemin, les séparateurs disparaissent ; pour un ensemble, les lettres sont en plus triées.
+    /// Les noms de sommets ou de tâches font une seule lettre, sauf « FIN » et « DEBUT » : ils sont gardés entiers.
+    /// </summary>
+    public static string? NormaliserTexte(string? saisie, FormeTexte forme)
+    {
+        if (saisie is null) return null;
+        string texte = new string(saisie.Where(c => !char.IsWhiteSpace(c)).ToArray()).ToLowerInvariant()
+            .Replace('−', '-').Replace('–', '-').Replace('—', '-').Replace("→", "-").Replace("->", "-").Replace('>', '-');
+        if (forme == FormeTexte.Exacte) return texte;
+
+        texte = texte.Replace("début", "debut");
+        var morceaux = new List<string>();
+        for (int i = 0; i < texte.Length; i++)
+        {
+            if (!char.IsLetterOrDigit(texte[i])) continue;
+            string reste = texte[i..];
+            string? mot = reste.StartsWith("fin") ? "fin" : reste.StartsWith("debut") ? "debut" : null;
+            if (mot is not null) { morceaux.Add(mot); i += mot.Length - 1; }
+            else morceaux.Add(texte[i].ToString());
+        }
+        if (forme == FormeTexte.Ensemble) morceaux = morceaux.Distinct().Order(StringComparer.Ordinal).ToList();
+        return string.Join("-", morceaux);
+    }
+
     public static ResultatVerification Choix(int bonne, int? choisi) =>
         new(choisi == bonne, [choisi == bonne], choisi is not null);
 }

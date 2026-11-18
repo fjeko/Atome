@@ -17,8 +17,28 @@ namespace Revisions.Core.TdGroupe;
 /// (le code est alors en version 1). La case est donc portée par la version du code : rien de plus à dicter.
 /// </para>
 /// </remarks>
-public sealed class GenerateurMatrices : IGenerateurTd
+public sealed class GenerateurMatrices : IGenerateurASujets
 {
+    public string Matiere => "Mathématiques";
+    public string Theme => "Matrices";
+
+    /// <summary>Sujets du TD solo : les sortes d'exercices vues en cours (la transposée, hors cours, n'y est pas).</summary>
+    public IReadOnlyList<SujetTd> Sujets { get; } =
+    [
+        new(nameof(Genre.Dimension), "Dimension et coefficients", SectionDimension, [3, 3, 4]),
+        new(nameof(Genre.SommeDifference), "Somme et différence", SectionSomme, [4, 5, 6]),
+        new(nameof(Genre.Reel), "Multiplication par un réel", SectionReel, [3, 4, 5]),
+        new(nameof(Genre.Identite), "Matrice identité", SectionParticulieres, [3, 4, 5]),
+        new(nameof(Genre.ProduitDefini), "Produit possible ou non", SectionProduitImpossible, [3, 3, 4]),
+        new(nameof(Genre.Produit), "Produit de deux matrices", SectionProduit, [6, 8, 12]),
+        new(nameof(Genre.NonCommutativite), "AB et BA", SectionPieges, [6, 8, 12]),
+        new(nameof(Genre.Puissance), "Puissance d'une matrice", SectionPuissance, [6, 8, 12]),
+        new(nameof(Genre.Contexte), "Situation concrète", SectionUsine, [8, 10, 15]),
+    ];
+
+    public ExerciceTd CreerExercice(string cle, GenerateurAleatoire r, int niveau) =>
+        Creer(Enum.Parse<Genre>(cle), r, niveau);
+
     public string Prefixe => "MAT";
     public string Nom => "Matrices (SQ1 Calcul matriciel)";
     public int VersionActuelle => 2;

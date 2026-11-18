@@ -250,9 +250,73 @@
                                             <Run Text="{Binding Libelle, Mode=OneWay}" />
                                         </TextBlock>
 
+                                        <!-- Réponse courte : adresse IP, droits, chemin, ensemble de sommets. -->
+                                        <StackPanel Margin="{StaticResource Marge.Haut.8}" Visibility="{Binding EstTexte, Converter={StaticResource VisibleSi}}">
+                                            <TextBox Text="{Binding SaisieTexte, UpdateSourceTrigger=PropertyChanged}" FontFamily="{DynamicResource Police.Code}"
+                                                     FontSize="{DynamicResource Taille.SousTitre}" Padding="8,4" MinWidth="220" HorizontalAlignment="Left"
+                                                     AutomationProperties.Name="{Binding Libelle}">
+                                                <TextBox.Style>
+                                                    <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Modifiable}" Value="False">
+                                                                <Setter Property="IsReadOnly" Value="True" />
+                                                                <Setter Property="IsTabStop" Value="False" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding EtatTexte}" Value="{x:Static vm:EtatCase.Juste}">
+                                                                <Setter Property="Background" Value="{DynamicResource Ton.Succes.Pale}" />
+                                                                <Setter Property="BorderBrush" Value="{DynamicResource Ton.Succes.Trait}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding EtatTexte}" Value="{x:Static vm:EtatCase.AReprendre}">
+                                                                <Setter Property="Background" Value="{DynamicResource Ton.Attention.Pale}" />
+                                                                <Setter Property="BorderBrush" Value="{DynamicResource Ton.Attention.Trait}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBox.Style>
+                                            </TextBox>
+                                            <TextBlock Text="{Binding ExempleTexte}" Style="{StaticResource Texte.Meta}" Margin="2,4,0,0"
+                                                       Visibility="{Binding ExempleTexte, Converter={StaticResource VisibleSi}}" />
+                                            <TextBlock Text="{Binding TexteAttendu}" FontWeight="SemiBold" Foreground="{DynamicResource Ton.Attention.Texte}" Margin="2,4,0,0"
+                                                       FontFamily="{DynamicResource Police.Code}" Visibility="{Binding TexteAttendu, Converter={StaticResource VisibleSi}}" />
+                                        </StackPanel>
+
+                                        <!-- Noms des colonnes (tâches, sommets), alignés sur les cases. -->
+                                        <Grid Margin="{StaticResource Marge.Haut.8}" HorizontalAlignment="Left"
+                                              Visibility="{Binding EstGrille, Converter={StaticResource VisibleSi}}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <ItemsControl Grid.Column="1" ItemsSource="{Binding EnTetesColonnes}" Focusable="False" Margin="8,0,0,0"
+                                                          Visibility="{Binding AEnTetesColonnes, Converter={StaticResource VisibleSi}}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate><UniformGrid Rows="1" /></ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding}" Width="{StaticResource Largeur.CaseNombre}" Margin="3,0" TextAlignment="Center"
+                                                                   Style="{StaticResource Texte.Secondaire}" FontWeight="SemiBold" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                            <ItemsControl Grid.Row="1" ItemsSource="{Binding EnTetesLignes}" Focusable="False" Margin="0,2,4,2"
+                                                          Visibility="{Binding AEnTetesLignes, Converter={StaticResource VisibleSi}}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate><UniformGrid Columns="1" /></ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding}" Margin="0,3" Height="{StaticResource Hauteur.CaseNombre}" Padding="0,8,0,0"
+                                                                   VerticalAlignment="Top" Style="{StaticResource Texte.Secondaire}" FontWeight="SemiBold" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
                                         <!-- Grille d'une matrice (entre parenthèses) ou case d'un nombre. -->
-                                        <Border HorizontalAlignment="Left" Margin="{StaticResource Marge.Haut.8}" Padding="6,2" CornerRadius="12" BorderThickness="2,0,2,0"
-                                                Visibility="{Binding EstGrille, Converter={StaticResource VisibleSi}}">
+                                        <Border Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Padding="6,2" CornerRadius="12" BorderThickness="2,0,2,0">
                                             <Border.Style>
                                                 <Style TargetType="Border">
                                                     <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.TexteSecondaire}" />
@@ -281,6 +345,7 @@
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
                                         </Border>
+                                        </Grid>
 
                                         <!-- Choix. -->
                                         <ItemsControl ItemsSource="{Binding Choix}" Margin="{StaticResource Marge.Haut.8}" Focusable="False"

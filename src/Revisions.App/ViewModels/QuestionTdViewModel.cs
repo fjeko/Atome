@@ -67,6 +67,7 @@ public partial class QuestionTdViewModel : ObservableObject
     public bool EstNombre => Question.Attendu is ReponseNombre;
     public bool EstChoix => Question.Attendu is ReponseChoix;
     public bool EstLibre => Question.Attendu is ReponseLibre;
+    public bool EstTexte => Question.Attendu is ReponseTexte;
 
     /// <summary>Saisie dans des cases : la grille d'une matrice, ou la case unique d'un nombre.</summary>
     public bool EstGrille => EstMatrice || EstNombre;
@@ -76,6 +77,26 @@ public partial class QuestionTdViewModel : ObservableObject
     public int Colonnes { get; }
 
     public ObservableCollection<CaseTdViewModel> Cases { get; } = [];
+
+    /// <summary>Noms au-dessus des colonnes de la grille (tâches, sommets), ou liste vide.</summary>
+    public IReadOnlyList<string> EnTetesColonnes { get; } = [];
+
+    /// <summary>Noms devant les lignes de la grille (sommets), ou liste vide.</summary>
+    public IReadOnlyList<string> EnTetesLignes { get; } = [];
+
+    public bool AEnTetesColonnes => EnTetesColonnes.Count > 0;
+    public bool AEnTetesLignes => EnTetesLignes.Count > 0;
+
+    /// <summary>Réponse texte saisie (adresse IP, droits, chemin…).</summary>
+    [ObservableProperty] private string _saisieTexte = "";
+
+    /// <summary>Forme attendue, affichée en gris dans la zone vide (« ex. : A-C-F »).</summary>
+    public string? ExempleTexte => Question.Attendu is ReponseTexte { Exemple: { } e } ? "ex. : " + e : null;
+
+    /// <summary>Bonne réponse texte, affichée sous la zone quand la saisie est à reprendre.</summary>
+    [ObservableProperty] private string? _texteAttendu;
+
+    [ObservableProperty] private EtatCase _etatTexte;
     public IReadOnlyList<ChoixTdViewModel> Choix { get; } = [];
 
     /// <summary>Résultat, une fois vérifiée (null avant ; pour une réponse rédigée, ce que l'étudiant a dit).</summary>
@@ -108,6 +129,8 @@ public partial class QuestionTdViewModel : ObservableObject
                 Colonnes = m.Valeur.Colonnes;
                 int k = 0;
                 foreach (int valeur in m.Valeur.Coefficients()) Cases.Add(new CaseTdViewModel(k++, Colonnes, valeur));
+                EnTetesColonnes = m.EnTetesColonnes ?? [];
+                EnTetesLignes = m.EnTetesLignes ?? [];
                 break;
             case ReponseNombre n:
                 Lignes = Colonnes = 1;
@@ -136,6 +159,7 @@ public partial class QuestionTdViewModel : ObservableObject
             ReponseMatrice m => VerificationSaisie.Matrice(m.Valeur, Cases.Select(c => (string?)c.Valeur).ToList()),
             ReponseNombre n => VerificationSaisie.Nombre(n.Valeur, Cases[0].Valeur),
             ReponseChoix c => VerificationSaisie.Choix(c.Bonne, Choix.FirstOrDefault(x => x.EstChoisi)?.Index),
+            ReponseTexte t => VerificationSaisie.Texte(t, SaisieTexte),
             _ => null,
         };
         if (resultat is null) return;
@@ -144,6 +168,11 @@ public partial class QuestionTdViewModel : ObservableObject
         if (Question.Attendu is ReponseChoix choix)
             foreach (var x in Choix)
                 x.Etat = x.Index == choix.Bonne ? EtatCase.Juste : x.EstChoisi ? EtatCase.AReprendre : EtatCase.Neutre;
+        if (Question.Attendu is ReponseTexte texte)
+        {
+            EtatTexte = resultat.Juste ? EtatCase.Juste : EtatCase.AReprendre;
+            TexteAttendu = resultat.Juste ? null : "→ " + texte.Attendue;
+        }
         Juste = resultat.Juste;
     }
 
