@@ -7,7 +7,7 @@ L'écran **TD** (barre de gauche) propose de vrais exercices de TD, **générés
 1. **Choisis où tu veux travailler**, du plus large au plus précis :
    - le **domaine** : Mathématiques, Réseau, Cybersécurité, SLAM (exercices générés, correction automatique), ou *Exercices rédigés de mes packs* (les cartes « exercice » de tes cours : tu compares toi-même avec la correction) ;
    - le **thème** : par exemple *Matrices*, ou *Tout le domaine* pour un mélange façon examen ;
-   - la **notion** : par exemple *Produit de deux matrices*, ou *Toutes les notions*.
+   - la **notion** : par exemple *Produit de deux matrices*, ou *Toutes les notions*. La notion *Exercices type examen* ne garde que les exercices qui reprennent le déroulé des sujets officiels du BTS (étiquette « Type examen »).
 2. Choisis la **durée** (15 min, 30 min, 1 h ou 2 h comme à l'examen) et le **niveau**. Atome remplit la durée avec des exercices de durée estimée, rangés par thème comme une vraie feuille de TD.
 3. **Correction à la fin, comme à l'examen** (activée par défaut à partir d'1 h) : tu valides chaque exercice sans voir le résultat, puis tout est corrigé à la fin. Sinon, la correction vient après chaque exercice.
 4. **Seulement ce que j'ai déjà lu** : ne garde que les exercices des notions dont tu as ouvert la séance du cours.

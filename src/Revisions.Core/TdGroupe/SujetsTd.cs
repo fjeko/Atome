@@ -11,7 +11,8 @@ namespace Revisions.Core.TdGroupe;
 /// <param name="SectionId">Section du cours à revoir, ou null.</param>
 /// <param name="Minutes">Durée estimée aux niveaux 1, 2 et 3 (en minutes, à la main sur papier).</param>
 /// <param name="NiveauMin">Niveau à partir duquel le sujet est proposé (un « projet complet » n'existe qu'au niveau 3).</param>
-public sealed record SujetTd(string Cle, string Nom, string? SectionId, int[] Minutes, int NiveauMin = 1)
+/// <param name="TypeExamen">Reprend le déroulé d'un exercice des sujets officiels du BTS SIO.</param>
+public sealed record SujetTd(string Cle, string Nom, string? SectionId, int[] Minutes, int NiveauMin = 1, bool TypeExamen = false)
 {
     public int MinutesPour(int niveau) => Minutes[Math.Clamp(niveau, 1, 3) - 1];
 }
@@ -63,7 +64,11 @@ public abstract class GenerateurASujets : IGenerateurASujets
             var reste = tirage.Take(p.Nombre - choisis.Count).ToHashSet();
             choisis.AddRange(sujets.Where(reste.Contains));
         }
-        var exercices = choisis.Select(s => CreerExercice(s.Cle, r, p.Niveau)).ToList();
+        var exercices = choisis.Select(s =>
+        {
+            var e = CreerExercice(s.Cle, r, p.Niveau);
+            return s.TypeExamen ? e with { TypeExamen = true } : e;
+        }).ToList();
         return new Td(p, CodeTd.Ecrire(p), $"{Theme} · {NomsNiveaux[p.Niveau - 1].ToLowerInvariant()}", exercices, EmpreinteTd.Calculer(exercices));
     }
 

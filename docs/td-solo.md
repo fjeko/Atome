@@ -95,6 +95,12 @@ générateur a son **propre préfixe** : il est donc aussi disponible en groupe,
 | `SQL` | SQL (LID) | petite table générée + requête → nombre de lignes, valeur d'un agrégat, résultat d'un `GROUP BY` | nombre, choix |
 | `SEA` | Exercices rédigés d'une séance (existant) | cartes « exercice » des packs : CEJM, culture générale, anglais, conception… | auto-évaluation |
 
+**Exercices « type examen »** (décision du 18/11) : déroulés repris des exercices des sujets officiels (BTS IG et SIO) cités
+dans les TD du CNED, avec des données générées : tableau de données → M × Q (MAT), programme de production et
+codes x + ny + n²z (INV), situation en phrases → M, M², chemins de longueur 3 et prérequis → niveaux (GRA), chemin
+optimal (GRA), projet MPM complet (ORD). Ils portent l'étiquette « Type examen » ; la notion « Exercices type
+examen » d'un thème ne garde qu'eux. Aucun texte de sujet n'est recopié (droits réservés).
+
 Thème **« Exercices rédigés de mes packs »** en solo : seulement les cartes de type **exercice** (pas les
 questions ni les QCM), hors cours exclu, tirées des séances lues des matières cochées. C'est la seule voie
 pour les matières sans calcul. Réponse auto-évaluée.

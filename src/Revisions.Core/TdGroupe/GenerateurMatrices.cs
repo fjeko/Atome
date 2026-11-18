@@ -33,11 +33,15 @@ public sealed class GenerateurMatrices : IGenerateurASujets
         new(nameof(Genre.Produit), "Produit de deux matrices", SectionProduit, [6, 8, 12]),
         new(nameof(Genre.NonCommutativite), "AB et BA", SectionPieges, [6, 8, 12]),
         new(nameof(Genre.Puissance), "Puissance d'une matrice", SectionPuissance, [6, 8, 12]),
-        new(nameof(Genre.Contexte), "Situation concrète", SectionUsine, [8, 10, 15]),
+        new(nameof(Genre.Contexte), "Situation concrète (stocks)", SectionUsine, [8, 10, 15], TypeExamen: true),
+        new(SujetTableau, "Tableau de données et produit", SectionProduit, [10, 12, 15], TypeExamen: true),
     ];
 
+    /// <summary>Sujet du TD solo seulement : il ne fait pas partie des TD de groupe (codes MAT1 et MAT2 inchangés).</summary>
+    private const string SujetTableau = "examen-tableau";
+
     public ExerciceTd CreerExercice(string cle, GenerateurAleatoire r, int niveau) =>
-        Creer(Enum.Parse<Genre>(cle), r, niveau);
+        cle == SujetTableau ? ExamenTableau(r, niveau) : Creer(Enum.Parse<Genre>(cle), r, niveau);
 
     public string Prefixe => "MAT";
     public string Nom => "Matrices (SQ1 Calcul matriciel)";
@@ -521,6 +525,59 @@ public sealed class GenerateurMatrices : IGenerateurASujets
         return new ExerciceTd("En situation : stocks et prix", enonce, questions,
             "Écris le produit dans l'ordre où les dimensions vont ensemble : stocks × prix. Chaque coefficient du résultat = quantités d'une boutique × prix unitaires, terme à terme, additionnés.",
             SectionUsine);
+    }
+
+    // ==== Type examen (TD solo) ==============================================================
+
+    /// <summary>Situations « trois offres, trois caractéristiques » (déroulé des sujets officiels : tableau → M, puis M × Q).</summary>
+    private static readonly (string Intro, string Offre, string[] Offres, string Temps)[] Situations =
+    [
+        ("Un petit fournisseur de matériel informatique propose trois formules à ses clients.", "formule", ["F1", "F2", "F3"], "Temps de préparation (min)"),
+        ("Une boutique en ligne vend trois kits de démarrage pour PC.", "kit", ["K1", "K2", "K3"], "Temps d'emballage (min)"),
+        ("Un prestataire propose trois forfaits d'installation de postes.", "forfait", ["S", "M", "L"], "Temps de travail (min)"),
+    ];
+
+    /// <summary>
+    /// Type examen : un tableau (coût, temps, prix de trois offres) donne une matrice M, les ventes une matrice colonne Q ;
+    /// on calcule MQ, on interprète un coefficient, puis on en déduit le bénéfice.
+    /// </summary>
+    private static ExerciceTd ExamenTableau(GenerateurAleatoire r, int niveau)
+    {
+        var (intro, offre, offres, temps) = r.Choisir(Situations);
+        var cout = Enumerable.Range(0, 3).Select(_ => r.Entier(2, 9)).ToArray();
+        var duree = Enumerable.Range(0, 3).Select(_ => r.Entier(3, 12)).ToArray();
+        var prixVente = cout.Select(c => c + r.Entier(3, niveau == 1 ? 6 : 12)).ToArray();
+        var m = Matrice.Creer(3, 3, (i, j) => i switch { 0 => cout[j], 1 => duree[j], _ => prixVente[j] });
+        var q = Matrice.Creer(3, 1, (i, _) => r.Entier(niveau == 1 ? 2 : 5, niveau == 1 ? 15 : 40));
+        var mq = m * q;
+        int benefice = mq[2, 0] - mq[0, 0];
+        string[] lignes = ["Coût d'achat (€)", temps, "Prix de vente (€)"];
+        string tableau = "| | " + string.Join(" | ", offres.Select(o => $"{offre} {o}")) + " |\n| --- | --- | --- | --- |\n"
+            + string.Concat(Enumerable.Range(0, 3).Select(i => $"| {lignes[i]} | " + string.Join(" | ", Enumerable.Range(0, 3).Select(j => Invariant($"{m[i, j]}"))) + " |\n"));
+        string ventes = string.Join(", ", Enumerable.Range(0, 3).Select(j => Invariant($"{q[j, 0]} {offre}s {offres[j]}")));
+
+        int ligne = r.Entier(0, 2);
+        string[] sens = ["le coût d'achat total (en €)", "le temps total de préparation (en min)", "le chiffre d'affaires total (en €)"];
+        var interpretation = ChoixMelanges(r, sens[ligne], [.. sens.Where((_, i) => i != ligne), "le nombre total de ventes"]);
+
+        return new ExerciceTd("Tableau de données et calcul matriciel",
+            $"{intro} Pour chaque {offre}, le tableau donne le coût d'achat du matériel, le temps nécessaire et le prix de vente.\n\n{tableau}\n" +
+            $"On note $M$ la matrice de ce tableau ($3 \\times 3$). Cette semaine, le magasin a vendu {ventes}, " +
+            "ce que l'on note dans la matrice colonne $Q$.",
+            [
+                new("a", "Calcule le produit $MQ$.", "MQ", new ReponseMatrice(mq), EtapesProduit(m, q, "M", "Q", "m", "q")),
+                new("b", Invariant($"Que représente le coefficient de la ligne {ligne + 1} de $MQ$ ?"), "interprétation", interpretation,
+                [
+                    Invariant($"La ligne {ligne + 1} de $M$ contient « {lignes[ligne]} » pour chaque {offre} ; multipliée par les quantités vendues, elle donne {sens[ligne]}."),
+                ]),
+                new("c", "Quel est le bénéfice réalisé cette semaine (en €) ?", "bénéfice (€)", new ReponseNombre(benefice),
+                [
+                    "Bénéfice = chiffre d'affaires − coût d'achat : ligne 3 de $MQ$ moins ligne 1.",
+                    Invariant($"{mq[2, 0]} − {mq[0, 0]} = **{benefice} €**."),
+                ]),
+            ],
+            "Chaque ligne de $M$ est une caractéristique (coût, temps, prix), chaque colonne une offre. $MQ$ additionne, ligne par ligne, « valeur × quantité » : on obtient les totaux de la semaine.",
+            SectionProduit, TypeExamen: true);
     }
 
     // ==== Outils ============================================================================

@@ -98,7 +98,7 @@ public sealed class GenerateurOrdonnancement : GenerateurASujets
         new("tard", "Dates au plus tard", "maths-sq3-s01-s05", [6, 8, 12]),
         new("critique", "Chemin critique", "maths-sq3-s04-s02", [4, 5, 7]),
         new("marges", "Marges totale et libre", "maths-sq3-s04-s03", [6, 8, 10]),
-        new("projet", "Étude complète d'un projet", "maths-sq3-s01-s04", [30, 30, 30], NiveauMin: 3),
+        new("projet", "Étude complète d'un projet", "maths-sq3-s01-s04", [30, 30, 30], NiveauMin: 3, TypeExamen: true),
     ];
 
     private static readonly string[] Projets =
@@ -156,16 +156,16 @@ public sealed class GenerateurOrdonnancement : GenerateurASujets
     {
         var critiques = Enumerable.Range(0, p.N).Where(p.EstCritique).ToList();
         var chemin = p.CheminsCritiques()[0];
-        string ecrit = string.Join("-", chemin.Select(t => Nom(p, t)));
-        string sansFin = string.Join("-", chemin.Where(t => t != p.N).Select(t => Nom(p, t)));
+        string ecrit = string.Join("-", chemin.Select(t => NomTache(p, t)));
+        string sansFin = string.Join("-", chemin.Where(t => t != p.N).Select(t => NomTache(p, t)));
         return new("Chemin critique", intro + "\n\nDates au plus tôt et au plus tard :\n\n" + TableauDates(p, tard: true),
             [
                 new("a", "Quelles sont les tâches critiques ?", "tâches critiques",
-                    new ReponseTexte(Liste(critiques.Select(t => Nom(p, t))), FormeTexte.Ensemble, "A, D, F"),
+                    new ReponseTexte(Liste(critiques.Select(t => NomTache(p, t))), FormeTexte.Ensemble, "A, D, F"),
                 [
                     "Une tâche est **critique** quand sa date au plus tôt est égale à sa date au plus tard.",
-                    $"Tâches critiques : **{Liste(critiques.Select(t => Nom(p, t)))}**" +
-                        (critiques.Count < p.N ? $" (les autres ont tôt < tard : {Liste(Enumerable.Range(0, p.N).Where(t => !p.EstCritique(t)).Select(t => Invariant($"{Nom(p, t)} {p.Tot[t]} < {p.Tard[t]}")))})." : "."),
+                    $"Tâches critiques : **{Liste(critiques.Select(t => NomTache(p, t)))}**" +
+                        (critiques.Count < p.N ? $" (les autres ont tôt < tard : {Liste(Enumerable.Range(0, p.N).Where(t => !p.EstCritique(t)).Select(t => Invariant($"{NomTache(p, t)} {p.Tot[t]} < {p.Tard[t]}")))})." : "."),
                 ]),
                 new("b", "Écris le chemin critique (tâches dans l'ordre, jusqu'à FIN).", "chemin critique",
                     new ReponseTexte(ecrit, FormeTexte.Chemin, "A-D-F-FIN", [sansFin]),
@@ -191,12 +191,12 @@ public sealed class GenerateurOrdonnancement : GenerateurASujets
                     new ReponseMatrice(Matrice.Creer(1, p.N, (_, j) => p.MargeTotale(j)), null, Taches(p, fin: false)),
                 [
                     "Marge totale = tard − tôt.",
-                    string.Join(" ; ", Enumerable.Range(0, p.N).Select(t => Invariant($"{Nom(p, t)} : {p.Tard[t]} − {p.Tot[t]} = {p.MargeTotale(t)}"))) + ".",
+                    string.Join(" ; ", Enumerable.Range(0, p.N).Select(t => Invariant($"{NomTache(p, t)} : {p.Tard[t]} − {p.Tot[t]} = {p.MargeTotale(t)}"))) + ".",
                 ]),
-                new("b", $"Calcule la marge libre de la tâche {Nom(p, x)}.", $"marge libre de {Nom(p, x)}", new ReponseNombre(p.MargeLibre(x)),
+                new("b", $"Calcule la marge libre de la tâche {NomTache(p, x)}.", $"marge libre de {NomTache(p, x)}", new ReponseNombre(p.MargeLibre(x)),
                 [
                     "Marge libre(X) = min(tôt des successeurs) − tôt(X) − durée(X), ramenée à 0 si le calcul est négatif.",
-                    Invariant($"Successeur{S(succ.Count)} de {Nom(p, x)} : {Liste(succ.Select(s => $"{Nom(p, s)} (tôt {p.Tot[s]})"))}."),
+                    Invariant($"Successeur{S(succ.Count)} de {NomTache(p, x)} : {Liste(succ.Select(s => $"{NomTache(p, s)} (tôt {p.Tot[s]})"))}."),
                     Invariant($"{succ.Min(s => p.Tot[s])} − {p.Tot[x]} − {p.Durees[x]} = {brut}") + (brut < 0 ? " → ramené à **0**." : Invariant($" : marge libre **{brut}**.")),
                 ]),
             ],
@@ -230,7 +230,7 @@ public sealed class GenerateurOrdonnancement : GenerateurASujets
         int max = p.Niveaux.Max();
         for (int k = 0; k <= max; k++)
         {
-            var tour = Enumerable.Range(0, p.N).Where(t => p.Niveaux[t] == k).Select(t => Nom(p, t)).ToList();
+            var tour = Enumerable.Range(0, p.N).Where(t => p.Niveaux[t] == k).Select(t => NomTache(p, t)).ToList();
             etapes.Add(k == 0
                 ? $"Sans antécédent : {Liste(tour)} → **niveau 0**. On les raye des antécédents."
                 : $"N'ont plus d'antécédent : {Liste(tour)} → **niveau {k}**." + (k < max ? " On les raye à leur tour." : ""));
@@ -243,10 +243,10 @@ public sealed class GenerateurOrdonnancement : GenerateurASujets
         var etapes = new List<string> { "On avance par niveaux croissants. Une tâche sans antécédent commence à 0." };
         foreach (var groupe in p.OrdreParNiveaux.GroupBy(t => p.Niveaux[t]))
             etapes.Add(string.Join(" ; ", groupe.Select(t => p.Anteriorites[t].Count == 0
-                ? $"{Nom(p, t)} : 0"
-                : Max(p.Anteriorites[t].Select(a => Invariant($"{p.Tot[a]} + {p.Durees[a]} ({Nom(p, a)})")), p.Tot[t], Nom(p, t)))) + ".");
+                ? $"{NomTache(p, t)} : 0"
+                : Max(p.Anteriorites[t].Select(a => Invariant($"{p.Tot[a]} + {p.Durees[a]} ({NomTache(p, a)})")), p.Tot[t], NomTache(p, t)))) + ".");
         var fin = Enumerable.Range(0, p.N).Where(t => p.Successeurs(t).Count == 0).ToList();
-        etapes.Add(Max(fin.Select(a => Invariant($"{p.Tot[a]} + {p.Durees[a]} ({Nom(p, a)})")), p.Duree, "FIN") + Invariant($" : le projet dure **{p.Duree} jours**."));
+        etapes.Add(Max(fin.Select(a => Invariant($"{p.Tot[a]} + {p.Durees[a]} ({NomTache(p, a)})")), p.Duree, "FIN") + Invariant($" : le projet dure **{p.Duree} jours**."));
         return etapes;
     }
 
@@ -257,10 +257,10 @@ public sealed class GenerateurOrdonnancement : GenerateurASujets
             etapes.Add(string.Join(" ; ", groupe.Select(t =>
             {
                 var succ = p.SuccesseursOuFin(t);
-                string calculs = string.Join(", ", succ.Select(s => Invariant($"{p.Tard[s]} − {p.Durees[t]} ({Nom(p, s)})")));
+                string calculs = string.Join(", ", succ.Select(s => Invariant($"{p.Tard[s]} − {p.Durees[t]} ({NomTache(p, s)})")));
                 return succ.Count == 1
-                    ? Invariant($"{Nom(p, t)} : {calculs} = {p.Tard[t]}")
-                    : Invariant($"{Nom(p, t)} : min({calculs}) = {p.Tard[t]}");
+                    ? Invariant($"{NomTache(p, t)} : {calculs} = {p.Tard[t]}")
+                    : Invariant($"{NomTache(p, t)} : min({calculs}) = {p.Tard[t]}");
             })) + ".");
         return etapes;
     }
@@ -329,7 +329,7 @@ public sealed class GenerateurOrdonnancement : GenerateurASujets
             else pile.Pop();
         return vus;
     }
-    private static string Nom(ProjetMpm p, int t) => t == p.N ? "FIN" : Lettre(t);
+    private static string NomTache(ProjetMpm p, int t) => t == p.N ? "FIN" : Lettre(t);
 
     private static List<string> Taches(ProjetMpm p, bool fin) =>
         [.. Enumerable.Range(0, p.N).Select(Lettre), .. fin ? ["FIN"] : Array.Empty<string>()];

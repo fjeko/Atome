@@ -32,7 +32,8 @@ public sealed record Td(ParametresTd Parametres, string Code, string Titre, IRea
 /// <param name="Enonce">Énoncé commun aux sous-questions (Markdown + LaTeX).</param>
 /// <param name="Indice">Rappel de méthode, montré seulement si on le demande (Markdown + LaTeX).</param>
 /// <param name="SectionId">Section du cours à revoir (« Revoir la notion »), ou null.</param>
-public sealed record ExerciceTd(string Titre, string Enonce, IReadOnlyList<QuestionTd> Questions, string Indice, string? SectionId);
+/// <param name="TypeExamen">Même déroulé qu'un exercice des sujets officiels du BTS SIO (affiché « Type examen »).</param>
+public sealed record ExerciceTd(string Titre, string Enonce, IReadOnlyList<QuestionTd> Questions, string Indice, string? SectionId, bool TypeExamen = false);
 
 /// <summary>Une sous-question.</summary>
 /// <param name="Lettre">« a », « b », « c »…</param>

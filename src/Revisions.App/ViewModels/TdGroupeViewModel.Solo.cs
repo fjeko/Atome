@@ -88,9 +88,12 @@ public partial class TdGroupeViewModel
         _dernierTheme = value.Nom;
         var theme = value.EstTout && DomaineChoisi!.Themes.Count == 1 ? DomaineChoisi.Themes[0] : value;
         var notions = new List<NotionSolo> { new("Toutes les notions", "Dans l'ordre du cours, comme une feuille de révision", null) };
+        if (!theme.EstTout && theme.Generateur is { } ge && ge.Sujets.Count(s => s.TypeExamen) is > 1 and var nbExamen)
+            notions.Add(new NotionSolo("Exercices type examen", $"{nbExamen} déroulés repris des sujets officiels du BTS SIO",
+                ge.Sujets.Where(s => s.TypeExamen).Select(s => s.Cle).ToHashSet()));
         if (!theme.EstTout && theme.Generateur is { } g)
             notions.AddRange(g.Sujets.Select(s => new NotionSolo(s.Nom,
-                s.NiveauMin > 1 ? "Niveau « Comme à l'examen » seulement" : $"Environ {s.MinutesPour(2)} min par exercice", new HashSet<string> { s.Cle })));
+                (s.TypeExamen ? "Type examen · " : "") + (s.NiveauMin > 1 ? "niveau « Comme à l'examen » seulement" : $"environ {s.MinutesPour(2)} min par exercice"), new HashSet<string> { s.Cle })));
         else if (!theme.EstTout && theme.MatiereRedigee is { } matiere)
             notions.AddRange(CartesRedigees(matiere).GroupBy(c => (c.PackId, c.Seance)).Select(gr =>
                 new NotionSolo(gr.Key.Seance, $"{gr.Count()} exercice{(gr.Count() > 1 ? "s" : "")}", gr.Select(c => c.Carte.Id).ToHashSet())));

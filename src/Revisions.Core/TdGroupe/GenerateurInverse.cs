@@ -18,6 +18,8 @@ public sealed class GenerateurInverse : GenerateurASujets
         new("verifier", "Vérifier une matrice inverse", "maths-sq1-s04-s01", [5, 7, 10]),
         new("calculatrice", "Inverse à la calculatrice", "maths-sq1-s04-s02", [4, 5, 6]),
         new("systeme", "Système linéaire et matrice inverse", "maths-sq1-s04-s06", [8, 12, 15]),
+        new("examen-production", "Programme de production", "maths-sq1-s04-s06", [10, 12, 15], TypeExamen: true),
+        new("examen-codes", "Codes calculés par une formule", "maths-sq1-s04-s06", [10, 12, 15], NiveauMin: 2, TypeExamen: true),
     ];
 
     private static readonly string[] Inconnues = ["x", "y", "z"];
@@ -27,6 +29,8 @@ public sealed class GenerateurInverse : GenerateurASujets
         "verifier" => Verifier(r, niveau),
         "calculatrice" => Calculatrice(r, niveau),
         "systeme" => Systeme(r, niveau),
+        "examen-production" => ExamenProduction(r, niveau),
+        "examen-codes" => ExamenCodes(r),
         _ => throw new ArgumentException($"Sujet inconnu : {cle}", nameof(cle)),
     };
 
@@ -107,6 +111,95 @@ public sealed class GenerateurInverse : GenerateurASujets
             ],
             "Le système s'écrit $AX = Y$. Si $A$ est inversible : $X = A^{-1}Y$ (on multiplie **à gauche** par $A^{-1}$).",
             "maths-sq1-s04-s06");
+    }
+
+    // ==== Type examen ========================================================================
+
+    /// <summary>Matrices 2 × 2 à coefficients positifs et de déterminant ±1 (inverse entière), pour les situations concrètes.</summary>
+    private static readonly int[][] Positives =
+    [
+        [2, 1, 1, 1], [3, 2, 1, 1], [2, 3, 1, 2], [3, 1, 2, 1], [4, 3, 1, 1], [5, 3, 3, 2], [3, 5, 1, 2], [4, 1, 3, 1], [5, 2, 2, 1], [2, 5, 1, 3],
+    ];
+
+    private static readonly (string Intro, string[] Produits, string[] Lignes)[] Productions =
+    [
+        ("Une entreprise assemble deux modèles d'ordinateurs, P1 et P2.", ["P1", "P2"], ["Coût des composants (centaines d'€)", "Heures de montage"]),
+        ("Un atelier fabrique deux types de serveurs, S1 et S2.", ["S1", "S2"], ["Coût des pièces (centaines d'€)", "Heures de travail"]),
+        ("Une société produit deux modèles de routeurs, R1 et R2.", ["R1", "R2"], ["Coût des éléments (dizaines d'€)", "Heures de test"]),
+    ];
+
+    /// <summary>
+    /// Type examen : un tableau de production donne $A$ ; on calcule $Y = AX$ pour une semaine, puis on retrouve
+    /// la production d'une autre semaine à partir des totaux, avec $X = A^{-1}Y$.
+    /// </summary>
+    private static ExerciceTd ExamenProduction(GenerateurAleatoire r, int niveau)
+    {
+        var (intro, produits, lignes) = r.Choisir(Productions);
+        var c = r.Choisir(Positives);
+        var a = Matrice.Creer(2, 2, (i, j) => c[2 * i + j]);
+        var inverse = Inverse(a);
+        int pas = niveau == 1 ? 5 : 1;
+        var x1 = Matrice.Creer(2, 1, (_, _) => r.Entier(2, 12) * pas);
+        var x2 = Matrice.Creer(2, 1, (_, _) => r.Entier(2, 12) * pas);
+        var y1 = a * x1;
+        var y2 = a * x2;
+        string tableau = $"| | {produits[0]} | {produits[1]} |\n| --- | --- | --- |\n" +
+            string.Concat(Enumerable.Range(0, 2).Select(i => Invariant($"| {lignes[i]} | {a[i, 0]} | {a[i, 1]} |\n")));
+
+        return new ExerciceTd("Programme de production",
+            $"{intro} Pour un appareil de chaque modèle, le tableau donne :\n\n{tableau}\n" +
+            $"Une production de $x$ {produits[0]} et $y$ {produits[1]} se note $X = \\begin{{pmatrix}} x \\\\ y \\end{{pmatrix}}$. " +
+            $"Elle occasionne un coût $c$ et un nombre d'heures $t$, notés $Y = \\begin{{pmatrix}} c \\\\ t \\end{{pmatrix}}$. On note $A$ la matrice du tableau : $Y = AX$.",
+            [
+                new("a", Invariant($"Une semaine, l'entreprise produit {x1[0, 0]} {produits[0]} et {x1[1, 0]} {produits[1]}. Calcule $Y$ (coût, puis heures)."), "Y",
+                    new ReponseMatrice(y1), GenerateurMatrices.EtapesProduit(a, x1, "A", "X", "a", "x", "Y")),
+                new("b", $"On admet que $A^{{-1}} = {inverse.Latex()}$. Une autre semaine, le coût vaut {y2[0, 0]} et les heures {y2[1, 0]}. Combien d'appareils de chaque modèle ont été produits ?", "X",
+                    new ReponseMatrice(x2),
+                    [
+                        "$Y = AX$ donne $X = A^{-1}Y$ (on multiplie à gauche par $A^{-1}$).",
+                        .. GenerateurMatrices.EtapesProduit(inverse, y2, "A^{-1}", "Y", null, null, "X"),
+                        Invariant($"L'entreprise a produit **{x2[0, 0]} {produits[0]}** et **{x2[1, 0]} {produits[1]}**."),
+                    ]),
+            ],
+            "Le tableau donne directement $A$ (une colonne par modèle). Pour revenir des totaux $Y$ à la production $X$ : $X = A^{-1}Y$.",
+            "maths-sq1-s04-s06", TypeExamen: true);
+    }
+
+    /// <summary>
+    /// Type examen : le code du client n vaut x + n·y + n²·z ; trois codes connus donnent un système 3 × 3
+    /// (matrice fixe, inverse donnée), qu'on résout pour calculer ensuite d'autres codes.
+    /// </summary>
+    private static ExerciceTd ExamenCodes(GenerateurAleatoire r)
+    {
+        int x = r.Entier(1, 9), y = r.Entier(1, 9), z = r.Entier(1, 9);
+        int Code(int n) => x + n * y + n * n * z;
+        var m = Matrice.Creer(3, 3, (i, j) => (int)Math.Pow(i + 1, j));
+        var codes = Matrice.Creer(3, 1, (i, _) => Code(i + 1));
+        var solution = Matrice.Creer(3, 1, (i, _) => new[] { x, y, z }[i]);
+        int n4 = r.Entier(4, 9);
+        const string inverseLatex = "\\begin{pmatrix} 3 & -3 & 1 \\\\ -2{,}5 & 4 & -1{,}5 \\\\ 0{,}5 & -1 & 0{,}5 \\end{pmatrix}";
+        return new ExerciceTd("Codes clients calculés par une formule",
+            "Pour que ses clients accèdent à leurs factures, un service attribue à chacun un code. Le code du client numéro $n$ vaut " +
+            "$x + n\\,y + n^2 z$, où $x$, $y$ et $z$ sont trois nombres inconnus.\n\n" +
+            Invariant($"Le client n° 1 a pour code {codes[0, 0]}, le client n° 2 a pour code {codes[1, 0]} et le client n° 3 a pour code {codes[2, 0]}."),
+            [
+                new("a", "Le système vérifié par $x$, $y$, $z$ s'écrit $MX = Y$. Écris la matrice $M$.", "M", new ReponseMatrice(m),
+                    [
+                        "Client $n$ : $1 \\times x + n \\times y + n^2 \\times z$ = code. Chaque ligne de $M$ est donc $(1 \\;\\; n \\;\\; n^2)$.",
+                        $"$M = {m.Latex()}$ et $Y = {codes.Latex()}$.",
+                    ]),
+                new("b", $"On admet que $M^{{-1}} = {inverseLatex}$. Calcule $X$ ($x$, puis $y$, puis $z$).", "X", new ReponseMatrice(solution),
+                    [
+                        "$X = M^{-1}Y$ (à la calculatrice, ou ligne par colonne).",
+                        Invariant($"$x = 3 \\times {codes[0, 0]} - 3 \\times {codes[1, 0]} + 1 \\times {codes[2, 0]} = {x}$"),
+                        Invariant($"$y = -2{{,}}5 \\times {codes[0, 0]} + 4 \\times {codes[1, 0]} - 1{{,}}5 \\times {codes[2, 0]} = {y}$"),
+                        Invariant($"$z = 0{{,}}5 \\times {codes[0, 0]} - 1 \\times {codes[1, 0]} + 0{{,}}5 \\times {codes[2, 0]} = {z}$"),
+                    ]),
+                new("c", Invariant($"Quel est le code du client n° {n4} ?"), Invariant($"code n° {n4}"), new ReponseNombre(Code(n4)),
+                    [Invariant($"${x} + {n4} \\times {y} + {n4}^2 \\times {z} = {x} + {n4 * y} + {n4 * n4 * z} = {Code(n4)}$.")]),
+            ],
+            "Chaque code connu donne une équation : $x + n\\,y + n^2 z = \\text{code}$. Trois équations → système $MX = Y$ → $X = M^{-1}Y$.",
+            "maths-sq1-s04-s06", TypeExamen: true);
     }
 
     // ==== Outils =============================================================================

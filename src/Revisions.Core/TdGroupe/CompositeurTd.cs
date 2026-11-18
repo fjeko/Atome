@@ -65,7 +65,9 @@ public static class CompositeurTd
             .Select(i =>
             {
                 var (g, s) = candidats[i];
-                return new ExerciceSolo(g.CreerExercice(s.Cle, r, d.Niveau), g.Prefixe, g.Theme, s, s.MinutesPour(d.Niveau));
+                var exercice = g.CreerExercice(s.Cle, r, d.Niveau);
+                if (s.TypeExamen) exercice = exercice with { TypeExamen = true };
+                return new ExerciceSolo(exercice, g.Prefixe, g.Theme, s, s.MinutesPour(d.Niveau));
             })
             .ToList();
     }

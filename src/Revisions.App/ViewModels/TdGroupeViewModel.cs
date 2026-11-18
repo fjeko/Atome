@@ -261,7 +261,7 @@ public partial class TdGroupeViewModel : ObservableObject
         ArreterMinuteur();
         Avancement = $"Exercice {_index + 1} / {_td!.Exercices.Count}";
         Progression = (double)_index / _td.Exercices.Count;
-        TitreExercice = _td.Exercices[_index].Titre;
+        TitreExercice = _td.Exercices[_index].Titre + (_td.Exercices[_index].TypeExamen ? " · type examen" : "");
         Confirmation = null;
         if (EstSolo) { AfficherExercice(); return; } // seul : pas de « Prêts ? », on enchaîne
         Phase = PhaseTd.Pret;
@@ -574,6 +574,8 @@ public partial class TdGroupeViewModel : ObservableObject
     {
         var exercice = Exercice;
         var elements = new List<object> { new { genre = "question", markdown = exercice.Enonce } };
+        if (exercice.TypeExamen)
+            elements.Insert(0, new { genre = "etiquette", markdown = "Type examen · même déroulé qu'un exercice des sujets officiels du BTS SIO" });
         foreach (var q in exercice.Questions)
         {
             string texte = $"**{q.Lettre})** {q.Intitule}";

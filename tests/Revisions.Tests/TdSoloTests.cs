@@ -249,3 +249,26 @@ public sealed class DepotTdTests : IDisposable
         Assert.Equal(0, _depot.RemettreEnRevision("maths-sq1-s03-s01", Jour)); // déjà due aujourd'hui : rien à faire
     }
 }
+
+/// <summary>Exercices « type examen » : repérés comme tels jusque dans le TD composé.</summary>
+public class TypeExamenTests
+{
+    [Fact]
+    public void Le_compositeur_marque_les_exercices_type_examen()
+    {
+        var gra = new GenerateurGraphes();
+        var td = CompositeurTd.Composer(new DemandeTdSolo([gra], 30, 2, (_, s) => s.TypeExamen), new GenerateurAleatoire(3));
+        Assert.NotEmpty(td);
+        Assert.All(td, e => Assert.True(e.Exercice.TypeExamen));
+    }
+
+    [Fact]
+    public void Codes_clients_coherents()
+    {
+        var e = new GenerateurInverse().CreerExercice("examen-codes", new GenerateurAleatoire(5), 2);
+        var m = Assert.IsType<ReponseMatrice>(e.Questions[0].Attendu).Valeur;
+        var x = Assert.IsType<ReponseMatrice>(e.Questions[1].Attendu).Valeur;
+        Assert.Equal(new Matrice([[1, 1, 1], [1, 2, 4], [1, 3, 9]]), m);
+        Assert.Contains(((m * x)[0, 0]).ToString(), e.Enonce);
+    }
+}

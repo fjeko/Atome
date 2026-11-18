@@ -21,7 +21,9 @@ public sealed class GenerateurGraphes : GenerateurASujets
         new("chemins", "Compter les chemins avec M²", "maths-sq2-s01-s06", [8, 10, 14]),
         new("fermeture", "Fermeture transitive", "maths-sq2-s04-s05", [10, 12, 18]),
         new("niveaux", "Niveaux des sommets", "maths-sq2-s08-s01", [5, 7, 9]),
-        new("optimal", "Chemin optimal d'un graphe pondéré", "maths-sq2-s10-s03", [8, 10, 14]),
+        new("optimal", "Chemin optimal d'un graphe pondéré", "maths-sq2-s10-s03", [8, 10, 14], TypeExamen: true),
+        new("examen-situation", "Situation décrite en phrases : matrice et chemins", "maths-sq2-s01-s06", [10, 12, 15], TypeExamen: true),
+        new("examen-prerequis", "Prérequis : niveaux et ordre possible", "maths-sq2-s08-s01", [7, 9, 12], TypeExamen: true),
     ];
 
     public override ExerciceTd CreerExercice(string cle, GenerateurAleatoire r, int niveau) => cle switch
@@ -32,6 +34,8 @@ public sealed class GenerateurGraphes : GenerateurASujets
         "fermeture" => Fermeture(r, niveau),
         "niveaux" => Niveaux(r, niveau),
         "optimal" => Optimal(r, niveau),
+        "examen-situation" => ExamenSituation(r, niveau),
+        "examen-prerequis" => ExamenPrerequis(r, niveau),
         _ => throw new ArgumentException($"Sujet inconnu : {cle}", nameof(cle)),
     };
 
@@ -303,6 +307,129 @@ public sealed class GenerateurGraphes : GenerateurASujets
             questions,
             "Un chemin a pour valeur la **somme des poids** de ses arcs. Au BTS, on liste tous les chemins possibles avec leur valeur, puis on garde le plus petit (ou le plus grand).",
             "maths-sq2-s10-s03");
+    }
+
+    // ==== Type examen ========================================================================
+
+    /// <summary>Situations racontées en phrases (déroulé des sujets officiels : texte → graphe → matrice → chemins).</summary>
+    private static readonly (string Intro, string Sommet, string Phrase, string Aucun)[] Situations =
+    [
+        ("Une entreprise crée un site Internet de {n} pages notées {noms}.", "page", "Depuis la page {x}, des liens mènent aux pages {s}.", "La page {x} ne contient aucun lien."),
+        ("Un agent commercial prospecte {n} villes notées {noms}.", "ville", "Depuis la ville {x}, il va directement en {s}.", "Il ne quitte jamais directement la ville {x}."),
+        ("{n} joueurs, notés {noms}, s'affrontent régulièrement en ligne.", "joueur", "Le joueur {x} a déjà battu {s}.", "Le joueur {x} n'a encore battu personne."),
+    ];
+
+    /// <summary>Type examen : la situation donne le graphe ; on écrit M, on calcule M², puis on compte des chemins.</summary>
+    private static ExerciceTd ExamenSituation(GenerateurAleatoire r, int niveau)
+    {
+        int n = niveau == 1 ? 4 : 5;
+        var (intro, sommet, phrase, aucun) = r.Choisir(Situations);
+        var g = Aleatoire(r, n, boucles: false);
+        var noms = Noms(n);
+        var m = Adjacence(g);
+        var m2 = m * m;
+        var m3 = m2 * m;
+        var texte = new System.Text.StringBuilder(intro.Replace("{n}", Nombre(n)).Replace("{noms}", string.Join(", ", noms)) + "\n\n");
+        for (int i = 0; i < n; i++)
+        {
+            var succ = Successeurs(g, i);
+            texte.Append("- ").Append(succ.Count == 0
+                ? aucun.Replace("{x}", noms[i])
+                : phrase.Replace("{x}", noms[i]).Replace("{s}", Enumeration(succ.Select(Lettre)))).Append('\n');
+        }
+        texte.Append($"\nOn note $G$ le graphe orienté associé (sommets {string.Join(", ", noms)} dans cet ordre) et $M$ sa matrice d'adjacence.");
+
+        // Un couple avec au moins un chemin de longueur 3 si possible.
+        var couples = (from i in Enumerable.Range(0, n) from j in Enumerable.Range(0, n) where m3[i, j] > 0 select (i, j)).ToList();
+        var (a, b) = couples.Count > 0 ? r.Choisir(couples) : (0, 1);
+        int x = r.Entier(0, n - 1), y = r.Entier(0, n - 2);
+        if (y >= x) y++;
+
+        var etapesM = new List<string> { "Chaque phrase donne les successeurs d'un sommet : 1 dans sa ligne, à la colonne de chaque successeur." };
+        for (int i = 0; i < n; i++) etapesM.Add($"Ligne {noms[i]} : {LigneTexte(m, i)}.");
+        var etapesM2 = new List<string> { "$M^2 = M \\times M$ (ligne × colonne)." };
+        for (int i = 0; i < n; i++)
+            etapesM2.Add($"Ligne {noms[i]} : " + string.Join(" ; ", Enumerable.Range(0, n).Select(j => Invariant($"{m2[i, j]}"))) + ".");
+        var chemins3 = TousLesCheminsDeLongueur(g, a, b, 3).Select(c => string.Join("-", c.Select(Lettre))).ToList();
+
+        return new ExerciceTd("Graphe d'une situation", texte.ToString(),
+            [
+                new("a", $"Peut-on aller directement de {noms[x]} à {noms[y]} ?", "directement ?", OuiNon(g[x, y]),
+                    [$"On lit la phrase de {noms[x]} : {(g[x, y] ? "**oui**" : "**non**")}, {noms[y]} {(g[x, y] ? "y figure" : "n'y figure pas")}."]),
+                new("b", "Écris la matrice d'adjacence $M$ de $G$.", "matrice M", new ReponseMatrice(m, noms, noms), etapesM),
+                new("c", "Calcule $M^2$.", "M²", new ReponseMatrice(m2, noms, noms), etapesM2),
+                new("d", $"Combien y a-t-il de chemins de longueur 3 de {noms[a]} à {noms[b]} ?", $"longueur 3 {noms[a]} → {noms[b]}", new ReponseNombre(m3[a, b]),
+                    [
+                        "Ce nombre est le coefficient de $M^3 = M^2 \\times M$ : ligne de départ de $M^2$ × colonne d'arrivée de $M$.",
+                        Invariant($"{string.Join(" + ", Enumerable.Range(0, n).Select(k => Invariant($"{m2[a, k]}×{m[k, b]}")))} = **{m3[a, b]}**."),
+                        chemins3.Count > 0 ? $"Ce sont : {Liste(chemins3)}." : "Il n'y en a aucun.",
+                    ]),
+            ],
+            "Traduis chaque phrase en arcs (ligne = départ, colonne = arrivée). Le coefficient $(i, j)$ de $M^k$ compte les chemins de longueur $k$ de $i$ à $j$.",
+            "maths-sq2-s01-s06", TypeExamen: true);
+    }
+
+    /// <summary>Type examen : des modules à valider avec leurs prérequis (graphe sans circuit) → niveaux.</summary>
+    private static ExerciceTd ExamenPrerequis(GenerateurAleatoire r, int niveau)
+    {
+        int n = 4 + niveau;
+        var g = SansCircuit(r, n, melanger: true);
+        var noms = Noms(n);
+        var (niveaux, tours) = CalculerNiveaux(g);
+        var texte = new System.Text.StringBuilder($"Pour obtenir une certification, une étudiante doit valider {n} modules notés {string.Join(", ", noms)}, en respectant des règles :\n\n");
+        // Les règles d'abord, puis une seule phrase pour les modules dont rien ne dépend.
+        var finaux = new List<string>();
+        for (int i = 0; i < n; i++)
+        {
+            var succ = Successeurs(g, i);
+            if (succ.Count == 0) { finaux.Add(noms[i]); continue; }
+            texte.Append($"- une fois le module {noms[i]} validé, on peut valider {(succ.Count == 1 ? "le module " : "les modules ")}{Enumeration(succ.Select(Lettre))} ;\n");
+        }
+        texte.Append(finaux.Count == 1
+            ? $"- aucun module ne se valide après le module {finaux[0]}.\n"
+            : $"- aucun module ne se valide après les modules {Enumeration(finaux)}.\n");
+        texte.Append("\nOn associe à cette situation un graphe orienté : un arc va du module X au module Y si Y peut être validé une fois X validé.");
+        var zero = tours[0].Select(Lettre).ToList();
+        var etapes = new List<string>
+        {
+            "Tableau des prédécesseurs : " + string.Join(" ; ", Enumerable.Range(0, n).Select(j => $"{noms[j]} : {Liste(Predecesseurs(g, j).Select(Lettre), "–")}")) + ".",
+        };
+        for (int k = 0; k < tours.Count; k++)
+            etapes.Add($"{(k == 0 ? "Sans prédécesseur" : "N'ont plus de prédécesseur")} : {Liste(tours[k].Select(Lettre))} → **niveau {k}**.");
+
+        return new ExerciceTd("Prérequis et niveaux", texte.ToString(),
+            [
+                new("a", "Détermine le niveau de chaque module (sommet du graphe).", "niveaux",
+                    new ReponseMatrice(Matrice.Creer(1, n, (_, j) => niveaux[j]), null, noms), etapes),
+                new("b", "Par quel(s) module(s) l'étudiante peut-elle commencer ?", "premiers modules",
+                    new ReponseTexte(Liste(zero), FormeTexte.Ensemble, "A, C"),
+                    [$"Ce sont les modules de niveau 0 (sans prérequis) : **{Liste(zero)}**."]),
+                new("c", "Combien d'étapes (niveaux) faut-il au minimum pour tout valider ?", "nombre de niveaux", new ReponseNombre(tours.Count),
+                    [Invariant($"Les niveaux vont de 0 à {tours.Count - 1} : il faut au moins **{tours.Count} étapes**, en validant ensemble les modules d'un même niveau.")]),
+            ],
+            "Écris d'abord le tableau des prédécesseurs, puis applique la méthode des niveaux (sans prédécesseur = niveau 0, on les supprime, etc.).",
+            "maths-sq2-s08-s01", TypeExamen: true);
+    }
+
+    /// <summary>« A, B et C ».</summary>
+    private static string Enumeration(IEnumerable<string> elements)
+    {
+        var l = elements.ToList();
+        return l.Count <= 1 ? string.Concat(l) : string.Join(", ", l.Take(l.Count - 1)) + " et " + l[^1];
+    }
+
+    /// <summary>Chemins d'exactement <paramref name="longueur"/> arcs (sommets répétés permis, comme dans M^k).</summary>
+    public static List<List<int>> TousLesCheminsDeLongueur(bool[,] g, int depart, int arrivee, int longueur)
+    {
+        var resultat = new List<List<int>>();
+        void Explorer(List<int> chemin)
+        {
+            if (chemin.Count == longueur + 1) { if (chemin[^1] == arrivee) resultat.Add([.. chemin]); return; }
+            for (int j = 0; j < g.GetLength(0); j++)
+                if (g[chemin[^1], j]) { chemin.Add(j); Explorer(chemin); chemin.RemoveAt(chemin.Count - 1); }
+        }
+        Explorer([depart]);
+        return resultat;
     }
 
     // ==== Calculs (publics pour les tests) ===================================================
