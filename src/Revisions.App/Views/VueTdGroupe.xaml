@@ -225,7 +225,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="16" />
-                    <ColumnDefinition Width="Auto" MinWidth="300" MaxWidth="440" />
+                    <ColumnDefinition Width="Auto" MinWidth="300" />
                 </Grid.ColumnDefinitions>
 
                 <!-- Énoncé, indice et correction pas à pas : Markdown + LaTeX (matrices rendues par KaTeX). -->
@@ -234,7 +234,9 @@
                 </Border>
 
                 <!-- Zone de réponse : une carte par sous-question. -->
-                <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto" Focusable="False">
+                <!-- MaxWidth sur la zone elle-même (et non sur la colonne « Auto ») : elle est mesurée à cette largeur,
+                     donc les propositions d'un choix passent à la ligne au lieu d'être coupées à droite. -->
+                <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Focusable="False" MaxWidth="{StaticResource Largeur.ZoneReponse}">
                     <ItemsControl ItemsSource="{Binding Questions}" Focusable="False">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

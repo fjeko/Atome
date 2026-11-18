@@ -78,6 +78,8 @@
     <sys:Double x:Key="Largeur.CaseNombre">104</sys:Double>
     <sys:Double x:Key="Hauteur.CaseNombre">40</sys:Double>
     <Thickness x:Key="Remplissage.CaseNombre">8,4</Thickness>
+    <!-- Colonne des réponses du TD en groupe : une grille de 4 colonnes y tient ; les choix passent à la ligne. -->
+    <sys:Double x:Key="Largeur.ZoneReponse">520</sys:Double>
 
     <!-- Durées : 150 ms pour les survols et changements d'état. -->
     <Duration x:Key="Duree.Survol">0:0:0.15</Duration>
