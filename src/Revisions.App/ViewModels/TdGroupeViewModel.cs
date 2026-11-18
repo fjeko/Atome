@@ -57,7 +57,8 @@ public partial class TdGroupeViewModel : ObservableObject
     private int _index;
     private bool _indiceVu;
     private int _etapesVues;
-    private List<string> _etapes = [];
+    /// <summary>Étapes de la correction : sous-question (lettre et intitulé), numéro dans cette sous-question, texte.</summary>
+    private List<(string Lettre, string Intitule, int Numero, string Texte)> _etapes = [];
     private readonly List<IssueExercice> _issues = [];
     private DispatcherTimer? _timerCompte, _timerMinuteur;
     private TimeSpan _tempsRestant;
@@ -312,11 +313,11 @@ public partial class TdGroupeViewModel : ObservableObject
         foreach (var q in Questions) q.Verifier();
         ArreterMinuteur();
 
-        // Toutes les étapes de correction, sous-question après sous-question (« a) » devant la première étape).
+        // Toutes les étapes de correction, sous-question après sous-question ; la numérotation repart à 1 pour chacune.
         _etapes = [];
         foreach (var q in Exercice.Questions)
             for (int k = 0; k < q.Correction.Count; k++)
-                _etapes.Add(k == 0 ? $"**{q.Lettre})** {q.Correction[k]}" : q.Correction[k]);
+                _etapes.Add((q.Lettre, q.Intitule, k + 1, q.Correction[k]));
         _etapesVues = 0;
         ResteDesEtapes = _etapes.Count > 0;
         PeutContinuer = Questions.All(q => q.Juste is not null);
@@ -550,7 +551,13 @@ public partial class TdGroupeViewModel : ObservableObject
         {
             elements.Add(new { genre = "etiquette", markdown = "Correction" });
             for (int i = 0; i < _etapesVues; i++)
-                elements.Add(new { genre = "etape", index = i + 1, markdown = _etapes[i] });
+            {
+                var etape = _etapes[i];
+                // Début d'une sous-question : un intertitre « a) … » sépare nettement sa correction de la précédente.
+                if (etape.Numero == 1)
+                    elements.Add(new { genre = "partie", markdown = $"**{etape.Lettre})** {etape.Intitule}" });
+                elements.Add(new { genre = "etape", index = etape.Numero, markdown = etape.Texte });
+            }
         }
         MessageRendu = JsonSerializer.Serialize(new { elements, defiler = defilerEnBas ? "bas" : "haut" });
     }

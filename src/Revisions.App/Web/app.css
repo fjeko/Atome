@@ -99,6 +99,10 @@ section > eqn { display: block; overflow-x: auto; overflow-y: hidden; padding: .
   .comparaison .colonne + .colonne { margin-top: .8em; }
 }
 .etape { border-left: 3px solid var(--accent-trait); padding: .1em 0 .1em 1em; margin: .8em 0; }
+/* Correction d'un TD : intertitre de chaque sous-question (« a) … »), avec un filet au-dessus dès la deuxième. */
+.partie { font-weight: 600; margin: 1.2em 0 .4em; }
+.partie p { margin: 0; }
+.etape + .partie { border-top: 1px solid var(--bord); margin-top: 1.8em; padding-top: 1.2em; }
 .etape .numero { display: inline-block; color: var(--accent); background: var(--accent-pale); font-size: .78em; font-weight: 600; padding: .05em .7em; border-radius: 999px; }
 
 /* QCM : chaque choix est une petite carte, avec sa lettre dans une pastille. */

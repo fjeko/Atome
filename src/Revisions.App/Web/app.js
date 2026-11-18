@@ -24,9 +24,17 @@
   /** Nombre d'éléments affichés juste avant : ceux qui arrivent ensuite sont « révélés » (animation). */
   let precedent = 0;
 
+  /** Position verticale d'un bloc dans la page, sans tenir compte des transformations (animations). */
+  function positionDansLaPage(element) {
+    let haut = 0;
+    for (let e = element; e; e = e.offsetParent) haut += e.offsetTop;
+    return haut;
+  }
+
   /** Affiche la liste d'éléments envoyée par l'application. */
   function afficher(message) {
     const nouvelleCarte = message.defiler !== "bas";
+    const revelesDepuis = precedent; // rang du premier bloc révélé par ce message
     contenu.replaceChildren();
     let rang = 0;
     for (const element of message.elements || []) {
@@ -95,8 +103,22 @@
     }
     // Nouvelle carte ou nouvelle page : on repart du haut ; révélation : on montre la suite.
     if (message.defiler === "bas") {
+      // Pas de scrollIntoView ici : au début de l'animation « revele », le bloc est replié (rotation),
+      // sa hauteur visible est presque nulle et la page ne descendait pas. On calcule donc avec la
+      // position de mise en page (offsetTop, sans transformation), une fois les polices KaTeX prêtes.
+      const premierNouveau = contenu.children[Math.min(revelesDepuis, contenu.children.length - 1)];
       const dernier = contenu.lastElementChild;
-      if (dernier) dernier.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      if (dernier) {
+        const defiler = () => {
+          const haut = positionDansLaPage(premierNouveau);
+          const bas = positionDansLaPage(dernier) + dernier.offsetHeight + 16;
+          // On montre tout le nouveau bloc ; s'il est plus haut que la fenêtre, on aligne son début.
+          const cible = Math.min(haut - 16, bas - window.innerHeight);
+          const doux = !document.documentElement.classList.contains("reduit");
+          if (cible > window.scrollY) window.scrollTo({ top: cible, behavior: doux ? "smooth" : "auto" });
+        };
+        (document.fonts ? document.fonts.ready : Promise.resolve()).then(defiler);
+      }
     } else {
       window.scrollTo(0, 0);
     }
