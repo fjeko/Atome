@@ -112,11 +112,6 @@
         <Setter Property="Margin" Value="0,16" />
     </Style>
 
-    <!-- Anciens noms (écrans pas encore relookés) : mêmes jetons. -->
-    <Style x:Key="Carte" TargetType="Border" BasedOn="{StaticResource CarteSurface}" />
-    <Style x:Key="Titre" TargetType="TextBlock" BasedOn="{StaticResource Texte.Titre}" />
-    <Style x:Key="SousTitre" TargetType="TextBlock" BasedOn="{StaticResource Texte.SousTitre}" />
-    <Style x:Key="Discret" TargetType="TextBlock" BasedOn="{StaticResource Texte.Secondaire}" />
 
     <!-- ===== Boutons ===== -->
     <!-- Modèle commun : fond, voile de survol (fondu de 150 ms), voile d'appui, icône facultative, raccourci facultatif. -->
@@ -273,9 +268,8 @@
         </Style.Triggers>
     </Style>
 
-    <!-- Tous les boutons sans style précis prennent le style secondaire ; « AccentButtonStyle » (Fluent) devient le principal. -->
+    <!-- Tous les boutons sans style précis prennent le style secondaire. -->
     <Style TargetType="Button" BasedOn="{StaticResource BoutonSecondaire}" />
-    <Style x:Key="AccentButtonStyle" TargetType="Button" BasedOn="{StaticResource BoutonPrincipal}" />
 
     <!-- ===== Pastilles et badges ===== -->
     <!-- Pastille : puce de matière (ds:Ton.Matiere) ou de statut (ds:Ton.Nom). -->

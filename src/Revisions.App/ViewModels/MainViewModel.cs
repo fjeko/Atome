@@ -81,11 +81,15 @@ public partial class MainViewModel(
         NavigationRepliee = !NavigationRepliee;
     }
 
-    /// <summary>La Galerie des composants n'existe que dans la version de développement.</summary>
+    /// <summary>
+    /// La Galerie des composants n'existe que dans la version de développement
+    /// (et « --sans-galerie » la cache, pour les captures d'écran du README).
+    /// </summary>
+    [ObservableProperty]
 #if DEBUG
-    public bool GalerieVisible => true;
+    private bool _galerieVisible = true;
 #else
-    public bool GalerieVisible => false;
+    private bool _galerieVisible;
 #endif
 
     [RelayCommand]

@@ -46,7 +46,7 @@
                     <StackPanel Margin="{StaticResource Marge.Gauche.12}" VerticalAlignment="Center"
                                 Visibility="{Binding NavigationCompacte, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}">
                         <TextBlock Text="Atome" Style="{StaticResource Texte.SousTitre}" />
-                        <TextBlock Text="Tes révisions, at home." Style="{StaticResource Texte.Meta}" />
+                        <TextBlock Text="Tes révisions, at home." Style="{StaticResource Texte.Meta}" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" MaxWidth="150" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

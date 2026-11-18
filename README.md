@@ -24,12 +24,15 @@
   <img src="docs/images/lecture.png" alt="Lecture d'un cours avec formule et tableau" width="49%">
 </p>
 <p align="center">
-  <img src="docs/images/session.png" alt="Session de révision avec cartes" width="49%">
-  <img src="docs/images/themes.png" alt="Neuf thèmes et couleurs d'accent au choix" width="49%">
+  <img src="docs/images/session.png" alt="Session de révision : QCM, notes en couleur et en texte" width="49%">
+  <img src="docs/images/bibliotheque.png" alt="Bibliothèque : une tuile colorée par matière, avec sa maîtrise" width="49%">
 </p>
 <p align="center">
-  <img src="docs/images/statistiques.png" alt="Statistiques et régularité" width="49%">
-  <img src="docs/images/reglages.png" alt="Réglages : rythme et reprise après une pause" width="49%">
+  <img src="docs/images/statistiques.png" alt="Statistiques : régularité sur 12 semaines et courbe sur 30 jours" width="49%">
+  <img src="docs/images/themes.png" alt="Le même accueil en thème clair" width="49%">
+</p>
+<p align="center">
+  <img src="docs/images/reglages.png" alt="Réglages : thème, couleur d'accent, taille du texte, animations, sons, mascotte" width="49%">
 </p>
 
 **Atome** est mon tout premier projet. Il a été **entièrement généré par une IA (Claude, d'Anthropic)** :
@@ -51,7 +54,10 @@ révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je
 - **Collections** : tu choisis ce qui est affiché et révisé (cours libres, mes packs, contenus importés), sans perdre ta progression.
 - **Mise à jour automatique** : Atome propose lui-même les nouvelles versions (sans toucher à tes données).
 - **Cours libres intégrés** : 440 cours originaux du programme de 1re année, livrés avec l'application.
-- Neuf thèmes, **hors ligne**, sans compte : tes données restent sur ton PC.
+- **Calme et ludique** : thème sombre par défaut (clair et six thèmes colorés au choix), une couleur et une icône fixes
+  par matière, une mascotte (un petit atome souriant) qui encourage sans jamais culpabiliser, taille du texte réglable,
+  animations réductibles, sons facultatifs.
+- **Hors ligne**, sans compte : tes données restent sur ton PC.
 
 ## Installation
 
@@ -158,16 +164,18 @@ Au démarrage, l'application importe automatiquement les packs de son dossier de
 dotnet test
 ```
 
-784 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
+1031 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
 construction des sessions (types de session, paquets de matière, motifs, verrouillage des cours non lus, durée estimée), mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
-bibliothèque en niveaux, couleurs et contrastes de chaque thème, enregistrement des réglages,
+bibliothèque en niveaux, couleurs et contrastes de chaque thème, système de design (contrastes WCAG AA de toutes les paires
+texte / fond pour chaque thème et chaque accent, couleurs des matières, banque de messages de la mascotte), enregistrement des réglages,
 ordre du cours (tri naturel, chiffres romains) et tourniquet des matières, planning de l'année (priorités,
 devoirs, avancement avant une échéance, dates personnelles, migration), TD en groupe (hasard maison
 figé, codes et chiffre de contrôle, calcul matriciel, déterminisme des TD, vérification de la saisie, versions).
 
 ## Ce que fait l'application
 
-- **Accueil** : la session du jour en un clic, objectif minimal, série en semaines, XP et niveau.
+- **Accueil** : la mascotte dit bonjour (message choisi selon la journée), la session du jour en un gros bouton,
+  l'objectif du jour en anneau, les matières du jour en tuiles colorées, la semaine en 7 pastilles, XP et niveau.
   Avec un planning : 1 à 3 séances « Au programme » et les prochaines échéances, sur un ton neutre.
   S'il manque des nouvelles cartes parce que leurs cours ne sont pas lus : « À lire pour débloquer de nouvelles cartes ».
 - **Autre révision** : une matière ou une partie (arbre de la bibliothèque), mes points faibles (oublis FSRS et « Raté »
@@ -186,17 +194,21 @@ figé, codes et chiffre de contrôle, calcul matriciel, déterminisme des TD, v�
   Dates modifiables (gardées dans la base, le fichier n'est jamais modifié),
   interrupteur général et par matière, quiz masquables. Sans planning, l'application suit l'ordre du cours.
 - **Bibliothèque en tuiles** : matière → compétence (B1.2…) → thème ou séquence (Thème 1, SQ1…) → séances, avec fil
-  d'Ariane, recherche, nombre de cartes à revoir et barre de maîtrise sur chaque tuile.
-- **Lecture** : le cours section par section (Markdown, LaTeX, code coloré), PDF d'origine à la bonne page.
+  d'Ariane, recherche, nombre de cartes à revoir et anneau de maîtrise sur chaque tuile (aux couleurs de la matière).
+- **Lecture** : le cours section par section (Markdown, LaTeX, code coloré), texte limité à ~70 caractères par ligne,
+  sommaire latéral, progression de lecture, taille du texte (A− / A+), PDF d'origine à la bonne page.
 - **Session** : cartes question, QCM (choix mélangés) et exercice pas à pas ; sur une carte question,
-  on peut **écrire sa réponse** pour la comparer à la bonne avant de se noter.
+  on peut **écrire sa réponse** pour la comparer à la bonne avant de se noter. Mode concentration (sans menu, F11 pour le
+  plein écran), carte qui se retourne, « +10 » qui monte, pause avec confirmation douce (Échap).
 - **TD en groupe** : le même TD à plusieurs, chacun sur son PC (en vocal sur Discord par exemple), sans réseau :
   un **code court** à dicter (`MAT1-2-8-48217`) suffit à générer exactement les mêmes exercices partout.
   Premier thème : les **matrices** (dimension, somme, réel, transposée, identité, produit, puissance, situation
   concrète), avec grille de saisie, vérification case par case, indice et correction pas à pas ; second thème :
   les exercices et QCM de **n'importe quelle séance**. Code : `Revisions.Core/TdGroupe`.
-- **Statistiques** : régularité, réussite par matière, points faibles avec session ciblée.
-- **Réglages** : rythme, reprise, **thèmes** (clair, sombre, six thèmes colorés) et **couleur d'accent**.
+- **Statistiques** : calendrier de régularité (12 semaines), courbe des 30 derniers jours, réussite et maîtrise par matière,
+  points faibles avec session ciblée.
+- **Réglages** : révision (rythme, reprise), **apparence** (thème sombre par défaut, clair, six thèmes colorés, couleur
+  d'accent, taille du texte, animations, sons, mascotte), collections, données, mises à jour.
 - **Aide** : fonctionnement, raccourcis, ajout de cours, création d'un pack avec Claude (prompt à copier), données, signalement d'erreurs, mises à jour, TD à plusieurs sur Discord, comment Atome choisit tes cartes.
 - **Signaler une erreur** : un petit drapeau sur chaque carte (session, fin de session) et chaque section en lecture, touche **S** en session. L'écran **Mes signalements** (Réglages) liste les signalements et les exporte en `signalements-<prénom>-<date>.json`, pour corriger les packs en lot (le texte vu au moment du signalement est conservé). Code : `Revisions.Core/Signalements`, `Revisions.Data/DepotSignalements.cs`.
 
@@ -207,7 +219,9 @@ app/
   src/
     Revisions.Core/     Cœur métier, sans interface ni base : modèles, validation des packs,
                         FSRS, construction des sessions, gamification, niveaux de la bibliothèque
-                        (Bibliotheque/), couleurs et thèmes (Apparence/), ordre du cours (Ordre/),
+                        (Bibliotheque/), couleurs, thèmes et charte du système de design (Apparence/ :
+                        Charte, couleurs des matières), mascotte (Mascotte/ : banque de messages),
+                        ordre du cours (Ordre/),
                         planning (Planning/), mises à jour (MisesAJour/ : SemVer, API GitHub,
                         SHA-256, client HTTP injecté). TD en groupe (TdGroupe/ : hasard
                         SplitMix64, codes, générateurs de TD, matrices). Entièrement testable.
@@ -215,8 +229,11 @@ app/
     Revisions.App/      Interface WPF en MVVM (CommunityToolkit.Mvvm) + rendu WebView2.
       ViewModels/       Un ViewModel par écran : toute la logique d'affichage.
       Views/            Les écrans en XAML (aucune logique dans le code-behind).
-      Controles/        VueMarkdown : la zone qui affiche Markdown + LaTeX.
-      Services/         État partagé, thème (ServiceTheme), WebView2, journal d'erreurs.
+      Themes/           Système de design : jetons (polices, rayons, marges), styles et composants.
+      Controles/        VueMarkdown (Markdown + LaTeX) et composants : tuile de matière, anneau,
+                        courbe, bandeau, tons de couleur (Ton.cs).
+      Services/         État partagé, thème (ServiceTheme), animations (Mouvement), sons, toasts,
+                        WebView2, journal d'erreurs.
       Aide/             Pages de l'aide en Markdown, incorporées dans l'exécutable.
                         prompt-type.md est une copie de docs/prompt-type.md : la recopier si le prompt change.
       Web/              Page de rendu locale + markdown-it, KaTeX, highlight.js (hors ligne).
@@ -234,7 +251,7 @@ Sens des dépendances : `App → Data → Core`. Le Core ne dépend de rien.
 | Répétition espacée | **FSRS-5** (`Core/Planification/Fsrs.cs`) | Tient compte du temps réellement écoulé : adapté à un rythme irrégulier |
 | Rendu du cours | WebView2 + markdown-it + KaTeX embarqués | Formules et code bien rendus, sans Internet |
 | Base de données | SQLite, SQL écrit à la main | Simple, un seul fichier, et le SQL reste visible |
-| Interface | WPF, MVVM, thème Fluent clair/sombre | Standard, testable, look Windows 11 |
+| Interface | WPF, MVVM, système de design maison (`Themes/`), Fluent pour les contrôles standard | Une seule source pour couleurs et tailles, contrastes testés, look Windows 11 |
 | Validation des packs | Parcours manuel du JSON (`Core/Packs/LecteurPack.cs`) | Messages d'erreur précis : champ et carte en cause |
 | Mises à jour | API GitHub `releases/latest`, setup Inno `/SILENT`, SHA-256 obligatoire (`Core/MisesAJour/`) | Pas de serveur à moi, pas de bibliothèque en plus, intégrité vérifiée avant tout lancement |
 
@@ -275,7 +292,9 @@ puis dévoile la correction étape par étape, Entrée (hors des cases) fait la 
 - [ ] Une séance jamais ouverte ne donne pas de nouvelle carte ; l'ouvrir en lecture la débloque (ou le réglage « cours non lus »).
 - [ ] Fin de session : chiffres cohérents, « Revoir la notion » ouvre la bonne section.
 - [ ] Fermeture puis réouverture : XP, série et cartes dues sont conservées.
-- [ ] Thème clair et thème sombre (Réglages).
+- [ ] Premier lancement en thème sombre ; thème clair et thèmes colorés (Réglages) ; Galerie (version Debug) lisible dans les deux.
+- [ ] Taille du texte à 150 % : interface, cartes et lecture grossissent, rien ne déborde.
+- [ ] Réduire les animations : plus de glissement ni de retournement, seulement des fondus courts.
 - [ ] Changer de thème et de couleur d'accent : tout change tout de suite, et le choix est gardé au redémarrage.
 - [ ] Carte « question » : écrire une réponse (Tab), Ctrl+Entrée, comparaison affichée, puis note au clavier.
 - [ ] Bibliothèque : descendre dans les tuiles, revenir par « Retour » et par le fil d'Ariane, rechercher.
@@ -289,10 +308,13 @@ puis dévoile la correction étape par étape, Entrée (hors des cases) fait la 
 - `Atome.exe --ecran=bibliotheque` (ou `statistiques`, `reglages`, `lecture:<id du pack>`,
   `session:<id du pack>`, `choix` (écran « Autre révision »), `aide:<numéro de page>`, `bibliotheque:0,1` pour descendre dans les tuiles,
   `bibliotheque:?texte` pour une recherche), `td` ou `td:<code>` (rejoint ce TD ; `td:<code>:demo` remplit
-  une grille avec une erreur et vérifie, pour capturer l'écran de correction) ouvre directement un écran.
+  une grille avec une erreur et vérifie, pour capturer l'écran de correction), `galerie` (tous les composants du
+  système de design, en sombre et en clair), `acquis`, `questionnaire` ouvre directement un écran.
 - `--theme=ocean` et `--accent=#D8498F` (ou `--accent=auto`) changent l'apparence au lancement ;
-  `--hauteur=1700` agrandit la fenêtre pour capturer un écran long.
-- Variable d'environnement `REVISIONS_DONNEES` : utilise un autre dossier de données, pour essayer
+  `--hauteur=1700` agrandit la fenêtre pour capturer un écran long ; `--defiler=800` fait défiler l'écran ;
+  `--sans-galerie` cache l'entrée « Galerie » du menu (captures du README).
+- Variable d'environnement `REVISIONS_DONNEES` : utilise un autre dossier de données (et compte comme une autre
+  instance, à côté de l'Atome installé), pour essayer
   sans toucher à son vrai historique.
 
 ## Licences

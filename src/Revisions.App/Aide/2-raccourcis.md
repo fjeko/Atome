@@ -11,6 +11,7 @@ Une session peut se faire entièrement au clavier.
 | **A** à **E** | choisir une réponse de QCM |
 | **Entrée** | la suite logique : révéler, continuer, ou noter « Bien » |
 | **S** | signaler une erreur dans la carte (pas dans la zone de réponse écrite) |
+| **Échap** | faire une pause : Atome demande confirmation, ce qui est fait reste enregistré (Échap à nouveau pour continuer) |
 
 ### Écrire sa réponse (cartes « question »)
 
@@ -38,3 +39,10 @@ La zone de texte sous la carte est facultative. Zone vide, **Espace** voit la r�
 | **Espace** | « go », puis étape suivante de la correction |
 | **Entrée** (hors des cases) | la suite logique : go, vérifier, étape suivante, exercice suivant |
 | **I** (hors des cases) | indice |
+
+### Partout
+
+| Touche | Action |
+| --- | --- |
+| **F11** | plein écran (pratique en session pour se concentrer) ; **F11** ou **Échap** pour en sortir |
+| **Tab** | passer d'un bouton à l'autre : l'élément choisi est toujours entouré d'un cadre de couleur |

@@ -45,7 +45,7 @@
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Texte}" TextWrapping="Wrap" FontSize="{DynamicResource Taille.Meta}">
                                         <TextBlock.Style>
-                                            <Style TargetType="TextBlock" BasedOn="{StaticResource Discret}">
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource Texte.Meta}">
                                                 <Setter Property="Margin" Value="12,0,0,0" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding EstTitre}" Value="True">

@@ -40,6 +40,7 @@ public static class ServiceTheme
         ("Taille.Titre", 22),
         ("Taille.Salut", 28),
         ("Taille.Chiffre", 40),
+        ("Taille.Geante", 140), // compte à rebours du TD en groupe
         ("Taille.Icone", 16),
         ("Taille.IconeGrande", 20),
         // Taille de texte des contrôles standard du thème Fluent.

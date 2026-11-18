@@ -59,3 +59,16 @@ Pour ne pas te noyer, deux limites réglables dans **Réglages** :
 
 - le **plafond quotidien** : au-delà, l'application te propose d'arrêter ;
 - les **nouvelles cartes par jour** : même si tu importes 300 packs, elles arrivent petit à petit.
+
+## À ton goût
+
+Dans **Réglages → Apparence** :
+
+- le **thème** : sombre au départ, clair, comme Windows, ou l'un des six thèmes colorés ; et la **couleur d'accent** (boutons, barres, sélection) ;
+- la **taille du texte**, de 90 à 150 %, partout dans l'application (aussi avec **A−** et **A+** pendant la lecture) ;
+- **réduire les animations** : les transitions deviennent de simples fondus (Atome suit aussi le réglage « Effets d'animation » de Windows) ;
+- les **sons** : trois petits sons doux (bonne réponse, fin de session, niveau gagné), coupés par défaut ;
+- la **mascotte** : normale, réduite ou masquée.
+
+Chaque matière garde toujours la même couleur et la même icône, quel que soit le thème : c'est un repère, dans la bibliothèque comme en session.
+Une couleur n'est jamais la seule information : un mot ou une icône dit toujours la même chose.

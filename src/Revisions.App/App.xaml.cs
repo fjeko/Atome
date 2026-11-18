@@ -47,6 +47,8 @@ public partial class App : Application
         }
         await Task.Yield();
 
+        if (arguments.Contains("--sans-galerie")) principal.GalerieVisible = false;
+
         // « --hauteur=1700 » agrandit la fenêtre (pour capturer un écran long en entier).
         if (arguments.FirstOrDefault(a => a.StartsWith("--hauteur=")) is { } hauteur)
             Current.MainWindow!.Height = double.Parse(hauteur["--hauteur=".Length..]);

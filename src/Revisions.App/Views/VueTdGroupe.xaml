@@ -168,7 +168,7 @@
         </Grid>
 
         <Grid Visibility="{Binding EstCompte, Converter={StaticResource VisibleSi}}">
-            <TextBlock Text="{Binding CompteRestant}" FontSize="140" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"
+            <TextBlock Text="{Binding CompteRestant}" FontSize="{DynamicResource Taille.Geante}" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"
                        Foreground="{DynamicResource Pinceau.AccentTrait}" FontFamily="{DynamicResource Police.Titres}" />
         </Grid>
 
