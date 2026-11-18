@@ -52,10 +52,20 @@
             </StackPanel>
 
             <!-- Accès discret au Discord, tout en bas du menu (pas une rubrique : il ouvre le navigateur). -->
-            <Button DockPanel.Dock="Bottom" Style="{StaticResource BoutonIcone}" ds:Forme.Icone="{x:Static ds:Icones.Discord}"
-                    HorizontalAlignment="Left" Margin="6,8,0,0" Command="{Binding OuvrirDiscordCommand}"
+            <Button DockPanel.Dock="Bottom" Style="{StaticResource BoutonListe}" HorizontalAlignment="Left" Margin="8,8,0,0"
+                    Padding="8,8,12,8" Command="{Binding OuvrirDiscordCommand}"
                     ToolTip="Un bug, une coquille, une idée ? Rejoins le Discord"
-                    AutomationProperties.Name="Rejoindre le Discord d'Atome" />
+                    AutomationProperties.Name="Rejoindre le Discord d'Atome">
+                <StackPanel Orientation="Horizontal">
+                    <!-- Logo officiel en blurple ; le libellé disparaît quand le menu est replié (l'infobulle reste). -->
+                    <Viewbox Width="20" Height="20">
+                        <Path Data="{StaticResource Logo.Discord}" Fill="{StaticResource Pinceau.Discord}" />
+                    </Viewbox>
+                    <TextBlock Text="Discord" Margin="{StaticResource Marge.Gauche.12}" VerticalAlignment="Center"
+                               Foreground="{DynamicResource Pinceau.TexteSecondaire}"
+                               Visibility="{Binding NavigationCompacte, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}" />
+                </StackPanel>
+            </Button>
 
             <!-- Rubriques : une icône et un libellé (le libellé disparaît quand la barre est repliée, l'infobulle reste). -->
             <ListBox SelectedValue="{Binding Rubrique, Mode=TwoWay}" SelectedValuePath="Tag" Style="{StaticResource ListeNue}"

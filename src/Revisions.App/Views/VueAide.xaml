@@ -30,8 +30,15 @@
             <StackPanel DockPanel.Dock="Bottom" Margin="12,12,0,0">
                 <TextBlock Text="Un bug, une coquille, une idée ? Signale-le sur le Discord." Style="{StaticResource Texte.Meta}"
                            TextWrapping="Wrap" Margin="{StaticResource Marge.Bas.8}" />
-                <Button Content="Rejoindre le Discord" Command="{Binding OuvrirDiscordCommand}" Style="{StaticResource BoutonSecondaire}"
-                        ds:Forme.Icone="{x:Static ds:Icones.Discord}" HorizontalAlignment="Left" />
+                <Button Command="{Binding OuvrirDiscordCommand}" Style="{StaticResource BoutonSecondaire}" HorizontalAlignment="Left"
+                        AutomationProperties.Name="Rejoindre le Discord">
+                    <StackPanel Orientation="Horizontal">
+                        <Viewbox Width="18" Height="18">
+                            <Path Data="{StaticResource Logo.Discord}" Fill="{StaticResource Pinceau.Discord}" />
+                        </Viewbox>
+                        <TextBlock Text="Rejoindre le Discord" Margin="{StaticResource Marge.Gauche.8}" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
             </StackPanel>
             <TextBlock DockPanel.Dock="Top" Text="Sommaire" Style="{StaticResource Texte.Meta}" FontWeight="SemiBold" Margin="12,0,0,8" />
             <ListBox ItemsSource="{Binding Pages}" SelectedIndex="{Binding Index, Mode=TwoWay}" Style="{StaticResource ListeNue}"

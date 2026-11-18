@@ -62,8 +62,6 @@ public static class Icones
     public const string Statistiques = "";
     public const string Reglages = "";
     public const string Aide = "";
-    /// <summary>Bulles de discussion (accès discret au Discord).</summary>
-    public const string Discord = "";
     public const string Galerie = "";
     public const string Menu = "";
     public const string Retour = "";
