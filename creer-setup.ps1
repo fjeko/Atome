@@ -35,7 +35,10 @@ if (Test-Path $sortie) { Remove-Item $sortie -Recurse -Force }
 Write-Host "Publication autonome (version $Version)..."
 # -p:Version impose le numero a l'application : avec le workflow de release, c'est celui du tag (v0.3.0 -> 0.3.0).
 # Plus besoin de modifier <Version> dans le .csproj a chaque version (il ne sert qu'en developpement).
-dotnet publish $projet -c Release -r win-x64 --self-contained true -o $sortie --nologo -v q "-p:Version=$Version"
+# PublishSingleFile : le code .NET tient dans un seul Atome.exe au lieu de ~250 DLL. Au premier lancement apres une
+# installation ou une mise a jour, Windows (antivirus) analyse chaque fichier neuf : ~10 s d'attente avant que la
+# fenetre apparaisse avec 250 DLL, contre ~0,1 s avec un seul fichier (mesure du journal, section Chrono).
+dotnet publish $projet -c Release -r win-x64 --self-contained true -o $sortie --nologo -v q "-p:Version=$Version" -p:PublishSingleFile=true
 if ($LASTEXITCODE -ne 0) { throw "La publication a echoue." }
 
 Write-Host "Creation de l'installateur..."

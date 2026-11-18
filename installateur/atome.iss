@@ -42,6 +42,13 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 [Tasks]
 Name: "bureau"; Description: "Creer un raccourci sur le Bureau"; GroupDescription: "Raccourcis :"
 
+[InstallDelete]
+; Depuis la 0.6.1, Atome est publie en un seul Atome.exe : on retire les DLL et fichiers .json de l'ancienne
+; installation (les DLL natives encore utiles sont recopiees juste apres par [Files]). Rien ne touche aux donnees.
+Type: files; Name: "{app}\*.dll"
+Type: files; Name: "{app}\Atome.deps.json"
+Type: files; Name: "{app}\Atome.runtimeconfig.json"
+
 [Files]
 ; Tout le contenu publie, sauf les fichiers de debogage (.pdb) qui contiennent des chemins du PC de developpement.
 Source: "{#Source}\*"; DestDir: "{app}"; Excludes: "*.pdb"; Flags: recursesubdirs createallsubdirs ignoreversion

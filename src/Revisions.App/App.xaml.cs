@@ -129,14 +129,19 @@ public partial class App : Application
     // ---- Instance unique -----------------------------------------------------------------------
     // Un Mutex nommé empêche de lancer Atome deux fois (deux instances sur la même base se gêneraient).
     // Le second lancement réveille la première fenêtre via un EventWaitHandle nommé, puis s'arrête sans bruit.
-#if DEBUG
-    // En développement, un autre dossier de données (REVISIONS_DONNEES) compte comme une autre instance :
-    // on peut ainsi essayer la version de travail pendant que l'Atome installé reste ouvert.
+    // Pour les essais, un autre dossier de données (REVISIONS_DONNEES) compte comme une autre instance :
+    // on peut ainsi essayer (et chronométrer) une version de travail pendant que l'Atome installé reste ouvert.
+    // Sans cette variable (cas normal), le nom est le même pour tout le monde.
     private static readonly string SuffixeEssai = Environment.GetEnvironmentVariable("REVISIONS_DONNEES") is { Length: > 0 } d
-        ? "-essai-" + (uint)StringComparer.OrdinalIgnoreCase.GetHashCode(d) : "";
-#else
-    private const string SuffixeEssai = "";
-#endif
+        ? "-essai-" + EmpreinteStable(d.ToUpperInvariant()) : "";
+
+    /// <summary>Petite empreinte FNV-1a, identique d'un lancement à l'autre (string.GetHashCode change à chaque lancement).</summary>
+    private static uint EmpreinteStable(string texte)
+    {
+        uint h = 2166136261;
+        foreach (char c in texte) { h ^= c; h *= 16777619; }
+        return h;
+    }
     private static readonly string NomMutex = "Atome-instance-unique-RevisionsBTS" + SuffixeEssai;
     private static readonly string NomSignal = "Atome-instance-unique-RevisionsBTS-signal" + SuffixeEssai;
     private Mutex? _mutex;
@@ -185,11 +190,14 @@ public partial class App : Application
     /// <summary>Reprend la place d'instance unique si l'installateur n'a finalement pas pu être lancé.</summary>
     internal void ReprendreInstanceUnique() => _mutex ??= new Mutex(initiallyOwned: true, NomMutex, out _);
 
+    /// <summary>Premier code d'Atome exécuté : tout ce qui précède est le chargement de .NET (mesuré dans le journal).</summary>
+    public App() => Journal.Etape(".NET chargé");
+
     protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
         if (!PrendreLaPlace()) { Shutdown(); return; }
-        Journal.Etape("Lancement");
+        Journal.Etape("Lancement (thème chargé)");
 
         // Une erreur imprévue ne ferme pas l'application : on la note et on prévient simplement.
         DispatcherUnhandledException += (_, args) =>
@@ -253,6 +261,9 @@ public partial class App : Application
             var principal = Services.GetRequiredService<MainViewModel>();
             MainWindow = new MainWindow { DataContext = principal };
             Journal.Etape("Fenêtre créée");
+            // Fenêtre fermée : on rend la place tout de suite. Sinon, un nouveau lancement pendant que le processus
+            // finit de se fermer réveillerait cette instance mourante et rien ne s'afficherait.
+            MainWindow.Closed += (_, _) => LibererInstanceUnique();
             MainWindow.Show();
             Journal.Etape("Fenêtre affichée");
             await principal.DemarrerAsync(); // lance aussi la vérification des mises à jour, en tâche de fond

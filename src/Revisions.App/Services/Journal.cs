@@ -10,8 +10,20 @@ public static class Journal
 
     public static string Chemin => Path.Combine(BaseDeDonnees.DossierDonnees, "journal.log");
 
-    /// <summary>Chronomètre depuis le lancement de l'application (pour mesurer le démarrage).</summary>
-    private static readonly System.Diagnostics.Stopwatch Depuis = System.Diagnostics.Stopwatch.StartNew();
+    /// <summary>
+    /// Heure de lancement du processus (pour mesurer le démarrage). On part du lancement réel et non du premier
+    /// appel au journal : le chargement de .NET avant notre code compte aussi pour l'utilisateur.
+    /// </summary>
+    private static readonly DateTime Debut = HeureDeLancement();
+
+    private static DateTime HeureDeLancement()
+    {
+        try { return System.Diagnostics.Process.GetCurrentProcess().StartTime; }
+        catch (Exception) { return DateTime.Now; }
+    }
+
+    /// <summary>Millisecondes écoulées depuis le lancement du processus.</summary>
+    public static long Ecoule => (long)(DateTime.Now - Debut).TotalMilliseconds;
 
     /// <summary>Note une étape du démarrage avec le temps écoulé depuis le lancement.</summary>
     public static void Etape(string nom)
@@ -21,7 +33,7 @@ public static class Journal
             lock (Verrou)
             {
                 Directory.CreateDirectory(BaseDeDonnees.DossierDonnees);
-                File.AppendAllText(Chemin, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [Chrono] {nom} : {Depuis.ElapsedMilliseconds} ms\n");
+                File.AppendAllText(Chemin, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} [Chrono] {nom} : {Ecoule} ms\n");
             }
         }
         catch (IOException) { }
