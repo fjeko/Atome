@@ -97,60 +97,74 @@
                 <TextBlock Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
                            Text="De vrais exercices de TD, générés à chaque fois, avec une correction pas à pas. Seul, à ton rythme, ou à plusieurs sur Discord." />
 
-                <!-- Onglets : Seul / À plusieurs. -->
-                <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.16}">
-                    <StackPanel.Resources>
-                        <Style x:Key="Onglet" TargetType="Button" BasedOn="{StaticResource BoutonSecondaire}">
-                            <Setter Property="Padding" Value="18,8" />
-                            <Setter Property="Margin" Value="{StaticResource Marge.Droite.8}" />
+                <!-- Deux grandes tuiles : Seul / À plusieurs (toute la largeur, icône en grand). -->
+                <Grid Margin="{StaticResource Marge.Haut.16}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.Resources>
+                        <Style x:Key="TuileMode" TargetType="Button" BasedOn="{StaticResource BoutonSecondaire}">
+                            <Setter Property="Padding" Value="20,18" />
                             <Setter Property="BorderThickness" Value="1" />
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
                         </Style>
-                    </StackPanel.Resources>
+                        <Style x:Key="IconeMode" TargetType="TextBlock" BasedOn="{StaticResource Texte.Icone}">
+                            <Setter Property="Foreground" Value="{DynamicResource Pinceau.AccentTexte}" />
+                        </Style>
+                    </Grid.Resources>
+
                     <Button Command="{Binding ChoisirModeCommand}" CommandParameter="solo" AutomationProperties.Name="TD seul">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource Texte.Icone}" FontSize="18" VerticalAlignment="Center" Margin="0,0,8,0" />
-                            <TextBlock Text="Seul" VerticalAlignment="Center" />
-                        </StackPanel>
                         <Button.Style>
-                            <Style TargetType="Button" BasedOn="{StaticResource Onglet}">
+                            <Style TargetType="Button" BasedOn="{StaticResource TuileMode}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ModeSolo}" Value="True">
                                         <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.AccentTrait}" />
                                         <Setter Property="BorderThickness" Value="2" />
-                                        <Setter Property="FontWeight" Value="SemiBold" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
-                    </Button>
-                    <Button Command="{Binding ChoisirModeCommand}" CommandParameter="groupe" AutomationProperties.Name="TD à plusieurs">
-                        <StackPanel Orientation="Horizontal">
-                            <!-- Trois fois la même personne, en profondeur : deux derrière (plus petites, estompées), une devant. -->
-                            <Grid Width="34" Height="22" VerticalAlignment="Center" Margin="0,0,8,0">
-                                <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource Texte.Icone}" FontSize="14" Opacity="0.5"
-                                           HorizontalAlignment="Left" VerticalAlignment="Top" />
-                                <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource Texte.Icone}" FontSize="14" Opacity="0.5"
-                                           HorizontalAlignment="Right" VerticalAlignment="Top" />
-                                <Border Background="{Binding Background, RelativeSource={RelativeSource AncestorType=Button}}" CornerRadius="9"
-                                        Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-                                <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource Texte.Icone}" FontSize="18"
+                        <StackPanel HorizontalAlignment="Center">
+                            <Grid Width="96" Height="52" HorizontalAlignment="Center">
+                                <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource IconeMode}" FontSize="44"
                                            HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                             </Grid>
-                            <TextBlock Text="À plusieurs" VerticalAlignment="Center" />
+                            <TextBlock Text="Seul" Style="{StaticResource Texte.SousTitre}" HorizontalAlignment="Center" Margin="0,8,0,0" />
+                            <TextBlock Text="À ton rythme, de 15 min à 2 h" Style="{StaticResource Texte.Meta}" HorizontalAlignment="Center" Margin="0,2,0,0" />
                         </StackPanel>
+                    </Button>
+
+                    <Button Grid.Column="2" Command="{Binding ChoisirModeCommand}" CommandParameter="groupe" AutomationProperties.Name="TD à plusieurs">
                         <Button.Style>
-                            <Style TargetType="Button" BasedOn="{StaticResource Onglet}">
+                            <Style TargetType="Button" BasedOn="{StaticResource TuileMode}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ModeGroupe}" Value="True">
                                         <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.AccentTrait}" />
                                         <Setter Property="BorderThickness" Value="2" />
-                                        <Setter Property="FontWeight" Value="SemiBold" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
+                        <StackPanel HorizontalAlignment="Center">
+                            <!-- La même personne trois fois, en profondeur : deux derrière (plus petites, estompées), une devant. -->
+                            <Grid Width="96" Height="52" HorizontalAlignment="Center">
+                                <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource IconeMode}" FontSize="32" Opacity="0.45"
+                                           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6,0,0,0" />
+                                <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource IconeMode}" FontSize="32" Opacity="0.45"
+                                           HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,6,0" />
+                                <Ellipse Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2"
+                                         Fill="{Binding Background, RelativeSource={RelativeSource AncestorType=Button}}" />
+                                <TextBlock Text="{x:Static ds:Icones.Personne}" Style="{StaticResource IconeMode}" FontSize="44"
+                                           HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                            </Grid>
+                            <TextBlock Text="À plusieurs" Style="{StaticResource Texte.SousTitre}" HorizontalAlignment="Center" Margin="0,8,0,0" />
+                            <TextBlock Text="Le même TD pour tous, avec un code" Style="{StaticResource Texte.Meta}" HorizontalAlignment="Center" Margin="0,2,0,0" />
+                        </StackPanel>
                     </Button>
-                </StackPanel>
+                </Grid>
 
                 <!-- ==== Seul ==== -->
                 <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.16}"
