@@ -4,6 +4,16 @@ using System.Windows.Data;
 
 namespace Revisions.App;
 
+/// <summary>Visible seulement si le texte reçu est égal au paramètre : affiche la section choisie des Réglages.</summary>
+public sealed class VisibleSiEgalConvertisseur : IValueConverter
+{
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
+        Equals(value as string, parameter as string) ? Visibility.Visible : Visibility.Collapsed;
+
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
+        throw new NotSupportedException();
+}
+
 /// <summary>Affiche un élément seulement si la valeur est « vraie » : booléen vrai, texte non vide, objet non nul.</summary>
 /// <remarks>Avec le paramètre « inverse », la logique est retournée.</remarks>
 public sealed class VisibleSiConvertisseur : IValueConverter

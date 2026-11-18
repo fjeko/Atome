@@ -51,6 +51,27 @@ public class Bandeau : ContentControl
     static Bandeau() => FocusableProperty.OverrideMetadata(typeof(Bandeau), new FrameworkPropertyMetadata(false));
 }
 
+/// <summary>
+/// Ligne de réglage uniforme (écran Réglages) : icône facultative, libellé, phrase d'aide en petit,
+/// et le contrôle (le contenu) aligné à droite. Avec <see cref="Dessous"/>, le contrôle passe sous le texte,
+/// sur toute la largeur (grilles de tuiles, listes). L'apparence est dans Themes/Composants.xaml.
+/// </summary>
+public class LigneReglage : ContentControl
+{
+    public static readonly DependencyProperty IconeProperty = DependencyProperty.Register(nameof(Icone), typeof(string), typeof(LigneReglage));
+    public static readonly DependencyProperty LibelleProperty = DependencyProperty.Register(nameof(Libelle), typeof(string), typeof(LigneReglage));
+    public static readonly DependencyProperty AideProperty = DependencyProperty.Register(nameof(Aide), typeof(string), typeof(LigneReglage));
+    public static readonly DependencyProperty DessousProperty = DependencyProperty.Register(nameof(Dessous), typeof(bool), typeof(LigneReglage));
+
+    public string? Icone { get => (string?)GetValue(IconeProperty); set => SetValue(IconeProperty, value); }
+    public string? Libelle { get => (string?)GetValue(LibelleProperty); set => SetValue(LibelleProperty, value); }
+    public string? Aide { get => (string?)GetValue(AideProperty); set => SetValue(AideProperty, value); }
+    public bool Dessous { get => (bool)GetValue(DessousProperty); set => SetValue(DessousProperty, value); }
+
+    // Le contrôle contenu reçoit le focus, pas la ligne : un seul arrêt au clavier par réglage.
+    static LigneReglage() => FocusableProperty.OverrideMetadata(typeof(LigneReglage), new FrameworkPropertyMetadata(false));
+}
+
 /// <summary>Icônes de Segoe Fluent Icons utilisées par l'interface (une seule liste, pour rester cohérent).</summary>
 public static class Icones
 {
@@ -96,5 +117,9 @@ public static class Icones
     public const string Ouvrir = "";
     public const string Sommaire = "";
     public const string Clavier = "";
+    public const string Dossier = "";
+    public const string Partager = "";
+    public const string ChevronBas = "";
+    public const string ChevronHaut = "";
     public const string Bulle = "";
 }

@@ -16,6 +16,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <local:VisibleSiConvertisseur x:Key="VisibleSi" />
+            <local:VisibleSiEgalConvertisseur x:Key="VisibleSiEgal" />
 
             <!-- Quel écran (vue) afficher pour chaque ViewModel. -->
             <DataTemplate DataType="{x:Type vm:AccueilViewModel}"><v:VueAccueil /></DataTemplate>

@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ds="clr-namespace:Revisions.App.Controles"
+                    xmlns:app="clr-namespace:Revisions.App"
                     xmlns:s="clr-namespace:Revisions.App.Services">
     <!-- Apparence des composants écrits en C# (Controles/) : TuileMatiere, Bandeau, AnneauProgression, Toast. -->
 
@@ -221,4 +222,95 @@
             </StackPanel>
         </Border>
     </DataTemplate>
+
+    <!-- ===== LigneReglage : une ligne uniforme de l'écran Réglages =====
+         Icône facultative, libellé, phrase d'aide en petit, contrôle (le contenu) aligné à droite.
+         Dessous="True" : le contrôle passe sous le texte, sur toute la largeur. -->
+    <Style TargetType="ds:LigneReglage">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Margin" Value="{StaticResource Marge.Bas.8}" />
+        <Setter Property="Padding" Value="{StaticResource Remplissage.Carte}" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ds:LigneReglage">
+                    <ControlTemplate.Resources>
+                        <app:VisibleSiConvertisseur x:Key="VisibleSiLocal" />
+                    </ControlTemplate.Resources>
+                    <Border Style="{StaticResource CarteSurface}" Padding="{TemplateBinding Padding}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Style="{StaticResource Texte.Icone}" VerticalAlignment="Top" Margin="{StaticResource Marge.Droite.16}"
+                                       Foreground="{DynamicResource Pinceau.TexteSecondaire}"
+                                       Text="{Binding Icone, RelativeSource={RelativeSource TemplatedParent}}"
+                                       Visibility="{Binding Icone, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource VisibleSiLocal}}" />
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock Style="{StaticResource Texte.Fort}" Text="{Binding Libelle, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <TextBlock Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.4}"
+                                           Foreground="{DynamicResource Pinceau.TexteSecondaire}"
+                                           Text="{Binding Aide, RelativeSource={RelativeSource TemplatedParent}}"
+                                           Visibility="{Binding Aide, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource VisibleSiLocal}}" />
+                            </StackPanel>
+                            <ContentPresenter x:Name="Controle" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                              Margin="{StaticResource Marge.Gauche.16}" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Dessous" Value="True">
+                            <Setter TargetName="Controle" Property="Grid.Row" Value="1" />
+                            <Setter TargetName="Controle" Property="Grid.Column" Value="1" />
+                            <Setter TargetName="Controle" Property="Grid.ColumnSpan" Value="2" />
+                            <Setter TargetName="Controle" Property="HorizontalAlignment" Value="Stretch" />
+                            <Setter TargetName="Controle" Property="Margin" Value="{StaticResource Marge.Haut.12}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Valeur chiffrée affichée à côté d'un curseur. -->
+    <Style x:Key="ValeurReglage" TargetType="TextBlock" BasedOn="{StaticResource Texte.Fort}">
+        <Setter Property="Width" Value="{StaticResource Largeur.ValeurReglage}" />
+        <Setter Property="TextAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    <!-- Titre de groupe dans une section. -->
+    <Style x:Key="TitreGroupeReglage" TargetType="TextBlock" BasedOn="{StaticResource Texte.SousTitre}">
+        <Setter Property="Margin" Value="{StaticResource Marge.Haut.16}" />
+        <Setter Property="AutomationProperties.HeadingLevel" Value="Level2" />
+    </Style>
+
+    <!-- ===== ExpandeurAvance : « Options avancées » repliées par défaut, atteignable au clavier ===== -->
+    <Style x:Key="ExpandeurAvance" TargetType="Expander">
+        <Setter Property="Margin" Value="{StaticResource Marge.Haut.8}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Expander">
+                    <StackPanel>
+                        <ToggleButton x:Name="Entete" Style="{StaticResource BoutonFantome}" HorizontalAlignment="Left"
+                                      IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                      AutomationProperties.Name="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}"
+                                      ds:Forme.Icone="{x:Static ds:Icones.ChevronBas}"
+                                      Content="{TemplateBinding Header}" />
+                        <ContentPresenter x:Name="Contenu" Margin="{StaticResource Marge.Haut.8}" Visibility="Collapsed" />
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsExpanded" Value="True">
+                            <Setter TargetName="Contenu" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Entete" Property="ds:Forme.Icone" Value="{x:Static ds:Icones.ChevronHaut}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

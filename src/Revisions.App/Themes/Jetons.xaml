@@ -62,6 +62,7 @@
     <Thickness x:Key="Marge.Tuile">0,0,16,16</Thickness>
     <!-- Marges de l'écran : le contenu est centré, avec une largeur maximale lisible. -->
     <Thickness x:Key="Marge.Ecran">32,28,32,32</Thickness>
+    <Thickness x:Key="Marge.Navigation">32,28,0,32</Thickness>
     <Thickness x:Key="Remplissage.Carte">24</Thickness>
     <Thickness x:Key="Remplissage.CarteLarge">32,28</Thickness>
     <Thickness x:Key="Remplissage.Compact">16,12</Thickness>
@@ -85,6 +86,12 @@
     <Thickness x:Key="Remplissage.CaseNombre">8,4</Thickness>
     <!-- Colonne des réponses du TD en groupe : une grille de 4 colonnes y tient ; les choix passent à la ligne. -->
     <sys:Double x:Key="Largeur.ZoneReponse">520</sys:Double>
+
+    <!-- Écran Réglages : colonne de navigation, largeur d'un contrôle aligné à droite (curseur, champ, liste), largeur de la valeur chiffrée. -->
+    <sys:Double x:Key="Largeur.Navigation">260</sys:Double>
+    <sys:Double x:Key="Largeur.ControleReglage">240</sys:Double>
+    <sys:Double x:Key="Largeur.ValeurReglage">56</sys:Double>
+    <sys:Double x:Key="Largeur.SaisieCourte">120</sys:Double>
 
     <!-- Durées : 150 ms pour les survols et changements d'état. -->
     <Duration x:Key="Duree.Survol">0:0:0.15</Duration>

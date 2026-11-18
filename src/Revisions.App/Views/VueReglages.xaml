@@ -4,335 +4,414 @@
              xmlns:ds="clr-namespace:Revisions.App.Controles"
              x:Name="Racine">
     <!--
-        Réglages, en sections claires : Révision, Apparence, Collections, Planning, Données, Mises à jour, À propos.
+        Réglages, sur le modèle des Paramètres de Windows 11 : navigation à gauche (avec recherche),
+        une seule section affichée à droite, des lignes uniformes (ds:LigneReglage) et les réglages
+        techniques repliés dans « Options avancées ». Sous 1100 px, la navigation passe au-dessus du contenu.
         Chaque changement est enregistré et appliqué tout de suite.
     -->
-    <UserControl.Resources>
-        <!-- En-tête de section : une icône dans un rond, un titre. -->
-        <Style x:Key="Section" TargetType="HeaderedContentControl">
-            <Setter Property="Focusable" Value="False" />
-            <Setter Property="Margin" Value="{StaticResource Marge.Haut.16}" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="HeaderedContentControl">
-                        <Border Style="{StaticResource CarteSurface}">
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Border Width="36" Height="36" CornerRadius="18" Background="{DynamicResource Ton.Info.Pale}">
-                                        <TextBlock Style="{StaticResource Texte.Icone}" HorizontalAlignment="Center" Foreground="{DynamicResource Ton.Info.Texte}"
-                                                   Text="{Binding (ds:Forme.Icone), RelativeSource={RelativeSource TemplatedParent}}" />
-                                    </Border>
-                                    <ContentPresenter ContentSource="Header" VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.12}"
-                                                      TextElement.FontSize="{DynamicResource Taille.SousTitre}" TextElement.FontWeight="SemiBold" />
-                                </StackPanel>
-                                <ContentPresenter Margin="{StaticResource Marge.Haut.8}" />
-                            </StackPanel>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="Libelle" TargetType="TextBlock" BasedOn="{StaticResource Texte.Fort}">
-            <Setter Property="Margin" Value="{StaticResource Marge.Haut.16}" />
-        </Style>
-        <Style x:Key="Aide" TargetType="TextBlock" BasedOn="{StaticResource Texte.Meta}">
-            <Setter Property="Margin" Value="{StaticResource Marge.Haut.4}" />
-        </Style>
-        <Style x:Key="Valeur" TargetType="TextBlock" BasedOn="{StaticResource Texte.Fort}">
-            <Setter Property="Width" Value="56" />
-            <Setter Property="TextAlignment" Value="Right" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-        <Style x:Key="Reglage" TargetType="DockPanel">
-            <Setter Property="Margin" Value="{StaticResource Marge.Haut.8}" />
-        </Style>
-    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource Largeur.Navigation}" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-    <ScrollViewer x:Name="Defilement" VerticalScrollBarVisibility="Auto" Focusable="False">
-        <StackPanel MaxWidth="{StaticResource Largeur.Contenu}" Margin="{StaticResource Marge.Ecran}">
-            <TextBlock Text="Réglages" Style="{StaticResource Texte.Titre}" />
-            <TextBlock Text="Chaque changement est enregistré tout de suite." Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.4}" />
+        <!-- ===== Navigation : recherche, puis les sections (ou les résultats de la recherche) ===== -->
+        <StackPanel DataContext="{Binding Navigation}" Margin="{StaticResource Marge.Navigation}"
+                    Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" KeyboardNavigation.TabNavigation="Local">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Compacte}" Value="True">
+                            <Setter Property="Grid.RowSpan" Value="1" />
+                            <Setter Property="Grid.ColumnSpan" Value="2" />
+                            <Setter Property="Margin" Value="{StaticResource Marge.Ecran}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
 
-            <!-- ===== Révision ===== -->
-            <HeaderedContentControl Style="{StaticResource Section}" Header="Révision" ds:Forme.Icone="{x:Static ds:Icones.Jouer}">
-                <StackPanel>
-                    <TextBlock Text="Objectif minimal du jour (cartes)" Style="{StaticResource Libelle}" />
-                    <TextBlock Text="Le nombre de cartes qui suffit pour réussir ta journée." Style="{StaticResource Aide}" />
-                    <DockPanel Style="{StaticResource Reglage}">
-                        <TextBlock DockPanel.Dock="Right" Text="{Binding ObjectifMinimal}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding ObjectifMinimal}" Minimum="1" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" AutomationProperties.Name="Objectif minimal du jour" />
-                    </DockPanel>
+            <Grid>
+                <TextBox x:Name="ChampRecherche" Text="{Binding Recherche, UpdateSourceTrigger=PropertyChanged}"
+                         Padding="{StaticResource Remplissage.Bouton}"
+                         AutomationProperties.Name="Rechercher un réglage" ToolTip="Rechercher un réglage" />
+                <TextBlock Text="Rechercher un réglage" Style="{StaticResource Texte.Meta}" IsHitTestVisible="False"
+                           VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.16}" TextTrimming="CharacterEllipsis"
+                           Visibility="{Binding Recherche, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}" />
+            </Grid>
 
-                    <TextBlock Text="Plafond quotidien (cartes)" Style="{StaticResource Libelle}" />
-                    <TextBlock Text="Au-delà, l'application propose de s'arrêter." Style="{StaticResource Aide}" />
-                    <DockPanel Style="{StaticResource Reglage}">
-                        <TextBlock DockPanel.Dock="Right" Text="{Binding PlafondQuotidien}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding PlafondQuotidien}" Minimum="10" Maximum="150" TickFrequency="5" IsSnapToTickEnabled="True" AutomationProperties.Name="Plafond quotidien" />
-                    </DockPanel>
-
-                    <TextBlock Text="Nouvelles cartes par jour" Style="{StaticResource Libelle}" />
-                    <DockPanel Style="{StaticResource Reglage}">
-                        <TextBlock DockPanel.Dock="Right" Text="{Binding NouvellesParJour}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding NouvellesParJour}" Minimum="0" Maximum="40" TickFrequency="1" IsSnapToTickEnabled="True" AutomationProperties.Name="Nouvelles cartes par jour" />
-                    </DockPanel>
-
-                    <CheckBox Content="Proposer des nouvelles cartes de cours non lus" IsChecked="{Binding NouvellesNonLues}" Style="{StaticResource Interrupteur}"
-                              Margin="{StaticResource Marge.Haut.16}" />
-                    <TextBlock Style="{StaticResource Aide}"
-                               Text="Désactivé : une nouvelle carte n'arrive qu'une fois son cours ouvert dans Atome, ou marqué « Vu » ou « Révisé » dans Mes acquis. Les cartes déjà vues reviennent toujours." />
-
-                    <Border Style="{StaticResource Separateur}" Margin="0,24,0,0" />
-                    <TextBlock Text="Reprise après une pause" Style="{StaticResource Texte.Fort}" FontSize="{DynamicResource Taille.Corps}" Margin="{StaticResource Marge.Haut.16}" />
-                    <TextBlock Text="Jours d'absence avant le mode reprise" Style="{StaticResource Libelle}" />
-                    <DockPanel Style="{StaticResource Reglage}">
-                        <TextBlock DockPanel.Dock="Right" Text="{Binding JoursAvantReprise}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding JoursAvantReprise}" Minimum="3" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" AutomationProperties.Name="Jours d'absence avant le mode reprise" />
-                    </DockPanel>
-                    <TextBlock Text="Taille de la première session de reprise (cartes)" Style="{StaticResource Libelle}" />
-                    <DockPanel Style="{StaticResource Reglage}">
-                        <TextBlock DockPanel.Dock="Right" Text="{Binding TailleReprise}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding TailleReprise}" Minimum="5" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True" AutomationProperties.Name="Taille de la session de reprise" />
-                    </DockPanel>
-
-                    <Border Style="{StaticResource Separateur}" Margin="0,24,0,0" />
-                    <TextBlock Text="Réussite visée (%)" Style="{StaticResource Libelle}" />
-                    <TextBlock Text="Plus c'est haut, plus les cartes reviennent souvent. 90 % est un bon équilibre." Style="{StaticResource Aide}" />
-                    <DockPanel Style="{StaticResource Reglage}">
-                        <TextBlock DockPanel.Dock="Right" Text="{Binding Retention}" Style="{StaticResource Valeur}" />
-                        <Slider Value="{Binding Retention}" Minimum="80" Maximum="95" TickFrequency="1" IsSnapToTickEnabled="True" AutomationProperties.Name="Réussite visée" />
-                    </DockPanel>
-                </StackPanel>
-            </HeaderedContentControl>
-
-            <!-- ===== Apparence ===== -->
-            <HeaderedContentControl Style="{StaticResource Section}" Header="Apparence" ds:Forme.Icone="{x:Static ds:Icones.Galerie}">
-                <StackPanel>
-                    <!-- Thèmes : chaque tuile est un aperçu (fond, surface, accent). -->
-                    <TextBlock Text="Thème" Style="{StaticResource Libelle}" />
-                    <ItemsControl ItemsSource="{Binding Themes}" Margin="{StaticResource Marge.Haut.8}" Focusable="False">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button Command="{Binding DataContext.ChoisirThemeCommand, ElementName=Racine}" CommandParameter="{Binding}"
-                                        Style="{StaticResource Bouton.Base}" Padding="0" Margin="{StaticResource Marge.Tuile}"
-                                        ToolTip="{Binding Nom}" AutomationProperties.Name="{Binding Nom}" ds:Forme.Rayon="{StaticResource Rayon.Carte}">
-                                    <Grid>
-                                        <Border Width="132" Height="84" CornerRadius="{StaticResource Rayon.Carte}" Background="{Binding Fond}" BorderThickness="2">
-                                            <Border.Style>
-                                                <Style TargetType="Border">
-                                                    <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.Bordure}" />
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding EstChoisi}" Value="True">
-                                                            <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.AccentTrait}" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Border.Style>
-                                            <Grid Margin="9,8">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
-                                                <Border Background="{Binding Feuille}" CornerRadius="6" Margin="0,0,0,6">
-                                                    <Rectangle Fill="{Binding Accent}" Width="34" Height="10" RadiusX="3" RadiusY="3"
-                                                               HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="7" />
-                                                </Border>
-                                                <TextBlock Grid.Row="1" Text="{Binding Nom}" Foreground="{Binding Texte}" FontSize="{DynamicResource Taille.Meta}" FontWeight="SemiBold" />
-                                            </Grid>
-                                        </Border>
-                                        <!-- Thème choisi : une coche en plus du cadre (pas la couleur seule). -->
-                                        <Border Width="20" Height="20" CornerRadius="10" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,6,6,0"
-                                                Background="{DynamicResource Pinceau.AccentTrait}" Visibility="{Binding EstChoisi, Converter={StaticResource VisibleSi}}">
-                                            <TextBlock Style="{StaticResource Texte.Icone}" Text="{x:Static ds:Icones.Coche}" FontSize="{DynamicResource Taille.Meta}"
-                                                       HorizontalAlignment="Center" Foreground="{DynamicResource Pinceau.Surface}" />
-                                        </Border>
-                                    </Grid>
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-
-                    <!-- Couleur d'accent : pastilles toutes faites, ou couleur libre. -->
-                    <TextBlock Text="Couleur d'accent" Style="{StaticResource Libelle}" />
-                    <TextBlock Text="Celle des boutons principaux, de la sélection et des barres de progression. Les couleurs des matières, elles, ne changent pas."
-                               Style="{StaticResource Aide}" />
-                    <ItemsControl ItemsSource="{Binding Accents}" Margin="{StaticResource Marge.Haut.8}" Focusable="False">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button Command="{Binding DataContext.ChoisirAccentCommand, ElementName=Racine}" CommandParameter="{Binding}"
-                                        Style="{StaticResource Bouton.Base}" Padding="0" Margin="{StaticResource Marge.Droite.4}" ds:Forme.Rayon="19"
-                                        ToolTip="{Binding Nom}" AutomationProperties.Name="{Binding Nom}">
-                                    <Grid Width="38" Height="38">
-                                        <!-- Anneau autour de la pastille choisie. -->
-                                        <Ellipse StrokeThickness="2.5" Stroke="{DynamicResource Pinceau.Texte}"
-                                                 Visibility="{Binding EstChoisi, Converter={StaticResource VisibleSi}}" />
-                                        <Ellipse Margin="6" Fill="{Binding Hex}" />
-                                        <!-- « Celle du thème » : pastille vide marquée d'un A. -->
-                                        <Grid Visibility="{Binding EstAutomatique, Converter={StaticResource VisibleSi}}">
-                                            <Ellipse Margin="6" StrokeThickness="1.5" Stroke="{DynamicResource Pinceau.TexteSecondaire}" />
-                                            <TextBlock Text="A" FontSize="{DynamicResource Taille.Meta}" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                        </Grid>
-                                    </Grid>
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                    <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.8}">
-                        <TextBlock Text="Ou une couleur précise :" Style="{StaticResource Texte.Base}" VerticalAlignment="Center" Margin="{StaticResource Marge.Droite.8}" />
-                        <TextBox Text="{Binding AccentLibre, UpdateSourceTrigger=PropertyChanged}" Width="120" MaxLength="7"
-                                 ToolTip="Code de la couleur, par exemple #2F7DE1" AutomationProperties.Name="Couleur d'accent précise" />
-                    </StackPanel>
-                    <TextBlock Text="{Binding ErreurAccent}" Style="{StaticResource Aide}" Foreground="{DynamicResource Ton.Attention.Texte}"
-                               Visibility="{Binding ErreurAccent, Converter={StaticResource VisibleSi}}" />
-
-                    <TextBlock Text="Taille du texte" Style="{StaticResource Libelle}" />
-                    <TextBlock Text="Partout : interface, cartes et lecture. Aussi réglable avec A− / A+ pendant la lecture." Style="{StaticResource Aide}" />
-                    <DockPanel Style="{StaticResource Reglage}">
-                        <TextBlock DockPanel.Dock="Right" Style="{StaticResource Valeur}"><Run Text="{Binding TailleTexte, Mode=OneWay}" /> %</TextBlock>
-                        <Slider Value="{Binding TailleTexte}" Minimum="90" Maximum="150" TickFrequency="10" IsSnapToTickEnabled="True" AutomationProperties.Name="Taille du texte" />
-                    </DockPanel>
-
-                    <CheckBox Content="Réduire les animations" IsChecked="{Binding ReduireAnimations}" Style="{StaticResource Interrupteur}" Margin="{StaticResource Marge.Haut.16}" />
-                    <TextBlock Style="{StaticResource Aide}" Text="Les transitions deviennent de simples fondus très courts. Atome suit aussi le réglage « Effets d'animation » de Windows." />
-                    <CheckBox Content="Sons" IsChecked="{Binding Sons}" Style="{StaticResource Interrupteur}" Margin="{StaticResource Marge.Haut.16}" />
-                    <TextBlock Style="{StaticResource Aide}" Text="Trois sons courts et doux : bonne réponse, fin de session et niveau gagné." />
-
-                    <TextBlock Text="Mascotte" Style="{StaticResource Libelle}" />
-                    <ListBox ItemsSource="{Binding ChoixMascotte}" SelectedIndex="{Binding MascotteIndex}" Style="{StaticResource ListeNue}"
-                             Margin="{StaticResource Marge.Haut.8}" AutomationProperties.Name="Taille de la mascotte">
-                        <ListBox.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal" /></ItemsPanelTemplate></ListBox.ItemsPanel>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisible}" />
-                                <Setter Property="Template">
+            <!-- Sections. -->
+            <ListBox x:Name="ListeSections" ItemsSource="{Binding Sections}" SelectedItem="{Binding SectionChoisie}"
+                     Margin="{StaticResource Marge.Haut.12}"
+                     AutomationProperties.Name="Sections des réglages"
+                     Visibility="{Binding RechercheActive, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}">
+                <ListBox.Style>
+                    <Style TargetType="ListBox" BasedOn="{StaticResource ListeNue}">
+                        <Style.Triggers>
+                            <!-- Fenêtre étroite : les sections se rangent en ligne, au-dessus du contenu. -->
+                            <DataTrigger Binding="{Binding Compacte}" Value="True">
+                                <Setter Property="ItemsPanel">
                                     <Setter.Value>
-                                        <ControlTemplate TargetType="ListBoxItem">
-                                            <ToggleButton Content="{Binding}" Style="{StaticResource BoutonBascule}" Margin="{StaticResource Marge.Droite.8}" IsTabStop="False"
-                                                          IsChecked="{Binding IsSelected, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
-                                        </ControlTemplate>
+                                        <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
                                     </Setter.Value>
                                 </Setter>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
-                </StackPanel>
-            </HeaderedContentControl>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.Style>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource ElementNavigation}">
+                        <Setter Property="AutomationProperties.Name" Value="{Binding Titre}" />
+                        <Setter Property="ToolTip" Value="{Binding Titre}" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Texte.Icone}" Text="{Binding Icone}" />
+                            <TextBlock Text="{Binding Titre}" VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.12}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-            <!-- ===== Collections ===== -->
-            <HeaderedContentControl Style="{StaticResource Section}" Header="Mes collections" ds:Forme.Icone="{x:Static ds:Icones.Bibliotheque}">
-                <StackPanel>
-                    <TextBlock Style="{StaticResource Texte.Secondaire}"
+            <!-- Résultats de la recherche : un clic (ou Entrée) ouvre la bonne section. -->
+            <StackPanel Margin="{StaticResource Marge.Haut.12}" Visibility="{Binding RechercheActive, Converter={StaticResource VisibleSi}}">
+                <ItemsControl ItemsSource="{Binding Resultats}" Focusable="False" AutomationProperties.Name="Résultats de la recherche">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource BoutonListe}" HorizontalContentAlignment="Left"
+                                    Command="{Binding DataContext.Navigation.OuvrirResultatCommand, ElementName=Racine}" CommandParameter="{Binding}"
+                                    AutomationProperties.Name="{Binding Description}">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Libelle}" Style="{StaticResource Texte.Fort}" TextTrimming="CharacterEllipsis" />
+                                    <TextBlock Text="{Binding Section.Titre}" Style="{StaticResource Texte.Meta}" />
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Text="Aucun réglage ne correspond." Style="{StaticResource Texte.Secondaire}"
+                           Visibility="{Binding AucunResultat, Converter={StaticResource VisibleSi}}" />
+            </StackPanel>
+        </StackPanel>
+
+        <!-- ===== Contenu : la section choisie ===== -->
+        <ScrollViewer x:Name="Defilement" VerticalScrollBarVisibility="Auto" Focusable="False"
+                      Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+            <ScrollViewer.Style>
+                <Style TargetType="ScrollViewer">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Navigation.Compacte}" Value="True">
+                            <Setter Property="Grid.Row" Value="1" />
+                            <Setter Property="Grid.RowSpan" Value="1" />
+                            <Setter Property="Grid.Column" Value="0" />
+                            <Setter Property="Grid.ColumnSpan" Value="2" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ScrollViewer.Style>
+            <StackPanel MaxWidth="{StaticResource Largeur.Contenu}" Margin="{StaticResource Marge.Ecran}" HorizontalAlignment="Stretch">
+                <TextBlock Text="{Binding Navigation.SectionChoisie.Titre}" Style="{StaticResource Texte.Titre}"
+                           AutomationProperties.HeadingLevel="Level1" />
+                <TextBlock Text="Chaque changement est enregistré tout de suite." Style="{StaticResource Texte.Secondaire}"
+                           Margin="{StaticResource Marge.Haut.4}" />
+
+                <!-- ===== Révision ===== -->
+                <StackPanel Margin="{StaticResource Marge.Haut.24}"
+                            Visibility="{Binding Navigation.SectionChoisie.Cle, Converter={StaticResource VisibleSiEgal}, ConverterParameter=revision}">
+                    <ds:LigneReglage Libelle="Objectif minimal du jour (cartes)" Aide="Le nombre de cartes qui suffit pour réussir ta journée.">
+                        <StackPanel Orientation="Horizontal">
+                            <Slider Width="{StaticResource Largeur.ControleReglage}" Value="{Binding ObjectifMinimal}" Minimum="1" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True"
+                                    AutomationProperties.Name="Objectif minimal du jour" />
+                            <TextBlock Text="{Binding ObjectifMinimal}" Style="{StaticResource ValeurReglage}" />
+                        </StackPanel>
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Plafond quotidien (cartes)" Aide="Au-delà, l'application propose de s'arrêter.">
+                        <StackPanel Orientation="Horizontal">
+                            <Slider Width="{StaticResource Largeur.ControleReglage}" Value="{Binding PlafondQuotidien}" Minimum="10" Maximum="150" TickFrequency="5" IsSnapToTickEnabled="True"
+                                    AutomationProperties.Name="Plafond quotidien" />
+                            <TextBlock Text="{Binding PlafondQuotidien}" Style="{StaticResource ValeurReglage}" />
+                        </StackPanel>
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Nouvelles cartes par jour">
+                        <StackPanel Orientation="Horizontal">
+                            <Slider Width="{StaticResource Largeur.ControleReglage}" Value="{Binding NouvellesParJour}" Minimum="0" Maximum="40" TickFrequency="1" IsSnapToTickEnabled="True"
+                                    AutomationProperties.Name="Nouvelles cartes par jour" />
+                            <TextBlock Text="{Binding NouvellesParJour}" Style="{StaticResource ValeurReglage}" />
+                        </StackPanel>
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Proposer des nouvelles cartes de cours non lus"
+                                     Aide="Désactivé : une nouvelle carte n'arrive qu'une fois son cours ouvert dans Atome, ou marqué « Vu » ou « Révisé » dans Mes acquis. Les cartes déjà vues reviennent toujours.">
+                        <CheckBox IsChecked="{Binding NouvellesNonLues}" Style="{StaticResource Interrupteur}" AutomationProperties.Name="Proposer des nouvelles cartes de cours non lus" />
+                    </ds:LigneReglage>
+
+                    <Expander Header="Options avancées" Style="{StaticResource ExpandeurAvance}">
+                        <StackPanel>
+                            <TextBlock Text="Reprise après une pause" Style="{StaticResource TitreGroupeReglage}" Margin="{StaticResource Marge.Bas.8}" />
+                            <ds:LigneReglage Libelle="Jours d'absence avant le mode reprise">
+                                <StackPanel Orientation="Horizontal">
+                                    <Slider Width="{StaticResource Largeur.ControleReglage}" Value="{Binding JoursAvantReprise}" Minimum="3" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True"
+                                            AutomationProperties.Name="Jours d'absence avant le mode reprise" />
+                                    <TextBlock Text="{Binding JoursAvantReprise}" Style="{StaticResource ValeurReglage}" />
+                                </StackPanel>
+                            </ds:LigneReglage>
+                            <ds:LigneReglage Libelle="Taille de la première session de reprise (cartes)">
+                                <StackPanel Orientation="Horizontal">
+                                    <Slider Width="{StaticResource Largeur.ControleReglage}" Value="{Binding TailleReprise}" Minimum="5" Maximum="30" TickFrequency="1" IsSnapToTickEnabled="True"
+                                            AutomationProperties.Name="Taille de la session de reprise" />
+                                    <TextBlock Text="{Binding TailleReprise}" Style="{StaticResource ValeurReglage}" />
+                                </StackPanel>
+                            </ds:LigneReglage>
+                            <ds:LigneReglage Libelle="Réussite visée (%)" Aide="Plus c'est haut, plus les cartes reviennent souvent. 90 % est un bon équilibre.">
+                                <StackPanel Orientation="Horizontal">
+                                    <Slider Width="{StaticResource Largeur.ControleReglage}" Value="{Binding Retention}" Minimum="80" Maximum="95" TickFrequency="1" IsSnapToTickEnabled="True"
+                                            AutomationProperties.Name="Réussite visée" />
+                                    <TextBlock Text="{Binding Retention}" Style="{StaticResource ValeurReglage}" />
+                                </StackPanel>
+                            </ds:LigneReglage>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+
+                <!-- ===== Apparence ===== -->
+                <StackPanel Margin="{StaticResource Marge.Haut.24}"
+                            Visibility="{Binding Navigation.SectionChoisie.Cle, Converter={StaticResource VisibleSiEgal}, ConverterParameter=apparence}">
+                    <!-- Thèmes : chaque tuile est un aperçu (fond, surface, accent). -->
+                    <ds:LigneReglage Libelle="Thème" Dessous="True">
+                        <ItemsControl ItemsSource="{Binding Themes}" Focusable="False" AutomationProperties.Name="Thèmes">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding DataContext.ChoisirThemeCommand, ElementName=Racine}" CommandParameter="{Binding}"
+                                            Style="{StaticResource Bouton.Base}" Padding="0" Margin="{StaticResource Marge.Tuile}"
+                                            ToolTip="{Binding Nom}" AutomationProperties.Name="{Binding Nom}" ds:Forme.Rayon="{StaticResource Rayon.Carte}">
+                                        <Grid>
+                                            <Border Width="132" Height="84" CornerRadius="{StaticResource Rayon.Carte}" Background="{Binding Fond}" BorderThickness="2">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.Bordure}" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding EstChoisi}" Value="True">
+                                                                <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.AccentTrait}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Grid Margin="9,8">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Border Background="{Binding Feuille}" CornerRadius="6" Margin="0,0,0,6">
+                                                        <Rectangle Fill="{Binding Accent}" Width="34" Height="10" RadiusX="3" RadiusY="3"
+                                                                   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="7" />
+                                                    </Border>
+                                                    <TextBlock Grid.Row="1" Text="{Binding Nom}" Foreground="{Binding Texte}" FontSize="{DynamicResource Taille.Meta}" FontWeight="SemiBold" />
+                                                </Grid>
+                                            </Border>
+                                            <!-- Thème choisi : une coche en plus du cadre (pas la couleur seule). -->
+                                            <Border Width="20" Height="20" CornerRadius="10" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,6,6,0"
+                                                    Background="{DynamicResource Pinceau.AccentTrait}" Visibility="{Binding EstChoisi, Converter={StaticResource VisibleSi}}">
+                                                <TextBlock Style="{StaticResource Texte.Icone}" Text="{x:Static ds:Icones.Coche}" FontSize="{DynamicResource Taille.Meta}"
+                                                           HorizontalAlignment="Center" Foreground="{DynamicResource Pinceau.Surface}" />
+                                            </Border>
+                                        </Grid>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ds:LigneReglage>
+
+                    <!-- Couleur d'accent : pastilles toutes faites ; le code précis est dans les options avancées. -->
+                    <ds:LigneReglage Libelle="Couleur d'accent" Dessous="True"
+                                     Aide="Celle des boutons principaux, de la sélection et des barres de progression. Les couleurs des matières, elles, ne changent pas.">
+                        <StackPanel>
+                            <ItemsControl ItemsSource="{Binding Accents}" Focusable="False" AutomationProperties.Name="Couleurs d'accent">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Command="{Binding DataContext.ChoisirAccentCommand, ElementName=Racine}" CommandParameter="{Binding}"
+                                                Style="{StaticResource Bouton.Base}" Padding="0" Margin="{StaticResource Marge.Droite.4}" ds:Forme.Rayon="19"
+                                                ToolTip="{Binding Nom}" AutomationProperties.Name="{Binding Nom}">
+                                            <Grid Width="38" Height="38">
+                                                <!-- Anneau autour de la pastille choisie. -->
+                                                <Ellipse StrokeThickness="2.5" Stroke="{DynamicResource Pinceau.Texte}"
+                                                         Visibility="{Binding EstChoisi, Converter={StaticResource VisibleSi}}" />
+                                                <Ellipse Margin="6" Fill="{Binding Hex}" />
+                                                <!-- « Celle du thème » : pastille vide marquée d'un A. -->
+                                                <Grid Visibility="{Binding EstAutomatique, Converter={StaticResource VisibleSi}}">
+                                                    <Ellipse Margin="6" StrokeThickness="1.5" Stroke="{DynamicResource Pinceau.TexteSecondaire}" />
+                                                    <TextBlock Text="A" FontSize="{DynamicResource Taille.Meta}" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Grid>
+                                            </Grid>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <TextBlock Text="{Binding ErreurAccent}" Style="{StaticResource Texte.Meta}" Foreground="{DynamicResource Ton.Attention.Texte}"
+                                       Margin="{StaticResource Marge.Haut.8}" Visibility="{Binding ErreurAccent, Converter={StaticResource VisibleSi}}" />
+                        </StackPanel>
+                    </ds:LigneReglage>
+
+                    <ds:LigneReglage Libelle="Taille du texte" Aide="Partout : interface, cartes et lecture. Aussi réglable avec A− / A+ pendant la lecture.">
+                        <StackPanel Orientation="Horizontal">
+                            <Slider Width="{StaticResource Largeur.ControleReglage}" Value="{Binding TailleTexte}" Minimum="90" Maximum="150" TickFrequency="10" IsSnapToTickEnabled="True"
+                                    AutomationProperties.Name="Taille du texte" />
+                            <TextBlock Style="{StaticResource ValeurReglage}"><Run Text="{Binding TailleTexte, Mode=OneWay}" /> %</TextBlock>
+                        </StackPanel>
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Réduire les animations" Aide="Les transitions deviennent de simples fondus très courts. Atome suit aussi le réglage « Effets d'animation » de Windows.">
+                        <CheckBox IsChecked="{Binding ReduireAnimations}" Style="{StaticResource Interrupteur}" AutomationProperties.Name="Réduire les animations" />
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Sons" Aide="Trois sons courts et doux : bonne réponse, fin de session et niveau gagné.">
+                        <CheckBox IsChecked="{Binding Sons}" Style="{StaticResource Interrupteur}" AutomationProperties.Name="Sons" />
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Mascotte">
+                        <ListBox ItemsSource="{Binding ChoixMascotte}" SelectedIndex="{Binding MascotteIndex}" Style="{StaticResource ListeNue}"
+                                 AutomationProperties.Name="Taille de la mascotte">
+                            <ListBox.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal" /></ItemsPanelTemplate></ListBox.ItemsPanel>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisible}" />
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListBoxItem">
+                                                <ToggleButton Content="{Binding}" Style="{StaticResource BoutonBascule}" Margin="{StaticResource Marge.Gauche.8}" IsTabStop="False"
+                                                              IsChecked="{Binding IsSelected, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                    </ds:LigneReglage>
+
+                    <Expander Header="Options avancées" Style="{StaticResource ExpandeurAvance}">
+                        <ds:LigneReglage Libelle="Couleur précise (#RRGGBB)" Aide="Code de la couleur d'accent, par exemple #2F7DE1. Laisse vide pour garder celle du thème.">
+                            <TextBox Text="{Binding AccentLibre, UpdateSourceTrigger=PropertyChanged}" Width="{StaticResource Largeur.SaisieCourte}" MaxLength="7"
+                                     ToolTip="Code de la couleur, par exemple #2F7DE1" AutomationProperties.Name="Couleur d'accent précise" />
+                        </ds:LigneReglage>
+                    </Expander>
+                </StackPanel>
+
+                <!-- ===== Collections ===== -->
+                <StackPanel Margin="{StaticResource Marge.Haut.24}"
+                            Visibility="{Binding Navigation.SectionChoisie.Cle, Converter={StaticResource VisibleSiEgal}, ConverterParameter=collections}">
+                    <TextBlock Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Bas.16}"
                                Text="Choisis ce qu'Atome affiche et te fait réviser : les cours libres livrés avec l'application, tes propres packs, les contenus reçus d'un camarade. Une collection masquée disparaît de la Bibliothèque, des sessions et du planning, mais rien n'est effacé : ta progression est conservée, et en la réaffichant les cartes devenues dues entre-temps reviennent peu à peu, sans avalanche. Au moins une collection reste active." />
-                    <ItemsControl ItemsSource="{Binding MesCollections}" Margin="{StaticResource Marge.Haut.8}" Focusable="False">
+                    <ItemsControl ItemsSource="{Binding MesCollections}" Focusable="False" AutomationProperties.Name="Mes collections">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="{DynamicResource Pinceau.Bordure}" BorderThickness="0,1,0,0" Padding="0,12,0,4">
-                                    <DockPanel>
-                                        <CheckBox DockPanel.Dock="Right" Content="Afficher et réviser" IsChecked="{Binding Visible}" Style="{StaticResource Interrupteur}" VerticalAlignment="Center" />
-                                        <StackPanel VerticalAlignment="Center">
-                                            <TextBlock Text="{Binding Nom}" Style="{StaticResource Texte.Fort}" />
-                                            <TextBlock Text="{Binding Detail}" Style="{StaticResource Texte.Meta}" />
-                                        </StackPanel>
-                                    </DockPanel>
-                                </Border>
+                                <ds:LigneReglage Libelle="{Binding Nom}" Aide="{Binding Detail}">
+                                    <CheckBox IsChecked="{Binding Visible}" Style="{StaticResource Interrupteur}" ToolTip="Afficher et réviser"
+                                              AutomationProperties.Name="{Binding Nom}" AutomationProperties.HelpText="Afficher et réviser" />
+                                </ds:LigneReglage>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <TextBlock Text="{Binding MessageCollections}" Style="{StaticResource Texte.Base}" Margin="{StaticResource Marge.Haut.12}"
+                    <TextBlock Text="{Binding MessageCollections}" Style="{StaticResource Texte.Base}"
                                Foreground="{DynamicResource Pinceau.AccentTexte}"
                                Visibility="{Binding MessageCollections, Converter={StaticResource VisibleSi}}" />
                 </StackPanel>
-            </HeaderedContentControl>
 
-            <!-- ===== Planning ===== -->
-            <HeaderedContentControl Style="{StaticResource Section}" Header="Planning" ds:Forme.Icone="{x:Static ds:Icones.Planning}">
-                <DockPanel>
-                    <Button DockPanel.Dock="Right" Content="Ouvrir le planning" Command="{Binding AllerPlanningCommand}" Style="{StaticResource BoutonSecondaire}"
-                            ds:Forme.Icone="{x:Static ds:Icones.Suivant}" VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.16}" />
-                    <TextBlock Style="{StaticResource Texte.Secondaire}" VerticalAlignment="Center"
-                               Text="Suivre ou non le planning, matière par matière, masquer les quiz et changer les dates : tout se règle dans l'écran Planning." />
-                </DockPanel>
-            </HeaderedContentControl>
+                <!-- ===== Planning ===== -->
+                <StackPanel Margin="{StaticResource Marge.Haut.24}"
+                            Visibility="{Binding Navigation.SectionChoisie.Cle, Converter={StaticResource VisibleSiEgal}, ConverterParameter=planning}">
+                    <ds:LigneReglage Libelle="Planning CNED" Icone="{x:Static ds:Icones.Planning}"
+                                     Aide="Suivre ou non le planning, matière par matière, masquer les quiz et changer les dates : tout se règle dans l'écran Planning.">
+                        <Button Content="Ouvrir le planning" Command="{Binding AllerPlanningCommand}" Style="{StaticResource BoutonSecondaire}"
+                                ds:Forme.Icone="{x:Static ds:Icones.Suivant}" />
+                    </ds:LigneReglage>
+                </StackPanel>
 
-            <!-- ===== Données ===== -->
-            <HeaderedContentControl Style="{StaticResource Section}" Header="Données" ds:Forme.Icone="{x:Static ds:Icones.Exporter}">
-                <StackPanel>
-                    <StackPanel DataContext="{Binding Partage}">
-                        <TextBlock Text="Partager avec un camarade" Style="{StaticResource Libelle}" Margin="0" />
-                        <TextBlock Style="{StaticResource Aide}"
-                                   Text="Crée un seul fichier .atome avec tous tes packs et ton planning. Ta progression, tes réglages et ton historique n'y sont jamais. Les cours du CNED sont à usage privé : ne les partage qu'avec tes camarades." />
-                        <CheckBox IsChecked="{Binding InclureDocuments}" Style="{StaticResource Interrupteur}" Margin="{StaticResource Marge.Haut.12}">
-                            <TextBlock>
-                                <Run Text="Inclure aussi les documents d'origine (PDF) : " /><Run Text="{Binding TailleDocuments, Mode=OneWay}" FontWeight="SemiBold" />
-                            </TextBlock>
-                        </CheckBox>
-                        <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.12}">
+                <!-- ===== Données ===== -->
+                <StackPanel Margin="{StaticResource Marge.Haut.24}"
+                            Visibility="{Binding Navigation.SectionChoisie.Cle, Converter={StaticResource VisibleSiEgal}, ConverterParameter=donnees}">
+                    <ds:LigneReglage Libelle="Mes signalements" Icone="{x:Static ds:Icones.Drapeau}"
+                                     Aide="Tu as repéré une erreur dans une carte ou un cours ? Le petit drapeau permet de la signaler. Ici, tu retrouves tes signalements et tu peux les exporter.">
+                        <Button Content="Mes signalements…" Command="{Binding AllerSignalementsCommand}" Style="{StaticResource BoutonSecondaire}" />
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Mes données" Icone="{x:Static ds:Icones.Dossier}"
+                                     Aide="La base et les sauvegardes automatiques : une sauvegarde par jour d'utilisation, les 7 dernières sont gardées.">
+                        <Button Content="Ouvrir" Command="{Binding OuvrirDossierDonneesCommand}" Style="{StaticResource BoutonSecondaire}"
+                                ds:Forme.Icone="{x:Static ds:Icones.Ouvrir}" />
+                    </ds:LigneReglage>
+
+                    <Expander Header="Options avancées" Style="{StaticResource ExpandeurAvance}">
+                        <StackPanel>
+                            <ds:LigneReglage Libelle="Dossier des packs" Dessous="True">
+                                <DockPanel>
+                                    <Button DockPanel.Dock="Right" Content="Choisir…" Command="{Binding ChoisirDossierPacksCommand}" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Gauche.8}" />
+                                    <TextBox Text="{Binding DossierPacks, Mode=OneWay}" IsReadOnly="True" AutomationProperties.Name="Dossier des packs" />
+                                </DockPanel>
+                            </ds:LigneReglage>
+                            <ds:LigneReglage Libelle="Dossier « Cours »" Aide="Pour ouvrir les PDF d'origine." Dessous="True">
+                                <DockPanel>
+                                    <Button DockPanel.Dock="Right" Content="Choisir…" Command="{Binding ChoisirDossierCoursCommand}" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Gauche.8}" />
+                                    <TextBox Text="{Binding DossierCours, Mode=OneWay}" IsReadOnly="True" AutomationProperties.Name="Dossier des cours" />
+                                </DockPanel>
+                            </ds:LigneReglage>
+                            <ds:LigneReglage Libelle="Emplacement de mes données" Dessous="True">
+                                <TextBox Text="{Binding DossierDonnees, Mode=OneWay}" IsReadOnly="True" AutomationProperties.Name="Dossier des données" />
+                            </ds:LigneReglage>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+
+                <!-- ===== Partage ===== -->
+                <StackPanel Margin="{StaticResource Marge.Haut.24}" DataContext="{Binding Partage}"
+                            Visibility="{Binding DataContext.Navigation.SectionChoisie.Cle, ElementName=Racine, Converter={StaticResource VisibleSiEgal}, ConverterParameter=partage}">
+                    <TextBlock Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Bas.16}"
+                               Text="Crée un seul fichier .atome avec tous tes packs et ton planning. Ta progression, tes réglages et ton historique n'y sont jamais. Les cours du CNED sont à usage privé : ne les partage qu'avec tes camarades." />
+                    <ds:LigneReglage Libelle="Inclure les documents d'origine (PDF)" Aide="{Binding TailleDocuments, Mode=OneWay, StringFormat='Taille estimée : {0}'}">
+                        <CheckBox IsChecked="{Binding InclureDocuments}" Style="{StaticResource Interrupteur}" AutomationProperties.Name="Inclure les documents d'origine (PDF)" />
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Mon contenu" Icone="{x:Static ds:Icones.Partager}">
+                        <StackPanel Orientation="Horizontal">
                             <Button Content="Exporter mon contenu…" Command="{Binding ExporterCommand}" IsEnabled="{Binding PeutExporter}"
                                     Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Exporter}" Margin="{StaticResource Marge.Droite.8}" />
                             <Button Content="Importer du contenu…" Command="{Binding ImporterCommand}" Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Importer}" />
                         </StackPanel>
-                        <ProgressBar Style="{StaticResource BarreProgression}" Value="{Binding Progression, Mode=OneWay}" Margin="{StaticResource Marge.Haut.12}"
-                                     Visibility="{Binding EnCours, Converter={StaticResource VisibleSi}}" />
-                        <TextBlock Text="{Binding Message}" Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
-                                   Visibility="{Binding Message, Converter={StaticResource VisibleSi}}" />
-                    </StackPanel>
-
-                    <Border Style="{StaticResource Separateur}" Margin="0,24,0,0" />
-                    <TextBlock Text="Erreurs dans les cours" Style="{StaticResource Libelle}" Margin="0" />
-                    <TextBlock Style="{StaticResource Aide}"
-                               Text="Tu as repéré une erreur dans une carte ou un cours ? Le petit drapeau permet de la signaler. Ici, tu retrouves tes signalements et tu peux les exporter." />
-                    <Button Content="Mes signalements…" Command="{Binding AllerSignalementsCommand}" Style="{StaticResource BoutonSecondaire}"
-                            ds:Forme.Icone="{x:Static ds:Icones.Drapeau}" Margin="{StaticResource Marge.Haut.12}" HorizontalAlignment="Left" />
-
-                    <Border Style="{StaticResource Separateur}" Margin="0,24,0,0" />
-                    <TextBlock Text="Dossier des packs" Style="{StaticResource Libelle}" Margin="0" />
-                    <DockPanel Style="{StaticResource Reglage}">
-                        <Button DockPanel.Dock="Right" Content="Choisir…" Command="{Binding ChoisirDossierPacksCommand}" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Gauche.8}" />
-                        <TextBox Text="{Binding DossierPacks, Mode=OneWay}" IsReadOnly="True" AutomationProperties.Name="Dossier des packs" />
-                    </DockPanel>
-                    <TextBlock Text="Dossier « Cours » (pour ouvrir les PDF d'origine)" Style="{StaticResource Libelle}" />
-                    <DockPanel Style="{StaticResource Reglage}">
-                        <Button DockPanel.Dock="Right" Content="Choisir…" Command="{Binding ChoisirDossierCoursCommand}" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Gauche.8}" />
-                        <TextBox Text="{Binding DossierCours, Mode=OneWay}" IsReadOnly="True" AutomationProperties.Name="Dossier des cours" />
-                    </DockPanel>
-                    <TextBlock Text="Mes données (base et sauvegardes automatiques)" Style="{StaticResource Libelle}" />
-                    <TextBlock Text="Une sauvegarde par jour d'utilisation, les 7 dernières sont gardées." Style="{StaticResource Aide}" />
-                    <DockPanel Style="{StaticResource Reglage}">
-                        <Button DockPanel.Dock="Right" Content="Ouvrir" Command="{Binding OuvrirDossierDonneesCommand}" Style="{StaticResource BoutonSecondaire}"
-                                ds:Forme.Icone="{x:Static ds:Icones.Ouvrir}" Margin="{StaticResource Marge.Gauche.8}" />
-                        <TextBox Text="{Binding DossierDonnees, Mode=OneWay}" IsReadOnly="True" AutomationProperties.Name="Dossier des données" />
-                    </DockPanel>
+                    </ds:LigneReglage>
+                    <ProgressBar Style="{StaticResource BarreProgression}" Value="{Binding Progression, Mode=OneWay}"
+                                 Visibility="{Binding EnCours, Converter={StaticResource VisibleSi}}" />
+                    <TextBlock Text="{Binding Message}" Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
+                               Visibility="{Binding Message, Converter={StaticResource VisibleSi}}" />
                 </StackPanel>
-            </HeaderedContentControl>
 
-            <!-- ===== Mises à jour ===== -->
-            <HeaderedContentControl Style="{StaticResource Section}" Header="Mises à jour" ds:Forme.Icone="{x:Static ds:Icones.Telecharger}">
-                <StackPanel>
-                    <TextBlock Text="{Binding VersionInstallee}" Style="{StaticResource Texte.Secondaire}" />
-                    <CheckBox Content="Vérifier les mises à jour au démarrage" IsChecked="{Binding VerifierMisesAJour}" Style="{StaticResource Interrupteur}" Margin="{StaticResource Marge.Haut.12}" />
-                    <TextBlock Style="{StaticResource Aide}"
-                               Text="Une fois par jour au plus, Atome demande à GitHub (api.github.com) le numéro de la dernière version. C'est la seule fois où Atome se connecte à Internet. Rien d'autre n'est envoyé : ni tes données, ni ton nom." />
-                    <Button Content="Vérifier maintenant" Command="{Binding VerifierMaintenantCommand}" Style="{StaticResource BoutonSecondaire}"
-                            ds:Forme.Icone="{x:Static ds:Icones.Actualiser}" Margin="{StaticResource Marge.Haut.12}" HorizontalAlignment="Left" />
+                <!-- ===== Mises à jour ===== -->
+                <StackPanel Margin="{StaticResource Marge.Haut.24}"
+                            Visibility="{Binding Navigation.SectionChoisie.Cle, Converter={StaticResource VisibleSiEgal}, ConverterParameter=maj}">
+                    <ds:LigneReglage Libelle="{Binding VersionInstallee}" Icone="{x:Static ds:Icones.Info}" />
+                    <ds:LigneReglage Libelle="Vérifier les mises à jour au démarrage"
+                                     Aide="Une fois par jour au plus, Atome demande à GitHub (api.github.com) le numéro de la dernière version. C'est la seule fois où Atome se connecte à Internet. Rien d'autre n'est envoyé : ni tes données, ni ton nom.">
+                        <CheckBox IsChecked="{Binding VerifierMisesAJour}" Style="{StaticResource Interrupteur}" AutomationProperties.Name="Vérifier les mises à jour au démarrage" />
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Vérifier maintenant" Icone="{x:Static ds:Icones.Actualiser}">
+                        <Button Content="Vérifier maintenant" Command="{Binding VerifierMaintenantCommand}" Style="{StaticResource BoutonSecondaire}"
+                                ds:Forme.Icone="{x:Static ds:Icones.Actualiser}" />
+                    </ds:LigneReglage>
                     <TextBlock Text="{Binding MessageMiseAJour}" Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
                                Visibility="{Binding MessageMiseAJour, Converter={StaticResource VisibleSi}}" />
                 </StackPanel>
-            </HeaderedContentControl>
 
-            <!-- ===== À propos ===== -->
-            <HeaderedContentControl Style="{StaticResource Section}" Header="À propos" ds:Forme.Icone="{x:Static ds:Icones.Info}">
-                <StackPanel>
+                <!-- ===== À propos ===== -->
+                <StackPanel Margin="{StaticResource Marge.Haut.24}"
+                            Visibility="{Binding Navigation.SectionChoisie.Cle, Converter={StaticResource VisibleSiEgal}, ConverterParameter=apropos}">
                     <TextBlock Style="{StaticResource Texte.Secondaire}"
                                Text="Atome : tes révisions, at home. Un projet étudiant de BTS SIO option SLAM, hors ligne et sans compte : tes données restent sur ton PC." />
-                    <TextBlock Style="{StaticResource Aide}" Margin="{StaticResource Marge.Haut.8}"
+                    <TextBlock Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.8}"
                                Text="Code sous licence MIT. Cours libres intégrés sous licence CC BY-SA 4.0 (« Atome – packs libres BTS SIO »). Les cours du CNED ne sont pas fournis." />
                 </StackPanel>
-            </HeaderedContentControl>
-        </StackPanel>
-    </ScrollViewer>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

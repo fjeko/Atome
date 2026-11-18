@@ -62,6 +62,9 @@ public partial class ReglagesViewModel : ObservableObject
     public IReadOnlyList<ChoixTheme> Themes { get; }
     public IReadOnlyList<ChoixAccent> Accents { get; }
 
+    /// <summary>Navigation de l'écran (sections, recherche) : état d'interface, rien n'est enregistré.</summary>
+    public NavigationReglagesViewModel Navigation { get; } = new();
+
     public string DossierDonnees => BaseDeDonnees.DossierDonnees;
 
     // ---- Apparence (cahier de design) ----
