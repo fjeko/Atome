@@ -48,7 +48,7 @@ révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je
 - **Gamification sans punition** : XP, niveaux, série comptée en semaines, mode reprise après une pause, plafond de cartes par jour.
 - **Mes acquis** : tu déclares ce que tu maîtrises déjà, les cartes s'adaptent à ton niveau.
 - **Planning CNED** : la proposition de ton organisme de formation en frises par matière, avec **import direct du fichier Excel**.
-- **TD en groupe** : le même TD à plusieurs, chacun sur son PC, avec un simple code à dicter (sans réseau).
+- **TD** : de vrais exercices générés et corrigés pas à pas (matrices, graphes, MPM, IPv4, droits Linux, SQL…), **seul** sur la durée de ton choix (15 min à 2 h, correction à la fin comme à l'examen) ou **à plusieurs** avec un simple code à dicter (sans réseau).
 - **Signalements** : un petit drapeau sur chaque carte et chaque section pour signaler une erreur, exportable pour corriger les cours.
 - **Partage `.atome`** : tes cours et ton planning dans un seul fichier, à donner à un camarade.
 - **Collections** : tu choisis ce qui est affiché et révisé (cours libres, mes packs, contenus importés), sans perdre ta progression.
@@ -204,11 +204,15 @@ figé, codes et chiffre de contrôle, calcul matriciel, déterminisme des TD, v�
 - **Session** : cartes question, QCM (choix mélangés) et exercice pas à pas ; sur une carte question,
   on peut **écrire sa réponse** pour la comparer à la bonne avant de se noter. Mode concentration (sans menu, F11 pour le
   plein écran), carte qui se retourne, « +10 » qui monte, pause avec confirmation douce (Échap).
+- **TD seul** : thèmes à cocher, durée (15 min, 30 min, 1 h, 2 h), niveau, correction après chaque exercice ou à la fin
+  comme à l'examen. Les sujets ratés reviennent plus souvent, et les cartes de leur notion repassent en révision.
+  Exercices rédigés des packs pour les matières sans calcul. Conception : `docs/td-solo.md`.
 - **TD en groupe** : le même TD à plusieurs, chacun sur son PC (en vocal sur Discord par exemple), sans réseau :
   un **code court** à dicter (`MAT1-2-8-48217`) suffit à générer exactement les mêmes exercices partout.
   Premier thème : les **matrices** (dimension, somme, réel, transposée, identité, produit, puissance, situation
   concrète), avec grille de saisie, vérification case par case, indice et correction pas à pas ; second thème :
-  les exercices et QCM de **n'importe quelle séance**. Code : `Revisions.Core/TdGroupe`.
+  les exercices et QCM de **n'importe quelle séance** ; puis inverse et systèmes, graphes, ordonnancement MPM, adressage
+  IPv4, droits Linux et requêtes SQL. Code : `Revisions.Core/TdGroupe`.
 - **Statistiques** : calendrier de régularité (12 semaines), courbe des 30 derniers jours, réussite et maîtrise par matière,
   points faibles avec session ciblée.
 - **Réglages** : révision (rythme, reprise), **apparence** (thème sombre par défaut, clair, six thèmes colorés, couleur
@@ -228,7 +232,7 @@ app/
                         ordre du cours (Ordre/),
                         planning (Planning/), mises à jour (MisesAJour/ : SemVer, API GitHub,
                         SHA-256, client HTTP injecté). TD en groupe (TdGroupe/ : hasard
-                        SplitMix64, codes, générateurs de TD, matrices). Entièrement testable.
+                        SplitMix64, codes, générateurs de TD à sujets, compositeur du TD solo). Entièrement testable.
     Revisions.Data/     SQLite (Microsoft.Data.Sqlite + Dapper) : schéma, import, requêtes.
     Revisions.App/      Interface WPF en MVVM (CommunityToolkit.Mvvm) + rendu WebView2.
       ViewModels/       Un ViewModel par écran : toute la logique d'affichage.
@@ -306,13 +310,14 @@ puis dévoile la correction étape par étape, Entrée (hors des cases) fait la 
 - [ ] Aide : « Copier le prompt » puis coller dans un éditeur de texte.
 - [ ] Réimport d'un pack modifié : l'historique des cartes est conservé.
 - [ ] TD en groupe : créer un TD, le rejoindre avec le code sur un 2e PC (même empreinte), grille au clavier (Tab, flèches, nombres négatifs), Ctrl + Entrée, correction avec Espace, récap et XP.
+- [ ] TD seul : 15 min sur deux thèmes (correction après chaque exercice), puis 1 h en correction à la fin ; saisie texte (IP, rwx, chemin), grille en liste (MPM), récap avec notions remises en révision.
 
 ## Outils de développement (version Debug uniquement)
 
 - `Atome.exe --ecran=bibliotheque` (ou `statistiques`, `reglages`, `lecture:<id du pack>`,
   `session:<id du pack>`, `choix` (écran « Autre révision »), `aide:<numéro de page>`, `bibliotheque:0,1` pour descendre dans les tuiles,
   `bibliotheque:?texte` pour une recherche), `td` ou `td:<code>` (rejoint ce TD ; `td:<code>:demo` remplit
-  une grille avec une erreur et vérifie, pour capturer l'écran de correction), `galerie` (tous les composants du
+  une grille avec une erreur et vérifie, pour capturer l'écran de correction), `td:solo:ORD,GRA` (TD solo de 15 min sur ces thèmes ; `:examen` pour corriger à la fin), `galerie` (tous les composants du
   système de design, en sombre et en clair), `acquis`, `questionnaire` ouvre directement un écran.
 - `--theme=ocean` et `--accent=#D8498F` (ou `--accent=auto`) changent l'apparence au lancement ;
   `--hauteur=1700` agrandit la fenêtre pour capturer un écran long ; `--defiler=800` fait défiler l'écran ;

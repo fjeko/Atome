@@ -1,14 +1,33 @@
-# Faire un TD à plusieurs sur Discord
+# Faire un TD, seul ou à plusieurs
 
-Le mode **TD en groupe** permet de faire le même TD à plusieurs, chacun sur son PC, au même rythme. On se retrouve en vocal (sur Discord par exemple) et on avance ensemble, exercice par exercice, comme en classe. Ce n'est pas un quiz chronométré : on cherche, on corrige, on discute.
+L'écran **TD** (barre de gauche) propose de vrais exercices de TD, **générés à chaque fois** : les nombres, les graphes, les projets, les adresses changent, et Atome calcule lui-même la correction. Deux onglets : **Seul** et **À plusieurs**.
 
-Il n'y a **ni réseau, ni serveur, ni compte** : le seul lien entre vous est un **code** que l'un dicte aux autres. Ça marche aussi très bien en solo.
+## Seul
+
+1. **Coche les thèmes** :
+   - *exercices générés* (correction automatique) : Matrices, Inverse et systèmes, Graphes, Ordonnancement MPM, Adressage IPv4, Droits Linux, Requêtes SQL ;
+   - *exercices rédigés de tes packs* (CEJM, culture générale, anglais…) : les cartes « exercice » de tes cours ; tu compares toi-même avec la correction.
+2. Choisis la **durée** (15 min, 30 min, 1 h ou 2 h comme à l'examen) et le **niveau**. Atome remplit la durée avec des exercices de durée estimée, rangés par thème comme une vraie feuille de TD.
+3. **Correction à la fin, comme à l'examen** (activée par défaut à partir d'1 h) : tu valides chaque exercice sans voir le résultat, puis tout est corrigé à la fin. Sinon, la correction vient après chaque exercice.
+4. **Seulement ce que j'ai déjà lu** : ne garde que les exercices des notions dont tu as ouvert la séance du cours.
+
+Un chrono en haut indique le temps passé : c'est un simple repère, il ne se passe rien quand la durée est dépassée.
+
+**Tes erreurs servent** : un exercice raté revient plus souvent dans tes prochains TD, et les cartes de sa notion repassent dans ta prochaine révision (5 au plus par exercice, sans effacer ta progression).
+
+Pour saisir une réponse courte (adresse IP, droits `rwxr-x---`, chemin `A-C-F`), tape-la dans la zone de texte : les espaces et les majuscules ne comptent pas, et pour un chemin `A C F` ou `A → C → F` sont acceptés.
+
+## À plusieurs, sur Discord
+
+Le mode **À plusieurs** permet de faire le même TD à plusieurs, chacun sur son PC, au même rythme. On se retrouve en vocal (sur Discord par exemple) et on avance ensemble, exercice par exercice, comme en classe. Ce n'est pas un quiz chronométré : on cherche, on corrige, on discute.
+
+Il n'y a **ni réseau, ni serveur, ni compte** : le seul lien entre vous est un **code** que l'un dicte aux autres. Tous les thèmes générés existent aussi en groupe.
 
 ### 1. L'un crée le TD
 
-Dans **TD en groupe** (barre de gauche) :
+Dans **TD → À plusieurs** :
 
-1. choisis le **thème** : *Matrices* ou *Une séance de ma bibliothèque* ;
+1. choisis le **thème** : *Matrices*, *Graphes*, *Ordonnancement MPM*, *Adressage IPv4*… ou *Une séance de ma bibliothèque* ;
 2. choisis le **niveau** et le **nombre d'exercices** (la case « Inclure les exercices hors cours », décochée par défaut, ajoute des exercices en plus du programme, comme la transposée ; elle est mémorisée dans le code, donc tout le groupe a le même TD) ;
 3. clique sur **Créer le TD**.
 
@@ -16,7 +35,7 @@ Atome affiche un code, par exemple `MAT1-2-8-48217`. Dicte-le aux autres (ou cop
 
 | Morceau du code | Signification |
 | --- | --- |
-| `MAT1` | type de TD (MAT = matrices, SEA = séance) et version du générateur |
+| `MAT1` | type de TD (MAT = matrices, INV = inverse, GRA = graphes, ORD = MPM, IPV = IPv4, DRL = droits Linux, SQL, SEA = séance) et version du générateur |
 | `2` | niveau |
 | `8` | nombre d'exercices |
 | `48217` | le tirage au sort ; le dernier chiffre sert à repérer une faute de frappe |
@@ -42,7 +61,7 @@ Le minuteur par exercice est **désactivé par défaut**. Si tu l'actives, c'est
 
 ### 4. Le récap
 
-À la fin, Atome affiche ton récap : exercices réussis du premier coup, avec l'indice, ou à retravailler, et une petite phrase à dire aux autres, par exemple « J'ai fait 7/10 ». Le TD rapporte de l'**XP** (même un exercice raté en rapporte : l'essai compte), sans toucher au planning de révision de tes cartes.
+À la fin, Atome affiche ton récap : exercices réussis du premier coup, avec l'indice, ou à retravailler, et une petite phrase à dire aux autres, par exemple « J'ai fait 7/10 ». Le TD rapporte de l'**XP** (même un exercice raté en rapporte : l'essai compte), sans toucher au planning de révision de tes cartes (en solo, les notions ratées repassent en révision : voir plus haut).
 
 ### Raccourcis clavier
 
