@@ -19,7 +19,7 @@
     {
       "id": "libre-cejm-sq12-s04-s01",
       "titre": "L'essentiel",
-      "contenu": "| Régime | Conditions | Particularité |\n|---|---|---|\n| contractuelle | contrat + inexécution + dommage + causalité | résultat : faute présumée ; moyens : faute à prouver |\n| fait personnel | faute + dommage + causalité | hors contrat |\n| fait d'autrui | dommage causé par un préposé, un enfant… | l'employeur ou le parent répond |\n| fait des choses | chose sous sa garde, rôle actif | sans faute |\n| produits défectueux | défaut de sécurité | le producteur répond sans faute |\n| exonérations | force majeure, faute de la victime, fait d'un tiers | |",
+      "contenu": "| Régime | Conditions | Particularité |\n|---|---|---|\n| contractuelle | contrat + inexécution + dommage + causalité | résultat : faute présumée ; moyens : faute à prouver |\n| fait personnel | faute + dommage + causalité | hors contrat |\n| fait d'autrui | dommage causé par un préposé, un enfant… | l'employeur ou le parent répond |\n| fait des choses | chose sous sa garde (usage, direction, contrôle) | sans faute |\n| produits défectueux | défaut de sécurité | le producteur répond sans faute |\n| exonérations | force majeure, faute de la victime, fait d'un tiers | |",
       "notions": [
         "Synthèse responsabilité"
       ]
@@ -46,7 +46,7 @@
         "Aucune"
       ],
       "bonneReponse": 0,
-      "explication": "Sans dommage, rien à réparer.",
+      "explication": "La faute est le fait générateur et rien ne dit que le lien de causalité manque ; mais sans dommage, il n'y a rien à réparer : la responsabilité n'est pas engagée.",
       "difficulte": 1
     },
     {

@@ -27,7 +27,7 @@
     {
       "id": "libre-cejm-sq13-s03-s02",
       "titre": "Étude de cas : Festival Écho",
-      "contenu": "*Festival Écho*, association fictive, organise un festival de musique. Jusqu'ici, 8 bénévoles décidaient tout ensemble lors de réunions informelles. Le festival a triplé de taille (60 bénévoles, 20 000 spectateurs) : les tâches se chevauchent, des oublis se multiplient. La présidente propose de créer des pôles (programmation, logistique, sécurité, communication) avec un responsable chacun et des fiches de procédure.",
+      "contenu": "*Festival Écho*, association fictive, organise un festival de musique. Jusqu'ici, 8 bénévoles décidaient tout ensemble lors de réunions informelles. Le festival a beaucoup grandi (de 8 à 60 bénévoles, 20 000 spectateurs) : les tâches se chevauchent, des oublis se multiplient. La présidente propose de créer des pôles (programmation, logistique, sécurité, communication) avec un responsable chacun et des fiches de procédure.",
       "notions": [
         "Application à un cas"
       ]
@@ -38,7 +38,7 @@
       "id": "libre-cejm-sq13-s03-c001",
       "section": "libre-cejm-sq13-s03-s01",
       "type": "qcm",
-      "question": "Quelle confusion est une erreur ?",
+      "question": "Quelle affirmation est fausse ?",
       "choix": [
         "Le service comptable est un processus",
         "La paie est un processus support",

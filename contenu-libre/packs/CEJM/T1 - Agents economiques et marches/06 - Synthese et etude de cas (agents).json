@@ -19,7 +19,7 @@
     {
       "id": "libre-cejm-sq01-s03-s01",
       "titre": "L'essentiel",
-      "contenu": "- Six catégories d'agents, distinguées par leur **fonction** et leurs **ressources**.\n- Production **marchande** (prix ≥ 50 % du coût) / **non marchande** (gratuite ou prix non significatif, financée par les prélèvements).\n- Chaque échange = un flux **réel** + un flux **monétaire** de sens opposé.\n- Le circuit enchaîne **production → répartition → dépense**, et la dépense relance la production.\n\nPièges : banque et assurance = sociétés **financières** ; association = **ISBLSM** ; ne pas oublier le **reste du monde**.",
+      "contenu": "- Six catégories d'agents, distinguées par leur **fonction** et leurs **ressources**.\n- Production **marchande** (prix > 50 % du coût) / **non marchande** (gratuite ou prix non significatif, financée par les prélèvements).\n- Chaque échange = un flux **réel** + un flux **monétaire** de sens opposé.\n- Le circuit enchaîne **production → répartition → dépense**, et la dépense relance la production.\n\nPièges : banque et assurance = sociétés **financières** ; association surtout non marchande = **ISBLSM** ; ne pas oublier le **reste du monde**.",
       "notions": [
         "Synthèse agents et circuit"
       ]
@@ -27,7 +27,7 @@
     {
       "id": "libre-cejm-sq01-s03-s02",
       "titre": "Étude de cas : la Recyclerie des Hauts",
-      "contenu": "*La Recyclerie des Hauts* est une association fictive qui collecte des objets usagés, les répare et les revend à petits prix dans sa boutique. Elle emploie 6 salariés en insertion, reçoit une subvention de la communauté de communes, emprunte auprès d'une banque coopérative pour acheter un camion, et vend aussi des pièces détachées à un garage.\n\nQuestions :\n1. À quelle catégorie d'agent appartient la Recyclerie ?\n2. Sa production est-elle marchande ?\n3. Décris deux flux réels et les flux monétaires correspondants.",
+      "contenu": "*La Recyclerie des Hauts* est une association fictive qui collecte des objets usagés, les répare et les revend à petits prix dans sa boutique ; ces ventes couvrent environ 70 % de ses coûts. Elle emploie 6 salariés en insertion, reçoit une subvention de la communauté de communes, emprunte auprès d'une banque coopérative pour acheter un camion, et vend aussi des pièces détachées à un garage.\n\nQuestions :\n1. À quelle catégorie d'agent appartient la Recyclerie ?\n2. Sa production est-elle marchande ?\n3. Décris deux flux réels et les flux monétaires correspondants.",
       "notions": [
         "Application à un cas"
       ]
@@ -55,11 +55,11 @@
       "type": "exercice",
       "enonce": "Réponds aux trois questions de l'étude de cas *La Recyclerie des Hauts*.",
       "etapes": [
-        "1. Association → institution sans but lucratif au service des ménages (ISBLSM).",
-        "2. Elle vend en boutique : si ses prix couvrent au moins la moitié des coûts, la vente d'objets est une production marchande ; l'accompagnement des salariés en insertion, financé par subvention, est non marchand.",
+        "1. C'est une association, mais la comptabilité nationale classe selon la fonction principale : l'essentiel de sa production est vendu à un prix qui couvre plus de la moitié des coûts (70 %). C'est donc un producteur marchand, rangé avec les sociétés non financières (une association surtout non marchande, comme un club de théâtre, serait une ISBLSM).",
+        "2. La vente d'objets est une production marchande (prix économiquement significatif). L'accompagnement des salariés en insertion, rendu gratuitement et financé par la subvention, est un service non marchand.",
         "3. Travail des salariés (ménages → association) contre salaires (association → ménages) ; objets vendus (association → clients) contre paiement (clients → association)."
       ],
-      "reponse": "ISBLSM ; production en partie marchande (ventes) et en partie non marchande (insertion) ; flux travail/salaires et objets/paiements.",
+      "reponse": "Producteur marchand (société non financière) malgré son statut associatif ; production surtout marchande (ventes à 70 % des coûts), avec une part non marchande (insertion) ; flux travail/salaires et objets/paiements.",
       "difficulte": 3
     }
   ]

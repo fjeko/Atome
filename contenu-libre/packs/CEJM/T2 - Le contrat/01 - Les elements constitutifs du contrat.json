@@ -51,7 +51,7 @@
       "id": "libre-cejm-sq04-s01-c001",
       "section": "libre-cejm-sq04-s01-s01",
       "type": "qcm",
-      "question": "Un sous-locataire peut-il exiger directement de l'agence immobilière l'exécution du contrat signé entre l'agence et son propriétaire ?",
+      "question": "Un propriétaire a confié la gestion de son appartement à une agence immobilière par un mandat. Son locataire peut-il exiger directement de l'agence l'exécution de ce mandat ?",
       "choix": [
         "Non, en vertu de l'effet relatif des contrats",
         "Oui, grâce à la force obligatoire",
@@ -59,7 +59,7 @@
         "Oui, grâce à l'opposabilité"
       ],
       "bonneReponse": 0,
-      "explication": "Il est tiers à ce contrat : il ne peut pas en exiger l'exécution.",
+      "explication": "Le locataire n'est pas partie au mandat (signé entre le propriétaire et l'agence) : il est tiers et ne peut pas en exiger l'exécution. Il n'a de contrat (le bail) qu'avec le propriétaire.",
       "difficulte": 2
     },
     {

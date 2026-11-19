@@ -28,7 +28,7 @@
     {
       "id": "libre-cejm-sq13-s01-s02",
       "titre": "Ressources et compétences",
-      "contenu": "**Ressources** :\n- **tangibles** (matérielles) : bâtiments, machines, stocks, trésorerie, salariés en nombre ;\n- **intangibles** (immatérielles) : marque, image, brevets, fichiers clients, savoir-faire, culture d'entreprise.\n\n**Compétences** : capacité à **combiner** les ressources pour agir.\n- **individuelles** : savoirs, savoir-faire, savoir-être d'une personne ;\n- **collectives** : ce qu'une équipe sait faire ensemble, plus que la somme des individus (coordination, habitudes communes).\n\nL'**effet d'expérience** : plus une entreprise produit, plus elle apprend et réduit ses coûts unitaires.\n\nLes ressources et compétences **rares, difficiles à imiter** et **bien organisées** sont source d'**avantage concurrentiel** (approche par les ressources).",
+      "contenu": "**Ressources** :\n- **tangibles** (matérielles, physiques ou financières) : bâtiments, machines, stocks, trésorerie ;\n- **intangibles** (immatérielles) : marque, image, brevets, fichiers clients, savoir-faire, culture d'entreprise.\n\nLes ressources **humaines** sont à cheval : l'effectif se compte (on le range souvent avec les ressources tangibles), mais les compétences et le savoir-faire des salariés sont intangibles.\n\n**Compétences** : capacité à **combiner** les ressources pour agir.\n- **individuelles** : savoirs, savoir-faire, savoir-être d'une personne ;\n- **collectives** : ce qu'une équipe sait faire ensemble, plus que la somme des individus (coordination, habitudes communes).\n\nL'**effet d'expérience** : plus une entreprise produit, plus elle apprend et réduit ses coûts unitaires.\n\nLes ressources et compétences **rares, difficiles à imiter** et **bien organisées** sont source d'**avantage concurrentiel** (approche par les ressources).",
       "notions": [
         "Ressources tangibles et intangibles",
         "Compétences individuelles et collectives"
@@ -60,7 +60,7 @@
         "Intangible",
         "Tangible",
         "Financière",
-        "Humaine tangible"
+        "Physique"
       ],
       "bonneReponse": 0,
       "explication": "Elle n'a pas de matérialité physique.",

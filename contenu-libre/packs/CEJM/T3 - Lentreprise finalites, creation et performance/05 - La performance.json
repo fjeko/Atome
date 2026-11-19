@@ -21,7 +21,7 @@
     {
       "id": "libre-cejm-sq06-s03-s01",
       "titre": "Performance globale",
-      "contenu": "La **performance** est le degré de réalisation des objectifs. Elle est :\n- **économique** (rentabilité, part de marché, croissance du chiffre d'affaires) ;\n- **sociale** (climat social, absentéisme, turnover, formation, égalité) ;\n- **sociétale** (émissions, déchets, achats locaux, image).\n\nLa **performance globale** combine les trois et répond aux attentes des différentes **parties prenantes**.\n\n- **Efficacité** : l'objectif est-il **atteint** ? $\\frac{\\text{résultat obtenu}}{\\text{résultat visé}}$\n- **Efficience** : l'a-t-on atteint **avec peu de ressources** ? $\\frac{\\text{résultat obtenu}}{\\text{ressources consommées}}$\n\nExemple fictif : objectif 1 200 inscriptions à un salon ; on en obtient 1 080 avec un budget de 5 400 €. Efficacité : $\\frac{1\\,080}{1\\,200} = 90\\,\\%$. Efficience : 5 € dépensés par inscription.",
+      "contenu": "La **performance** est le degré de réalisation des objectifs. Elle est :\n- **économique** (rentabilité, part de marché, croissance du chiffre d'affaires) ;\n- **sociale** (climat social, absentéisme, turnover, formation, égalité) ;\n- **sociétale** (émissions, déchets, achats locaux, image).\n\nLa **performance globale** combine les trois et répond aux attentes des différentes **parties prenantes**.\n\n- **Efficacité** : l'objectif est-il **atteint** ? $\\frac{\\text{résultat obtenu}}{\\text{résultat visé}}$\n- **Efficience** : l'a-t-on atteint **avec peu de ressources** ? $\\frac{\\text{résultat obtenu}}{\\text{ressources consommées}}$\n\nExemple fictif : objectif 1 200 inscriptions à un salon ; on en obtient 1 080 avec un budget de 5 400 €. Efficacité : $\\frac{1\\,080}{1\\,200} = 90\\,\\%$. Efficience : $\\frac{1\\,080}{5\\,400} = 0{,}2$ inscription par euro dépensé, soit 5 € par inscription (le même ratio, lu à l'envers).",
       "notions": [
         "Performance économique, sociale et sociétale",
         "Efficacité et efficience"
@@ -56,13 +56,13 @@
       "type": "qcm",
       "question": "« Satisfaire davantage nos clients » est…",
       "choix": [
-        "Un objectif (à préciser), mesurable par un indicateur comme une note de satisfaction",
+        "Un but général, à traduire en objectif précis, chiffré et daté, mesurable par un indicateur comme une note de satisfaction",
         "Un indicateur",
         "Un tableau de bord",
         "Une ressource"
       ],
       "bonneReponse": 0,
-      "explication": "L'indicateur mesure l'objectif ; il ne faut pas les confondre.",
+      "explication": "Ce n'est pas encore un objectif (rien n'est chiffré ni daté) ; « atteindre 4,5/5 de satisfaction d'ici fin 2027 » en serait un, mesuré par l'indicateur « note de satisfaction ».",
       "difficulte": 2
     },
     {

@@ -28,7 +28,7 @@
     {
       "id": "libre-cejm-m-s01-s02",
       "titre": "Le format de l'écrit",
-      "contenu": "L'écrit (épreuve de **4 heures**) s'appuie sur un **dossier documentaire** : présentation d'une organisation, documents économiques, juridiques et managériaux (textes, tableaux, graphiques, extraits de contrats ou de décisions).\n\nOn y trouve en général :\n1. des **questions guidées** liées à la situation (repérer, expliquer, analyser, qualifier juridiquement, calculer) ;\n2. une **question d'argumentation** (développement structuré) qui demande de prendre du recul sur un thème du programme, en s'appuyant sur ses connaissances et sur le dossier.\n\nSelon la réglementation de la session, un **oral de contrôle** peut être proposé aux candidats proches de la moyenne ; il porte sur les mêmes compétences.",
+      "contenu": "L'écrit (épreuve de **4 heures**) s'appuie sur un **dossier documentaire** : présentation d'une organisation, documents économiques, juridiques et managériaux (textes, tableaux, graphiques, extraits de contrats ou de décisions).\n\nOn y trouve en général :\n1. des **questions guidées** liées à la situation (repérer, expliquer, analyser, qualifier juridiquement, calculer) ;\n2. une **question d'argumentation** (développement structuré) qui demande de prendre du recul sur un thème du programme, en s'appuyant sur ses connaissances et sur le dossier.",
       "notions": [
         "Format de l'épreuve"
       ]
@@ -36,7 +36,7 @@
     {
       "id": "libre-cejm-m-s01-s03",
       "titre": "Méthode pendant l'épreuve",
-      "contenu": "| Temps indicatif | Étape |\n|---|---|\n| 15 min | lire **tout** le sujet : la situation, puis les questions, puis survoler les documents |\n| 15 min | associer chaque question aux documents utiles ; surligner les verbes directeurs |\n| 2 h 45 | rédiger, question par question, en gardant un œil sur la montre |\n| 15 min | **relire** : orthographe, chiffres, réponse effective à chaque question |\n\nConseils :\n- numérote clairement tes réponses et saute des lignes ;\n- commence par les questions où tu es le plus à l'aise, mais **ne laisse rien en blanc** ;\n- prévois environ 45 min pour la question d'argumentation : elle pèse lourd.",
+      "contenu": "| Temps indicatif | Étape |\n|---|---|\n| 15 min | lire **tout** le sujet : la situation, puis les questions, puis survoler les documents |\n| 15 min | associer chaque question aux documents utiles ; surligner les verbes directeurs |\n| 3 h 15 | rédiger, question par question (dont environ 45 min pour la question d'argumentation), en gardant un œil sur la montre |\n| 15 min | **relire** : orthographe, chiffres, réponse effective à chaque question |\n\nConseils :\n- numérote clairement tes réponses et saute des lignes ;\n- commence par les questions où tu es le plus à l'aise, mais **ne laisse rien en blanc** ;\n- garde bien tes 45 min pour la question d'argumentation : elle pèse lourd.\n\nTotal : 15 min + 15 min + 3 h 15 + 15 min = **4 heures**.",
       "notions": [
         "Gestion du temps et méthode"
       ]
@@ -71,6 +71,21 @@
       ],
       "bonneReponse": 0,
       "explication": "Une vue d'ensemble permet de repérer ce que chaque document apporte et d'éviter les répétitions.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-cejm-m-s01-c004",
+      "section": "libre-cejm-m-s01-s02",
+      "type": "qcm",
+      "question": "Sur quoi s'appuie l'écrit de CEJM ?",
+      "choix": [
+        "Un dossier documentaire autour d'une situation d'organisation",
+        "Une liste de définitions à réciter",
+        "Un seul texte de loi à commenter",
+        "Un exposé oral préparé à l'avance"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le dossier (textes, tableaux, graphiques, extraits juridiques) sert de base aux questions guidées et à la question d'argumentation.",
       "difficulte": 1
     }
   ]

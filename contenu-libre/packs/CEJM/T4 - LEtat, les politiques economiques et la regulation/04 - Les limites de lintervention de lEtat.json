@@ -29,7 +29,7 @@
     {
       "id": "libre-cejm-sq07-s02-s02",
       "titre": "Les contraintes européennes et mondiales",
-      "contenu": "**Règles européennes** : les États membres se sont engagés à surveiller leurs finances publiques avec des valeurs de référence : **déficit public inférieur à 3 % du PIB** et **dette inférieure à 60 % du PIB** ; la Commission européenne suit des trajectoires de réduction pour les pays qui s'en écartent.\n\n**Compétences partagées** : l'Union a des compétences exclusives (politique monétaire de la zone euro, politique commerciale, règles de concurrence) ; un État ne peut donc pas tout décider seul.\n\n**Mondialisation** : les entreprises et les capitaux peuvent se déplacer. Les États se livrent une **concurrence fiscale et sociale** (impôts bas, cotisations allégées) pour les attirer, ce qui réduit leurs marges de manœuvre.\n\nAutres limites : **tensions sociales** (une réforme impopulaire), **effets pervers** (une relance qui fait surtout augmenter les importations), **délais** d'action.",
+      "contenu": "**Règles européennes** : les États membres se sont engagés à surveiller leurs finances publiques avec des valeurs de référence : **déficit public inférieur à 3 % du PIB** et **dette inférieure à 60 % du PIB** ; la Commission européenne suit des trajectoires de réduction pour les pays qui s'en écartent.\n\n**Compétences de l'Union** : certaines sont **exclusives** (politique monétaire de la zone euro, politique commerciale, règles de concurrence du marché intérieur), d'autres **partagées** avec les États (marché intérieur, environnement, énergie…) ; un État ne peut donc pas tout décider seul.\n\n**Mondialisation** : les entreprises et les capitaux peuvent se déplacer. Les États se livrent une **concurrence fiscale et sociale** (impôts bas, cotisations allégées) pour les attirer, ce qui réduit leurs marges de manœuvre.\n\nAutres limites : **tensions sociales** (une réforme impopulaire), **effets pervers** (une relance qui fait surtout augmenter les importations), **délais** d'action.",
       "notions": [
         "Règles européennes",
         "Concurrence fiscale et sociale"
@@ -51,7 +51,8 @@
       "type": "exercice",
       "enonce": "Un pays fictif a un PIB de 600 Md€ et une dette publique de 540 Md€. Calcule le ratio de dette et compare-le à la règle européenne de 60 %.",
       "etapes": [
-        "$\\frac{540}{600} \\times 100 = 90\\,\\%$"
+        "$\\frac{540}{600} \\times 100 = 90\\,\\%$",
+        "Comparaison : 90 % > 60 %, la dette dépasse la valeur de référence de 30 points de PIB."
       ],
       "reponse": "90 % du PIB, au-dessus de la référence européenne de 60 %.",
       "difficulte": 1

@@ -27,7 +27,7 @@
     {
       "id": "libre-cejm-sq07-s03-s02",
       "titre": "Étude de cas : conjoncture fictive",
-      "contenu": "Dans le pays fictif d'Albérie (membre de la zone euro), l'inflation atteint 6 %. La banque centrale relève ses taux directeurs de 2 points. Le gouvernement, dont le déficit atteint 5 % du PIB, annonce une baisse des dépenses publiques.\n\n*Ébénis*, PME fictive de fabrication de meubles, avait prévu d'emprunter 300 000 € pour automatiser son atelier. 60 % de ses ventes se font auprès de ménages, 40 % auprès de collectivités (écoles, mairies).",
+      "contenu": "Dans le pays fictif d'Albérie (membre de la zone euro), l'inflation atteint 6 %. La **BCE** relève ses taux directeurs de 2 points. Le gouvernement, dont le déficit atteint 5 % du PIB, annonce une baisse des dépenses publiques.\n\n*Ébénis*, PME fictive de fabrication de meubles, avait prévu d'emprunter 300 000 € pour automatiser son atelier. 60 % de ses ventes se font auprès de ménages, 40 % auprès de collectivités (écoles, mairies).",
       "notions": [
         "Application à un cas"
       ]
@@ -55,7 +55,7 @@
       "type": "exercice",
       "enonce": "Analyse les effets de cette conjoncture sur *Ébénis*.",
       "etapes": [
-        "Politique monétaire restrictive : le crédit devient plus cher ; l'emprunt de 300 000 € coûtera plus d'intérêts, l'automatisation peut être reportée.",
+        "Politique monétaire restrictive de la BCE : le crédit devient plus cher ; l'emprunt de 300 000 € coûtera plus d'intérêts, l'automatisation peut être reportée.",
         "Les ménages empruntent et consomment moins : la demande de meubles baisse (60 % des ventes).",
         "La politique budgétaire de rigueur réduit les achats des collectivités (40 % des ventes).",
         "À l'inverse, si l'inflation recule, les coûts des matières premières se stabiliseront."

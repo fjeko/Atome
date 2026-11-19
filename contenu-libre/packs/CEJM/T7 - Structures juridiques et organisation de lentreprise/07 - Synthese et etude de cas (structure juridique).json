@@ -38,11 +38,11 @@
       "id": "libre-cejm-sq11-s04-c001",
       "section": "libre-cejm-sq11-s04-s01",
       "type": "qcm",
-      "question": "Quelle confusion est fréquente mais fausse ?",
+      "question": "Quelle affirmation est fausse ?",
       "choix": [
         "Le capital social comprend les apports en industrie",
-        "Le président de SAS est assimilé salarié",
-        "Une SARL compte de 2 à 100 associés",
+        "Le président de SAS rémunéré est assimilé salarié",
+        "Une SARL compte au plus 100 associés",
         "La SNC engage les associés sur leurs biens personnels"
       ],
       "bonneReponse": 0,

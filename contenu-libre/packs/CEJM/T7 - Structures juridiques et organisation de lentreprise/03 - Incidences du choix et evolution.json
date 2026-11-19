@@ -38,7 +38,7 @@
     {
       "id": "libre-cejm-sq11-s02-s03",
       "titre": "Faire évoluer la structure",
-      "contenu": "Une entreprise peut **se transformer** sans disparaître (même personne morale, mêmes contrats) quand ses besoins changent :\n- une EI devient une SASU pour séparer clairement les patrimoines ou préparer l'arrivée d'investisseurs (on parle alors d'apport du fonds à une société) ;\n- une SARL devient une SAS pour faciliter l'entrée de nouveaux associés et la cession des actions ;\n- une SAS devient une SA pour s'introduire en Bourse.\n\nLa transformation suppose une décision des associés (modification des statuts) et des formalités de publicité.",
+      "contenu": "Une **société** peut **se transformer** sans disparaître (même personne morale, mêmes contrats) quand ses besoins changent :\n- une SARL devient une SAS pour faciliter l'entrée de nouveaux associés et la cession des actions ;\n- une SAS devient une SA pour s'introduire en Bourse.\n\nLa transformation suppose une décision des associés (modification des statuts) et des formalités de publicité.\n\n⚠️ Une **EI** n'a pas de personnalité morale : elle ne peut pas se transformer. Pour passer en SASU ou en EURL (séparer les patrimoines, accueillir des investisseurs), l'entrepreneur **crée une société** et lui **apporte** ou lui **cède** son fonds ; la société est une personne nouvelle et les contrats (bail, clients, fournisseurs) doivent lui être transférés.",
       "notions": [
         "Transformation de la structure"
       ]

@@ -40,13 +40,13 @@
       "id": "libre-cejm-sq04-s02-c001",
       "section": "libre-cejm-sq04-s02-s01",
       "type": "exercice",
-      "enonce": "Classe un contrat d'assurance habitation souscrit en ligne par un particulier selon trois critères.",
+      "enonce": "Classe un contrat d'assurance habitation souscrit en ligne par un particulier selon quatre critères : contrepartie, équivalence des prestations, durée, mode de négociation.",
       "etapes": [
         "Contrepartie : à titre onéreux (prime contre garantie).",
         "Équivalence : aléatoire (dépend d'un sinistre éventuel).",
         "Durée : à exécution successive ; négociation : d'adhésion (conditions générales)."
       ],
-      "reponse": "Onéreux, aléatoire, successif, d'adhésion, entre professionnel et consommateur.",
+      "reponse": "Onéreux, aléatoire, à exécution successive, d'adhésion.",
       "difficulte": 2
     },
     {

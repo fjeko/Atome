@@ -49,8 +49,8 @@
     },
     {
       "id": "libre-cejm-sq07-s01-s04",
-      "titre": "Politique structurelle : offre ou demande ?",
-      "contenu": "La **politique structurelle** agit sur le long terme, en modifiant les structures de l'économie : formation, recherche, marché du travail, fiscalité, infrastructures.\n\n| | Politique de la **demande** | Politique de l'**offre** |\n|---|---|---|\n| idée | soutenir la consommation et l'investissement pour que les entreprises produisent plus | améliorer les conditions de production des entreprises (coûts, compétitivité) |\n| exemples | hausse des prestations sociales, grands travaux | baisse des cotisations patronales, crédit d'impôt recherche, simplification administrative |\n| risque | hausse des importations, de l'inflation, du déficit | effets lents, hausse des inégalités si la demande ne suit pas |",
+      "titre": "Politique structurelle ; offre ou demande ?",
+      "contenu": "La **politique structurelle** agit sur le long terme, en modifiant les structures de l'économie : formation, recherche, marché du travail, fiscalité, infrastructures.\n\nUne autre distinction, **transversale**, porte sur le levier visé : la **demande** ou l'**offre**. Une politique de la demande est le plus souvent **conjoncturelle** (la relance de la section précédente), une politique de l'offre plutôt **structurelle**, mais ce n'est pas une règle : de grands travaux d'infrastructure soutiennent la demande à court terme et l'offre à long terme.\n\n| | Politique de la **demande** | Politique de l'**offre** |\n|---|---|---|\n| idée | soutenir la consommation et l'investissement pour que les entreprises produisent plus | améliorer les conditions de production des entreprises (coûts, compétitivité) |\n| exemples | hausse des prestations sociales, grands travaux | baisse des cotisations patronales, crédit d'impôt recherche, simplification administrative |\n| risque | hausse des importations, de l'inflation, du déficit | effets lents, hausse des inégalités si la demande ne suit pas |",
       "notions": [
         "Politique structurelle",
         "Politique de l'offre et de la demande"
@@ -79,9 +79,10 @@
       "type": "exercice",
       "enonce": "Le PIB d'un pays fictif passe de 850 à 833 Md€. Calcule le taux de croissance et commente.",
       "etapes": [
-        "$\\frac{833 - 850}{850} \\times 100 = \\frac{-17}{850} \\times 100 = -2\\,\\%$"
+        "$\\frac{833 - 850}{850} \\times 100 = \\frac{-17}{850} \\times 100 = -2\\,\\%$",
+        "Taux négatif : la production a reculé sur l'année. On ne parle de récession que si la baisse dure au moins deux trimestres consécutifs."
       ],
-      "reponse": "−2 % : le PIB recule, le pays est en récession.",
+      "reponse": "−2 % : le PIB recule (récession si la baisse dure au moins deux trimestres consécutifs).",
       "difficulte": 1
     },
     {

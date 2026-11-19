@@ -40,13 +40,13 @@
       "type": "qcm",
       "question": "Une valeur passe de 80 à 100. Un élève calcule $\\frac{20}{100} = 20\\,\\%$. Quelle est son erreur ?",
       "choix": [
-        "Il a divisé par la valeur d'arrivée au lieu de la valeur de départ (bonne réponse : +25 %)",
+        "Il a divisé par la valeur d'arrivée au lieu de la valeur de départ",
         "Aucune",
         "Il fallait diviser par 180",
-        "Il fallait soustraire 100 − 80 = 2 %"
+        "Il fallait diviser par 20"
       ],
       "bonneReponse": 0,
-      "explication": "$\\frac{100 - 80}{80} \\times 100 = 25\\,\\%$.",
+      "explication": "On divise toujours l'écart par la valeur de départ : $\\frac{100 - 80}{80} \\times 100 = +25\\,\\%$.",
       "difficulte": 2
     },
     {

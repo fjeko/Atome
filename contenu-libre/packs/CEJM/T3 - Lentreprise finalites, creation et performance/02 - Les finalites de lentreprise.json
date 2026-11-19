@@ -51,7 +51,7 @@
       "id": "libre-cejm-sq05-s01-c001",
       "section": "libre-cejm-sq05-s01-s01",
       "type": "qcm",
-      "question": "« Réduire de 30 % nos émissions de CO2 d'ici 2030 » traduit surtout une finalité…",
+      "question": "L'objectif « Réduire de 30 % nos émissions de CO2 d'ici 2030 » sert surtout quelle finalité ?",
       "choix": [
         "Sociétale",
         "Économique",
@@ -59,7 +59,7 @@
         "Commerciale"
       ],
       "bonneReponse": 0,
-      "explication": "Elle concerne l'environnement et la société dans son ensemble.",
+      "explication": "Chiffré et daté, c'est un objectif ; il est au service d'une finalité sociétale (l'environnement et la société dans son ensemble).",
       "difficulte": 1
     },
     {

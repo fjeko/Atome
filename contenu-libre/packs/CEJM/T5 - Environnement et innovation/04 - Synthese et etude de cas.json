@@ -40,13 +40,13 @@
       "type": "qcm",
       "question": "Une banque lance une application qui permet d'ouvrir un compte en 5 minutes au lieu d'un rendez-vous en agence. Innovation de…",
       "choix": [
-        "Produit (service) et commercialisation",
+        "Procédé et commercialisation",
         "Procédé uniquement",
         "Organisation uniquement",
-        "Aucune"
+        "Produit uniquement"
       ],
       "bonneReponse": 0,
-      "explication": "Le service lui-même et sa façon d'atteindre le client changent.",
+      "explication": "Le compte lui-même ne change pas. Ce qui change : la façon de produire le service (procédure en ligne, innovation de procédé) et le canal par lequel la banque atteint le client (innovation de commercialisation).",
       "difficulte": 2
     },
     {
@@ -57,7 +57,7 @@
       "etapes": [
         "Hausse du prix de l'électricité : économique (opportunité pour des lampes économes) ; demande de produits sobres : socioculturel (opportunité).",
         "Directive sur les ampoules : légal (opportunité si Lumio est en avance, menace sinon) ; concurrent moins cher : micro-environnement (menace).",
-        "Lampe adaptative : innovation de produit, plutôt radicale, développée en partenariat → compétitivité hors prix face au concurrent low-cost.",
+        "Lampe adaptative : innovation de produit, plutôt incrémentale (une lampe améliorée, le marché ne change pas), développée en partenariat → compétitivité hors prix face au concurrent low-cost.",
         "Abonnement : innovation de commercialisation (revenus réguliers, fidélisation)."
       ],
       "reponse": "Environnement globalement porteur malgré la concurrence par les prix ; Lumio mise sur une compétitivité hors prix.",
