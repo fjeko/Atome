@@ -56,7 +56,7 @@
     {
       "id": "libre-b1-11-sq2-s02-s05",
       "titre": "Tester avec une machine virtuelle",
-      "contenu": "Pour vérifier un partage sans déranger personne, on utilise une **VM comme poste client** :\n- l'**hôte** (ou une VM serveur) héberge le partage ;\n- la **VM cliente** se connecte avec chacun des comptes à tester.\n\nConseils :\n- mets la carte réseau de la VM en mode **réseau interne** ou **pont** pour qu'elle voie le serveur ;\n- prends un **instantané** avant les essais ;\n- teste chaque compte **dans une session propre** (déconnexion, ou `net use * /delete`) ;\n- note les résultats dans un tableau « compte / action / résultat attendu / résultat obtenu ».",
+      "contenu": "Pour vérifier un partage sans déranger personne, on utilise une **VM comme poste client** :\n- l'**hôte** (ou une VM serveur) héberge le partage ;\n- la **VM cliente** se connecte avec chacun des comptes à tester.\n\nConseils :\n- mets la carte réseau de la VM en mode **pont** ou **réseau privé hôte** pour qu'elle voie le serveur ; le mode **réseau interne** ne relie que des VM entre elles : il ne convient que si le serveur est lui aussi une VM ;\n- prends un **instantané** avant les essais ;\n- teste chaque compte **dans une session propre** (déconnexion, ou `net use * /delete`) ;\n- note les résultats dans un tableau « compte / action / résultat attendu / résultat obtenu ».",
       "notions": [
         "VM de test"
       ]
@@ -123,12 +123,12 @@
       "question": "Comment créer un partage qui n'apparaît pas dans la liste des partages visibles sur le réseau ?",
       "choix": [
         "Le nommer en majuscules",
-        "Terminer son nom par le caractère $",
+        "Terminer son nom par le caractère `$`",
         "Lui donner l'autorisation Lecture",
         "Le placer dans C:\\Windows"
       ],
       "bonneReponse": 1,
-      "explication": "Le suffixe $ masque le partage. Mais il reste accessible à qui connaît son nom : il faut quand même des autorisations correctes.",
+      "explication": "Le suffixe `$` (ex. `Compta$`) masque le partage. Mais il reste accessible à qui connaît son nom : il faut quand même des autorisations correctes.",
       "difficulte": 2
     },
     {

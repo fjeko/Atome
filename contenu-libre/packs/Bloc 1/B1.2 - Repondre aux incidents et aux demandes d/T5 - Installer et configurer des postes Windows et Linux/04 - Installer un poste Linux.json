@@ -22,7 +22,7 @@
     {
       "id": "libre-b1-12b-sq1-s04-s01",
       "titre": "Linux et les distributions",
-      "contenu": "**Linux** est un noyau de système d'exploitation libre. Une **distribution** l'assemble avec des logiciels, un environnement de bureau et un gestionnaire de paquets : Ubuntu, Debian, Linux Mint, Fedora…\n\nInstallation dans une VM :\n1. télécharger l'ISO de la distribution (version « LTS » = support long terme, conseillée en entreprise) ;\n2. créer la VM : 2 processeurs, 4 Go de RAM, 25 Go de disque ;\n3. démarrer sur l'ISO, choisir la langue, le clavier, le partitionnement (automatique suffit pour un poste de test) ;\n4. créer le **premier utilisateur** : il pourra administrer la machine via `sudo`.",
+      "contenu": "**Linux** est un noyau de système d'exploitation libre. Une **distribution** l'assemble avec des logiciels, un environnement de bureau et un gestionnaire de paquets : Ubuntu, Debian, Linux Mint, Fedora…\n\nInstallation dans une VM :\n1. télécharger l'ISO de la distribution (version « LTS » = support long terme, conseillée en entreprise) ;\n2. créer la VM : 2 processeurs, 4 Go de RAM, 25 Go de disque ;\n3. démarrer sur l'ISO, choisir la langue, le clavier, le partitionnement (automatique suffit pour un poste de test) ;\n4. créer le **premier utilisateur** : sous Ubuntu, il peut administrer la machine via `sudo`. Sous Debian, c'est le cas seulement si on laisse vide le mot de passe root à l'installation ; sinon on administre avec le compte root (`su -`) et on ajoute l'utilisateur au groupe `sudo` (`usermod -aG sudo nom`).",
       "notions": [
         "Distribution Linux",
         "Installation en VM"

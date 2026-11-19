@@ -49,11 +49,11 @@
       "enonce": "Ajoute au tableau : « Une stagiaire, Zoé, aidera Julie à Bourg-Haut pendant 2 mois : elle doit consulter le parc et créer des tickets, sans modifier le matériel. » Propose son habilitation.",
       "etapes": [
         "Acteur : Zoé, temporaire.",
-        "Actions : consulter + déclarer, sans modifier → profil Observateur (qui permet généralement de créer des tickets) ou un profil personnalisé dérivé.",
+        "Actions : consulter + déclarer, sans modifier. Aucun profil du tableau ne couvre exactement ce besoin : Observateur consulte sans modifier, Self-Service déclare mais ne consulte pas le parc → on part d'Observateur et on vérifie dans sa fiche que la création de tickets est cochée ; sinon on crée un profil personnalisé dérivé avec ce seul droit en plus.",
         "Lieu : Bourg-Haut uniquement → entité Bourg-Haut.",
         "Bonne pratique : fixer une date de fin de validité au compte (2 mois)."
       ],
-      "reponse": "zoe : profil Observateur (ou profil adapté) sur l'entité Bourg-Haut, récursif, compte avec date d'expiration.",
+      "reponse": "zoe : profil Observateur avec le droit de créer des tickets (vérifié, ou ajouté par un profil dérivé) sur l'entité Bourg-Haut, récursif, compte avec date d'expiration.",
       "difficulte": 2
     },
     {

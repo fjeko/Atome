@@ -28,7 +28,7 @@
     {
       "id": "libre-b1-15-sq2-s06-s02",
       "titre": "Les fichiers de l'application",
-      "contenu": "On crée un groupe pour l'équipe de développement, qui pourra déposer les mises à jour, et on laisse le serveur web en lecture :\n```bash\nsudo groupadd dev-resa\nsudo usermod -aG dev-resa adm.lea\nsudo chown -R adm.lea:www-data /var/www/resa\nsudo chmod -R u=rwX,g=rX,o= /var/www/resa\nsudo install -d -o www-data -g www-data -m 770 /var/www/resa/uploads\n```\n(`X` majuscule = exécution seulement pour les dossiers.)\nLe fichier de configuration qui contient le mot de passe de la base : `640`, lisible par le groupe `www-data`, pas par les autres.\n\n**Piège** : `chmod -R 777` « pour faire marcher » : tout utilisateur du serveur peut modifier l'application.",
+      "contenu": "Les fichiers appartiennent au compte d'administration `adm.lea`, qui dépose les mises à jour ; le serveur web (groupe `www-data`) peut seulement les lire :\n```bash\nsudo chown -R adm.lea:www-data /var/www/resa\nsudo chmod -R u=rwX,g=rX,o= /var/www/resa\nsudo install -d -o www-data -g www-data -m 770 /var/www/resa/uploads\n```\n(`X` majuscule = exécution seulement pour les dossiers.)\nLe fichier de configuration qui contient le mot de passe de la base : `640`, lisible par le groupe `www-data`, pas par les autres.\n\n**Piège** : `chmod -R 777` « pour faire marcher » : tout utilisateur du serveur peut modifier l'application.",
       "notions": [
         "Propriétaire et groupe des fichiers",
         "Droits des fichiers web"

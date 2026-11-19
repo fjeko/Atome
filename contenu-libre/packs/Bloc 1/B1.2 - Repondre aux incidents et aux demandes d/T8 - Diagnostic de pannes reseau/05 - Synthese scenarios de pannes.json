@@ -58,9 +58,9 @@
         "Tous les postes touchés : cause commune.",
         "169.254 : pas de réponse DHCP.",
         "Vérifier ce qui est dans son périmètre : commutateur alimenté, liens actifs.",
-        "Le serveur DHCP n'étant pas dans ses droits : escalader au niveau 2 avec ses constats."
+        "Le serveur DHCP n'étant pas dans ses droits : escalader à l'administrateur des serveurs (support de niveau supérieur) avec ses constats."
       ],
-      "reponse": "Il vérifie les éléments physiques accessibles, puis escalade au niveau 2 : « tous les postes en 169.254 depuis 8 h, commutateurs OK, suspicion de service DHCP arrêté ».",
+      "reponse": "Il vérifie les éléments physiques accessibles, puis escalade à l'administrateur des serveurs : « tous les postes en 169.254 depuis 8 h, commutateurs OK, suspicion de service DHCP arrêté ».",
       "difficulte": 2
     }
   ]

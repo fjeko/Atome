@@ -89,11 +89,11 @@
       "type": "exercice",
       "enonce": "Le cabinet d'avocats Duval-Moreau accepte de perdre au maximum une demi-journée de travail et veut retrouver ses dossiers dans la journée. Propose une fréquence de sauvegarde et une organisation compatible.",
       "etapes": [
-        "RPO = une demi-journée : il faut au moins deux sauvegardes par jour (par exemple à 13 h et à 20 h).",
+        "RPO = une demi-journée : il faut au moins deux sauvegardes par jour, une à la fin de chaque demi-journée (par exemple à 12 h 30, pendant la pause, et à 19 h, après le départ des équipes) : on perd au plus la matinée ou l'après-midi en cours.",
         "RTO = dans la journée : restauration rapide → privilégier complète + différentielles (2 restaurations max) et un disque de remplacement disponible sur place.",
         "Sinistre : prévoir une copie hors site (cloud ou disque emporté) pour respecter la règle 3-2-1."
       ],
-      "reponse": "Sauvegarde 2 fois par jour (complète hebdomadaire + différentielles), copie hors site, matériel de remplacement prêt : RPO ≈ 12 h, RTO de quelques heures.",
+      "reponse": "Sauvegarde 2 fois par jour, à la fin de chaque demi-journée (complète hebdomadaire + différentielles), copie hors site, matériel de remplacement prêt : RPO = une demi-journée de travail, RTO de quelques heures.",
       "difficulte": 2
     }
   ]

@@ -53,7 +53,7 @@
       "id": "libre-b1-12b-sq4-s08-c002",
       "section": "libre-b1-12b-sq4-s08-s02",
       "type": "exercice",
-      "enonce": "Propose la configuration complète : groupes, droits NTFS, partage et accès depuis le poste Linux.",
+      "enonce": "Pour l'atelier de reliure Fil d'Or (cas ci-dessus), propose la configuration complète en deux temps : 1) côté Windows : groupes AGDLP, droits NTFS et partage du dossier `Commandes` ; 2) côté Linux : accès du poste de numérisation au partage, puis test.",
       "etapes": [
         "Groupes globaux : G_Relieurs, G_Gerance, G_Numerisation (compte du poste ou de l'opérateur Linux).",
         "Groupes domaine local : DL_Commandes_M (← G_Relieurs, G_Numerisation), DL_Commandes_L (← G_Gerance).",

@@ -19,7 +19,7 @@
     {
       "id": "libre-b1-12b-sq2-s12-s01",
       "titre": "Un plan d'adressage pour un site",
-      "contenu": "### Cas : la maison de santé pluridisciplinaire du Val d'Ys\nBesoins : 3 réseaux (VLAN) — soignants (25 postes), administratif (10 postes), invités Wi-Fi (jusqu'à 40 appareils). Réseau privé disponible : 10.20.0.0/16.\n\n| VLAN | Besoin | Masque | Réseau | Passerelle |\n| --- | --- | --- | --- | --- |\n| 10 Soignants | 25 | /27 (30 hôtes) | 10.20.10.0/27 | 10.20.10.30 |\n| 20 Admin | 10 | /28 (14 hôtes) | 10.20.20.0/28 | 10.20.20.14 |\n| 30 Invités | 40 | /26 (62 hôtes) | 10.20.30.0/26 | 10.20.30.62 |\n\nBonne pratique : garder de la **marge** (un /27 pour 25 postes est juste : on pourrait préférer un /26).",
+      "contenu": "### Cas : la maison de santé pluridisciplinaire du Val d'Ys\nBesoins : 3 réseaux (VLAN) — soignants (25 postes), administratif (10 postes), invités Wi-Fi (jusqu'à 40 appareils). Réseau privé disponible : 10.20.0.0/16.\n\n| VLAN | Besoin | Masque | Réseau | Passerelle |\n| --- | --- | --- | --- | --- |\n| 10 Soignants | 25 | /27 (30 hôtes) | 10.20.10.0/27 | 10.20.10.30 |\n| 20 Admin | 10 | /28 (14 hôtes) | 10.20.20.0/28 | 10.20.20.14 |\n| 30 Invités | 40 | /26 (62 hôtes) | 10.20.30.0/26 | 10.20.30.62 |\n\nBonne pratique : garder de la **marge**. Ici, le /27 suffit : 25 postes + 1 passerelle = 26 adresses sur 30. Mais il ne reste que 4 adresses libres : si l'équipe soignante doit grandir, on choisirait plutôt un /26 (62 hôtes).",
       "notions": [
         "Plan d'adressage d'un site"
       ]

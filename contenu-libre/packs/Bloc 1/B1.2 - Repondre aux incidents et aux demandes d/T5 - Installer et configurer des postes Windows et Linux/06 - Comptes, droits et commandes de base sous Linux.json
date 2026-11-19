@@ -86,10 +86,10 @@
       "etapes": [
         "Créer le dossier (nécessite sudo dans /srv).",
         "Donner le propriétaire nadia et le groupe compta.",
-        "Droits : rwx pour u et g, rien pour o.",
-        "Vérifier avec ls -ld."
+        "Droits : le dossier est créé en rwxr-xr-x ; on ajoute l'écriture au groupe (g+w) et on retire tout aux autres (o-rx).",
+        "Vérifier avec ls -ld : on doit lire drwxrwx---."
       ],
-      "reponse": "```bash\nsudo mkdir /srv/compta\nsudo chown nadia:compta /srv/compta\nsudo chmod u=rwx,g=rwx,o= /srv/compta\nls -ld /srv/compta\n```",
+      "reponse": "```bash\nsudo mkdir /srv/compta\nsudo chown nadia:compta /srv/compta\nsudo chmod g+w /srv/compta\nsudo chmod o-rx /srv/compta\nls -ld /srv/compta\n```",
       "difficulte": 2
     }
   ]

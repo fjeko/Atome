@@ -29,7 +29,7 @@
     {
       "id": "libre-b1-13-sq4-s05-s02",
       "titre": "Check-list finale",
-      "contenu": "- [ ] mentions légales complètes et accessibles partout ;\n- [ ] politique de confidentialité à jour ;\n- [ ] bandeau cookies : refus aussi simple que l'acceptation, aucun traceur avant le choix ;\n- [ ] formulaires : données minimales, information, cases de consentement distinctes et non pré-cochées, preuve conservée ;\n- [ ] procédure pour les demandes d'accès, de portabilité, d'effacement (délai d'un mois) ;\n- [ ] newsletter en double confirmation, lien de désinscription ;\n- [ ] droits sur tous les médias ;\n- [ ] HTTPS, mises à jour, sauvegardes testées ;\n- [ ] site déclaré aux outils pour webmasters, plan du site envoyé.",
+      "contenu": "- [ ] mentions légales complètes et accessibles partout ;\n- [ ] politique de confidentialité à jour ;\n- [ ] bandeau cookies : refus aussi simple que l'acceptation, aucun traceur avant le choix ;\n- [ ] formulaires : données minimales, information, cases de consentement distinctes et non pré-cochées, preuve conservée ;\n- [ ] procédure pour les demandes d'accès, de portabilité, d'effacement (délai d'un mois) ;\n- [ ] newsletter : lien de désinscription (obligatoire), double confirmation (bonne pratique recommandée) ;\n- [ ] droits sur tous les médias ;\n- [ ] HTTPS, mises à jour, sauvegardes testées ;\n- [ ] site déclaré aux outils pour webmasters, plan du site envoyé.",
       "notions": [
         "Check-list de conformité"
       ]
@@ -57,12 +57,12 @@
       "type": "exercice",
       "enonce": "Audit du site du festival Les Nuits du Causse : newsletter en inscription simple, case newsletter pré-cochée dans le formulaire de billetterie, mesure d'audience chargée sans consentement, aucune procédure pour les demandes RGPD. Propose les corrections.",
       "etapes": [
-        "Newsletter : passer en double confirmation.",
-        "Case pré-cochée : la décocher par défaut et la rendre facultative et distincte de l'achat.",
-        "Mesure d'audience : la conditionner au consentement (ou configuration exemptée stricte).",
-        "Demandes RGPD : rédiger une procédure (adresse de contact, vérification d'identité, réponse sous un mois, outils d'export/effacement)."
+        "Case pré-cochée (non conforme : le consentement doit être un acte positif) : la décocher par défaut et la rendre facultative et distincte de l'achat.",
+        "Mesure d'audience (non conforme) : la conditionner au consentement (ou configuration exemptée stricte).",
+        "Demandes RGPD (obligation) : rédiger une procédure (adresse de contact, vérification d'identité, réponse sous un mois, outils d'export/effacement).",
+        "Newsletter : passer en double confirmation. Ce n'est pas une obligation légale, mais une bonne pratique recommandée : elle prouve le consentement et évite les adresses saisies par un tiers."
       ],
-      "reponse": "Double opt-in, case non pré-cochée et distincte, traceurs après consentement, procédure RGPD documentée.",
+      "reponse": "Obligatoire : case non pré-cochée et distincte, traceurs après consentement, procédure RGPD documentée. Recommandé : double opt-in pour la newsletter.",
       "difficulte": 3
     }
   ]

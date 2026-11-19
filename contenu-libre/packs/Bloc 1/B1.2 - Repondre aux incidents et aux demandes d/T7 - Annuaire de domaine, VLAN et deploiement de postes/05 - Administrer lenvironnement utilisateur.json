@@ -74,7 +74,7 @@
         "Le lecteur S: est réservé"
       ],
       "bonneReponse": 1,
-      "explication": "Il faut lier la GPO à l'UO des utilisateurs (ou utiliser le mode de bouclage, plus avancé).",
+      "explication": "Il faut lier la GPO à l'UO des utilisateurs (il existe aussi un réglage avancé, le « traitement en boucle de rappel » ou *loopback*, qui applique les réglages utilisateur selon l'ordinateur utilisé ; il n'est pas au programme de cette séance).",
       "difficulte": 3
     },
     {

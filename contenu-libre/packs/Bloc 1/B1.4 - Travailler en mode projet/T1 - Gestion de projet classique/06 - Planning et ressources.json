@@ -21,7 +21,7 @@
     {
       "id": "libre-b1-14-sq1-s06-s01",
       "titre": "Le diagramme de Gantt",
-      "contenu": "Le **diagramme de Gantt** représente chaque tâche par une **barre** sur un axe du temps ; sa longueur = sa durée. Les flèches montrent les liens.\n```text\nJours      0    3    5    7    10   13   15\nA          ███\nB             ██\nC               █████\nD             ████\nG                 █\nE                         ███\nF                            ██\n                                  ◆ Fin (jalon)\n```\nLes tâches **critiques** sont souvent en rouge. On visualise aussi les **marges** (D et G peuvent glisser).\n\nUn **jalon** (◆) est un événement **sans durée** qui marque une étape clé : « matériel livré », « recette validée », « mise en service ».",
+      "contenu": "Le **diagramme de Gantt** représente chaque tâche par une **barre** sur un axe du temps ; sa longueur = sa durée. Dans un logiciel de planification, des flèches relient en plus les tâches dépendantes. Exemple avec le projet de S05 (1 jour = 2 caractères) :\n```text\nJours      0     3   5   7     10    13  15\nA          ██████\nB                ████\nC                    ██████████\nD                ████████\nG                        ██\nE                              ██████\nF                                    ████\n                                         ◆ Fin (jalon)\n```\nLes tâches **critiques** sont souvent en rouge. On visualise aussi les **marges** (D et G peuvent glisser).\n\nUn **jalon** (◆) est un événement **sans durée** qui marque une étape clé : « matériel livré », « recette validée », « mise en service ».",
       "notions": [
         "Diagramme de Gantt",
         "Jalons"

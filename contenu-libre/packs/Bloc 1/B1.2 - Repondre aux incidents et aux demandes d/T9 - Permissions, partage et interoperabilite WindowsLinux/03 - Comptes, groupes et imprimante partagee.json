@@ -23,7 +23,7 @@
     {
       "id": "libre-b1-12b-sq4-s03-s01",
       "titre": "Préparer l'annuaire",
-      "contenu": "Avant toute modification sur une maquette en VM : **instantané** du serveur. En cas d'erreur, retour arrière en une minute.\n\nPuis, dans l'annuaire :\n1. les **UO** (par service) ;\n2. les **comptes** nominatifs dans leurs UO ;\n3. les **groupes globaux** par fonction et **domaine local** par ressource (AGDLP).\n```powershell\nNew-ADOrganizationalUnit -Name \"Etudes\" -Path \"DC=hydro,DC=local\"\nNew-ADGroup -Name G_Ingenieurs -GroupScope Global -Path \"OU=Groupes,DC=hydro,DC=local\"\nNew-ADGroup -Name DL_Imp_Etudes -GroupScope DomainLocal -Path \"OU=Groupes,DC=hydro,DC=local\"\nAdd-ADGroupMember DL_Imp_Etudes -Members G_Ingenieurs\n```",
+      "contenu": "Avant toute modification sur une maquette en VM : **instantané** du serveur. En cas d'erreur, retour arrière en une minute.\n\nPuis, dans l'annuaire :\n1. les **UO** (par service) ;\n2. les **comptes** nominatifs dans leurs UO ;\n3. les **groupes globaux** par fonction et **domaine local** par ressource (AGDLP).\n```powershell\nNew-ADOrganizationalUnit -Name \"Etudes\" -Path \"DC=hydro,DC=local\"\nNew-ADOrganizationalUnit -Name \"Groupes\" -Path \"DC=hydro,DC=local\"   # UO qui rangera les groupes\nNew-ADGroup -Name G_Ingenieurs -GroupScope Global -Path \"OU=Groupes,DC=hydro,DC=local\"\nNew-ADGroup -Name DL_Imp_Etudes -GroupScope DomainLocal -Path \"OU=Groupes,DC=hydro,DC=local\"\nAdd-ADGroupMember DL_Imp_Etudes -Members G_Ingenieurs\n```",
       "notions": [
         "Mise en place dans l'annuaire",
         "Instantané avant modification"

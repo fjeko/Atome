@@ -28,7 +28,7 @@
     {
       "id": "libre-b1-15-sq2-s04-s02",
       "titre": "Tester et adresser",
-      "contenu": "```bash\nnslookup resa.labo.local\ndig resa.labo.local +short\ndig -x 192.168.56.10          # résolution inverse\nhost srv-bdd-test.labo.local\ncat /etc/resolv.conf           # serveur DNS utilisé par la machine\n```\nLes **serveurs** ont une adresse **statique** (les clients et les configurations comptent sur elle). Sous Debian, `/etc/network/interfaces` :\n```text\nauto enp0s8\niface enp0s8 inet static\n    address 192.168.56.11/24\n    gateway 192.168.56.1\n    dns-nameservers 192.168.56.2\n```\npuis `sudo systemctl restart networking` (ou `ifdown`/`ifup`).",
+      "contenu": "```bash\nnslookup resa.labo.local\ndig resa.labo.local +short\ndig -x 192.168.56.10          # résolution inverse\nhost srv-bdd-test.labo.local\ncat /etc/resolv.conf           # serveur DNS utilisé par la machine\n```\nLes **serveurs** ont une adresse **statique** (les clients et les configurations comptent sur elle). Sous Debian, `/etc/network/interfaces` :\n```text\nauto enp0s8\niface enp0s8 inet static\n    address 192.168.56.11/24\n    gateway 192.168.56.1\n    dns-nameservers 192.168.56.2\n```\npuis `sudo systemctl restart networking` (ou `ifdown`/`ifup`).\n\nDeux précisions :\n- la ligne `gateway` n'a de sens que si un routeur existe à cette adresse ; sur un réseau privé hôte de VirtualBox, il n'y en a souvent pas : on l'omet (l'accès à Internet passe alors par une autre carte en NAT) ;\n- `dns-nameservers` n'est pris en compte que si le paquet `resolvconf` est installé (pas par défaut sur une Debian récente) ; sinon, on écrit `nameserver 192.168.56.2` dans `/etc/resolv.conf`.",
       "notions": [
         "Outils de test de résolution",
         "Adressage statique des serveurs"
@@ -71,7 +71,7 @@
       "section": "libre-b1-15-sq2-s04-s02",
       "type": "question",
       "recto": "Quelle commande affiche l'adresse IP associée à un nom, de façon concise, sous Linux ?",
-      "verso": "`dig nom +short` (ou `nslookup nom`, `host nom`).",
+      "verso": "`dig nom +short` : elle n'affiche que l'adresse. `nslookup nom` et `host nom` donnent aussi la réponse, mais avec plus de texte.",
       "difficulte": 1
     }
   ]

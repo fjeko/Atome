@@ -101,7 +101,8 @@
         "Paramètres du PC : Configuration utilisateur > Modèles d'administration > Panneau de configuration > Interdire l'accès… = Activé.",
         "Mots de passe : Configuration ordinateur > Paramètres Windows > Paramètres de sécurité > Stratégies de comptes > Stratégie de mot de passe > Longueur minimale = 10.",
         "Appliquer avec `gpupdate /force`, contrôler avec `gpresult /r`.",
-        "Tester avec un compte standard : ouverture des paramètres refusée, mot de passe de 8 caractères refusé."
+        "Tester avec un compte standard : ouverture des paramètres refusée, mot de passe de 8 caractères refusé.",
+        "Attention : réglé dans la stratégie locale générale, le premier réglage touche aussi les administrateurs. Pour ne viser que les comptes standard, on le place dans la stratégie locale « Non-administrateurs » (console MMC, composant Éditeur d'objets de stratégie de groupe, objet « Non-administrateurs »)."
       ],
       "reponse": "Le premier réglage est dans Configuration utilisateur, le second dans Configuration ordinateur ; on vérifie avec gpresult et des essais réels.",
       "difficulte": 2

@@ -29,7 +29,7 @@
     {
       "id": "libre-b1-11-sq2-s01-s02",
       "titre": "Les comptes locaux",
-      "contenu": "Sur un Windows isolé (sans annuaire), les utilisateurs sont des **comptes locaux** : ils n'existent **que sur cette machine**.\n\nDeux types principaux :\n- **Administrateur** : peut tout faire (installer, créer des comptes, modifier la configuration) ;\n- **Utilisateur standard** : utilise la machine sans pouvoir modifier le système.\n\nOn les crée par *Gestion de l'ordinateur > Utilisateurs et groupes locaux* (commande `lusrmgr.msc`), ou en ligne de commande :\n\n```bat\nnet user claire.martin MotDePasse!2026 /add\n```\n\n**Bonne pratique** : un compte **par personne** (nominatif). Un compte partagé « accueil » utilisé par 4 personnes empêche de savoir qui a fait quoi.",
+      "contenu": "Sur un Windows isolé (sans annuaire), les utilisateurs sont des **comptes locaux** : ils n'existent **que sur cette machine**.\n\nDeux types principaux :\n- **Administrateur** : peut tout faire (installer, créer des comptes, modifier la configuration) ;\n- **Utilisateur standard** : utilise la machine sans pouvoir modifier le système.\n\nOn les crée par *Gestion de l'ordinateur > Utilisateurs et groupes locaux* (commande `lusrmgr.msc`), ou en ligne de commande :\n\n```bat\nnet user claire.martin * /add\n```\n\nL'astérisque `*` fait demander le mot de passe au clavier, sans l'afficher : il n'apparaît ni à l'écran ni dans l'historique des commandes.\n\n**Bonne pratique** : un compte **par personne** (nominatif). Un compte partagé « accueil » utilisé par 4 personnes empêche de savoir qui a fait quoi.",
       "notions": [
         "Comptes locaux"
       ]

@@ -70,7 +70,7 @@
         "Rien du tout, dans tous les cas"
       ],
       "bonneReponse": 1,
-      "explication": "Le refus de Modifier bloque la modification. La Lecture, elle, reste autorisée via Personnel tant qu'elle n'est pas refusée.",
+      "explication": "Le refus de Modifier bloque la modification. Cocher « Refuser » sur Modifier ne refuse que ce que Modifier ajoute à la Lecture (écrire, supprimer) : la case Lecture reste décochée côté refus, donc la Lecture reste autorisée via Personnel tant qu'elle n'est pas refusée elle aussi.",
       "difficulte": 2
     },
     {

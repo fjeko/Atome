@@ -29,7 +29,7 @@
     {
       "id": "libre-b1-12b-sq5-s01-s02",
       "titre": "Découper sans chevauchement",
-      "contenu": "On part du plus grand besoin et on découpe l'espace disponible 192.168.50.0/24 :\n| Réseau | Besoin | Masque | Adresse réseau | Hôtes | Passerelle |\n| --- | --- | --- | --- | --- | --- |\n| Clients Wi-Fi | 100 | /25 (126) | 192.168.50.0/25 | .1 à .126 | .126 |\n| Personnel | 20 | /27 (30) | 192.168.50.128/27 | .129 à .158 | .158 |\n| Caméras | 12 | /28 (14) | 192.168.50.160/28 | .161 à .174 | .174 |\nIl reste 192.168.50.176 à .255 pour les évolutions.\n\nRègles :\n- chaque réseau **commence** à un multiple de sa taille (un /27 commence à 0, 32, 64, 96, 128…) ;\n- **pas de chevauchement** : une adresse ne doit appartenir qu'à un seul réseau ;\n- la **passerelle** est dans le réseau ;\n- on prévoit les **adresses fixes** (serveurs, imprimantes) et la **plage DHCP** séparément.",
+      "contenu": "On part du plus grand besoin et on découpe l'espace disponible 192.168.50.0/24 :\n| VLAN | Réseau | Besoin | Masque | Adresse réseau | Hôtes | Passerelle |\n| --- | --- | --- | --- | --- | --- | --- |\n| 10 | Clients Wi-Fi | 100 | /25 (126) | 192.168.50.0/25 | .1 à .126 | .126 |\n| 20 | Personnel | 20 | /27 (30) | 192.168.50.128/27 | .129 à .158 | .158 |\n| 30 | Caméras | 12 | /28 (14) | 192.168.50.160/28 | .161 à .174 | .174 |\nIl reste 192.168.50.176 à .255 pour les évolutions. Chaque réseau devient un VLAN : ce sont ces numéros que l'on retrouve dans les séances suivantes.\n\nLa passerelle occupe une adresse d'hôte : on compte toujours **besoin + 1** (Caméras : 12 + 1 = 13 ≤ 14).\n\nRègles :\n- chaque réseau **commence** à un multiple de sa taille (un /27 commence à 0, 32, 64, 96, 128…) ;\n- **pas de chevauchement** : une adresse ne doit appartenir qu'à un seul réseau ;\n- la **passerelle** est dans le réseau ;\n- on prévoit les **adresses fixes** (serveurs, imprimantes) et la **plage DHCP** séparément.",
       "notions": [
         "Découpage en sous-réseaux",
         "Plan d'adressage",
@@ -67,12 +67,12 @@
       "type": "exercice",
       "enonce": "Ajoute un réseau « administration » de 6 équipements dans l'espace restant (à partir de .176). Donne le masque, l'adresse réseau, la plage, la diffusion et une passerelle.",
       "etapes": [
-        "6 hôtes : $2^3 - 2 = 6$, donc 3 bits hôte → /29.",
-        "Premier bloc libre multiple de 8 : 176.",
-        "Plage : .177 à .182 ; diffusion .183.",
-        "Passerelle : par exemple .182."
+        "Besoin : 6 équipements + 1 passerelle = 7 adresses. Un /29 n'offre que $2^3 - 2 = 6$ hôtes : trop juste. Il faut 4 bits hôte : $2^4 - 2 = 14$ → /28 (255.255.255.240), avec de la marge.",
+        "Premier bloc libre multiple de 16 : 176.",
+        "Plage : .177 à .190 ; diffusion .191.",
+        "Passerelle : par exemple .190 (dernière adresse utilisable, comme pour les autres réseaux)."
       ],
-      "reponse": "192.168.50.176/29 ; hôtes .177 à .182 ; diffusion .183 ; passerelle .182 (un /28 donnerait plus de marge).",
+      "reponse": "192.168.50.176/28 ; hôtes .177 à .190 ; diffusion .191 ; passerelle .190 (7 adresses utilisées sur 14 : il reste de la marge).",
       "difficulte": 3
     }
   ]

@@ -51,7 +51,7 @@
     {
       "id": "libre-b1-12b-sq2-s04-s04",
       "titre": "Les normes Ethernet",
-      "contenu": "| Norme | Débit | Support | Distance max |\n| --- | --- | --- | --- |\n| 100BASE-TX | 100 Mbit/s | paires torsadées cat. 5 | 100 m |\n| 1000BASE-T | 1 Gbit/s | paires torsadées cat. 5e/6 | 100 m |\n| 10GBASE-T | 10 Gbit/s | paires torsadées cat. 6a | 100 m |\n| 1000BASE-SX | 1 Gbit/s | fibre multimode | environ 550 m |\n| 10GBASE-LR | 10 Gbit/s | fibre monomode | 10 km |\nLecture : le nombre = débit en Mbit/s, « BASE » = transmission en bande de base, le suffixe = type de support.",
+      "contenu": "| Norme | Débit | Support | Distance max |\n| --- | --- | --- | --- |\n| 100BASE-TX | 100 Mbit/s | paires torsadées cat. 5 | 100 m |\n| 1000BASE-T | 1 Gbit/s | paires torsadées cat. 5e/6 | 100 m |\n| 10GBASE-T | 10 Gbit/s | paires torsadées cat. 6a | 100 m |\n| 1000BASE-SX | 1 Gbit/s | fibre multimode | environ 550 m |\n| 10GBASE-LR | 10 Gbit/s | fibre monomode | 10 km |\nLecture : le nombre = débit en Mbit/s, ou en Gbit/s s'il est suivi de G (10G = 10 Gbit/s), « BASE » = transmission en bande de base, le suffixe = type de support.",
       "notions": [
         "Normes Ethernet"
       ]

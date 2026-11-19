@@ -30,7 +30,7 @@
     {
       "id": "libre-b1-15-sq3-s04-s02",
       "titre": "Base de données et vérification",
-      "contenu": "```sql\nCREATE USER 'glpi_app'@'10.12.5.21' IDENTIFIED BY 'Mot-de-passe-long-et-unique';\nGRANT SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX, DROP ON glpi.* TO 'glpi_app'@'10.12.5.21';\n```\n- **une seule base** (`glpi.*`), jamais `*.*` ;\n- connexion autorisée **depuis le seul serveur web** ;\n- pas de droits d'administration du serveur (`GRANT OPTION`, `SUPER`…).\n\n**Vérifier** :\n```sql\nSHOW GRANTS FOR 'glpi_app'@'10.12.5.21';\n```\n```bash\nsudo -u www-data touch /var/www/glpi/index.php     # doit échouer (Permission denied)\nsudo -u www-data touch /var/www/glpi/files/test    # doit réussir\n```",
+      "contenu": "```sql\nCREATE USER 'glpi_app'@'10.12.5.21' IDENTIFIED BY 'Mot-de-passe-long-et-unique';\nGRANT SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX, DROP ON glpi.* TO 'glpi_app'@'10.12.5.21';\n```\n- **une seule base** (`glpi.*`), jamais `*.*` ;\n- connexion autorisée **depuis le seul serveur web** ;\n- pas de droits d'administration du serveur (`GRANT OPTION`, `SUPER`…) ;\n- `CREATE`, `ALTER`, `INDEX` et `DROP` sont une exception assumée au moindre privilège : l'application crée et modifie ses propres tables à l'installation et à chaque mise à jour. Pour aller plus loin, on peut les retirer entre deux mises à jour et ne les rendre que le temps de la migration.\n\n**Vérifier** :\n```sql\nSHOW GRANTS FOR 'glpi_app'@'10.12.5.21';\n```\n```bash\nsudo -u www-data touch /var/www/glpi/index.php     # doit échouer (Permission denied)\nsudo -u www-data touch /var/www/glpi/files/test    # doit réussir\n```",
       "notions": [
         "Compte SQL limité",
         "Vérification des habilitations"

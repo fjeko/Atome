@@ -10,7 +10,7 @@
   "source": {
     "fichier": null
   },
-  "resume": "Contenu original – licence CC BY-SA 4.0. Segmenter un réseau avec des VLAN, affecter des ports, relier des commutateurs par un lien d'agrégation, router entre VLAN, et tester dans un simulateur ainsi que sur un poste Linux à adresse statique.",
+  "resume": "Contenu original – licence CC BY-SA 4.0. Segmenter un réseau avec des VLAN, affecter des ports, relier des commutateurs par un lien trunk, router entre VLAN, et tester dans un simulateur ainsi que sur un poste Linux à adresse statique.",
   "notions": [
     "Intérêt des VLAN",
     "Ports d'accès",
@@ -33,7 +33,7 @@
     {
       "id": "libre-b1-12b-sq2-s10-s02",
       "titre": "Trunk et routage inter-VLAN",
-      "contenu": "Quand plusieurs commutateurs portent les mêmes VLAN, on les relie par un **lien d'agrégation** (*trunk*) qui transporte **tous les VLAN** sur un seul câble. Chaque trame y reçoit une **étiquette** (norme **IEEE 802.1Q**) indiquant son numéro de VLAN.\n```text\nSwitch(config)# interface gigabitEthernet 0/1\nSwitch(config-if)# switchport mode trunk\n```\nPour faire communiquer les VLAN (selon des règles), il faut du **routage inter-VLAN** :\n- un **routeur** avec une sous-interface par VLAN sur un lien trunk (« routeur sur un bâton ») ;\n- ou un **commutateur de niveau 3** qui route lui-même.\nChaque VLAN a sa **passerelle** (ex. 192.168.20.254 pour le VLAN 20).",
+      "contenu": "Quand plusieurs commutateurs portent les mêmes VLAN, on les relie par un **lien trunk** (liaison qui porte plusieurs VLAN) : il transporte **tous les VLAN** sur un seul câble. À ne pas confondre avec l'**agrégation de liens** (LACP), qui regroupe plusieurs câbles en un seul lien logique. Chaque trame y reçoit une **étiquette** (norme **IEEE 802.1Q**) indiquant son numéro de VLAN.\n```text\nSwitch(config)# interface gigabitEthernet 0/1\nSwitch(config-if)# switchport mode trunk\n```\nPour faire communiquer les VLAN (selon des règles), il faut du **routage inter-VLAN** :\n- un **routeur** avec une sous-interface par VLAN sur un lien trunk (« routeur sur un bâton ») ;\n- ou un **commutateur de niveau 3** qui route lui-même.\nChaque VLAN a sa **passerelle** (ex. 192.168.20.254 pour le VLAN 20).",
       "notions": [
         "Lien trunk 802.1Q",
         "Routage inter-VLAN"
@@ -82,9 +82,10 @@
       "etapes": [
         "Vérifier la route par défaut : `ip route` doit montrer `default via 192.168.20.254`.",
         "Vérifier le masque de son adresse (un masque trop large lui ferait croire que 192.168.10.5 est local).",
-        "Vérifier un éventuel pare-feu local."
+        "Vérifier un éventuel pare-feu local.",
+        "Si tout est correct sur ce serveur, regarder l'autre côté : le ping depuis la passerelle ne prouve pas que 192.168.10.5 sait répondre au VLAN 20 (sa propre passerelle par défaut, son pare-feu), ni qu'une règle du routeur ne filtre pas le trafic entre VLAN."
       ],
-      "reponse": "Contrôler la passerelle par défaut et le masque (puis le pare-feu) : le routeur fonctionne, le problème est donc sur la configuration du serveur.",
+      "reponse": "Contrôler d'abord sur le serveur la passerelle par défaut et le masque, puis le pare-feu. Si rien ne cloche, le problème est ailleurs : configuration ou pare-feu de 192.168.10.5, ou filtrage entre VLAN sur le routeur.",
       "difficulte": 2
     }
   ]
