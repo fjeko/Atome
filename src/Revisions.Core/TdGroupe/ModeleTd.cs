@@ -33,7 +33,10 @@ public sealed record Td(ParametresTd Parametres, string Code, string Titre, IRea
 /// <param name="Indice">Rappel de méthode, montré seulement si on le demande (Markdown + LaTeX).</param>
 /// <param name="SectionId">Section du cours à revoir (« Revoir la notion »), ou null.</param>
 /// <param name="TypeExamen">Même déroulé qu'un exercice des sujets officiels du BTS SIO (affiché « Type examen »).</param>
-public sealed record ExerciceTd(string Titre, string Enonce, IReadOnlyList<QuestionTd> Questions, string Indice, string? SectionId, bool TypeExamen = false);
+/// <param name="Matiere">Matière de l.exercice (pour la calculatrice : mathématiques seulement), ou null si inconnue.</param>
+/// <param name="SansCalculatrice">Si l.exercice consiste à faire le calcul à la main : la raison affichée quand la calculatrice est grisée ; sinon null.</param>
+public sealed record ExerciceTd(string Titre, string Enonce, IReadOnlyList<QuestionTd> Questions, string Indice, string? SectionId, bool TypeExamen = false,
+    string? Matiere = null, string? SansCalculatrice = null);
 
 /// <summary>Une sous-question.</summary>
 /// <param name="Lettre">« a », « b », « c »…</param>

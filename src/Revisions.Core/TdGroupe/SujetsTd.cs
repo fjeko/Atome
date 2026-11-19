@@ -66,7 +66,7 @@ public abstract class GenerateurASujets : IGenerateurASujets
         }
         var exercices = choisis.Select(s =>
         {
-            var e = CreerExercice(s.Cle, r, p.Niveau);
+            var e = Calculatrice.RegleCalculatrice.Marquer(CreerExercice(s.Cle, r, p.Niveau), Matiere, Prefixe, s.Cle);
             return s.TypeExamen ? e with { TypeExamen = true } : e;
         }).ToList();
         return new Td(p, CodeTd.Ecrire(p), $"{Theme} · {NomsNiveaux[p.Niveau - 1].ToLowerInvariant()}", exercices, EmpreinteTd.Calculer(exercices));

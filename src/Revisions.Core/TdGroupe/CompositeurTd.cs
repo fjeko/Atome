@@ -65,7 +65,7 @@ public static class CompositeurTd
             .Select(i =>
             {
                 var (g, s) = candidats[i];
-                var exercice = g.CreerExercice(s.Cle, r, d.Niveau);
+                var exercice = Calculatrice.RegleCalculatrice.Marquer(g.CreerExercice(s.Cle, r, d.Niveau), g.Matiere, g.Prefixe, s.Cle);
                 if (s.TypeExamen) exercice = exercice with { TypeExamen = true };
                 return new ExerciceSolo(exercice, g.Prefixe, g.Theme, s, s.MinutesPour(d.Niveau));
             })

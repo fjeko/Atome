@@ -84,7 +84,8 @@ public sealed class GenerateurMatrices : IGenerateurASujets
             throw new TdImpossibleException("Version du générateur de matrices inconnue : mets Atome à jour.");
 
         var r = new GenerateurAleatoire(p.GraineInterne);
-        var exercices = ChoisirGenres(r, p.Nombre, inclureHorsCours: p.Version == 1).Select(g => Creer(g, r, p.Niveau)).ToList();
+        var exercices = ChoisirGenres(r, p.Nombre, inclureHorsCours: p.Version == 1)
+            .Select(g => Calculatrice.RegleCalculatrice.Marquer(Creer(g, r, p.Niveau), Matiere, Prefixe, g.ToString())).ToList();
         return new Td(p, CodeTd.Ecrire(p), $"Matrices · {NomsNiveaux[p.Niveau - 1].ToLowerInvariant()}",
             exercices, EmpreinteTd.Calculer(exercices));
     }

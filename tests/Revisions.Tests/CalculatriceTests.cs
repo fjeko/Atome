@@ -358,3 +358,49 @@ public class CalculatriceTests
         Assert.Contains("entier", Erreur("A^100000", c));
     }
 }
+
+/// <summary>Garde-fou : où la calculatrice est permise ou grisée dans les TD.</summary>
+public class CalculatriceTdTests
+{
+    [Theory]
+    [InlineData("Mathématiques", true)]
+    [InlineData("mathematiques", true)]
+    [InlineData("Maths", true)]
+    [InlineData("Algorithmique (Python)", false)]
+    [InlineData("Anglais", false)]
+    [InlineData("", false)]
+    [InlineData(null, false)]
+    public void Seules_les_maths_ont_la_calculatrice(string? matiere, bool attendu) =>
+        Assert.Equal(attendu, Revisions.Core.Calculatrice.RegleCalculatrice.EstMatiereMaths(matiere));
+
+
+    [Fact]
+    public void Td_de_matrices_calcul_a_la_main_grise_et_situations_permises()
+    {
+        var td = new Revisions.Core.TdGroupe.GenerateurMatrices().Generer(new(("MAT"), 2, 3, 12, 1234));
+        Assert.All(td.Exercices, e => Assert.Equal("Mathématiques", e.Matiere));
+        Assert.Contains(td.Exercices, e => e.Titre.StartsWith("Produit") && e.SansCalculatrice is not null);
+        Assert.Contains(td.Exercices, e => e.Titre.StartsWith("Somme") && e.SansCalculatrice is not null);
+        Assert.Contains(td.Exercices, e => e.SansCalculatrice is null); // situation concrète, dimension…
+        Assert.All(td.Exercices.Where(e => e.SansCalculatrice is not null), e => Assert.Contains("à la main", e.SansCalculatrice));
+    }
+
+    [Fact]
+    public void Td_inverse_la_verification_est_grisee_mais_pas_l_inverse_a_la_calculatrice()
+    {
+        var g = new Revisions.Core.TdGroupe.GenerateurInverse();
+        var td = g.Generer(new("INV", 1, 3, 5, 99));
+        Assert.Equal(5, td.Exercices.Count);
+        Assert.Contains(td.Exercices, e => e.Titre == "Inverse d'une matrice" && e.SansCalculatrice is null);
+        Assert.Contains(td.Exercices, e => e.Titre.Contains("est-elle l'inverse") && e.SansCalculatrice is not null);
+    }
+
+    [Fact]
+    public void Les_regles_ne_changent_pas_le_contenu_des_td_partages()
+    {
+        // Les nouveaux champs ne font pas partie de l'empreinte : deux camarades gardent la même.
+        var a = new Revisions.Core.TdGroupe.GenerateurMatrices().Generer(new("MAT", 2, 2, 6, 4321));
+        var sansRegle = Revisions.Core.TdGroupe.EmpreinteTd.Calculer(a.Exercices.Select(e => e with { Matiere = null, SansCalculatrice = null }));
+        Assert.Equal(sansRegle, a.Empreinte);
+    }
+}
