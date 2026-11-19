@@ -84,7 +84,7 @@
       "enonce": "Rédige la mention d'information du formulaire de contact du gîte **Le Chant du Ruisseau**.",
       "etapes": [
         "Responsable : « Les données de ce formulaire sont traitées par SARL Le Chant du Ruisseau (contact : rgpd@chantduruisseau.example) ».",
-        "Finalité et base : « pour répondre à votre demande (base : intérêt légitime / mesures précontractuelles) ».",
+        "Finalité et base légale (une seule base par finalité) : « pour répondre à votre demande, sur la base de notre intérêt légitime à traiter les messages reçus ».",
         "Destinataires et durée : « destinées aux seuls gérants, conservées 1 an après le dernier échange ».",
         "Droits : « vous pouvez y accéder, les rectifier, les effacer ou vous opposer au traitement en écrivant à l'adresse ci-dessus ».",
         "Réclamation : « vous pouvez adresser une réclamation à la CNIL (cnil.fr) »."

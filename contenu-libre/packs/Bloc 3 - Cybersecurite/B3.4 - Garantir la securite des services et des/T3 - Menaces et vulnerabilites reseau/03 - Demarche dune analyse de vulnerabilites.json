@@ -19,7 +19,7 @@
     {
       "id": "libre-b3-34-sq3-s03-s01",
       "titre": "Les étapes",
-      "contenu": "Dans un **laboratoire** (machines virtuelles à soi) :\n1. **Se situer** : `ip a`, passerelle, DNS.\n2. **Découvrir** les hôtes (`nmap -sn`).\n3. **Scanner** les services (`nmap -sV`).\n4. **Écouter** le trafic : `tcpdump` en ligne de commande.\n\n```bash\nsudo tcpdump -i eth0 -w capture_labo.pcap host 192.168.56.20 and port 23\n```\n\n5. **Analyser** la capture (Wireshark) : une session **Telnet** montre identifiant et mot de passe **en clair**.\n6. **Constater l'impact** : le même mot de passe est **réutilisé** sur un autre service (SSH, interface web) → l'attaquant y accède aussi.\n7. **Conclure** par les mesures défensives.",
+      "contenu": "Dans un **laboratoire** (machines virtuelles à soi) :\n1. **Se situer** : `ip a`, passerelle, DNS.\n2. **Découvrir** les hôtes (`nmap -sn`).\n3. **Scanner** les services (`nmap -sV`).\n4. **Écouter** le trafic : `tcpdump` en ligne de commande (outil détaillé en S04).\n\n```bash\nsudo tcpdump -i eth0 -w capture_labo.pcap host 192.168.56.20 and port 23\n```\n\n5. **Analyser** la capture (Wireshark, vu en S04) : une session **Telnet** montre identifiant et mot de passe **en clair**.\n6. **Constater l'impact** : le même mot de passe est **réutilisé** sur un autre service (SSH, interface web) → l'attaquant y accède aussi.\n7. **Conclure** par les mesures défensives.",
       "notions": [
         "Démarche d'analyse de vulnérabilités"
       ]

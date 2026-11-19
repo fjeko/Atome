@@ -21,7 +21,7 @@
     {
       "id": "libre-b3-33-sq2-s05-s01",
       "titre": "Isoler et sécuriser le serveur",
-      "contenu": "- Le serveur de base de données **n'écoute pas sur Internet** : il est dans un réseau interne, accessible seulement depuis les serveurs d'application (pare-feu). Sous MySQL/MariaDB : `bind-address = 127.0.0.1` ou l'adresse interne.\n- Lancer l'**assistant de sécurisation** : `mysql_secure_installation` (mot de passe root, suppression des comptes anonymes, de la base de test, interdiction de la connexion root à distance).\n- Compte d'administration réservé à l'administration, jamais utilisé par une application.",
+      "contenu": "- Le serveur de base de données **n'écoute pas sur Internet** : il est dans un réseau interne, accessible seulement depuis les serveurs d'application (pare-feu). Sous MySQL/MariaDB : `bind-address` = l'adresse interne du serveur (ou `127.0.0.1`, seulement si l'application tourne sur la même machine).\n- Lancer l'**assistant de sécurisation** : `mysql_secure_installation` (mot de passe root, suppression des comptes anonymes, de la base de test, interdiction de la connexion root à distance).\n- Compte d'administration réservé à l'administration, jamais utilisé par une application.",
       "notions": [
         "Isolation de la base",
         "Sécurisation initiale"

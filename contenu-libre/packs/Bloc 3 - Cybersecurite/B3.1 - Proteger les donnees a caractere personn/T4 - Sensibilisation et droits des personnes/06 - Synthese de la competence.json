@@ -21,7 +21,7 @@
     {
       "id": "libre-b3-31-sq4-s06-s01",
       "titre": "Les notions clés",
-      "contenu": "| Thème | À retenir |\n| --- | --- |\n| Menaces | hameçonnage, rançongiciel, DDoS, ingénierie sociale |\n| Bonnes pratiques | mises à jour, MFA, sauvegardes hors ligne, moindre privilège |\n| RGPD | données personnelles, base légale, minimisation, durées |\n| Acteurs | responsable, sous-traitant, DPO, CNIL |\n| Obligations | registre, information, droits (1 mois), violation (72 h), AIPD |\n| Sécurité | DICT, analyse de risques, plan de réponse |\n| Humain | sensibilisation continue, charte |\n\n**Étapes de mise en conformité** : désigner un pilote, cartographier, prioriser, gérer les risques, organiser les processus, documenter.",
+      "contenu": "| Thème | À retenir |\n| --- | --- |\n| Menaces | hameçonnage, rançongiciel, DDoS, ingénierie sociale |\n| Bonnes pratiques | mises à jour, MFA, sauvegardes hors ligne, moindre privilège |\n| RGPD | données personnelles, base légale, minimisation, durées |\n| Acteurs | responsable, sous-traitant, DPO, CNIL |\n| Obligations | registre, information, droits (1 mois), violation (72 h), AIPD |\n| Sécurité | DICT, analyse de risques, plan de réponse |\n| Humain | sensibilisation continue, charte |\n\n**Étapes de mise en conformité** : désigner un pilote, cartographier, prioriser, gérer les risques, organiser les processus, documenter, auditer régulièrement et former.",
       "notions": [
         "Bilan protection des données"
       ]

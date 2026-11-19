@@ -30,7 +30,7 @@
     {
       "id": "libre-b3-31-sq3-s05-s02",
       "titre": "Contrôle de robustesse d'un mot de passe",
-      "contenu": "Règle choisie : au moins 12 caractères, au moins une minuscule, une majuscule, un chiffre et un caractère spécial.\n\n```text\nFONCTION estRobuste(mdp : chaîne) : booléen\nVAR min, maj, chiffre, special : booléen\nDÉBUT\n    SI longueur(mdp) < 12 ALORS\n        RETOURNER FAUX\n    FINSI\n    min ← FAUX ; maj ← FAUX ; chiffre ← FAUX ; special ← FAUX\n    POUR i DE 1 À longueur(mdp) FAIRE\n        c ← mdp[i]\n        SI c ENTRE 'a' ET 'z' ALORS min ← VRAI\n        SINON SI c ENTRE 'A' ET 'Z' ALORS maj ← VRAI\n        SINON SI c ENTRE '0' ET '9' ALORS chiffre ← VRAI\n        SINON special ← VRAI\n        FINSI\n    FINPOUR\n    RETOURNER min ET maj ET chiffre ET special\nFIN\n```",
+      "contenu": "Règle choisie : au moins 12 caractères, au moins une minuscule, une majuscule, un chiffre et un caractère spécial.\n\n```text\nFONCTION estRobuste(mdp : chaîne) : booléen\nVAR min, maj, chiffre, special : booléen\nDÉBUT\n    SI longueur(mdp) < 12 ALORS\n        RETOURNER FAUX\n    FINSI\n    min ← FAUX ; maj ← FAUX ; chiffre ← FAUX ; special ← FAUX\n    POUR i DE 1 À longueur(mdp) FAIRE\n        c ← mdp[i]\n        SI c ENTRE 'a' ET 'z' ALORS min ← VRAI\n        SINON SI c ENTRE 'A' ET 'Z' ALORS maj ← VRAI\n        SINON SI c ENTRE '0' ET '9' ALORS chiffre ← VRAI\n        SINON special ← VRAI\n        FINSI\n    FINPOUR\n    RETOURNER min ET maj ET chiffre ET special\nFIN\n```\n\nLe dernier SINON compte comme « spécial » **tout autre caractère** : ponctuation, mais aussi espace ou lettre accentuée (« é »). C'est un choix assumé : la règle définit « caractère spécial » comme « ni lettre sans accent, ni chiffre ».",
       "notions": [
         "Contrôle de robustesse"
       ]
@@ -72,10 +72,10 @@
       "id": "libre-b3-31-sq3-s05-c003",
       "section": "libre-b3-31-sq3-s05-s03",
       "type": "exercice",
-      "enonce": "Identifie les failles qui restent malgré ces deux fonctions.",
+      "enonce": "Ces deux fonctions ne suffisent pas à protéger les comptes. Identifie ce qui manque encore, dans les règles elles-mêmes et autour d'elles (où le contrôle s'exécute, connexion, stockage, transport).",
       "etapes": [
         "`Motdepasse2026!` passe les règles mais est très prévisible : il faut aussi refuser les mots de passe **courants ou déjà fuités** (liste noire).",
-        "Le contrôle côté client (navigateur) peut être contourné : la vérification doit être refaite **côté serveur**.",
+        "Où s'exécutent ces fonctions ? Si le contrôle n'est fait que côté client (navigateur), il peut être contourné : il doit être refait **côté serveur**.",
         "Rien ne limite les **tentatives** de connexion : ajouter un blocage temporaire ou un délai croissant.",
         "Le stockage doit utiliser un hachage lent et salé (bcrypt/Argon2), et les échanges passer en HTTPS."
       ],

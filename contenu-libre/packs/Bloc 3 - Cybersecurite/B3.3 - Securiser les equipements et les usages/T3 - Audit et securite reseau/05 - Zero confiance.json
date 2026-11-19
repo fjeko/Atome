@@ -77,7 +77,7 @@
       "enonce": "L'éditeur fictif **CodeMarine** (60 salariés, moitié en télétravail) utilise un VPN qui donne accès à tout le réseau interne. Propose trois étapes vers le zéro confiance.",
       "etapes": [
         "Imposer la MFA pour toutes les connexions, via un annuaire d'identité centralisé.",
-        "Vérifier l'état des postes (chiffrement, mises à jour, EDR) avant d'autoriser l'accès.",
+        "Vérifier l'état des postes (chiffrement, mises à jour, EDR, c'est-à-dire un antivirus qui surveille les comportements suspects et peut isoler le poste) avant d'autoriser l'accès.",
         "Remplacer l'accès « tout le réseau » par un accès par application (portail ou proxy d'accès), et segmenter les serveurs critiques (code source, paie) avec des règles dédiées.",
         "Centraliser les journaux pour détecter les accès anormaux."
       ],

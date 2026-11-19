@@ -69,9 +69,9 @@
         "B : 4 × 1 = 4.",
         "C : 2 × 4 = 8.",
         "Ordre de priorité : A (9), C (8), B (4).",
-        "Mesures : chiffrer les disques (A), MFA et sensibilisation (C), sauvegarde externalisée (B)."
+        "Mesures : chiffrer les disques (A), MFA et sensibilisation (C), sauvegarde externalisée (B). B passe en dernier par son niveau, mais sa gravité est **critique** : on ne l'ignore pas, on la couvre quand même."
       ],
-      "reponse": "A = 9, C = 8, B = 4 : traiter A puis C, puis B.",
+      "reponse": "A = 9, C = 8, B = 4 : traiter A puis C, puis B (sans oublier B, dont la gravité est maximale).",
       "difficulte": 2
     },
     {

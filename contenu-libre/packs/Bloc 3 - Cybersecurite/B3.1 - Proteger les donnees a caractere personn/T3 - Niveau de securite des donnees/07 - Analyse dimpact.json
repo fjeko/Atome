@@ -45,12 +45,12 @@
       "question": "Une crèche installe un système de reconnaissance faciale pour l'entrée des parents. Faut-il une AIPD ?",
       "choix": [
         "Non, c'est un petit établissement",
-        "Oui : données biométriques, usage innovant, enfants concernés",
+        "Oui : données biométriques et technologie innovante",
         "Seulement si les parents se plaignent",
         "Non, si les données restent sur place"
       ],
       "bonneReponse": 1,
-      "explication": "Plusieurs critères de risque élevé sont réunis.",
+      "explication": "Deux critères de risque élevé sont réunis : des données biométriques et un usage innovant. L'AIPD est donc nécessaire.",
       "difficulte": 2
     },
     {

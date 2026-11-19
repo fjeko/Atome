@@ -81,7 +81,7 @@
       "id": "libre-b3-31-sq4-s01-c003",
       "section": "libre-b3-31-sq4-s01-s03",
       "type": "exercice",
-      "enonce": "Corrige ce questionnaire rempli par un salarié : (1) « Un site avec cadenas est sûr » → Vrai ; (2) « Je peux utiliser le même mot de passe si il est complexe » → Vrai ; (3) « Si je clique sur un lien suspect, je préviens l'informatique » → Vrai.",
+      "enonce": "Corrige ce questionnaire rempli par un salarié : (1) « Un site avec cadenas est sûr » → Vrai ; (2) « Je peux utiliser le même mot de passe s'il est complexe » → Vrai ; (3) « Si je clique sur un lien suspect, je préviens l'informatique » → Vrai.",
       "etapes": [
         "(1) Faux : le cadenas indique seulement une connexion chiffrée ; un faux site peut l'avoir.",
         "(2) Faux : un mot de passe réutilisé fuité sur un site permet d'accéder aux autres comptes.",

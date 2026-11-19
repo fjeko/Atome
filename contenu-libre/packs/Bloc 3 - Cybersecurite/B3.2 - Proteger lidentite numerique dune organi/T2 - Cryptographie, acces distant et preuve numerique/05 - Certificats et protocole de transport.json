@@ -31,7 +31,7 @@
     {
       "id": "libre-b3-32-sq2-s05-s02",
       "titre": "TLS en bref",
-      "contenu": "**TLS** (*Transport Layer Security*, successeur de SSL) sécurise une connexion : **HTTPS** = HTTP sur TLS (port 443).\n\nÉtapes simplifiées :\n1. le client propose les versions et algorithmes qu'il accepte ;\n2. le serveur choisit et envoie son **certificat** ;\n3. le client **vérifie** le certificat (AC, nom de domaine, dates de validité, non-révocation) ;\n4. les deux établissent une **clé de session** (échange de type Diffie-Hellman) ;\n5. les données sont chiffrées en symétrique (AES, ChaCha20) avec contrôle d'intégrité.\n\nVersions à utiliser : **TLS 1.2 et 1.3** ; SSL et TLS 1.0/1.1 sont obsolètes.",
+      "contenu": "**TLS** (*Transport Layer Security*, successeur de SSL) sécurise une connexion : **HTTPS** = HTTP sur TLS (port 443).\n\nÉtapes simplifiées (schéma de TLS 1.2 ; en TLS 1.3, la clé de session s'établit dès les deux premiers messages, avant l'envoi du certificat : voir B3.2 SQ3) :\n1. le client propose les versions et algorithmes qu'il accepte ;\n2. le serveur choisit et envoie son **certificat** ;\n3. le client **vérifie** le certificat (AC, nom de domaine, dates de validité, non-révocation) ;\n4. les deux établissent une **clé de session** (échange de type Diffie-Hellman) ;\n5. les données sont chiffrées en symétrique (AES, ChaCha20) avec contrôle d'intégrité.\n\nVersions à utiliser : **TLS 1.2 et 1.3** ; SSL et TLS 1.0/1.1 sont obsolètes.",
       "notions": [
         "TLS",
         "HTTPS"

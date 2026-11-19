@@ -62,7 +62,7 @@
         "Box : identifiants par défaut → les changer, mettre à jour, désactiver l'administration à distance.",
         "Wi-Fi clients et caisse mélangés → séparer en deux réseaux (VLAN/SSID invités isolé), filtrer entre eux.",
         "Bureau à distance exposé → le fermer et passer par un VPN avec MFA.",
-        "Pas de sauvegarde hors site → sauvegarde 3-2-1 avec copie hors ligne testée.",
+        "Pas de sauvegarde hors site → sauvegarde 3-2-1 (3 copies, sur 2 supports différents, dont 1 hors site), avec une copie hors ligne et des restaurations testées.",
         "Documenter la nouvelle cartographie."
       ],
       "reponse": "4 faiblesses : administration par défaut, absence de segmentation, accès distant exposé, sauvegardes ; corrections associées.",

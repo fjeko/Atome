@@ -81,9 +81,9 @@
         "PC personnels partagés : risque de fuite et de logiciels malveillants → fournir des postes professionnels ou au minimum une session dédiée, chiffrée, à jour.",
         "Bureau à distance exposé, mot de passe simple : cible privilégiée des rançongiciels → fermer l'accès direct, imposer un VPN avec authentification multifacteur.",
         "Pas de procédure de vol/perte → rédiger une procédure (signalement, révocation des accès, effacement à distance) et une charte de télétravail.",
-        "Ajouter une sensibilisation des salariés."
+        "En complément (ce n'est pas une non-conformité de plus) : sensibiliser les salariés aux règles du télétravail."
       ],
-      "reponse": "3 non-conformités majeures : équipements non maîtrisés, accès distant exposé, absence de procédure.",
+      "reponse": "3 non-conformités majeures : équipements non maîtrisés, accès distant exposé, absence de procédure ; corrections : postes maîtrisés, VPN avec MFA, procédure et charte, plus une sensibilisation.",
       "difficulte": 2
     }
   ]

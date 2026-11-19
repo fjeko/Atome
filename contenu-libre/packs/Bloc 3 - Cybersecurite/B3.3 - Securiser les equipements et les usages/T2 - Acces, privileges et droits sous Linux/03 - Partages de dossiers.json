@@ -75,12 +75,12 @@
       "question": "Mia est dans Comptables (Modification) et dans Intérimaires (Refuser Écriture). Que peut-elle faire sur le dossier ?",
       "choix": [
         "Modifier",
-        "Lire, mais pas écrire",
+        "Lire, mais ni créer ni modifier",
         "Rien du tout",
         "Contrôle total"
       ],
       "bonneReponse": 1,
-      "explication": "Le refus d'écriture l'emporte ; la lecture issue de Modification reste.",
+      "explication": "Le refus d'écriture l'emporte sur l'écriture comprise dans Modification ; la lecture reste. En NTFS, la suppression est un droit à part que ce refus ne retire pas : pour l'interdire aussi, il faut la refuser explicitement.",
       "difficulte": 2
     },
     {

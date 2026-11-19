@@ -90,8 +90,8 @@
       "enonce": "Donne à l'utilisateur `karim` (hors du groupe compta) le droit de lire et modifier `rapport.ods` (propriétaire ines, groupe compta, droits 640), puis vérifie ses droits effectifs.",
       "etapes": [
         "Ajouter l'entrée : `setfacl -m u:karim:rw rapport.ods`.",
-        "`setfacl` recalcule le masque à `rw-` : vérifier avec `getfacl rapport.ods` (pas de mention `#effective` restrictive).",
-        "Si le masque était à `r--`, le corriger : `setfacl -m m::rw rapport.ods`.",
+        "`setfacl` recalcule le masque à `rw-` : vérifier avec `getfacl rapport.ods` (pas de mention `#effective` restrictive). `ls -l` affiche alors `-rw-rw----+` : avec une ACL, la colonne du groupe montre le **masque**, pas les droits de compta.",
+        "Attention : un `chmod` ultérieur (par ex. `chmod 640 rapport.ods`) modifie le masque. S'il repasse à `r--`, `getfacl` affiche `#effective:r--` pour karim : le rétablir avec `setfacl -m m::rw rapport.ods`.",
         "Tester : `sudo -u karim cat rapport.ods` puis une modification."
       ],
       "reponse": "`setfacl -m u:karim:rw` puis contrôle du masque avec `getfacl`.",

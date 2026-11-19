@@ -63,7 +63,7 @@
       "section": "libre-b3-32-sq3-s01-s02",
       "type": "question",
       "recto": "Citer deux parades à la fraude par usurpation de dirigeant.",
-      "verso": "Procédure de **contre-appel / double validation** des virements ; **signature numérique** des courriels (et SPF/DKIM/DMARC, sensibilisation).",
+      "verso": "Par exemple : une procédure de **contre-appel / double validation** des virements ; la **signature numérique** des courriels. Autres réponses acceptées : SPF/DKIM/DMARC, sensibilisation des services concernés.",
       "difficulte": 2
     },
     {

@@ -53,10 +53,10 @@
       "type": "qcm",
       "question": "Un employeur demande à ses salariés de « consentir » au traitement de leurs données de paie. Quel problème ?",
       "choix": [
-        "Aucun",
-        "La base légale est l'obligation légale/le contrat ; un consentement salarié n'est pas libre et inutile ici",
-        "Il faut un double consentement",
-        "Les salariés doivent signer chez un notaire"
+        "Aucun : un consentement écrit protège toujours l'employeur",
+        "La paie relève du contrat et de la loi ; un salarié consent rarement librement",
+        "Il faudrait le consentement deux fois : à l'embauche puis chaque année",
+        "Le consentement ne vaut que s'il est signé devant un notaire"
       ],
       "bonneReponse": 1,
       "explication": "Le lien de subordination rend le consentement rarement libre ; la paie relève du contrat et de la loi.",

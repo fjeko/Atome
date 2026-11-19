@@ -73,7 +73,7 @@
         "Atteinte à l'intégrité du site et à l'image : les adhérents doutent de la sécurité de leurs données.",
         "Risque associé : l'intrus a peut-être accédé à d'autres données (à vérifier : violation de données ?).",
         "Actions immédiates : mettre le site hors ligne ou une page de maintenance, conserver les preuves (journaux, copie), restaurer une version saine après correction de la faille.",
-        "Communication : message factuel aux adhérents ; notification CNIL si des données personnelles sont touchées ; plainte."
+        "Communication : message factuel aux adhérents ; s'il y a violation de données personnelles présentant un risque pour les personnes, notification à la CNIL dans les 72 h (et information des personnes si le risque est élevé) ; plainte."
       ],
       "reponse": "Atteinte à l'image et possible violation de données : isoler, préserver les preuves, corriger, restaurer, communiquer.",
       "difficulte": 2

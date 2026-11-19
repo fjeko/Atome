@@ -66,12 +66,12 @@
       "enonce": "Le cabinet d'architectes **Lignes & Volumes** reçoit des candidatures par e-mail, les imprime pour les entretiens, les enregistre dans un dossier partagé et ne les supprime jamais. Décris le flux et les corrections.",
       "etapes": [
         "Flux : e-mail du candidat → boîte de réception → impression papier → dossier partagé → conservation illimitée.",
-        "Problème 1 : durée illimitée → fixer une durée (par ex. 2 ans pour un candidat non retenu, avec son accord) puis supprimer.",
+        "Problème 1 : durée illimitée → fixer une durée : pour un candidat non retenu, au plus 2 ans après le dernier contact, puis suppression ; le garder plus longtemps exige son accord.",
         "Problème 2 : copies multiples (e-mail, papier, dossier) → limiter et détruire le papier après l'entretien.",
         "Problème 3 : dossier partagé → restreindre l'accès aux recruteurs.",
         "Ajouter le traitement « Recrutement » au registre et informer les candidats."
       ],
-      "reponse": "Flux en 4 étapes ; corrections : durée de conservation, limitation des copies, accès restreint, registre et information.",
+      "reponse": "Flux : réception par e-mail, impression, dossier partagé, conservation sans limite ; corrections : durée de conservation, limitation des copies, accès restreint, registre et information.",
       "difficulte": 2
     }
   ]

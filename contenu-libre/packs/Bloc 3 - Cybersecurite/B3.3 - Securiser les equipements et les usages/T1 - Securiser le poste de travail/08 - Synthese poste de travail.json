@@ -54,7 +54,7 @@
       "section": "libre-b3-33-sq1-s08-s01",
       "type": "question",
       "recto": "Citer deux confusions fréquentes sur la sécurité du poste.",
-      "verso": "Croire que le **sel** empêche la force brute (il protège des tables précalculées) ; confondre **synchronisation** et **sauvegarde** (ou complexité et longueur des mots de passe).",
+      "verso": "Croire que le **sel** empêche la force brute (il protège seulement des tables précalculées) ; confondre **synchronisation** et **sauvegarde** (une suppression ou un chiffrement se synchronise aussi).",
       "difficulte": 2
     },
     {

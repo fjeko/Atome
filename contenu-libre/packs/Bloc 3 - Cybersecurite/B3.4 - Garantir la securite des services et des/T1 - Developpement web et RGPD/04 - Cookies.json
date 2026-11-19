@@ -34,7 +34,7 @@
     {
       "id": "libre-b3-34-sq1-s04-s02",
       "titre": "Exemptés ou soumis à consentement",
-      "contenu": "| Exemptés de consentement | Soumis à consentement |\n| --- | --- |\n| session d'authentification | publicité ciblée |\n| panier d'achat | partage sur réseaux sociaux (boutons qui tracent) |\n| choix de langue, d'accessibilité | mesure d'audience non exemptée |\n| mémorisation du choix du bandeau | vidéos tierces qui tracent |\n| sécurité (anti-fraude, équilibrage de charge) | profilage |\n\nCertains outils de **mesure d'audience** peuvent être exemptés s'ils sont strictement limités (finalité unique de statistiques, données non recoupées, durée limitée).",
+      "contenu": "| Exemptés de consentement | Soumis à consentement |\n| --- | --- |\n| session d'authentification | publicité ciblée |\n| panier d'achat | partage sur réseaux sociaux (boutons qui tracent) |\n| choix de langue, d'accessibilité | mesure d'audience hors conditions d'exemption |\n| mémorisation du choix du bandeau | vidéos tierces qui tracent |\n| sécurité (anti-fraude, équilibrage de charge) | profilage |\n\nCertains outils de **mesure d'audience** peuvent être exemptés s'ils sont strictement limités (finalité unique de statistiques, données non recoupées, durée limitée).",
       "notions": [
         "Cookies exemptés",
         "Cookies soumis à consentement"
