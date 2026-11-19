@@ -17,9 +17,13 @@ Le code est entièrement visible dans ce dépôt si tu veux vérifier.
 Atome est livré avec **440 cours libres**, basés sur le référentiel officiel du programme de 1ère année de BTS SIO option SLAM, pour commencer tout de suite (voir « Nouveautés »). Pour réviser tes propres cours, lis la section « Créer ses propres packs » du README ; le pack d’exemple (`samples/exemple.json`) permet aussi d’essayer l’application.
 
 ## Nouveautés
-**Nouveau : le TD solo** (en plus du TD en groupe) :
-- Écran **Seul / À plusieurs**, avec choix du domaine, du thème puis de la notion (un TD = une notion), de la durée et du niveau.
-- Correction pas à pas à la fin, chronomètre, et récapitulatif qui remet en révision les notions à retravailler.
-- Nouveaux générateurs d'exercices : graphes, ordonnancement (MPM), matrices inverses et systèmes, adressage IPv4, droits Linux, requêtes SQL.
-- Exercices « type examen » qui reprennent le déroulé des sujets du BTS.
-- Aucune donnée ni progression touchée (une table est ajoutée pour les TD solo).
+**Nouveau : la calculatrice** (exercices de maths, dans les cartes et les TD) :
+- Ouverture avec **Ctrl+K**, dans une petite fenêtre flottante à deux onglets (Calcul, Matrices).
+- Fractions exactes, historique, `Ans`, et matrices : produit, puissance, inverse, déterminant, transposée.
+- Bouton « Copier dans la réponse » et aide intégrée (ampoule).
+- Grisée quand l'exercice demande de calculer à la main.
+
+**Aussi** :
+- Corrections de qualité dans les cours libres (maths, C#, algo, blocs 1 à 3, CEJM, anglais).
+- Icône « À plusieurs » du TD corrigée.
+- Aucune donnée ni progression touchée.
