@@ -38,7 +38,7 @@
     {
       "id": "libre-ang-t-s02-s03",
       "titre": "Noms",
-      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **an agenda** | un ordre du jour | *Please send the agenda before the meeting.* |\n| **the minutes** | le compte rendu (de réunion) | *Can you take the minutes today?* |\n| **a deal** | un accord, une affaire | *We finally reached a deal.* |\n| **an offer / a counter-offer** | une offre / une contre-proposition | *They rejected our counter-offer.* |\n| **the turnover** | le chiffre d'affaires | *Our turnover reached €3 million.* |\n| **a layoff** | un licenciement (économique) | *The restructuring led to twenty layoffs.* |\n| **a stakeholder** | une partie prenante | *All stakeholders were invited.* |",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **an agenda** | un ordre du jour | *Please send the agenda before the meeting.* |\n| **the minutes** | le compte rendu (de réunion) | *Can you take the minutes today?* |\n| **a deal** | un accord, une affaire | *We finally reached a deal.* |\n| **an offer / a counter-offer** | une offre / une contre-proposition | *They rejected our counter-offer.* |\n| **the turnover** | le chiffre d'affaires (anglais britannique ; en américain : *revenue*, *sales*) — *staff turnover* = la rotation du personnel | *Our turnover reached €3 million.* |\n| **a layoff** | un licenciement (économique) | *The restructuring led to twenty layoffs.* |\n| **a stakeholder** | une partie prenante | *All stakeholders were invited.* |",
       "notions": [
         "Réunions et négociation : noms"
       ]
@@ -81,8 +81,8 @@
       "id": "libre-ang-t-s02-c003",
       "section": "libre-ang-t-s02-s02",
       "type": "question",
-      "recto": "Traduis en anglais : **augmenter / baisser**",
-      "verso": "**to rise / to fall** — *Profits rose in May but fell in June.*",
+      "recto": "Traduis en anglais : **augmenter / baisser** (en parlant de chiffres)",
+      "verso": "**to rise / to fall** — *Profits rose in May but fell in June.* Accepté aussi : *to increase / to decrease*, *to go up / to go down*.",
       "difficulte": 2
     },
     {

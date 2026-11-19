@@ -55,8 +55,23 @@
       "id": "libre-ang-m-s01-c004",
       "section": "libre-ang-m-s01-s02",
       "type": "question",
-      "recto": "Cite trois critères de l'expression écrite.",
-      "verso": "Pertinence (respect des consignes), structure (paragraphes, connecteurs), correction grammaticale, richesse du lexique, registre adapté.",
+      "recto": "Cite trois des cinq critères de l'expression écrite.",
+      "verso": "Trois parmi : pertinence (respect des consignes), structure (paragraphes, connecteurs), correction grammaticale, richesse du lexique, registre adapté.",
+      "difficulte": 1
+    },
+    {
+      "id": "libre-ang-m-s01-c005",
+      "section": "libre-ang-m-s01-s01",
+      "type": "qcm",
+      "question": "À l'écrit, dans quelle langue rédiges-tu le compte rendu du document anglais ?",
+      "choix": [
+        "En français",
+        "En anglais",
+        "Au choix",
+        "En anglais, avec un résumé en français"
+      ],
+      "bonneReponse": 0,
+      "explication": "La compréhension de l'écrit se vérifie par un compte rendu **en français** ; l'expression écrite, elle, se fait en anglais (un courriel, par exemple).",
       "difficulte": 1
     }
   ]

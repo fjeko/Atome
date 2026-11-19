@@ -30,7 +30,7 @@
     {
       "id": "libre-ang-t-s08-s02",
       "titre": "Verbes",
-      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **to recommend** | recommander | *I'd recommend this series to anyone.* |\n| **to release** | sortir (un film, un album) | *The film was released in May.* |\n| **to sightsee / to go sightseeing** | visiter (en touriste) | *We went sightseeing in Lisbon.* |\n| **to book** | réserver | *We booked a cottage by the sea.* |\n| **to unwind** | se détendre | *I unwind by playing the guitar.* |\n| **to star (in)** | jouer le rôle principal (dans) | *She stars in a new thriller.* |",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **to recommend** | recommander | *I'd recommend this series to anyone.* |\n| **to release** | sortir (un film, un album) | *The film was released in May.* |\n| **to go sightseeing** | visiter (en touriste) | *We went sightseeing in Lisbon.* |\n| **to book** | réserver | *We booked a cottage by the sea.* |\n| **to unwind** | se détendre | *I unwind by playing the guitar.* |\n| **to star (in)** | jouer le rôle principal (dans) | *She stars in a new thriller.* |",
       "notions": [
         "Culture et loisirs : verbes"
       ]
@@ -136,7 +136,7 @@
       "id": "libre-ang-t-s08-c009",
       "section": "libre-ang-t-s08-s04",
       "type": "question",
-      "recto": "Traduis en anglais : **qui vaut la peine (de)**",
+      "recto": "Traduis en anglais, avec un verbe en *-ing* derrière : **qui vaut la peine (de)**",
       "verso": "**worth (+ -ing)** — *The museum is worth visiting.*",
       "difficulte": 2
     },

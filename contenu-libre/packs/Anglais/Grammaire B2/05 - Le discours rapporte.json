@@ -20,7 +20,7 @@
     {
       "id": "libre-ang-g-s05-s01",
       "titre": "Rapporter une affirmation",
-      "contenu": "Avec un verbe introducteur **au passé** (*said, told, explained*), on **recule** les temps d'un cran :\n\n| Discours direct | Discours rapporté |\n|---|---|\n| present simple : *\"I **work** remotely.\"* | past simple : *He said (that) he **worked** remotely.* |\n| present continuous | past continuous |\n| past simple / present perfect | past perfect : *…that he **had finished**.* |\n| will | would : *…that she **would call** back.* |\n| can / may | could / might |\n\nOn adapte aussi les **pronoms** et les **repères** : *today → that day, tomorrow → the next day, yesterday → the day before, here → there, this → that, ago → before*.\n\n**Say** ou **tell** ? *say (that)…* ; *tell **somebody** (that)…* : *She **told me** that the server was down.* (et non ~~*said me*~~).\n\nAutres verbes : *explain, announce, admit, promise, warn, suggest, deny, complain*.",
+      "contenu": "Avec un verbe introducteur **au passé** (*said, told, explained*), on **recule** les temps d'un cran :\n\n| Discours direct | Discours rapporté |\n|---|---|\n| present simple : *\"I **work** remotely.\"* | past simple : *He said (that) he **worked** remotely.* |\n| present continuous | past continuous |\n| past simple / present perfect | past perfect : *…that he **had finished**.* |\n| will | would : *…that she **would call** back.* |\n| can / may | could / might |\n\nOn adapte aussi les **pronoms** et les **repères** : *today → that day, tomorrow → the next day, yesterday → the day before, here → there, this → that, ago → before*.\n\n**Say** ou **tell** ? *say (that)…* ; *tell **somebody** (that)…* : *She **told me** that the server was down.* (et non ~~*said me*~~).\n\nAutres verbes, chacun avec sa construction : *explain / announce / admit (that)…* ; *promise **to** + base* ou *promise (that)…* ; *warn somebody (not) **to** + base* ou *warn somebody that…* ; *suggest **-ing*** ou *suggest that…* ; *deny **-ing*** ou *deny that…* ; *complain **about** something* ou *complain that…*.",
       "notions": [
         "Discours rapporté : affirmations",
         "Say et tell"
@@ -42,7 +42,9 @@
       "type": "exercice",
       "enonce": "Rapporte : *\"I will send the invoice tomorrow,\" the supplier said.*",
       "etapes": [
-        "*will → would* ; *I → he/she* ; *tomorrow → the next day*."
+        "Temps : *will → would*.",
+        "Pronom : *I → he / she* (le fournisseur).",
+        "Repère de temps : *tomorrow → the next day*."
       ],
       "reponse": "*The supplier said (that) he would send the invoice the next day.*",
       "difficulte": 2

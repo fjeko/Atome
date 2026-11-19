@@ -78,7 +78,8 @@
       "type": "exercice",
       "enonce": "Relie les deux phrases avec *although* : *The software is expensive. Many companies buy it.*",
       "etapes": [
-        "*Although* + sujet + verbe, en tête ou au milieu de la phrase."
+        "*Although* + sujet + verbe, en tête ou au milieu de la phrase.",
+        "En tête, la subordonnée est suivie d'une virgule."
       ],
       "reponse": "*Although the software is expensive, many companies buy it.*",
       "difficulte": 1

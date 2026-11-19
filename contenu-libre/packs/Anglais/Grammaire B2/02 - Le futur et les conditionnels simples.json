@@ -72,7 +72,8 @@
       "type": "exercice",
       "enonce": "Corrige : *If it will rain tomorrow, we will cancel the team-building day.*",
       "etapes": [
-        "Après *if*, pas de *will* : le présent suffit pour parler du futur."
+        "Après *if*, pas de *will* : le présent suffit pour parler du futur (*it rains*).",
+        "La principale garde *will* : *we will cancel…*"
       ],
       "reponse": "*If it **rains** tomorrow, we will cancel the team-building day.*",
       "difficulte": 2

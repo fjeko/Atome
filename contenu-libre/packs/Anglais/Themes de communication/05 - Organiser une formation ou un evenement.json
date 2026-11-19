@@ -157,10 +157,10 @@
     },
     {
       "id": "libre-ang-t-s05-c011",
-      "section": "libre-ang-t-s05-s01",
+      "section": "libre-ang-t-s05-s02",
       "type": "question",
-      "recto": "Quel faux ami se cache dans *assist* ?",
-      "verso": "*To assist* = aider ; « assister à » se dit *to attend*.",
+      "recto": "Traduis : « J'ai assisté à la réunion de lundi. »",
+      "verso": "*I attended Monday's meeting.* Pas ~~*assisted*~~ : *to assist* est un faux ami (= aider).",
       "difficulte": 2
     }
   ]

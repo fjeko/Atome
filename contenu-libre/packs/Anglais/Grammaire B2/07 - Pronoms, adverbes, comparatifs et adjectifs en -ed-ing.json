@@ -103,9 +103,10 @@
       "type": "exercice",
       "enonce": "Traduis : « Plus tu commences tôt, moins tu stresses. »",
       "etapes": [
-        "Structure *the + comparatif…, the + comparatif…*."
+        "Structure *the + comparatif…, the + comparatif…*.",
+        "Tôt → *early* → *the earlier* ; moins stressé → *the less stressed* + sujet + verbe (*you feel*)."
       ],
-      "reponse": "*The earlier you start, the less you stress.*",
+      "reponse": "*The earlier you start, the less stressed you feel.* (ou *…, the less stress you have.*)",
       "difficulte": 2
     },
     {

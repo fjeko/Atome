@@ -22,7 +22,7 @@
     {
       "id": "libre-ang-t-s11-s01",
       "titre": "En situation",
-      "contenu": "***Internship report – summary***\n*During my eight-week **internship** at a web agency, I was **in charge of** testing a booking application. **This report describes** the tasks I carried out, **highlights** the skills I developed and **outlines** the difficulties I encountered. **According to** the agency's own data, automated tests reduced bugs by 30%.*\n\n**Citer une source** : *According to Smith (2025), …* ; *As stated in the report…* ; liste finale **References** : auteur, année, titre, éditeur ou URL et date de consultation, par exemple : *Martin, L. (2025). Testing Web Apps. Example Press.*",
+      "contenu": "***Internship report – summary***\n*During my eight-week **internship** at a web agency, I was **in charge of** testing a booking application. **This report describes** the tasks I carried out, **highlights** the skills I developed and **outlines** the difficulties I encountered. **Actually**, the hardest part was writing clear bug reports. **According to** the agency's own data, automated tests reduced bugs by 30%.*\n\n**Citer une source** : *According to Smith (2025), …* ; *As stated in the report…* ; liste finale **References** : auteur, année, titre, éditeur ou URL et date de consultation, par exemple : *Martin, L. (2025). Testing Web Apps. Example Press.*",
       "notions": [
         "Compétences universitaires et professionnelles : mise en situation"
       ]
@@ -38,7 +38,7 @@
     {
       "id": "libre-ang-t-s11-s03",
       "titre": "Noms",
-      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **an internship / an intern** | un stage / un stagiaire | *My internship lasted two months.* |\n| **a supervisor** | un tuteur, un responsable | *My supervisor gave me useful feedback.* |\n| **a skill** | une compétence | *Communication is a key skill.* |\n| **a summary** | un résumé | *Write a summary of the meeting.* |\n| **references / a bibliography** | les références / une bibliographie | *Add your references at the end.* |\n| **plagiarism** | le plagiat | *Plagiarism is strictly forbidden.* |\n| **feedback** | un retour, des commentaires | *Thank you for your feedback.* |",
+      "contenu": "| Anglais | Français | Exemple |\n|---|---|---|\n| **an internship / an intern** | un stage / un stagiaire | *My internship lasted two months.* |\n| **a supervisor** | un tuteur, un responsable | *My supervisor gave me useful feedback.* |\n| **a skill** | une compétence | *Communication is a key skill.* |\n| **a summary** | un résumé | *Write a summary of the meeting.* |\n| **references / a bibliography** | les références / une bibliographie | *Add your references at the end.* |\n| **plagiarism** | le plagiat | *Plagiarism is strictly forbidden.* |\n| **feedback** (indénombrable) | un retour, des commentaires | *Thank you for your feedback.* — un retour : *a piece of feedback* (et non ~~*a feedback*~~, ~~*feedbacks*~~) |",
       "notions": [
         "Compétences universitaires et professionnelles : noms"
       ]
@@ -113,7 +113,7 @@
       "section": "libre-ang-t-s11-s03",
       "type": "question",
       "recto": "Traduis en français : **feedback**\n\n*Thank you for your feedback.*",
-      "verso": "un retour, des commentaires",
+      "verso": "un retour, des commentaires (indénombrable en anglais : *a piece of feedback*, jamais ~~*feedbacks*~~)",
       "difficulte": 1
     },
     {
@@ -175,7 +175,7 @@
       "id": "libre-ang-t-s11-c013",
       "section": "libre-ang-t-s11-s01",
       "type": "question",
-      "recto": "Faux ami : que signifie *actually* dans un rapport ?",
+      "recto": "Faux ami : que signifie *actually* ?\n\n*Actually, the hardest part was writing clear bug reports.*",
       "verso": "En fait, en réalité (et non « actuellement », qui se dit *currently*).",
       "difficulte": 2
     }

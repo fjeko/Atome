@@ -19,7 +19,7 @@
     {
       "id": "libre-ang-g-s09-s01",
       "titre": "Obligation et interdiction",
-      "contenu": "| Sens | Forme | Exemple |\n|---|---|---|\n| **obligation** venant de celui qui parle | ***must*** + base | *I **must** finish this tonight.* |\n| **obligation** extérieure (règle, loi) | ***have to*** | *Employees **have to** wear a badge.* |\n| obligation au **passé / futur** | *had to / will have to* | *We **had to** restart the server.* |\n| **conseil** | ***should / ought to*** | *You **should** back up your files.* |\n| **absence d'obligation** (pas la peine) | ***don't have to / needn't*** | *You **don't have to** come; it's optional.* |\n| **interdiction** | ***mustn't / can't*** | *You **mustn't** share your password.* |\n\n⚠️ Le piège : ***mustn't*** = « il ne faut pas » (interdit) ; ***don't have to*** = « ce n'est pas obligatoire ».\n\nLes modaux (*must, can, may, should…*) : pas de *-s* à la 3e personne, pas de *to* ensuite, pas d'auxiliaire *do*. *Must* n'a pas de passé : on emploie *had to*.",
+      "contenu": "| Sens | Forme | Exemple |\n|---|---|---|\n| **obligation** venant de celui qui parle | ***must*** + base | *I **must** finish this tonight.* |\n| **obligation** extérieure (règle, loi) | ***have to*** | *Employees **have to** wear a badge.* |\n| obligation au **passé / futur** | *had to / will have to* | *We **had to** restart the server.* |\n| **conseil** | ***should / ought to*** | *You **should** back up your files.* |\n| **absence d'obligation** (pas la peine) | ***don't have to / needn't*** | *You **don't have to** come; it's optional.* |\n| **interdiction** | ***mustn't / can't*** | *You **mustn't** share your password.* |\n\n⚠️ Le piège : ***mustn't*** = « il ne faut pas » (interdit) ; ***don't have to*** = « ce n'est pas obligatoire ».\n\nLes modaux purs (*must, can, may, should…*) : pas de *-s* à la 3e personne, pas de *to* ensuite, pas d'auxiliaire *do*. *Have to* et *ought to* sont des semi-modaux, d'où le *to* ; *have to* se conjugue (*she **has** to*, *did you have to…?*). *Must* n'a pas de passé : on emploie *had to*.",
       "notions": [
         "Obligation, absence d'obligation, interdiction"
       ]
@@ -55,7 +55,8 @@
       "type": "exercice",
       "enonce": "Corrige : *Yesterday I must stay late at the office.*",
       "etapes": [
-        "*Must* n'a pas de passé."
+        "*Must* n'a pas de passé.",
+        "Obligation passée → *had to* + base verbale."
       ],
       "reponse": "*Yesterday I **had to** stay late at the office.*",
       "difficulte": 2

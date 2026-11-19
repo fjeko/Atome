@@ -29,7 +29,7 @@
     {
       "id": "libre-ang-g-s06-s02",
       "titre": "Les phrases clivées : mettre en relief",
-      "contenu": "Pour insister sur un élément :\n\n- **It is / was … that / who …** : *It was **the intern** who found the bug.* — C'est le stagiaire qui a trouvé le bug.\n- **What … is / was …** : ***What** we need **is** more time.* — Ce dont nous avons besoin, c'est de plus de temps.\n- **All … is …** : ***All** I want **is** a clear answer.*\n\nLe verbe **be** s'accorde avec ce qui suit dans *It is… that* (*It **is** the managers who decide* — *it* reste singulier) et se met au temps du récit (*It **was** in 2020 that…*).",
+      "contenu": "Pour insister sur un élément :\n\n- **It is / was … that / who …** : *It was **the intern** who found the bug.* — C'est le stagiaire qui a trouvé le bug.\n- **What … is / was …** : ***What** we need **is** more time.* — Ce dont nous avons besoin, c'est de plus de temps.\n- **All … is …** : ***All** I want **is** a clear answer.*\n\nDans *It is… that / who*, *it* et **be** restent **toujours au singulier**, même si l'élément mis en relief est pluriel : *It **is** the managers who **decide***. C'est le verbe de la relative (*decide*) qui s'accorde avec cet élément. **Be** se met au temps du récit : *It **was** in 2020 that…*",
       "notions": [
         "Phrases clivées"
       ]
@@ -72,7 +72,8 @@
       "type": "exercice",
       "enonce": "Réécris en mettant en relief *a faster connection* : *We need a faster connection.*",
       "etapes": [
-        "Structure en *What … is …*."
+        "Structure en *What … is …*.",
+        "*What* + sujet + verbe (*we need*), puis *is* + l'élément mis en relief."
       ],
       "reponse": "*What we need is a faster connection.*",
       "difficulte": 2
