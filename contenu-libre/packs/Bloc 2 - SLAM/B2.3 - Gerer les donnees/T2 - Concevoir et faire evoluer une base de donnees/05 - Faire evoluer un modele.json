@@ -76,13 +76,13 @@
       "id": "libre-b2-23-sq2-s05-c003",
       "section": "libre-b2-23-sq2-s05-s03",
       "type": "exercice",
-      "enonce": "Évolution pour le club ClubOxygène : un cours peut désormais être encadré par **plusieurs** entraîneurs (auparavant un seul, via `COURS(idCours, intitule, #idEntraineur)`). Donne le nouveau schéma et le script de migration.",
+      "enonce": "Évolution pour le club ClubOxygène : un cours peut désormais être encadré par **plusieurs** entraîneurs (auparavant un seul, via `COURS(idCours, intitule, #idMembre_entraineur)`). Donne le nouveau schéma et le script de migration.",
       "etapes": [
-        "Nouvelle cardinalité : n–n entre COURS et ENTRAINEUR → table ENCADRER(#idCours, #idEntraineur).",
-        "Créer la table : `CREATE TABLE encadrer (id_cours INT, id_entraineur INT, PRIMARY KEY (id_cours, id_entraineur), FOREIGN KEY (id_cours) REFERENCES cours(id), FOREIGN KEY (id_entraineur) REFERENCES entraineur(id_membre));`",
-        "Reprendre l'existant : `INSERT INTO encadrer SELECT id, id_entraineur FROM cours WHERE id_entraineur IS NOT NULL;`",
-        "Supprimer l'ancienne colonne : `ALTER TABLE cours DROP FOREIGN KEY ...; ALTER TABLE cours DROP COLUMN id_entraineur;`",
-        "Adapter requêtes, vues et écrans qui lisaient `cours.id_entraineur`."
+        "Nouvelle cardinalité : n–n entre COURS et ENTRAINEUR → table ENCADRER(#idCours, #idMembre_entraineur).",
+        "Créer la table : `CREATE TABLE encadrer (idCours INT, idMembre_entraineur INT, PRIMARY KEY (idCours, idMembre_entraineur), FOREIGN KEY (idCours) REFERENCES cours(idCours), FOREIGN KEY (idMembre_entraineur) REFERENCES entraineur(idMembre));`",
+        "Reprendre l'existant : `INSERT INTO encadrer SELECT idCours, idMembre_entraineur FROM cours WHERE idMembre_entraineur IS NOT NULL;`",
+        "Supprimer l'ancienne colonne : `ALTER TABLE cours DROP FOREIGN KEY ...; ALTER TABLE cours DROP COLUMN idMembre_entraineur;`",
+        "Adapter requêtes, vues et écrans qui lisaient `cours.idMembre_entraineur`."
       ],
       "reponse": "Table de liaison ENCADRER, données reprises par INSERT … SELECT, puis suppression de l'ancienne clé étrangère.",
       "difficulte": 3

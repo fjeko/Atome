@@ -54,7 +54,7 @@
       "section": "libre-b2-21-sq2-s09-s01",
       "type": "question",
       "recto": "Citer trois erreurs fréquentes en conception objet.",
-      "verso": "Attributs publics (encapsulation oubliée) ; multiplicités lues à l'envers ; composition confondue avec agrégation (ou cycle entre paquetages, vue qui appelle le modèle).",
+      "verso": "Attributs publics (encapsulation oubliée) ; multiplicités lues à l'envers ; composition confondue avec agrégation.",
       "difficulte": 2
     },
     {

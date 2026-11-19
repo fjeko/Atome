@@ -44,7 +44,7 @@
     {
       "id": "libre-b2-23-sq3-s04-s03",
       "titre": "Traduire du SQL",
-      "contenu": "| SQL | MongoDB |\n| --- | --- |\n| `SELECT * FROM t WHERE a = 1` | `db.t.find({ a: 1 })` |\n| `SELECT a, b FROM t` | `db.t.find({}, { a: 1, b: 1 })` |\n| `ORDER BY a DESC LIMIT 5` | `.sort({ a: -1 }).limit(5)` |\n| `SELECT COUNT(*) FROM t WHERE …` | `db.t.countDocuments({ … })` |\n| `GROUP BY x` + agrégat | `aggregate([{ $group: { _id: \"$x\", … } }])` |\n| `UPDATE t SET a = 2 WHERE id = 3` | `db.t.updateOne({ _id: 3 }, { $set: { a: 2 } })` |\n| `DELETE FROM t WHERE …` | `db.t.deleteMany({ … })` |",
+      "contenu": "| SQL | MongoDB |\n| --- | --- |\n| `SELECT * FROM t WHERE a = 1` | `db.t.find({ a: 1 })` |\n| `SELECT a, b FROM t` | `db.t.find({}, { a: 1, b: 1, _id: 0 })` (sans `_id: 0`, `_id` est toujours renvoyé) |\n| `ORDER BY a DESC LIMIT 5` | `.sort({ a: -1 }).limit(5)` |\n| `SELECT COUNT(*) FROM t WHERE …` | `db.t.countDocuments({ … })` |\n| `GROUP BY x` + agrégat | `aggregate([{ $group: { _id: \"$x\", … } }])` |\n| `UPDATE t SET a = 2 WHERE id = 3` | `db.t.updateOne({ _id: 3 }, { $set: { a: 2 } })` |\n| `DELETE FROM t WHERE …` | `db.t.deleteMany({ … })` |",
       "notions": [
         "Traduction SQL vers MongoDB"
       ]

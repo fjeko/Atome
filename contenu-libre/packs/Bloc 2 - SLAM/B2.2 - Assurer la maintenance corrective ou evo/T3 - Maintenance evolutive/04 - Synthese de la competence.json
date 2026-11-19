@@ -64,13 +64,14 @@
       "enonce": "L'application de réservation de salles **SalleLib** (C#) : SQL dans les formulaires, chaîne de connexion en dur, aucun test. On doit ajouter une remise de 20 % pour les associations et héberger la base dans le cloud. Propose un plan.",
       "etapes": [
         "Mettre le projet sous Git (s'il ne l'est pas) et créer un ticket par tâche.",
+        "Avant toute modification, écrire des tests de non-régression sur le comportement actuel (calcul du tarif, réservation) et vérifier qu'ils passent.",
         "Externaliser la chaîne de connexion (configuration hors dépôt) et créer la classe d'accès unique.",
         "Extraire les classes métier et le SQL vers une DAL ; créer les contrôleurs.",
         "Implémenter la remise dans le modèle (`CalculerTarif`) avec des tests unitaires (association / non-association, montant limite).",
         "Migrer la base : export, import sur l'offre choisie (SLA, localisation), compte à privilèges réduits, connexion chiffrée, changement de la configuration.",
         "Relancer tous les tests, faire relire (demande de fusion), déployer."
       ],
-      "reponse": "Refonte MVC progressive, règle métier testée dans le modèle, migration pilotée par la configuration.",
+      "reponse": "Tests de non-régression d'abord, puis refonte MVC progressive, règle métier testée dans le modèle, migration pilotée par la configuration.",
       "difficulte": 3
     }
   ]

@@ -32,7 +32,7 @@
     {
       "id": "libre-b2-21-sq4-s02-s02",
       "titre": "Le compte applicatif dédié",
-      "contenu": "L'application ne doit **pas** se connecter avec le compte `root` : si elle est compromise, toute la base l'est aussi.\n\nOn crée un **utilisateur SQL dédié** avec le **moindre privilège** : seulement les droits dont elle a besoin, seulement sur sa base.\n\n```sql\nCREATE USER 'app_logifret'@'localhost' IDENTIFIED BY 'Ph!8-long-et-unique';\nGRANT SELECT, INSERT, UPDATE, DELETE ON logifret.* TO 'app_logifret'@'localhost';\n```\n\nPas de `GRANT ALL`, pas de droit `DROP` ou `CREATE` : l'application n'a pas à modifier la structure.",
+      "contenu": "L'application ne doit **pas** se connecter avec le compte `root` : si elle est compromise, toute la base l'est aussi.\n\nOn crée un **utilisateur SQL dédié** avec le **moindre privilège** : seulement les droits dont elle a besoin, seulement sur sa base.\n\n```sql\n-- une seule fois, avec un compte d'administration : créer la base\nCREATE DATABASE logifret CHARACTER SET utf8mb4;\n\n-- puis le compte de l'application\nCREATE USER 'app_logifret'@'localhost' IDENTIFIED BY 'Ph!8-long-et-unique';\nGRANT SELECT, INSERT, UPDATE, DELETE ON logifret.* TO 'app_logifret'@'localhost';\n```\n\nPas de `GRANT ALL`, pas de droit `DROP` ou `CREATE` : l'application n'a pas à modifier la structure.",
       "notions": [
         "Compte applicatif",
         "Moindre privilège"

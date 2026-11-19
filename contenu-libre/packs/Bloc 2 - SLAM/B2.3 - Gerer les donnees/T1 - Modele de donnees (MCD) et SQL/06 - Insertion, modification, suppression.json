@@ -50,8 +50,8 @@
     },
     {
       "id": "libre-b2-23-sq1-s06-s04",
-      "titre": "Tables temporaires",
-      "contenu": "Une **table temporaire** n'existe que pendant la **session** de connexion. Elle sert à stocker un résultat intermédiaire.\n\n```sql\nCREATE TEMPORARY TABLE top_emprunteurs AS\nSELECT id_adherent, COUNT(*) AS nb FROM pret GROUP BY id_adherent HAVING COUNT(*) > 10;\n\nSELECT a.nom, t.nb FROM top_emprunteurs t JOIN adherent a ON a.id = t.id_adherent;\n```\n\nElle disparaît automatiquement à la déconnexion.",
+      "titre": "Complément : tables temporaires",
+      "contenu": "Une **table temporaire** n'existe que pendant la **session** de connexion. Elle sert à stocker un résultat intermédiaire.\n\n```sql\nCREATE TEMPORARY TABLE top_emprunteurs AS\nSELECT id_adherent, COUNT(*) AS nb FROM pret GROUP BY id_adherent HAVING COUNT(*) > 10;\n\nSELECT a.nom, t.nb FROM top_emprunteurs t JOIN adherent a ON a.id = t.id_adherent;\n```\n\nElle disparaît automatiquement à la déconnexion.\n\nLien avec cette séance : elle aide à préparer une modification en plusieurs étapes. On calcule d'abord la liste des lignes concernées, on la vérifie, puis on fait l'`UPDATE` ou le `DELETE` à partir d'elle.",
       "notions": [
         "Table temporaire"
       ]

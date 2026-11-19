@@ -35,7 +35,7 @@
     {
       "id": "libre-b2-21-sq2-s06-s02",
       "titre": "Diagramme de paquetages",
-      "contenu": "Le **diagramme de paquetages** montre les paquetages (rectangles à onglet) et leurs **dépendances** (flèches pointillées) :\n- `«import»` : le contenu public du paquetage cible devient utilisable directement ;\n- `«access»` : utilisable, mais avec le nom qualifié.\n\nRègle d'or : **pas de dépendance circulaire**. Si `vue` dépend de `controleur` et que `controleur` dépend de `vue`, on ne peut plus modifier l'un sans casser l'autre.\n\nLes éléments d'un paquetage ont une visibilité : `+` public (visible des paquetages qui l'importent), `-` privé (interne).",
+      "contenu": "Le **diagramme de paquetages** montre les paquetages (rectangles à onglet) et leurs **dépendances** (flèches pointillées) :\n- `«import»` : import **public** : les éléments publics du paquetage cible s'utilisent directement par leur nom, et ce droit est transmis aux paquetages qui importent à leur tour celui-ci ;\n- `«access»` : import **privé** : les noms s'utilisent aussi directement, mais seulement dans ce paquetage (le droit n'est pas transmis).\n\nRègle d'or : **pas de dépendance circulaire**. Si `vue` dépend de `controleur` et que `controleur` dépend de `vue`, on ne peut plus modifier l'un sans casser l'autre.\n\nLes éléments d'un paquetage ont une visibilité : `+` public (visible des paquetages qui l'importent), `-` privé (interne).",
       "notions": [
         "Diagramme de paquetages",
         "Dépendance entre paquetages"
@@ -84,7 +84,7 @@
       "question": "Lequel de ces graphes de dépendances pose problème ?",
       "choix": [
         "vue → controleur → modele",
-        "vue → controleur ; controleur → modele ; controleur → dao",
+        "vue → controleur ; controleur → modele ; controleur → dal",
         "modele → vue ; vue → controleur ; controleur → modele",
         "controleur → modele ; controleur → vue"
       ],

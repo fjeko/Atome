@@ -26,7 +26,7 @@
     {
       "id": "libre-b2-21-sq4-s01-s01",
       "titre": "Le rôle d'un intergiciel",
-      "contenu": "Ton programme C# veut lire la table `client` d'une base MySQL. Entre les deux, il faut un **intergiciel** (*middleware*) : une couche logicielle qui offre une **interface standard** au programme et traduit les demandes pour le **SGBD** visé grâce à un **pilote** (*driver*).\n\n```text\nApplication  →  API d'accès (ADO.NET)  →  pilote MySQL  →  serveur MySQL\n```\n\nAvantage : le code reste quasiment le même si on change de SGBD ; seul le pilote (et quelques détails SQL) change.",
+      "contenu": "Changement de langage : les sous-séquences précédentes utilisaient **Java** (Swing, JDBC) ; celle-ci passe à **C#** (ADO.NET, WinForms). Les principes restent les mêmes : architecture en couches, MVC, accès aux données réservé à des classes dédiées.\n\nTon programme C# veut lire la table `client` d'une base MySQL. Entre les deux, il faut un **intergiciel** (*middleware*) : une couche logicielle qui offre une **interface standard** au programme et traduit les demandes pour le **SGBD** visé grâce à un **pilote** (*driver*).\n\n```text\nApplication  →  API d'accès (ADO.NET)  →  pilote MySQL  →  serveur MySQL\n```\n\nAvantage : le code reste quasiment le même si on change de SGBD ; seul le pilote (et quelques détails SQL) change.",
       "notions": [
         "Intergiciel",
         "Pilote"

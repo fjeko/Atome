@@ -77,12 +77,12 @@
       "enonce": "Nombre de prêts par adhérent (nom), pour les adhérents ayant emprunté au moins 3 fois en 2026, du plus gros emprunteur au plus petit.",
       "etapes": [
         "Joindre adherent et pret : `FROM adherent a JOIN pret p ON p.id_adherent = a.id`.",
-        "Filtrer les lignes de 2026 avant regroupement : `WHERE p.date_pret BETWEEN '2026-01-01' AND '2026-12-31'`.",
+        "Filtrer les lignes de 2026 avant regroupement : `WHERE p.date_pret >= '2026-01-01' AND p.date_pret < '2027-01-01'` (juste même si la colonne contient aussi l'heure).",
         "Grouper : `GROUP BY a.id, a.nom`.",
         "Filtrer les groupes : `HAVING COUNT(*) >= 3`.",
         "Trier : `ORDER BY COUNT(*) DESC`."
       ],
-      "reponse": "`SELECT a.nom, COUNT(*) AS nb FROM adherent a JOIN pret p ON p.id_adherent = a.id WHERE p.date_pret BETWEEN '2026-01-01' AND '2026-12-31' GROUP BY a.id, a.nom HAVING COUNT(*) >= 3 ORDER BY nb DESC;`",
+      "reponse": "`SELECT a.nom, COUNT(*) AS nb FROM adherent a JOIN pret p ON p.id_adherent = a.id WHERE p.date_pret >= '2026-01-01' AND p.date_pret < '2027-01-01' GROUP BY a.id, a.nom HAVING COUNT(*) >= 3 ORDER BY nb DESC;`",
       "difficulte": 2
     },
     {

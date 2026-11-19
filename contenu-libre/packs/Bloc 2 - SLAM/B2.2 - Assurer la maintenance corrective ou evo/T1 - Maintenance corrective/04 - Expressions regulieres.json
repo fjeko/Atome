@@ -32,7 +32,7 @@
     {
       "id": "libre-b2-22-sq1-s04-s02",
       "titre": "Les ancres",
-      "contenu": "Sans ancre, une regex cherche le motif **n'importe où** dans la chaîne : `\\d{5}` trouve une correspondance dans `\"abc123456xyz\"`.\n\nPour **valider** un format complet, on encadre par :\n- `^` : début de la chaîne ;\n- `$` : fin de la chaîne.\n\n`^\\d{5}$` accepte `\"35000\"` mais refuse `\"350001\"` et `\"Code 35000\"`.\n\nOublier les ancres est l'erreur la plus fréquente : la regex devient **trop permissive**.",
+      "contenu": "Sans ancre, une regex cherche le motif **n'importe où** dans la chaîne : `\\d{5}` trouve une correspondance dans `\"abc123456xyz\"`.\n\nPour **valider** un format complet, on encadre par :\n- `^` : début de la chaîne ;\n- `$` : fin de la chaîne.\n\n`^\\d{5}$` accepte `\"35000\"` mais refuse `\"350001\"` et `\"Code 35000\"`.\n\nNuance : en .NET, `$` accepte aussi un retour à la ligne **final** (`\"35000\\n\"` passe). Pour une validation stricte, utilise `\\z` (vraie fin de chaîne) ou nettoie la saisie avec `Trim()` avant.\n\nOublier les ancres est l'erreur la plus fréquente : la regex devient **trop permissive**.",
       "notions": [
         "Ancres"
       ]

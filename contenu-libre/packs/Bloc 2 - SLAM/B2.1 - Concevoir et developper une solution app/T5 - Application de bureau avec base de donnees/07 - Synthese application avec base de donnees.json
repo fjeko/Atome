@@ -54,7 +54,7 @@
       "section": "libre-b2-21-sq4-s07-s01",
       "type": "question",
       "recto": "Citer trois erreurs fréquentes dans une application avec base de données.",
-      "verso": "Concaténer les saisies dans le SQL ; mot de passe en clair (ou compte avec tous les droits) ; connexion jamais fermée (ou logique métier dans les événements).",
+      "verso": "Concaténer les saisies dans le SQL (injection) ; se connecter avec un compte qui a tous les droits ; laisser la connexion ouverte.",
       "difficulte": 2
     },
     {

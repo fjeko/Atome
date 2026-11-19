@@ -23,7 +23,7 @@
     {
       "id": "libre-b2-22-sq2-s06-s01",
       "titre": "Unitaire ou fonctionnel ?",
-      "contenu": "| | Test unitaire | Test fonctionnel |\n| --- | --- | --- |\n| Cible | une méthode, une classe | une fonctionnalité complète |\n| Point de vue | développeur | utilisateur |\n| Exécution | automatique, en millisecondes | souvent manuel ou via l'interface |\n| Exemple | `CalculerFrais(2.5)` renvoie 6 | « Commander un article » de bout en bout |\n\nLes deux sont complémentaires.",
+      "contenu": "| | Test unitaire | Test fonctionnel |\n| --- | --- | --- |\n| Cible | une méthode, une classe | une fonctionnalité complète |\n| Point de vue | développeur | utilisateur |\n| Exécution | automatique, en millisecondes | souvent manuel ou via l'interface |\n| Exemple | `Calculer(30m)` renvoie 4,90 | « Commander un article » de bout en bout |\n\nLes deux sont complémentaires.",
       "notions": [
         "Test unitaire",
         "Test fonctionnel"

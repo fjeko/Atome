@@ -139,7 +139,7 @@
       "etapes": [
         "Partitions : Client, Système, Commerçant.",
         "Initial → « Donner son code » (Client) → « Chercher le colis » (Système).",
-        "Décision : [colis trouvé] → « Remettre le colis » (Commerçant) → « Enregistrer la remise » (Système) → final.",
+        "Décision : [code connu] → « Remettre le colis » (Commerçant) → « Enregistrer la remise » (Système) → final.",
         "[code inconnu] → « Afficher un refus » (Système) → final (ou fusion avant un final unique)."
       ],
       "reponse": "3 partitions, 5 actions, une décision à deux gardes, chaque branche aboutissant à un état final.",

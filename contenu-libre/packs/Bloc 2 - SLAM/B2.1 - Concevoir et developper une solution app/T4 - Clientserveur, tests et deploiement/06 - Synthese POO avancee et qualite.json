@@ -61,7 +61,7 @@
       "id": "libre-b2-21-sq3-s11-c003",
       "section": "libre-b2-21-sq3-s11-s02",
       "type": "exercice",
-      "enonce": "L'appli **ParkFacile** calcule le prix de stationnement. Interface `Tarification` avec `double prix(int minutes)`. Deux implémentations : `TarifHoraire` (2 € par heure entamée) et `TarifForfait` (8 € quel que soit le temps). Écris le code et deux tests pour `TarifHoraire`.",
+      "enonce": "L'appli **ParkFacile** calcule le prix de stationnement. Interface `Tarification` avec `double prix(int minutes)`. Deux implémentations : `TarifHoraire` (2 € par heure entamée) et `TarifForfait` (8 € quel que soit le temps). Avec `TarifHoraire`, 0 minute coûte 0 €. Écris le code et deux tests pour `TarifHoraire` sur la frontière d'une heure.",
       "etapes": [
         "`public interface Tarification { double prix(int minutes); }`",
         "`public class TarifHoraire implements Tarification { public double prix(int minutes) { int heures = (minutes + 59) / 60; return heures * 2.0; } }`",

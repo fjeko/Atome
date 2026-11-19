@@ -48,8 +48,8 @@
     },
     {
       "id": "libre-b2-21-sq1-s02-s04",
-      "titre": "Exercice complet",
-      "contenu": "Pour choisir, pose-toi deux questions :\n1. Est-ce que cette partie a **toujours** lieu ? → **include**.\n2. Est-ce qu'elle n'a lieu **que si** une condition est vraie ? → **extend**.\n3. Est-ce une **variante** d'un cas ou d'un acteur ? → **généralisation**.\n\nErreur classique : mettre `include` partout. Un « si… » dans l'énoncé signale presque toujours un `extend`.",
+      "titre": "Choisir la bonne relation",
+      "contenu": "Pour choisir, pose-toi trois questions :\n1. Est-ce que cette partie a **toujours** lieu ? → **include**.\n2. Est-ce qu'elle n'a lieu **que si** une condition est vraie ? → **extend**.\n3. Est-ce une **variante** d'un cas ou d'un acteur ? → **généralisation**.\n\nErreur classique : mettre `include` partout. Un « si… » dans l'énoncé signale presque toujours un `extend`.",
       "notions": [
         "Choisir la bonne relation"
       ]

@@ -30,7 +30,7 @@
     {
       "id": "libre-b2-23-sq2-s06-s02",
       "titre": "Ordre d'insertion et jeu de test",
-      "contenu": "On insère d'abord les tables **sans clé étrangère** (tables de référence), puis celles qui les référencent :\n\n```text\n1. categorie, editeur, adherent\n2. jeu (référence editeur, categorie)\n3. pret (référence jeu, adherent)\n```\n\nUn bon **jeu de test** :\n- couvre les **cas normaux** et les **cas limites** (adhérent sans prêt, jeu jamais prêté, prêt non rendu avec `date_retour` NULL) ;\n- contient assez de lignes pour vérifier les regroupements ;\n- n'utilise **pas de vraies données personnelles** (noms inventés, e-mails en `@exemple.test`).",
+      "contenu": "On insère d'abord les tables **sans clé étrangère** (tables de référence), puis celles qui les référencent :\n\n```text\n1. editeur, adherent\n2. jeu (référence editeur)\n3. pret (référence jeu, adherent)\n```\n\nUn bon **jeu de test** :\n- couvre les **cas normaux** et les **cas limites** (adhérent sans prêt, jeu jamais prêté, prêt non rendu avec `date_retour` NULL) ;\n- contient assez de lignes pour vérifier les regroupements ;\n- n'utilise **pas de vraies données personnelles** (noms inventés, e-mails en `@exemple.test`).",
       "notions": [
         "Ordre d'insertion",
         "Jeu de données de test"

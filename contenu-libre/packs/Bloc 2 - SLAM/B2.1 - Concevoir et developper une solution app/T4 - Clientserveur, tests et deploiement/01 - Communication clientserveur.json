@@ -78,7 +78,7 @@
         "Il choisit un port libre"
       ],
       "bonneReponse": 1,
-      "explication": "`accept()` est bloquant : c'est pour cela qu'un serveur multi-clients utilise des threads.",
+      "explication": "`accept()` est bloquant : le serveur reste en attente tant qu'aucun client ne se connecte. Pour servir plusieurs clients à la fois, il faudra des threads (S08).",
       "difficulte": 2
     },
     {

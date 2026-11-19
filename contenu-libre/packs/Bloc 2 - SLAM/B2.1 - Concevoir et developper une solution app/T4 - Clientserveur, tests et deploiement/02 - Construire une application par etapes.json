@@ -30,7 +30,7 @@
     {
       "id": "libre-b2-21-sq3-s07-s02",
       "titre": "Tests de non-régression",
-      "contenu": "Une **régression** : une fonctionnalité qui marchait **ne marche plus** après une modification.\n\nLes **tests de non-régression** consistent à **rejouer les tests existants** après chaque changement. Ils sont d'autant plus efficaces qu'ils sont **automatisés** (tests unitaires), car on les relance en un clic.\n\nExemple : en ajoutant les statistiques à FitNote, on modifie la classe `Seance` ; on relance les tests de sauvegarde pour vérifier qu'elle fonctionne toujours.",
+      "contenu": "Une **régression** : une fonctionnalité qui marchait **ne marche plus** après une modification.\n\nLes **tests de non-régression** consistent à **rejouer les tests existants** après chaque changement. Ils sont d'autant plus efficaces qu'ils sont **automatisés**, car on les relance en un clic : ce seront les tests unitaires, vus en S10. En attendant, on garde une liste de vérifications à refaire à la main.\n\nExemple : en ajoutant les statistiques à FitNote, on modifie la classe `Seance` ; on relance les tests de sauvegarde pour vérifier qu'elle fonctionne toujours.",
       "notions": [
         "Non-régression"
       ]
@@ -74,7 +74,7 @@
       "type": "exercice",
       "enonce": "Dans FitNote (architecture MVC), on veut afficher la durée moyenne des séances. Où place-t-on chaque morceau ?",
       "etapes": [
-        "Modèle : méthode `dureeMoyenne()` dans la classe qui gère la liste des séances (+ test unitaire, y compris liste vide).",
+        "Modèle : méthode `dureeMoyenne()` dans la classe qui gère la liste des séances (+ un cas de test, y compris liste vide).",
         "Contrôleur : méthode `obtenirDureeMoyenne()` qui appelle le modèle.",
         "Vue : un libellé qui affiche la valeur fournie par le contrôleur.",
         "Relancer tous les tests puis committer."

@@ -22,7 +22,7 @@
     {
       "id": "libre-b2-21-sq4-s05-s01",
       "titre": "Afficher une liste dans une grille",
-      "contenu": "Un **DataGridView** (WinForms) ou **DataGrid** (WPF) affiche une liste d'objets sous forme de tableau : **une ligne par objet, une colonne par propriété**.\n\n```csharp\ndgvLivraisons.DataSource = controleur.GetLivraisons();\n```\n\nPersonnaliser :\n- masquer une colonne : `dgvLivraisons.Columns[\"Id\"].Visible = false;`\n- empêcher la saisie directe : `ReadOnly = true` ;\n- sélectionner une ligne entière : `SelectionMode = FullRowSelect`.\n\nRécupérer l'objet sélectionné : `var l = (Livraison)dgvLivraisons.CurrentRow.DataBoundItem;`",
+      "contenu": "Un **DataGridView** (WinForms) affiche une liste d'objets sous forme de tableau : **une ligne par objet, une colonne par propriété**.\n\n```csharp\ndgvLivraisons.DataSource = controleur.GetLivraisons();\n```\n\nPersonnaliser :\n- masquer une colonne : `dgvLivraisons.Columns[\"Id\"].Visible = false;`\n- empêcher la saisie directe : `ReadOnly = true` ;\n- sélectionner une ligne entière : `SelectionMode = FullRowSelect`.\n\nRécupérer l'objet sélectionné : `var l = (Livraison)dgvLivraisons.CurrentRow.DataBoundItem;`\n\nEn WPF, l'équivalent est le **DataGrid**, mais son code diffère (liste fournie par `ItemsSource`, pas de `DataSource` ni de `CurrentRow`).",
       "notions": [
         "Grille liée",
         "DataSource"

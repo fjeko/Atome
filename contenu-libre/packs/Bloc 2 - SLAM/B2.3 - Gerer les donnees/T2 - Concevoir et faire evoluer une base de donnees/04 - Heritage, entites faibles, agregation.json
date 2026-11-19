@@ -39,7 +39,7 @@
     {
       "id": "libre-b2-23-sq2-s04-s03",
       "titre": "Entité faible et agrégation",
-      "contenu": "**Entité faible** : son identifiant n'a de sens qu'à l'intérieur d'une autre entité (lien identifiant).\nExemple : les `PLACE`s d'un `STADE` numérotées par tribune : `PLACE(#idStade, numPlace)`.\n\n**Agrégation** : une association devient elle-même participante d'une autre association.\nExemple : l'association *Inscrire* (ADHERENT, COURS) est reliée à un `TARIF` appliqué. Traduction : la table INSCRIRE reçoit une clé étrangère vers TARIF.",
+      "contenu": "**Entité faible** : son identifiant n'a de sens qu'à l'intérieur d'une autre entité (lien identifiant).\nExemple : les `PLACE`s d'un `STADE`, numérotées de 1 à n dans chaque stade : `PLACE(#idStade, numPlace)` (la place 12 existe dans chaque stade : seul le couple stade + numéro l'identifie).\n\n**Agrégation** : une association devient elle-même participante d'une autre association.\nExemple : l'association *Inscrire* (ADHERENT, COURS) est reliée à un `TARIF` appliqué. Traduction : la table INSCRIRE reçoit une clé étrangère vers TARIF.",
       "notions": [
         "Entité faible",
         "Agrégation MCD"
