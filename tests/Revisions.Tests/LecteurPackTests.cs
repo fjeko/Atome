@@ -183,4 +183,22 @@ public class LecteurPackTests
     [Fact]
     public void Champs_inconnus_sont_ignores() =>
         Assert.True(Lire(p => p["futurChamp"] = "valeur").EstValide);
+
+    [Fact]
+    public void Tous_les_cours_libres_livres_sont_valides()
+    {
+        // Un pack refusé à l'import ne s'afficherait pas chez l'étudiant : on lit donc chaque fichier de contenu-libre/.
+        var dossier = new DirectoryInfo(AppContext.BaseDirectory);
+        while (dossier is not null && !Directory.Exists(Path.Combine(dossier.FullName, "contenu-libre", "packs")))
+            dossier = dossier.Parent;
+        Assert.NotNull(dossier);
+
+        var refuses = Directory.EnumerateFiles(Path.Combine(dossier.FullName, "contenu-libre", "packs"), "*.json", SearchOption.AllDirectories)
+            .Select(f => (Fichier: Path.GetRelativePath(dossier.FullName, f), Resultat: LecteurPack.Lire(File.ReadAllText(f))))
+            .Where(x => !x.Resultat.EstValide)
+            .Select(x => $"{x.Fichier} : {string.Join(" ; ", x.Resultat.Erreurs.Select(e => e.Message))}")
+            .ToList();
+
+        Assert.True(refuses.Count == 0, "Cours libres refusés :\n" + string.Join("\n", refuses));
+    }
 }
