@@ -17,13 +17,6 @@ Le code est entièrement visible dans ce dépôt si tu veux vérifier.
 Atome est livré avec **440 cours libres**, basés sur le référentiel officiel du programme de 1ère année de BTS SIO option SLAM, pour commencer tout de suite (voir « Nouveautés »). Pour réviser tes propres cours, lis la section « Créer ses propres packs » du README ; le pack d’exemple (`samples/exemple.json`) permet aussi d’essayer l’application.
 
 ## Nouveautés
-**Nouveau : la calculatrice** (exercices de maths, dans les cartes et les TD) :
-- Ouverture avec **Ctrl+K**, dans une petite fenêtre flottante à deux onglets (Calcul, Matrices).
-- Fractions exactes, historique, `Ans`, et matrices : produit, puissance, inverse, déterminant, transposée.
-- Bouton « Copier dans la réponse » et aide intégrée (ampoule).
-- Grisée quand l'exercice demande de calculer à la main.
-
-**Aussi** :
-- Corrections de qualité dans les cours libres (maths, C#, algo, blocs 1 à 3, CEJM, anglais).
-- Icône « À plusieurs » du TD corrigée.
+- **Correctif** : 2 cours libres étaient refusés à l'import (« 2 packs refusés ») : « Conditions de travail » (anglais) et « Premier programme console » (C#). Ils sont de nouveau disponibles.
+- Un test vérifie désormais que tous les cours libres sont valides avant chaque version.
 - Aucune donnée ni progression touchée.
