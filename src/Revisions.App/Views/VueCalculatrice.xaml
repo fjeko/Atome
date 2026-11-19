@@ -70,12 +70,12 @@
                 <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.12}"
                         Background="{DynamicResource Ton.Attention.Pale}" BorderBrush="{DynamicResource Ton.Attention.Trait}"
                         Visibility="{Binding Desactivee, Converter={StaticResource VisibleSi}}">
-                    <StackPanel Orientation="Horizontal">
+                    <DockPanel>
                         <TextBlock Text="{x:Static ds:Icones.Attention}" Style="{StaticResource Texte.Icone}" Foreground="{DynamicResource Ton.Attention.Texte}"
-                                   VerticalAlignment="Top" Margin="{StaticResource Marge.Droite.12}" />
-                        <TextBlock Text="{Binding Raison}" TextWrapping="Wrap" MaxWidth="290" Foreground="{DynamicResource Ton.Attention.Texte}"
+                                   DockPanel.Dock="Left" VerticalAlignment="Top" Margin="{StaticResource Marge.Droite.12}" />
+                        <TextBlock Text="{Binding Raison}" TextWrapping="Wrap" Foreground="{DynamicResource Ton.Attention.Texte}"
                                    AutomationProperties.LiveSetting="Polite" />
-                    </StackPanel>
+                    </DockPanel>
                 </Border>
 
                 <!-- Tout le reste est grisé (et inutilisable) quand la calculatrice est désactivée. -->
