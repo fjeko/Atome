@@ -48,6 +48,7 @@ révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je
 - **Gamification sans punition** : XP, niveaux, série comptée en semaines, mode reprise après une pause, plafond de cartes par jour.
 - **Mes acquis** : tu déclares ce que tu maîtrises déjà, les cartes s'adaptent à ton niveau.
 - **Planning CNED** : la proposition de ton organisme de formation en frises par matière, avec **import direct du fichier Excel**.
+- **Calculatrice** : sur les exercices de maths, un panneau latéral (Ctrl + K) avec fractions exactes, historique, `Ans` et matrices (produit, puissance, inverse, déterminant, transposée), grisée quand l'exercice demande de calculer à la main.
 - **TD** : de vrais exercices générés et corrigés pas à pas (matrices, graphes, MPM, IPv4, droits Linux, SQL…), **seul** sur la durée de ton choix (15 min à 2 h, correction à la fin comme à l'examen) ou **à plusieurs** avec un simple code à dicter (sans réseau).
 - **Signalements** : un petit drapeau sur chaque carte et chaque section pour signaler une erreur, exportable pour corriger les cours.
 - **Partage `.atome`** : tes cours et ton planning dans un seul fichier, à donner à un camarade.
@@ -168,7 +169,7 @@ Au démarrage, l'application importe automatiquement les packs de son dossier de
 dotnet test
 ```
 
-1032 tests : validation des packs, import et réimport (historique conservé), algorithme FSRS,
+1357 tests : calculatrice (rationnels exacts, analyseur, matrices, erreurs, règle « calcul à la main »), validation des packs, import et réimport (historique conservé), algorithme FSRS,
 construction des sessions (types de session, paquets de matière, motifs, verrouillage des cours non lus, durée estimée), mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
 bibliothèque en niveaux, couleurs et contrastes de chaque thème, système de design (contrastes WCAG AA de toutes les paires
 texte / fond pour chaque thème et chaque accent, couleurs des matières, banque de messages de la mascotte), enregistrement des réglages,

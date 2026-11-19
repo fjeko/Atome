@@ -40,6 +40,15 @@ La zone de texte sous la carte est facultative. Zone vide, **Espace** voit la r�
 | **Entrée** (hors des cases) | la suite logique : go, vérifier, étape suivante, exercice suivant |
 | **I** (hors des cases) | indice |
 
+### Calculatrice (exercices de maths)
+
+| Touche | Action |
+| --- | --- |
+| **Ctrl + K** | ouvrir la calculatrice, y revenir, ou la fermer |
+| **Entrée** | calculer |
+| **↑** et **↓** | revenir sur les calculs précédents |
+| **Échap** | fermer la calculatrice et reprendre l'exercice |
+
 ### Partout
 
 | Touche | Action |

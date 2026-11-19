@@ -5,6 +5,7 @@ using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Revisions.App.Services;
+using Revisions.Core.Calculatrice;
 using Revisions.Core.Gamification;
 using Revisions.Core.TdGroupe;
 using Revisions.Data;
@@ -32,7 +33,7 @@ public enum PhaseTd
 public sealed record ThemeTd(string Nom, IGenerateurTd Generateur, IReadOnlyList<string> Niveaux, bool DemandeUneSeance);
 
 /// <summary>Une séance de la bibliothèque, proposée pour un TD « séance ».</summary>
-public sealed record SeanceTd(string PackId, string Libelle);
+public sealed record SeanceTd(string PackId, string Libelle, string Matiere = "");
 
 /// <summary>Une ligne du récap de fin.</summary>
 public sealed record LigneRecapTd(string Numero, string Titre, string Issue, IssueExercice Valeur);
@@ -85,7 +86,7 @@ public partial class TdGroupeViewModel : ObservableObject
         ];
         Seances = bibliotheque.ListerSeances(etat.Jour)
             .Where(s => s.NbCartes > 0)
-            .Select(s => new SeanceTd(s.PackId, $"{s.Matiere} · {s.Seance}"))
+            .Select(s => new SeanceTd(s.PackId, $"{s.Matiere} · {s.Seance}", s.Matiere))
             .ToList();
         _themeChoisi = Themes[Math.Min(_dernierThemeIndex, Themes.Count - 1)];
         _niveauIndex = _dernierNiveauIndex;
@@ -288,9 +289,82 @@ public partial class TdGroupeViewModel : ObservableObject
 
     private ExerciceTd Exercice => _td!.Exercices[_index];
 
+    // ==== Calculatrice (exercices de maths) ===================================================
+
+    /// <summary>La calculatrice du panneau latéral (bouton dans la barre du haut).</summary>
+    public CalculatriceViewModel Calculatrice => _main.Calculatrice;
+
+    partial void OnPhaseChanged(PhaseTd value) => MettreAJourCalculatrice();
+
+    /// <summary>
+    /// Dit à la calculatrice où l'on en est : permise sur un exercice de maths, grisée (avec la raison) si l'exercice
+    /// consiste à calculer à la main, absente ailleurs. Quand une grille de réponse est affichée, elle sait la remplir.
+    /// </summary>
+    internal void MettreAJourCalculatrice()
+    {
+        var calculatrice = _main.Calculatrice;
+        if (_td is null || !EnExercice || _index >= _td.Exercices.Count)
+        {
+            calculatrice.Definir(EtatCalculatrice.Indisponible);
+            return;
+        }
+        var e = Exercice;
+        string? matiere = e.Matiere ?? (_td.Parametres.PackId is { } pack ? Seances.FirstOrDefault(s => s.PackId == pack)?.Matiere : null);
+        if (!RegleCalculatrice.EstMatiereMaths(matiere))
+            calculatrice.Definir(EtatCalculatrice.Indisponible);
+        else if (e.SansCalculatrice is { } raison)
+            calculatrice.Definir(EtatCalculatrice.Desactivee, raison);
+        else
+        {
+            calculatrice.Definir(EtatCalculatrice.Disponible);
+            calculatrice.CopierVersReponse = CopierDansLaReponse;
+        }
+    }
+
+    /// <summary>Remplit la grille de réponse dont la taille correspond au résultat (la première encore vide). Renvoie le message à afficher.</summary>
+    private string? CopierDansLaReponse(Valeur valeur)
+    {
+        if (Phase != PhaseTd.Recherche) return "La correction est affichée : on ne modifie plus les cases.";
+        var grilles = Questions.Where(q => q.EstGrille && q.Modifiable).ToList();
+        if (grilles.Count == 0) return "Cet exercice n'a pas de grille à remplir : note ta réponse comme demandé.";
+
+        var (lignes, colonnes) = valeur switch
+        {
+            ValeurMatrice m => (m.Matrice.Lignes, m.Matrice.Colonnes),
+            _ => (1, 1),
+        };
+        string decrit = valeur is ValeurMatrice ? $"une matrice {lignes}×{colonnes}" : "un nombre";
+
+        // Une liste de valeurs (une par tâche ou par sommet) s'affiche en colonne : même cases, même ordre, donc 1×n et n×1 vont ensemble.
+        bool Convient(QuestionTdViewModel q) =>
+            q.Cases.Count == lignes * colonnes
+            && ((q.Lignes == lignes && q.Colonnes == colonnes) || (q.Lignes == colonnes && q.Colonnes == lignes && (lignes == 1 || colonnes == 1)));
+        var possibles = grilles.Where(Convient).ToList();
+        if (possibles.Count == 0)
+        {
+            string tailles = string.Join(" ou ", grilles.Select(q => $"{q.Lignes}×{q.Colonnes}").Distinct());
+            return $"Ce résultat est {decrit}, mais la grille de réponse de cet exercice fait {tailles} : les tailles ne correspondent pas.";
+        }
+
+        var valeurs = new List<string>();
+        foreach (var r in valeur is ValeurMatrice mat
+                     ? Enumerable.Range(0, lignes * colonnes).Select(k => (Rationnel?)mat.Matrice[k / colonnes, k % colonnes])
+                     : [(valeur as Nombre)?.Exact])
+        {
+            if (r is not { EstEntier: true } entier || entier.Numerateur > int.MaxValue || entier.Numerateur < int.MinValue)
+                return "Ce résultat n'est pas un nombre entier (fraction ou valeur approchée) : les grilles de réponse attendent des entiers.";
+            valeurs.Add(entier.Numerateur.ToString(System.Globalization.CultureInfo.InvariantCulture));
+        }
+
+        var cible = possibles.FirstOrDefault(q => q.Cases.All(c => string.IsNullOrWhiteSpace(c.Valeur))) ?? possibles[0];
+        for (int i = 0; i < valeurs.Count; i++) cible.Cases[i].Valeur = valeurs[i];
+        return $"Copié dans la réponse {cible.Lettre}";
+    }
+
     private void AfficherExercice()
     {
         var exercice = Exercice;
+        MettreAJourCalculatrice();
         _indiceVu = false;
         _etapesVues = 0;
         Questions.Clear();

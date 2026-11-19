@@ -23,6 +23,9 @@ public partial class MainViewModel(
     ImportateurPacks importateur,
     BaseDeDonnees baseDeDonnees) : ObservableObject
 {
+    /// <summary>La calculatrice (panneau latéral des exercices de maths) : une seule pour la session, avec sa mémoire.</summary>
+    public CalculatriceViewModel Calculatrice { get; } = new();
+
     /// <summary>ViewModel de l'écran affiché.</summary>
     [ObservableProperty]
     private object? _vueCourante;
@@ -123,6 +126,10 @@ public partial class MainViewModel(
         }
         NavigationVisible = rubrique is not null;
         VueCourante = vue;
+        // La calculatrice n'existe que sur les exercices de maths : chaque écran dit s'il en veut une.
+        Calculatrice.Definir(EtatCalculatrice.Indisponible);
+        (vue as SessionViewModel)?.MettreAJourCalculatrice();
+        (vue as TdGroupeViewModel)?.MettreAJourCalculatrice();
         if (vue is AccueilViewModel && _propositionEnAttente is not null)
         {
             MiseAJour = _propositionEnAttente;

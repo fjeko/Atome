@@ -124,4 +124,6 @@ public static class Icones
     public const string ChevronBas = "";
     public const string ChevronHaut = "";
     public const string Bulle = "";
+    /// <summary>Calculatrice (U+E8EF).</summary>
+    public const string Calculatrice = "";
 }

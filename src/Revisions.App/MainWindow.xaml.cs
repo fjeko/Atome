@@ -56,6 +56,19 @@ public partial class MainWindow : Window
             e.Handled = true;
             return;
         }
+        // Ctrl + K : ouvre la calculatrice (exercices de maths), la ferme si on est dedans, ou y ramène le curseur.
+        if (e.Key == Key.K && Keyboard.Modifiers == ModifierKeys.Control && DataContext is MainViewModel principal)
+        {
+            var calculatrice = principal.Calculatrice;
+            e.Handled = true;
+            if (!calculatrice.Visible) return;
+            if (calculatrice.EstOuverte && PanneauCalculatrice.IsKeyboardFocusWithin) calculatrice.Fermer();
+            else if (calculatrice.EstOuverte) PanneauCalculatrice.FocaliserSaisie();
+            else calculatrice.EstOuverte = true; // le panneau prend lui-même le focus en s'affichant
+            return;
+        }
+        // Dans la calculatrice, les touches sont pour elle (Entrée, Échap, Espace…) et pas pour la session.
+        if (PanneauCalculatrice.IsKeyboardFocusWithin) return;
         if (e.OriginalSource is TextBoxBase) return;
         // Ctrl, Alt et Windows annoncent un autre raccourci : on ne s'en mêle pas. Maj, elle, est permise :
         // sur un clavier AZERTY, les chiffres de la rangée du haut se tapent avec Maj.

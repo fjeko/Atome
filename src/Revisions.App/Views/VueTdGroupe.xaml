@@ -335,6 +335,12 @@
             <DockPanel>
                 <Button DockPanel.Dock="Left" Content="Quitter" Command="{Binding QuitterCommand}" Style="{StaticResource BoutonFantome}" ds:Forme.Icone="{x:Static ds:Icones.Fermer}" Foreground="{DynamicResource Pinceau.TexteSecondaire}"
                         ToolTip="Quitter le TD : les exercices faits comptent dans ton récap" />
+                <Button Style="{StaticResource BoutonFantome}" Content="Calculatrice" ds:Forme.Icone="{x:Static ds:Icones.Calculatrice}"
+                            DataContext="{Binding Calculatrice}" Command="{Binding BasculerCommand}" Margin="{StaticResource Marge.Gauche.12}" DockPanel.Dock="Right"
+                            Visibility="{Binding Visible, Converter={StaticResource VisibleSi}}"
+                            Foreground="{DynamicResource Pinceau.TexteSecondaire}" AutomationProperties.Name="Calculatrice"
+                            ToolTip="Ouvrir ou fermer la calculatrice (Ctrl + K)" />
+
                 <TextBlock DockPanel.Dock="Right" Text="{Binding Avancement}" FontWeight="SemiBold" VerticalAlignment="Center" />
                 <TextBlock DockPanel.Dock="Right" Text="{Binding Chrono}" Style="{StaticResource Texte.Secondaire}" VerticalAlignment="Center" Margin="0,0,16,0"
                            Visibility="{Binding Chrono, Converter={StaticResource VisibleSi}}" ToolTip="Temps passé / durée choisie : un simple repère" />

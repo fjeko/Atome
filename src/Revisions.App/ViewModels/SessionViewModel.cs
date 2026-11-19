@@ -127,6 +127,13 @@ public partial class SessionViewModel : ObservableObject
 
     private CarteAReviser Courante => _session.Courante!;
 
+    /// <summary>La calculatrice du panneau latéral (bouton dans la barre du haut).</summary>
+    public CalculatriceViewModel Calculatrice => _main.Calculatrice;
+
+    /// <summary>Calculatrice permise sur les cartes de la matière Mathématiques, invisible ailleurs.</summary>
+    internal void MettreAJourCalculatrice() =>
+        _main.Calculatrice.Definir(Revisions.Core.Calculatrice.RegleCalculatrice.EstMatiereMaths(Matiere) ? EtatCalculatrice.Disponible : EtatCalculatrice.Indisponible);
+
     // ---- Affichage -------------------------------------------------------------------------
 
     /// <summary>Prépare l'écran pour la carte courante (réponse cachée).</summary>
@@ -147,6 +154,7 @@ public partial class SessionViewModel : ObservableObject
         Motif = _session.CouranteEstUnRetour ? "On la revoit · pour bien l'ancrer" : Courante.Motif?.Texte;
         EstUnRetour = _session.CouranteEstUnRetour;
         Matiere = Courante.Matiere;
+        MettreAJourCalculatrice();
         Partie = Courante.Partie;
         FilCourt = string.Join(" › ", new[] { Courante.Partie, Courante.Seance }.Where(t => !string.IsNullOrWhiteSpace(t)));
         MettreAJourEcran(defilerEnBas: false);

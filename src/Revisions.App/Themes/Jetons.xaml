@@ -87,6 +87,9 @@
     <!-- Colonne des réponses du TD en groupe : une grille de 4 colonnes y tient ; les choix passent à la ligne. -->
     <sys:Double x:Key="Largeur.ZoneReponse">520</sys:Double>
 
+    <!-- Panneau de la calculatrice (colonne à droite de l.exercice, sans le masquer). -->
+    <sys:Double x:Key="Largeur.Calculatrice">380</sys:Double>
+
     <!-- Écran Réglages : colonne de navigation, largeur d'un contrôle aligné à droite (curseur, champ, liste), largeur de la valeur chiffrée. -->
     <sys:Double x:Key="Largeur.ControleReglage">240</sys:Double>
     <sys:Double x:Key="Largeur.ValeurReglage">56</sys:Double>

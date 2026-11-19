@@ -17,6 +17,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -158,6 +159,10 @@
         <ContentControl x:Name="Ecran" Grid.Column="1" Content="{Binding VueCourante, NotifyOnTargetUpdated=True}"
                         Binding.TargetUpdated="EcranChange" Focusable="False" />
 
+        <!-- ===== Calculatrice : panneau à droite de l'exercice (maths seulement), voir CalculatriceViewModel ===== -->
+        <v:VueCalculatrice x:Name="PanneauCalculatrice" Grid.Column="2" Grid.RowSpan="2" DataContext="{Binding Calculatrice}"
+                           Visibility="{Binding PanneauAffiche, Converter={StaticResource VisibleSi}}" />
+
         <!-- ===== Bandeaux, posés en bas du contenu ===== -->
         <StackPanel Grid.Column="1" Grid.Row="1" MaxWidth="{StaticResource Largeur.Contenu}" Margin="32,0,32,12">
             <!-- Nouvelle version disponible : jamais pendant une session (voir MiseAJourVisible). -->
@@ -208,7 +213,7 @@
         </StackPanel>
 
         <!-- ===== Toasts (notifications brèves) ===== -->
-        <ItemsControl Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="{StaticResource Marge.Bas.24}"
+        <ItemsControl Grid.ColumnSpan="3" Grid.RowSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="{StaticResource Marge.Bas.24}"
                       ItemsSource="{x:Static s:ServiceToast.Visibles}" ItemTemplate="{StaticResource Modele.Toast}"
                       IsHitTestVisible="False" Focusable="False" />
     </Grid>

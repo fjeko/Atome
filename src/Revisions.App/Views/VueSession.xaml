@@ -25,6 +25,12 @@
                     ToolTip="Faire une pause : ce qui est fait est enregistré (Échap)" />
             <Grid DockPanel.Dock="Right">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Style="{StaticResource BoutonFantome}" Content="Calculatrice" ds:Forme.Icone="{x:Static ds:Icones.Calculatrice}"
+                            DataContext="{Binding Calculatrice}" Command="{Binding BasculerCommand}" Margin="{StaticResource Marge.Droite.8}"
+                            Visibility="{Binding Visible, Converter={StaticResource VisibleSi}}"
+                            Foreground="{DynamicResource Pinceau.TexteSecondaire}" AutomationProperties.Name="Calculatrice"
+                            ToolTip="Ouvrir ou fermer la calculatrice (Ctrl + K)" />
+
                     <TextBlock Text="{Binding MessageSignalement}" Style="{StaticResource Texte.Meta}" VerticalAlignment="Center"
                                Margin="{StaticResource Marge.Droite.4}" TextWrapping="NoWrap"
                                Visibility="{Binding MessageSignalement, Converter={StaticResource VisibleSi}}" />
