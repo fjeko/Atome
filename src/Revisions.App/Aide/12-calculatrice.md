@@ -1,6 +1,6 @@
 # Calculatrice
 
-Sur les exercices de **mathématiques** (cartes de la matière Maths et TD de maths, seul ou en groupe), une **calculatrice** s'ouvre dans un panneau à droite de l'écran, sans cacher l'exercice. Elle n'existe pas dans les autres matières.
+Sur les exercices de **mathématiques** (cartes de la matière Maths et TD de maths, seul ou en groupe), une **calculatrice** s'ouvre en petite fenêtre par-dessus l'exercice (tire son titre pour la déplacer). Elle n'existe pas dans les autres matières.
 
 ### L'ouvrir et la fermer
 
@@ -23,7 +23,7 @@ Le bouton **Décimal** passe des fractions exactes aux valeurs décimales, avec 
 
 ### Les matrices
 
-Ouvre **Matrices** dans le panneau : choisis un nom (A, B, C…), une taille de 1×1 à 5×5, remplis la grille (3, -1/2 ou 0,25), puis **Enregistrer** (ou **Entrée** dans une case). Ensuite, écris par exemple :
+Ouvre l'onglet **Matrices** : choisis un nom (A, B, C…), une taille de 1×1 à 5×5, remplis la grille (3, -1/2 ou 0,25), puis **Enregistrer** (ou **Entrée** dans une case). Ensuite, écris par exemple :
 
 | Tu tapes | Résultat |
 | --- | --- |
@@ -36,7 +36,7 @@ Ouvre **Matrices** dans le panneau : choisis un nom (A, B, C…), une taille de 
 | `A^T` ou `trans(A)` | transposée |
 | `I3` | matrice identité 3×3 |
 
-Le résultat s'affiche en grille. Sur un TD, le bouton **Copier dans la réponse** remplit la grille de réponse quand les tailles correspondent (et que le résultat est entier). Si quelque chose ne va pas, la calculatrice t'explique en français, par exemple : *Les tailles de A (2×3) et B (2×3) ne permettent pas le produit A×B*.
+Le résultat s'affiche en grille (l'historique est replié sous le résultat). Sur un TD, le bouton **Copier dans la réponse** remplit la grille de réponse quand les tailles correspondent (et que le résultat est entier). Si quelque chose ne va pas, la calculatrice t'explique en français, par exemple : *Les tailles de A (2×3) et B (2×3) ne permettent pas le produit A×B*.
 
 ### Quand elle est grisée
 

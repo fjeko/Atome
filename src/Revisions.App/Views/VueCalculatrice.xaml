@@ -4,8 +4,9 @@
              xmlns:ds="clr-namespace:Revisions.App.Controles"
              x:Name="Racine" Focusable="False">
     <!--
-        Calculatrice en panneau latéral : elle se pose à droite de l'exercice sans le masquer.
-        Tout se fait au clavier : Entrée calcule, ↑ ↓ parcourent l'historique, Échap ferme (Ctrl + K ouvre ou ferme).
+        Calculatrice : une petite fenêtre flottante posée par-dessus l'exercice (on la déplace en tirant son titre).
+        Deux onglets : « Calcul » (une ligne, un résultat) et « Matrices » (définir A, B, C…).
+        Au clavier : Entrée calcule, ↑ ↓ parcourent l'historique, Échap ferme (Ctrl + K ouvre ou ferme).
         Toute la logique est dans CalculatriceViewModel ; ce fichier ne contient que l'apparence.
     -->
     <UserControl.Resources>
@@ -40,34 +41,31 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <!-- Petite touche d'aide à la saisie (Ans, ^-1, det(…) : elle insère du texte dans la ligne de calcul. -->
-        <Style x:Key="Touche" TargetType="Button" BasedOn="{StaticResource BoutonSecondaire}">
-            <Setter Property="Padding" Value="10,4" />
-            <Setter Property="Margin" Value="0,0,6,6" />
-            <Setter Property="MinWidth" Value="40" />
-            <Setter Property="FontFamily" Value="{DynamicResource Police.Code}" />
-        </Style>
     </UserControl.Resources>
 
-    <Border Background="{DynamicResource Pinceau.Surface}"
-            BorderBrush="{DynamicResource Pinceau.Bordure}" BorderThickness="1,0,0,0"
+    <Border Width="{StaticResource Largeur.Calculatrice}" Style="{StaticResource CarteFlottante}" Padding="0"
             AutomationProperties.Name="Calculatrice">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Focusable="False">
-            <StackPanel Margin="{StaticResource Remplissage.CarteLarge}">
+        <Border.RenderTransform>
+            <TranslateTransform x:Name="Deplacement" />
+        </Border.RenderTransform>
+        <DockPanel>
 
-                <!-- ===== En-tête ===== -->
+            <!-- ===== Titre (on tire ici pour déplacer la fenêtre) + fermer ===== -->
+            <Border x:Name="Titre" DockPanel.Dock="Top" Padding="16,8,8,0" Background="Transparent" Cursor="SizeAll"
+                    ToolTip="Tire ici pour déplacer. Entrée : calculer · ↑ ↓ : historique · Échap : fermer · Ctrl + K : ouvrir ou fermer">
                 <DockPanel>
                     <Button DockPanel.Dock="Right" Style="{StaticResource BoutonIcone}" ds:Forme.Icone="{x:Static ds:Icones.Fermer}"
-                            Command="{Binding FermerCommand}" ToolTip="Fermer la calculatrice (Échap)"
-                            AutomationProperties.Name="Fermer la calculatrice" />
-                    <TextBlock Text="Calculatrice" Style="{StaticResource Texte.SousTitre}" VerticalAlignment="Center" />
+                            Command="{Binding FermerCommand}" ToolTip="Fermer (Échap)" AutomationProperties.Name="Fermer la calculatrice" />
+                    <TextBlock Text="{x:Static ds:Icones.Calculatrice}" Style="{StaticResource Texte.Icone}" VerticalAlignment="Center"
+                               Foreground="{DynamicResource Pinceau.AccentTexte}" Margin="{StaticResource Marge.Droite.8}" />
+                    <TextBlock Text="Calculatrice" Style="{StaticResource Texte.Fort}" VerticalAlignment="Center" />
                 </DockPanel>
-                <TextBlock Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.4}" TextWrapping="Wrap"
-                           Text="Entrée : calculer · ↑ ↓ : historique · Échap : fermer · Ctrl + K : ouvrir ou fermer" />
+            </Border>
+
+            <StackPanel Margin="16,4,16,16">
 
                 <!-- Calculatrice grisée : l'exercice demande justement de calculer à la main. -->
-                <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.12}"
+                <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Bas.12}"
                         Background="{DynamicResource Ton.Attention.Pale}" BorderBrush="{DynamicResource Ton.Attention.Trait}"
                         Visibility="{Binding Desactivee, Converter={StaticResource VisibleSi}}">
                     <DockPanel>
@@ -79,7 +77,7 @@
                 </Border>
 
                 <!-- Tout le reste est grisé (et inutilisable) quand la calculatrice est désactivée. -->
-                <StackPanel IsEnabled="{Binding Active}" Margin="{StaticResource Marge.Haut.12}">
+                <StackPanel IsEnabled="{Binding Active}">
                     <StackPanel.Style>
                         <Style TargetType="StackPanel">
                             <Style.Triggers>
@@ -90,169 +88,155 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <!-- ===== Ligne de calcul ===== -->
-                    <TextBlock Text="Ton calcul" Style="{StaticResource Texte.Meta}" />
-                    <TextBox x:Name="SaisieBox" Text="{Binding Saisie, UpdateSourceTrigger=PropertyChanged}"
-                             Margin="{StaticResource Marge.Haut.4}" FontFamily="{DynamicResource Police.Code}"
-                             FontSize="{DynamicResource Taille.SousTitre}" MinHeight="44" VerticalContentAlignment="Center"
-                             AutomationProperties.Name="Ton calcul" AutomationProperties.HelpText="Par exemple 1/3+1/6 ou det(A). Entrée pour calculer."
-                             ToolTip="Ex. : 1/3+1/6   2(3+4)   sqrt(16)   A*B   A^-1   det(A)   A^T   I3" />
+                    <!-- Deux onglets, rien d'autre au premier regard. -->
+                    <UniformGrid Columns="2" Margin="{StaticResource Marge.Bas.12}">
+                        <ToggleButton Content="Calcul" Style="{StaticResource BoutonBascule}" IsChecked="{Binding OngletCalcul}" Margin="0,0,4,0" />
+                        <ToggleButton Content="Matrices" Style="{StaticResource BoutonBascule}" IsChecked="{Binding EditeurOuvert}" Margin="4,0,0,0"
+                                      ToolTip="Définir les matrices A, B, C… pour les utiliser dans un calcul" />
+                    </UniformGrid>
 
-                    <!-- Erreur expliquée en français (ambre, jamais rouge : le ton reste doux). -->
-                    <Border Margin="{StaticResource Marge.Haut.8}" Padding="12,8" CornerRadius="{StaticResource Rayon.Controle}"
-                            Background="{DynamicResource Ton.Attention.Pale}" BorderBrush="{DynamicResource Ton.Attention.Trait}" BorderThickness="1"
-                            Visibility="{Binding Erreur, Converter={StaticResource VisibleSi}}">
-                        <TextBlock Text="{Binding Erreur}" TextWrapping="Wrap" Foreground="{DynamicResource Ton.Attention.Texte}"
-                                   AutomationProperties.LiveSetting="Assertive" />
-                    </Border>
+                    <!-- ================= Onglet « Calcul » ================= -->
+                    <StackPanel Visibility="{Binding EditeurOuvert, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}">
+                        <TextBox x:Name="SaisieBox" Text="{Binding Saisie, UpdateSourceTrigger=PropertyChanged}"
+                                 FontFamily="{DynamicResource Police.Code}" FontSize="{DynamicResource Taille.SousTitre}" MinHeight="44"
+                                 VerticalContentAlignment="Center"
+                                 AutomationProperties.Name="Ton calcul" AutomationProperties.HelpText="Par exemple 1/3+1/6 ou A*B. Entrée pour calculer."
+                                 ToolTip="Entrée pour calculer. Ex. : 1/3+1/6   2(3+4)   sqrt(16)   A*B   A^-1   det(A)   A^T   I3   Ans" />
+                        <TextBlock Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.4}" TextWrapping="Wrap"
+                                   Text="Entrée pour calculer. Ex. : 1/3+1/6, A*B, det(A), Ans" />
 
-                    <!-- Touches d'aide : elles écrivent dans la ligne de calcul à l'endroit du curseur. -->
-                    <WrapPanel Margin="{StaticResource Marge.Haut.8}">
-                        <Button Style="{StaticResource Touche}" Content="Ans" Tag="Ans" Click="Inserer" ToolTip="Le dernier résultat" AutomationProperties.Name="Dernier résultat (Ans)" />
-                        <Button Style="{StaticResource Touche}" Content="^-1" Tag="^-1" Click="Inserer" ToolTip="Inverse d'une matrice : A^-1" AutomationProperties.Name="Inverse" />
-                        <Button Style="{StaticResource Touche}" Content="^T" Tag="^T" Click="Inserer" ToolTip="Transposée : A^T" AutomationProperties.Name="Transposée" />
-                        <Button Style="{StaticResource Touche}" Content="det(" Tag="det(" Click="Inserer" ToolTip="Déterminant : det(A)" AutomationProperties.Name="Déterminant" />
-                        <Button Style="{StaticResource Touche}" Content="sqrt(" Tag="sqrt(" Click="Inserer" ToolTip="Racine carrée" AutomationProperties.Name="Racine carrée" />
-                        <Button Style="{StaticResource Touche}" Content="pi" Tag="pi" Click="Inserer" ToolTip="Le nombre pi" AutomationProperties.Name="Pi" />
-                        <Button Style="{StaticResource Touche}" Content="I3" Tag="I3" Click="Inserer" ToolTip="Matrice identité 3×3 (I2, I4…)" AutomationProperties.Name="Matrice identité" />
-                    </WrapPanel>
-                    <Button Content="Calculer" Style="{StaticResource BoutonPrincipal}" Command="{Binding CalculerCommand}" HorizontalAlignment="Stretch"
-                            ToolTip="Entrée" />
+                        <!-- Erreur expliquée en français (ambre, jamais rouge : le ton reste doux). -->
+                        <Border Margin="{StaticResource Marge.Haut.8}" Padding="12,8" CornerRadius="{StaticResource Rayon.Controle}"
+                                Background="{DynamicResource Ton.Attention.Pale}" BorderBrush="{DynamicResource Ton.Attention.Trait}" BorderThickness="1"
+                                Visibility="{Binding Erreur, Converter={StaticResource VisibleSi}}">
+                            <TextBlock Text="{Binding Erreur}" TextWrapping="Wrap" Foreground="{DynamicResource Ton.Attention.Texte}"
+                                       AutomationProperties.LiveSetting="Assertive" />
+                        </Border>
 
-                    <!-- ===== Résultat ===== -->
-                    <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.16}" Background="{DynamicResource Pinceau.Surelevee}">
-                        <StackPanel>
-                            <DockPanel>
-                                <ToggleButton DockPanel.Dock="Right" Style="{StaticResource BoutonBascule}" IsChecked="{Binding ModeDecimal}"
-                                              Content="Décimal" Padding="10,4" ToolTip="Passer des fractions exactes aux valeurs décimales (avec la virgule), et inversement"
-                                              AutomationProperties.Name="Afficher en valeur décimale" />
-                                <TextBlock Text="Résultat" Style="{StaticResource Texte.Meta}" VerticalAlignment="Center" />
-                            </DockPanel>
-                            <TextBlock Text="Fais un calcul : 1/3+1/6 donne 1/2." Style="{StaticResource Texte.Secondaire}" TextWrapping="Wrap"
-                                       Margin="{StaticResource Marge.Haut.8}" Visibility="{Binding APasDeResultat, Converter={StaticResource VisibleSi}}" />
+                        <!-- Résultat : n'apparaît qu'après un calcul. -->
+                        <StackPanel Margin="{StaticResource Marge.Haut.12}" Visibility="{Binding APasDeResultat, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}">
                             <TextBlock Text="{Binding ResultatTexte}" Style="{StaticResource Texte.Titre}" TextWrapping="Wrap"
-                                       Margin="{StaticResource Marge.Haut.8}" FontFamily="{DynamicResource Police.Code}"
-                                       Visibility="{Binding ResultatEstNombre, Converter={StaticResource VisibleSi}}"
+                                       FontFamily="{DynamicResource Police.Code}" Visibility="{Binding ResultatEstNombre, Converter={StaticResource VisibleSi}}"
                                        AutomationProperties.LiveSetting="Polite" />
-                            <TextBlock Text="Valeur approchée (arrondie à 10 chiffres)" Style="{StaticResource Texte.Meta}"
+                            <TextBlock Text="valeur approchée" Style="{StaticResource Texte.Meta}"
                                        Visibility="{Binding ResultatApproche, Converter={StaticResource VisibleSi}}" />
 
-                            <!-- Résultat matriciel : une grille entre parenthèses, en fractions exactes. -->
-                            <StackPanel Visibility="{Binding ResultatEstMatrice, Converter={StaticResource VisibleSi}}" Margin="{StaticResource Marge.Haut.8}">
-                                <TextBlock Text="{Binding ResultatTaille}" Style="{StaticResource Texte.Meta}" />
-                                <Border HorizontalAlignment="Left" Padding="8,4" CornerRadius="12" BorderThickness="2,0,2,0"
-                                        BorderBrush="{DynamicResource Pinceau.Texte}" Margin="{StaticResource Marge.Haut.4}">
-                                    <ItemsControl ItemsSource="{Binding ResultatCases}" Focusable="False" AutomationProperties.Name="Matrice résultat">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <UniformGrid Columns="{Binding DataContext.ResultatColonnes, ElementName=Racine}" />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding}" TextAlignment="Center" Margin="10,4" MinWidth="28"
-                                                           FontFamily="{DynamicResource Police.Code}" FontSize="{DynamicResource Taille.SousTitre}" />
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </Border>
-                            </StackPanel>
-
-                            <Button Content="Copier dans la réponse" Style="{StaticResource BoutonSecondaire}" Command="{Binding CopierDansReponseCommand}"
-                                    ds:Forme.Icone="{x:Static ds:Icones.Copier}" HorizontalAlignment="Left" Margin="{StaticResource Marge.Haut.12}"
-                                    Visibility="{Binding PeutCopier, Converter={StaticResource VisibleSi}}"
-                                    ToolTip="Remplit la grille de réponse de l'exercice avec ce résultat (si les tailles correspondent)" />
-                            <TextBlock Text="{Binding Retour}" Style="{StaticResource Texte.Secondaire}" TextWrapping="Wrap" Margin="{StaticResource Marge.Haut.8}"
-                                       Visibility="{Binding Retour, Converter={StaticResource VisibleSi}}" AutomationProperties.LiveSetting="Polite" />
-                        </StackPanel>
-                    </Border>
-
-                    <!-- ===== Matrices ===== -->
-                    <Expander Header="Matrices (A, B, C…)" IsExpanded="{Binding EditeurOuvert, Mode=TwoWay}" Margin="{StaticResource Marge.Haut.16}"
-                              AutomationProperties.Name="Éditeur de matrices">
-                        <StackPanel Margin="{StaticResource Marge.Haut.8}">
-                            <TextBlock Text="Choisis un nom et une taille (de 1×1 à 5×5), remplis la grille, puis enregistre. Les cases acceptent 3, -1/2 ou 0,25."
-                                       Style="{StaticResource Texte.Secondaire}" TextWrapping="Wrap" />
-                            <Grid Margin="{StaticResource Marge.Haut.12}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="12" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <ComboBox ItemsSource="{Binding Noms}" SelectedValuePath="Nom" SelectedValue="{Binding NomEdite}" DisplayMemberPath="Etiquette"
-                                          AutomationProperties.Name="Nom de la matrice" ToolTip="Nom de la matrice à définir" />
-                                <ComboBox Grid.Column="2" ItemsSource="{Binding Tailles}" SelectedItem="{Binding LignesEditeur}" MinWidth="56"
-                                          AutomationProperties.Name="Nombre de lignes" ToolTip="Nombre de lignes" />
-                                <TextBlock Grid.Column="3" Text="×" Margin="8,0" VerticalAlignment="Center" />
-                                <ComboBox Grid.Column="4" ItemsSource="{Binding Tailles}" SelectedItem="{Binding ColonnesEditeur}" MinWidth="56"
-                                          AutomationProperties.Name="Nombre de colonnes" ToolTip="Nombre de colonnes" />
-                            </Grid>
-
-                            <!-- La grille : Entrée dans une case enregistre. -->
-                            <Border HorizontalAlignment="Stretch" Padding="6,4" CornerRadius="12" BorderThickness="2,0,2,0"
-                                    BorderBrush="{DynamicResource Pinceau.Texte}" Margin="{StaticResource Marge.Haut.12}">
-                                <ItemsControl ItemsSource="{Binding Cellules}" Focusable="False" AutomationProperties.Name="Grille de la matrice">
+                            <Border HorizontalAlignment="Left" Padding="8,4" CornerRadius="12" BorderThickness="2,0,2,0" BorderBrush="{DynamicResource Pinceau.Texte}"
+                                    Visibility="{Binding ResultatEstMatrice, Converter={StaticResource VisibleSi}}">
+                                <ItemsControl ItemsSource="{Binding ResultatCases}" Focusable="False" AutomationProperties.Name="Matrice résultat">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <UniformGrid Columns="{Binding DataContext.ColonnesGrille, ElementName=Racine}" />
+                                            <UniformGrid Columns="{Binding DataContext.ResultatColonnes, ElementName=Racine}" />
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBox Style="{StaticResource CaseMatrice}" Tag="cellule" Text="{Binding Texte, UpdateSourceTrigger=PropertyChanged}"
-                                                     GotKeyboardFocus="CaseFocus" />
+                                            <TextBlock Text="{Binding}" TextAlignment="Center" Margin="10,4" MinWidth="28"
+                                                       FontFamily="{DynamicResource Police.Code}" FontSize="{DynamicResource Taille.SousTitre}" />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </Border>
 
-                            <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.12}">
-                                <Button Content="Enregistrer" Style="{StaticResource BoutonPrincipal}" Command="{Binding EnregistrerCommand}"
-                                        ToolTip="Garde la matrice pour tes calculs (Entrée dans une case fait pareil)" />
-                                <Button Content="Supprimer" Style="{StaticResource BoutonSecondaire}" Command="{Binding SupprimerCommand}"
-                                        Margin="{StaticResource Marge.Gauche.8}" />
-                            </StackPanel>
-                            <TextBlock Text="{Binding MessageEditeur}" TextWrapping="Wrap" Margin="{StaticResource Marge.Haut.8}"
-                                       Visibility="{Binding MessageEditeur, Converter={StaticResource VisibleSi}}" AutomationProperties.LiveSetting="Polite">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock" BasedOn="{StaticResource Texte.Secondaire}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ErreurEditeur}" Value="True">
-                                                <Setter Property="Foreground" Value="{DynamicResource Ton.Attention.Texte}" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                            <TextBlock Text="{Binding ResumeMatrices}" Style="{StaticResource Texte.Meta}" TextWrapping="Wrap" Margin="{StaticResource Marge.Haut.8}" />
+                            <DockPanel Margin="{StaticResource Marge.Haut.12}">
+                                <ToggleButton DockPanel.Dock="Right" Style="{StaticResource BoutonBascule}" IsChecked="{Binding ModeDecimal}"
+                                              Content="Décimal" Padding="10,4" ToolTip="Fractions exactes ou valeurs décimales (avec la virgule)"
+                                              AutomationProperties.Name="Afficher en valeur décimale" />
+                                <Button Content="Copier dans la réponse" Style="{StaticResource BoutonSecondaire}" Command="{Binding CopierDansReponseCommand}"
+                                        ds:Forme.Icone="{x:Static ds:Icones.Copier}" HorizontalAlignment="Left" Padding="10,4"
+                                        Visibility="{Binding PeutCopier, Converter={StaticResource VisibleSi}}"
+                                        ToolTip="Remplit la grille de réponse de l'exercice avec ce résultat (si les tailles correspondent)" />
+                            </DockPanel>
+                            <TextBlock Text="{Binding Retour}" Style="{StaticResource Texte.Secondaire}" TextWrapping="Wrap" Margin="{StaticResource Marge.Haut.8}"
+                                       Visibility="{Binding Retour, Converter={StaticResource VisibleSi}}" AutomationProperties.LiveSetting="Polite" />
                         </StackPanel>
-                    </Expander>
 
-                    <!-- ===== Historique ===== -->
-                    <DockPanel Margin="{StaticResource Marge.Haut.16}">
-                        <Button DockPanel.Dock="Right" Content="Effacer" Style="{StaticResource BoutonFantome}" Command="{Binding ViderHistoriqueCommand}"
-                                ToolTip="Vider l'historique" />
-                        <TextBlock Text="Historique" Style="{StaticResource Texte.Meta}" VerticalAlignment="Center" />
-                    </DockPanel>
-                    <ItemsControl ItemsSource="{Binding Historique}" Focusable="False" Margin="{StaticResource Marge.Haut.4}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button Style="{StaticResource BoutonListe}" HorizontalContentAlignment="Stretch" Padding="8,6"
-                                        Command="{Binding DataContext.ReprendreCommand, ElementName=Racine}" CommandParameter="{Binding}"
-                                        ToolTip="Remettre ce calcul dans la ligne de saisie">
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Expression}" FontFamily="{DynamicResource Police.Code}" TextTrimming="CharacterEllipsis" />
-                                        <TextBlock Text="{Binding Resume}" Style="{StaticResource Texte.Secondaire}" TextWrapping="Wrap"
-                                                   FontFamily="{DynamicResource Police.Code}" />
-                                    </StackPanel>
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                        <!-- Historique : replié, à ouvrir si besoin. Un clic remet le calcul dans la ligne. -->
+                        <Expander Header="Historique" Margin="{StaticResource Marge.Haut.12}"
+                                  Visibility="{Binding Historique.Count, Converter={StaticResource VisibleSi}}">
+                            <StackPanel>
+                                <ScrollViewer MaxHeight="150" VerticalScrollBarVisibility="Auto" Focusable="False">
+                                    <ItemsControl ItemsSource="{Binding Historique}" Focusable="False">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Style="{StaticResource BoutonListe}" HorizontalContentAlignment="Stretch" Padding="8,4"
+                                                        Command="{Binding DataContext.ReprendreCommand, ElementName=Racine}" CommandParameter="{Binding}"
+                                                        ToolTip="Remettre ce calcul dans la ligne de saisie">
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding Expression}" FontFamily="{DynamicResource Police.Code}" TextTrimming="CharacterEllipsis" />
+                                                        <TextBlock Text="{Binding Resume}" Style="{StaticResource Texte.Secondaire}" TextWrapping="Wrap"
+                                                                   FontFamily="{DynamicResource Police.Code}" />
+                                                    </StackPanel>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                                <Button Content="Effacer l'historique" Style="{StaticResource BoutonFantome}" Command="{Binding ViderHistoriqueCommand}"
+                                        HorizontalAlignment="Left" />
+                            </StackPanel>
+                        </Expander>
+                    </StackPanel>
+
+                    <!-- ================= Onglet « Matrices » ================= -->
+                    <StackPanel Visibility="{Binding EditeurOuvert, Converter={StaticResource VisibleSi}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="12" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ComboBox ItemsSource="{Binding Noms}" SelectedValuePath="Nom" SelectedValue="{Binding NomEdite}" DisplayMemberPath="Etiquette"
+                                      AutomationProperties.Name="Nom de la matrice" ToolTip="Nom de la matrice à définir" />
+                            <ComboBox Grid.Column="2" ItemsSource="{Binding Tailles}" SelectedItem="{Binding LignesEditeur}" MinWidth="56"
+                                      AutomationProperties.Name="Nombre de lignes" ToolTip="Nombre de lignes (1 à 5)" />
+                            <TextBlock Grid.Column="3" Text="×" Margin="8,0" VerticalAlignment="Center" />
+                            <ComboBox Grid.Column="4" ItemsSource="{Binding Tailles}" SelectedItem="{Binding ColonnesEditeur}" MinWidth="56"
+                                      AutomationProperties.Name="Nombre de colonnes" ToolTip="Nombre de colonnes (1 à 5)" />
+                        </Grid>
+
+                        <!-- La grille : Entrée dans une case enregistre. -->
+                        <Border HorizontalAlignment="Stretch" Padding="6,4" CornerRadius="12" BorderThickness="2,0,2,0"
+                                BorderBrush="{DynamicResource Pinceau.Texte}" Margin="{StaticResource Marge.Haut.12}">
+                            <ItemsControl ItemsSource="{Binding Cellules}" Focusable="False" AutomationProperties.Name="Grille de la matrice">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="{Binding DataContext.ColonnesGrille, ElementName=Racine}" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBox Style="{StaticResource CaseMatrice}" Tag="cellule" Text="{Binding Texte, UpdateSourceTrigger=PropertyChanged}"
+                                                 GotKeyboardFocus="CaseFocus" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Border>
+
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.12}">
+                            <Button Content="Enregistrer" Style="{StaticResource BoutonPrincipal}" Command="{Binding EnregistrerCommand}"
+                                    ToolTip="Garde la matrice pour tes calculs (Entrée dans une case fait pareil)" />
+                            <Button Content="Supprimer" Style="{StaticResource BoutonFantome}" Command="{Binding SupprimerCommand}"
+                                    Margin="{StaticResource Marge.Gauche.8}" />
+                        </StackPanel>
+                        <TextBlock Text="{Binding MessageEditeur}" TextWrapping="Wrap" Margin="{StaticResource Marge.Haut.8}"
+                                   Visibility="{Binding MessageEditeur, Converter={StaticResource VisibleSi}}" AutomationProperties.LiveSetting="Polite">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource Texte.Secondaire}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ErreurEditeur}" Value="True">
+                                            <Setter Property="Foreground" Value="{DynamicResource Ton.Attention.Texte}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock Text="Cases : 3, -1/2 ou 0,25 · Taille de 1×1 à 5×5" Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.8}" />
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
-        </ScrollViewer>
+        </DockPanel>
     </Border>
 </UserControl>

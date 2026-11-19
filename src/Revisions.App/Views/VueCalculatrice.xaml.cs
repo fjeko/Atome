@@ -19,6 +19,9 @@ public partial class VueCalculatrice : UserControl
     {
         InitializeComponent();
         IsVisibleChanged += OnVisibiliteChangee;
+        Titre.MouseLeftButtonDown += DebutDeplacement;
+        Titre.MouseMove += Deplacer;
+        Titre.MouseLeftButtonUp += (_, _) => Titre.ReleaseMouseCapture();
     }
 
     private CalculatriceViewModel? Modele => DataContext as CalculatriceViewModel;
@@ -85,14 +88,25 @@ public partial class VueCalculatrice : UserControl
         }
     }
 
-    /// <summary>Une touche d'aide : elle écrit son texte dans la ligne de calcul, là où est le curseur.</summary>
-    private void Inserer(object sender, RoutedEventArgs e)
+    // ---- Déplacer la fenêtre en tirant son titre ----
+    private Point _departSouris;
+    private double _departX, _departY;
+
+    private void DebutDeplacement(object sender, MouseButtonEventArgs e)
     {
-        if (sender is not Button { Tag: string texte }) return;
-        SaisieBox.SelectedText = texte;
-        SaisieBox.CaretIndex = SaisieBox.SelectionStart + SaisieBox.SelectionLength;
-        SaisieBox.SelectionLength = 0;
-        SaisieBox.Focus();
+        if (e.OriginalSource is not (Border or TextBlock or System.Windows.Shapes.Shape)) return; // pas depuis le bouton Fermer
+        _departSouris = e.GetPosition(Application.Current.MainWindow);
+        _departX = Deplacement.X;
+        _departY = Deplacement.Y;
+        Titre.CaptureMouse();
+    }
+
+    private void Deplacer(object sender, MouseEventArgs e)
+    {
+        if (!Titre.IsMouseCaptured) return;
+        var p = e.GetPosition(Application.Current.MainWindow);
+        Deplacement.X = _departX + p.X - _departSouris.X;
+        Deplacement.Y = _departY + p.Y - _departSouris.Y;
     }
 
     /// <summary>Entrer dans une case sélectionne son contenu : on remplace la valeur en tapant directement.</summary>

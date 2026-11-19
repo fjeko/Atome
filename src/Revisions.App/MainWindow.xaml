@@ -16,9 +16,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" MinWidth="360" />
-            <ColumnDefinition x:Name="ColSeparateur" Width="0" />
-            <ColumnDefinition x:Name="ColCalculatrice" Width="0" MinWidth="0" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -160,11 +158,9 @@
         <ContentControl x:Name="Ecran" Grid.Column="1" Content="{Binding VueCourante, NotifyOnTargetUpdated=True}"
                         Binding.TargetUpdated="EcranChange" Focusable="False" />
 
-        <!-- ===== Calculatrice : panneau à droite de l'exercice (maths seulement), voir CalculatriceViewModel ===== -->
-        <!-- Poignée pour élargir ou rétrécir le panneau à la souris. -->
-        <GridSplitter x:Name="Poignee" Grid.Column="2" Grid.RowSpan="2" Width="6" HorizontalAlignment="Stretch" ResizeBehavior="PreviousAndNext"
-                      Background="Transparent" Visibility="Collapsed" Cursor="SizeWE" AutomationProperties.Name="Redimensionner la calculatrice" />
-        <v:VueCalculatrice x:Name="PanneauCalculatrice" Grid.Column="3" Grid.RowSpan="2" DataContext="{Binding Calculatrice}"
+        <!-- ===== Calculatrice : petite fenêtre flottante, en bas à droite de l'exercice (maths seulement) ===== -->
+        <v:VueCalculatrice x:Name="PanneauCalculatrice" Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                           Margin="0,16,24,24" DataContext="{Binding Calculatrice}"
                            Visibility="{Binding PanneauAffiche, Converter={StaticResource VisibleSi}}" />
 
         <!-- ===== Bandeaux, posés en bas du contenu ===== -->
@@ -217,7 +213,7 @@
         </StackPanel>
 
         <!-- ===== Toasts (notifications brèves) ===== -->
-        <ItemsControl Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="{StaticResource Marge.Bas.24}"
+        <ItemsControl Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="{StaticResource Marge.Bas.24}"
                       ItemsSource="{x:Static s:ServiceToast.Visibles}" ItemTemplate="{StaticResource Modele.Toast}"
                       IsHitTestVisible="False" Focusable="False" />
     </Grid>

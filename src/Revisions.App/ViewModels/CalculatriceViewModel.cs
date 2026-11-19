@@ -250,6 +250,15 @@ public partial class CalculatriceViewModel : ObservableObject
 
     [ObservableProperty] private bool _editeurOuvert;
 
+    /// <summary>Onglet « Calcul » (l'autre onglet est « Matrices »).</summary>
+    public bool OngletCalcul
+    {
+        get => !EditeurOuvert;
+        set { if (value) EditeurOuvert = false; }
+    }
+
+    partial void OnEditeurOuvertChanged(bool value) => OnPropertyChanged(nameof(OngletCalcul));
+
     [ObservableProperty] private int _lignesEditeur = 2;
     [ObservableProperty] private int _colonnesEditeur = 2;
     [ObservableProperty] private string _nomEdite = "A";
