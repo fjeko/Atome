@@ -66,8 +66,11 @@
             </Border>
 
             <!-- ===== Aide : s'affiche à la place de la calculatrice quand on clique sur l'ampoule ===== -->
-            <ScrollViewer MaxHeight="460" VerticalScrollBarVisibility="Auto" Margin="16,4,16,16" Focusable="False"
-                          Visibility="{Binding AideOuverte, Converter={StaticResource VisibleSi}}">
+            <DockPanel DockPanel.Dock="Top" Visibility="{Binding AideOuverte, Converter={StaticResource VisibleSi}}">
+            <!-- Bouton toujours visible, en haut : pas besoin de faire défiler l'aide pour revenir. -->
+            <Button DockPanel.Dock="Top" Content="Retour à la calculatrice" Style="{StaticResource BoutonPrincipal}" Command="{Binding BasculerAideCommand}"
+                    ds:Forme.Icone="{x:Static ds:Icones.Retour}" Margin="16,4,16,8" HorizontalAlignment="Stretch" />
+            <ScrollViewer MaxHeight="420" VerticalScrollBarVisibility="Auto" Margin="16,0,16,16" Focusable="False">
                 <StackPanel>
                     <TextBlock Text="Comment taper tes calculs" Style="{StaticResource Texte.SousTitre}" />
                     <ItemsControl ItemsSource="{Binding LignesAide}" Focusable="False" Margin="{StaticResource Marge.Haut.8}">
@@ -85,10 +88,9 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <Button Content="Retour à la calculatrice" Style="{StaticResource BoutonPrincipal}" Command="{Binding BasculerAideCommand}"
-                            Margin="{StaticResource Marge.Haut.12}" HorizontalAlignment="Left" />
                 </StackPanel>
             </ScrollViewer>
+            </DockPanel>
 
 
 
