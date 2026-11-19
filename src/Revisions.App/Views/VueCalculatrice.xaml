@@ -56,13 +56,43 @@
                 <DockPanel>
                     <Button DockPanel.Dock="Right" Style="{StaticResource BoutonIcone}" ds:Forme.Icone="{x:Static ds:Icones.Fermer}"
                             Command="{Binding FermerCommand}" ToolTip="Fermer (Échap)" AutomationProperties.Name="Fermer la calculatrice" />
+                    <ToggleButton DockPanel.Dock="Right" Style="{StaticResource BoutonIcone}" ds:Forme.Icone="{x:Static ds:Icones.Ampoule}"
+                                  IsChecked="{Binding AideOuverte, Mode=OneWay}" Command="{Binding BasculerAideCommand}"
+                                  ToolTip="Aide : comment taper les calculs" AutomationProperties.Name="Aide de la calculatrice" />
                     <TextBlock Text="{x:Static ds:Icones.Calculatrice}" Style="{StaticResource Texte.Icone}" VerticalAlignment="Center"
                                Foreground="{DynamicResource Pinceau.AccentTexte}" Margin="{StaticResource Marge.Droite.8}" />
                     <TextBlock Text="Calculatrice" Style="{StaticResource Texte.Fort}" VerticalAlignment="Center" />
                 </DockPanel>
             </Border>
 
-            <StackPanel Margin="16,4,16,16">
+            <!-- ===== Aide : s'affiche à la place de la calculatrice quand on clique sur l'ampoule ===== -->
+            <ScrollViewer MaxHeight="460" VerticalScrollBarVisibility="Auto" Margin="16,4,16,16" Focusable="False"
+                          Visibility="{Binding AideOuverte, Converter={StaticResource VisibleSi}}">
+                <StackPanel>
+                    <TextBlock Text="Comment taper tes calculs" Style="{StaticResource Texte.SousTitre}" />
+                    <ItemsControl ItemsSource="{Binding LignesAide}" Focusable="False" Margin="{StaticResource Marge.Haut.8}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,4">
+                                    <TextBlock Text="{Binding Titre}" Style="{StaticResource Texte.Fort}" Margin="0,10,0,0"
+                                               Foreground="{DynamicResource Pinceau.AccentTexte}"
+                                               Visibility="{Binding Titre, Converter={StaticResource VisibleSi}}" />
+                                    <StackPanel Visibility="{Binding Code, Converter={StaticResource VisibleSi}}">
+                                        <TextBlock Text="{Binding Code}" FontFamily="{DynamicResource Police.Code}" TextWrapping="Wrap" />
+                                        <TextBlock Text="{Binding Sens}" Style="{StaticResource Texte.Secondaire}" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button Content="Retour à la calculatrice" Style="{StaticResource BoutonPrincipal}" Command="{Binding BasculerAideCommand}"
+                            Margin="{StaticResource Marge.Haut.12}" HorizontalAlignment="Left" />
+                </StackPanel>
+            </ScrollViewer>
+
+
+
+            <StackPanel Margin="16,4,16,16" Visibility="{Binding AideOuverte, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}">
 
                 <!-- Calculatrice grisée : l'exercice demande justement de calculer à la main. -->
                 <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Bas.12}"

@@ -244,6 +244,49 @@ public partial class CalculatriceViewModel : ObservableObject
         Retour = CopierVersReponse(Dernier) ?? "Copié dans la grille de réponse.";
     }
 
+
+    // ---- Aide (ampoule) : tout pour se servir de la calculatrice ----------------------------
+
+    [ObservableProperty] private bool _aideOuverte;
+
+    [RelayCommand]
+    private void BasculerAide() => AideOuverte = !AideOuverte;
+
+    /// <summary>Une ligne de l'aide : un titre de section, ou « ce que tu tapes » et « ce que ça fait ».</summary>
+    public sealed record LigneAide(string? Titre, string Code = "", string Sens = "");
+
+    public IReadOnlyList<LigneAide> LignesAide { get; } =
+    [
+        new("Calculer"),
+        new(null, "1/3+1/6", "fractions exactes : le résultat est 1/2"),
+        new(null, "2*(3+4)  ou  2(3+4)", "le signe × peut être omis devant une parenthèse, une lettre ou une fonction"),
+        new(null, "2^10", "puissance (2 puis ^ puis 10)"),
+        new(null, "0,5+0.25", "la virgule ou le point pour les décimaux"),
+        new(null, "sqrt(16)  abs(-3)", "racine carrée, valeur absolue"),
+        new(null, "ln(2)  log(100)  exp(1)", "logarithme népérien, décimal, exponentielle"),
+        new(null, "pi  e", "constantes (le résultat devient une valeur approchée)"),
+        new(null, "Ans", "le dernier résultat : Ans*2"),
+        new("Matrices : d'abord les définir"),
+        new(null, "Onglet Matrices", "choisis un nom (A, B…), une taille de 1×1 à 5×5, remplis la grille, puis Enregistrer"),
+        new(null, "Cases", "3, -1/2 ou 0,25 (Entrée dans une case enregistre)"),
+        new("Matrices : les calculs"),
+        new(null, "A+B   A-B", "somme, différence (même taille)"),
+        new(null, "3A   A/2", "multiplication par un nombre"),
+        new(null, "A*B  ou  AB", "produit (colonnes de A = lignes de B)"),
+        new(null, "A^3", "puissance d'une matrice carrée"),
+        new(null, "A^-1  ou  inv(A)", "matrice inverse, en fractions"),
+        new(null, "det(A)", "déterminant"),
+        new(null, "A^T  ou  trans(A)", "transposée"),
+        new(null, "I3", "matrice identité 3×3 (I2, I4…)"),
+        new("Astuces"),
+        new(null, "Entrée", "calculer"),
+        new(null, "↑  ↓", "reprendre les calculs précédents"),
+        new(null, "Décimal", "passe des fractions aux valeurs décimales (avec la virgule)"),
+        new(null, "Copier dans la réponse", "remplit la grille de réponse du TD si les tailles correspondent (résultat entier)"),
+        new(null, "Échap  ou  Ctrl + K", "fermer la calculatrice"),
+        new(null, "Un message en orange ?", "il explique ce qui ne va pas : suis-le"),
+    ];
+
     // ---- Éditeur de matrices ----------------------------------------------------------------
 
     public IReadOnlyList<int> Tailles { get; } = [1, 2, 3, 4, 5];
