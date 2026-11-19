@@ -50,7 +50,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Border Width="{StaticResource Largeur.Calculatrice}" Background="{DynamicResource Pinceau.Surface}"
+    <Border Background="{DynamicResource Pinceau.Surface}"
             BorderBrush="{DynamicResource Pinceau.Bordure}" BorderThickness="1,0,0,0"
             AutomationProperties.Name="Calculatrice">
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Focusable="False">

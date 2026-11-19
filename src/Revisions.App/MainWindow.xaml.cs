@@ -12,11 +12,43 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         Services.ServiceTheme.Habiller(this); // fond, police et couleurs du thème choisi
+        Loaded += (_, _) =>
+        {
+            if (DataContext is MainViewModel p) p.Calculatrice.PropertyChanged += (_, e) =>
+            {
+                if (e.PropertyName == nameof(CalculatriceViewModel.PanneauAffiche)) AjusterPanneauCalculatrice(p.Calculatrice.PanneauAffiche);
+            };
+        };
         // Sous 1100 px de large, la barre latérale se replie d'elle-même en icônes seules.
         SizeChanged += (_, e) =>
         {
             if (DataContext is MainViewModel principal) principal.FenetreEtroite = e.NewSize.Width < 1100;
         };
+    }
+
+    private double _largeurCalculatrice; // gardée quand on la ferme, pour la retrouver telle quelle
+
+    /// <summary>Ouvre ou ferme la colonne de la calculatrice : un tiers de la fenêtre au départ, puis la largeur choisie à la souris.</summary>
+    private void AjusterPanneauCalculatrice(bool affiche)
+    {
+        if (affiche)
+        {
+            double min = (double)FindResource("Largeur.Calculatrice.Min"), max = (double)FindResource("Largeur.Calculatrice.Max");
+            if (_largeurCalculatrice <= 0) _largeurCalculatrice = Math.Clamp(ActualWidth / 3, min, max);
+            ColCalculatrice.MinWidth = min;
+            ColCalculatrice.MaxWidth = max;
+            ColCalculatrice.Width = new GridLength(_largeurCalculatrice);
+            ColSeparateur.Width = GridLength.Auto;
+            Poignee.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            if (ColCalculatrice.ActualWidth > 0) _largeurCalculatrice = ColCalculatrice.ActualWidth;
+            Poignee.Visibility = Visibility.Collapsed;
+            ColCalculatrice.MinWidth = 0;
+            ColCalculatrice.Width = new GridLength(0);
+            ColSeparateur.Width = new GridLength(0);
+        }
     }
 
     /// <summary>Nouvel écran : il apparaît en fondu, avec un léger glissement (ou un fondu très court, animations réduites).</summary>
