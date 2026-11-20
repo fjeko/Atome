@@ -250,5 +250,15 @@ internal static class Migrations
         );
         CREATE INDEX IF NOT EXISTS td_exercice_sujet ON td_exercice (generateur, sujet);
         """,
+
+        // ---- 11 : parcours « Lire puis contrôler » (reprise en cours et dernier résultat par séance) ----
+        """
+        CREATE TABLE IF NOT EXISTS parcours_lecture (
+          pack_id        TEXT PRIMARY KEY,
+          etat_json      TEXT,                       -- parcours en cours (NULL une fois terminé)
+          date_controle  TEXT,                       -- dernier contrôle terminé (date « O »), ou NULL
+          score          INTEGER                     -- score de ce contrôle, en %
+        );
+        """,
     ];
 }

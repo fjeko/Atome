@@ -37,8 +37,10 @@ public sealed class DepotBibliotheque(BaseDeDonnees baseDeDonnees)
                    COUNT(c.id) AS NbCartes,
                    COALESCE(SUM(e.stabilite >= 21), 0) AS NbMaitrisees,
                    COALESCE(SUM(e.stabilite IS NOT NULL AND e.echeance <= @jour), 0) AS NbDues,
-                   COALESCE(SUM(c.id IS NOT NULL AND e.stabilite IS NULL), 0) AS NbNouvelles
+                   COALESCE(SUM(c.id IS NOT NULL AND e.stabilite IS NULL), 0) AS NbNouvelles,
+                   pl.date_controle AS DateControle, pl.score AS ScoreControle
             FROM pack p
+            LEFT JOIN parcours_lecture pl ON pl.pack_id = p.id
             JOIN matiere m ON m.id = p.matiere_id
             LEFT JOIN collection col ON col.cle = p.collection   -- visibilité : uniquement la collection
             LEFT JOIN carte c ON c.pack_id = p.id AND c.archivee = 0

@@ -36,6 +36,7 @@ public partial class SessionViewModel : ObservableObject
     private readonly DepotProfil _profil;
     private readonly Planificateur _planificateur;
     private readonly ServiceSignalement _signalements;
+    private readonly ServiceNotation _notation;
     private readonly SessionEnCours _session;
     private readonly long _sessionId;
     private readonly DateOnly _jour;
@@ -110,8 +111,9 @@ public partial class SessionViewModel : ObservableObject
     [ObservableProperty] private bool _saisieVisible;
 
     public SessionViewModel(ParametresSession parametres, MainViewModel main, EtatApplication etat,
-        DepotRevisions revisions, DepotProfil profil, Planificateur planificateur, ServiceSignalement signalements)
+        DepotRevisions revisions, DepotProfil profil, Planificateur planificateur, ServiceSignalement signalements, ServiceNotation notation)
     {
+        _notation = notation;
         _signalements = signalements;
         _main = main;
         _etat = etat;
@@ -165,62 +167,13 @@ public partial class SessionViewModel : ObservableObject
     {
         var carte = Courante.Carte;
         var c = carte.Contenu;
-        var elements = new List<object>();
         bool qcm = carte.Type == TypeCarte.Qcm;
-
-        switch (carte.Type)
-        {
-            case TypeCarte.Question:
-                elements.Add(new { genre = "question", markdown = c.Recto });
-                if (_reponseVisible && !string.IsNullOrWhiteSpace(ReponseSaisie))
-                {
-                    // Une réponse a été écrite : on l'affiche à côté de la bonne pour comparer.
-                    elements.Add(new { genre = "comparaison", saisie = ReponseSaisie.Trim(), markdown = c.Verso });
-                }
-                else if (_reponseVisible)
-                {
-                    elements.Add(new { genre = "etiquette", markdown = "Réponse" });
-                    elements.Add(new { genre = "reponse", markdown = c.Verso });
-                }
-                break;
-
-            case TypeCarte.Qcm:
-                elements.Add(new { genre = "question", markdown = c.Question });
-                for (int position = 0; position < _ordreChoix.Length; position++)
-                {
-                    int i = _ordreChoix[position]; // index du choix dans le pack
-                    // Avant le choix : cliquable. Après : le bon en vert, le mauvais choisi en rouge.
-                    string etat = _choixFait is null ? "actif"
-                        : i == c.BonneReponse ? "bon"
-                        : i == _choixFait ? "mauvais"
-                        : "neutre";
-                    elements.Add(new { genre = "choix", index = position, markdown = c.Choix![i], etat });
-                }
-                if (_reponseVisible)
-                {
-                    elements.Add(new { genre = "etiquette", markdown = _choixFait == c.BonneReponse ? "Bonne réponse !" : "Explication" });
-                    elements.Add(new { genre = "explication", markdown = c.Explication });
-                }
-                break;
-
-            case TypeCarte.Exercice:
-                elements.Add(new { genre = "question", markdown = c.Enonce });
-                for (int i = 0; i < _etapesRevelees; i++)
-                    elements.Add(new { genre = "etape", index = i + 1, markdown = c.Etapes![i] });
-                if (_reponseVisible)
-                {
-                    elements.Add(new { genre = "etiquette", markdown = "Réponse" });
-                    elements.Add(new { genre = "reponse", markdown = c.Reponse });
-                }
-                break;
-        }
+        var elements = RenduCarte.Elements(carte, _ordreChoix, _choixFait, _reponseVisible, _etapesRevelees, ReponseSaisie);
         MessageRendu = JsonSerializer.Serialize(new { elements, defiler = defilerEnBas ? "bas" : "haut", animation = "carte" });
 
         bool mauvaisChoix = qcm && _reponseVisible && _choixFait != c.BonneReponse;
         RevelerVisible = !_reponseVisible && !qcm;
-        TexteReveler = carte.Type == TypeCarte.Exercice && _etapesRevelees < c.Etapes!.Count
-            ? (_etapesRevelees == 0 ? "Voir la première étape" : "Étape suivante")
-            : "Voir la réponse";
+        TexteReveler = RenduCarte.TexteReveler(carte, _etapesRevelees);
         SaisieVisible = carte.Type == TypeCarte.Question && !_reponseVisible;
         ContinuerVisible = mauvaisChoix;
         NotesVisibles = _reponseVisible && !mauvaisChoix;
@@ -242,17 +195,8 @@ public partial class SessionViewModel : ObservableObject
     }
 
     /// <summary>Délai avant la prochaine révision si l'on donnait cette note.</summary>
-    private string Delai(Note note)
-    {
-        int jours = _planificateur.Appliquer(Courante.Etat, note, _jour, _etat.Reglages.RetentionCible).IntervalleJours;
-        return jours switch
-        {
-            1 => "demain",
-            < 30 => $"{jours} j",
-            < 365 => $"{Math.Round(jours / 30.0)} mois",
-            _ => $"{jours / 365.0:0.#} an(s)",
-        };
-    }
+    private string Delai(Note note) =>
+        RenduCarte.Delai(_planificateur.Appliquer(Courante.Etat, note, _jour, _etat.Reglages.RetentionCible).IntervalleJours);
 
     // ---- Actions ---------------------------------------------------------------------------
 
@@ -404,14 +348,9 @@ public partial class SessionViewModel : ObservableObject
     private void Enregistrer(Note note)
     {
         var carte = Courante;
-        bool retour = _session.CouranteEstUnRetour;
-        bool nouvelle = carte.Etat.EstNouvelle;
-        bool due = !nouvelle && carte.Etat.Echeance <= _jour;
-
-        var resultat = _planificateur.Appliquer(carte.Etat, note, _jour, _etat.Reglages.RetentionCible);
-        int xp = CalculXp.PourReponse(note, due, nouvelle, retour);
-        _revisions.EnregistrerReponse(_sessionId, carte.Etat, resultat, note, _jour, _etat.Maintenant,
-            (int)_chrono.ElapsedMilliseconds, due || nouvelle, xp);
+        // Même service de notation que le parcours « Lire puis contrôler » : FSRS, XP et historique.
+        var (resultat, xp) = _notation.Noter(_sessionId, carte, note, _session.CouranteEstUnRetour, _jour, _etat.Maintenant,
+            (int)_chrono.ElapsedMilliseconds, _etat.Reglages.RetentionCible);
         _xpGagnee += xp;
         ReponseEnregistree?.Invoke(xp, note != Note.Rate);
 

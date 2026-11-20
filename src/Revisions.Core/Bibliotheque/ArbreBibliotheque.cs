@@ -17,6 +17,16 @@ public sealed class ResumeSeance
     public int NbMaitrisees { get; set; }
     public int NbDues { get; set; }
     public int NbNouvelles { get; set; }
+    /// <summary>Dernier parcours « Lire puis contrôler » terminé (date « O »), ou null.</summary>
+    public string? DateControle { get; set; }
+    /// <summary>Score de ce contrôle, en %.</summary>
+    public int? ScoreControle { get; set; }
+
+    /// <summary>« Lue et contrôlée le 20/11 · 83 % », ou null si la séance n'a jamais été contrôlée.</summary>
+    public string? TexteControle => DateControle is { Length: >= 10 } d
+        && DateOnly.TryParseExact(d[..10], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out var jour)
+        ? $"Lue et contrôlée le {jour:dd/MM} · {ScoreControle ?? 0} %"
+        : null;
     /// <summary>Vrai pour un cours libre intégré à Atome (badge « Libre » dans la bibliothèque).</summary>
     public bool Libre => PackId.StartsWith(Revisions.Core.Packs.ContenuLibre.PrefixeId, StringComparison.Ordinal);
 }
