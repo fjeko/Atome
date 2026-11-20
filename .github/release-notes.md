@@ -17,6 +17,11 @@ Le code est entièrement visible dans ce dépôt si tu veux vérifier.
 Atome est livré avec **440 cours libres**, basés sur le référentiel officiel du programme de 1ère année de BTS SIO option SLAM, pour commencer tout de suite (voir « Nouveautés »). Pour réviser tes propres cours, lis la section « Créer ses propres packs » du README ; le pack d’exemple (`samples/exemple.json`) permet aussi d’essayer l’application.
 
 ## Nouveautés
-- **Correctif** : 2 cours libres étaient refusés à l'import (« 2 packs refusés ») : « Conditions de travail » (anglais) et « Premier programme console » (C#). Ils sont de nouveau disponibles.
-- Un test vérifie désormais que tous les cours libres sont valides avant chaque version.
-- Aucune donnée ni progression touchée.
+**Nouveautés** :
+- **Lire puis contrôler** : un parcours qui enchaîne la lecture d'une séance et des cartes pour vérifier que tu as compris (avec reprise).
+- **Annuler la dernière note** (Ctrl+Z ou bouton) : la carte, l'XP et la file de la session reviennent comme avant.
+- **Sauvegarde de ta progression en un clic** (fichier `.atome-sauvegarde`), restauration vérifiée avec copie de sécurité, sauvegarde automatique facultative.
+- **Cartes coriaces** : proposition douce (relire, signaler, mettre de côté) ; les cartes mises de côté se réactivent dans les Statistiques.
+- **Exercices** : on écrit son résultat et la réponse s'affiche directement ; grille de saisie pour les réponses en matrice.
+- **Messages de félicitation** variés quand l'exercice est juste.
+- Une petite évolution de la base de données (ajout de colonnes) : tes données et ta progression sont conservées, et une copie de sécurité est faite.
