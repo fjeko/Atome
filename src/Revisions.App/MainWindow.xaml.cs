@@ -98,7 +98,7 @@ public partial class MainWindow : Window
         {
             case SessionViewModel session when touche == "Tab":
                 // Tab entre dans la zone de réponse écrite quand il y en a une ; sinon Tab garde son rôle habituel.
-                if (session.SaisieVisible)
+                if (session.SaisieVisible || session.MatriceVisible)
                 {
                     session.DemanderSaisie();
                     e.Handled = true;
@@ -109,7 +109,7 @@ public partial class MainWindow : Window
                 e.Handled = true;
                 break;
             case ParcoursViewModel parcours when touche == "Tab":
-                if (parcours.SaisieVisible)
+                if (parcours.SaisieVisible || parcours.MatriceVisible)
                 {
                     parcours.DemanderSaisie();
                     e.Handled = true;

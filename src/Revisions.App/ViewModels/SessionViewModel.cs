@@ -109,6 +109,9 @@ public partial class SessionViewModel : ObservableObject
     [ObservableProperty] private string _reponseSaisie = "";
     /// <summary>La zone de saisie n'existe que sur une carte « question », avant la réponse.</summary>
     [ObservableProperty] private bool _saisieVisible;
+    /// <summary>Exercice dont la réponse est une matrice : une grille à remplir remplace la zone de texte.</summary>
+    [ObservableProperty] private SaisieMatrice? _matrice;
+    [ObservableProperty] private bool _matriceVisible;
 
     public SessionViewModel(ParametresSession parametres, MainViewModel main, EtatApplication etat,
         DepotRevisions revisions, DepotProfil profil, Planificateur planificateur, ServiceSignalement signalements, ServiceNotation notation)
@@ -145,6 +148,8 @@ public partial class SessionViewModel : ObservableObject
         _choixFait = null;
         _reponseVisible = false;
         ReponseSaisie = "";
+        Matrice = SaisieMatrice.Pour(Courante.Carte);
+        if (Matrice is not null) Matrice.Valider = () => RevelerCommand.Execute(null);
         MessageSignalement = null;
         _ordreChoix = Enumerable.Range(0, Courante.Carte.Contenu.Choix?.Count ?? 0).ToArray();
         Random.Shared.Shuffle(_ordreChoix);
@@ -175,13 +180,15 @@ public partial class SessionViewModel : ObservableObject
         RevelerVisible = !_reponseVisible && !qcm;
         TexteReveler = "Voir la réponse";
         // Question et exercice : on peut écrire sa réponse (le résultat d'un exercice) pour la comparer.
-        SaisieVisible = carte.Type is TypeCarte.Question or TypeCarte.Exercice && !_reponseVisible;
+        SaisieVisible = carte.Type is TypeCarte.Question or TypeCarte.Exercice && !_reponseVisible && Matrice is null;
+        MatriceVisible = Matrice is not null && !_reponseVisible;
         ContinuerVisible = mauvaisChoix;
         NotesVisibles = _reponseVisible && !mauvaisChoix;
         RateVisible = !qcm;
         Consigne = !_reponseVisible
             ? (qcm ? "Choisis une réponse (clic ou touches A à E)"
                 : SaisieVisible ? "Réponds de tête puis Espace, ou écris ta réponse puis Entrée"
+                : MatriceVisible ? "Réponds de tête puis Espace, ou remplis la matrice (Tab) puis Entrée"
                 : "Réponds de tête, puis appuie sur Espace")
             : mauvaisChoix ? "Ce n'est pas grave : la carte reviendra bientôt."
             // QCM réussi : « Raté » n'est pas proposé, la consigne ne parle donc que des touches 2 à 4.
@@ -208,6 +215,7 @@ public partial class SessionViewModel : ObservableObject
     private void Reveler()
     {
         if (!RevelerVisible) return;
+        if (Matrice is not null) ReponseSaisie = Matrice.Texte;
         _reponseVisible = true;
         MettreAJourEcran(defilerEnBas: true);
     }
@@ -251,6 +259,7 @@ public partial class SessionViewModel : ObservableObject
     public void DemanderSaisie()
     {
         if (SaisieVisible) SaisieDemandee?.Invoke();
+        else if (MatriceVisible) Matrice!.DemanderFocus();
     }
 
     /// <summary>

@@ -20,7 +20,7 @@ Il y a trois sortes de cartes :
 
 - **Question** : réponds de tête (ou par écrit, si tu veux comparer), puis regarde la réponse ;
 - **QCM** : choisis une réponse, l'explication s'affiche ensuite ;
-- **Exercice** : cherche, écris ton résultat si tu veux (Tab), puis vois la réponse. Si ton résultat est différent (ou si tu as répondu de tête), la correction détaillée s'affiche étape par étape.
+- **Exercice** : cherche, écris ton résultat si tu veux (Tab), puis vois la réponse. Si la réponse est une matrice, une grille à remplir s'affiche (Tab pour passer d'une case à l'autre, Entrée pour valider). Si ton résultat est différent (ou si tu as répondu de tête), la correction détaillée s'affiche étape par étape.
 
 ### Les quatre notes
 

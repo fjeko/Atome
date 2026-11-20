@@ -93,6 +93,8 @@
         </ScrollViewer>
 
         <!-- ===== Réponse écrite, facultative (cartes « question ») ===== -->
+        <v:VueSaisieMatrice Grid.Row="3" DataContext="{Binding Matrice}" Margin="{StaticResource Marge.Haut.12}"
+                            Visibility="{Binding DataContext.MatriceVisible, ElementName=Racine, Converter={StaticResource VisibleSi}}" />
         <StackPanel Grid.Row="3" Margin="{StaticResource Marge.Haut.12}" Visibility="{Binding SaisieVisible, Converter={StaticResource VisibleSi}}">
             <TextBox x:Name="ZoneSaisie" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="40" MaxHeight="110"
                      VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource Taille.Corps}"

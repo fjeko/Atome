@@ -26,6 +26,24 @@ public static partial class ComparaisonReponse
         return Normaliser(saisie) == Normaliser(reponseSansLatex);
     }
 
+    /// <summary>
+    /// Dimensions de la première matrice de la réponse (<c>\begin{pmatrix} … \end{pmatrix}</c>, ou bmatrix, vmatrix…),
+    /// pour proposer une grille de saisie de cette taille. Null si la réponse n'a pas de matrice.
+    /// </summary>
+    public static (int Lignes, int Colonnes)? DimensionsMatrice(string? reponse)
+    {
+        if (string.IsNullOrEmpty(reponse)) return null;
+        var m = Matrice().Match(reponse);
+        if (!m.Success) return null;
+        var lignes = m.Groups[1].Value.Split(@"\\").Select(l => l.Trim()).Where(l => l.Length > 0).ToList();
+        if (lignes.Count == 0) return null;
+        int colonnes = lignes.Max(l => l.Split('&').Length);
+        return lignes.Count <= 8 && colonnes <= 8 ? (lignes.Count, colonnes) : null;
+    }
+
+    [GeneratedRegex(@"\\begin\{[pbvBV]?matrix\}(.*?)\\end\{", RegexOptions.Singleline)]
+    private static partial Regex Matrice();
+
     private static List<decimal> Nombres(string texte) =>
         Nombre().Matches(texte)
             .Select(m => decimal.Parse(m.Value.Replace(',', '.').Replace('−', '-'), NumberStyles.Number, CultureInfo.InvariantCulture))

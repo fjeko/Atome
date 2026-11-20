@@ -70,6 +70,9 @@ public partial class ParcoursViewModel : ObservableObject
     [ObservableProperty] private bool _retourQuestionVisible;
     [ObservableProperty] private bool _resultatsVisibles;
     [ObservableProperty] private bool _saisieVisible;
+    /// <summary>Exercice dont la réponse est une matrice : une grille à remplir remplace la zone de texte.</summary>
+    [ObservableProperty] private SaisieMatrice? _matrice;
+    [ObservableProperty] private bool _matriceVisible;
     [ObservableProperty] private string _reponseSaisie = "";
     [ObservableProperty] private IReadOnlyList<LigneScoreSection> _scores = [];
     [ObservableProperty] private string _scoreGlobal = "";
@@ -115,7 +118,7 @@ public partial class ParcoursViewModel : ObservableObject
         // Une carte supprimée du pack depuis le début du parcours est simplement sautée.
         while (QuestionAttendue() is { } id && !_cartes.ContainsKey(id)) Sauter();
 
-        LectureVisible = RevelerVisible = NotesVisibles = ContinuerVisible = RelireVisible = RelireSeulVisible = RetourQuestionVisible = ResultatsVisibles = SaisieVisible = false;
+        LectureVisible = RevelerVisible = NotesVisibles = ContinuerVisible = RelireVisible = RelireSeulVisible = RetourQuestionVisible = ResultatsVisibles = SaisieVisible = MatriceVisible = false;
         int nbSections = Math.Max(1, _seance.Sections.Count);
         switch (_parcours.Phase)
         {
@@ -196,6 +199,8 @@ public partial class ParcoursViewModel : ObservableObject
             _choixFait = null;
             _reponseVisible = false;
             ReponseSaisie = "";
+            Matrice = SaisieMatrice.Pour(carte.Carte);
+            if (Matrice is not null) Matrice.Valider = () => RevelerCommand.Execute(null);
             _ordreChoix = Enumerable.Range(0, carte.Carte.Contenu.Choix?.Count ?? 0).ToArray();
             Random.Shared.Shuffle(_ordreChoix);
             _chrono.Restart();
@@ -217,7 +222,8 @@ public partial class ParcoursViewModel : ObservableObject
         RevelerVisible = !_reponseVisible && !qcm;
         TexteReveler = "Voir la réponse";
         // Question et exercice : on peut écrire sa réponse (le résultat d'un exercice) pour la comparer.
-        SaisieVisible = carte.Type is TypeCarte.Question or TypeCarte.Exercice && !_reponseVisible;
+        SaisieVisible = carte.Type is TypeCarte.Question or TypeCarte.Exercice && !_reponseVisible && Matrice is null;
+        MatriceVisible = Matrice is not null && !_reponseVisible;
         ContinuerVisible = mauvaisChoix;
         NotesVisibles = _reponseVisible && !mauvaisChoix;
         RateVisible = !qcm;
@@ -227,6 +233,7 @@ public partial class ParcoursViewModel : ObservableObject
         Consigne = !_reponseVisible
             ? (qcm ? "Choisis une réponse (clic ou touches A à E)"
                 : SaisieVisible ? "Réponds de tête puis Espace, ou écris ta réponse puis Entrée"
+                : MatriceVisible ? "Réponds de tête puis Espace, ou remplis la matrice (Tab) puis Entrée"
                 : "Réponds de tête, puis appuie sur Espace")
             : mauvaisChoix ? "Ce n'est pas grave : cette carte reviendra en révision."
             // QCM réussi : « Raté » n'est pas proposé, la consigne ne parle donc que des touches 2 à 4.
@@ -285,6 +292,7 @@ public partial class ParcoursViewModel : ObservableObject
     private void Reveler()
     {
         if (!RevelerVisible || _question is null) return;
+        if (Matrice is not null) ReponseSaisie = Matrice.Texte;
         _reponseVisible = true; // exercice compris : la réponse directement, les étapes en correction si besoin
         MettreAJourQuestion(defilerEnBas: true);
     }
@@ -361,6 +369,7 @@ public partial class ParcoursViewModel : ObservableObject
     public void DemanderSaisie()
     {
         if (SaisieVisible) SaisieDemandee?.Invoke();
+        else if (MatriceVisible) Matrice!.DemanderFocus();
     }
 
     /// <summary>Touche dans la zone de réponse écrite : Entrée révèle, Maj+Entrée saute une ligne, Espace révèle tant que la zone est vide.</summary>
