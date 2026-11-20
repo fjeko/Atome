@@ -15,6 +15,24 @@ public class BibliothequeTests
 
     private const string Bloc1 = "Bloc 1 – Support et mise à disposition de services informatiques";
 
+    // ---- Recherche --------------------------------------------------------------------------
+
+    [Fact]
+    public void La_recherche_porte_sur_titre_partie_matiere_et_sequence_sans_casse()
+    {
+        var seances = new[]
+        {
+            Seance(Bloc1, "Mathématiques", "SQ1 – Calcul matriciel", "Produit de matrices"),
+            Seance(Bloc1, "Algorithmique", "SQ2 – Boucles", "La boucle Pour"),
+            Seance(Bloc1, "CEJM", "Séquence 3", "Les contrats", sequence: "Droit des contrats"),
+        };
+        Assert.Equal(["Produit de matrices"], ArbreBibliotheque.Rechercher(seances, "  MATRI ").Select(s => s.Seance));
+        Assert.Equal(["La boucle Pour"], ArbreBibliotheque.Rechercher(seances, "algo").Select(s => s.Seance));
+        Assert.Equal(["Les contrats"], ArbreBibliotheque.Rechercher(seances, "droit").Select(s => s.Seance));
+        Assert.Empty(ArbreBibliotheque.Rechercher(seances, "réseau"));
+        Assert.Empty(ArbreBibliotheque.Rechercher(seances, "   "));
+    }
+
     // ---- Découpage du champ « partie » -----------------------------------------------------
 
     [Theory]

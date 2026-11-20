@@ -156,6 +156,18 @@ public static partial class ArbreBibliotheque
             : (null, partie.Trim());
     }
 
+    /// <summary>
+    /// Recherche de la bibliothèque : séances dont le titre, la partie, la matière ou la séquence
+    /// contient le texte (sans tenir compte de la casse), dans l'ordre d'origine.
+    /// </summary>
+    public static List<ResumeSeance> Rechercher(IEnumerable<ResumeSeance> seances, string filtre)
+    {
+        filtre = filtre.Trim();
+        if (filtre.Length == 0) return [];
+        bool Contient(string? texte) => texte is not null && texte.Contains(filtre, StringComparison.CurrentCultureIgnoreCase);
+        return seances.Where(s => Contient(s.Seance) || Contient(s.Partie) || Contient(s.Matiere) || Contient(s.Sequence)).ToList();
+    }
+
     /// <summary>Clés des niveaux traversés puis de la séance elle-même (« § » + identifiant du pack) : sert à enregistrer les acquis.</summary>
     public static List<string> Chemin(ResumeSeance s) => [.. Niveaux(s).Select(n => n.Cle), "§" + s.PackId];
 

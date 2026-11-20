@@ -1,4 +1,5 @@
 using System.IO;
+using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
@@ -14,6 +15,8 @@ namespace Revisions.App.ViewModels;
 /// <param name="emplacement">Où elle se trouve (affiché dans les résultats de recherche), ou null.</param>
 public sealed class LigneSeance(ResumeSeance seance, string? emplacement = null)
 {
+    /// <summary>La séance d'origine (sert à savoir si une ligne peut être gardée d'une recherche à l'autre).</summary>
+    public ResumeSeance Resume => seance;
     public string PackId => seance.PackId;
     public string Titre => seance.Seance;
     public string? Emplacement => emplacement;
@@ -131,7 +134,33 @@ public partial class BibliothequeViewModel : ObservableObject
         Charger();
     }
 
-    partial void OnRechercheChanged(string value) => Afficher();
+    /// <summary>
+    /// Délai après la dernière frappe avant de lancer la recherche. Reconstruire la liste des résultats
+    /// (jusqu'à 60 lignes) prend 50 à 250 ms : le faire à chaque lettre ralentissait la saisie.
+    /// </summary>
+    private static readonly TimeSpan DelaiRecherche = TimeSpan.FromMilliseconds(200);
+    private DispatcherTimer? _minuterieRecherche;
+
+    partial void OnRechercheChanged(string value)
+    {
+        _minuterieRecherche?.Stop();
+        // Champ vidé (ou bouton « Bibliothèque ») : on revient aux tuiles tout de suite.
+        if (value.Trim().Length == 0)
+        {
+            Afficher();
+            return;
+        }
+        if (_minuterieRecherche is null)
+        {
+            _minuterieRecherche = new DispatcherTimer(DispatcherPriority.Background) { Interval = DelaiRecherche };
+            _minuterieRecherche.Tick += (_, _) =>
+            {
+                _minuterieRecherche.Stop();
+                Afficher();
+            };
+        }
+        _minuterieRecherche.Start();
+    }
 
     /// <summary>Relit les séances en base et reconstruit l'arbre, en restant au même endroit.</summary>
     private void Charger()
@@ -182,12 +211,17 @@ public partial class BibliothequeViewModel : ObservableObject
 
     private void AfficherRecherche(string filtre)
     {
-        bool Contient(string? texte) => texte is not null && texte.Contains(filtre, StringComparison.CurrentCultureIgnoreCase);
-        var trouvees = _toutes.Where(s => Contient(s.Seance) || Contient(s.Partie) || Contient(s.Matiere) || Contient(s.Sequence)).ToList();
+        var trouvees = ArbreBibliotheque.Rechercher(_toutes, filtre);
+        var affichees = trouvees.Take(MaxResultats).ToList();
 
         TitreNiveau = $"Recherche : « {filtre} »";
-        Tuiles = [];
-        Seances = trouvees.Take(MaxResultats).Select(s => new LigneSeance(s, $"{s.Matiere}  ›  {s.Partie}")).ToList();
+        if (Tuiles.Count > 0) Tuiles = [];
+        // Mêmes séances qu'avant (on a seulement précisé le mot) : on garde les lignes déjà affichées
+        // au lieu de tout redessiner.
+        bool identiques = Seances.Count == affichees.Count
+            && Seances.Zip(affichees).All(p => ReferenceEquals(p.First.Resume, p.Second) && p.First.Emplacement is not null);
+        if (!identiques)
+            Seances = affichees.Select(s => new LigneSeance(s, $"{s.Matiere}  ›  {s.Partie}")).ToList();
         PeutRevenir = false;
         Fil = [new MaillonFil("Bibliothèque", 0, true)]; // un clic dessus quitte la recherche
         InfoRecherche = trouvees.Count switch
