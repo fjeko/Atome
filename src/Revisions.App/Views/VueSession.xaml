@@ -109,6 +109,24 @@
                            Text="Facultatif : écris ta réponse pour la comparer. Tab pour écrire, Entrée pour voir la réponse, Maj+Entrée pour un saut de ligne, Échap pour sortir." />
             </StackPanel>
 
+            <!-- Carte coriace : une proposition douce (relire, signaler, mettre de côté). -->
+            <Border Margin="{StaticResource Marge.Haut.12}" Padding="14,10" CornerRadius="8" BorderThickness="1"
+                    Background="{DynamicResource Ton.Info.Pale}" BorderBrush="{DynamicResource Ton.Info.Trait}"
+                    Visibility="{Binding CoriaceVisible, Converter={StaticResource VisibleSi}}">
+                <StackPanel>
+                    <TextBlock Text="{Binding CoriaceTexte}" TextWrapping="Wrap" Foreground="{DynamicResource Ton.Info.Texte}" />
+                    <WrapPanel Margin="{StaticResource Marge.Haut.8}">
+                        <Button Content="Relire le passage" Command="{Binding CoriaceRelireCommand}" Style="{StaticResource BoutonSecondaire}"
+                                ds:Forme.Icone="{x:Static ds:Icones.Lire}" Margin="{StaticResource Marge.Droite.8}" />
+                        <Button Content="Signaler" Command="{Binding CoriaceSignalerCommand}" Style="{StaticResource BoutonSecondaire}"
+                                ds:Forme.Icone="{x:Static ds:Icones.Drapeau}" Margin="{StaticResource Marge.Droite.8}" />
+                        <Button Content="Mettre de côté" Command="{Binding CoriaceMettreDeCoteCommand}" Style="{StaticResource BoutonSecondaire}"
+                                Margin="{StaticResource Marge.Droite.8}" ToolTip="Elle ne sera plus proposée ; tu pourras la remettre dans les Statistiques." />
+                        <Button Content="Plus tard" Command="{Binding CoriaceFermerCommand}" Style="{StaticResource BoutonSecondaire}" />
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
             <!-- Encouragement (objectif du jour atteint). -->
             <ds:Bandeau ds:Ton.Nom="Succes" Icone="{x:Static ds:Icones.Etoile}" Texte="{Binding Bandeau}" Margin="{StaticResource Marge.Haut.12}"
                         Visibility="{Binding Bandeau, Converter={StaticResource VisibleSi}}" />

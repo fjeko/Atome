@@ -151,6 +151,35 @@
                 </StackPanel>
             </Border>
 
+            <!-- Cartes mises de côté depuis une session : retrouvables et réactivables. -->
+            <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.16}" Padding="20"
+                    Visibility="{Binding ADesMisesDeCote, Converter={StaticResource VisibleSi}}">
+                <StackPanel>
+                    <TextBlock Text="Cartes mises de côté" Style="{StaticResource Texte.Fort}" />
+                    <TextBlock Text="Elles ne sont plus proposées. Tu peux les remettre en jeu quand tu veux : leur historique est gardé."
+                               Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.4}" TextWrapping="Wrap" />
+                    <ItemsControl ItemsSource="{Binding MisesDeCote}" Margin="{StaticResource Marge.Haut.8}" Focusable="False">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="{DynamicResource Pinceau.Bordure}" BorderThickness="0,1,0,0" Padding="0,12,0,4">
+                                    <DockPanel>
+                                        <Button DockPanel.Dock="Right" Content="Remettre en jeu" Style="{StaticResource BoutonSecondaire}"
+                                                Margin="{StaticResource Marge.Gauche.12}" VerticalAlignment="Center"
+                                                Command="{Binding DataContext.ReactiverCommand, ElementName=Racine}" CommandParameter="{Binding}" />
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Extrait}" Style="{StaticResource Texte.Fort}" TextTrimming="CharacterEllipsis" />
+                                            <TextBlock Style="{StaticResource Texte.Meta}">
+                                                <Run Text="{Binding Matiere, Mode=OneWay}" /><Run Text="  ·  " /><Run Text="{Binding Seance, Mode=OneWay}" />
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DockPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
             <!-- Réussite et maîtrise par matière. -->
             <Grid Margin="{StaticResource Marge.Haut.16}">
                 <Grid.ColumnDefinitions>

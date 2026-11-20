@@ -41,7 +41,7 @@ public sealed class SignalementsTests : IDisposable
     {
         using var connexion = _base.Ouvrir();
         Assert.Equal(1, connexion.ExecuteScalar<long>("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='signalement'"));
-        Assert.Equal(11, connexion.ExecuteScalar<long>("PRAGMA user_version;"));
+        Assert.Equal(12, connexion.ExecuteScalar<long>("PRAGMA user_version;"));
     }
 
     [Fact]

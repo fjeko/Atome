@@ -245,7 +245,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
             JOIN pack p ON p.id = c.pack_id
             JOIN matiere m ON m.id = p.matiere_id
             JOIN etat_carte e ON e.carte_id = c.id
-            WHERE c.archivee = 0 AND e.stabilite IS NOT NULL
+            WHERE c.archivee = 0 AND e.suspendue = 0 AND e.stabilite IS NOT NULL
             """);
 
         return lignes

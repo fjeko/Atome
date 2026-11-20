@@ -24,7 +24,7 @@ public sealed record LignePointFaible(PointFaible Point)
 }
 
 /// <summary>Écran Statistiques : régularité, réussite et points faibles (US10).</summary>
-public partial class StatistiquesViewModel
+public partial class StatistiquesViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
 {
     private const int NombreDeSemaines = 12;
     private const double HauteurMax = 110;
@@ -93,6 +93,20 @@ public partial class StatistiquesViewModel
 
         // ---- Points faibles ----
         PointsFaibles = profil.PointsFaibles(jour, 5).Select(p => new LignePointFaible(p)).ToList();
+        foreach (var c in revisions.CartesMisesDeCote()) MisesDeCote.Add(c);
+        _aDesMisesDeCote = MisesDeCote.Count > 0;
+    }
+
+    /// <summary>Cartes mises de côté depuis une session (« Mettre de côté ») : on peut les remettre en jeu.</summary>
+    public System.Collections.ObjectModel.ObservableCollection<CarteMiseDeCote> MisesDeCote { get; } = [];
+    [CommunityToolkit.Mvvm.ComponentModel.ObservableProperty] private bool _aDesMisesDeCote;
+
+    [RelayCommand]
+    private void Reactiver(CarteMiseDeCote carte)
+    {
+        _revisions.DefinirSuspendue(carte.CarteId, false);
+        MisesDeCote.Remove(carte);
+        ADesMisesDeCote = MisesDeCote.Count > 0;
     }
 
     /// <summary>Session ciblée sur une section fragile.</summary>

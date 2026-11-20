@@ -260,5 +260,10 @@ internal static class Migrations
           score          INTEGER                     -- score de ce contrôle, en %
         );
         """,
+
+        // ---- 12 : cartes mises de côté (« coriaces » que l'étudiant choisit de ne plus voir pour l'instant) ----
+        """
+        ALTER TABLE etat_carte ADD COLUMN suspendue INTEGER NOT NULL DEFAULT 0;   -- 1 = ni révisée ni proposée, réactivable
+        """,
     ];
 }

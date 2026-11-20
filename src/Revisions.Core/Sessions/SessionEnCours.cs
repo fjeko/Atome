@@ -41,6 +41,18 @@ public sealed class SessionEnCours
         _position++;
     }
 
+    /// <summary>
+    /// Retire de la suite de la session toutes les apparitions d'une carte (carte mise de côté).
+    /// Renvoie vrai si la carte courante était cette carte : la courante est alors la carte suivante.
+    /// </summary>
+    public bool Retirer(string carteId)
+    {
+        bool etaitCourante = Courante?.Carte.Id == carteId;
+        for (int i = _file.Count - 1; i >= _position; i--)
+            if (_file[i].Carte.Id == carteId) _file.RemoveAt(i);
+        return etaitCourante;
+    }
+
     /// <summary>Écart minimal et maximal autour de <see cref="EcartRetour"/> pour rester dans un paquet de la même matière.</summary>
     public const int EcartMin = 3, EcartMax = 10;
 

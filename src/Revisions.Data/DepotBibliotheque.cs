@@ -36,8 +36,8 @@ public sealed class DepotBibliotheque(BaseDeDonnees baseDeDonnees)
                    p.seance AS Seance, p.ordre AS Ordre, (p.date_lecture IS NOT NULL) AS Lu,
                    COUNT(c.id) AS NbCartes,
                    COALESCE(SUM(e.stabilite >= 21), 0) AS NbMaitrisees,
-                   COALESCE(SUM(e.stabilite IS NOT NULL AND e.echeance <= @jour), 0) AS NbDues,
-                   COALESCE(SUM(c.id IS NOT NULL AND e.stabilite IS NULL), 0) AS NbNouvelles,
+                   COALESCE(SUM(e.stabilite IS NOT NULL AND e.suspendue = 0 AND e.echeance <= @jour), 0) AS NbDues,
+                   COALESCE(SUM(c.id IS NOT NULL AND e.suspendue = 0 AND e.stabilite IS NULL), 0) AS NbNouvelles,
                    pl.date_controle AS DateControle, pl.score AS ScoreControle
             FROM pack p
             LEFT JOIN parcours_lecture pl ON pl.pack_id = p.id

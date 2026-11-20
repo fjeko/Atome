@@ -47,6 +47,7 @@ révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je
 - **Révisions choisies et expliquées** : session du jour, une matière ou une partie, mes points faibles, ce que je viens de lire,
   préparer un devoir ; chaque carte dit pourquoi elle est là, et les nouvelles cartes attendent que tu aies lu le cours.
 - **Gamification sans punition** : XP, niveaux, série comptée en semaines, mode reprise après une pause, plafond de cartes par jour.
+- **Cartes qui résistent** : après plusieurs échecs, Atome propose de relire le passage, de signaler la carte ou de la mettre de côté (réactivable dans les Statistiques).
 - **Mes acquis** : tu déclares ce que tu maîtrises déjà, les cartes s'adaptent à ton niveau.
 - **Planning CNED** : la proposition de ton organisme de formation en frises par matière, avec **import direct du fichier Excel**.
 - **Calculatrice** : sur les exercices de maths, une petite fenêtre flottante (Ctrl + K) avec fractions exactes, historique, `Ans` et matrices (produit, puissance, inverse, déterminant, transposée), grisée quand l'exercice demande de calculer à la main.
@@ -171,7 +172,7 @@ Au démarrage, l'application importe automatiquement les packs de son dossier de
 dotnet test
 ```
 
-1385 tests : parcours « Lire puis contrôler » (questions flash, contrôle, reprise, marquage, notation FSRS), calculatrice (rationnels exacts, analyseur, matrices, erreurs, règle « calcul à la main »), validation des packs, import et réimport (historique conservé), algorithme FSRS,
+1393 tests : parcours « Lire puis contrôler » (questions flash, contrôle, reprise, marquage, notation FSRS), calculatrice (rationnels exacts, analyseur, matrices, erreurs, règle « calcul à la main »), validation des packs, import et réimport (historique conservé), algorithme FSRS,
 construction des sessions (types de session, paquets de matière, motifs, verrouillage des cours non lus, durée estimée), mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
 bibliothèque en niveaux, couleurs et contrastes de chaque thème, système de design (contrastes WCAG AA de toutes les paires
 texte / fond pour chaque thème et chaque accent, couleurs des matières, banque de messages de la mascotte), enregistrement des réglages,

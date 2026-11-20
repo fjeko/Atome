@@ -54,3 +54,8 @@ Au-dessus de chaque carte, en petit :
 1. D'abord les cartes **à revoir**, les plus fragiles en premier (celles que tu risques le plus d'oublier).
 2. Ensuite les **nouvelles cartes** des cours lus, dans l'ordre du cours. Avec un planning, le contenu d'un devoir proche passe avant le reste.
 3. Enfin, tout est rangé en paquets de matière, comme expliqué plus haut.
+
+### Une carte qui résiste
+
+Si une carte est ratée 3 fois sur ses 4 dernières notes, Atome te propose de l'aide, sans rien imposer : **Relire le passage** (ouvre la section du cours), **Signaler** (si la carte te paraît mal posée) ou **Mettre de côté**.
+Une carte mise de côté n'est plus proposée, mais rien n'est perdu : son historique est gardé. Tu la retrouves dans **Statistiques → Cartes mises de côté**, avec un bouton **Remettre en jeu**.

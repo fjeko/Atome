@@ -351,10 +351,64 @@ public partial class SessionViewModel : ObservableObject
         }
     }
 
+    // ---- Cartes coriaces : une proposition douce, jamais une remontrance ---------------------
+
+    private readonly HashSet<string> _coriacesProposees = [];
+    private CarteAReviser? _coriace;
+    /// <summary>Message d'aide affiché quand une carte résiste (3 « Raté » sur ses 4 dernières notes).</summary>
+    [ObservableProperty] private bool _coriaceVisible;
+    [ObservableProperty] private string _coriaceTexte = "";
+
+    /// <summary>Après un « Raté » : si la carte résiste depuis un moment, on propose de l'aide (une seule fois par session).</summary>
+    private void ProposerSiCoriace(CarteAReviser carte, Note note)
+    {
+        if (note != Note.Rate || _coriacesProposees.Contains(carte.Carte.Id)) return;
+        if (!CartesCoriaces.EstCoriace(_revisions.DernieresNotes(carte.Carte.Id, CartesCoriaces.Fenetre))) return;
+        _coriacesProposees.Add(carte.Carte.Id);
+        _coriace = carte;
+        CoriaceTexte = $"« {Extrait(carte.Carte)} » résiste un peu : ça arrive à tout le monde, et elle est peut-être simplement mal formulée. "
+                       + "Tu veux la relire dans le cours, la signaler, ou la mettre de côté pour l'instant ?";
+        CoriaceVisible = true;
+    }
+
+    [RelayCommand]
+    private void CoriaceRelire()
+    {
+        if (_coriace is { } c) _main.RevoirLaNotion(c.Carte.SectionId);
+        CoriaceVisible = false;
+    }
+
+    [RelayCommand]
+    private void CoriaceSignaler()
+    {
+        if (_coriace is { } c)
+        {
+            _signalements.SignalerCarte(c.Carte.Id, c.PackId, c.Seance, TexteCarte.Recto(c.Carte), TexteCarte.Verso(c.Carte));
+            MessageSignalement = ServiceSignalement.Merci;
+        }
+        CoriaceVisible = false;
+    }
+
+    /// <summary>La carte est suspendue (retrouvable et réactivable dans les Statistiques) et retirée de la suite de la session.</summary>
+    [RelayCommand]
+    private void CoriaceMettreDeCote()
+    {
+        CoriaceVisible = false;
+        if (_coriace is not { } c) return;
+        _revisions.DefinirSuspendue(c.Carte.Id, true);
+        bool courante = _session.Retirer(c.Carte.Id);
+        if (_session.EstTerminee) Terminer();
+        else if (courante) AfficherCarte();
+    }
+
+    [RelayCommand]
+    private void CoriaceFermer() => CoriaceVisible = false;
+
     // ---- Enregistrement --------------------------------------------------------------------
 
     private void Enregistrer(Note note)
     {
+        CoriaceVisible = false;
         var carte = Courante;
         // Même service de notation que le parcours « Lire puis contrôler » : FSRS, XP et historique.
         var (resultat, xp) = _notation.Noter(_sessionId, carte, note, _session.CouranteEstUnRetour, _jour, _etat.Maintenant,
@@ -373,6 +427,7 @@ public partial class SessionViewModel : ObservableObject
         VerifierObjectif();
 
         _session.Avancer(note == Note.Rate, carte with { Etat = resultat.NouvelEtat });
+        ProposerSiCoriace(carte, note);
         if (_session.EstTerminee) Terminer();
         else AfficherCarte();
     }

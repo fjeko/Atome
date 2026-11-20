@@ -6,6 +6,9 @@ using Revisions.Core.Sessions;
 
 namespace Revisions.Data;
 
+/// <summary>Une carte mise de côté, avec de quoi la reconnaître dans la liste.</summary>
+public sealed record CarteMiseDeCote(string CarteId, string Matiere, string Seance, string Extrait);
+
 /// <summary>Cartes à réviser, enregistrement des réponses et sessions.</summary>
 public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
 {
@@ -20,7 +23,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
         JOIN pack p ON p.id = c.pack_id
         JOIN matiere m ON m.id = p.matiere_id
         JOIN etat_carte e ON e.carte_id = c.id
-        WHERE c.archivee = 0
+        WHERE c.archivee = 0 AND e.suspendue = 0
         """;
 
     /// <summary>Cartes déjà vues dont l'échéance est arrivée.</summary>
@@ -34,7 +37,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
         return connexion.ExecuteScalar<int>(
             """
             SELECT COUNT(*) FROM etat_carte e JOIN carte c ON c.id = e.carte_id
-            WHERE c.archivee = 0 AND e.stabilite IS NOT NULL AND e.echeance <= @jour
+            WHERE c.archivee = 0 AND e.suspendue = 0 AND e.stabilite IS NOT NULL AND e.echeance <= @jour
             """, new { jour = BaseDeDonnees.Iso(jour) });
     }
 
@@ -49,7 +52,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
                 """
                 SELECT c.id, c.pack_id, c.position, e.prioritaire
                 FROM carte c JOIN etat_carte e ON e.carte_id = c.id
-                WHERE c.archivee = 0 AND e.stabilite IS NULL
+                WHERE c.archivee = 0 AND e.suspendue = 0 AND e.stabilite IS NULL
                 """)
             .Select(l => new CandidateNouvelle(l.Id, l.PackId, (int)l.Position, l.Prioritaire != 0))
             .ToList();
@@ -63,7 +66,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
                 """
                 SELECT c.id, c.pack_id, e.stabilite, e.derniere_revision, e.echeance
                 FROM carte c JOIN etat_carte e ON e.carte_id = c.id
-                WHERE c.archivee = 0 AND e.stabilite IS NOT NULL AND e.derniere_revision IS NOT NULL AND e.echeance > @jour
+                WHERE c.archivee = 0 AND e.suspendue = 0 AND e.stabilite IS NOT NULL AND e.derniere_revision IS NOT NULL AND e.echeance > @jour
                 """, new { jour = BaseDeDonnees.Iso(jour) })
             .Select(l => new CarteVue(l.Id, l.PackId, l.Stabilite, BaseDeDonnees.Jour(l.Derniere)!.Value, BaseDeDonnees.Jour(l.Echeance)!.Value))
             .ToList();
@@ -82,7 +85,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
                        COALESCE(e.derniere_revision, e.echeance, @jour), COALESCE(e.echeance, @jour), e.oublis,
                        (SELECT COUNT(*) FROM revision r WHERE r.carte_id = c.id AND r.note = 1)
                 FROM carte c JOIN etat_carte e ON e.carte_id = c.id
-                WHERE c.archivee = 0 AND e.stabilite IS NOT NULL
+                WHERE c.archivee = 0 AND e.suspendue = 0 AND e.stabilite IS NOT NULL
                 """, new { jour = BaseDeDonnees.Iso(jour) })
             .Select(l => new CarteVue(l.Id, l.PackId, l.Stabilite, BaseDeDonnees.Jour(l.Derniere)!.Value,
                 BaseDeDonnees.Jour(l.Echeance)!.Value, (int)l.Oublis, (int)l.Ratees))
@@ -130,6 +133,44 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
     {
         using var connexion = baseDeDonnees.Ouvrir();
         return connexion.Query<LigneCarte>(sql, parametres).Select(l => l.VersCarte()).ToList();
+    }
+
+    /// <summary>Les dernières notes d'une carte (1 = Raté … 4 = Facile), de la plus récente à la plus ancienne.</summary>
+    public List<int> DernieresNotes(string carteId, int nombre)
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.Query<int>("SELECT note FROM revision WHERE carte_id = @carteId ORDER BY id DESC LIMIT @nombre",
+            new { carteId, nombre }).ToList();
+    }
+
+    /// <summary>Met une carte de côté (jamais proposée ni révisée) ou la remet en jeu. Son historique et son état FSRS sont gardés.</summary>
+    public void DefinirSuspendue(string carteId, bool suspendue)
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        connexion.Execute("UPDATE etat_carte SET suspendue = @s WHERE carte_id = @carteId", new { s = suspendue ? 1 : 0, carteId });
+    }
+
+    /// <summary>Les cartes mises de côté, de quoi les retrouver et les réactiver (Statistiques).</summary>
+    public List<CarteMiseDeCote> CartesMisesDeCote()
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        return connexion.Query<(string Id, string Matiere, string Seance, string Donnees)>(
+                """
+                SELECT c.id, m.nom, p.seance, c.donnees_json
+                FROM carte c
+                JOIN pack p ON p.id = c.pack_id
+                JOIN matiere m ON m.id = p.matiere_id
+                JOIN etat_carte e ON e.carte_id = c.id
+                WHERE c.archivee = 0 AND e.suspendue = 1
+                ORDER BY m.nom, p.seance, c.position
+                """)
+            .Select(l =>
+            {
+                var contenu = JsonSerializer.Deserialize<ContenuCarte>(l.Donnees) ?? new ContenuCarte();
+                return new CarteMiseDeCote(l.Id, l.Matiere, l.Seance,
+                    Core.Packs.TexteSimple.Extrait(contenu.Recto ?? contenu.Question ?? contenu.Enonce, 110));
+            })
+            .ToList();
     }
 
     /// <summary>Ouvre une session et renvoie son numéro.</summary>
