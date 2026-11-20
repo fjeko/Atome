@@ -42,6 +42,7 @@ révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je
 ## Fonctionnalités
 
 - **Lecture des cours** : chaque séance se lit dans l'application, section par section (Markdown, formules LaTeX, code coloré).
+- **Lire puis contrôler** : le cours section par section avec des questions flash, puis un petit contrôle cours masqué, un score par section et la reprise là où tu t'étais arrêté.
 - **Répétition espacée FSRS** : des cartes (question, QCM, exercice pas à pas) revues au bon moment, à ton rythme.
 - **Révisions choisies et expliquées** : session du jour, une matière ou une partie, mes points faibles, ce que je viens de lire,
   préparer un devoir ; chaque carte dit pourquoi elle est là, et les nouvelles cartes attendent que tu aies lu le cours.
@@ -169,7 +170,7 @@ Au démarrage, l'application importe automatiquement les packs de son dossier de
 dotnet test
 ```
 
-1357 tests : calculatrice (rationnels exacts, analyseur, matrices, erreurs, règle « calcul à la main »), validation des packs, import et réimport (historique conservé), algorithme FSRS,
+1368 tests : parcours « Lire puis contrôler » (questions flash, contrôle, reprise, marquage, notation FSRS), calculatrice (rationnels exacts, analyseur, matrices, erreurs, règle « calcul à la main »), validation des packs, import et réimport (historique conservé), algorithme FSRS,
 construction des sessions (types de session, paquets de matière, motifs, verrouillage des cours non lus, durée estimée), mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
 bibliothèque en niveaux, couleurs et contrastes de chaque thème, système de design (contrastes WCAG AA de toutes les paires
 texte / fond pour chaque thème et chaque accent, couleurs des matières, banque de messages de la mascotte), enregistrement des réglages,
