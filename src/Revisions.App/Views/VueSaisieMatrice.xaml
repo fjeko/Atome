@@ -5,7 +5,41 @@
         Grille de saisie d'une matrice, entre deux grandes parenthèses.
         Tab passe à la case suivante, Entrée affiche la réponse, Échap sort de la grille.
     -->
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+    <UserControl.Resources>
+        <!-- Même case que les TD : modèle sans bouton « effacer » (il mangeait la place du nombre), texte centré bien visible. -->
+        <Style x:Key="CaseMatrice" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Width" Value="96" />
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="MinHeight" Value="{StaticResource Hauteur.CaseNombre}" />
+            <Setter Property="Padding" Value="{StaticResource Remplissage.CaseNombre}" />
+            <Setter Property="FontSize" Value="{DynamicResource Taille.SousTitre}" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="{DynamicResource Pinceau.Texte}" />
+            <Setter Property="Background" Value="{DynamicResource Pinceau.Controle}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource Pinceau.Bordure}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="Cadre" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{StaticResource Rayon.Controle}">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}" Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter TargetName="Cadre" Property="BorderBrush" Value="{DynamicResource Pinceau.Accent}" />
+                                <Setter TargetName="Cadre" Property="BorderThickness" Value="2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
         <Border Width="10" BorderThickness="2,2,0,2" CornerRadius="10,0,0,10" Margin="0,0,4,0"
                 BorderBrush="{DynamicResource Pinceau.TexteSecondaire}" />
         <ItemsControl x:Name="Grille" ItemsSource="{Binding Lignes}" Focusable="False" KeyboardNavigation.TabNavigation="Continue">
@@ -17,8 +51,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBox Text="{Binding Texte, UpdateSourceTrigger=PropertyChanged}" Width="64" Margin="3"
-                                         TextAlignment="Center" FontSize="{DynamicResource Taille.Corps}"
+                                <TextBox Text="{Binding Texte, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CaseMatrice}"
                                          AutomationProperties.Name="Case de la matrice" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
