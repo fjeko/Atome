@@ -18,7 +18,8 @@
     <FontFamily x:Key="Police.Titres">Segoe UI Variable Display, Segoe UI</FontFamily>
     <FontFamily x:Key="Police.Empattements">Sitka Heading, Sitka Text, Georgia</FontFamily>
     <FontFamily x:Key="Police.Icones">Segoe Fluent Icons, Segoe MDL2 Assets</FontFamily>
-    <FontFamily x:Key="Police.Code">Cascadia Code, Consolas</FontFamily>
+    <!-- Cascadia Mono : pas de ligatures (!= reste !=, >= reste >=). -->
+    <FontFamily x:Key="Police.Code">Cascadia Mono, Consolas</FontFamily>
 
     <!-- Rayons : 8 contrôles, 12 cartes, 16 tuiles et bouton principal. -->
     <CornerRadius x:Key="Rayon.Controle">8</CornerRadius>
