@@ -173,7 +173,7 @@ public partial class SessionViewModel : ObservableObject
         var carte = Courante.Carte;
         var c = carte.Contenu;
         bool qcm = carte.Type == TypeCarte.Qcm;
-        var elements = RenduCarte.Elements(carte, _ordreChoix, _choixFait, _reponseVisible, _etapesRevelees, ReponseSaisie);
+        var elements = RenduCarte.Elements(carte, _ordreChoix, _choixFait, _reponseVisible, _etapesRevelees, ReponseSaisie, Matrice?.Latex);
         MessageRendu = JsonSerializer.Serialize(new { elements, defiler = defilerEnBas ? "bas" : "haut", animation = "carte" });
 
         bool mauvaisChoix = qcm && _reponseVisible && _choixFait != c.BonneReponse;

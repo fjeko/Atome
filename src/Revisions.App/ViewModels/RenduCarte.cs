@@ -11,7 +11,9 @@ public static class RenduCarte
     /// <param name="ordreChoix">Ordre d'affichage des choix d'un QCM (index dans le pack).</param>
     /// <param name="choixFait">Index du choix fait dans le pack, ou null.</param>
     /// <param name="saisie">Réponse écrite (carte « question »), comparée à la bonne réponse une fois révélée.</param>
-    public static List<object> Elements(Carte carte, int[] ordreChoix, int? choixFait, bool reponseVisible, int etapesRevelees, string saisie)
+    /// <param name="saisieLatex">Matrice remplie dans la grille, en LaTeX (affichée comme la réponse), ou null.</param>
+    public static List<object> Elements(Carte carte, int[] ordreChoix, int? choixFait, bool reponseVisible, int etapesRevelees, string saisie,
+        string? saisieLatex = null)
     {
         var c = carte.Contenu;
         var elements = new List<object>();
@@ -59,7 +61,7 @@ public static class RenduCarte
                 if (!string.IsNullOrWhiteSpace(saisie))
                 {
                     if (memeResultat) elements.Add(new { genre = "etiquette", markdown = "Même résultat que toi !" });
-                    elements.Add(new { genre = "comparaison", saisie = saisie.Trim(), markdown = c.Reponse });
+                    elements.Add(new { genre = "comparaison", saisie = saisie.Trim(), saisieMarkdown = saisieLatex, markdown = c.Reponse });
                 }
                 else
                 {

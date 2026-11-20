@@ -59,7 +59,10 @@
         titreGauche.textContent = "Ta réponse";
         const saisie = document.createElement("div");
         saisie.className = "saisie";
-        saisie.textContent = element.saisie || ""; // textContent : jamais interprété comme du HTML
+        // Matrice remplie dans la grille : affichée comme la réponse (LaTeX construit par Atome, cases filtrées).
+        // Sinon textContent : la saisie libre n'est jamais interprétée comme du HTML.
+        if (element.saisieMarkdown) saisie.innerHTML = md.render(element.saisieMarkdown);
+        else saisie.textContent = element.saisie || "";
         gauche.append(titreGauche, saisie);
 
         const droite = document.createElement("div");
