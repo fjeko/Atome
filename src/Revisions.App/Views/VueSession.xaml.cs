@@ -63,6 +63,9 @@ public partial class VueSession : UserControl
         string? touche = e.Key switch { Key.Enter => "Enter", Key.Space => " ", _ => null };
         if (touche is not null && session.ToucheDansSaisie(touche, maj: (mod & ModifierKeys.Shift) != 0, ctrl: (mod & ModifierKeys.Control) != 0))
             e.Handled = true;
+        // Carte de code : Entrée garde l'indentation, Tab et Maj+Tab indentent (Ctrl+Entrée a déjà révélé ci-dessus).
+        else if (session.SaisieCode && Controles.EditeurCode.Traiter(ZoneSaisie, e))
+            e.Handled = true;
     }
 
     protected override void OnPreviewKeyDown(KeyEventArgs e)

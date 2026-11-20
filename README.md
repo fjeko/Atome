@@ -324,7 +324,7 @@ puis dévoile la correction étape par étape, Entrée (hors des cases) fait la 
   `session:<id du pack>`, `choix` (écran « Autre révision »), `aide:<numéro de page>`, `bibliotheque:0,1` pour descendre dans les tuiles,
   `bibliotheque:?texte` pour une recherche), `td` ou `td:<code>` (rejoint ce TD ; `td:<code>:demo` remplit
   une grille avec une erreur et vérifie, pour capturer l'écran de correction), `td:solo:MAT` ou `td:solo:MAT:Produit` (TD solo de 15 min sur ce thème ou cette notion ; `:examen` pour corriger à la fin), `galerie` (tous les composants du
-  système de design, en sombre et en clair), `acquis`, `questionnaire` ouvre directement un écran.
+  système de design, en sombre et en clair), `acquis`, `questionnaire` ouvre directement un écran ; `session-code:<pack>` lance une session avec seulement les cartes qui demandent du code.
 - `--theme=ocean` et `--accent=#D8498F` (ou `--accent=auto`) changent l'apparence au lancement ;
   `--hauteur=1700` agrandit la fenêtre pour capturer un écran long ; `--defiler=800` fait défiler l'écran ;
   `--sans-galerie` cache l'entrée « Galerie » du menu (captures du README).

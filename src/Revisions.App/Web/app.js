@@ -62,6 +62,21 @@
         // Matrice remplie dans la grille : affichée comme la réponse (LaTeX construit par Atome, cases filtrées).
         // Sinon textContent : la saisie libre n'est jamais interprétée comme du HTML.
         if (element.saisieMarkdown) saisie.innerHTML = md.render(element.saisieMarkdown);
+        else if (element.code) {
+          // Code écrit par l'étudiant : même police et même cadre que la correction, pour comparer ligne à ligne.
+          bloc.classList.add("code");
+          const pre = document.createElement("pre");
+          const code = document.createElement("code");
+          code.textContent = element.saisie || "";
+          // Coloration dans le langage de la correction (« ```csharp »), si highlight.js le connaît.
+          // hljs échappe le HTML : la saisie n'est jamais interprétée.
+          const langage = /```(\w+)/.exec(element.markdown || "")?.[1];
+          if (langage && hljs.getLanguage(langage)) {
+            try { code.innerHTML = hljs.highlight(element.saisie || "", { language: langage }).value; } catch (e) { /* texte brut */ }
+          }
+          pre.append(code);
+          saisie.append(pre);
+        }
         else saisie.textContent = element.saisie || "";
         gauche.append(titreGauche, saisie);
 

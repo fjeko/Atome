@@ -12,8 +12,9 @@ public static class RenduCarte
     /// <param name="choixFait">Index du choix fait dans le pack, ou null.</param>
     /// <param name="saisie">Réponse écrite (carte « question »), comparée à la bonne réponse une fois révélée.</param>
     /// <param name="saisieLatex">Matrice remplie dans la grille, en LaTeX (affichée comme la réponse), ou null.</param>
+    /// <param name="code">La carte demande du code : la saisie s'affiche en police code, sans retouche (indentation gardée).</param>
     public static List<object> Elements(Carte carte, int[] ordreChoix, int? choixFait, bool reponseVisible, int etapesRevelees, string saisie,
-        string? saisieLatex = null)
+        string? saisieLatex = null, bool code = false)
     {
         var c = carte.Contenu;
         var elements = new List<object>();
@@ -24,7 +25,7 @@ public static class RenduCarte
                 if (reponseVisible && !string.IsNullOrWhiteSpace(saisie))
                 {
                     // Une réponse a été écrite : on l'affiche à côté de la bonne pour comparer.
-                    elements.Add(new { genre = "comparaison", saisie = saisie.Trim(), markdown = c.Verso });
+                    elements.Add(new { genre = "comparaison", saisie = code ? saisie.TrimEnd() : saisie.Trim(), markdown = c.Verso, code });
                 }
                 else if (reponseVisible)
                 {
@@ -57,11 +58,13 @@ public static class RenduCarte
                 // La correction étape par étape n'apparaît que si le résultat écrit est différent (ou s'il n'y en a pas).
                 elements.Add(new { genre = "question", markdown = c.Enonce });
                 if (!reponseVisible) break;
-                bool memeResultat = ComparaisonReponse.MemeResultat(saisie, c.Reponse);
+                // Du code ne se compare pas au caractère près : la correction détaillée reste toujours affichée.
+                bool memeResultat = !code && ComparaisonReponse.MemeResultat(saisie, c.Reponse);
                 if (!string.IsNullOrWhiteSpace(saisie))
                 {
                     if (memeResultat) elements.Add(new { genre = "etiquette", markdown = Felicitation(carte.Id) });
-                    elements.Add(new { genre = "comparaison", saisie = saisie.Trim(), saisieMarkdown = saisieLatex, markdown = c.Reponse });
+                    elements.Add(new { genre = "comparaison", saisie = code ? saisie.TrimEnd() : saisie.Trim(), saisieMarkdown = saisieLatex,
+                        markdown = c.Reponse, code });
                 }
                 else
                 {

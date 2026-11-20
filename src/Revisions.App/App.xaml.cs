@@ -137,6 +137,11 @@ public partial class App : Application
             case "session":
                 principal.DemarrerSession(Services.GetRequiredService<DepotRevisions>().CartesDuPack(morceaux[1]), "seance");
                 break;
+            // « session-code:<pack> » : seulement les cartes qui demandent du code (zone d'éditeur).
+            case "session-code":
+                principal.DemarrerSession(Services.GetRequiredService<DepotRevisions>().CartesDuPack(morceaux[1])
+                    .Where(c => Revisions.Core.Modeles.DetectionCode.AttendDuCode(c.Carte, c.Matiere)).ToList(), "seance");
+                break;
         }
     }
 #endif

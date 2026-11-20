@@ -43,5 +43,8 @@ public partial class VueParcours : UserControl
         string? touche = e.Key switch { Key.Enter => "Enter", Key.Space => " ", _ => null };
         if (touche is not null && parcours.ToucheDansSaisie(touche, maj: (mod & ModifierKeys.Shift) != 0, ctrl: (mod & ModifierKeys.Control) != 0))
             e.Handled = true;
+        // Carte de code : Entrée garde l'indentation, Tab et Maj+Tab indentent (Ctrl+Entrée a déjà révélé ci-dessus).
+        else if (parcours.SaisieCode && Controles.EditeurCode.Traiter(ZoneSaisie, e))
+            e.Handled = true;
     }
 }

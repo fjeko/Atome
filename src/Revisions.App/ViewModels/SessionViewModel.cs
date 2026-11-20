@@ -107,6 +107,13 @@ public partial class SessionViewModel : ObservableObject
     /// elle sert seulement à comparer avec la bonne réponse avant de se noter.
     /// </summary>
     [ObservableProperty] private string _reponseSaisie = "";
+    /// <summary>
+    /// La carte demande d'écrire du code : la zone devient un petit éditeur (police code, plusieurs lignes,
+    /// Entrée = nouvelle ligne indentée, Tab = indenter) et seul Ctrl+Entrée révèle la correction.
+    /// </summary>
+    [ObservableProperty] private bool _saisieCode;
+    /// <summary>Touche affichée sur le bouton « Voir la réponse » : Espace, ou Ctrl+Entrée sur une carte de code.</summary>
+    [ObservableProperty] private string _raccourciReveler = "Espace";
     /// <summary>La zone de saisie n'existe que sur une carte « question », avant la réponse.</summary>
     [ObservableProperty] private bool _saisieVisible;
     /// <summary>Exercice dont la réponse est une matrice : une grille à remplir remplace la zone de texte.</summary>
@@ -149,6 +156,7 @@ public partial class SessionViewModel : ObservableObject
         _reponseVisible = false;
         ReponseSaisie = "";
         Matrice = SaisieMatrice.Pour(Courante.Carte);
+        SaisieCode = Matrice is null && DetectionCode.AttendDuCode(Courante.Carte, Courante.Matiere);
         if (Matrice is not null) Matrice.Valider = () => RevelerCommand.Execute(null);
         MessageSignalement = null;
         _ordreChoix = Enumerable.Range(0, Courante.Carte.Contenu.Choix?.Count ?? 0).ToArray();
@@ -173,12 +181,13 @@ public partial class SessionViewModel : ObservableObject
         var carte = Courante.Carte;
         var c = carte.Contenu;
         bool qcm = carte.Type == TypeCarte.Qcm;
-        var elements = RenduCarte.Elements(carte, _ordreChoix, _choixFait, _reponseVisible, _etapesRevelees, ReponseSaisie, Matrice?.Latex);
+        var elements = RenduCarte.Elements(carte, _ordreChoix, _choixFait, _reponseVisible, _etapesRevelees, ReponseSaisie, Matrice?.Latex, code: SaisieCode);
         MessageRendu = JsonSerializer.Serialize(new { elements, defiler = defilerEnBas ? "bas" : "haut", animation = "carte" });
 
         bool mauvaisChoix = qcm && _reponseVisible && _choixFait != c.BonneReponse;
         RevelerVisible = !_reponseVisible && !qcm;
-        TexteReveler = "Voir la réponse";
+        TexteReveler = SaisieCode ? "Voir la correction" : "Voir la réponse";
+        RaccourciReveler = SaisieCode ? "Ctrl+Entrée" : "Espace";
         // Question et exercice : on peut écrire sa réponse (le résultat d'un exercice) pour la comparer.
         SaisieVisible = carte.Type is TypeCarte.Question or TypeCarte.Exercice && !_reponseVisible && Matrice is null;
         MatriceVisible = Matrice is not null && !_reponseVisible;
@@ -187,7 +196,8 @@ public partial class SessionViewModel : ObservableObject
         RateVisible = !qcm;
         Consigne = !_reponseVisible
             ? (qcm ? "Choisis une réponse (clic ou touches A à E)"
-                : SaisieVisible ? "Réponds de tête puis Espace, ou écris ta réponse puis Entrée"
+                : SaisieVisible && SaisieCode ? "Écris ton code dans la zone (Tab pour y entrer), puis Ctrl+Entrée pour voir la correction"
+                : SaisieVisible ? "Réponds de tête puis Espace, ou écris ta réponse (Tab) puis Entrée"
                 : MatriceVisible ? "Réponds de tête puis Espace, ou remplis la matrice (Tab) puis Entrée"
                 : "Réponds de tête, puis appuie sur Espace")
             : mauvaisChoix ? "Ce n'est pas grave : la carte reviendra bientôt."
@@ -270,7 +280,9 @@ public partial class SessionViewModel : ObservableObject
     public bool ToucheDansSaisie(string touche, bool maj, bool ctrl)
     {
         if (!SaisieVisible || !RevelerVisible) return false;
-        bool revele = touche == "Enter" ? (ctrl || !maj) : touche == " " && string.IsNullOrEmpty(ReponseSaisie);
+        // Zone de code : Entrée et Espace écrivent dans le code, seul Ctrl+Entrée révèle.
+        bool revele = SaisieCode ? touche == "Enter" && ctrl
+            : touche == "Enter" ? (ctrl || !maj) : touche == " " && string.IsNullOrEmpty(ReponseSaisie);
         if (revele) Reveler();
         return revele;
     }

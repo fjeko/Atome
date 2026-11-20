@@ -96,6 +96,19 @@ section > eqn { display: block; overflow-x: auto; overflow-y: hidden; padding: .
 .comparaison .colonne + .colonne { border-left: 3px solid var(--accent-trait); }
 .comparaison .etiquette { margin-top: 0; }
 .comparaison .saisie { white-space: pre-wrap; overflow-wrap: anywhere; margin: .6em 0; }
+/* Comparaison de code : le code de l'élève garde ses retraits ; côte à côte seulement sur un écran large. */
+.comparaison.code .saisie { white-space: normal; }
+.comparaison.code .saisie pre { margin: 0; }
+.comparaison.code .colonne { min-width: 0; }
+@media (min-width: 900px) {
+  /* Côte à côte, le code a besoin de place : le bloc déborde de la colonne de lecture, centré. */
+  /* Marge négative plutôt que transform : l'animation de révélation utilise déjà transform. */
+  .comparaison.code { --large: min(calc(100vw - 3.5em), 64em); width: var(--large); margin-left: calc((100% - var(--large)) / 2); }
+}
+@media (max-width: 899px) {
+  .comparaison.code { grid-template-columns: 1fr; }
+  .comparaison.code .colonne + .colonne { margin-top: .8em; }
+}
 @media (max-width: 560px) {
   .comparaison { grid-template-columns: 1fr; }
   .comparaison .colonne + .colonne { margin-top: .8em; }

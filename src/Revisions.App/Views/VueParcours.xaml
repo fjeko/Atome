@@ -96,12 +96,45 @@
         <v:VueSaisieMatrice Grid.Row="3" DataContext="{Binding Matrice}" Margin="{StaticResource Marge.Haut.12}"
                             Visibility="{Binding DataContext.MatriceVisible, ElementName=Racine, Converter={StaticResource VisibleSi}}" />
         <StackPanel Grid.Row="3" Margin="{StaticResource Marge.Haut.12}" Visibility="{Binding SaisieVisible, Converter={StaticResource VisibleSi}}">
-            <TextBox x:Name="ZoneSaisie" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="40" MaxHeight="110"
-                     VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource Taille.Corps}"
-                     Text="{Binding ReponseSaisie, UpdateSourceTrigger=PropertyChanged}"
-                     AutomationProperties.Name="Ta réponse (facultatif)" PreviewKeyDown="ZoneSaisie_PreviewKeyDown" />
+            <!-- Libellé au-dessus de la zone : elle se voit et on sait à quoi elle sert (même présentation qu'en session). -->
+            <TextBlock Style="{StaticResource Texte.Fort}" Margin="0,0,0,6"
+                       Visibility="{Binding SaisieCode, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}">
+                <Run Text="Ta réponse" /><Run Text="  ·  facultatif, pour comparer" Foreground="{DynamicResource Pinceau.TexteDiscret}" FontWeight="Normal" />
+            </TextBlock>
+            <TextBlock Style="{StaticResource Texte.Fort}" Margin="0,0,0,6"
+                       Visibility="{Binding SaisieCode, Converter={StaticResource VisibleSi}}">
+                <Run Text="Écris ton code ici" /><Run Text="  ·  pas besoin qu'il compile, l'idée compte" Foreground="{DynamicResource Pinceau.TexteDiscret}" FontWeight="Normal" />
+            </TextBlock>
+            <TextBox x:Name="ZoneSaisie" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                     Text="{Binding ReponseSaisie, UpdateSourceTrigger=PropertyChanged}" PreviewKeyDown="ZoneSaisie_PreviewKeyDown">
+                <TextBox.Style>
+                    <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                        <Setter Property="MinHeight" Value="40" />
+                        <Setter Property="MaxHeight" Value="110" />
+                        <Setter Property="FontSize" Value="{DynamicResource Taille.Corps}" />
+                        <Setter Property="AutomationProperties.Name" Value="Ta réponse (facultatif)" />
+                        <Style.Triggers>
+                            <!-- Carte de code : un petit éditeur, 8 lignes visibles qui grandissent jusqu'à 16 environ. -->
+                            <DataTrigger Binding="{Binding SaisieCode}" Value="True">
+                                <Setter Property="FontFamily" Value="{DynamicResource Police.Code}" />
+                                <Setter Property="TextWrapping" Value="NoWrap" />
+                                <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+                                <Setter Property="MinHeight" Value="190" />
+                                <Setter Property="MaxHeight" Value="360" />
+                                <Setter Property="Padding" Value="12,10" />
+                                <Setter Property="AutomationProperties.Name" Value="Écris ton code ici" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
             <TextBlock Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.4}"
-                       Text="Facultatif : Tab pour écrire, Entrée pour voir la réponse, Échap pour sortir." />
+                       Visibility="{Binding SaisieCode, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}"
+                       Text="Tab pour écrire, Entrée pour voir la réponse, Maj+Entrée pour un saut de ligne, Échap pour sortir." />
+            <TextBlock Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.4}"
+                       Visibility="{Binding SaisieCode, Converter={StaticResource VisibleSi}}"
+                       Text="Entrée : nouvelle ligne (l'indentation suit) · Tab / Maj+Tab : indenter · Ctrl+Entrée : voir la correction · Échap : sortir." />
         </StackPanel>
 
         <TextBlock Grid.Row="4" Text="{Binding Consigne}" Style="{StaticResource Texte.Secondaire}" HorizontalAlignment="Center"
@@ -123,7 +156,7 @@
                         ds:Forme.Icone="{x:Static ds:Icones.Lire}" ds:Forme.Raccourci="R" Margin="{StaticResource Marge.Droite.12}" VerticalAlignment="Center"
                         Visibility="{Binding RelireVisible, Converter={StaticResource VisibleSi}}" />
                 <Button Content="{Binding TexteReveler}" Command="{Binding RevelerCommand}" Style="{StaticResource BoutonHeros}"
-                        ds:Forme.Raccourci="Espace" MinWidth="280" />
+                        ds:Forme.Raccourci="{Binding RaccourciReveler}" MinWidth="280" />
             </StackPanel>
 
             <!-- QCM pas encore répondu : seul « Relire le passage » (pendant la lecture). -->

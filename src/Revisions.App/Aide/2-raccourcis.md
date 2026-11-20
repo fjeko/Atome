@@ -25,6 +25,18 @@ La zone de texte sous la carte est facultative. Zone vide, **Espace** voit la r�
 | **Maj + Entrée** | saut de ligne dans ta réponse |
 | **Échap** | sortir de la zone (ton texte est gardé) |
 
+### Écrire du code (cartes qui demandent du code)
+
+Quand une carte te demande d'écrire du code (« Écris… », « Réécris… avec un `switch` »), la zone devient un petit éditeur, avec le libellé **Écris ton code ici**. Pas besoin qu'il compile : c'est l'idée qui compte. Une fois la correction affichée, ton code apparaît à côté (ou au-dessus sur un écran étroit) pour comparer.
+
+| Touche | Action |
+| --- | --- |
+| **Tab** (hors de la zone) | entrer dans la zone pour écrire |
+| **Entrée** | nouvelle ligne, avec la même indentation (un cran de plus après `{` ou `:`) |
+| **Tab** / **Maj + Tab** | indenter / désindenter de 4 espaces (toutes les lignes sélectionnées) |
+| **Ctrl + Entrée** | voir la correction (ou le bouton **Voir la correction**) |
+| **Échap** | sortir de la zone (ton code est gardé) |
+
 ### En lecture
 
 | Touche | Action |
