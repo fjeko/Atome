@@ -228,6 +228,8 @@ public partial class ParcoursViewModel : ObservableObject
                 : SaisieVisible ? "Réponds de tête puis Espace, ou écris ta réponse puis Entrée"
                 : "Réponds de tête, puis appuie sur Espace")
             : mauvaisChoix ? "Ce n'est pas grave : cette carte reviendra en révision."
+            // QCM réussi : « Raté » n'est pas proposé, la consigne ne parle donc que des touches 2 à 4.
+            : qcm ? "Bonne réponse ! C'était difficile, bien ou facile ? (touches 2 à 4)"
             : "Comment ça s'est passé ? (touches 1 à 4)";
     }
 
