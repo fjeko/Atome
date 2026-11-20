@@ -19,6 +19,7 @@ public sealed class BaseDeDonnees
     {
         Chemin = chemin;
         Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(chemin))!);
+        AppliquerRestaurationEnAttente(chemin);
         _chaineDeConnexion = new SqliteConnectionStringBuilder
         {
             DataSource = chemin,
@@ -120,6 +121,103 @@ public sealed class BaseDeDonnees
     /// de la base ne reste ouvert. À appeler juste avant de quitter pour laisser l'installateur travailler.
     /// </summary>
     public static void FermerConnexions() => SqliteConnection.ClearAllPools();
+
+    // ---- Sauvegarde et restauration de la progression (fichier .atome-sauvegarde) ---------------------------
+
+    /// <summary>Extension du fichier de sauvegarde de la progression (c'est une base SQLite complète et propre).</summary>
+    public const string ExtensionSauvegarde = ".atome-sauvegarde";
+
+    /// <summary>
+    /// Crée un fichier de sauvegarde de toute la progression (historique FSRS, XP, réglages, acquis, planning,
+    /// dates personnelles). Même mécanisme que les copies automatiques : VACUUM INTO, sans arrêter l'application.
+    /// Les cours sont dans la copie mais Atome les réimporte de toute façon depuis les packs.
+    /// </summary>
+    public void SauvegarderProgression(string cible)
+    {
+        if (File.Exists(cible)) File.Delete(cible); // VACUUM INTO refuse d'écraser un fichier existant
+        CopierVers(cible);
+    }
+
+    /// <summary>
+    /// Sauvegarde automatique dans un dossier choisi (clé USB, OneDrive…) : une par jour au plus,
+    /// les 5 dernières sont gardées. Renvoie le chemin créé, ou null si celle du jour existe déjà.
+    /// </summary>
+    public string? SauvegarderAilleursSiNecessaire(string dossier, DateOnly jour)
+    {
+        Directory.CreateDirectory(dossier);
+        string cible = Path.Combine(dossier, $"atome-progression-{jour:yyyy-MM-dd}{ExtensionSauvegarde}");
+        if (File.Exists(cible)) return null;
+        SauvegarderProgression(cible);
+        foreach (string ancien in Directory.GetFiles(dossier, "atome-progression-*" + ExtensionSauvegarde).OrderDescending().Skip(5))
+            File.Delete(ancien);
+        return cible;
+    }
+
+    /// <summary>
+    /// Vérifie qu'un fichier est une sauvegarde utilisable : une vraie base SQLite saine, avec les tables de
+    /// progression, et pas plus récente que cette version d'Atome. Renvoie null si tout va bien, sinon la raison.
+    /// </summary>
+    public static string? VerifierSauvegarde(string fichier)
+    {
+        if (!File.Exists(fichier)) return "Le fichier n'existe pas.";
+        try
+        {
+            using (var flux = File.OpenRead(fichier))
+            {
+                var entete = new byte[16];
+                if (flux.Read(entete, 0, 16) < 16 || !System.Text.Encoding.ASCII.GetString(entete).StartsWith("SQLite format 3"))
+                    return "Ce fichier n'est pas une sauvegarde d'Atome.";
+            }
+            var chaine = new SqliteConnectionStringBuilder { DataSource = fichier, Mode = SqliteOpenMode.ReadOnly, Pooling = false }.ToString();
+            using var c = new SqliteConnection(chaine);
+            c.Open();
+            var tables = c.Query<string>("SELECT name FROM sqlite_master WHERE type = 'table'").ToHashSet();
+            foreach (var t in new[] { "profil", "reglage", "etat_carte", "revision", "carte" })
+                if (!tables.Contains(t)) return "Ce fichier n'est pas une sauvegarde d'Atome (il manque des données).";
+            if (c.ExecuteScalar<long>("PRAGMA user_version;") > Migrations.Scripts.Length)
+                return "Cette sauvegarde vient d'une version plus récente d'Atome : mets Atome à jour avant de la restaurer.";
+            if (c.ExecuteScalar<string>("PRAGMA quick_check;") != "ok") return "Ce fichier est abîmé.";
+            return null;
+        }
+        catch (Exception e) when (e is SqliteException or IOException or UnauthorizedAccessException)
+        {
+            return "Impossible de lire ce fichier.";
+        }
+    }
+
+    /// <summary>
+    /// Première étape d'une restauration : vérifie le fichier, fait une copie de sécurité de la base actuelle
+    /// (« avant-restauration-….db », 3 gardées) puis dépose le fichier à côté de la base. Il ne remplace la base
+    /// qu'au prochain démarrage (<see cref="AppliquerRestaurationEnAttente"/>), quand plus rien ne l'utilise.
+    /// Lève <see cref="InvalidOperationException"/> si le fichier n'est pas valable ; renvoie le chemin de la copie de sécurité.
+    /// </summary>
+    public string PreparerRestauration(string fichier)
+    {
+        if (VerifierSauvegarde(fichier) is { } probleme) throw new InvalidOperationException(probleme);
+        string dossier = DossierSauvegardes();
+        string copie = Path.Combine(dossier, $"avant-restauration-{DateTime.Now:yyyyMMdd-HHmmss}.db");
+        CopierVers(copie);
+        foreach (string ancien in Directory.GetFiles(dossier, "avant-restauration-*.db").OrderDescending().Skip(3))
+            File.Delete(ancien);
+        File.Copy(fichier, CheminRestauration(Chemin), overwrite: true);
+        return copie;
+    }
+
+    private static string CheminRestauration(string chemin) => Path.GetFullPath(chemin) + ".restauration";
+
+    /// <summary>Si une restauration attend, elle remplace la base (et ses fichiers WAL) avant toute ouverture.</summary>
+    internal static void AppliquerRestaurationEnAttente(string chemin)
+    {
+        string attente = CheminRestauration(chemin);
+        if (!File.Exists(attente)) return;
+        try
+        {
+            foreach (string suffixe in new[] { "-wal", "-shm" })
+                if (File.Exists(chemin + suffixe)) File.Delete(chemin + suffixe);
+            File.Move(attente, chemin, overwrite: true);
+        }
+        catch (IOException) { } // base encore occupée : on réessaiera au prochain démarrage
+    }
 
     private string DossierSauvegardes()
     {

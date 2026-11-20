@@ -21,7 +21,15 @@ Le bouton **Ouvrir** de l'écran **Réglages** t'y emmène directement.
 
 Chaque jour où tu ouvres l'application, une copie de la base est faite dans `sauvegardes\`. Les **7 dernières** sont gardées, les plus anciennes sont supprimées.
 
-### Restaurer une sauvegarde
+### Sauvegarder ma progression en un clic
+
+**Réglages → Données → Sauvegarder ma progression…** crée un seul fichier `.atome-sauvegarde` avec ton historique de révisions, ton XP, tes réglages, tes acquis, ton planning et tes dates personnelles. Idéal pour **changer d'ordinateur** ou te mettre à l'abri (clé USB, OneDrive…).
+
+Pour la retrouver sur un autre PC : installe Atome, puis **Restaurer…** et choisis le fichier. Atome vérifie le fichier, garde une **copie de sécurité** de ta progression actuelle (dans `sauvegardes\`, fichiers `avant-restauration-…`), la remplace, puis redémarre tout seul. Les cours viennent des packs (ou des cours libres) : rien d'autre à copier.
+
+Tu peux aussi choisir un **dossier de sauvegarde automatique** (facultatif) : une copie par jour d'utilisation, les 5 dernières sont gardées. Si la clé USB est débranchée, Atome continue sans rien dire.
+
+### Restaurer à la main une copie automatique
 
 1. Ferme l'application.
 2. Dans le dossier des données, renomme `revisions.db` (par exemple en `revisions-ancien.db`).
@@ -30,7 +38,7 @@ Chaque jour où tu ouvres l'application, une copie de la base est faite dans `sa
 
 ### Changer d'ordinateur
 
-Copie le dossier des données sur le nouvel ordinateur, au même endroit. Les packs, eux, sont dans le dossier des packs : copie-le aussi, ou choisis son nouvel emplacement dans **Réglages**.
+Le plus simple : **Sauvegarder ma progression…** puis **Restaurer…** (voir plus haut). Les packs, eux, sont dans le dossier des packs : copie-le aussi, ou choisis son nouvel emplacement dans **Réglages**.
 
 ### Supprimer un pack
 

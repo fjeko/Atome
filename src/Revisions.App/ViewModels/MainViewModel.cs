@@ -286,6 +286,21 @@ public partial class MainViewModel(
 
     public void AfficherFinDeSession(BilanSession bilan) => Afficher(Creer<FinSessionViewModel>(bilan), null);
 
+    /// <summary>Sauvegarde automatique de la progression dans le dossier choisi (si activée) : jamais bloquante.</summary>
+    private void SauvegarderAilleurs(DateOnly jour)
+    {
+        if (etat.Reglages.DossierSauvegardeAuto is not { Length: > 0 } dossier) return;
+        try
+        {
+            if (baseDeDonnees.SauvegarderAilleursSiNecessaire(dossier, jour) is { } fichier)
+                Journal.Info("Sauvegarde", "Sauvegarde automatique : " + fichier);
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException or Microsoft.Data.Sqlite.SqliteException)
+        {
+            Journal.Info("Sauvegarde", "Sauvegarde automatique impossible (clé débranchée ?) : " + e.Message);
+        }
+    }
+
     /// <summary>Au démarrage : accueil tout de suite, puis import des packs et sauvegarde en arrière-plan.</summary>
     public async Task DemarrerAsync()
     {
@@ -304,6 +319,7 @@ public partial class MainViewModel(
             var resultats = await Task.Run(() =>
             {
                 baseDeDonnees.SauvegarderSiNecessaire(jour);
+                SauvegarderAilleurs(jour);
                 Journal.Etape("Sauvegarde quotidienne finie");
                 var resultatsImport = ImporterDossier();
                 Journal.Etape($"Scan des packs fini ({resultatsImport.Count} fichiers)");

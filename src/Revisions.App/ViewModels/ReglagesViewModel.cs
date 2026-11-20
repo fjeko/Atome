@@ -1,3 +1,4 @@
+using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
@@ -42,6 +43,7 @@ public partial class ReglagesViewModel : ObservableObject
 {
     private readonly EtatApplication _etat;
     private readonly MainViewModel _main;
+    private readonly BaseDeDonnees _base;
     private readonly bool _initialise;
     private string _cleTheme;
     private string? _couleurAccent;
@@ -151,9 +153,10 @@ public partial class ReglagesViewModel : ObservableObject
         if (resultat.AProposer) _main.Proposer(resultat.Release!, immediatement: true);
     }
 
-    public ReglagesViewModel(EtatApplication etat, PartageViewModel partage, MainViewModel main, ServiceMiseAJour miseAJour)
+    public ReglagesViewModel(EtatApplication etat, PartageViewModel partage, MainViewModel main, ServiceMiseAJour miseAJour, BaseDeDonnees baseDeDonnees)
     {
         _main = main;
+        _base = baseDeDonnees;
         _etat = etat;
         _miseAJour = miseAJour;
         Partage = partage;
@@ -171,6 +174,7 @@ public partial class ReglagesViewModel : ObservableObject
         _accentLibre = r.CouleurAccent ?? "";
         _verifierMisesAJour = r.VerifierMisesAJour;
         _nouvellesNonLues = r.NouvellesNonLues;
+        _dossierSauvegardeAuto = r.DossierSauvegardeAuto ?? "";
         _tailleTexte = r.TailleTexte;
         _reduireAnimations = r.ReduireAnimations;
         _sons = r.Sons;
@@ -206,7 +210,7 @@ public partial class ReglagesViewModel : ObservableObject
         base.OnPropertyChanged(e);
         // Le champ libre et son message d'erreur ne s'enregistrent pas tels quels (voir OnAccentLibreChanged).
         if (!_initialise || e.PropertyName is nameof(AccentLibre) or nameof(ErreurAccent) or nameof(MessageMiseAJour)
-            or nameof(MesCollections) or nameof(MessageCollections)) return;
+            or nameof(MesCollections) or nameof(MessageCollections) or nameof(MessageSauvegarde)) return;
         Enregistrer();
     }
 
@@ -225,6 +229,7 @@ public partial class ReglagesViewModel : ObservableObject
         r.CouleurAccent = _couleurAccent;
         r.VerifierMisesAJour = VerifierMisesAJour;
         r.NouvellesNonLues = NouvellesNonLues;
+        r.DossierSauvegardeAuto = DossierSauvegardeAuto.Length == 0 ? null : DossierSauvegardeAuto;
         r.TailleTexte = (int)Math.Round(TailleTexte);
         r.ReduireAnimations = ReduireAnimations;
         r.Sons = Sons;
@@ -298,6 +303,78 @@ public partial class ReglagesViewModel : ObservableObject
         var dialogue = new OpenFolderDialog { Title = titre, InitialDirectory = actuel };
         return dialogue.ShowDialog() == true ? dialogue.FolderName : null;
     }
+
+    // ---- Sauvegarde de la progression ------------------------------------------------------
+
+    /// <summary>Résultat de la dernière sauvegarde ou restauration, affiché sous les boutons.</summary>
+    [ObservableProperty] private string? _messageSauvegarde;
+    /// <summary>Dossier de la sauvegarde automatique (vide = désactivée).</summary>
+    [ObservableProperty] private string _dossierSauvegardeAuto = "";
+
+    [RelayCommand]
+    private void SauvegarderProgression()
+    {
+        var dialogue = new SaveFileDialog
+        {
+            Title = "Sauvegarder ma progression",
+            Filter = $"Sauvegarde Atome (*{BaseDeDonnees.ExtensionSauvegarde})|*{BaseDeDonnees.ExtensionSauvegarde}",
+            FileName = $"atome-progression-{_etat.Jour:yyyy-MM-dd}{BaseDeDonnees.ExtensionSauvegarde}",
+        };
+        if (dialogue.ShowDialog() != true) return;
+        try
+        {
+            _base.SauvegarderProgression(dialogue.FileName);
+            MessageSauvegarde = "Ta progression est sauvegardée. Garde ce fichier en lieu sûr ou copie-le sur ton autre PC.";
+        }
+        catch (Exception e) when (e is IOException or UnauthorizedAccessException or Microsoft.Data.Sqlite.SqliteException)
+        {
+            Journal.Info("Sauvegarde", "Échec : " + e.Message);
+            MessageSauvegarde = "La sauvegarde n'a pas pu être créée : " + e.Message;
+        }
+    }
+
+    /// <summary>Choisit un fichier, le vérifie, garde une copie de la base actuelle puis redémarre Atome avec la progression restaurée.</summary>
+    [RelayCommand]
+    private void Restaurer()
+    {
+        var dialogue = new OpenFileDialog
+        {
+            Title = "Restaurer ma progression",
+            Filter = $"Sauvegarde Atome (*{BaseDeDonnees.ExtensionSauvegarde};*.db)|*{BaseDeDonnees.ExtensionSauvegarde};*.db",
+        };
+        if (dialogue.ShowDialog() != true) return;
+        if (BaseDeDonnees.VerifierSauvegarde(dialogue.FileName) is { } probleme)
+        {
+            MessageSauvegarde = probleme;
+            return;
+        }
+        var reponse = System.Windows.MessageBox.Show(
+            "Ta progression actuelle sera remplacée par celle de cette sauvegarde. Une copie de sécurité de ta progression actuelle est faite avant, " +
+            "et Atome redémarre.\n\nContinuer ?",
+            "Restaurer ma progression", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question);
+        if (reponse != System.Windows.MessageBoxResult.Yes) return;
+        try
+        {
+            string copie = _base.PreparerRestauration(dialogue.FileName);
+            Journal.Info("Sauvegarde", $"Restauration depuis {dialogue.FileName} ; copie de sécurité : {copie}");
+        }
+        catch (Exception e) when (e is InvalidOperationException or IOException or UnauthorizedAccessException or Microsoft.Data.Sqlite.SqliteException)
+        {
+            MessageSauvegarde = "La restauration n'a pas pu être préparée, rien n'a été changé : " + e.Message;
+            return;
+        }
+        ((App)System.Windows.Application.Current).Redemarrer();
+    }
+
+    [RelayCommand]
+    private void ChoisirDossierSauvegardeAuto()
+    {
+        if (ChoisirDossier("Dossier de la sauvegarde automatique (clé USB, OneDrive…)", DossierSauvegardeAuto) is { } dossier)
+            DossierSauvegardeAuto = dossier;
+    }
+
+    [RelayCommand]
+    private void DesactiverSauvegardeAuto() => DossierSauvegardeAuto = "";
 
     [RelayCommand]
     private void OuvrirDossierDonnees() =>

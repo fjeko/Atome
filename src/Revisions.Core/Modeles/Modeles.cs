@@ -122,6 +122,8 @@ public sealed class Reglages
     /// Désactivé par défaut : on découvre une carte après avoir lu son cours.
     /// </summary>
     public bool NouvellesNonLues { get; set; }
+    /// <summary>Dossier de la sauvegarde automatique de la progression (clé USB, OneDrive…), ou null si désactivée.</summary>
+    public string? DossierSauvegardeAuto { get; set; }
 
     // ---- Apparence (cahier de design) ----
 

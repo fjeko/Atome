@@ -326,6 +326,25 @@
                         <Button Content="Ouvrir" Command="{Binding OuvrirDossierDonneesCommand}" Style="{StaticResource BoutonSecondaire}"
                                 ds:Forme.Icone="{x:Static ds:Icones.Ouvrir}" />
                     </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Ma progression" Dessous="True"
+                                     Aide="Un seul fichier avec ton historique, ton XP, tes réglages, tes acquis et ton planning (sans rien d'autre à copier). Pratique pour changer de PC ou te mettre à l'abri.">
+                        <StackPanel>
+                            <WrapPanel>
+                                <Button Content="Sauvegarder ma progression…" Command="{Binding SauvegarderProgressionCommand}" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Droite.8}" />
+                                <Button Content="Restaurer…" Command="{Binding RestaurerCommand}" Style="{StaticResource BoutonSecondaire}" />
+                            </WrapPanel>
+                            <TextBlock Text="{Binding MessageSauvegarde}" TextWrapping="Wrap" Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
+                                       Visibility="{Binding MessageSauvegarde, Converter={StaticResource VisibleSi}}" />
+                        </StackPanel>
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Sauvegarde automatique ailleurs" Dessous="True"
+                                     Aide="Facultatif : une copie par jour d'utilisation dans le dossier de ton choix (clé USB, OneDrive…). Les 5 dernières sont gardées.">
+                        <DockPanel>
+                            <Button DockPanel.Dock="Right" Content="Désactiver" Command="{Binding DesactiverSauvegardeAutoCommand}" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Gauche.8}" />
+                            <Button DockPanel.Dock="Right" Content="Choisir…" Command="{Binding ChoisirDossierSauvegardeAutoCommand}" Style="{StaticResource BoutonSecondaire}" Margin="{StaticResource Marge.Gauche.8}" />
+                            <TextBox Text="{Binding DossierSauvegardeAuto, Mode=OneWay}" IsReadOnly="True" AutomationProperties.Name="Dossier de la sauvegarde automatique" />
+                        </DockPanel>
+                    </ds:LigneReglage>
 
                     <Expander Header="Options avancées" Style="{StaticResource ExpandeurAvance}">
                         <StackPanel>

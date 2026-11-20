@@ -98,6 +98,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
             VerifierMisesAJour = valeurs.GetValueOrDefault("verifier_mises_a_jour") != "0",
             // Désactivé tant qu'on ne l'a pas explicitement activé.
             NouvellesNonLues = valeurs.GetValueOrDefault("nouvelles_non_lues") == "1",
+            DossierSauvegardeAuto = valeurs.GetValueOrDefault("dossier_sauvegarde_auto"),
             TailleTexte = Entier("taille_texte", defaut.TailleTexte, Reglages.TailleTexteMin, Reglages.TailleTexteMax),
             ReduireAnimations = valeurs.GetValueOrDefault("reduire_animations") == "1",
             Sons = valeurs.GetValueOrDefault("sons") == "1",
@@ -117,6 +118,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
         EcrireValeur("dossier_packs", r.DossierPacks);
         EcrireValeur("dossier_cours", r.DossierCours);
         EcrireValeur("nouvelles_non_lues", r.NouvellesNonLues ? "1" : "0");
+        EcrireValeur("dossier_sauvegarde_auto", r.DossierSauvegardeAuto);
         EcrireValeur("theme", r.Theme);
         EcrireValeur("couleur_accent", r.CouleurAccent);
         EcrireValeur("verifier_mises_a_jour", r.VerifierMisesAJour ? "1" : "0");

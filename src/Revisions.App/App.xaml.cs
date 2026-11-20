@@ -202,6 +202,19 @@ public partial class App : Application
         _mutex = null;
     }
 
+    /// <summary>
+    /// Ferme Atome proprement puis le relance (après une restauration de sauvegarde) : connexions fermées,
+    /// place d'instance unique rendue, nouveau processus lancé avec le même environnement.
+    /// </summary>
+    internal void Redemarrer()
+    {
+        BaseDeDonnees.FermerConnexions();
+        LibererInstanceUnique();
+        if (Environment.ProcessPath is { } exe)
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(exe) { UseShellExecute = true });
+        Shutdown();
+    }
+
     /// <summary>Reprend la place d'instance unique si l'installateur n'a finalement pas pu être lancé.</summary>
     internal void ReprendreInstanceUnique() => _mutex ??= new Mutex(initiallyOwned: true, NomMutex, out _);
 

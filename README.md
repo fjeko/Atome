@@ -52,6 +52,7 @@ révisions de 1re année de BTS SIO option SLAM, en formation à distance, et je
 - **Calculatrice** : sur les exercices de maths, une petite fenêtre flottante (Ctrl + K) avec fractions exactes, historique, `Ans` et matrices (produit, puissance, inverse, déterminant, transposée), grisée quand l'exercice demande de calculer à la main.
 - **TD** : de vrais exercices générés et corrigés pas à pas (matrices, graphes, MPM, IPv4, droits Linux, SQL…), **seul** sur la durée de ton choix (15 min à 2 h, correction à la fin comme à l'examen) ou **à plusieurs** avec un simple code à dicter (sans réseau).
 - **Signalements** : un petit drapeau sur chaque carte et chaque section pour signaler une erreur, exportable pour corriger les cours.
+- **Sauvegarde de ta progression** : un seul fichier pour changer de PC ou te mettre à l'abri, restauration en un clic, copie automatique facultative sur clé USB ou OneDrive.
 - **Partage `.atome`** : tes cours et ton planning dans un seul fichier, à donner à un camarade.
 - **Collections** : tu choisis ce qui est affiché et révisé (cours libres, mes packs, contenus importés), sans perdre ta progression.
 - **Mise à jour automatique** : Atome propose lui-même les nouvelles versions (sans toucher à tes données).
@@ -170,7 +171,7 @@ Au démarrage, l'application importe automatiquement les packs de son dossier de
 dotnet test
 ```
 
-1368 tests : parcours « Lire puis contrôler » (questions flash, contrôle, reprise, marquage, notation FSRS), calculatrice (rationnels exacts, analyseur, matrices, erreurs, règle « calcul à la main »), validation des packs, import et réimport (historique conservé), algorithme FSRS,
+1385 tests : parcours « Lire puis contrôler » (questions flash, contrôle, reprise, marquage, notation FSRS), calculatrice (rationnels exacts, analyseur, matrices, erreurs, règle « calcul à la main »), validation des packs, import et réimport (historique conservé), algorithme FSRS,
 construction des sessions (types de session, paquets de matière, motifs, verrouillage des cours non lus, durée estimée), mode reprise, XP, niveaux, série hebdomadaire, regroupement de la
 bibliothèque en niveaux, couleurs et contrastes de chaque thème, système de design (contrastes WCAG AA de toutes les paires
 texte / fond pour chaque thème et chaque accent, couleurs des matières, banque de messages de la mascotte), enregistrement des réglages,
@@ -273,7 +274,7 @@ Sens des dépendances : `App → Data → Core`. Le Core ne dépend de rien.
 - `sauvegardes\` : une copie automatique par jour d'utilisation, les 7 dernières sont gardées ;
 - `journal.log` : erreurs éventuelles.
 
-Pour restaurer une sauvegarde : fermer l'application, puis remplacer `revisions.db` par la copie voulue.
+Pour restaurer : **Réglages → Données → Restaurer…** (fichier `.atome-sauvegarde`, copie de sécurité faite avant), ou à la main en remplaçant `revisions.db` par une copie de `sauvegardes` application fermée.
 
 ## Raccourcis clavier en session
 
