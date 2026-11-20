@@ -60,7 +60,7 @@ public static class RenduCarte
                 bool memeResultat = ComparaisonReponse.MemeResultat(saisie, c.Reponse);
                 if (!string.IsNullOrWhiteSpace(saisie))
                 {
-                    if (memeResultat) elements.Add(new { genre = "etiquette", markdown = "Même résultat que toi !" });
+                    if (memeResultat) elements.Add(new { genre = "etiquette", markdown = Felicitation(carte.Id) });
                     elements.Add(new { genre = "comparaison", saisie = saisie.Trim(), saisieMarkdown = saisieLatex, markdown = c.Reponse });
                 }
                 else
@@ -78,6 +78,27 @@ public static class RenduCarte
         }
         return elements;
     }
+
+    private static readonly string[] Felicitations =
+    [
+        "Même résultat que toi !",
+        "Bravo, c'est exactement ça !",
+        "Pile juste !",
+        "Bien joué, résultat exact !",
+        "Parfait, tu as trouvé !",
+        "Excellent, rien à redire !",
+        "Calcul impeccable !",
+        "Yes ! C'est la bonne réponse.",
+        "Tout juste, continue comme ça !",
+        "Superbe, c'est gagné !",
+    ];
+
+    /// <summary>
+    /// Message de félicitation pour un résultat juste, tiré au hasard. Le tirage est fixé par carte (pendant
+    /// que l'application est ouverte) pour que le message ne change pas si l'écran se redessine.
+    /// </summary>
+    private static string Felicitation(string carteId) =>
+        Felicitations[(carteId.GetHashCode() & int.MaxValue) % Felicitations.Length];
 
     /// <summary>Délai avant la prochaine révision, en clair (« demain », « 6 j », « 2 mois »).</summary>
     public static string Delai(int jours) => jours switch
