@@ -110,6 +110,8 @@ public partial class App : Application
                 }
                 break;
             case "statistiques": principal.AllerStatistiques(); break;
+            // « parcours:<pack> » ouvre le parcours « Lire puis contrôler » de cette séance.
+            case "parcours" when morceaux.Length > 1: principal.OuvrirParcours(morceaux[1]); break;
             case "td":
                 // « td » ouvre l'écran ; « td:MAT1-2-8-48217 » rejoint ce TD ; « td:CODE:demo » remplit en plus
                 // quelques cases (justes et fausses) et vérifie : pour capturer l'écran de correction.
