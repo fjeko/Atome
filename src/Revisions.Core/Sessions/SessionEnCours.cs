@@ -41,6 +41,21 @@ public sealed class SessionEnCours
         _position++;
     }
 
+    /// <summary>Photo de la file (cartes, retours déjà faits, position) pour pouvoir annuler la dernière note.</summary>
+    public sealed record Instantane(List<CarteAReviser> File, HashSet<string> DejaRevenues, int Position);
+
+    public Instantane Capturer() => new([.. _file], [.. _dejaRevenues], _position);
+
+    /// <summary>Remet la file exactement dans l'état photographié.</summary>
+    public void Restaurer(Instantane photo)
+    {
+        _file.Clear();
+        _file.AddRange(photo.File);
+        _dejaRevenues.Clear();
+        _dejaRevenues.UnionWith(photo.DejaRevenues);
+        _position = photo.Position;
+    }
+
     /// <summary>
     /// Retire de la suite de la session toutes les apparitions d'une carte (carte mise de côté).
     /// Renvoie vrai si la carte courante était cette carte : la courante est alors la carte suivante.

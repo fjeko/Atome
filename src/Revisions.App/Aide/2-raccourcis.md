@@ -12,6 +12,7 @@ Une session peut se faire entièrement au clavier.
 | **Entrée** | la suite logique : révéler, continuer, ou noter « Bien » |
 | **S** | signaler une erreur dans la carte (pas dans la zone de réponse écrite) |
 | **Échap** | faire une pause : Atome demande confirmation, ce qui est fait reste enregistré (Échap à nouveau pour continuer) |
+| **Ctrl + Z** | annuler ta dernière note si tu t'es trompé de bouton (le petit lien **Annuler** fait pareil) : tu reviens à la carte précédente, comme avant la note |
 
 ### Écrire sa réponse (cartes « question »)
 

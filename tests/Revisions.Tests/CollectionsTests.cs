@@ -258,6 +258,7 @@ public sealed class CollectionsTests : IDisposable
             c.Execute("ALTER TABLE pack DROP COLUMN collection");
             c.Execute("ALTER TABLE pack DROP COLUMN derniere_lecture");
             c.Execute("ALTER TABLE etat_carte DROP COLUMN suspendue");
+            c.Execute("ALTER TABLE revision DROP COLUMN annulee");
             c.Execute("PRAGMA user_version = 6");
         }
         SqliteConnection.ClearAllPools();

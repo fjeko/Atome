@@ -53,6 +53,7 @@ public sealed class VisibiliteCollectionsTests : IDisposable
         c.Execute("UPDATE collection SET masque = 1, masque_depuis = '2026-11-17' WHERE cle = 'mes-packs'");
         c.Execute("INSERT OR REPLACE INTO reglage (cle, valeur) VALUES ('cours_libres', @v)", new { v = reglageCoursLibres });
         c.Execute("ALTER TABLE etat_carte DROP COLUMN suspendue");
+        c.Execute("ALTER TABLE revision DROP COLUMN annulee");
         c.Execute("PRAGMA user_version = 8");   // la migration 9 n'a pas encore tourné
         SqliteConnection.ClearAllPools();
     }
@@ -97,6 +98,7 @@ public sealed class VisibiliteCollectionsTests : IDisposable
         {
             c.Execute("UPDATE collection SET masque = 1");
             c.Execute("ALTER TABLE etat_carte DROP COLUMN suspendue");
+            c.Execute("ALTER TABLE revision DROP COLUMN annulee");
             c.Execute("PRAGMA user_version = 8");
         }
         SqliteConnection.ClearAllPools();

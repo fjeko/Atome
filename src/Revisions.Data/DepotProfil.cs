@@ -47,6 +47,13 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
         connexion.Execute("UPDATE profil SET xp_total = xp_total + @xp WHERE id = 1", new { xp });
     }
 
+    /// <summary>Remet l'XP à une valeur précédente : réservé à « Annuler la dernière note » (l'XP ne baisse jamais autrement).</summary>
+    public void RestaurerXp(int xp)
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        connexion.Execute("UPDATE profil SET xp_total = @xp WHERE id = 1", new { xp });
+    }
+
     // ---- Réglages (table clé / valeur) -----------------------------------------------------
 
     public string? LireValeur(string cle)
@@ -156,7 +163,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
     public List<DateOnly> JoursActifs()
     {
         using var connexion = baseDeDonnees.Ouvrir();
-        return connexion.Query<string>("SELECT DISTINCT jour FROM revision ORDER BY jour")
+        return connexion.Query<string>("SELECT DISTINCT jour FROM revision WHERE annulee = 0 ORDER BY jour")
             .Select(j => BaseDeDonnees.Jour(j)!.Value).ToList();
     }
 
@@ -165,7 +172,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
     {
         using var connexion = baseDeDonnees.Ouvrir();
         return connexion.Query<(string Jour, int Nombre)>(
-                "SELECT jour, COUNT(*) FROM revision WHERE jour >= @depuis GROUP BY jour", new { depuis = BaseDeDonnees.Iso(depuis) })
+                "SELECT jour, COUNT(*) FROM revision WHERE annulee = 0 AND jour >= @depuis GROUP BY jour", new { depuis = BaseDeDonnees.Iso(depuis) })
             .ToDictionary(x => BaseDeDonnees.Jour(x.Jour)!.Value, x => x.Nombre);
     }
 
@@ -173,7 +180,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
     public int CartesFaites(DateOnly jour)
     {
         using var connexion = baseDeDonnees.Ouvrir();
-        return connexion.ExecuteScalar<int>("SELECT COUNT(DISTINCT carte_id) FROM revision WHERE jour = @jour",
+        return connexion.ExecuteScalar<int>("SELECT COUNT(DISTINCT carte_id) FROM revision WHERE annulee = 0 AND jour = @jour",
             new { jour = BaseDeDonnees.Iso(jour) });
     }
 
@@ -181,7 +188,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
     public int NouvellesVues(DateOnly jour)
     {
         using var connexion = baseDeDonnees.Ouvrir();
-        return connexion.ExecuteScalar<int>("SELECT COUNT(*) FROM revision WHERE jour = @jour AND stabilite_avant IS NULL",
+        return connexion.ExecuteScalar<int>("SELECT COUNT(*) FROM revision WHERE annulee = 0 AND jour = @jour AND stabilite_avant IS NULL",
             new { jour = BaseDeDonnees.Iso(jour) });
     }
 
@@ -190,7 +197,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
     {
         using var connexion = baseDeDonnees.Ouvrir();
         var durees = connexion.Query<int>(
-            "SELECT duree_ms FROM revision WHERE duree_ms IS NOT NULL ORDER BY id DESC LIMIT 200").Order().ToList();
+            "SELECT duree_ms FROM revision WHERE annulee = 0 AND duree_ms IS NOT NULL ORDER BY id DESC LIMIT 200").Order().ToList();
         // Médiane des derniers temps de réponse, environ 20 s par carte sans historique (voir EstimationDuree).
         return Revisions.Core.Sessions.EstimationDuree.SecondesParCarte(durees);
     }
@@ -209,7 +216,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
             JOIN pack p ON p.id = c.pack_id
             LEFT JOIN collection col ON col.cle = p.collection
             JOIN matiere m ON m.id = p.matiere_id
-            WHERE r.jour >= @depuis AND r.stabilite_avant IS NOT NULL AND COALESCE(col.masque, 0) = 0
+            WHERE r.annulee = 0 AND r.jour >= @depuis AND r.stabilite_avant IS NOT NULL AND COALESCE(col.masque, 0) = 0
             GROUP BY m.nom ORDER BY m.nom
             """, new { depuis = BaseDeDonnees.Iso(depuis) }).ToList();
     }

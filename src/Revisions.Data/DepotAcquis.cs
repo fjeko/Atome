@@ -71,7 +71,7 @@ public sealed class DepotAcquis(BaseDeDonnees baseDeDonnees, DepotBibliotheque b
             """
             SELECT c.id AS CarteId, c.pack_id AS PackId, e.stabilite AS Stabilite, e.echeance AS Echeance, e.prioritaire AS Prioritaire
             FROM carte c JOIN etat_carte e ON e.carte_id = c.id
-            WHERE c.archivee = 0 AND NOT EXISTS (SELECT 1 FROM revision r WHERE r.carte_id = c.id)
+            WHERE c.archivee = 0 AND NOT EXISTS (SELECT 1 FROM revision r WHERE r.carte_id = c.id AND r.annulee = 0)
             """, transaction: transaction).ToList();
 
         int modifiees = 0;

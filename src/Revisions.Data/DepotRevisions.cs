@@ -83,7 +83,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
                 """
                 SELECT c.id, c.pack_id, e.stabilite,
                        COALESCE(e.derniere_revision, e.echeance, @jour), COALESCE(e.echeance, @jour), e.oublis,
-                       (SELECT COUNT(*) FROM revision r WHERE r.carte_id = c.id AND r.note = 1)
+                       (SELECT COUNT(*) FROM revision r WHERE r.carte_id = c.id AND r.note = 1 AND r.annulee = 0)
                 FROM carte c JOIN etat_carte e ON e.carte_id = c.id
                 WHERE c.archivee = 0 AND e.suspendue = 0 AND e.stabilite IS NOT NULL
                 """, new { jour = BaseDeDonnees.Iso(jour) })
@@ -103,7 +103,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
                 """
                 SELECT c.pack_id, COUNT(*), SUM(r.note > 1)
                 FROM revision r JOIN carte c ON c.id = r.carte_id
-                WHERE c.archivee = 0 AND r.stabilite_avant IS NOT NULL AND r.jour >= @depuis
+                WHERE c.archivee = 0 AND r.annulee = 0 AND r.stabilite_avant IS NOT NULL AND r.jour >= @depuis
                 GROUP BY c.pack_id
                 """, new { depuis = BaseDeDonnees.Iso(depuis) })
             .ToDictionary(l => l.PackId, l => new ReussiteSeance((int)l.Reponses, (int)l.Reussies));
@@ -139,7 +139,7 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
     public List<int> DernieresNotes(string carteId, int nombre)
     {
         using var connexion = baseDeDonnees.Ouvrir();
-        return connexion.Query<int>("SELECT note FROM revision WHERE carte_id = @carteId ORDER BY id DESC LIMIT @nombre",
+        return connexion.Query<int>("SELECT note FROM revision WHERE carte_id = @carteId AND annulee = 0 ORDER BY id DESC LIMIT @nombre",
             new { carteId, nombre }).ToList();
     }
 
@@ -229,6 +229,37 @@ public sealed class DepotRevisions(BaseDeDonnees baseDeDonnees)
             connexion.Execute("UPDATE profil SET xp_total = xp_total + @xp WHERE id = 1", new { xp }, transaction);
 
         transaction.Commit();
+    }
+
+    /// <summary>
+    /// Annule la dernière note de cette carte dans cette session (une erreur de bouton) : la ligne d'historique est
+    /// marquée « annulée » (jamais supprimée) et l'état FSRS de la carte redevient exactement celui d'avant.
+    /// Renvoie faux s'il n'y avait rien à annuler.
+    /// </summary>
+    public bool AnnulerDerniereNotation(long sessionId, EtatCarte avant)
+    {
+        using var connexion = baseDeDonnees.Ouvrir();
+        using var transaction = connexion.BeginTransaction();
+        long? id = connexion.ExecuteScalar<long?>(
+            "SELECT MAX(id) FROM revision WHERE session_id = @sessionId AND carte_id = @carte AND annulee = 0",
+            new { sessionId, carte = avant.CarteId }, transaction);
+        if (id is null) return false;
+
+        connexion.Execute("UPDATE revision SET annulee = 1 WHERE id = @id", new { id }, transaction);
+        connexion.Execute(
+            """
+            UPDATE etat_carte SET stabilite = @Stabilite, difficulte_fsrs = @DifficulteFsrs, echeance = @echeance,
+                                  derniere_revision = @derniere, repetitions = @Repetitions, oublis = @Oublis
+            WHERE carte_id = @CarteId
+            """,
+            new
+            {
+                avant.Stabilite, avant.DifficulteFsrs, avant.Repetitions, avant.Oublis, avant.CarteId,
+                echeance = avant.Echeance is { } e ? BaseDeDonnees.Iso(e) : null,
+                derniere = avant.DerniereRevision is { } d ? BaseDeDonnees.Iso(d) : null,
+            }, transaction);
+        transaction.Commit();
+        return true;
     }
 
     /// <summary>Ligne lue en base, convertie ensuite en objets du cœur métier.</summary>

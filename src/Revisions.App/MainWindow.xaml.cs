@@ -56,6 +56,14 @@ public partial class MainWindow : Window
             e.Handled = true;
             return;
         }
+        // Ctrl + Z en session : annule la dernière note (hors zone de texte, où Ctrl + Z annule la frappe).
+        if (e.Key == Key.Z && Keyboard.Modifiers == ModifierKeys.Control && e.OriginalSource is not TextBoxBase
+            && DataContext is MainViewModel { VueCourante: SessionViewModel enSession })
+        {
+            enSession.Annuler();
+            e.Handled = true;
+            return;
+        }
         // Ctrl + K : ouvre la calculatrice (exercices de maths), la ferme si on est dedans, ou y ramène le curseur.
         if (e.Key == Key.K && Keyboard.Modifiers == ModifierKeys.Control && DataContext is MainViewModel principal)
         {

@@ -265,5 +265,10 @@ internal static class Migrations
         """
         ALTER TABLE etat_carte ADD COLUMN suspendue INTEGER NOT NULL DEFAULT 0;   -- 1 = ni révisée ni proposée, réactivable
         """,
+
+        // ---- 13 : annulation de la dernière note (la ligne d'historique est marquée, jamais supprimée) ----
+        """
+        ALTER TABLE revision ADD COLUMN annulee INTEGER NOT NULL DEFAULT 0;   -- 1 = note annulée par l'étudiant : ignorée partout
+        """,
     ];
 }

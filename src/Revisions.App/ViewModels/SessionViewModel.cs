@@ -404,12 +404,51 @@ public partial class SessionViewModel : ObservableObject
     [RelayCommand]
     private void CoriaceFermer() => CoriaceVisible = false;
 
+    // ---- Annuler la dernière note (Ctrl+Z) : un seul niveau, pour une erreur de bouton ------------
+
+    /// <summary>Tout ce qu'il faut pour revenir exactement avant la dernière note.</summary>
+    private sealed record Annulable(CarteAReviser Carte, SessionEnCours.Instantane File, HashSet<string> Vues, List<CarteRatee> Ratees,
+        int Reussies, int Xp, bool ObjectifIci, int XpTotalAvant, DateOnly? JourBonusAvant, HashSet<string> Coriaces);
+
+    private Annulable? _annulable;
+    /// <summary>Le petit bouton « Annuler » est visible tant que la dernière note peut être annulée.</summary>
+    [ObservableProperty] private bool _annulerVisible;
+
+    /// <summary>
+    /// Revient sur la carte précédente : son historique est marqué « annulé », son état FSRS et l'XP sont ceux d'avant,
+    /// la file de la session aussi. La carte est de nouveau à répondre.
+    /// </summary>
+    [RelayCommand]
+    public void Annuler()
+    {
+        if (_annulable is not { } a) return;
+        _annulable = null;
+        AnnulerVisible = false;
+        if (!_revisions.AnnulerDerniereNotation(_sessionId, a.Carte.Etat)) return;
+        _profil.RestaurerXp(a.XpTotalAvant);
+        _profil.JourBonusObjectif = a.JourBonusAvant;
+
+        _session.Restaurer(a.File);
+        _cartesVues.Clear(); _cartesVues.UnionWith(a.Vues);
+        _ratees.Clear(); _ratees.AddRange(a.Ratees);
+        _coriacesProposees.Clear(); _coriacesProposees.UnionWith(a.Coriaces);
+        _reussies = a.Reussies;
+        _xpGagnee = a.Xp;
+        _objectifAtteintIci = a.ObjectifIci;
+        Bandeau = null;
+        CoriaceVisible = false;
+        MessageSignalement = null;
+        AfficherCarte();
+    }
+
     // ---- Enregistrement --------------------------------------------------------------------
 
     private void Enregistrer(Note note)
     {
         CoriaceVisible = false;
         var carte = Courante;
+        var avant = new Annulable(carte, _session.Capturer(), [.. _cartesVues], [.. _ratees], _reussies, _xpGagnee, _objectifAtteintIci,
+            _profil.XpTotal(), _profil.JourBonusObjectif, [.. _coriacesProposees]);
         // Même service de notation que le parcours « Lire puis contrôler » : FSRS, XP et historique.
         var (resultat, xp) = _notation.Noter(_sessionId, carte, note, _session.CouranteEstUnRetour, _jour, _etat.Maintenant,
             (int)_chrono.ElapsedMilliseconds, _etat.Reglages.RetentionCible);
@@ -428,6 +467,8 @@ public partial class SessionViewModel : ObservableObject
 
         _session.Avancer(note == Note.Rate, carte with { Etat = resultat.NouvelEtat });
         ProposerSiCoriace(carte, note);
+        _annulable = _session.EstTerminee ? null : avant;
+        AnnulerVisible = _annulable is not null;
         if (_session.EstTerminee) Terminer();
         else AfficherCarte();
     }

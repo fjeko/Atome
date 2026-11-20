@@ -35,6 +35,11 @@
                     <TextBlock Text="{Binding MessageSignalement}" Style="{StaticResource Texte.Meta}" VerticalAlignment="Center"
                                Margin="{StaticResource Marge.Droite.4}" TextWrapping="NoWrap"
                                Visibility="{Binding MessageSignalement, Converter={StaticResource VisibleSi}}" />
+                    <!-- Annuler la dernière note (Ctrl+Z) : discret, visible juste après une note. -->
+                    <Button Content="Annuler" Command="{Binding AnnulerCommand}" Style="{StaticResource BoutonFantome}" ds:Forme.Icone="{x:Static ds:Icones.Retour}"
+                            Margin="{StaticResource Marge.Droite.8}" AutomationProperties.Name="Annuler la dernière note"
+                            ToolTip="Tu t'es trompé de bouton ? Reviens à la carte précédente (Ctrl + Z)"
+                            Visibility="{Binding AnnulerVisible, Converter={StaticResource VisibleSi}}" />
                     <!-- Signalement discret : un petit drapeau (touche S). -->
                     <Button Style="{StaticResource BoutonIcone}" ds:Forme.Icone="{x:Static ds:Icones.Drapeau}" Command="{Binding SignalerCommand}"
                             Margin="{StaticResource Marge.Droite.8}" AutomationProperties.Name="Signaler une erreur"
