@@ -76,7 +76,7 @@
       "id": "libre-b1-14-sq1-s05-c003",
       "section": "libre-b1-14-sq1-s05-s03",
       "type": "exercice",
-      "enonce": "Dans ce projet, la livraison du matériel (C) prend 7 jours au lieu de 5. Quelle est la nouvelle durée du projet ? Et si c'était D qui prenait 7 jours au lieu de 4 ?",
+      "enonce": "Projet (durées en jours) : A 3 ; B 2 après A ; C 5 après B ; D 4 après A ; G 1 après D ; E 3 après C ; F 2 après E et G. Il dure 15 jours ; chemin critique A-B-C-E-F ; D a 5 jours de marge totale. La livraison du matériel (C) prend 7 jours au lieu de 5 : quelle est la nouvelle durée du projet ? Et si c'était D qui prenait 7 jours au lieu de 4 ?",
       "etapes": [
         "C est critique (marge totale 0) : 2 jours de retard décalent le projet de 2 jours → 17 jours.",
         "D a une marge totale de 5 : 3 jours de retard sont absorbés.",

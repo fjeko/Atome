@@ -63,7 +63,7 @@
       "id": "libre-b1-14-sq2-s06-c003",
       "section": "libre-b1-14-sq2-s06-s02",
       "type": "exercice",
-      "enonce": "Dans le conflit ci-dessus, la responsable confirme que les horaires d'été (lundi–samedi, 10 h–19 h) remplacent les anciens. Écris le contenu final et les commandes.",
+      "enonce": "Une fusion de la branche `horaires-ete` provoque ce conflit dans `horaires.html` :\n\n```text\n<<<<<<< HEAD\n<p>Ouvert du mardi au samedi, 9 h – 18 h</p>\n=======\n<p>Ouvert du lundi au samedi, 10 h – 19 h</p>\n>>>>>>> horaires-ete\n```\n\nLa responsable confirme que les horaires d'été remplacent les anciens. Écris le contenu final et les commandes.",
       "etapes": [
         "Garder la version de la branche horaires-ete.",
         "Supprimer les trois lignes de marqueurs et l'ancienne version.",

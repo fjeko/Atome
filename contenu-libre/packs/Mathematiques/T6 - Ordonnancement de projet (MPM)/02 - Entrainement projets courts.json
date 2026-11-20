@@ -40,7 +40,7 @@
       "id": "libre-maths-sq3-s02-c001",
       "section": "libre-maths-sq3-s02-s01",
       "type": "exercice",
-      "enonce": "Pour *Pixel & Dés*, l'impression de l'affiche (D) prend finalement 5 semaines au lieu de 2. Quelle est la nouvelle durée du projet ?",
+      "enonce": "Projet *Pixel & Dés* (durées en semaines) : A 2 (—) ; B 5 (après A) ; C 1 (après A) ; D 2 (après C) ; E 1 (après B et D). Il dure 8 semaines. L'impression de l'affiche (D) prend finalement 5 semaines au lieu de 2. Quelle est la nouvelle durée du projet ?",
       "etapes": [
         "Seules les dates à partir de D changent : $t_D = 3$.",
         "$t_E = \\max(2 + 5 ;\\ 3 + 5) = \\max(7 ; 8) = 8$.",

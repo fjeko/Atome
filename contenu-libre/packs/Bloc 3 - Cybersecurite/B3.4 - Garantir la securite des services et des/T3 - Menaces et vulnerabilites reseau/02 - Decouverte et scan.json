@@ -68,7 +68,7 @@
       "id": "libre-b3-34-sq3-s02-c002",
       "section": "libre-b3-34-sq3-s02-s02",
       "type": "exercice",
-      "enonce": "Interprète la sortie ci-dessus (serveur web interne de test) et propose des actions.",
+      "enonce": "Résultat de `nmap -sV -p- 192.168.56.20` (serveur web interne de test) :\n\n```text\nPORT     STATE    SERVICE  VERSION\n21/tcp   open     ftp      vsftpd 3.0.3\n22/tcp   open     ssh      OpenSSH 9.2\n23/tcp   open     telnet\n80/tcp   open     http     Apache httpd 2.4.57\n3306/tcp open     mysql    MySQL 8.0\n8443/tcp filtered https-alt\n```\n\nInterprète cette sortie et propose des actions.",
       "etapes": [
         "21 FTP et 23 Telnet : protocoles en clair → désactiver, remplacer par SFTP et SSH.",
         "22 SSH : utile, à restreindre au réseau d'administration, authentification par clé.",

@@ -71,7 +71,7 @@
       "id": "libre-b1-12a-sq1-s13-c003",
       "section": "libre-b1-12a-sq1-s13-s03",
       "type": "qcm",
-      "question": "Avec cette fonction, que renvoie `Evaluer(\"7 x 3\")` ?",
+      "question": "```csharp\nstatic string Evaluer(string expression)\n{\n    string[] morceaux = expression.Trim().Split(' ');\n    if (morceaux.Length != 3) return \"Expression invalide\";\n    if (!double.TryParse(morceaux[0], out double a) ||\n        !double.TryParse(morceaux[2], out double b))\n        return \"Expression invalide\";\n    switch (morceaux[1])\n    {\n        case \"+\": return (a + b).ToString();\n        case \"-\": return (a - b).ToString();\n        case \"*\": return (a * b).ToString();\n        case \"/\":\n            if (b == 0) return \"Division impossible\";\n            return (a / b).ToString();\n        default: return \"Expression invalide\";\n    }\n}\n```\n\nQue renvoie `Evaluer(\"7 x 3\")` ?",
       "choix": [
         "21",
         "Expression invalide",

@@ -70,7 +70,7 @@
       "id": "libre-algo-p3-s03-c002",
       "section": "libre-algo-p3-s03-s02",
       "type": "exercice",
-      "enonce": "Calcule à la main `cle(9071)` avec la règle ci-dessus, puis dis si 90716 est valide.",
+      "enonce": "```python\ndef cle(numero):\n    return somme_chiffres(numero) % 10   # somme des chiffres, modulo 10\n\ndef identifiant_valide(ident):\n    numero = ident // 10                 # ident = numéro suivi de sa clé\n    return cle(numero) == ident % 10\n```\n\nCalcule à la main `cle(9071)`, puis dis si l'identifiant 90716 est valide.",
       "etapes": [
         "Somme des chiffres : 9 + 0 + 7 + 1 = 17.",
         "Clé : 17 % 10 = 7.",

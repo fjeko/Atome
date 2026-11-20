@@ -71,7 +71,7 @@
       "id": "libre-b1-12a-sq1-s09-c002",
       "section": "libre-b1-12a-sq1-s09-s02",
       "type": "exercice",
-      "enonce": "Fais la trace : `int x = 3, y = 8; Echanger(ref x, ref y);` avec la méthode `Echanger` ci-dessus. Que valent x et y ?",
+      "enonce": "```csharp\nstatic void Echanger(ref int a, ref int b)\n{\n    int temp = a;\n    a = b;\n    b = temp;\n}\n```\n\nFais la trace : `int x = 3, y = 8; Echanger(ref x, ref y);`. Que valent x et y ?",
       "etapes": [
         "`temp = a` → temp = 3.",
         "`a = b` → a (donc x) = 8.",

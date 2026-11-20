@@ -121,7 +121,7 @@
       "id": "libre-b1-12a-sq1-s11-c005",
       "section": "libre-b1-12a-sq1-s11-s05",
       "type": "exercice",
-      "enonce": "Écris le code qui calcule le total du **trimestre** d'indice 1 (toutes boutiques) dans `ventes`.",
+      "enonce": "`ventes` est une matrice `int[,]` : une ligne par boutique, une colonne par trimestre. Écris le code qui calcule le total du **trimestre** d'indice 1 (toutes boutiques).",
       "etapes": [
         "La colonne est fixée : indice 1.",
         "On fait varier la ligne (la boutique) de 0 à `GetLength(0) - 1`.",

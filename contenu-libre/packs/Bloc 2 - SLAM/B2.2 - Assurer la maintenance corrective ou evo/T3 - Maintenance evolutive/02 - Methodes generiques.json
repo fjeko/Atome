@@ -63,7 +63,7 @@
       "id": "libre-b2-22-sq3-s02-c003",
       "section": "libre-b2-22-sq3-s02-s02",
       "type": "exercice",
-      "enonce": "Avec la méthode `Lire<T>` ci-dessus, écris l'appel qui récupère les fournisseurs (id, nom) d'une ville donnée dans la variable `ville`.",
+      "enonce": "```csharp\npublic List<T> Lire<T>(string sql, Func<MySqlDataReader, T> convertir,\n                        Dictionary<string, object>? parametres = null)\n// exemple d'appel :\nvar produits = acces.Lire(\"SELECT id, libelle FROM produit WHERE stock < @seuil\",\n    r => new Produit { Id = r.GetInt32(\"id\"), Libelle = r.GetString(\"libelle\") },\n    new() { [\"@seuil\"] = 5 });\n```\n\nSur ce modèle, écris l'appel qui récupère les fournisseurs (id, nom) d'une ville donnée dans la variable `ville`.",
       "etapes": [
         "Requête paramétrée : `\"SELECT id, nom FROM fournisseur WHERE ville = @ville\"`.",
         "Conversion : `r => new Fournisseur { Id = r.GetInt32(\"id\"), Nom = r.GetString(\"nom\") }`.",

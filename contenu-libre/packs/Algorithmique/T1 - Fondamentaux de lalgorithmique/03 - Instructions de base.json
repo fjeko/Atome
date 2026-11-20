@@ -100,7 +100,7 @@
       "id": "libre-algo-p1-s03-c004",
       "section": "libre-algo-p1-s03-s02",
       "type": "qcm",
-      "question": "Avec le programme ci-dessus et `moyenne = 17`, que s'affiche-t-il ?",
+      "question": "```python\nif moyenne >= 16:\n    print(\"Très bien\")\nelif moyenne >= 12:\n    print(\"Bien\")\nelif moyenne >= 10:\n    print(\"Admis\")\nelse:\n    print(\"Non admis\")\n```\n\nAvec `moyenne = 17`, que s'affiche-t-il ?",
       "choix": [
         "Très bien",
         "Très bien, Bien et Admis",
@@ -170,7 +170,7 @@
       "id": "libre-algo-p1-s03-c009",
       "section": "libre-algo-p1-s03-s04",
       "type": "qcm",
-      "question": "Dans la saisie contrôlée ci-dessus, pourquoi la condition est-elle `note < 0 or note > 20` ?",
+      "question": "```python\nnote = float(input(\"Note (0 à 20) ? \"))\nwhile note < 0 or note > 20:\n    print(\"Valeur impossible.\")\n    note = float(input(\"Note (0 à 20) ? \"))\n```\n\nPourquoi la condition est-elle `note < 0 or note > 20` ?",
       "choix": [
         "Parce qu'on redemande tant que la note est hors de l'intervalle",
         "Parce qu'on redemande tant que la note est valide",

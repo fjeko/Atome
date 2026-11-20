@@ -50,7 +50,7 @@
       "id": "libre-b1-14-sq1-s06-c002",
       "section": "libre-b1-14-sq1-s06-s02",
       "type": "exercice",
-      "enonce": "Karim est affecté à B (jours 3 à 5) et à D (jours 3 à 7). Comment supprimer la surcharge sans allonger le projet ?",
+      "enonce": "Projet de 15 jours. B (jours 3 à 5) est critique. D (jours 3 à 7) a 5 jours de marge totale ; sa seule suivante G (1 jour) doit finir avant le début de F, au jour 13. Karim est affecté à B et à D en même temps. Comment supprimer la surcharge sans allonger le projet ?",
       "etapes": [
         "B est critique, D a une marge totale de 5 jours et G (sa suivante) aussi.",
         "Décaler D après B : D de 5 à 9, puis G de 9 à 10.",

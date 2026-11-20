@@ -66,7 +66,7 @@
       "id": "libre-maths-sq2-s09-c003",
       "section": "libre-maths-sq2-s09-s02",
       "type": "exercice",
-      "enonce": "Avec la médiathèque ci-dessus, quel est le nombre total de chemins de longueur 2 ? Lesquels arrivent en L ?",
+      "enonce": "Une médiathèque numérique relie 4 rubriques : Films (F), Livres (L), Musique (M), Podcasts (P). Liens : F → L, F → M, L → P, M → L, P → F. Dans l'ordre F, L, M, P : $M^2 = \\begin{pmatrix}0 & 1 & 0 & 1\\\\1 & 0 & 0 & 0\\\\0 & 0 & 0 & 1\\\\0 & 1 & 1 & 0\\end{pmatrix}$. Quel est le nombre total de chemins de longueur 2 ? Lesquels arrivent en L ?",
       "etapes": [
         "Somme des coefficients de $M^2$ : $2 + 1 + 1 + 2 = 6$.",
         "Colonne L de $M^2$ : des 1 en lignes F et P.",

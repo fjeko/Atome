@@ -38,7 +38,7 @@
       "id": "libre-b1-12b-sq3-s05-c001",
       "section": "libre-b1-12b-sq3-s05-s01",
       "type": "qcm",
-      "question": "Avec la configuration ci-dessus, que se passe-t-il pour un ping vers 10.8.5.20 (situé dans un autre réseau derrière le routeur) ?",
+      "question": "```text\nAdresse IPv4. . . . . . . . . . : 10.8.2.37\nMasque de sous-réseau. . . . . : 255.255.0.0\nPasserelle par défaut. . . . . : 10.8.2.254\n```\n\nAvec cette configuration, que se passe-t-il pour un ping vers 10.8.5.20 (situé dans un autre réseau derrière le routeur) ?",
       "choix": [
         "Il passe par la passerelle et fonctionne",
         "Le poste le croit local, n'utilise pas la passerelle et le ping échoue",

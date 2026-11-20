@@ -55,7 +55,7 @@
       "id": "libre-b1-12a-sq2-s04-c002",
       "section": "libre-b1-12a-sq2-s04-s02",
       "type": "exercice",
-      "enonce": "Avec 250 g pour 6 parts et 9 parts voulues, quel résultat affiche le programme ? Et pour 4 parts voulues ?",
+      "enonce": "```csharp\ndouble quantite = double.Parse(txtQuantite.Text);\ndouble resultat = quantite * (double)numPartsVoulues.Value / (double)numPartsPrevues.Value;\nlblResultat.Text = $\"Résultat : {resultat:0} g de {cboIngredient.Text}\";\n```\n\nAvec 250 g de farine pour 6 parts prévues et 9 parts voulues, quel résultat s'affiche ? Et pour 4 parts voulues ?",
       "etapes": [
         "Formule : quantité × parts voulues / parts prévues.",
         "250 × 9 / 6 = 375.",

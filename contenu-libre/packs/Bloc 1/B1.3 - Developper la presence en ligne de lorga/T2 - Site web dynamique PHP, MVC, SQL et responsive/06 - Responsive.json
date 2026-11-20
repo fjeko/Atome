@@ -42,7 +42,7 @@
       "id": "libre-b1-13-sq2-s06-c001",
       "section": "libre-b1-13-sq2-s06-s01",
       "type": "exercice",
-      "enonce": "Avec le CSS ci-dessus, combien de colonnes affiche la grille sur un écran de 375 px, 768 px et 1280 px de large ?",
+      "enonce": "```css\n.grille-jeux { display: grid; grid-template-columns: 1fr; gap: 16px; }\n\n@media (min-width: 600px) {\n  .grille-jeux { grid-template-columns: repeat(2, 1fr); }\n}\n@media (min-width: 1000px) {\n  .grille-jeux { grid-template-columns: repeat(4, 1fr); }\n}\n```\n\nCombien de colonnes affiche la grille sur un écran de 375 px, 768 px et 1280 px de large ?",
       "etapes": [
         "375 px : aucune requête média ne s'applique → 1 colonne.",
         "768 px : min-width 600 s'applique, pas 1000 → 2 colonnes.",

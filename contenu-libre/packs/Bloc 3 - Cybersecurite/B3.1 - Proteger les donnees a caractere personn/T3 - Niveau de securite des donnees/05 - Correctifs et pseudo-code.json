@@ -57,7 +57,7 @@
       "id": "libre-b3-31-sq3-s05-c002",
       "section": "libre-b3-31-sq3-s05-s02",
       "type": "qcm",
-      "question": "Avec cette fonction, que renvoie `estRobuste(\"Abcdefgh1!\")` ?",
+      "question": "```text\nFONCTION estRobuste(mdp : chaîne) : booléen\n    SI longueur(mdp) < 12 ALORS\n        RETOURNER FAUX\n    FINSI\n    … vérifie la présence d'une minuscule, d'une majuscule,\n      d'un chiffre et d'un caractère spécial …\n    RETOURNER min ET maj ET chiffre ET special\nFIN\n```\n\nQue renvoie `estRobuste(\"Abcdefgh1!\")` ?",
       "choix": [
         "VRAI",
         "FAUX",

@@ -75,7 +75,7 @@
       "id": "libre-algo-p1-s06-c003",
       "section": "libre-algo-p1-s06-s02",
       "type": "qcm",
-      "question": "Dans le menu ci-dessus, pourquoi `choix` est-il initialisé à `\"\"` avant la boucle ?",
+      "question": "```python\nchoix = \"\"\nwhile choix != \"Q\":\n    # affichage du menu\n    choix = input(\"Votre choix : \").upper()\n    # traitement du choix\n```\n\nPourquoi `choix` est-il initialisé à `\"\"` avant la boucle ?",
       "choix": [
         "Pour que la condition `choix != \"Q\"` puisse être évaluée au premier tour",
         "Pour afficher le menu vide",

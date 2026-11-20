@@ -59,7 +59,7 @@
       "id": "libre-maths-sq3-s03-c002",
       "section": "libre-maths-sq3-s03-s02",
       "type": "exercice",
-      "enonce": "Dans le projet *Cabinet Ortolan*, la sauvegarde (C) dure finalement 8 jours au lieu de 2. La durée du projet change-t-elle ?",
+      "enonce": "Projet *Cabinet Ortolan* (18 jours). La sauvegarde C (2 jours, après A) commence au plus tôt au jour 3. Sa seule suivante, F, commence au plus tôt au jour 12, car elle attend aussi E, qui finit au jour 12. La sauvegarde dure finalement 8 jours au lieu de 2. La durée du projet change-t-elle ?",
       "etapes": [
         "$t_C = 3$, donc C finit à $3 + 8 = 11$.",
         "$t_F = \\max(9 + 3 ;\\ 3 + 8) = \\max(12 ; 11) = 12$ : inchangé.",

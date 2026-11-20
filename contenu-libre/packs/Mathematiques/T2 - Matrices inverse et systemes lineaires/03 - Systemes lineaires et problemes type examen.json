@@ -89,7 +89,7 @@
       "id": "libre-maths-sq1-s06-c004",
       "section": "libre-maths-sq1-s06-s03",
       "type": "exercice",
-      "enonce": "Avec les données de *Rézo-Kit*, le mois suivant on a utilisé 25 boîtes, 30 câbles longs et 25 switchs. Combien de kits de chaque sorte ont été assemblés ? (Utilise $N = M^{-1}$ ci-dessus.)",
+      "enonce": "*Rézo-Kit* assemble $x$ kits Maison, $y$ kits Bureau et $z$ kits Pro. Les boîtes, câbles longs et switchs utilisés vérifient $MX = Y$ avec $M = \\begin{pmatrix}1 & 1 & 1\\\\2 & 1 & 0\\\\0 & 1 & 3\\end{pmatrix}$, dont l'inverse est $N = \\begin{pmatrix}-3 & 2 & 1\\\\6 & -3 & -2\\\\-2 & 1 & 1\\end{pmatrix}$. Ce mois-ci, on a utilisé 25 boîtes, 30 câbles longs et 25 switchs. Combien de kits de chaque sorte ont été assemblés ?",
       "etapes": [
         "$Y = \\begin{pmatrix}25\\\\30\\\\25\\end{pmatrix}$, et $X = NY$.",
         "$x = -3 \\times 25 + 2 \\times 30 + 25 = -75 + 60 + 25 = 10$",

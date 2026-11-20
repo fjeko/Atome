@@ -48,7 +48,7 @@
       "id": "libre-b1-12b-sq4-s01-c002",
       "section": "libre-b1-12b-sq4-s01-s02",
       "type": "exercice",
-      "enonce": "Ajoute au tableau le profil « Secrétariat » : il dépose des documents dans Commun, lit les modèles, et peut modifier la comptabilité. Écris sa ligne.",
+      "enonce": "Partages d'un bureau d'études (L = lecture, M = modification, — = aucun accès) :\n\n```text\nD:\\Partages\n├── Commun\n├── Direction\n├── Etudes\n│   ├── Projets\n│   └── Modeles\n└── Administratif\n    ├── Comptabilite\n    └── RH\n```\n\nÉcris la ligne du tableau des droits pour le profil « Secrétariat » : il dépose des documents dans Commun, lit les modèles, et peut modifier la comptabilité.",
       "etapes": [
         "Commun : M.",
         "Direction : aucun accès.",

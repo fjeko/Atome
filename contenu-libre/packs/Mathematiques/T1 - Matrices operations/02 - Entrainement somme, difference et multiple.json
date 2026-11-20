@@ -142,7 +142,7 @@
       "id": "libre-maths-sq1-s02-c008",
       "section": "libre-maths-sq1-s02-s04",
       "type": "qcm",
-      "question": "Dans l'exemple *Roue Libre*, que signifie le coefficient $f_{3,1} = 12$ de $F = S + L - V$ ?",
+      "question": "*Roue Libre* range ses stocks en matrices : lignes = catégories (1 vélos classiques, 2 vélos électriques, 3 trottinettes), colonnes = agences (1 Nord, 2 Sud). Le stock de fin de mois est $F = S + L - V$. Que signifie le coefficient $f_{3,1} = 12$ ?",
       "choix": [
         "Il reste 12 trottinettes à l'agence Nord",
         "Il reste 12 trottinettes à l'agence Sud",

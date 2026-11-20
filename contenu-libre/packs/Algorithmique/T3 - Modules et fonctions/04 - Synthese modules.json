@@ -49,7 +49,7 @@
       "id": "libre-algo-p3-s04-c001",
       "section": "libre-algo-p3-s04-s01",
       "type": "qcm",
-      "question": "Quel est le principal défaut du programme « avant » ?",
+      "question": "```python\nn1 = float(input(\"Note 1 ? \"))\nwhile n1 < 0 or n1 > 20:\n    n1 = float(input(\"Note 1 ? \"))\nn2 = float(input(\"Note 2 ? \"))\nwhile n2 < 0 or n2 > 20:\n    n2 = float(input(\"Note 2 ? \"))\nm = (n1 + n2) / 2\n```\n\nQuel est le principal défaut de ce programme ?",
       "choix": [
         "Le même bloc de saisie contrôlée est écrit deux fois",
         "Il est trop rapide",

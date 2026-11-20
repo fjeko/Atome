@@ -92,7 +92,7 @@
       "id": "libre-b1-12a-sq3-s02-c003",
       "section": "libre-b1-12a-sq3-s02-s02",
       "type": "exercice",
-      "enonce": "Un vélo électrique a un tarif de 18 €/jour. Combien coûte une location de 3 jours avec la redéfinition ci-dessus ?",
+      "enonce": "```csharp\n// dans Vehicule\npublic double PrixLocation(int jours) => tarifJour * jours;\n\n// dans VeloElectrique (fille de Vehicule)\npublic override double PrixLocation(int jours)\n{\n    return base.PrixLocation(jours) + 4 * jours;  // supplément batterie\n}\n```\n\nUn vélo électrique a un tarif de 18 €/jour. Combien coûte une location de 3 jours ?",
       "etapes": [
         "`base.PrixLocation(3)` = 18 × 3 = 54.",
         "Supplément batterie : 4 × 3 = 12."

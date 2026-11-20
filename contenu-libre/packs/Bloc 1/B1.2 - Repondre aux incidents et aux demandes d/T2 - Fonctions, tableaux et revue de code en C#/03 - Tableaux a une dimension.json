@@ -84,7 +84,7 @@
       "id": "libre-b1-12a-sq1-s10-c002",
       "section": "libre-b1-12a-sq1-s10-s02",
       "type": "exercice",
-      "enonce": "Écris le code qui compte combien de jours la vente a dépassé 500 € dans le tableau `ventes`.",
+      "enonce": "`ventes` est un tableau de `double` contenant le montant des ventes de chaque jour. Écris le code qui compte combien de jours la vente a dépassé 500 €.",
       "etapes": [
         "Initialiser un compteur à 0.",
         "Parcourir toutes les cases.",
@@ -97,7 +97,7 @@
       "id": "libre-b1-12a-sq1-s10-c003",
       "section": "libre-b1-12a-sq1-s10-s03",
       "type": "qcm",
-      "question": "Dans l'inversion ci-dessus, que se passe-t-il si la boucle va jusqu'à `i < t.Length` ?",
+      "question": "```csharp\nint[] t = { 4, 8, 15, 16, 23 };\nfor (int i = 0; i < t.Length / 2; i++)\n{\n    int temp = t[i];\n    t[i] = t[t.Length - 1 - i];\n    t[t.Length - 1 - i] = temp;\n}\n```\n\nCette boucle inverse le tableau. Que se passe-t-il si elle va jusqu'à `i < t.Length` ?",
       "choix": [
         "Le tableau est correctement inversé",
         "Chaque paire est échangée deux fois : le tableau revient à son état initial",
