@@ -51,24 +51,31 @@ public static class RenduCarte
                 break;
 
             case TypeCarte.Exercice:
+                // On écrit son résultat (ou on répond de tête), puis on voit directement la réponse.
+                // La correction étape par étape n'apparaît que si le résultat écrit est différent (ou s'il n'y en a pas).
                 elements.Add(new { genre = "question", markdown = c.Enonce });
-                for (int i = 0; i < etapesRevelees; i++)
-                    elements.Add(new { genre = "etape", index = i + 1, markdown = c.Etapes![i] });
-                if (reponseVisible)
+                if (!reponseVisible) break;
+                bool memeResultat = ComparaisonReponse.MemeResultat(saisie, c.Reponse);
+                if (!string.IsNullOrWhiteSpace(saisie))
+                {
+                    if (memeResultat) elements.Add(new { genre = "etiquette", markdown = "Même résultat que toi !" });
+                    elements.Add(new { genre = "comparaison", saisie = saisie.Trim(), markdown = c.Reponse });
+                }
+                else
                 {
                     elements.Add(new { genre = "etiquette", markdown = "Réponse" });
                     elements.Add(new { genre = "reponse", markdown = c.Reponse });
+                }
+                if (!memeResultat && c.Etapes is { Count: > 0 })
+                {
+                    elements.Add(new { genre = "etiquette", markdown = "Correction détaillée" });
+                    for (int i = 0; i < c.Etapes.Count; i++)
+                        elements.Add(new { genre = "etape", index = i + 1, markdown = c.Etapes[i] });
                 }
                 break;
         }
         return elements;
     }
-
-    /// <summary>Libellé du bouton principal avant la réponse : « Voir la réponse » ou « Étape suivante ».</summary>
-    public static string TexteReveler(Carte carte, int etapesRevelees) =>
-        carte.Type == TypeCarte.Exercice && etapesRevelees < (carte.Contenu.Etapes?.Count ?? 0)
-            ? (etapesRevelees == 0 ? "Voir la première étape" : "Étape suivante")
-            : "Voir la réponse";
 
     /// <summary>Délai avant la prochaine révision, en clair (« demain », « 6 j », « 2 mois »).</summary>
     public static string Delai(int jours) => jours switch

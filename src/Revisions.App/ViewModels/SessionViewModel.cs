@@ -173,8 +173,9 @@ public partial class SessionViewModel : ObservableObject
 
         bool mauvaisChoix = qcm && _reponseVisible && _choixFait != c.BonneReponse;
         RevelerVisible = !_reponseVisible && !qcm;
-        TexteReveler = RenduCarte.TexteReveler(carte, _etapesRevelees);
-        SaisieVisible = carte.Type == TypeCarte.Question && !_reponseVisible;
+        TexteReveler = "Voir la réponse";
+        // Question et exercice : on peut écrire sa réponse (le résultat d'un exercice) pour la comparer.
+        SaisieVisible = carte.Type is TypeCarte.Question or TypeCarte.Exercice && !_reponseVisible;
         ContinuerVisible = mauvaisChoix;
         NotesVisibles = _reponseVisible && !mauvaisChoix;
         RateVisible = !qcm;
@@ -202,16 +203,12 @@ public partial class SessionViewModel : ObservableObject
 
     // ---- Actions ---------------------------------------------------------------------------
 
-    /// <summary>Révèle la réponse (ou l'étape suivante d'un exercice).</summary>
+    /// <summary>Révèle la réponse. Exercice : la réponse s'affiche directement, ses étapes servent de correction si le résultat diffère.</summary>
     [RelayCommand]
     private void Reveler()
     {
         if (!RevelerVisible) return;
-        var carte = Courante.Carte;
-        if (carte.Type == TypeCarte.Exercice && _etapesRevelees < carte.Contenu.Etapes!.Count)
-            _etapesRevelees++;
-        else
-            _reponseVisible = true;
+        _reponseVisible = true;
         MettreAJourEcran(defilerEnBas: true);
     }
 

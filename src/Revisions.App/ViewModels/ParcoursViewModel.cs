@@ -215,8 +215,9 @@ public partial class ParcoursViewModel : ObservableObject
 
         bool mauvaisChoix = qcm && _reponseVisible && _choixFait != carte.Contenu.BonneReponse;
         RevelerVisible = !_reponseVisible && !qcm;
-        TexteReveler = RenduCarte.TexteReveler(carte, _etapesRevelees);
-        SaisieVisible = carte.Type == TypeCarte.Question && !_reponseVisible;
+        TexteReveler = "Voir la réponse";
+        // Question et exercice : on peut écrire sa réponse (le résultat d'un exercice) pour la comparer.
+        SaisieVisible = carte.Type is TypeCarte.Question or TypeCarte.Exercice && !_reponseVisible;
         ContinuerVisible = mauvaisChoix;
         NotesVisibles = _reponseVisible && !mauvaisChoix;
         RateVisible = !qcm;
@@ -284,9 +285,7 @@ public partial class ParcoursViewModel : ObservableObject
     private void Reveler()
     {
         if (!RevelerVisible || _question is null) return;
-        var carte = _question.Carte;
-        if (carte.Type == TypeCarte.Exercice && _etapesRevelees < (carte.Contenu.Etapes?.Count ?? 0)) _etapesRevelees++;
-        else _reponseVisible = true;
+        _reponseVisible = true; // exercice compris : la réponse directement, les étapes en correction si besoin
         MettreAJourQuestion(defilerEnBas: true);
     }
 
