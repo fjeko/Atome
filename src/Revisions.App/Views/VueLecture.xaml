@@ -47,6 +47,10 @@
                         ds:Forme.Icone="{x:Static ds:Icones.Pdf}" Margin="{StaticResource Marge.Droite.8}"
                         ToolTip="Ouvrir le document d'origine (à la page de cette section pour un PDF)"
                         Visibility="{Binding ADocumentSource, Converter={StaticResource VisibleSi}}" />
+                <Button Content="Lire puis contrôler" Command="{Binding LireEtControlerCommand}" Style="{StaticResource BoutonSecondaire}"
+                        ds:Forme.Icone="{x:Static ds:Icones.Lire}" Margin="{StaticResource Marge.Droite.8}"
+                        ToolTip="Relire la séance section par section avec des questions flash, puis un petit contrôle"
+                        Visibility="{Binding PeutReviser, Converter={StaticResource VisibleSi}}" />
                 <Button Content="Réviser cette séance" Command="{Binding ReviserCommand}" Style="{StaticResource BoutonPrincipal}"
                         ds:Forme.Icone="{x:Static ds:Icones.Jouer}"
                         Visibility="{Binding PeutReviser, Converter={StaticResource VisibleSi}}" />

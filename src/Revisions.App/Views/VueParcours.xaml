@@ -1,0 +1,153 @@
+<UserControl x:Class="Revisions.App.Views.VueParcours"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:Revisions.App.Controles"
+             xmlns:v="clr-namespace:Revisions.App.Views"
+             xmlns:ds="clr-namespace:Revisions.App.Controles"
+             x:Name="Racine">
+    <!--
+        Parcours « Lire puis contrôler » (fiche A1), en mode concentration comme une session.
+        De haut en bas : quitter, étape et avancement ; la mascotte ; le contenu (section ou question) ;
+        la saisie facultative ; la consigne ; une seule rangée d'actions à la fois. Résultats : score par section.
+    -->
+    <Grid Margin="{StaticResource Marge.Ecran}" MaxWidth="{StaticResource Largeur.Contenu}" ds:Ton.Matiere="{Binding Matiere}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- ===== Quitter, étape, avancement ===== -->
+        <DockPanel>
+            <Button DockPanel.Dock="Left" Content="Quitter" Command="{Binding QuitterCommand}" Style="{StaticResource BoutonFantome}"
+                    ds:Forme.Icone="{x:Static ds:Icones.Pause}" Foreground="{DynamicResource Pinceau.TexteSecondaire}"
+                    ToolTip="Quitter : ton avancement est gardé, tu reprendras au même endroit (Échap)" />
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Style="{StaticResource BoutonFantome}" Content="Calculatrice" ds:Forme.Icone="{x:Static ds:Icones.Calculatrice}"
+                        DataContext="{Binding Calculatrice}" Command="{Binding BasculerCommand}" Margin="{StaticResource Marge.Droite.8}"
+                        Visibility="{Binding Visible, Converter={StaticResource VisibleSi}}"
+                        Foreground="{DynamicResource Pinceau.TexteSecondaire}" AutomationProperties.Name="Calculatrice"
+                        ToolTip="Ouvrir ou fermer la calculatrice (Ctrl + K)" />
+                <Border Style="{StaticResource PastilleNeutre}" Padding="10,3">
+                    <TextBlock Text="{Binding Etape}" FontSize="{DynamicResource Taille.Interface}" />
+                </Border>
+            </StackPanel>
+            <ProgressBar Style="{StaticResource BarreTon}" Height="4" Value="{Binding Avancement, Mode=OneWay}" Margin="16,0" VerticalAlignment="Center"
+                         AutomationProperties.Name="Avancement du parcours" />
+        </DockPanel>
+
+        <!-- ===== Séance et mascotte ===== -->
+        <DockPanel Grid.Row="1" Margin="0,12,0,12">
+            <v:BandeauMascotte DockPanel.Dock="Right" Taille="56" Message="{Binding MessageMascotte}" Humeur="{Binding HumeurMascotte}" />
+            <StackPanel VerticalAlignment="Center" Margin="{StaticResource Marge.Droite.16}">
+                <TextBlock Text="{Binding Matiere}" Style="{StaticResource Texte.Meta}" Foreground="{Binding (ds:Ton.Texte), RelativeSource={RelativeSource Self}}" />
+                <TextBlock Text="{Binding Titre}" Style="{StaticResource Texte.TitreCours}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" ToolTip="{Binding Titre}" />
+            </StackPanel>
+        </DockPanel>
+
+        <!-- ===== Contenu : la section ou la question (Markdown et LaTeX) ===== -->
+        <Border Grid.Row="2" Style="{StaticResource CarteSurface}" Padding="12,16,12,8" Background="{DynamicResource Pinceau.Surface}"
+                Visibility="{Binding ResultatsVisibles, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}">
+            <c:VueMarkdown Message="{Binding MessageRendu}" CommandeChoix="{Binding ChoisirCommand}" />
+        </Border>
+
+        <!-- ===== Résultats : score global puis par section ===== -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Focusable="False"
+                      Visibility="{Binding ResultatsVisibles, Converter={StaticResource VisibleSi}}">
+            <Border Style="{StaticResource CarteSurface}">
+                <StackPanel>
+                    <TextBlock Text="Contrôle terminé" Style="{StaticResource Texte.SousTitre}" />
+                    <TextBlock Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.4}" TextWrapping="Wrap">
+                        <Run Text="Score :" /> <Run Text="{Binding ScoreGlobal, Mode=OneWay}" FontWeight="SemiBold" />
+                        <Run Text=" · la séance est marquée « lue et contrôlée ». Tes réponses comptent déjà dans tes révisions." />
+                    </TextBlock>
+                    <ItemsControl ItemsSource="{Binding Scores}" Margin="{StaticResource Marge.Haut.12}" Focusable="False">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="{DynamicResource Pinceau.Bordure}" BorderThickness="0,1,0,0" Padding="0,10,0,6">
+                                    <DockPanel>
+                                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center"
+                                                    Visibility="{Binding Ratee, Converter={StaticResource VisibleSi}}">
+                                            <Button Content="Relire" Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Lire}"
+                                                    Margin="{StaticResource Marge.Gauche.12}" AutomationProperties.Name="{Binding Titre, StringFormat=Relire {0}}"
+                                                    Command="{Binding DataContext.RelireSectionCommand, ElementName=Racine}" CommandParameter="{Binding}" />
+                                            <Button Content="Réviser ces cartes" Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Jouer}"
+                                                    Margin="{StaticResource Marge.Gauche.8}" AutomationProperties.Name="{Binding Titre, StringFormat=Réviser les cartes de {0}}"
+                                                    Command="{Binding DataContext.ReviserSectionCommand, ElementName=Racine}" CommandParameter="{Binding}" />
+                                        </StackPanel>
+                                        <TextBlock DockPanel.Dock="Right" Text="{Binding Score}" Style="{StaticResource Texte.Base}" FontWeight="SemiBold"
+                                                   VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.12}" />
+                                        <TextBlock Text="{Binding Titre}" Style="{StaticResource Texte.Base}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                                    </DockPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button Content="Retour à la bibliothèque" Command="{Binding QuitterCommand}" IsDefault="True" Style="{StaticResource BoutonPrincipal}"
+                            HorizontalAlignment="Left" Margin="{StaticResource Marge.Haut.16}" />
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+
+        <!-- ===== Réponse écrite, facultative (cartes « question ») ===== -->
+        <StackPanel Grid.Row="3" Margin="{StaticResource Marge.Haut.12}" Visibility="{Binding SaisieVisible, Converter={StaticResource VisibleSi}}">
+            <TextBox x:Name="ZoneSaisie" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="40" MaxHeight="110"
+                     VerticalScrollBarVisibility="Auto" FontSize="{DynamicResource Taille.Corps}"
+                     Text="{Binding ReponseSaisie, UpdateSourceTrigger=PropertyChanged}"
+                     AutomationProperties.Name="Ta réponse (facultatif)" PreviewKeyDown="ZoneSaisie_PreviewKeyDown" />
+            <TextBlock Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.4}"
+                       Text="Facultatif : Tab pour écrire, Entrée pour voir la réponse, Échap pour sortir." />
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" Text="{Binding Consigne}" Style="{StaticResource Texte.Secondaire}" HorizontalAlignment="Center"
+                   TextAlignment="Center" Margin="0,16,0,12" />
+
+        <!-- ===== Actions : une seule rangée visible à la fois ===== -->
+        <Grid Grid.Row="5" MinHeight="64">
+            <Button Content="{Binding TexteSuivant}" Command="{Binding SuivantCommand}" Style="{StaticResource BoutonHeros}"
+                    ds:Forme.Raccourci="Entrée" HorizontalAlignment="Center" MinWidth="280"
+                    Visibility="{Binding LectureVisible, Converter={StaticResource VisibleSi}}" />
+
+            <Button Content="Revenir à la question" Command="{Binding RetourQuestionCommand}" Style="{StaticResource BoutonHeros}"
+                    ds:Forme.Raccourci="Entrée" HorizontalAlignment="Center" MinWidth="280"
+                    Visibility="{Binding RetourQuestionVisible, Converter={StaticResource VisibleSi}}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Visibility="{Binding RevelerVisible, Converter={StaticResource VisibleSi}}">
+                <Button Content="Relire le passage" Command="{Binding RelireCommand}" Style="{StaticResource BoutonSecondaire}"
+                        ds:Forme.Icone="{x:Static ds:Icones.Lire}" ds:Forme.Raccourci="R" Margin="{StaticResource Marge.Droite.12}" VerticalAlignment="Center"
+                        Visibility="{Binding RelireVisible, Converter={StaticResource VisibleSi}}" />
+                <Button Content="{Binding TexteReveler}" Command="{Binding RevelerCommand}" Style="{StaticResource BoutonHeros}"
+                        ds:Forme.Raccourci="Espace" MinWidth="280" />
+            </StackPanel>
+
+            <!-- QCM pas encore répondu : seul « Relire le passage » (pendant la lecture). -->
+            <Button Content="Relire le passage" Command="{Binding RelireCommand}" Style="{StaticResource BoutonSecondaire}"
+                    ds:Forme.Icone="{x:Static ds:Icones.Lire}" ds:Forme.Raccourci="R" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="{Binding RelireSeulVisible, Converter={StaticResource VisibleSi}}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Visibility="{Binding ContinuerVisible, Converter={StaticResource VisibleSi}}">
+                <Button Content="Relire le passage" Command="{Binding RelireCommand}" Style="{StaticResource BoutonSecondaire}"
+                        ds:Forme.Icone="{x:Static ds:Icones.Lire}" Margin="{StaticResource Marge.Droite.12}" VerticalAlignment="Center"
+                        Visibility="{Binding RelireVisible, Converter={StaticResource VisibleSi}}" />
+                <Button Content="Continuer" Command="{Binding ContinuerCommand}" Style="{StaticResource BoutonHeros}" ds:Forme.Raccourci="Entrée" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                        Visibility="{Binding NotesVisibles, Converter={StaticResource VisibleSi}}">
+                <Button Content="Raté" Command="{Binding NoterCommand}" CommandParameter="1" Style="{StaticResource BoutonRate}" ds:Forme.Raccourci="1"
+                        MinWidth="120" Margin="{StaticResource Marge.Droite.8}" Visibility="{Binding RateVisible, Converter={StaticResource VisibleSi}}" />
+                <Button Content="Difficile" Command="{Binding NoterCommand}" CommandParameter="2" Style="{StaticResource BoutonDifficile}" ds:Forme.Raccourci="2"
+                        MinWidth="120" Margin="{StaticResource Marge.Droite.8}" />
+                <Button Content="Bien" Command="{Binding NoterCommand}" CommandParameter="3" Style="{StaticResource BoutonBien}" ds:Forme.Raccourci="3"
+                        MinWidth="120" Margin="{StaticResource Marge.Droite.8}" />
+                <Button Content="Facile" Command="{Binding NoterCommand}" CommandParameter="4" Style="{StaticResource BoutonFacile}" ds:Forme.Raccourci="4"
+                        MinWidth="120" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

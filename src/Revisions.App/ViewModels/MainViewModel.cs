@@ -271,6 +271,10 @@ public partial class MainViewModel(
         new FenetreLecture { DataContext = lecture, Owner = Application.Current.MainWindow }.ShowDialog();
     }
 
+    /// <summary>Ouvre le parcours « Lire puis contrôler » d'une séance (reprend là où on s'était arrêté).</summary>
+    public void OuvrirParcours(string packId) =>
+        Afficher(Creer<ParcoursViewModel>(new ParametresParcours(packId)), null);
+
     /// <summary>Lance une session avec les cartes données.</summary>
     /// <param name="cartes">Cartes, déjà dans l'ordre.</param>
     /// <param name="mode">quotidienne, reprise, seance, point_faible ou bonus.</param>

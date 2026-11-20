@@ -39,6 +39,10 @@
                                          Fill="{Binding (ds:Ton.Trait), RelativeSource={RelativeSource Self}}" />
                                 <TextBlock x:Name="TitreLigne" Text="{Binding Titre}" Style="{StaticResource Texte.Base}" TextTrimming="CharacterEllipsis"
                                            TextWrapping="NoWrap" MaxWidth="300" ToolTip="{Binding Titre}" />
+                                <!-- Séance passée en « Lire puis contrôler » : coche discrète, date et score en infobulle. -->
+                                <TextBlock Text="✓" Style="{StaticResource Texte.Meta}" Foreground="{DynamicResource Ton.Succes.Texte}" Margin="{StaticResource Marge.Gauche.8}"
+                                           ToolTip="{Binding Controle}" AutomationProperties.Name="{Binding Controle}"
+                                           Visibility="{Binding Controle, Converter={StaticResource VisibleSi}}" />
                             </StackPanel>
                             <ComboBox Grid.Column="1" ItemsSource="{x:Static vm:ListesAcquis.Avancements}" AutomationProperties.Name="Avancement"
                                       SelectedIndex="{Binding Avancement, Mode=TwoWay}" Margin="{StaticResource Marge.Droite.8}" />

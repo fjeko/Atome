@@ -149,6 +149,10 @@ public partial class LectureViewModel : ObservableObject
     [RelayCommand]
     private void Reviser() => _main.DemarrerSession(_revisions.CartesDuPack(_seance.PackId), "seance");
 
+    /// <summary>Parcours guidé « Lire puis contrôler » sur cette séance.</summary>
+    [RelayCommand]
+    private void LireEtControler() => _main.OuvrirParcours(_seance.PackId);
+
     /// <summary>Flèches gauche/droite relayées par la zone de contenu.</summary>
     [RelayCommand]
     private void Touche(string touche)

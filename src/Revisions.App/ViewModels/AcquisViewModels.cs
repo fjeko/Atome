@@ -31,6 +31,8 @@ public partial class NoeudAcquis : ObservableObject
     public string? Etiquette { get; init; }
     public int Profondeur { get; init; }
     public bool EstSeance { get; init; }
+    /// <summary>« Lue et contrôlée le 20/11 · 83 % » pour une séance passée en « Lire puis contrôler », sinon null.</summary>
+    public string? Controle { get; init; }
     public List<NoeudAcquis> Enfants { get; } = [];
 
     public string Chemin => CalculAcquis.Chemin(Cles);
@@ -91,7 +93,7 @@ public sealed class ArbreAcquis
         foreach (var seance in niveau.Seances)
         {
             var clesSeance = new List<string>(cles) { "§" + seance.PackId };
-            noeud.Enfants.Add(Preparer(new NoeudAcquis { Titre = seance.Seance, Cles = clesSeance, Profondeur = profondeur + 1, EstSeance = true }));
+            noeud.Enfants.Add(Preparer(new NoeudAcquis { Titre = seance.Seance, Cles = clesSeance, Profondeur = profondeur + 1, EstSeance = true, Controle = seance.TexteControle }));
         }
         return noeud;
     }

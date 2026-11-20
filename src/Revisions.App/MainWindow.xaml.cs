@@ -88,6 +88,7 @@ public partial class MainWindow : Window
             Key.D4 or Key.NumPad4 => "4",
             Key.S => "s",
             Key.I => "i",
+            Key.R => "r",
             >= Key.A and <= Key.E => ((char)('a' + (e.Key - Key.A))).ToString(),
             _ => null,
         };
@@ -106,6 +107,17 @@ public partial class MainWindow : Window
             case SessionViewModel session:
                 session.Touche(touche);
                 e.Handled = true;
+                break;
+            case ParcoursViewModel parcours when touche == "Tab":
+                if (parcours.SaisieVisible)
+                {
+                    parcours.DemanderSaisie();
+                    e.Handled = true;
+                }
+                break;
+            case ParcoursViewModel parcours:
+                // Comme en session ; sur l'écran de résultats, Entrée et Espace gardent leur rôle sur le bouton qui a le focus.
+                if (!parcours.ResultatsVisibles || touche == "Escape") { parcours.Touche(touche); e.Handled = true; }
                 break;
             case TdGroupeViewModel td when touche != "Tab":
                 // Hors des cases de saisie : Espace, Entrée et I (indice). Les autres touches gardent leur rôle.

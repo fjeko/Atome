@@ -20,6 +20,8 @@ public sealed class LigneSeance(ResumeSeance seance, string? emplacement = null)
     /// <summary>Cours libre intégré à Atome : affiche le badge « Libre ».</summary>
     public bool EstLibre => seance.Libre;
     public bool ADesCartes => seance.NbCartes > 0;
+    /// <summary>« Lue et contrôlée le 20/11 · 83 % », ou null.</summary>
+    public string? Controle => seance.TexteControle;
     public double Maitrise => seance.NbCartes == 0 ? 0 : (double)seance.NbMaitrisees / seance.NbCartes;
     /// <summary>Matière et partie : donnent sa couleur à la ligne (système de design).</summary>
     public string Matiere => seance.Matiere;
@@ -244,6 +246,9 @@ public partial class BibliothequeViewModel : ObservableObject
 
     [RelayCommand]
     private void Lire(LigneSeance seance) => _main.OuvrirLecture(seance.PackId);
+
+    [RelayCommand]
+    private void LireEtControler(LigneSeance seance) => _main.OuvrirParcours(seance.PackId);
 
     /// <summary>Révise toutes les cartes d'une séance, dans l'ordre du cours (US12).</summary>
     [RelayCommand]

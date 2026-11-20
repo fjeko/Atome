@@ -23,6 +23,7 @@
             <DataTemplate DataType="{x:Type vm:BibliothequeViewModel}"><v:VueBibliotheque /></DataTemplate>
             <DataTemplate DataType="{x:Type vm:LectureViewModel}"><v:VueLecture /></DataTemplate>
             <DataTemplate DataType="{x:Type vm:SessionViewModel}"><v:VueSession /></DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ParcoursViewModel}"><v:VueParcours /></DataTemplate>
             <DataTemplate DataType="{x:Type vm:FinSessionViewModel}"><v:VueFinSession /></DataTemplate>
             <DataTemplate DataType="{x:Type vm:StatistiquesViewModel}"><v:VueStatistiques /></DataTemplate>
             <DataTemplate DataType="{x:Type vm:ReglagesViewModel}"><v:VueReglages /></DataTemplate>

@@ -132,6 +132,8 @@
                                         </Border>
                                     </WrapPanel>
                                     <TextBlock Text="{Binding Detail}" Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.4}" />
+                                    <TextBlock Text="{Binding Controle}" Style="{StaticResource Texte.Meta}" Foreground="{DynamicResource Ton.Succes.Texte}"
+                                               Visibility="{Binding Controle, Converter={StaticResource VisibleSi}}" />
                                 </StackPanel>
                                 <!-- Maîtrise : mini-anneau, avec son pourcentage en infobulle. -->
                                 <ds:Anneau Grid.Column="2" Width="32" Height="32" Epaisseur="4" Valeur="{Binding Maitrise}" Margin="{StaticResource Marge.Droite.16}"
@@ -141,6 +143,10 @@
                                     <Button Content="Lire" Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Lire}"
                                             Margin="{StaticResource Marge.Droite.8}"
                                             Command="{Binding DataContext.LireCommand, ElementName=Racine}" CommandParameter="{Binding}" />
+                                    <Button Content="Lire puis contrôler" Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Lire}"
+                                            Margin="{StaticResource Marge.Droite.8}" IsEnabled="{Binding ADesCartes}"
+                                            ToolTip="Le cours section par section avec des questions flash, puis un petit contrôle (on peut quitter et reprendre)"
+                                            Command="{Binding DataContext.LireEtControlerCommand, ElementName=Racine}" CommandParameter="{Binding}" />
                                     <Button Content="Réviser" Style="{StaticResource BoutonSecondaire}" ds:Forme.Icone="{x:Static ds:Icones.Jouer}"
                                             IsEnabled="{Binding ADesCartes}"
                                             Command="{Binding DataContext.ReviserCommand, ElementName=Racine}" CommandParameter="{Binding}" />
