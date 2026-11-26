@@ -1,0 +1,25 @@
+# Compile toute la solution (application WPF comprise) et lance les tests à chaque envoi sur une branche
+# autre que main, et à chaque pull request. Permet de vérifier un changement sans Visual Studio.
+name: Verification
+
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verification:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Compilation
+        run: dotnet build --nologo -v q
+
+      - name: Tests
+        run: dotnet test --nologo --no-build -v q --logger "console;verbosity=normal"
