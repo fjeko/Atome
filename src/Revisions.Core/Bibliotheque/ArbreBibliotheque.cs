@@ -179,8 +179,12 @@ public static partial class ArbreBibliotheque
         string courtMatiere = s.Matiere;
         if (!string.IsNullOrWhiteSpace(s.Bloc) && s.Matiere.StartsWith(s.Bloc, StringComparison.CurrentCultureIgnoreCase))
         {
-            string reste = s.Matiere[s.Bloc.Length..].TrimStart(' ', '–', '—', '-', ':');
-            if (reste.Length > 0)
+            // Seulement si un séparateur suit le bloc (« Bloc 1 – Support ») : « Anglais général » (bloc « Anglais »)
+            // garde son nom entier, sinon la tuile s'afficherait « général (A1 → C1) ».
+            string apresBloc = s.Matiere[s.Bloc.Length..].TrimStart(' ');
+            bool separateur = apresBloc.Length > 0 && "–—-:".Contains(apresBloc[0]);
+            string reste = apresBloc.TrimStart(' ', '–', '—', '-', ':');
+            if (separateur && reste.Length > 0)
             {
                 titreMatiere = reste;
                 courtMatiere = s.Bloc;
