@@ -54,6 +54,8 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
                 .GroupBy(x => x.Chemin).ToDictionary(g => g.Key, g => (g.First().Id, g.First().Seance, g.First().Taille!.Value, g.First().Modifie!));
         foreach (string fichier in Directory.EnumerateFiles(dossierPacks, "*.json", SearchOption.AllDirectories).Order())
         {
+            // Les tests de positionnement sont rangés avec les packs, mais ce ne sont pas des packs.
+            if (Revisions.Core.Positionnement.LecteurBanque.EstFichierDeTest(fichier)) continue;
             var info = new FileInfo(fichier);
             if (connus.TryGetValue(fichier, out var c) && c.Taille == info.Length && c.Modifie == Horodatage(info))
             {
