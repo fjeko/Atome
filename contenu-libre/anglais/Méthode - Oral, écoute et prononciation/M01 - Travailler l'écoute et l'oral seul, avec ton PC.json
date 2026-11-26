@@ -10,10 +10,10 @@
   "source": {
     "fichier": null
   },
-  "resume": "Comment travailler la compréhension orale et l'expression orale sans professeur : faire lire l'anglais par ton PC, t'enregistrer, utiliser la dictée vocale comme juge de prononciation, le shadowing, et une routine d'écoute adaptée à ton niveau.",
+  "resume": "Comment travailler la compréhension orale et l'expression orale sans professeur : écouter l'anglais avec les boutons 🔊 d'Atome, t'enregistrer, utiliser la dictée vocale comme juge de prononciation, le shadowing, et une routine d'écoute adaptée à ton niveau.",
   "notions": [
     "Principe",
-    "Synthèse vocale Windows",
+    "Écouter avec Atome",
     "Enregistrement et dictée vocale",
     "Shadowing",
     "Ressources d'écoute",
@@ -30,16 +30,16 @@
     },
     {
       "id": "en-or-m01-s02",
-      "titre": "Faire lire l'anglais par ton PC",
-      "contenu": "Windows contient des **voix anglaises** de bonne qualité. Tu peux t'en servir pour entendre n'importe quel texte du cours.\n\n**1. Installer une voix anglaise** : *Paramètres → Heure et langue → Voix* (« Speech »), puis *Ajouter des voix* → **English (United Kingdom)** ou **English (United States)**.\n\n**2. Écouter un texte :**\n- **Microsoft Edge** : colle le texte dans une page (ou ouvre un article en anglais), puis **clic droit → Lire à voix haute** (ou **Ctrl + Maj + U**). Dans la barre qui apparaît, choisis la **voix anglaise** et la **vitesse** (commence à 0,75).\n- **Le Narrateur** de Windows (**Ctrl + Windows + Entrée** pour l'activer ou le couper) lit ce qui est à l'écran, y compris les fiches d'Atome ; choisis une voix anglaise dans ses paramètres.\n\nAstuce : copie un dialogue d'une fiche (sélection puis Ctrl + C), colle-le dans Edge et fais-le lire. Tu as ainsi un **modèle audio** pour chaque dialogue du cours.",
+      "titre": "Écouter l'anglais dans Atome",
+      "contenu": "Atome **lit l'anglais à voix haute** dans tous les cours et toutes les cartes d'anglais : plus besoin de copier le texte dans un autre logiciel.\n\n**Les boutons 🔊**\n- devant chaque **réplique d'un dialogue** : un 🔊 pour la réécouter seule ; au-dessus du dialogue, **🔊 Tout écouter** le lit en entier. Chaque personnage a **sa voix** : une voix féminine britannique et une voix masculine américaine, pour habituer ton oreille aux deux accents ;\n- après chaque **exemple en italique** (*Nice to meet you*) : un 🔊 pour l'entendre. Les mots français et les formes fautives barrées (~~I am agree~~) ne sont jamais lus.\n\n**Régler la voix** : dans **Réglages → Voix**, tu choisis le **volume**, la **vitesse** (100 % = normale ; vers 75 %, tu entends bien chaque mot) et tu peux **tester** la voix.\n\nLes **voix naturelles** se téléchargent une seule fois, au premier lancement, puis marchent **hors ligne**. En attendant, Atome utilise la voix anglaise de Windows ; **Réglages → Voix** indique où en est le téléchargement.\n\n**Méthode pour chaque dialogue** :\n1. **🔊 Tout écouter** sans lire, pour le sens général ;\n2. réécoute en lisant ;\n3. réplique par réplique : écoute, mets en pause, **répète** en imitant la mélodie (c'est le *shadowing*, voir plus bas) ;\n4. d'abord à 75 %, puis à 100 %.",
       "notions": [
-        "Synthèse vocale Windows"
+        "Écouter avec Atome"
       ]
     },
     {
       "id": "en-or-m01-s03",
       "titre": "T'enregistrer et te faire juger par la dictée",
-      "contenu": "**S'enregistrer** : l'application **Enregistreur audio** de Windows (ou ton téléphone) suffit.\n1. Écoute le modèle (voix d'Edge ou podcast).\n2. Enregistre-toi sur la même phrase.\n3. Compare **phrase par phrase** : sons, mots accentués, mélodie. Note **une seule** chose à corriger, recommence.\n\n**La dictée vocale comme juge** : si la machine comprend, un humain comprendra.\n- **Windows + H** ouvre la dictée de Windows : passe la langue de saisie en anglais (**Windows + Espace**), puis parle.\n- Dans **Word** : *Accueil → Dicter*, langue **English**.\n\nLis une phrase du cours : si le texte transcrit est juste, ta prononciation est intelligible. Si *ship* devient *sheep* ou *think* devient *sink*, tu sais exactement quel son travailler.",
+      "contenu": "**S'enregistrer** : l'application **Enregistreur audio** de Windows (ou ton téléphone) suffit.\n1. Écoute le modèle (🔊 dans Atome, ou un podcast).\n2. Enregistre-toi sur la même phrase.\n3. Compare **phrase par phrase** : sons, mots accentués, mélodie. Note **une seule** chose à corriger, recommence.\n\n**La dictée vocale comme juge** : si la machine comprend, un humain comprendra.\n- **Windows + H** ouvre la dictée de Windows : passe la langue de saisie en anglais (**Windows + Espace**), puis parle.\n- Dans **Word** : *Accueil → Dicter*, langue **English**.\n\nLis une phrase du cours : si le texte transcrit est juste, ta prononciation est intelligible. Si *ship* devient *sheep* ou *think* devient *sink*, tu sais exactement quel son travailler.",
       "notions": [
         "Enregistrement et dictée vocale"
       ]
@@ -90,16 +90,16 @@
       "id": "en-or-m01-c003",
       "section": "en-or-m01-s02",
       "type": "question",
-      "recto": "Comment faire lire un texte anglais par Edge ?",
-      "verso": "**Clic droit → Lire à voix haute** (ou **Ctrl + Maj + U**), puis choisir une **voix anglaise** et la vitesse dans la barre de lecture.",
+      "recto": "Comment écouter un exemple ou un dialogue d'un cours d'anglais dans Atome ?",
+      "verso": "Clique sur le **🔊** qui suit l'exemple en italique. Pour un dialogue : **🔊 Tout écouter** au-dessus, puis le 🔊 de chaque réplique.",
       "difficulte": 1
     },
     {
       "id": "en-or-m01-c004",
       "section": "en-or-m01-s02",
       "type": "question",
-      "recto": "Où installer une voix anglaise sous Windows ?",
-      "verso": "*Paramètres → Heure et langue → Voix* → **Ajouter des voix** → English (United Kingdom) ou (United States).",
+      "recto": "Où régler le volume et la vitesse de la voix anglaise ?",
+      "verso": "Dans **Réglages → Voix** : volume, vitesse (100 % = normale, vers 75 % pour bien entendre chaque mot) et bouton **Tester**.",
       "difficulte": 1
     },
     {
@@ -108,13 +108,13 @@
       "type": "qcm",
       "question": "Tu veux entendre un dialogue d'une fiche Atome. Quelle est la méthode la plus simple ?",
       "choix": [
-        "Copier le dialogue, le coller dans Edge et lancer « Lire à voix haute » avec une voix anglaise",
+        "Cliquer sur « 🔊 Tout écouter » au-dessus du dialogue, puis réécouter chaque réplique",
         "Lire le dialogue dans sa tête en imaginant l'accent anglais",
-        "Demander au correcteur orthographique de Word de le prononcer",
-        "Traduire le dialogue en français puis l'écouter avec une voix française"
+        "Le recopier dans un traitement de texte pour le faire lire",
+        "Le traduire en français, puis l'écouter avec une voix française"
       ],
       "bonneReponse": 0,
-      "explication": "Edge lit tout texte collé, avec une voix anglaise et une vitesse réglable : c'est un modèle audio gratuit pour chaque dialogue.",
+      "explication": "Atome lit chaque dialogue directement, avec une voix par personnage et une vitesse réglable dans Réglages → Voix.",
       "difficulte": 1
     },
     {
@@ -206,7 +206,7 @@
       "section": "en-or-m01-s06",
       "type": "question",
       "recto": "Comment pratiquer l'oral tout seul au quotidien ?",
-      "verso": "**Commenter à voix haute** ce que tu fais ou ce que tu regardes, expliquer un cours en anglais, lire les cartes d'Atome à voix haute.",
+      "verso": "**Commenter à voix haute** ce que tu fais ou ce que tu regardes, expliquer un cours en anglais, lire les cartes d'Atome à voix haute après les avoir écoutées avec 🔊.",
       "difficulte": 1
     },
     {

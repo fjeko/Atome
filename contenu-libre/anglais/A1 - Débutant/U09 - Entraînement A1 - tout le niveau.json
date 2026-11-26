@@ -237,7 +237,7 @@
         "Un goût (I love / I don't like + -ing).",
         "Ce que tu fais maintenant (présent continu)."
       ],
-      "reponse": "*Hi! I'm Léa, I'm 19 and I live in Nantes. I'm a student in IT. I usually study in the library. I love playing video games, but I don't like running. Right now I'm drinking a coffee in my kitchen!*",
+      "reponse": "*Hi! I'm Emma, I'm 19 and I live in Nantes. I'm a student in IT. I usually study in the library. I love playing video games, but I don't like running. Right now I'm drinking a coffee in my kitchen!*",
       "difficulte": 2
     },
     {
@@ -251,7 +251,7 @@
         "There isn't a …",
         "Adjectifs : big, small, quiet, beautiful…"
       ],
-      "reponse": "*My town is small and quiet. There's a big park near the river. There are lots of cafés in the centre, but there isn't a cinema.*",
+      "reponse": "*My town is small and quiet. There's a big park near the river. There are lots of coffee shops in the centre, but there isn't a cinema.*",
       "difficulte": 2
     }
   ]

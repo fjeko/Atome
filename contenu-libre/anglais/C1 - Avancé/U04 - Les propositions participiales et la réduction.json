@@ -27,7 +27,7 @@
     {
       "id": "en-c1-u04-s02",
       "titre": "Le participe suspendu",
-      "contenu": "Le participe se rapporte **toujours au sujet** de la proposition principale. Sinon, la phrase devient absurde (*dangling participle*) :\n- ❌ ***Walking** in the park, **a dog** bit me.* (le chien se promenait ?)\n- ✅ *Walking in the park, **I** was bitten by a dog.* / *While I was walking in the park, a dog bit me.*\n- ❌ *Having finished the test, the room was quiet.* → ✅ *Having finished the test, **the students** sat quietly.*\n\nExceptions figées acceptées : *Generally speaking, … · Considering the price, … · Judging by…*",
+      "contenu": "Le participe se rapporte **toujours au sujet** de la proposition principale. Sinon, la phrase devient absurde (*dangling participle*) :\n- ❌ ~~Walking in the park, a dog bit me.~~ (le chien se promenait ?)\n- ✅ *Walking in the park, **I** was bitten by a dog.* / *While I was walking in the park, a dog bit me.*\n- ❌ ~~Having finished the test, the room was quiet.~~ → ✅ *Having finished the test, **the students** sat quietly.*\n\nExceptions figées acceptées : *Generally speaking, … · Considering the price, … · Judging by…*",
       "notions": [
         "Participe suspendu"
       ]

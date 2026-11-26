@@ -21,7 +21,7 @@
     {
       "id": "en-b1-oral-s01",
       "titre": "Donner son avis et réagir",
-      "contenu": "**Donner son avis** : *I think… / In my opinion, … / Personally, I feel that… / As far as I'm concerned, … / If you ask me, …*\n\n**Nuancer** : *I'm not sure, but… / It depends on… / On the one hand… on the other hand… / To some extent…*\n\n**Être d'accord** : *I agree. / Exactly! / That's true. / Good point. / I couldn't agree more.*\n\n**Ne pas être d'accord (poliment)** : *I see what you mean, but… / I'm not sure I agree. / That's a good point, but don't you think… ? / I'd say it's the opposite.*\n\nÉvite *I am agree* (faute classique) : on dit **I agree**. Et *I'm not agree* → **I don't agree**.\n\n> **A** : I think remote work is better for everyone.\n> **B** : I see what you mean, but it depends on the job. In my opinion, some people need an office to stay motivated.\n> **A** : That's a good point. But you save so much time with no commute!\n> **B** : True. Maybe a mix of both is the best solution.\n\n🎧 **Écoute** : copie le dialogue dans Edge → *Lire à voix haute* (voix anglaise, vitesse 0,75 puis 1). 🎙️ **Parle** : lis-le en shadowing, puis joue chaque rôle en t'enregistrant.",
+      "contenu": "**Donner son avis** : *I think… / In my opinion, … / Personally, I feel that… / As far as I'm concerned, … / If you ask me, …*\n\n**Nuancer** : *I'm not sure, but… / It depends on… / On the one hand… on the other hand… / To some extent…*\n\n**Être d'accord** : *I agree. / Exactly! / That's true. / Good point. / I couldn't agree more.*\n\n**Ne pas être d'accord (poliment)** : *I see what you mean, but… / I'm not sure I agree. / That's a good point, but don't you think… ? / I'd say it's the opposite.*\n\nÉvite ~~I am agree~~ (faute classique) : on dit *I agree*. Et ~~I'm not agree~~ → *I don't agree*.\n\n> **Emma** : I think remote work is better for everyone.\n> **Tom** : I see what you mean, but it depends on the job. In my opinion, some people need an office to stay motivated.\n> **Emma** : That's a good point. But you save so much time with no commute!\n> **Tom** : True. Maybe a mix of both is the best solution.\n\n🎧 **Écoute** : clique sur **🔊 Tout écouter** au-dessus du dialogue, puis réécoute-le réplique par réplique avec le 🔊 de chaque ligne. Règle la vitesse dans **Réglages → Voix** (commence vers 75 %, puis passe à 100 %). 🎙️ **Parle** : lis-le en shadowing, puis joue chaque rôle en t'enregistrant.",
       "notions": [
         "Exprimer et nuancer une opinion"
       ]
@@ -57,7 +57,7 @@
       "section": "en-b1-oral-s01",
       "type": "question",
       "recto": "Comment dit-on « je suis d'accord » et « je ne suis pas d'accord » ?",
-      "verso": "**I agree** et **I don't agree** (jamais *I am agree*).",
+      "verso": "*I agree* et *I don't agree* (jamais ~~I am agree~~).",
       "difficulte": 1
     },
     {

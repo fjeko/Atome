@@ -21,7 +21,7 @@
     {
       "id": "en-b1-u02-s01",
       "titre": "Zéro et premier conditionnel",
-      "contenu": "| Type | Structure | Sens | Exemple |\n| --- | --- | --- | --- |\n| **0** | *If* + présent, présent | vérité générale, règle | *If you heat ice, it melts.* |\n| **1** | *If* + présent, **will** + base | situation **réelle / probable** dans le futur | *If it rains, I'll stay home.* |\n\n**Règle d'or** : après ***if*** (et *when, as soon as, unless*), on met le **présent**, même pour le futur :\n~~*If it will rain*~~ → *If it rains* ; *I'll call you **when** I **arrive*** (pas ~~when I will arrive~~).\n\n***unless*** = *if … not* (à moins que, sauf si) : *I'll go **unless** it rains* = *I'll go if it doesn't rain.*\n\nL'ordre peut s'inverser (sans virgule) : *I'll stay home if it rains.*",
+      "contenu": "| Type | Structure | Sens | Exemple |\n| --- | --- | --- | --- |\n| **0** | *If* + présent, présent | vérité générale, règle | *If you heat ice, it melts.* |\n| **1** | *If* + présent, **will** + base | situation **réelle / probable** dans le futur | *If it rains, I'll stay home.* |\n\n**Règle d'or** : après ***if*** (et *when, as soon as, unless*), on met le **présent**, même pour le futur :\n~~If it will rain~~ → *If it rains* ; *I'll call you **when** I **arrive*** (pas ~~when I will arrive~~).\n\n***unless*** = *if … not* (à moins que, sauf si) : *I'll go **unless** it rains* = *I'll go if it doesn't rain.*\n\nL'ordre peut s'inverser (sans virgule) : *I'll stay home if it rains.*",
       "notions": [
         "Conditionnel zéro",
         "Premier conditionnel"
@@ -30,7 +30,7 @@
     {
       "id": "en-b1-u02-s02",
       "titre": "Le deuxième conditionnel",
-      "contenu": "**If + prétérit, would + base** : situation **imaginaire**, peu probable ou contraire à la réalité **présente**.\n- *If I **won** the lottery, I **would travel** around the world.*\n- *If I **had** more time, I**'d learn** Japanese.* (je n'ai pas le temps)\n- conseil : *If I **were** you, I **wouldn't** accept.* — avec *if*, on utilise ***were*** à toutes les personnes dans un registre soigné.\n\n1er ou 2e ? Tout dépend de la **probabilité** perçue :\n- *If I get the job, I'll move to Lyon.* (j'ai de vraies chances)\n- *If I got the job, I'd move to Lyon.* (j'y crois peu)\n\nNe jamais mettre *would* après *if* : ~~*If I would have*~~.",
+      "contenu": "**If + prétérit, would + base** : situation **imaginaire**, peu probable ou contraire à la réalité **présente**.\n- *If I **won** the lottery, I **would travel** around the world.*\n- *If I **had** more time, I**'d learn** Japanese.* (je n'ai pas le temps)\n- conseil : *If I **were** you, I **wouldn't** accept.* — avec *if*, on utilise ***were*** à toutes les personnes dans un registre soigné.\n\n1er ou 2e ? Tout dépend de la **probabilité** perçue :\n- *If I get the job, I'll move to Lyon.* (j'ai de vraies chances)\n- *If I got the job, I'd move to Lyon.* (j'y crois peu)\n\nNe jamais mettre *would* après *if* : ~~If I would have~~.",
       "notions": [
         "Deuxième conditionnel"
       ]
@@ -168,7 +168,7 @@
       "id": "en-b1-u02-c010",
       "section": "en-b1-u02-s03",
       "type": "qcm",
-      "question": "« If I had known… » : que représente « 'd » dans « I'd go » ?",
+      "question": "Dans « I'd go », que représente « 'd » ?",
       "choix": [
         "would",
         "had",

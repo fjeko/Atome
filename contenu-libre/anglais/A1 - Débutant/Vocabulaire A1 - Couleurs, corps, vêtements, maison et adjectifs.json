@@ -21,7 +21,7 @@
     {
       "id": "en-a1-vocab-s01",
       "titre": "Couleurs et vêtements",
-      "contenu": "**Couleurs** : red, blue, green, yellow, black, white, grey (US gray), brown, orange, pink, purple. *Light blue* (bleu clair), *dark green* (vert foncé).\n\nL'adjectif se place **avant** le nom et ne s'accorde jamais : *a red car, two red cars*.\n\n**Vêtements** : a shirt (chemise), a T-shirt, a jumper / sweater (pull), a jacket (veste), a coat (manteau), a dress (robe), a skirt (jupe), trousers (UK) / pants (US) (pantalon), jeans, shorts, shoes, trainers (UK) / sneakers (US) (baskets), socks, a hat, a cap.\n\nToujours au **pluriel** : *trousers, jeans, shorts, glasses* (lunettes) → *my jeans **are** blue* ; *a pair of jeans*.\n\n*What are you wearing?* — *I'm wearing a black jumper and blue jeans.*",
+      "contenu": "**Couleurs** : *red, blue, green, yellow, black, white, grey* (US *gray*), *brown, orange, pink, purple*. *Light blue* (bleu clair), *dark green* (vert foncé).\n\nL'adjectif se place **avant** le nom et ne s'accorde jamais : *a red car, two red cars*.\n\n**Vêtements** : *a shirt* (chemise), *a T-shirt*, *a jumper / a sweater* (pull), *a jacket* (veste), *a coat* (manteau), *a dress* (robe), *a skirt* (jupe), *trousers* (UK) / *pants* (US) (pantalon), *jeans*, *shorts*, *shoes*, *trainers* (UK) / *sneakers* (US) (baskets), *socks* (chaussettes), *a hat*, *a cap* (casquette).\n\nToujours au **pluriel** : *trousers, jeans, shorts, glasses* (lunettes) → *My jeans **are** blue.* ; *a pair of jeans*.\n\n*What are you wearing?* — *I'm wearing a black jumper and blue jeans.*",
       "notions": [
         "Couleurs et vêtements"
       ]
@@ -29,7 +29,7 @@
     {
       "id": "en-a1-vocab-s02",
       "titre": "Le corps",
-      "contenu": "head (tête), hair (cheveux, **indénombrable** : *her hair **is** long*), face, eye(s), ear(s), nose, mouth, tooth / **teeth** (dent·s), neck (cou), shoulder (épaule), arm, hand, finger (doigt), back (dos), stomach (ventre), leg (jambe), knee (genou, k muet), foot / **feet** (pied·s), toe (orteil).\n\n**Avoir mal** : *I've got a headache / a stomachache / a toothache / a backache.* ou *My leg hurts.* (= j'ai mal à la jambe).\n\nAvec les parties du corps, on utilise le **possessif**, pas l'article : *I washed **my** hands* (et non *the hands*).",
+      "contenu": "*head* (tête), *hair* (cheveux, **indénombrable** : *Her hair **is** long.*), *face* (visage), *eye / eyes*, *ear / ears* (oreille), *nose*, *mouth* (bouche), *tooth / teeth* (dent, dents), *neck* (cou), *shoulder* (épaule), *arm* (bras), *hand* (main), *finger* (doigt), *back* (dos), *stomach* (ventre), *leg* (jambe), *knee* (genou, k muet), *foot / feet* (pied, pieds), *toe* (orteil).\n\n**Avoir mal** : *I've got a headache / a stomachache / a toothache / a backache.* ou *My leg hurts.* (= j'ai mal à la jambe).\n\nAvec les parties du corps, on utilise le **possessif**, pas l'article : *I wash **my** hands* (et non ~~the hands~~).",
       "notions": [
         "Le corps"
       ]
@@ -37,7 +37,7 @@
     {
       "id": "en-a1-vocab-s03",
       "titre": "La maison",
-      "contenu": "**Pièces** : the kitchen (cuisine), the living room / lounge (salon), the bedroom (chambre), the bathroom (salle de bain), the toilet, the hall (entrée), the garden (jardin), upstairs / downstairs (à l'étage / en bas).\n\n**Objets** : a bed, a table, a chair, a sofa, a wardrobe (armoire), a shelf (étagère), a lamp, a fridge (frigo), an oven (four), a cooker / stove (cuisinière), a sink (évier), a shower, a bath (baignoire), a mirror, a window, a door, the stairs (escalier).\n\n*There's a sofa in the living room. My bedroom is upstairs.*",
+      "contenu": "**Pièces** : *the kitchen* (cuisine), *the living room / the lounge* (salon), *the bedroom* (chambre), *the bathroom* (salle de bain), *the toilet* (les toilettes), *the hall* (entrée), *the garden* (jardin), *upstairs / downstairs* (à l'étage / en bas).\n\n**Objets** : *a bed, a table, a chair, a sofa*, *a wardrobe* (armoire), *a shelf* (étagère), *a lamp*, *a fridge* (frigo), *an oven* (four), *a cooker / a stove* (cuisinière), *a sink* (évier), *a shower* (douche), *a bath* (baignoire), *a mirror* (miroir), *a window, a door*, *the stairs* (escalier).\n\n*There's a sofa in the living room. My bedroom is upstairs.*",
       "notions": [
         "La maison"
       ]
@@ -45,7 +45,7 @@
     {
       "id": "en-a1-vocab-s04",
       "titre": "Adjectifs de base",
-      "contenu": "| | | | |\n| --- | --- | --- | --- |\n| big / small | tall / short (personnes) | long / short | old / new (objets) |\n| old / young (personnes) | hot / cold | good / bad | easy / difficult |\n| cheap / expensive | fast / slow | happy / sad | beautiful / ugly |\n| clean / dirty | full / empty | early / late | busy / free |\n\n**Attention** : *tall* pour une personne ou un immeuble, *high* pour une montagne ou un mur ; *old* = vieux (objet ou personne), *young* = jeune (personne).\n\nPour renforcer : **very** (*very cold*), **really**, **quite** (assez), **too** (trop : *too expensive*).",
+      "contenu": "| | | | |\n| --- | --- | --- | --- |\n| *big / small* | *tall / short* (personnes) | *long / short* | *old / new* (objets) |\n| *old / young* (personnes) | *hot / cold* | *good / bad* | *easy / difficult* |\n| *cheap / expensive* | *fast / slow* | *happy / sad* | *beautiful / ugly* |\n| *clean / dirty* | *full / empty* | *early / late* | *busy / free* |\n\n**Attention** : *tall* pour une personne ou un immeuble, *high* pour une montagne ou un mur ; *old* = vieux (objet ou personne), *young* = jeune (personne).\n\nPour renforcer : *very* (*very cold*), *really*, *quite* (assez), *too* (trop : *too expensive*).",
       "notions": [
         "Adjectifs contraires"
       ]
@@ -118,7 +118,7 @@
       "id": "en-a1-vocab-c007",
       "section": "en-a1-vocab-s03",
       "type": "question",
-      "recto": "Comment dit-on *armoire*, *étagère* et *évier* ?",
+      "recto": "Comment dit-on « armoire », « étagère » et « évier » ?",
       "verso": "**wardrobe**, **shelf** (pluriel *shelves*), **sink**.",
       "difficulte": 1
     },

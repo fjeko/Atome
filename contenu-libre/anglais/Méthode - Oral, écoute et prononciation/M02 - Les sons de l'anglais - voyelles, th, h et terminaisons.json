@@ -21,7 +21,7 @@
     {
       "id": "en-or-m02-s01",
       "titre": "Lire la phonétique",
-      "contenu": "Les dictionnaires (Cambridge, Oxford, WordReference) donnent la prononciation en **API**, entre barres obliques. Il suffit de connaître les symboles **qui n'existent pas en français** :\n\n| Symbole | Son | Exemples |\n| --- | --- | --- |\n| /ɪ/ | i **court**, relâché, proche du é | sh**i**p, s**i**t, b**i**g |\n| /iː/ | i **long** et tendu (le « : » = long) | sh**ee**p, s**ea**t, m**e** |\n| /æ/ | entre a et è, bouche ouverte | c**a**t, b**a**d, h**a**ppy |\n| /ʌ/ | a bref et sourd | c**u**t, l**o**ve, m**o**ney |\n| /ə/ | **schwa** : voyelle faible, neutre | **a**bout, doct**or**, ban**a**n**a** |\n| /ɜː/ | « eu » long | w**or**k, b**ir**d, l**ear**n |\n| /θ/ | th **sourd** (langue entre les dents, souffle) | **th**ink, **th**ree, ba**th** |\n| /ð/ | th **sonore** (même position, la gorge vibre) | **th**is, mo**th**er, **th**e |\n| /h/ | souffle audible | **h**ouse, **h**ello |\n| /ŋ/ | « ng » nasal, sans g final | si**ng**, worki**ng** |\n| /w/ | « ou » rapide | **w**ater, **wh**at |\n\nL'**accent tonique** est noté par **ˈ** avant la syllabe accentuée : /ˈwɔːtə/ (*water*).",
+      "contenu": "Les dictionnaires (Cambridge, Oxford, WordReference) donnent la prononciation en **API**, entre barres obliques. Il suffit de connaître les symboles **qui n'existent pas en français** :\n\n| Symbole | Son | Exemples |\n| --- | --- | --- |\n| /ɪ/ | i **court**, relâché, proche du é | *sh**i**p, s**i**t, b**i**g* |\n| /iː/ | i **long** et tendu (le « : » = long) | *sh**ee**p, s**ea**t, m**e*** |\n| /æ/ | entre a et è, bouche ouverte | *c**a**t, b**a**d, h**a**ppy* |\n| /ʌ/ | a bref et sourd | *c**u**t, l**o**ve, m**o**ney* |\n| /ə/ | **schwa** : voyelle faible, neutre | *about, doctor, banana* (toutes les voyelles non accentuées) |\n| /ɜː/ | « eu » long | *w**or**k, b**ir**d, l**ear**n* |\n| /θ/ | th **sourd** (langue entre les dents, souffle) | *think, three, bath* |\n| /ð/ | th **sonore** (même position, la gorge vibre) | *this, mother, the* |\n| /h/ | souffle audible | *house, hello* |\n| /ŋ/ | « ng » nasal, sans g final | *si**ng**, worki**ng*** |\n| /w/ | « ou » rapide | *water, what* |\n\nL'**accent tonique** est noté par **ˈ** avant la syllabe accentuée : /ˈwɔːtə/ (*water*).",
       "notions": [
         "Alphabet phonétique (API)"
       ]
@@ -29,7 +29,7 @@
     {
       "id": "en-or-m02-s02",
       "titre": "Voyelles courtes et longues",
-      "contenu": "En anglais, la **longueur** et la **tension** de la voyelle changent le sens. Les francophones prononcent tout pareil : c'est l'erreur n°1.\n\n| Court | Long |\n| --- | --- |\n| sh**i**p /ɪ/ (bateau) | sh**ee**p /iː/ (mouton) |\n| l**i**ve /ɪ/ (vivre) | l**ea**ve /iː/ (partir) |\n| f**u**ll /ʊ/ (plein) | f**oo**l /uː/ (idiot) |\n| w**o**rk /ɜː/ | w**a**lk /ɔː/ (le l est muet) |\n| h**a**t /æ/ (chapeau) | h**ea**rt /ɑː/ (cœur) |\n| c**a**t /æ/ | c**u**t /ʌ/ |\n\n**Truc** : pour /ɪ/, relâche la bouche, comme un « i » paresseux, presque « é ». Pour /iː/, souris et tiens le son.\n\nAttention aux paires embarrassantes : *sheet / shit*, *beach / bitch*, *peace / piss* : la voyelle **longue** est la version polie.",
+      "contenu": "En anglais, la **longueur** et la **tension** de la voyelle changent le sens. Les francophones prononcent tout pareil : c'est l'erreur n°1.\n\n| Court | Long |\n| --- | --- |\n| *sh**i**p* /ɪ/ (bateau) | *sh**ee**p* /iː/ (mouton) |\n| *l**i**ve* /ɪ/ (vivre) | *l**ea**ve* /iː/ (partir) |\n| *f**u**ll* /ʊ/ (plein) | *f**oo**l* /uː/ (idiot) |\n| *w**o**rk* /ɜː/ | *w**a**lk* /ɔː/ (le l est muet) |\n| *h**a**t* /æ/ (chapeau) | *h**ea**rt* /ɑː/ (cœur) |\n| *c**a**t* /æ/ | *c**u**t* /ʌ/ |\n\n**Truc** : pour /ɪ/, relâche la bouche, comme un « i » paresseux, presque « é ». Pour /iː/, souris et tiens le son.\n\nAttention aux paires embarrassantes : *sheet / shit*, *beach / bitch*, *peace / piss* : la voyelle **longue** est la version polie.",
       "notions": [
         "Voyelles courtes et longues"
       ]
@@ -133,7 +133,7 @@
       "id": "en-or-m02-c008",
       "section": "en-or-m02-s02",
       "type": "exercice",
-      "enonce": "🎙️ Paires minimales : lis chaque paire à voix haute en dictée vocale anglaise, puis vérifie la transcription.\n\nship – sheep · live – leave · full – fool · hat – heart · cat – cut · work – walk",
+      "enonce": "🎙️ Paires minimales : écoute chaque paire avec 🔊, puis lis-la à voix haute en dictée vocale anglaise et vérifie la transcription.\n\n*ship – sheep* · *live – leave* · *full – fool* · *hat – heart* · *cat – cut* · *work – walk*",
       "etapes": [
         "Lis le premier mot, pause, puis le second.",
         "Exagère d'abord la différence (voyelle longue = souriante et tenue).",
@@ -200,7 +200,7 @@
         "Phrase 3 : chaque h est un souffle.",
         "Teste avec la dictée vocale."
       ],
-      "reponse": "Les erreurs typiques sont *sink / tree / sing* à la place de *think / three / thing*, et *arry as a uge ouse*. Si la dictée écrit bien les phrases, c'est gagné.",
+      "reponse": "Les erreurs typiques sont *sink / tree / sing* à la place de *think / three / thing*, et « arry as a uge ouse ». Si la dictée écrit bien les phrases, c'est gagné.",
       "difficulte": 2
     },
     {

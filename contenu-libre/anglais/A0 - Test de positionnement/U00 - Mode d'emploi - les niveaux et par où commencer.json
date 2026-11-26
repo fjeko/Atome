@@ -29,7 +29,7 @@
     {
       "id": "en-a0-u00-s02",
       "titre": "Le test de positionnement",
-      "contenu": "Le test est **intégré à Atome**. La première fois que tu ouvres la matière dans la **bibliothèque**, une petite fenêtre te demande où tu en es :\n- **Passer le test** : une série de questions qui **s'adapte à tes réponses** ;\n- **Je connais mon niveau** : tu choisis directement ton niveau de départ (A1 à C1) ;\n- **Plus tard** : la question reviendra à la prochaine ouverture d'Atome.\n\n**Comment marche le test** : il commence au niveau **B1**, par séries de **six questions** (grammaire, vocabulaire, lecture et **écoute**, lue par une voix anglaise de Windows). Presque tout juste : il monte d'un niveau ; beaucoup d'erreurs : il descend ; entre les deux, une seconde série tranche. Il s'arrête dès qu'il a trouvé la frontière : **12 à 30 questions**, 10 à 20 minutes. Pas de correction pendant le test, et **« Je ne sais pas »** vaut mieux qu'une réponse au hasard.\n\n**Ce qu'Atome fait du résultat** : les niveaux **en dessous** du tien sont comptés comme acquis (leurs cartes reviennent en simples rappels, étalés sur plusieurs semaines) et le cours **commence à ton niveau**. Le bandeau en haut de la matière affiche ton niveau de départ et permet de **repasser le test** ou d'en **changer** à tout moment.",
+      "contenu": "Le test est **intégré à Atome**. La première fois que tu ouvres la matière dans la **bibliothèque**, une petite fenêtre te demande où tu en es :\n- **Passer le test** : une série de questions qui **s'adapte à tes réponses** ;\n- **Je connais mon niveau** : tu choisis directement ton niveau de départ (A1 à C1) ;\n- **Plus tard** : la question reviendra à la prochaine ouverture d'Atome.\n\n**Comment marche le test** : il commence au niveau **B1**, par séries de **six questions** (grammaire, vocabulaire, lecture et **écoute**, lue à voix haute par Atome). Presque tout juste : il monte d'un niveau ; beaucoup d'erreurs : il descend ; entre les deux, une seconde série tranche. Il s'arrête dès qu'il a trouvé la frontière : **12 à 30 questions**, 10 à 20 minutes. Pas de correction pendant le test, et **« Je ne sais pas »** vaut mieux qu'une réponse au hasard.\n\n**Ce qu'Atome fait du résultat** : les niveaux **en dessous** du tien sont comptés comme acquis (leurs cartes reviennent en simples rappels, étalés sur plusieurs semaines) et le cours **commence à ton niveau**. Le bandeau en haut de la matière affiche ton niveau de départ et permet de **repasser le test** ou d'en **changer** à tout moment.",
       "notions": [
         "Test de positionnement"
       ]
@@ -45,7 +45,7 @@
     {
       "id": "en-a0-u00-s04",
       "titre": "L'oral, l'écoute et le vocabulaire",
-      "contenu": "Le cours ne s'arrête pas aux cartes de grammaire :\n- la partie **« Méthode – Oral, écoute et prononciation »** (en bas de la liste) explique comment **faire lire l'anglais par ton PC** (voix anglaises de Windows, Edge *Lire à voix haute*), **t'enregistrer**, utiliser la **dictée vocale** comme juge de prononciation, et travailler les **sons**, l'**accent tonique**, l'anglais **parlé rapide** et les **stratégies de conversation**. Lis **M01** dès le début, quel que soit ton niveau ;\n- chaque niveau a une unité **Oral** (dialogues modèles à écouter et rejouer, tâches 🎙️ enregistrées) et une unité **Vocabulaire** thématique, placées juste avant l'Entraînement.\n\nLes cartes marquées **🎙️** se font **à voix haute**, idéalement en t'enregistrant ; **🎧** signale une écoute.",
+      "contenu": "Le cours ne s'arrête pas aux cartes de grammaire :\n- la partie **« Méthode – Oral, écoute et prononciation »** (en bas de la liste) explique comment **écouter l'anglais avec les boutons 🔊 d'Atome**, **t'enregistrer**, utiliser la **dictée vocale** comme juge de prononciation, et travailler les **sons**, l'**accent tonique**, l'anglais **parlé rapide** et les **stratégies de conversation**. Lis **M01** dès le début, quel que soit ton niveau ;\n- chaque niveau a une unité **Oral** (dialogues modèles à écouter et rejouer, tâches 🎙️ enregistrées) et une unité **Vocabulaire** thématique, placées juste avant l'Entraînement.\n\nDans tous les cours d'anglais, un **🔊** permet d'écouter chaque exemple en italique et chaque réplique des dialogues ; **🔊 Tout écouter** lit un dialogue entier. Règle le volume et la vitesse dans **Réglages → Voix**.\n\nLes cartes marquées **🎙️** se font **à voix haute**, idéalement en t'enregistrant : elles n'ont pas de zone de saisie, tu réponds en parlant puis tu compares au modèle. **🎧** signale une écoute.",
       "notions": [
         "Oral et écoute"
       ]
@@ -121,7 +121,7 @@
       "section": "en-a0-u00-s04",
       "type": "question",
       "recto": "Que signifient 🎙️ et 🎧 sur une carte ?",
-      "verso": "🎙️ : **réponds à voix haute** (idéalement en t'enregistrant) ; 🎧 : activité d'**écoute** (voix d'Edge, podcast…).",
+      "verso": "🎙️ : **réponds à voix haute** (idéalement en t'enregistrant) ; 🎧 : activité d'**écoute** (boutons 🔊 d'Atome, podcast…).",
       "difficulte": 1
     },
     {
@@ -129,7 +129,7 @@
       "section": "en-a0-u00-s04",
       "type": "question",
       "recto": "Par quelle unité de méthode commencer, quel que soit ton niveau ?",
-      "verso": "**M01** (partie « Méthode – Oral, écoute et prononciation ») : comment faire lire l'anglais par ton PC, t'enregistrer et organiser ton écoute.",
+      "verso": "**M01** (partie « Méthode – Oral, écoute et prononciation ») : comment écouter l'anglais avec les 🔊 d'Atome, t'enregistrer et organiser ton écoute.",
       "difficulte": 1
     }
   ]

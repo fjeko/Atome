@@ -20,7 +20,7 @@
     {
       "id": "en-or-m03-s01",
       "titre": "L'accent tonique des mots",
-      "contenu": "En français, toutes les syllabes ont presque le même poids. En anglais, **une syllabe par mot est forte** (plus longue, plus forte, plus haute) et les autres s'affaiblissent. Mal placer l'accent rend un mot **incompréhensible**, même bien articulé.\n\nQuelques règles utiles :\n- la plupart des **noms et adjectifs de deux syllabes** sont accentués sur la **première** : *TAble, HAppy, WINdow* ;\n- la plupart des **verbes de deux syllabes**, sur la **deuxième** : *beGIN, deCIDE, reLAX* ;\n- d'où des paires **nom / verbe** : a **RE**cord / to re**CORD**, a **PRE**sent / to pre**SENT**, an **OB**ject / to ob**JECT** ;\n- **-tion, -sion, -ic, -ical, -ity** : accent sur la syllabe **juste avant** : *informaTion → inforMAtion, ecoNOmic, elecTRIcity* ;\n- l'accent **bouge** dans une même famille : *PHOtograph, phoTOgrapher, photoGRAphic*.\n\nMots pièges pour les francophones : *deVElop, deVElopment, comPUter, inTEresting* (3 syllabes : IN-tres-ting), *VEgetable* (3 syllabes), *hoTEL*, *eVENT*, *TEchnology → techNOlogy*.",
+      "contenu": "En français, toutes les syllabes ont presque le même poids. En anglais, **une syllabe par mot est forte** (plus longue, plus forte, plus haute) et les autres s'affaiblissent. Mal placer l'accent rend un mot **incompréhensible**, même bien articulé. La syllabe forte est en **gras** ci-dessous ; écoute chaque mot avec 🔊.\n\nQuelques règles utiles :\n- la plupart des **noms et adjectifs de deux syllabes** sont accentués sur la **première** : *table, happy, window* (**ta**ble, **ha**ppy, **win**dow) ;\n- la plupart des **verbes de deux syllabes**, sur la **deuxième** : *begin, decide, relax* (be**gin**, de**cide**, re**lax**) ;\n- d'où des paires **nom / verbe** : *a record / to record* (a **re**cord / to re**cord**), *a present / to present*, *an object / to object* ;\n- **-tion, -sion, -ic, -ical, -ity** : accent sur la syllabe **juste avant** : *information, economic, electricity* (infor**ma**tion, eco**no**mic, elec**tri**city) ;\n- l'accent **bouge** dans une même famille : *photograph, photographer, photographic* (**pho**tograph, pho**to**grapher, photo**gra**phic).\n\nMots pièges pour les francophones : *develop, development* (de**ve**lop, de**ve**lopment), *computer* (com**pu**ter), *interesting* (**in**teresting, 3 syllabes : IN-tres-ting), *vegetable* (**veg**etable, 3 syllabes), *hotel* (ho**tel**), *event* (e**vent**), *technology* (tech**no**logy).",
       "notions": [
         "Accent tonique"
       ]
@@ -137,13 +137,13 @@
       "id": "en-or-m03-c009",
       "section": "en-or-m03-s02",
       "type": "exercice",
-      "enonce": "🎙️ Lis en tapant le rythme sur la table à chaque syllabe forte (en gras) : *I* **want** *to* **go** *to the* **beach**. – *A* **cup** *of* **tea** *and a* **piece** *of* **cake**. – *It was the* **best** *day of my* **life**.",
+      "enonce": "🎙️ Écoute chaque phrase avec 🔊, puis lis-la en tapant le rythme sur la table à chaque syllabe forte (en gras) : *I **want** to **go** to the **beach**.* – *A **cup** of **tea** and a **piece** of **cake**.* – *It was the **best** day of my **life**.*",
       "etapes": [
         "Une tape par syllabe forte, à intervalles réguliers.",
         "Compresse les petits mots entre les tapes (schwa).",
-        "Fais lire la phrase par Edge et compare le rythme."
+        "Écoute la phrase avec 🔊 et compare avec ton rythme."
       ],
-      "reponse": "Les mots faibles (*to, the, of, a, and, was*) doivent « glisser » entre les tapes : *I WANT tə GO tə thə BEACH*. Si chaque mot a le même poids, tu parles « à la française ».",
+      "reponse": "Les mots faibles (*to, the, of, a, and, was*) doivent « glisser » entre les tapes : « I WANT tə GO tə thə BEACH ». Si chaque mot a le même poids, tu parles « à la française ».",
       "difficulte": 2
     },
     {

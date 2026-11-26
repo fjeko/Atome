@@ -37,7 +37,7 @@
     {
       "id": "en-c1-u08-s03",
       "titre": "Lire et comprendre",
-      "contenu": "> *It is often argued that open-source software is inherently more secure, since anyone can inspect the code. Admittedly, transparency allows flaws to be spotted by a wide community. Yet the assumption that \"many eyes\" are actually looking is, arguably, more wishful thinking than fact: critical libraries have been maintained for years by a handful of unpaid volunteers. Only when a major vulnerability made headlines did governments and large companies begin to fund the projects on which their infrastructure relied. Security, it would seem, depends less on the licence than on the resources devoted to maintenance.*",
+      "contenu": "> *It is often argued that open-source software is inherently more secure, since anyone can inspect the code. Admittedly, transparency allows flaws to be spotted by a wide community.*\n>\n> *Yet the assumption that \"many eyes\" are actually looking is, arguably, more wishful thinking than fact: critical libraries have been maintained for years by a handful of unpaid volunteers. Only when a major vulnerability made headlines did governments and large companies begin to fund the projects on which their infrastructure relied. Security, it would seem, depends less on the licence than on the resources devoted to maintenance.*",
       "notions": [
         "Compréhension écrite C1"
       ]

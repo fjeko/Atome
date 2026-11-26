@@ -23,7 +23,7 @@
     {
       "id": "en-a1-u03-s01",
       "titre": "La famille",
-      "contenu": "| Anglais | Français | Anglais | Français |\n| --- | --- | --- | --- |\n| mother / mum (mom US) | mère | father / dad | père |\n| parents | **parents** (père et mère uniquement) | relatives | la famille élargie, les « parents » au sens large |\n| sister / brother | sœur / frère | siblings | frères et sœurs |\n| son / daughter | fils / fille | children / kids | enfants |\n| grandmother / grandfather | grand-mère / grand-père | grandchildren | petits-enfants |\n| aunt / uncle | tante / oncle | cousin | cousin, cousine |\n| niece / nephew | nièce / neveu | husband / wife | mari / femme |\n| partner | conjoint(e), compagnon/compagne | in-laws | belle-famille |\n\nFaux ami : ***parents*** désigne uniquement le père et la mère ; « mes parents » au sens « ma famille » → *my relatives*.",
+      "contenu": "| Anglais | Français | Anglais | Français |\n| --- | --- | --- | --- |\n| *mother / mum* (US *mom*) | mère | *father / dad* | père |\n| *parents* | **parents** (père et mère uniquement) | *relatives* | la famille élargie, les « parents » au sens large |\n| *sister / brother* | sœur / frère | *siblings* | frères et sœurs |\n| *son / daughter* | fils / fille | *children / kids* | enfants |\n| *grandmother / grandfather* | grand-mère / grand-père | *grandchildren* | petits-enfants |\n| *aunt / uncle* | tante / oncle | *cousin* | cousin, cousine |\n| *niece / nephew* | nièce / neveu | *husband / wife* | mari / femme |\n| *partner* | conjoint(e), compagnon / compagne | *in-laws* | belle-famille |\n\nFaux ami : ***parents*** désigne uniquement le père et la mère ; « mes parents » au sens « ma famille » → *my relatives*.",
       "notions": [
         "Vocabulaire de la famille"
       ]
@@ -31,7 +31,7 @@
     {
       "id": "en-a1-u03-s02",
       "titre": "Have got et have pour la possession",
-      "contenu": "Pour dire ce qu'on **possède** (objets, famille, caractéristiques physiques, maladies) :\n\n| | Anglais britannique (familier) | Partout (et anglais américain) |\n| --- | --- | --- |\n| Affirmatif | *I**'ve got** a car. She**'s got** blue eyes.* | *I **have** a car. She **has** blue eyes.* |\n| Négatif | *I **haven't got** a car.* | *I **don't have** a car. She **doesn't have** …* |\n| Question | ***Have** you **got** a car?* → *Yes, I have.* | ***Do** you **have** a car?* → *Yes, I do.* |\n\n- *he / she / it* : **has got** / **has** ;\n- ne pas mélanger : *Do you have got* est faux ;\n- avec *have got*, on ne fait pas de prétérit : au passé on dit *I had a car*.",
+      "contenu": "Pour dire ce qu'on **possède** (objets, famille, caractéristiques physiques, maladies) :\n\n| | Anglais britannique (familier) | Partout (et anglais américain) |\n| --- | --- | --- |\n| Affirmatif | *I**'ve got** a car. She**'s got** blue eyes.* | *I **have** a car. She **has** blue eyes.* |\n| Négatif | *I **haven't got** a car.* | *I **don't have** a car. She **doesn't have** …* |\n| Question | ***Have** you **got** a car?* → *Yes, I have.* | ***Do** you **have** a car?* → *Yes, I do.* |\n\n- *he / she / it* : **has got** / **has** ;\n- ne pas mélanger : ~~Do you have got~~ est faux ;\n- avec *have got*, on ne fait pas de prétérit : au passé on dit *I had a car*.",
       "notions": [
         "Have got",
         "Have (possession)"
@@ -242,7 +242,7 @@
         "His / her name is …",
         "Utiliser 's pour la possession."
       ],
-      "reponse": "Exemple : *I've got one sister and no brothers. My sister's name is Léa. My father's a nurse and my mother works in a bank. Her job is very busy.*",
+      "reponse": "Exemple : *I've got one sister and no brothers. My sister's name is Emma. My father's a nurse and my mother works in a bank. Her job is very busy.*",
       "difficulte": 2
     }
   ]
