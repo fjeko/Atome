@@ -4,6 +4,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
 using Revisions.App.Services;
+using Revisions.App.Views;
+using Revisions.Core.Positionnement;
 using Revisions.Core.Bibliotheque;
 using Revisions.Core.Collections;
 using Revisions.Data;
@@ -123,9 +125,10 @@ public partial class BibliothequeViewModel : ObservableObject
     }
 
     public BibliothequeViewModel(MainViewModel main, EtatApplication etat, DepotBibliotheque bibliotheque,
-        DepotRevisions revisions, ImportateurPacks importateur, PartageViewModel partage)
+        DepotRevisions revisions, ImportateurPacks importateur, PartageViewModel partage, DepotPositionnement positionnement)
     {
         Partage = partage;
+        _positionnement = positionnement;
         _main = main;
         _etat = etat;
         _bibliotheque = bibliotheque;
@@ -207,6 +210,67 @@ public partial class BibliothequeViewModel : ObservableObject
         Fil = _chemin.Select(n => n.TitreCourt).Prepend("Bibliothèque")
             .Select((titre, i) => new MaillonFil(titre, i, i == _chemin.Count))
             .ToList();
+        AfficherPositionnement();
+    }
+
+    // ---- Test de positionnement --------------------------------------------------------------
+
+    private readonly DepotPositionnement _positionnement;
+    private BanquePositionnement? _banque;
+
+    /// <summary>Matières pour lesquelles l'étudiant a répondu « Plus tard » (jusqu'au prochain lancement).</summary>
+    private static readonly HashSet<string> _reportes = [];
+
+    /// <summary>Vrai dans une matière qui a un test de positionnement : on affiche le bandeau du niveau.</summary>
+    [ObservableProperty] private bool _positionnementVisible;
+    [ObservableProperty] private string _textePositionnement = "";
+    [ObservableProperty] private string _boutonTest = "";
+
+    /// <summary>La prochaine bibliothèque ouverte affichera ce chemin (clés des nœuds), par exemple la partie d'un niveau.</summary>
+    public static void PositionnerSur(IReadOnlyList<string> cles) => _dernierChemin = cles.ToList();
+
+    private void AfficherPositionnement()
+    {
+        _banque = _chemin.Count > 0 ? _main.BanqueDe(_chemin[0].Cle) : null;
+        PositionnementVisible = _banque is not null;
+        if (_banque is null) return;
+        var niveau = _positionnement.Lire(_banque.Id);
+        if (niveau is null)
+        {
+            TextePositionnement = "Tu ne t'es pas encore positionné : passe le test (environ 15 minutes) ou choisis directement ton niveau de départ.";
+            BoutonTest = "Passer le test";
+            return;
+        }
+        string date = DateOnly.TryParse(niveau.Date, out var d) ? d.ToString("d MMMM yyyy") : niveau.Date;
+        TextePositionnement = niveau.ParTest
+            ? $"Niveau de départ : {niveau.Depart}" + (niveau.Atteint is { } a ? $" (niveau {a} validé au test du {date})." : $" (test du {date}).")
+            : $"Niveau de départ : {niveau.Depart} (choisi le {date}).";
+        BoutonTest = "Repasser le test";
+    }
+
+    /// <summary>À l'entrée dans la matière, si l'étudiant ne s'est jamais positionné : une petite fenêtre lui demande où il en est.</summary>
+    private void ProposerPositionnement()
+    {
+        if (_banque is not { } banque || _positionnement.Lire(banque.Id) is not null || !_reportes.Add(banque.Id)) return;
+        string? reponse = ServiceDialogue.Demander($"Où en es-tu en {banque.Matiere} ?",
+            "Pour que le cours commence au bon endroit, dis-moi ton niveau. Si tu n'es pas sûr, un petit test (environ 15 minutes) te positionne.",
+            new ChoixDialogue("Plus tard", "tard", Annulation: true),
+            new ChoixDialogue("Je connais mon niveau", "choix"),
+            new ChoixDialogue("Passer le test", "test", Principal: true));
+        if (reponse == "test") _main.AllerPositionnement(banque, ModePositionnement.Test);
+        else if (reponse == "choix") _main.AllerPositionnement(banque, ModePositionnement.Choix);
+    }
+
+    [RelayCommand]
+    private void PasserTest()
+    {
+        if (_banque is not null) _main.AllerPositionnement(_banque, ModePositionnement.Test);
+    }
+
+    [RelayCommand]
+    private void ChoisirNiveau()
+    {
+        if (_banque is not null) _main.AllerPositionnement(_banque, ModePositionnement.Choix);
     }
 
     private void AfficherRecherche(string filtre)
@@ -240,6 +304,9 @@ public partial class BibliothequeViewModel : ObservableObject
     {
         _chemin.Add(tuile.Noeud);
         Afficher();
+        // Après l'affichage des tuiles, pour que la fenêtre s'ouvre devant la matière.
+        if (_chemin.Count == 1 && _banque is not null)
+            System.Windows.Application.Current?.Dispatcher.BeginInvoke(new Action(ProposerPositionnement), DispatcherPriority.Background);
     }
 
     /// <summary>Remonte d'un niveau.</summary>

@@ -131,6 +131,11 @@ public partial class MainWindow : Window
                 // Hors des cases de saisie : Espace, Entrée et I (indice). Les autres touches gardent leur rôle.
                 e.Handled = td.Touche(touche);
                 break;
+            case PositionnementViewModel positionnement when touche is "Escape" || (positionnement.EstQuestion && touche is "a" or "b" or "c" or "d" or "e" or " "):
+                // Pendant les questions : A à E et Espace (réécouter). Ailleurs, les touches gardent leur rôle sur les boutons.
+                positionnement.Touche(touche);
+                e.Handled = true;
+                break;
             case LectureViewModel lecture when touche is "ArrowLeft" or "ArrowRight":
                 lecture.ToucheCommand.Execute(touche);
                 e.Handled = true;

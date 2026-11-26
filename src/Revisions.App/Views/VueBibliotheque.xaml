@@ -87,6 +87,23 @@
                 </StackPanel>
             </Border>
 
+            <!-- Matière avec test de positionnement : niveau de départ, test et choix du niveau. -->
+            <Border Style="{StaticResource CarteSurface}" Margin="{StaticResource Marge.Haut.16}"
+                    Visibility="{Binding PositionnementVisible, Converter={StaticResource VisibleSi}}">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.16}">
+                        <Button Content="Choisir mon niveau" Command="{Binding ChoisirNiveauCommand}" Style="{StaticResource BoutonSecondaire}"
+                                Margin="{StaticResource Marge.Droite.8}" />
+                        <Button Content="{Binding BoutonTest}" Command="{Binding PasserTestCommand}" Style="{StaticResource BoutonPrincipal}" />
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Test de positionnement" Style="{StaticResource Texte.Fort}" />
+                        <TextBlock Text="{Binding TextePositionnement}" Style="{StaticResource Texte.Secondaire}" TextWrapping="Wrap"
+                                   Margin="{StaticResource Marge.Haut.4}" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
             <TextBlock Text="{Binding TitreNiveau}" Style="{StaticResource Texte.SousTitre}" Margin="{StaticResource Marge.Haut.16}"
                        Visibility="{Binding TitreNiveau, Converter={StaticResource VisibleSi}}" />
 

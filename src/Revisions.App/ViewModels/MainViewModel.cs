@@ -8,6 +8,7 @@ using Revisions.App.Views;
 using Revisions.Core.Collections;
 using Revisions.Core.MisesAJour;
 using Revisions.Core.Packs;
+using Revisions.Core.Positionnement;
 using Revisions.Core.Sessions;
 using Revisions.Data;
 
@@ -496,10 +497,32 @@ public partial class MainViewModel(
     }
 
     /// <summary>Parcourt le dossier des packs (réglage) et importe ce qui est nouveau ou modifié.</summary>
-    public List<ResultatImport> ImporterDossier() =>
-        etat.Reglages.DossierPacks is { Length: > 0 } dossier
+    public List<ResultatImport> ImporterDossier()
+    {
+        _banques = null;   // les tests de positionnement sont relus au prochain besoin
+        return etat.Reglages.DossierPacks is { Length: > 0 } dossier
             ? importateur.ImporterDossier(dossier, etat.Reglages.DossierCours)
             : [];
+    }
+
+    private List<BanquePositionnement>? _banques;
+
+    /// <summary>Test de positionnement d'une matière (clé de la bibliothèque), ou null s'il n'y en a pas.</summary>
+    public BanquePositionnement? BanqueDe(string cleMatiere)
+    {
+        if (_banques is null)
+        {
+            var erreurs = new List<(string Fichier, IReadOnlyList<string> Erreurs)>();
+            _banques = DepotPositionnement.ChargerBanques([etat.Reglages.DossierPacks, etat.DossierCoursLibres], erreurs);
+            foreach (var (fichier, liste) in erreurs)
+                Journal.Info("Positionnement", $"{Path.GetFileName(fichier)} refusé : {string.Join(" ; ", liste.Take(5))}");
+        }
+        return _banques.FirstOrDefault(b => b.CleMatiere == cleMatiere);
+    }
+
+    /// <summary>Ouvre le test de positionnement (ou le choix direct du niveau) d'une matière.</summary>
+    public void AllerPositionnement(BanquePositionnement banque, ModePositionnement mode) =>
+        Afficher(Creer<PositionnementViewModel>(new ParametresPositionnement(banque, mode)), null);
 
     /// <summary>Prévient l'étudiant quand un import a réaffiché une collection qu'il avait masquée.</summary>
     private void AnnoncerReaffichage(IReadOnlyList<ResultatImport> resultats)

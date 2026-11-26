@@ -271,6 +271,8 @@ public partial class App : Application
             services.AddSingleton<ImportateurPacks>();
             services.AddSingleton<DepotCoursLibres>();
             services.AddSingleton<DepotCollections>();
+            services.AddSingleton<DepotPositionnement>();
+            services.AddSingleton<ServiceVoix>();
             services.AddSingleton(new Fsrs());
             services.AddSingleton<Planificateur>();
             services.AddSingleton<EtatApplication>();

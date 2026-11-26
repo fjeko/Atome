@@ -150,3 +150,8 @@ public partial class VueChoixRevision : UserControl
 {
     public VueChoixRevision() => InitializeComponent();
 }
+
+public partial class VuePositionnement : UserControl
+{
+    public VuePositionnement() => InitializeComponent();
+}
