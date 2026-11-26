@@ -32,7 +32,7 @@ public sealed class MigrationsConcurrentesTests : IDisposable
             Task.WaitAll(taches);
 
             using var connexion = taches[0].Result.Ouvrir();
-            Assert.Equal(13, connexion.ExecuteScalar<long>("PRAGMA user_version;"));
+            Assert.Equal(14, connexion.ExecuteScalar<long>("PRAGMA user_version;"));
             Assert.Equal(1, connexion.ExecuteScalar<long>("SELECT COUNT(*) FROM sqlite_master WHERE name = 'planning'"));
         }
     }

@@ -110,11 +110,12 @@
             <!-- Tuiles des sous-niveaux : couleur et icône de la matière, anneau de maîtrise, « à revoir », coche quand tout est maîtrisé. -->
             <ItemsControl ItemsSource="{Binding Tuiles}" Margin="0,16,-16,0" Focusable="False">
                 <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                    <!-- Grille qui remplit toute la largeur : alignée sur le bandeau du test de positionnement. -->
+                    <ItemsPanelTemplate><ds:GrilleTuiles LargeurMin="244" /></ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <ds:TuileMatiere Width="{StaticResource Largeur.Tuile}" Height="236" Margin="{StaticResource Marge.Tuile}"
+                        <ds:TuileMatiere Height="236" Margin="{StaticResource Marge.Tuile}"
                                          ds:Ton.Matiere="{Binding Matiere}" ds:Ton.Partie="{Binding Partie}"
                                          Etiquette="{Binding Etiquette}" Titre="{Binding Titre}" Detail="{Binding Detail}"
                                          Progression="{Binding Maitrise}" Mention="{Binding Dues}" Cochee="{Binding Finie}" Libre="{Binding Libre}"

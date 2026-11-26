@@ -20,11 +20,15 @@ public static class Collections
     public const string Libres = "libres";
     public const string MesPacks = "mes-packs";
     public const string Manuel = "manuel";
+    /// <summary>Collection « Anglais général » (A1 → C1) : tous les packs dont l'id commence par « en- ».</summary>
+    public const string Anglais = "anglais";
+    public const string PrefixeAnglais = "en-";
     private const string PrefixeImporte = "importe:";
 
     public const string NomLibres = "Cours libres";
     public const string NomMesPacks = "Mes packs";
     public const string NomManuel = "Imports manuels";
+    public const string NomAnglais = "Anglais général";
 
     /// <summary>Phrase affichée quand l'étudiant essaie de masquer la dernière collection visible.</summary>
     public const string MessageDerniere =
@@ -55,13 +59,15 @@ public static class Collections
         !string.IsNullOrWhiteSpace(auteur) ? $"Contenu de {auteur.Trim()}" : $"Importé : {Path.GetFileNameWithoutExtension(nomFichier)}";
 
     /// <summary>
-    /// Collection d'un pack à son import. Un cours libre (id « libre-… ») est toujours dans « Cours libres ».
+    /// Collection d'un pack à son import. Un cours libre (id « libre-… ») est toujours dans « Cours libres »,
+    /// un pack d'anglais général (id « en-… ») toujours dans « Anglais général ».
     /// Un pack déjà connu garde sa collection (réimporter ne le déplace pas) ; sinon on prend celle de l'import,
     /// et à défaut « Mes packs ».
     /// </summary>
     public static string Resoudre(string packId, string? collectionExistante, string? collectionImport)
     {
         if (packId.StartsWith(ContenuLibre.PrefixeId, StringComparison.Ordinal)) return Libres;
+        if (packId.StartsWith(PrefixeAnglais, StringComparison.Ordinal)) return Anglais;
         return collectionExistante ?? collectionImport ?? MesPacks;
     }
 
@@ -70,13 +76,14 @@ public static class Collections
     {
         Libres => NomLibres,
         MesPacks => NomMesPacks,
+        Anglais => NomAnglais,
         Manuel => NomManuel,
         _ => cle.StartsWith(PrefixeImporte, StringComparison.Ordinal) ? "Importé : " + cle[PrefixeImporte.Length..] : cle,
     };
 
-    /// <summary>Rang d'affichage : cours libres, mes packs, contenus importés (alphabétique), imports manuels.</summary>
+    /// <summary>Rang d'affichage : cours libres, anglais général, mes packs, contenus importés (alphabétique), imports manuels.</summary>
     public static IOrderedEnumerable<InfoCollection> Trier(IEnumerable<InfoCollection> collections) =>
-        collections.OrderBy(c => c.Cle switch { Libres => 0, MesPacks => 1, Manuel => 3, _ => 2 })
+        collections.OrderBy(c => c.Cle switch { Libres => 0, Anglais => 1, MesPacks => 2, Manuel => 4, _ => 3 })
                    .ThenBy(c => c.Nom, StringComparer.CurrentCultureIgnoreCase);
 
     /// <summary>

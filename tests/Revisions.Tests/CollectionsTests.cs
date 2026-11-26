@@ -57,6 +57,7 @@ public sealed class CollectionsTests : IDisposable
     [Theory]
     [InlineData("libre-x", null, null, "libres")]
     [InlineData("libre-x", "mes-packs", "manuel", "libres")]   // un cours libre reste libre
+    [InlineData("en-a1-u01", "mes-packs", null, "anglais")]   // l'anglais général a sa propre collection
     [InlineData("x", null, null, "mes-packs")]
     [InlineData("x", null, "manuel", "manuel")]
     [InlineData("x", "mes-packs", "importe:ami", "mes-packs")] // réimporter ne déplace pas un pack connu
@@ -268,5 +269,27 @@ public sealed class CollectionsTests : IDisposable
         Assert.False(liste["libres"].Visible);
         Assert.True(liste["mes-packs"].Visible);
         Assert.Equal(1, liste["libres"].NbCours);
+    }
+
+    [Fact]
+    public void La_migration_14_sort_l_anglais_general_de_mes_packs()
+    {
+        // Avant la version 14, un pack « en-… » était rangé dans « Mes packs ».
+        _importateur.ImporterFichier(Fichier("en.json", "en-a1-u01"), null);
+        ImporterPerso();
+        using (var c = _base.Ouvrir())
+        {
+            c.Execute("UPDATE pack SET collection = 'mes-packs' WHERE id LIKE 'en-%'");
+            c.Execute("DELETE FROM collection WHERE cle = 'anglais'");
+            c.Execute("PRAGMA user_version = 13");
+        }
+        SqliteConnection.ClearAllPools();
+
+        var liste = new DepotCollections(new BaseDeDonnees(_base.Chemin)).Lister().ToDictionary(x => x.Cle);
+
+        Assert.Equal("Anglais général", liste["anglais"].Nom);
+        Assert.True(liste["anglais"].Visible);
+        Assert.Equal(1, liste["anglais"].NbCours);
+        Assert.Equal(1, liste["mes-packs"].NbCours);
     }
 }

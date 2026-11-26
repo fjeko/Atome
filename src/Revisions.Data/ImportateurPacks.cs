@@ -143,7 +143,7 @@ public sealed class ImportateurPacks(BaseDeDonnees baseDeDonnees, TimeProvider h
         // Collection : un pack déjà connu garde la sienne ; si elle est masquée, le pack arrive masqué lui aussi.
         string? deja = connexion.ExecuteScalar<string?>("SELECT collection FROM pack WHERE id = @Id", new { pack.Id }, transaction);
         string cle = Collections.Resoudre(pack.Id, deja, collection);
-        string nom = cle == Collections.Libres ? Collections.NomLibres : nomCollection ?? Collections.NomParDefaut(cle);
+        string nom = cle is Collections.Libres or Collections.Anglais ? Collections.NomParDefaut(cle) : nomCollection ?? Collections.NomParDefaut(cle);
         bool masquee = DepotCollections.DeclarerEtDireSiMasquee(connexion, transaction, cle, nom);
         Enregistrer(connexion, transaction, pack, fichier, empreinte, maintenant, cle);
         string? reafficheeNom = null;

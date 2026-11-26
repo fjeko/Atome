@@ -12,11 +12,25 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         Services.ServiceTheme.Habiller(this); // fond, police et couleurs du thème choisi
+        AdapterALEcran();
         // Sous 1100 px de large, la barre latérale se replie d'elle-même en icônes seules.
         SizeChanged += (_, e) =>
         {
             if (DataContext is MainViewModel principal) principal.FenetreEtroite = e.NewSize.Width < 1100;
         };
+    }
+
+    /// <summary>
+    /// Petit écran (portable 14 pouces avec mise à l'échelle) : la taille par défaut dépasserait de l'écran
+    /// et cacherait la barre de titre. On réduit alors la fenêtre à la zone utile et on l'ouvre agrandie.
+    /// </summary>
+    private void AdapterALEcran()
+    {
+        Rect zone = SystemParameters.WorkArea; // écran principal, sans la barre des tâches
+        if (zone.Width >= Width + 40 && zone.Height >= Height + 40) return;
+        Width = Math.Max(MinWidth, Math.Min(Width, zone.Width - 40));
+        Height = Math.Max(MinHeight, Math.Min(Height, zone.Height - 40));
+        WindowState = WindowState.Maximized;
     }
 
     /// <summary>Nouvel écran : il apparaît en fondu, avec un léger glissement (ou un fondu très court, animations réduites).</summary>
