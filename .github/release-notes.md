@@ -17,8 +17,8 @@ Le code est entièrement visible dans ce dépôt si tu veux vérifier.
 Atome est livré avec **440 cours libres**, basés sur le référentiel officiel du programme de 1ère année de BTS SIO option SLAM, pour commencer tout de suite (voir « Nouveautés »). Pour réviser tes propres cours, lis la section « Créer ses propres packs » du README ; le pack d’exemple (`samples/exemple.json`) permet aussi d’essayer l’application.
 
 ## Nouveautés
-- **Cartes de code** : une vraie zone d'éditeur en session et dans « Lire puis contrôler » (Entrée garde l'indentation, Tab et Maj+Tab indentent, Ctrl+Entrée affiche la correction), puis ton code s'affiche à côté de la correction.
-- **Police du code** sans ligatures : `!=` ne s'affiche plus en `=` barré.
-- **Recherche de la Bibliothèque** : elle ne ralentit plus la saisie.
-- **28 cours libres corrigés** : les cartes qui supposaient le code d'un exercice absent sont devenues autonomes (ta progression est conservée).
-- Aucune donnée ni progression touchée.
+- **L'anglais général du A1 au C1 est inclus dans Atome**, avec un test de niveau (questions à écouter) et ton niveau affiché dans la matière.
+- **Voix anglaises naturelles** (Cori et Norman) et boutons 🔊 dans les cours et les cartes d'anglais. Les voix sont téléchargées une seule fois au premier lancement (environ 200 Mo), puis tout fonctionne hors ligne. Réglages → Voix.
+- **Bibliothèque** : matière « Anglais » dans la catégorie « Langue », et grille de tuiles en pleine largeur.
+- Sur un petit écran, Atome s'ouvre agrandi.
+- La base de données évolue un peu : tes données et ta progression sont conservées.
