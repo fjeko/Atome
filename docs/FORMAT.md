@@ -130,3 +130,41 @@ Tous les textes acceptent Markdown + LaTeX.
 - Les QCM ont des distracteurs plausibles (erreurs fréquentes), jamais absurdes.
 - Les exercices viennent des TD et des corrigés quand il y en a.
 - Les cours sont réservés à l'usage personnel de leur destinataire (mention CNED) : les packs ne se publient pas.
+
+## Test de positionnement (facultatif)
+
+Une matière peut avoir un **test de positionnement** : un fichier `*.positionnement.json` rangé **avec ses packs** (n'importe où dans le dossier des packs, ou dans les cours libres). Ce n'est pas un pack : ses questions n'entrent jamais dans les révisions, pour que le test reste juste quand on le repasse.
+
+À la première ouverture de la matière dans la bibliothèque, Atome propose de **passer le test**, de **choisir son niveau** ou d'attendre. Un bandeau en haut de la matière permet ensuite de repasser le test ou de changer de niveau. Le niveau de départ est appliqué aux **acquis** : les parties des niveaux en dessous sont marquées « révisées » (solides, ou correctes pour celle juste en dessous) et leurs cartes reviennent en rappels espacés ; le niveau de départ et ceux au-dessus repartent de « pas vu ».
+
+```json
+{
+  "formatPositionnement": 1,
+  "id": "en-positionnement",
+  "matiere": "Anglais général (A1 → C1)",
+  "bloc": "Anglais",
+  "titre": "Test de positionnement en anglais",
+  "consignes": "Texte affiché avant le test (facultatif).",
+  "langueEcoute": "en-GB",
+  "depart": "B1",
+  "niveaux": [
+    { "code": "A1", "nom": "Débutant", "partie": "A1 – Débutant", "description": "Ce qu'on sait faire à ce niveau." }
+  ],
+  "questions": [
+    { "id": "en-pos-a1-gra-1", "niveau": "A1", "competence": "grammaire", "question": "*She ___ a student.*", "choix": ["is", "are", "am", "be"] },
+    { "id": "en-pos-a1-lec-1", "niveau": "A1", "competence": "lecture", "texte": "Petit texte à lire.", "question": "…", "choix": ["…", "…", "…"] },
+    { "id": "en-pos-a1-eco-1", "niveau": "A1", "competence": "ecoute", "ecoute": "Text read aloud, never shown.", "question": "…", "choix": ["…", "…", "…"] }
+  ]
+}
+```
+
+| Champ | Rôle |
+| --- | --- |
+| `matiere`, `bloc` | Les mêmes que dans les packs de la matière : c'est ce qui relie le test à la matière. |
+| `niveaux` | Du plus facile au plus difficile. `partie` est **exactement** le champ `partie` des packs de ce niveau (c'est elle qui reçoit les acquis). `description` aide à choisir son niveau sans test. |
+| `depart` | Code du niveau par lequel le test commence (par défaut, celui du milieu). |
+| `langueEcoute` | Langue de la voix Windows qui lit les questions d'écoute (`en-GB`, `es-ES`…). Sans voix installée, le test se passe sans ces questions. |
+| `questions[].choix` | Au moins 3 choix ; **la bonne réponse est toujours la première** (l'ordre est mélangé à l'affichage). |
+| `questions[].competence` | `grammaire`, `vocabulaire`, `lecture` (avec `texte`) ou `ecoute` (avec `ecoute`, le texte lu à voix haute). |
+
+**Déroulement** : séries de 6 questions au même niveau (2 de grammaire, 2 de vocabulaire, 1 de lecture, 1 d'écoute). 5 ou 6 justes : niveau validé, on monte ; 2 ou moins : non validé, on descend ; entre les deux, une seconde série tranche (8 sur 12 pour valider). Le test s'arrête dès qu'un niveau validé est juste sous un niveau non validé. Il faut donc **au moins 6 questions par niveau** ; 12 ou plus (dont 4 de lecture et 4 d'écoute) permettent une seconde série et des tests différents à chaque passage.
