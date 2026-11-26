@@ -60,6 +60,19 @@ public sealed class ServiceVoix : IDisposable
 
     private System.Speech.Synthesis.SpeechSynthesizer? _sapi;
 
+    private int _volume = 100;
+
+    /// <summary>Volume de lecture, de 0 à 100 (réglage « VolumeVoix ») : tout de suite avec la voix moderne, à la phrase suivante avec SAPI.</summary>
+    public int Volume
+    {
+        get => _volume;
+        set
+        {
+            _volume = Math.Clamp(value, 0, 100);
+            if (_lecteur is not null) _lecteur.Volume = _volume / 100.0;
+        }
+    }
+
     /// <summary>Lit un texte. Renvoie faux si aucune voix n'est disponible ou si la lecture a échoué.</summary>
     /// <param name="vitesse">1 = vitesse normale ; 0,8 = un peu plus lent.</param>
     public async Task<bool> LireAsync(string texte, string langue, double vitesse = 0.9)
@@ -74,6 +87,7 @@ public sealed class ServiceVoix : IDisposable
                 _sapi ??= new System.Speech.Synthesis.SpeechSynthesizer();
                 _sapi.SetOutputToDefaultAudioDevice();
                 _sapi.SelectVoice(ancienne.VoiceInfo.Name);
+                _sapi.Volume = Math.Clamp(Volume, 0, 100);
                 _sapi.Rate = (int)Math.Clamp(Math.Round((vitesse - 1) * 10), -10, 10); // 0,9 → -1
                 _sapi.SpeakAsync(texte);
                 return true;
@@ -84,6 +98,7 @@ public sealed class ServiceVoix : IDisposable
             _synthese.Options.SpeakingRate = Math.Clamp(vitesse, 0.5, 2.0);
             var flux = await _synthese.SynthesizeTextToStreamAsync(texte);
             _lecteur ??= new MediaPlayer();
+            _lecteur.Volume = Math.Clamp(Volume, 0, 100) / 100.0;
             _lecteur.Source = MediaSource.CreateFromStream(flux, flux.ContentType);
             _lecteur.Play();
             return true;

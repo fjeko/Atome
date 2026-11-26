@@ -70,6 +70,14 @@
                                     Margin="{StaticResource Marge.Droite.8}"
                                     Visibility="{Binding VoixDisponible, Converter={StaticResource VisibleSi}, ConverterParameter=inverse}" />
                         </StackPanel>
+                        <!-- Volume de la voix : retenu dans les réglages. -->
+                        <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.8}" Visibility="{Binding VoixDisponible, Converter={StaticResource VisibleSi}}">
+                            <TextBlock Text="Volume de la voix" Style="{StaticResource Texte.Base}" VerticalAlignment="Center" Margin="{StaticResource Marge.Droite.12}" />
+                            <Slider Width="200" Value="{Binding VolumeVoix}" Minimum="0" Maximum="100" TickFrequency="5" IsSnapToTickEnabled="True"
+                                    VerticalAlignment="Center" AutomationProperties.Name="Volume de la voix" />
+                            <TextBlock Text="{Binding VolumeVoix, StringFormat={}{0} %}" Style="{StaticResource Texte.Meta}" VerticalAlignment="Center"
+                                       Margin="{StaticResource Marge.Gauche.8}" />
+                        </StackPanel>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="{StaticResource Marge.Haut.24}">
@@ -95,6 +103,10 @@
             <Button DockPanel.Dock="Left" Content="{Binding TexteReecouter}" Command="{Binding ReecouterCommand}" Style="{StaticResource BoutonPrincipal}"
                     IsEnabled="{Binding PeutReecouter}" ToolTip="Écouter le texte (Espace) : trois écoutes au plus"
                     Visibility="{Binding EstEcoute, Converter={StaticResource VisibleSi}}" HorizontalAlignment="Left" />
+            <!-- Volume réglable aussi pendant une question d'écoute. -->
+            <Slider DockPanel.Dock="Left" Width="120" Value="{Binding VolumeVoix}" Minimum="0" Maximum="100" TickFrequency="5" IsSnapToTickEnabled="True"
+                    VerticalAlignment="Center" Margin="{StaticResource Marge.Gauche.12}" ToolTip="Volume de la voix"
+                    AutomationProperties.Name="Volume de la voix" Visibility="{Binding EstEcoute, Converter={StaticResource VisibleSi}}" />
             <TextBlock Text="Clique sur ta réponse (ou tape A, B, C, D)." Style="{StaticResource Texte.Meta}" VerticalAlignment="Center"
                        Margin="{StaticResource Marge.Gauche.12}" />
         </DockPanel>

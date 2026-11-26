@@ -50,10 +50,22 @@ public sealed partial class PositionnementViewModel : ObservableObject
         _etat = etat;
         _depot = depot;
         _voix = voix;
+        _volumeVoix = etat.Reglages.VolumeVoix;
+        _voix.Volume = _volumeVoix;
         _banque = parametres.Banque;
         Niveaux = _banque.Niveaux.Select((n, i) => new ChoixNiveau(i, n.Code, n.Nom, n.Description)).ToList();
         if (parametres.Mode == ModePositionnement.Choix) AfficherChoix();
         else AfficherConsignes();
+    }
+
+    /// <summary>Volume de la voix (0 à 100), réglable pendant le test et retenu pour la prochaine fois.</summary>
+    [ObservableProperty] private int _volumeVoix;
+
+    partial void OnVolumeVoixChanged(int value)
+    {
+        _voix.Volume = value;
+        _etat.Reglages.VolumeVoix = value;
+        _etat.EnregistrerSansAppliquer();
     }
 
     public string Titre => _banque.Titre;

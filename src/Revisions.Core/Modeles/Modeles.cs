@@ -137,6 +137,8 @@ public sealed class Reglages
     public string Mascotte { get; set; } = "normale";
     /// <summary>Barre latérale repliée en icônes seules (choix de l'utilisateur sur une fenêtre large).</summary>
     public bool NavigationRepliee { get; set; }
+    /// <summary>Volume de la voix anglaise (questions d'écoute), en pourcentage de 0 à 100.</summary>
+    public int VolumeVoix { get; set; } = 100;
 
     /// <summary>Bornes de la taille du texte.</summary>
     public const int TailleTexteMin = 90, TailleTexteMax = 150;
