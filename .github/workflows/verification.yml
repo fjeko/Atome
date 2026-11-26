@@ -22,4 +22,18 @@ jobs:
         run: dotnet build --nologo -v q
 
       - name: Tests
-        run: dotnet test --nologo --no-build -v q --logger "console;verbosity=normal"
+        run: dotnet test --nologo --no-build -v q --logger "trx;LogFileName=resultats.trx" --results-directory resultats
+
+      # Les tests ratés deviennent des annotations sur le commit (lisibles sans ouvrir le journal).
+      - name: Tests ratés en annotations
+        if: failure()
+        shell: pwsh
+        run: |
+          foreach ($f in Get-ChildItem resultats -Filter *.trx -Recurse -ErrorAction SilentlyContinue) {
+            [xml]$x = Get-Content $f.FullName
+            foreach ($r in $x.TestRun.Results.UnitTestResult | Where-Object { $_.outcome -eq "Failed" }) {
+              $msg = ($r.Output.ErrorInfo.Message -replace "`r?`n", " ")
+              if ($msg.Length -gt 900) { $msg = $msg.Substring(0, 900) }
+              Write-Output "::error title=$($r.testName)::$msg"
+            }
+          }
