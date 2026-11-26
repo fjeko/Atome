@@ -61,6 +61,23 @@ public sealed class NoeudBibliotheque
     /// <summary>Part des cartes maîtrisées, entre 0 et 1.</summary>
     public double Maitrise => NbCartes == 0 ? 0 : (double)NbMaitrisees / NbCartes;
 
+    private static readonly string[] NiveauxCecrl = ["A1", "A2", "B1", "B2", "C1", "C2"];
+
+    /// <summary>
+    /// Étendue des niveaux de langue (CECRL) couverts par les sous-niveaux, par ex. « Du A1 au C1 »
+    /// quand ils s'appellent « A1 – Débutant » … « C1 – Avancé » ; null pour une matière ordinaire.
+    /// </summary>
+    public string? EtendueNiveaux
+    {
+        get
+        {
+            var rangs = Enfants
+                .Select(e => Array.FindIndex(NiveauxCecrl, n => e.Titre.StartsWith(n + " ", StringComparison.Ordinal) || e.Titre == n))
+                .Where(i => i >= 0).Distinct().Order().ToList();
+            return rangs.Count >= 2 ? $"Du {NiveauxCecrl[rangs[0]]} au {NiveauxCecrl[rangs[^1]]}" : null;
+        }
+    }
+
     /// <summary>Toutes les séances du niveau, sous-niveaux compris.</summary>
     public IEnumerable<ResumeSeance> ToutesLesSeances() => Seances.Concat(Enfants.SelectMany(e => e.ToutesLesSeances()));
 

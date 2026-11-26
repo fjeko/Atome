@@ -274,7 +274,7 @@ internal static class Migrations
         // ---- 14 : l'anglais général (packs « en-… ») sort de « Mes packs » pour former sa propre collection ----
         """
         INSERT OR IGNORE INTO collection (cle, nom, masque, masque_depuis)
-          SELECT 'anglais', 'Anglais général', IFNULL(c.masque, 0), c.masque_depuis
+          SELECT 'anglais', 'Anglais', IFNULL(c.masque, 0), c.masque_depuis
           FROM (SELECT 1) LEFT JOIN collection c ON c.cle = (SELECT collection FROM pack WHERE id LIKE 'en-%' LIMIT 1)
           WHERE EXISTS (SELECT 1 FROM pack WHERE id LIKE 'en-%');
         UPDATE pack SET collection = 'anglais' WHERE id LIKE 'en-%';

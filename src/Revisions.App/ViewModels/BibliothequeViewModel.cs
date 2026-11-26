@@ -51,7 +51,9 @@ public sealed class TuileBibliotheque(NoeudBibliotheque noeud)
     public NoeudBibliotheque Noeud => noeud;
     public string Titre => noeud.Titre;
     public string? Etiquette => noeud.Etiquette;
-    public string Detail => $"{Texte.Pluriel(noeud.NbSeances, "séance", "séances")}  ·  {Texte.Pluriel(noeud.NbCartes, "carte", "cartes")}";
+    // Une langue affiche d'abord son étendue (« Du A1 au C1 »), sur sa propre ligne.
+    public string Detail => (noeud.EtendueNiveaux is { } etendue ? etendue + "\n" : "")
+        + $"{Texte.Pluriel(noeud.NbSeances, "séance", "séances")}  ·  {Texte.Pluriel(noeud.NbCartes, "carte", "cartes")}";
     public string? Dues => noeud.NbDues > 0 ? $"{noeud.NbDues} à revoir" : null;
     public double Maitrise => noeud.Maitrise;
     public string InfoMaitrise => $"{Texte.Pluriel(noeud.NbMaitrisees, "carte maîtrisée", "cartes maîtrisées")} sur {noeud.NbCartes}";

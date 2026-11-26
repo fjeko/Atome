@@ -287,7 +287,7 @@ public sealed class CollectionsTests : IDisposable
 
         var liste = new DepotCollections(new BaseDeDonnees(_base.Chemin)).Lister().ToDictionary(x => x.Cle);
 
-        Assert.Equal("Anglais général", liste["anglais"].Nom);
+        Assert.Equal("Anglais", liste["anglais"].Nom);
         Assert.True(liste["anglais"].Visible);
         Assert.Equal(1, liste["anglais"].NbCours);
         Assert.Equal(1, liste["mes-packs"].NbCours);

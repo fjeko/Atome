@@ -20,7 +20,7 @@ public static class Collections
     public const string Libres = "libres";
     public const string MesPacks = "mes-packs";
     public const string Manuel = "manuel";
-    /// <summary>Collection « Anglais général » (A1 → C1) : tous les packs dont l'id commence par « en- ».</summary>
+    /// <summary>Collection « Anglais » (anglais général, A1 → C1) : tous les packs dont l'id commence par « en- ».</summary>
     public const string Anglais = "anglais";
     public const string PrefixeAnglais = "en-";
     private const string PrefixeImporte = "importe:";
@@ -28,7 +28,7 @@ public static class Collections
     public const string NomLibres = "Cours libres";
     public const string NomMesPacks = "Mes packs";
     public const string NomManuel = "Imports manuels";
-    public const string NomAnglais = "Anglais général";
+    public const string NomAnglais = "Anglais";
 
     /// <summary>Phrase affichée quand l'étudiant essaie de masquer la dernière collection visible.</summary>
     public const string MessageDerniere =
@@ -60,7 +60,7 @@ public static class Collections
 
     /// <summary>
     /// Collection d'un pack à son import. Un cours libre (id « libre-… ») est toujours dans « Cours libres »,
-    /// un pack d'anglais général (id « en-… ») toujours dans « Anglais général ».
+    /// un pack d'anglais général (id « en-… ») toujours dans « Anglais ».
     /// Un pack déjà connu garde sa collection (réimporter ne le déplace pas) ; sinon on prend celle de l'import,
     /// et à défaut « Mes packs ».
     /// </summary>
