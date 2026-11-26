@@ -9,7 +9,8 @@ name: Release
 
 on:
   push:
-    tags: ["v*"]
+    # « v[0-9]* » et non « v* » : le tag « voix-piper-1 » ne doit pas fabriquer une version d'Atome.
+    tags: ["v[0-9]*"]
 
 permissions:
   contents: write   # necessaire pour creer la Release
