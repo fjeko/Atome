@@ -1,0 +1,136 @@
+{
+  "formatVersion": 1,
+  "id": "en-a0-u00",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A0 – Commencer ici",
+  "sequence": null,
+  "seance": "U00 – Mode d'emploi : les niveaux et par où commencer",
+  "ordre": 0,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Comment fonctionne ce cours : les six niveaux du CECRL (A1 à C2), ce que l'on sait faire à chaque niveau, le test de positionnement intégré à Atome, comment travailler les unités, l'oral et l'écoute.",
+  "notions": [
+    "Niveaux du CECRL",
+    "Test de positionnement",
+    "Méthode de travail",
+    "Oral et écoute"
+  ],
+  "sections": [
+    {
+      "id": "en-a0-u00-s01",
+      "titre": "Les niveaux du CECRL",
+      "contenu": "Le **Cadre européen commun de référence pour les langues** (CECRL) décrit six niveaux. Ce cours couvre **A1 à C1**.\n\n| Niveau | Nom | Ce que tu sais faire |\n| --- | --- | --- |\n| **A1** | Débutant | te présenter, poser des questions simples, comprendre des phrases très courantes si l'on parle lentement |\n| **A2** | Élémentaire | parler de ton quotidien, de ton passé proche, te débrouiller dans un magasin, une gare, un restaurant |\n| **B1** | Intermédiaire (« seuil ») | raconter, donner ton avis et le justifier, écrire un e-mail simple, comprendre l'essentiel d'une conversation claire |\n| **B2** | Intermédiaire avancé | argumenter, discuter avec un natif sans effort excessif, comprendre l'essentiel d'un texte complexe ou technique |\n| **C1** | Avancé | t'exprimer avec aisance et précision, adapter ton registre, comprendre des textes longs et implicites |\n| C2 | Maîtrise | quasi bilingue (hors programme de ce cours) |\n\nRepères : le **BTS** vise **B2** en anglais ; un bon baccalauréat correspond souvent à **B1 / B2**.",
+      "notions": [
+        "Niveaux du CECRL"
+      ]
+    },
+    {
+      "id": "en-a0-u00-s02",
+      "titre": "Le test de positionnement",
+      "contenu": "Le test est **intégré à Atome**. La première fois que tu ouvres la matière dans la **bibliothèque**, une petite fenêtre te demande où tu en es :\n- **Passer le test** : une série de questions qui **s'adapte à tes réponses** ;\n- **Je connais mon niveau** : tu choisis directement ton niveau de départ (A1 à C1) ;\n- **Plus tard** : la question reviendra à la prochaine ouverture d'Atome.\n\n**Comment marche le test** : il commence au niveau **B1**, par séries de **six questions** (grammaire, vocabulaire, lecture et **écoute**, lue par une voix anglaise de Windows). Presque tout juste : il monte d'un niveau ; beaucoup d'erreurs : il descend ; entre les deux, une seconde série tranche. Il s'arrête dès qu'il a trouvé la frontière : **12 à 30 questions**, 10 à 20 minutes. Pas de correction pendant le test, et **« Je ne sais pas »** vaut mieux qu'une réponse au hasard.\n\n**Ce qu'Atome fait du résultat** : les niveaux **en dessous** du tien sont comptés comme acquis (leurs cartes reviennent en simples rappels, étalés sur plusieurs semaines) et le cours **commence à ton niveau**. Le bandeau en haut de la matière affiche ton niveau de départ et permet de **repasser le test** ou d'en **changer** à tout moment.",
+      "notions": [
+        "Test de positionnement"
+      ]
+    },
+    {
+      "id": "en-a0-u00-s03",
+      "titre": "Comment travailler une unité",
+      "contenu": "Chaque unité est une **leçon** : lis d'abord les sections (le parcours « lire puis contrôler » d'Atome est idéal), puis laisse les cartes revenir en révision espacée.\n\nPour progresser vraiment :\n- **une unité tous les 2 à 4 jours**, avec les révisions quotidiennes d'Atome (15 minutes par jour valent mieux que 2 heures le dimanche) ;\n- à chaque carte, **dis la réponse à voix haute** avant de la retourner : c'est là que se construit l'oral ;\n- les cartes « exercice » demandent de **produire** : écris vraiment ta réponse avant de la comparer au modèle ;\n- l'unité **Entraînement** de chaque niveau mélange tout : fais-la à la fin du niveau, puis le **Bilan** (12 questions) pour vérifier que le niveau est acquis ;\n- complète par de l'**écoute** quotidienne (séries en VO sous-titrées en anglais, podcasts) et, dès B1, par la **lecture** d'articles sur des sujets qui t'intéressent.",
+      "notions": [
+        "Méthode de travail"
+      ]
+    },
+    {
+      "id": "en-a0-u00-s04",
+      "titre": "L'oral, l'écoute et le vocabulaire",
+      "contenu": "Le cours ne s'arrête pas aux cartes de grammaire :\n- la partie **« Méthode – Oral, écoute et prononciation »** (en bas de la liste) explique comment **faire lire l'anglais par ton PC** (voix anglaises de Windows, Edge *Lire à voix haute*), **t'enregistrer**, utiliser la **dictée vocale** comme juge de prononciation, et travailler les **sons**, l'**accent tonique**, l'anglais **parlé rapide** et les **stratégies de conversation**. Lis **M01** dès le début, quel que soit ton niveau ;\n- chaque niveau a une unité **Oral** (dialogues modèles à écouter et rejouer, tâches 🎙️ enregistrées) et une unité **Vocabulaire** thématique, placées juste avant l'Entraînement.\n\nLes cartes marquées **🎙️** se font **à voix haute**, idéalement en t'enregistrant ; **🎧** signale une écoute.",
+      "notions": [
+        "Oral et écoute"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a0-u00-c001",
+      "section": "en-a0-u00-s01",
+      "type": "question",
+      "recto": "Je peux raconter mes vacances et donner mon avis simplement, mais je me perds dans une discussion rapide. Quel niveau ?",
+      "verso": "Probablement **B1** : tu sais raconter et justifier, mais pas encore suivre facilement une discussion complexe (B2).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a0-u00-c002",
+      "section": "en-a0-u00-s01",
+      "type": "question",
+      "recto": "Quel niveau vise le BTS en anglais ?",
+      "verso": "**B2** (utilisateur indépendant : argumenter, comprendre l'essentiel de textes complexes).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a0-u00-c003",
+      "section": "en-a0-u00-s01",
+      "type": "question",
+      "recto": "Je sais me présenter et commander un café, mais je ne sais pas raconter au passé. Quel niveau ?",
+      "verso": "Niveau **A1** acquis, **A2** en cours : commence par revoir A1 rapidement puis attaque A2 (passé).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a0-u00-c004",
+      "section": "en-a0-u00-s02",
+      "type": "question",
+      "recto": "Comment se positionner dans le cours d'anglais ?",
+      "verso": "Dans la **bibliothèque**, à la première ouverture de la matière : **Passer le test** (adaptatif, 10 à 20 min) ou **Je connais mon niveau**. Le bandeau en haut de la matière permet ensuite de repasser le test ou de changer de niveau.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a0-u00-c005",
+      "section": "en-a0-u00-s02",
+      "type": "question",
+      "recto": "Comment le test choisit-il les questions ?",
+      "verso": "Il commence en **B1** par séries de 6 questions : presque tout juste → il **monte** ; beaucoup d'erreurs → il **descend** ; entre les deux → une seconde série tranche. Il s'arrête à la frontière entre un niveau validé et un niveau non validé.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a0-u00-c006",
+      "section": "en-a0-u00-s02",
+      "type": "question",
+      "recto": "Que fait Atome du résultat du test ?",
+      "verso": "Il compte les niveaux **en dessous** comme acquis (leurs cartes reviennent en rappels espacés) et fait **commencer le cours à ton niveau**.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a0-u00-c007",
+      "section": "en-a0-u00-s03",
+      "type": "question",
+      "recto": "Que faire avant de retourner une carte question ?",
+      "verso": "**Dire la réponse à voix haute** (ou l'écrire) : produire soi-même est ce qui fait progresser, pas reconnaître la bonne réponse.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a0-u00-c008",
+      "section": "en-a0-u00-s03",
+      "type": "question",
+      "recto": "Quand faire le Bilan d'un niveau ?",
+      "verso": "Après avoir terminé le niveau, son unité **Entraînement** incluse : avec 10 / 12 ou plus, passe au niveau suivant ; sinon, revois les unités où tu as hésité.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a0-u00-c009",
+      "section": "en-a0-u00-s04",
+      "type": "question",
+      "recto": "Que signifient 🎙️ et 🎧 sur une carte ?",
+      "verso": "🎙️ : **réponds à voix haute** (idéalement en t'enregistrant) ; 🎧 : activité d'**écoute** (voix d'Edge, podcast…).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a0-u00-c010",
+      "section": "en-a0-u00-s04",
+      "type": "question",
+      "recto": "Par quelle unité de méthode commencer, quel que soit ton niveau ?",
+      "verso": "**M01** (partie « Méthode – Oral, écoute et prononciation ») : comment faire lire l'anglais par ton PC, t'enregistrer et organiser ton écoute.",
+      "difficulte": 1
+    }
+  ]
+}

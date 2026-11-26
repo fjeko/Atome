@@ -1,0 +1,257 @@
+{
+  "formatVersion": 1,
+  "id": "en-a1-u04",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "U04 – Le présent simple : habitudes et routines",
+  "ordre": 40,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Le présent simple pour les habitudes, les vérités générales et les goûts : le s de la 3e personne, do / does pour les questions et la négation, les adverbes de fréquence et le vocabulaire de la journée.",
+  "notions": [
+    "Présent simple : affirmatif",
+    "Le s de la 3e personne",
+    "Présent simple : négation",
+    "Présent simple : questions",
+    "Adverbes de fréquence",
+    "Routine quotidienne"
+  ],
+  "sections": [
+    {
+      "id": "en-a1-u04-s01",
+      "titre": "Forme affirmative et le s de la 3e personne",
+      "contenu": "On utilise le **présent simple** pour ce qui est **habituel**, **régulier** ou **toujours vrai** : *I work in an office. Water boils at 100 °C.*\n\nLe verbe est à la **base verbale** (l'infinitif sans *to*), **sauf** à la 3e personne du singulier (**he, she, it**) où l'on ajoute **-s** :\n- *I live in Paris* → *She live**s** in Paris* ;\n- après -s, -sh, -ch, -x, -o : **-es** : *watches, goes, does, fixes* ;\n- consonne + y → **-ies** : *study → studies* (mais *play → plays*) ;\n- irrégulier : *have → has*.\n\nC'est **l'erreur n° 1** des francophones : ***He work*** au lieu de ***He works***.",
+      "notions": [
+        "Présent simple : affirmatif",
+        "Le s de la 3e personne"
+      ]
+    },
+    {
+      "id": "en-a1-u04-s02",
+      "titre": "Négation et questions avec do / does",
+      "contenu": "Pour la négation et les questions, on utilise l'**auxiliaire do** (**does** à la 3e personne). Le **s** passe sur *does* : le verbe principal reprend sa **base**.\n\n| | I / you / we / they | he / she / it |\n| --- | --- | --- |\n| Négatif | *I **don't** (do not) like coffee.* | *She **doesn't** (does not) like coffee.* |\n| Question | ***Do** you like coffee?* | ***Does** she like coffee?* |\n| Réponse courte | *Yes, I do. / No, I don't.* | *Yes, she does. / No, she doesn't.* |\n\nAvec un mot interrogatif : ***Where do** you live? **What does** he do?* (= quel est son métier ?)\n\nErreurs typiques : ~~*She doesn't likes*~~ → *She doesn't like* ; ~~*Does he works?*~~ → *Does he work?*",
+      "notions": [
+        "Présent simple : négation",
+        "Présent simple : questions"
+      ]
+    },
+    {
+      "id": "en-a1-u04-s03",
+      "titre": "Les adverbes de fréquence",
+      "contenu": "| 100 % | | | | | 0 % |\n| --- | --- | --- | --- | --- | --- |\n| **always** | **usually** | **often** | **sometimes** | **rarely / seldom** | **never** |\n\n**Place** :\n- **avant** le verbe principal : *I **often** read at night. She **never** eats meat.* ;\n- mais **après** *to be* : *He's **always** late.* ;\n- *sometimes* peut aussi se mettre en début de phrase.\n\nPour une fréquence précise : *once a week* (une fois par semaine), *twice a month*, *three times a year*, *every day*. Ces expressions se placent en **fin** de phrase.\n\nQuestion : ***How often** do you go to the gym?* → *Twice a week.*\n\n*Never* est déjà négatif : ~~*I don't never*~~ → *I never go*.",
+      "notions": [
+        "Adverbes de fréquence"
+      ]
+    },
+    {
+      "id": "en-a1-u04-s04",
+      "titre": "La journée type",
+      "contenu": "| Expression | Sens |\n| --- | --- |\n| *wake up / get up* | se réveiller / se lever |\n| *have a shower* | prendre une douche |\n| *get dressed* | s'habiller |\n| *have breakfast / lunch / dinner* | prendre le petit-déjeuner / déjeuner / dîner |\n| *go to work / to school* | aller au travail / à l'école (sans *the*) |\n| *start / finish work* | commencer / finir le travail |\n| *do the shopping / the housework* | faire les courses / le ménage |\n| *go home* | rentrer à la maison (**sans to**) |\n| *go to bed* | aller se coucher |\n\nRemarques : on dit *have breakfast* (pas *take*), *go home* (pas *go to home*), *at home* (à la maison).",
+      "notions": [
+        "Routine quotidienne"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a1-u04-c001",
+      "section": "en-a1-u04-s01",
+      "type": "qcm",
+      "question": "Complète : My father ___ in a hospital.",
+      "choix": [
+        "works",
+        "work",
+        "is work",
+        "working"
+      ],
+      "bonneReponse": 0,
+      "explication": "He / she / it → -s au présent simple.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u04-c002",
+      "section": "en-a1-u04-s01",
+      "type": "qcm",
+      "question": "Quelle forme est correcte ?",
+      "choix": [
+        "She studies English.",
+        "She studys English.",
+        "She study English.",
+        "She is study English."
+      ],
+      "bonneReponse": 0,
+      "explication": "Consonne + y → -ies.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u04-c003",
+      "section": "en-a1-u04-s01",
+      "type": "qcm",
+      "question": "Complète : He ___ TV every evening.",
+      "choix": [
+        "watches",
+        "watchs",
+        "watch",
+        "watchies"
+      ],
+      "bonneReponse": 0,
+      "explication": "Après -ch → -es.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u04-c004",
+      "section": "en-a1-u04-s01",
+      "type": "question",
+      "recto": "Traduis : « Mon frère va à l'école à vélo. »",
+      "verso": "*My brother **goes** to school by bike.* (go → goes)",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u04-c005",
+      "section": "en-a1-u04-s02",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "Does she speak Spanish?",
+        "Does she speaks Spanish?",
+        "Do she speak Spanish?",
+        "Speaks she Spanish?"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le s est déjà sur does : speak reste à la base.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u04-c006",
+      "section": "en-a1-u04-s02",
+      "type": "qcm",
+      "question": "Négation de « He plays football » :",
+      "choix": [
+        "He doesn't play football.",
+        "He doesn't plays football.",
+        "He don't play football.",
+        "He not plays football."
+      ],
+      "bonneReponse": 0,
+      "explication": "doesn't + base verbale.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u04-c007",
+      "section": "en-a1-u04-s02",
+      "type": "qcm",
+      "question": "« What does your sister do? » signifie :",
+      "choix": [
+        "Quel est le métier de ta sœur ?",
+        "Que fait ta sœur en ce moment ?",
+        "Que fait ta sœur ce soir ?",
+        "Ta sœur fait quoi comme sport ?"
+      ],
+      "bonneReponse": 0,
+      "explication": "What do you do? est la question classique sur le métier ; « en ce moment » se dirait avec le présent continu.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u04-c008",
+      "section": "en-a1-u04-s02",
+      "type": "question",
+      "recto": "Traduis : « Où est-ce qu'ils habitent ? — Ils n'habitent pas ici. »",
+      "verso": "*Where do they live? — They don't live here.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u04-c009",
+      "section": "en-a1-u04-s03",
+      "type": "qcm",
+      "question": "Place correctement « always » : I / have / breakfast.",
+      "choix": [
+        "I always have breakfast.",
+        "I have always breakfast.",
+        "Always I have breakfast.",
+        "I have breakfast always."
+      ],
+      "bonneReponse": 0,
+      "explication": "Adverbe de fréquence avant le verbe principal.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u04-c010",
+      "section": "en-a1-u04-s03",
+      "type": "qcm",
+      "question": "Place correctement « often » : She / is / tired.",
+      "choix": [
+        "She is often tired.",
+        "She often is tired.",
+        "Often she is tired.",
+        "She is tired often always."
+      ],
+      "bonneReponse": 0,
+      "explication": "Après to be.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u04-c011",
+      "section": "en-a1-u04-s03",
+      "type": "question",
+      "recto": "Comment demander à quelle fréquence quelqu'un fait du sport ?",
+      "verso": "***How often** do you do sport?* → *Three times a week.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u04-c012",
+      "section": "en-a1-u04-s03",
+      "type": "question",
+      "recto": "Traduis : « Je ne bois jamais de café. »",
+      "verso": "*I never drink coffee.* (pas de don't avec never)",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u04-c013",
+      "section": "en-a1-u04-s04",
+      "type": "qcm",
+      "question": "Comment dit-on « Je rentre à la maison à 18 h » ?",
+      "choix": [
+        "I go home at 6 pm.",
+        "I go to home at 6 pm.",
+        "I go at home at 6 pm.",
+        "I go to the home at 6 pm."
+      ],
+      "bonneReponse": 0,
+      "explication": "go home, sans préposition.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u04-c014",
+      "section": "en-a1-u04-s04",
+      "type": "qcm",
+      "question": "« Prendre le petit-déjeuner » se dit :",
+      "choix": [
+        "have breakfast",
+        "take breakfast",
+        "do breakfast",
+        "make the breakfast"
+      ],
+      "bonneReponse": 0,
+      "explication": "On utilise have pour les repas.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u04-c015",
+      "section": "en-a1-u04-s04",
+      "type": "exercice",
+      "enonce": "Décris ta journée habituelle en 5 phrases au présent simple, avec au moins deux adverbes de fréquence.",
+      "etapes": [
+        "Lever : I get up at …",
+        "Repas : I usually have breakfast at …",
+        "Travail / cours : I start / finish …",
+        "Soir : I sometimes / never …",
+        "Coucher : I go to bed at …"
+      ],
+      "reponse": "Exemple : *I get up at 7. I usually have breakfast in the kitchen. I start work at 9 and I finish at 5. In the evening I sometimes go to the gym. I go to bed at 11.*",
+      "difficulte": 2
+    }
+  ]
+}

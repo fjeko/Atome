@@ -1,0 +1,209 @@
+{
+  "formatVersion": 1,
+  "id": "en-test-a1",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "Bilan A1 – 12 questions pour vérifier le niveau",
+  "ordre": 990,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Bilan de fin de niveau A1 (débutant) : 12 QCM pour vérifier que le niveau est acquis. 10 / 12 ou plus : passe au niveau suivant ; sinon, revois les unités où tu as hésité.",
+  "notions": [
+    "Bilan A1"
+  ],
+  "sections": [
+    {
+      "id": "en-test-a1-s01",
+      "titre": "Bilan A1",
+      "contenu": "**Bilan A1 — débutant**. Douze questions, sans aide, sans réfléchir plus de 30 secondes par question. À faire **à la fin du niveau**, après l'Entraînement.\n\nRésultat à la fin de la session :\n- **10 / 12 ou plus** : niveau acquis → passe au niveau suivant ;\n- **7 à 9 / 12** : presque : revois les unités où tu as hésité, puis refais le bilan quelques jours plus tard ;\n- **6 / 12 ou moins** : reprends les unités du niveau avant d'avancer.",
+      "notions": [
+        "Bilan A1"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-test-a1-c001",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "___ name is Laura.",
+      "choix": [
+        "Her",
+        "She",
+        "Hers",
+        "She's"
+      ],
+      "bonneReponse": 0,
+      "explication": "Possessif devant un nom : her.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a1-c002",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "They ___ from Canada.",
+      "choix": [
+        "are",
+        "is",
+        "am",
+        "be"
+      ],
+      "bonneReponse": 0,
+      "explication": "they → are.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a1-c003",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "___ you like pizza?",
+      "choix": [
+        "Do",
+        "Are",
+        "Does",
+        "Is"
+      ],
+      "bonneReponse": 0,
+      "explication": "Présent simple, you → Do.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a1-c004",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "My brother ___ in a bank.",
+      "choix": [
+        "works",
+        "work",
+        "working",
+        "is work"
+      ],
+      "bonneReponse": 0,
+      "explication": "3e personne → -s.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a1-c005",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "There ___ two cats in the garden.",
+      "choix": [
+        "are",
+        "is",
+        "have",
+        "has"
+      ],
+      "bonneReponse": 0,
+      "explication": "Pluriel → there are.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a1-c006",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "I can't find ___ keys.",
+      "choix": [
+        "my",
+        "me",
+        "mine",
+        "I"
+      ],
+      "bonneReponse": 0,
+      "explication": "Déterminant possessif → my.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a1-c007",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "She ___ got a new phone.",
+      "choix": [
+        "has",
+        "have",
+        "is",
+        "does"
+      ],
+      "bonneReponse": 0,
+      "explication": "she has got.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a1-c008",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "Look! It ___.",
+      "choix": [
+        "is snowing",
+        "snows",
+        "snow",
+        "snowing"
+      ],
+      "bonneReponse": 0,
+      "explication": "Action en cours → présent continu.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a1-c009",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "The meeting is ___ Monday.",
+      "choix": [
+        "on",
+        "in",
+        "at",
+        "to"
+      ],
+      "bonneReponse": 0,
+      "explication": "Jour → on.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a1-c010",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "How ___ is this jacket? — £40.",
+      "choix": [
+        "much",
+        "many",
+        "long",
+        "old"
+      ],
+      "bonneReponse": 0,
+      "explication": "Prix → how much.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a1-c011",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "I don't have ___ money.",
+      "choix": [
+        "any",
+        "some",
+        "a",
+        "many"
+      ],
+      "bonneReponse": 0,
+      "explication": "Négation + indénombrable → any.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a1-c012",
+      "section": "en-test-a1-s01",
+      "type": "qcm",
+      "question": "Is that your laptop? — No, it ___.",
+      "choix": [
+        "isn't",
+        "doesn't",
+        "not",
+        "don't"
+      ],
+      "bonneReponse": 0,
+      "explication": "Réponse courte avec be.",
+      "difficulte": 1
+    }
+  ]
+}

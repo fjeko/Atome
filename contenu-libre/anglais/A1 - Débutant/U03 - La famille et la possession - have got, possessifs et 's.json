@@ -1,0 +1,249 @@
+{
+  "formatVersion": 1,
+  "id": "en-a1-u03",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "U03 – La famille et la possession : have got, possessifs et 's",
+  "ordre": 30,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Parler de sa famille et de ce que l'on possède : have got et have, les déterminants possessifs (my, your, his, her…), le génitif 's, et les questions Who et Whose.",
+  "notions": [
+    "Vocabulaire de la famille",
+    "Have got",
+    "Have (possession)",
+    "Déterminants possessifs",
+    "Génitif 's",
+    "Whose"
+  ],
+  "sections": [
+    {
+      "id": "en-a1-u03-s01",
+      "titre": "La famille",
+      "contenu": "| Anglais | Français | Anglais | Français |\n| --- | --- | --- | --- |\n| mother / mum (mom US) | mère | father / dad | père |\n| parents | **parents** (père et mère uniquement) | relatives | la famille élargie, les « parents » au sens large |\n| sister / brother | sœur / frère | siblings | frères et sœurs |\n| son / daughter | fils / fille | children / kids | enfants |\n| grandmother / grandfather | grand-mère / grand-père | grandchildren | petits-enfants |\n| aunt / uncle | tante / oncle | cousin | cousin, cousine |\n| niece / nephew | nièce / neveu | husband / wife | mari / femme |\n| partner | conjoint(e), compagnon/compagne | in-laws | belle-famille |\n\nFaux ami : ***parents*** désigne uniquement le père et la mère ; « mes parents » au sens « ma famille » → *my relatives*.",
+      "notions": [
+        "Vocabulaire de la famille"
+      ]
+    },
+    {
+      "id": "en-a1-u03-s02",
+      "titre": "Have got et have pour la possession",
+      "contenu": "Pour dire ce qu'on **possède** (objets, famille, caractéristiques physiques, maladies) :\n\n| | Anglais britannique (familier) | Partout (et anglais américain) |\n| --- | --- | --- |\n| Affirmatif | *I**'ve got** a car. She**'s got** blue eyes.* | *I **have** a car. She **has** blue eyes.* |\n| Négatif | *I **haven't got** a car.* | *I **don't have** a car. She **doesn't have** …* |\n| Question | ***Have** you **got** a car?* → *Yes, I have.* | ***Do** you **have** a car?* → *Yes, I do.* |\n\n- *he / she / it* : **has got** / **has** ;\n- ne pas mélanger : *Do you have got* est faux ;\n- avec *have got*, on ne fait pas de prétérit : au passé on dit *I had a car*.",
+      "notions": [
+        "Have got",
+        "Have (possession)"
+      ]
+    },
+    {
+      "id": "en-a1-u03-s03",
+      "titre": "Les déterminants possessifs",
+      "contenu": "| Pronom | Possessif | Exemple |\n| --- | --- | --- |\n| I | **my** | *my phone, my parents* |\n| you | **your** | *your bag* |\n| he | **his** | *his sister* (la sœur **de lui**) |\n| she | **her** | *her brother* (le frère **d'elle**) |\n| it | **its** | *the company and its employees* |\n| we | **our** | *our house* |\n| they | **their** | *their car* |\n\n**La règle qui change tout** : le possessif s'accorde avec le **possesseur**, pas avec l'objet.\n- « sa sœur » (de Paul) → *his sister* ; « sa sœur » (de Marie) → *her sister* ;\n- *my* ne varie jamais : *my car, my cars*.\n\nPièges d'orthographe : ***its*** (possessif) ≠ ***it's*** (= it is) ; ***their*** (possessif) ≠ ***they're*** (= they are) ≠ ***there*** (là).",
+      "notions": [
+        "Déterminants possessifs"
+      ]
+    },
+    {
+      "id": "en-a1-u03-s04",
+      "titre": "Le génitif 's et Whose",
+      "contenu": "Pour dire « le … de [une personne] », on utilise **'s** :\n- *Tom's car* = la voiture de Tom ; *my mother's job* = le métier de ma mère ;\n- pluriel en -s : on ajoute seulement l'apostrophe : *my parents' house* (la maison de mes parents) ;\n- pluriel irrégulier : *the children's room*.\n\nPour les **choses**, on utilise plutôt **of** : *the door of the room*, *the end of the film*.\n\n**Whose …?** = À qui … ? — *Whose phone is this?* → *It's Emma's.*\nNe pas confondre ***whose*** (à qui) et ***who's*** (= who is).",
+      "notions": [
+        "Génitif 's",
+        "Whose"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a1-u03-c001",
+      "section": "en-a1-u03-s01",
+      "type": "qcm",
+      "question": "Comment dit-on « Elle a deux frères et sœurs » (sans préciser) ?",
+      "choix": [
+        "She has two siblings.",
+        "She has two parents.",
+        "She has two relatives.",
+        "She has two brothers-sisters."
+      ],
+      "bonneReponse": 0,
+      "explication": "siblings = frères et sœurs, terme neutre.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u03-c002",
+      "section": "en-a1-u03-s01",
+      "type": "question",
+      "recto": "Que désigne le mot anglais « relatives » ?",
+      "verso": "Les **membres de la famille** au sens large (oncles, cousins…), ce qu'on appelle parfois « les parents » en français.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u03-c003",
+      "section": "en-a1-u03-s01",
+      "type": "question",
+      "recto": "Comment dit-on « neveu » et « nièce » ?",
+      "verso": "*nephew* (neveu) et *niece* (nièce).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u03-c004",
+      "section": "en-a1-u03-s02",
+      "type": "qcm",
+      "question": "Complète : ___ you got a pen?",
+      "choix": [
+        "Have",
+        "Do",
+        "Are",
+        "Has"
+      ],
+      "bonneReponse": 0,
+      "explication": "Have got → question avec Have en tête.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u03-c005",
+      "section": "en-a1-u03-s02",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "She doesn't have a bike.",
+        "She doesn't has a bike.",
+        "She hasn't a bike.",
+        "She don't have a bike."
+      ],
+      "bonneReponse": 0,
+      "explication": "Après doesn't, le verbe reste à la base : have.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u03-c006",
+      "section": "en-a1-u03-s02",
+      "type": "question",
+      "recto": "Comment dit-on « Il a les cheveux bruns » ?",
+      "verso": "*He's got brown hair.* / *He has brown hair.* (hair est **indénombrable** : pas de s)",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u03-c007",
+      "section": "en-a1-u03-s02",
+      "type": "qcm",
+      "question": "« Do you have a dog? » — Réponse courte négative :",
+      "choix": [
+        "No, I don't.",
+        "No, I haven't.",
+        "No, I haven't got.",
+        "No, I not."
+      ],
+      "bonneReponse": 0,
+      "explication": "Question avec do → réponse avec do.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u03-c008",
+      "section": "en-a1-u03-s03",
+      "type": "qcm",
+      "question": "Paul aime sa mère. → Paul loves ___ mother.",
+      "choix": [
+        "his",
+        "her",
+        "its",
+        "their"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le possesseur est Paul (un homme) → his, même si mother est féminin.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u03-c009",
+      "section": "en-a1-u03-s03",
+      "type": "qcm",
+      "question": "Marie appelle son frère. → Marie calls ___ brother.",
+      "choix": [
+        "her",
+        "his",
+        "its",
+        "she"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le possesseur est Marie → her.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u03-c010",
+      "section": "en-a1-u03-s03",
+      "type": "qcm",
+      "question": "Complète : The dog is eating ___ food.",
+      "choix": [
+        "its",
+        "it's",
+        "his",
+        "it"
+      ],
+      "bonneReponse": 0,
+      "explication": "its = possessif ; it's = it is.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u03-c011",
+      "section": "en-a1-u03-s03",
+      "type": "question",
+      "recto": "Corrige : « They're car is new. »",
+      "verso": "*Their car is new.* (**their** = leur ; they're = they are)",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u03-c012",
+      "section": "en-a1-u03-s04",
+      "type": "qcm",
+      "question": "« La chambre de mes sœurs » (plusieurs sœurs) :",
+      "choix": [
+        "my sisters' room",
+        "my sister's room",
+        "my sisters's room",
+        "the room my sisters"
+      ],
+      "bonneReponse": 0,
+      "explication": "Pluriel en -s → apostrophe seule après le s.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u03-c013",
+      "section": "en-a1-u03-s04",
+      "type": "qcm",
+      "question": "Complète : ___ keys are these? — They're Sam's.",
+      "choix": [
+        "Whose",
+        "Who's",
+        "Who",
+        "Which's"
+      ],
+      "bonneReponse": 0,
+      "explication": "Whose = à qui.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u03-c014",
+      "section": "en-a1-u03-s04",
+      "type": "question",
+      "recto": "Traduis : « C'est le vélo du frère de Julie. »",
+      "verso": "*It's Julie's brother's bike.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-a1-u03-c015",
+      "section": "en-a1-u03-s04",
+      "type": "exercice",
+      "enonce": "Décris ta famille en 4 phrases : nombre de frères et sœurs, métier d'un parent, un possessif his/her, un génitif.",
+      "etapes": [
+        "I've got … / I have …",
+        "My mother's / father's job: …",
+        "His / her name is …",
+        "Utiliser 's pour la possession."
+      ],
+      "reponse": "Exemple : *I've got one sister and no brothers. My sister's name is Léa. My father's a nurse and my mother works in a bank. Her job is very busy.*",
+      "difficulte": 2
+    }
+  ]
+}

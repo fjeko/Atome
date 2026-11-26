@@ -1,0 +1,139 @@
+{
+  "formatVersion": 1,
+  "id": "en-a2-u07",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A2 – Élémentaire",
+  "sequence": null,
+  "seance": "U07 – Décrire une scène passée : le prétérit continu",
+  "ordre": 70,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Le prétérit continu (was / were + -ing) pour décrire ce qui était en cours dans le passé, l'action qui interrompt (when + prétérit), deux actions simultanées (while), et le décor d'un récit.",
+  "notions": [
+    "Prétérit continu : forme",
+    "Action interrompue (when)",
+    "Actions simultanées (while)",
+    "Raconter un incident"
+  ],
+  "sections": [
+    {
+      "id": "en-a2-u07-s01",
+      "titre": "Former le prétérit continu",
+      "contenu": "**was / were + verbe en -ing** :\n- *I **was working**. They **were watching** TV.*\n- négatif : *She **wasn't listening**.* — question : *What **were** you **doing** at 8 pm?*\n\nEmplois :\n1. une action **en cours** à un moment précis du passé : *At 10 pm I **was sleeping**.* ;\n2. le **décor** d'une histoire : *It **was raining** and people **were running** for the bus.*",
+      "notions": [
+        "Prétérit continu : forme"
+      ]
+    },
+    {
+      "id": "en-a2-u07-s02",
+      "titre": "When et while",
+      "contenu": "- **Action longue interrompue** par une action courte : prétérit **continu** + ***when*** + prétérit **simple** :\n  *I **was having** a shower **when** the phone **rang**.*\n- **Deux actions longues en même temps** : ***while*** + prétérit continu :\n  *I was cooking **while** my brother was setting the table.*\n- **Succession** d'actions : prétérit simple partout : *When she arrived, we **had** dinner.* (on a dîné **après** son arrivée)\n\nComparer : *When he arrived, I **was cooking*** (j'étais en train de cuisiner) ≠ *When he arrived, I **cooked*** (j'ai cuisiné après son arrivée).",
+      "notions": [
+        "Action interrompue (when)",
+        "Actions simultanées (while)"
+      ]
+    },
+    {
+      "id": "en-a2-u07-s03",
+      "titre": "Raconter un incident",
+      "contenu": "Structure d'un récit :\n1. **décor** au prétérit continu : *It was Monday morning. I was working on the server…*\n2. **événement** au prétérit simple : *…when suddenly the screen went black.*\n3. **suite** au prétérit simple avec connecteurs : *I called the IT team. Then they restarted the system.*\n\nVocabulaire utile : *suddenly, all of a sudden, at that moment, luckily, unfortunately, in the end*.",
+      "notions": [
+        "Raconter un incident"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a2-u07-c001",
+      "section": "en-a2-u07-s01",
+      "type": "qcm",
+      "question": "Complète : At 9 o'clock last night, I ___ my homework.",
+      "choix": [
+        "was doing",
+        "did",
+        "were doing",
+        "am doing"
+      ],
+      "bonneReponse": 0,
+      "explication": "Action en cours à un moment précis du passé.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u07-c002",
+      "section": "en-a2-u07-s01",
+      "type": "question",
+      "recto": "Traduis : « Que faisais-tu hier à midi ? »",
+      "verso": "*What **were** you **doing** at noon yesterday?*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u07-c003",
+      "section": "en-a2-u07-s02",
+      "type": "qcm",
+      "question": "Complète : I ___ TV when the power cut ___.",
+      "choix": [
+        "was watching / happened",
+        "watched / was happening",
+        "was watching / was happening",
+        "watch / happened"
+      ],
+      "bonneReponse": 0,
+      "explication": "Action longue (continu) interrompue par une action courte (simple).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u07-c004",
+      "section": "en-a2-u07-s02",
+      "type": "qcm",
+      "question": "Complète : While I ___, my phone fell out of my pocket.",
+      "choix": [
+        "was running",
+        "ran",
+        "run",
+        "am running"
+      ],
+      "bonneReponse": 0,
+      "explication": "while + action longue en cours.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u07-c005",
+      "section": "en-a2-u07-s02",
+      "type": "question",
+      "recto": "Quelle différence entre « When she called, I was leaving » et « When she called, I left » ?",
+      "verso": "1re : j'étais **en train** de partir quand elle a appelé. 2e : je suis parti **après** son appel (succession).",
+      "difficulte": 3
+    },
+    {
+      "id": "en-a2-u07-c006",
+      "section": "en-a2-u07-s03",
+      "type": "exercice",
+      "enonce": "Raconte un petit accident ou incident en 4 phrases : un décor (prétérit continu), l'événement (when), la réaction, la fin.",
+      "etapes": [
+        "Décor : I was … -ing",
+        "Événement : … when …",
+        "Réaction : I … / Then …",
+        "Fin : In the end …"
+      ],
+      "reponse": "Exemple : *I was walking to the station and it was snowing. Suddenly, I slipped and fell. A woman helped me to get up. In the end, I wasn't hurt, but I missed my train!*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u07-c007",
+      "section": "en-a2-u07-s03",
+      "type": "qcm",
+      "question": "Quel temps utilise-t-on pour planter le décor d'une histoire ?",
+      "choix": [
+        "Le prétérit continu",
+        "Le présent simple",
+        "Le present perfect",
+        "Le futur avec will"
+      ],
+      "bonneReponse": 0,
+      "explication": "It was raining, people were waiting… : actions en cours.",
+      "difficulte": 1
+    }
+  ]
+}

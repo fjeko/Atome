@@ -1,0 +1,266 @@
+{
+  "formatVersion": 1,
+  "id": "en-or-m02",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "Méthode – Oral, écoute et prononciation",
+  "sequence": null,
+  "seance": "M02 – Les sons de l'anglais : voyelles, th, h et terminaisons",
+  "ordre": 20,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Les sons qui posent problème aux francophones : voyelles courtes et longues (ship / sheep), les sons th, le h aspiré, le r anglais, -ing, et la prononciation des terminaisons -s et -ed. Paires minimales et exercices à voix haute.",
+  "notions": [
+    "Alphabet phonétique (API)",
+    "Voyelles courtes et longues",
+    "Consonnes difficiles",
+    "Terminaisons -s et -ed"
+  ],
+  "sections": [
+    {
+      "id": "en-or-m02-s01",
+      "titre": "Lire la phonétique",
+      "contenu": "Les dictionnaires (Cambridge, Oxford, WordReference) donnent la prononciation en **API**, entre barres obliques. Il suffit de connaître les symboles **qui n'existent pas en français** :\n\n| Symbole | Son | Exemples |\n| --- | --- | --- |\n| /ɪ/ | i **court**, relâché, proche du é | sh**i**p, s**i**t, b**i**g |\n| /iː/ | i **long** et tendu (le « : » = long) | sh**ee**p, s**ea**t, m**e** |\n| /æ/ | entre a et è, bouche ouverte | c**a**t, b**a**d, h**a**ppy |\n| /ʌ/ | a bref et sourd | c**u**t, l**o**ve, m**o**ney |\n| /ə/ | **schwa** : voyelle faible, neutre | **a**bout, doct**or**, ban**a**n**a** |\n| /ɜː/ | « eu » long | w**or**k, b**ir**d, l**ear**n |\n| /θ/ | th **sourd** (langue entre les dents, souffle) | **th**ink, **th**ree, ba**th** |\n| /ð/ | th **sonore** (même position, la gorge vibre) | **th**is, mo**th**er, **th**e |\n| /h/ | souffle audible | **h**ouse, **h**ello |\n| /ŋ/ | « ng » nasal, sans g final | si**ng**, worki**ng** |\n| /w/ | « ou » rapide | **w**ater, **wh**at |\n\nL'**accent tonique** est noté par **ˈ** avant la syllabe accentuée : /ˈwɔːtə/ (*water*).",
+      "notions": [
+        "Alphabet phonétique (API)"
+      ]
+    },
+    {
+      "id": "en-or-m02-s02",
+      "titre": "Voyelles courtes et longues",
+      "contenu": "En anglais, la **longueur** et la **tension** de la voyelle changent le sens. Les francophones prononcent tout pareil : c'est l'erreur n°1.\n\n| Court | Long |\n| --- | --- |\n| sh**i**p /ɪ/ (bateau) | sh**ee**p /iː/ (mouton) |\n| l**i**ve /ɪ/ (vivre) | l**ea**ve /iː/ (partir) |\n| f**u**ll /ʊ/ (plein) | f**oo**l /uː/ (idiot) |\n| w**o**rk /ɜː/ | w**a**lk /ɔː/ (le l est muet) |\n| h**a**t /æ/ (chapeau) | h**ea**rt /ɑː/ (cœur) |\n| c**a**t /æ/ | c**u**t /ʌ/ |\n\n**Truc** : pour /ɪ/, relâche la bouche, comme un « i » paresseux, presque « é ». Pour /iː/, souris et tiens le son.\n\nAttention aux paires embarrassantes : *sheet / shit*, *beach / bitch*, *peace / piss* : la voyelle **longue** est la version polie.",
+      "notions": [
+        "Voyelles courtes et longues"
+      ]
+    },
+    {
+      "id": "en-or-m02-s03",
+      "titre": "Les th, le h et le r",
+      "contenu": "**th sourd /θ/** (*think, three, month*) : pose la **pointe de la langue entre les dents** et souffle, sans voix. Ce n'est ni *s* (*sink*) ni *f* (*fink*).\n\n**th sonore /ð/** (*the, this, they, mother*) : même position, mais **la gorge vibre**. Ce n'est pas *z* ni *d*.\n\n**h aspiré** : un **souffle** audible, comme pour embuer une vitre. *I hate it* ≠ *I ate it* ; *hear* ≠ *ear*. Inversement, ne mets pas de h là où il n'y en a pas ! Muet seulement dans *hour, honest, honour, heir* (et donc **an** hour).\n\n**r anglais** : la langue **ne touche rien**, recourbée vers l'arrière, et **on ne roule jamais** le r. En anglais britannique, le r après une voyelle **ne se prononce pas** (*car* /kɑː/, *water* /ˈwɔːtə/) ; en anglais américain, si (/kɑːr/).\n\n**-ing /ŋ/** : un son nasal au fond de la gorge, **sans** prononcer de g dur à la fin : *singing*, pas « sinn-guing ».",
+      "notions": [
+        "Consonnes difficiles"
+      ]
+    },
+    {
+      "id": "en-or-m02-s04",
+      "titre": "Les terminaisons -s et -ed",
+      "contenu": "**-s** (pluriel, 3e personne, possessif) se prononce de trois façons :\n- **/s/** après un son sourd (p, t, k, f, th) : *cats, works, books* ;\n- **/z/** après un son sonore ou une voyelle : *dogs, plays, goes, calls* (le plus fréquent) ;\n- **/ɪz/** (syllabe en plus) après s, z, sh, ch, j, x : *buses, watches, washes, boxes, languages*.\n\n**-ed** (prétérit régulier) se prononce de trois façons :\n- **/t/** après un son sourd : *worked* /wɜːkt/, *stopped, watched, laughed* ;\n- **/d/** après un son sonore : *played, called, opened, lived* ;\n- **/ɪd/** (syllabe en plus) **seulement après t ou d** : *wanted, needed, started, decided*.\n\nErreur très fréquente : prononcer *worked* en deux syllabes (« work-ed »). Non : **une** syllabe, /wɜːkt/.",
+      "notions": [
+        "Terminaisons -s et -ed"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-or-m02-c001",
+      "section": "en-or-m02-s01",
+      "type": "question",
+      "recto": "Que signifie le symbole « : » en phonétique, comme dans /iː/ ?",
+      "verso": "La voyelle est **longue** : /iː/ (*sheep*) est long et tendu, /ɪ/ (*ship*) est court et relâché.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c002",
+      "section": "en-or-m02-s01",
+      "type": "question",
+      "recto": "Qu'est-ce que le schwa /ə/ ?",
+      "verso": "La voyelle **faible** et neutre de l'anglais, la plus fréquente : *a* de **a**bout, *er* de teach**er**. Elle apparaît dans les syllabes **non accentuées**.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c003",
+      "section": "en-or-m02-s01",
+      "type": "qcm",
+      "question": "Quel mot contient le son /θ/ (th sourd) ?",
+      "choix": [
+        "three",
+        "this",
+        "mother",
+        "they"
+      ],
+      "bonneReponse": 0,
+      "explication": "/θ/ est le th **sourd** (*three, think, bath*) ; *this, mother, they* ont le th **sonore** /ð/.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m02-c004",
+      "section": "en-or-m02-s01",
+      "type": "qcm",
+      "question": "Que signifie ˈ dans /ˈwɔːtə/ ?",
+      "choix": [
+        "La syllabe qui suit porte l'accent tonique",
+        "La voyelle qui suit est longue",
+        "La lettre qui suit est muette",
+        "Le mot est d'origine française"
+      ],
+      "bonneReponse": 0,
+      "explication": "ˈ marque l'accent tonique ; la longueur est notée par « : ».",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m02-c005",
+      "section": "en-or-m02-s02",
+      "type": "question",
+      "recto": "Quelle différence entre *live* et *leave* ?",
+      "verso": "*live* /lɪv/ : i **court** et relâché (vivre) ; *leave* /liːv/ : i **long** et tendu (partir).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c006",
+      "section": "en-or-m02-s02",
+      "type": "question",
+      "recto": "Comment se prononce *walk* ?",
+      "verso": "/wɔːk/ : « wôk », **le l est muet**. À ne pas confondre avec *work* /wɜːk/ (« weurk »).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c007",
+      "section": "en-or-m02-s02",
+      "type": "qcm",
+      "question": "« Je vais partir demain » : que dois-tu prononcer avec un i long ?",
+      "choix": [
+        "leave",
+        "live",
+        "list",
+        "little"
+      ],
+      "bonneReponse": 0,
+      "explication": "*leave* /liːv/ = partir ; *live* /lɪv/ = vivre.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c008",
+      "section": "en-or-m02-s02",
+      "type": "exercice",
+      "enonce": "🎙️ Paires minimales : lis chaque paire à voix haute en dictée vocale anglaise, puis vérifie la transcription.\n\nship – sheep · live – leave · full – fool · hat – heart · cat – cut · work – walk",
+      "etapes": [
+        "Lis le premier mot, pause, puis le second.",
+        "Exagère d'abord la différence (voyelle longue = souriante et tenue).",
+        "Note les paires que la dictée confond.",
+        "Recommence ces paires-là le lendemain."
+      ],
+      "reponse": "Si la machine transcrit les deux mots pareils, tu ne fais pas encore la différence : travaille la **longueur** (long = tenu) et l'**ouverture** de la bouche (/æ/ très ouvert, /ʌ/ bref et central).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c009",
+      "section": "en-or-m02-s03",
+      "type": "question",
+      "recto": "Comment produire le son th de *think* ?",
+      "verso": "Pointe de la langue **entre les dents**, puis **souffler** sans voix. Ni *s* (*sink*) ni *f*.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c010",
+      "section": "en-or-m02-s03",
+      "type": "question",
+      "recto": "Dans quels mots courants le h est-il muet ?",
+      "verso": "*hour, honest, honour, heir* (et leurs dérivés) : d'où **an** hour, **an** honest man.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c011",
+      "section": "en-or-m02-s03",
+      "type": "qcm",
+      "question": "Quelle phrase change de sens si tu oublies le h ?",
+      "choix": [
+        "I hate it.",
+        "I'm happy.",
+        "He's at home.",
+        "Have a nice day."
+      ],
+      "bonneReponse": 0,
+      "explication": "*I hate it* (je déteste) devient *I ate it* (je l'ai mangé).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c012",
+      "section": "en-or-m02-s03",
+      "type": "qcm",
+      "question": "En anglais britannique standard, comment se prononce le r de *car* ?",
+      "choix": [
+        "Il ne se prononce pas : /kɑː/",
+        "Roulé avec la pointe de la langue",
+        "Comme le r français, au fond de la gorge",
+        "Comme un w : « caw »"
+      ],
+      "bonneReponse": 0,
+      "explication": "En britannique, le r après une voyelle est muet ; l'américain le prononce (langue recourbée, sans toucher).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m02-c013",
+      "section": "en-or-m02-s03",
+      "type": "exercice",
+      "enonce": "🎙️ Lis à voix haute, lentement puis vite : *I think three thousand things through every Thursday. – This is the thing they gave their mother. – Harry has a huge house on the hill.*",
+      "etapes": [
+        "Phrase 1 : th sourd partout, langue entre les dents.",
+        "Phrase 2 : th sonore (this, the, they, their, mother) sauf *thing* (sourd).",
+        "Phrase 3 : chaque h est un souffle.",
+        "Teste avec la dictée vocale."
+      ],
+      "reponse": "Les erreurs typiques sont *sink / tree / sing* à la place de *think / three / thing*, et *arry as a uge ouse*. Si la dictée écrit bien les phrases, c'est gagné.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m02-c014",
+      "section": "en-or-m02-s04",
+      "type": "question",
+      "recto": "Combien de syllabes dans *worked*, *played* et *wanted* ?",
+      "verso": "*worked* : **1** (/wɜːkt/) ; *played* : **1** (/pleɪd/) ; *wanted* : **2** (/ˈwɒntɪd/). On ajoute une syllabe **seulement après t ou d**.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c015",
+      "section": "en-or-m02-s04",
+      "type": "question",
+      "recto": "Quand le -s ajoute-t-il une syllabe /ɪz/ ?",
+      "verso": "Après les sons **s, z, sh, ch, j, x** : *buses, watches, washes, boxes, languages*.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c016",
+      "section": "en-or-m02-s04",
+      "type": "qcm",
+      "question": "Quel verbe se termine par une syllabe supplémentaire /ɪd/ au prétérit ?",
+      "choix": [
+        "decide → decided",
+        "stop → stopped",
+        "call → called",
+        "laugh → laughed"
+      ],
+      "bonneReponse": 0,
+      "explication": "-ed ajoute /ɪd/ uniquement après **t** ou **d** : *decided, wanted, needed*.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m02-c017",
+      "section": "en-or-m02-s04",
+      "type": "qcm",
+      "question": "Comment se prononce le -s de *dogs* ?",
+      "choix": [
+        "/z/, car g est un son sonore",
+        "/s/, comme dans *cats*",
+        "/ɪz/, avec une syllabe en plus",
+        "Il est muet, comme en français"
+      ],
+      "bonneReponse": 0,
+      "explication": "Après un son sonore (g, b, d, l, n, voyelle…), le -s se prononce /z/.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m02-c018",
+      "section": "en-or-m02-s04",
+      "type": "exercice",
+      "enonce": "🎙️ Classe et prononce : *helped, needed, opened, watched, started, lived, asked, ended*.",
+      "etapes": [
+        "Repère la dernière consonne prononcée du verbe.",
+        "t ou d → /ɪd/ ; son sourd → /t/ ; son sonore → /d/.",
+        "Lis la liste à voix haute."
+      ],
+      "reponse": "/t/ : helped, watched, asked · /d/ : opened, lived · /ɪd/ : needed, started, ended.",
+      "difficulte": 2
+    }
+  ]
+}

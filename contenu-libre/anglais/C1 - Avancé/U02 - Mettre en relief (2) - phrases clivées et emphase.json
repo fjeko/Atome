@@ -1,0 +1,138 @@
+{
+  "formatVersion": 1,
+  "id": "en-c1-u02",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "C1 – Avancé",
+  "sequence": null,
+  "seance": "U02 – Mettre en relief (2) : phrases clivées et emphase",
+  "ordre": 20,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Mettre l'accent sur un élément avec les phrases clivées (It is… that, What… is, All… is, The thing is), l'emphase avec do / does / did, et les adverbes d'insistance.",
+  "notions": [
+    "Phrase clivée en It",
+    "Phrases clivées en What",
+    "Emphase"
+  ],
+  "sections": [
+    {
+      "id": "en-c1-u02-s01",
+      "titre": "It-cleft : It is … that / who",
+      "contenu": "Pour isoler l'élément important (« c'est … qui / que ») : ***It is / was*** + élément + ***that / who*** + reste.\n- *Tom broke the server.* → ***It was Tom who** broke the server.* (pas quelqu'un d'autre)\n- → ***It was the server that** Tom broke.* (pas autre chose)\n- → ***It was on Monday that** Tom broke the server.*\n\nTrès utile pour **corriger** : *It isn't the network that's slow, it's the database.*",
+      "notions": [
+        "Phrase clivée en It"
+      ]
+    },
+    {
+      "id": "en-c1-u02-s02",
+      "titre": "Wh-cleft et autres structures",
+      "contenu": "***What*** + proposition + ***is / was*** + élément mis en relief :\n- *I need a holiday.* → ***What I need is** a holiday.*\n- *He lost his job.* → ***What happened was (that)** he lost his job.*\n- action : ***What you should do is** call them back.* (do + base)\n\nVariantes :\n- ***All*** *I want is some peace.* (tout ce que je veux, c'est…)\n- ***The thing / problem / point is (that)***… : *The problem is that nobody tested it.*\n- ***The reason why*** *… is that…* · ***The place where*** *… is…*",
+      "notions": [
+        "Phrases clivées en What"
+      ]
+    },
+    {
+      "id": "en-c1-u02-s03",
+      "titre": "Emphase avec do et les adverbes",
+      "contenu": "- ***do / does / did*** à l'**affirmatif** (accentué à l'oral) pour insister ou contredire : *I **did** send the email!* (si, je l'ai bien envoyé) · *She **does** work hard.* · *Do sit down.* (invitation chaleureuse)\n- adverbes d'intensité : *absolutely, utterly, totally* (avec adjectifs « extrêmes » : *absolutely exhausted*, pas ~~very exhausted~~), *by far* (*by far the best*), *far / much / a lot* + comparatif (*far more efficient*), *the very* (*the very first time*), *whatsoever* après une négation (*no doubt whatsoever*).",
+      "notions": [
+        "Emphase"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-c1-u02-c001",
+      "section": "en-c1-u02-s01",
+      "type": "qcm",
+      "question": "« C'est en 2020 que j'ai commencé à coder » :",
+      "choix": [
+        "It was in 2020 that I started coding.",
+        "It is 2020 that I started coding.",
+        "This was in 2020 when I started coding.",
+        "It was in 2020 which I started coding."
+      ],
+      "bonneReponse": 0,
+      "explication": "It was + élément + that.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u02-c002",
+      "section": "en-c1-u02-s01",
+      "type": "question",
+      "recto": "Mets en relief « the price » : « The price worries me, not the quality. »",
+      "verso": "*It's the price that worries me, not the quality.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u02-c003",
+      "section": "en-c1-u02-s02",
+      "type": "qcm",
+      "question": "« Ce dont j'ai besoin, c'est d'un bon café » :",
+      "choix": [
+        "What I need is a good coffee.",
+        "That I need is a good coffee.",
+        "Which I need is a good coffee.",
+        "What I need it is a good coffee."
+      ],
+      "bonneReponse": 0,
+      "explication": "What + proposition + is.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u02-c004",
+      "section": "en-c1-u02-s02",
+      "type": "qcm",
+      "question": "« Tout ce que tu dois faire, c'est redémarrer » :",
+      "choix": [
+        "All you have to do is restart.",
+        "All what you have to do is restart.",
+        "Everything you have to do is to restarting.",
+        "All you have to do it's restart."
+      ],
+      "bonneReponse": 0,
+      "explication": "All (that) + proposition ; ~~all what~~.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u02-c005",
+      "section": "en-c1-u02-s02",
+      "type": "question",
+      "recto": "Réécris en mettant en relief l'action : « You should talk to your manager. »",
+      "verso": "*What you should do is talk to your manager.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u02-c006",
+      "section": "en-c1-u02-s03",
+      "type": "qcm",
+      "question": "Ton collègue dit que tu n'as pas envoyé le rapport. Tu réponds :",
+      "choix": [
+        "I did send it!",
+        "I sent did it!",
+        "I have did sent it!",
+        "I do sent it!"
+      ],
+      "bonneReponse": 0,
+      "explication": "Emphase : did + base, accentué à l'oral.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u02-c007",
+      "section": "en-c1-u02-s03",
+      "type": "qcm",
+      "question": "Laquelle est naturelle ?",
+      "choix": [
+        "I'm absolutely exhausted.",
+        "I'm very exhausted.",
+        "I'm absolutely tired a lot.",
+        "I'm much exhausted."
+      ],
+      "bonneReponse": 0,
+      "explication": "Adjectif extrême (exhausted) → absolutely, utterly.",
+      "difficulte": 3
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "formatVersion": 1,
+  "id": "en-b2-u09",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "U09 – Entraînement B2 : tout le niveau",
+  "ordre": 90,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Révision mélangée du niveau B2 : narration, hypothèses et regrets, déduction, passif avancé et causatif, futur nuancé, connecteurs, collocations et faux amis. À faire avant de repasser le palier T4.",
+  "notions": [
+    "Traduction B2",
+    "Erreurs fréquentes B2",
+    "Compréhension écrite B2",
+    "Production B2"
+  ],
+  "sections": [
+    {
+      "id": "en-b2-u09-s01",
+      "titre": "Traduire",
+      "contenu": "Traduis avant de retourner la carte.",
+      "notions": [
+        "Traduction B2"
+      ]
+    },
+    {
+      "id": "en-b2-u09-s02",
+      "titre": "Corriger les erreurs",
+      "contenu": "Une erreur par phrase.",
+      "notions": [
+        "Erreurs fréquentes B2"
+      ]
+    },
+    {
+      "id": "en-b2-u09-s03",
+      "titre": "Lire et comprendre",
+      "contenu": "> *Had the hospital's IT team installed the security patch when it was released, the ransomware attack might never have happened. Investigators believe the attackers had been scanning the network for weeks before they struck. Although no patient data is thought to have been stolen, operations had to be postponed and staff were forced to return to paper records. The director admitted that budget cuts had left the department understaffed, and pledged that an external audit would be carried out by the end of the year.*",
+      "notions": [
+        "Compréhension écrite B2"
+      ]
+    },
+    {
+      "id": "en-b2-u09-s04",
+      "titre": "Produire",
+      "contenu": "Rédige ta réponse avant de lire le modèle.",
+      "notions": [
+        "Production B2"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b2-u09-c001",
+      "section": "en-b2-u09-s01",
+      "type": "question",
+      "recto": "« Quand je suis arrivé, la réunion avait déjà commencé. »",
+      "verso": "*When I arrived, the meeting had already started.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u09-c002",
+      "section": "en-b2-u09-s01",
+      "type": "question",
+      "recto": "« Si j'avais su, je ne serais pas venu. »",
+      "verso": "*If I had known, I wouldn't have come.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u09-c003",
+      "section": "en-b2-u09-s01",
+      "type": "question",
+      "recto": "« Il a dû se tromper d'adresse. »",
+      "verso": "*He must have got the wrong address.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u09-c004",
+      "section": "en-b2-u09-s01",
+      "type": "question",
+      "recto": "« Je vais faire réparer mon ordinateur. »",
+      "verso": "*I'm going to have my computer repaired.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u09-c005",
+      "section": "en-b2-u09-s01",
+      "type": "question",
+      "recto": "« D'ici 2030, nous aurons migré tous nos serveurs. »",
+      "verso": "*By 2030, we will have migrated all our servers.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u09-c006",
+      "section": "en-b2-u09-s01",
+      "type": "question",
+      "recto": "« J'aurais aimé partir plus tôt. »",
+      "verso": "*I wish I had left earlier.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u09-c007",
+      "section": "en-b2-u09-s01",
+      "type": "question",
+      "recto": "« Le vol a été annulé à cause de la grève. »",
+      "verso": "*The flight was cancelled due to / because of the strike.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u09-c008",
+      "section": "en-b2-u09-s01",
+      "type": "question",
+      "recto": "« Il faut que je fasse des efforts. »",
+      "verso": "*I need to make an effort.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u09-c009",
+      "section": "en-b2-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « If I would have known, I would have helped. »",
+      "verso": "*If I **had known**, I would have helped.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u09-c010",
+      "section": "en-b2-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « I wish I can speak Italian. »",
+      "verso": "*I wish I **could** speak Italian.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u09-c011",
+      "section": "en-b2-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « He mustn't be at home, his car isn't there. »",
+      "verso": "*He **can't** be at home…* (déduction négative)",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u09-c012",
+      "section": "en-b2-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « We discussed about the budget. »",
+      "verso": "*We discussed the budget.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u09-c013",
+      "section": "en-b2-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « I'm doing a stage in a bank. »",
+      "verso": "*I'm doing an **internship** / a work placement in a bank.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u09-c014",
+      "section": "en-b2-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « Actually, I'm working on a new project » (au sens « en ce moment »).",
+      "verso": "*Currently / At the moment, I'm working…* (*actually* = en fait)",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u09-c015",
+      "section": "en-b2-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « She made a lot of progresses. »",
+      "verso": "*She made a lot of **progress**.* (indénombrable)",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u09-c016",
+      "section": "en-b2-u09-s03",
+      "type": "qcm",
+      "question": "Selon le texte, qu'est-ce qui aurait pu éviter l'attaque ?",
+      "choix": [
+        "L'installation du correctif à sa sortie",
+        "Un budget plus élevé pour les patients",
+        "Le retour au papier",
+        "Un audit externe"
+      ],
+      "bonneReponse": 0,
+      "explication": "Had the IT team installed the patch… the attack might never have happened.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u09-c017",
+      "section": "en-b2-u09-s03",
+      "type": "qcm",
+      "question": "Que pensent les enquêteurs au sujet des pirates ?",
+      "choix": [
+        "Ils scannaient le réseau depuis des semaines.",
+        "Ils ont volé des données de patients.",
+        "Ils ont agi sans préparation.",
+        "Ils travaillaient à l'hôpital."
+      ],
+      "bonneReponse": 0,
+      "explication": "had been scanning the network for weeks",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u09-c018",
+      "section": "en-b2-u09-s03",
+      "type": "qcm",
+      "question": "Que promet le directeur ?",
+      "choix": [
+        "Un audit externe d'ici la fin de l'année",
+        "De recruter immédiatement",
+        "De payer la rançon",
+        "D'abandonner le numérique"
+      ],
+      "bonneReponse": 0,
+      "explication": "pledged that an external audit would be carried out",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u09-c019",
+      "section": "en-b2-u09-s03",
+      "type": "question",
+      "recto": "Explique la structure de « Had the IT team installed the patch, the attack might never have happened ».",
+      "verso": "**3e conditionnel avec inversion** (sans *if*) : *If the IT team had installed…, the attack might never have happened.* — hypothèse passée non réalisée.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u09-c020",
+      "section": "en-b2-u09-s04",
+      "type": "exercice",
+      "enonce": "Rédige un court rapport d'incident (5 phrases) : panne réseau d'une demi-journée, cause, conséquence, mesures.",
+      "etapes": [
+        "Faits au prétérit et prétérit continu.",
+        "Cause au past perfect.",
+        "Conséquence avec due to / as a result.",
+        "Regret ou hypothèse (If … had …).",
+        "Mesures futures (will be / will have)."
+      ],
+      "reponse": "*On Tuesday morning, while users were connecting to the intranet, the main switch failed. A firmware update had been installed the night before without being tested. As a result, the network was down for four hours. If the update had been tested first, the outage would have been avoided. From now on, all updates will be tested on a lab environment.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u09-c021",
+      "section": "en-b2-u09-s04",
+      "type": "exercice",
+      "enonce": "Écris un paragraphe argumenté (5 phrases) : « L'IA va-t-elle remplacer les techniciens informatiques ? »",
+      "etapes": [
+        "Concession : Although…",
+        "Argument + exemple.",
+        "Déduction ou probabilité : … is likely to / might…",
+        "Cause / but : due to / in order to…",
+        "Conclusion nuancée."
+      ],
+      "reponse": "*Although AI can already solve simple IT problems, it is unlikely to replace technicians completely. For instance, chatbots can reset passwords, but they cannot replace a faulty cable. Moreover, complex incidents require human judgement in order to understand the context. However, the job is bound to change. On balance, technicians who learn to work with AI will be in high demand.*",
+      "difficulte": 3
+    }
+  ]
+}

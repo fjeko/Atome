@@ -1,0 +1,162 @@
+{
+  "formatVersion": 1,
+  "id": "en-b1-u08",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "U08 – Écrire : e-mails formels et informels, connecteurs et opinion",
+  "ordre": 80,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Rédiger un e-mail formel ou informel (ouverture, formules, clôture), structurer un texte avec des connecteurs (however, although, therefore…), et exprimer, nuancer et justifier son opinion.",
+  "notions": [
+    "E-mail formel",
+    "E-mail informel",
+    "Connecteurs logiques",
+    "Exprimer son opinion"
+  ],
+  "sections": [
+    {
+      "id": "en-b1-u08-s01",
+      "titre": "E-mail formel et informel",
+      "contenu": "| | Formel | Informel |\n| --- | --- | --- |\n| Ouverture | *Dear Mr Smith, / Dear Ms Jones, / Dear Sir or Madam,* | *Hi Tom, / Hello Sarah,* |\n| Raison | *I am writing to enquire about / to apply for …* | *Just a quick message to …* |\n| Demande | *Could you please send me …? / I would be grateful if you could …* | *Can you send me …?* |\n| Pièce jointe | *Please find attached …* | *I've attached …* |\n| Clôture | *I look forward to hearing from you.* | *Speak soon! / See you!* |\n| Signature | *Kind regards, / Yours sincerely,* (nom connu) / *Yours faithfully,* (Dear Sir or Madam) | *Cheers, / Best, / Love,* |\n\nFormel : **pas de contractions** (*I am* et non *I'm*), phrases complètes, ton neutre. *Ms* = madame sans préciser la situation familiale (à privilégier).",
+      "notions": [
+        "E-mail formel",
+        "E-mail informel"
+      ]
+    },
+    {
+      "id": "en-b1-u08-s02",
+      "titre": "Les connecteurs logiques",
+      "contenu": "| Fonction | Connecteurs |\n| --- | --- |\n| Ajouter | *and, also, moreover, furthermore, in addition, what's more* |\n| Opposer | *but, however, although / even though, whereas, on the other hand, despite / in spite of* + nom/-ing |\n| Cause | *because, as, since, because of* + nom, *due to* + nom |\n| Conséquence | *so, therefore, as a result, that's why* |\n| Exemple | *for example, for instance, such as* |\n| Conclure | *in conclusion, to sum up, overall* |\n\nPièges :\n- ***however*** en début de phrase suivi d'une **virgule** : *It's cheap. However, it's slow.* ;\n- ***although*** + proposition : *Although it's cheap, it's slow.* ; ***despite*** + nom / -ing : *Despite **the price** / Despite **being** cheap…* (~~despite of~~) ;\n- ***actually*** = en fait (pas « actuellement » = *currently*).",
+      "notions": [
+        "Connecteurs logiques"
+      ]
+    },
+    {
+      "id": "en-b1-u08-s03",
+      "titre": "Exprimer son opinion",
+      "contenu": "- **Donner son avis** : *In my opinion, … / I think / believe that … / Personally, … / As far as I'm concerned, …*\n- **Nuancer** : *I partly agree. / It depends on … / To some extent, … / I'm not sure that …*\n- **Être d'accord** : *I agree with you. / That's a good point. / Exactly.* — ***I agree*** et non ~~I am agree~~.\n- **Désaccord poli** : *I see your point, but … / I'm afraid I don't agree. / I'm not so sure.*\n- **Justifier** : *The main reason is that … / For example, … / This is why …*\n\nStructure d'un court texte argumentatif : introduction (sujet + avis) → 2 arguments avec exemples → contre-argument → conclusion.",
+      "notions": [
+        "Exprimer son opinion"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b1-u08-c001",
+      "section": "en-b1-u08-s01",
+      "type": "qcm",
+      "question": "Comment commencer un e-mail formel à une entreprise dont tu ne connais pas l'interlocuteur ?",
+      "choix": [
+        "Dear Sir or Madam,",
+        "Hi guys,",
+        "Dear Company,",
+        "Hello you,"
+      ],
+      "bonneReponse": 0,
+      "explication": "Dear Sir or Madam → clôture Yours faithfully.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u08-c002",
+      "section": "en-b1-u08-s01",
+      "type": "qcm",
+      "question": "Formule formelle pour une pièce jointe :",
+      "choix": [
+        "Please find attached my CV.",
+        "I join you my CV.",
+        "Here is attached my CV for you.",
+        "My CV is joined."
+      ],
+      "bonneReponse": 0,
+      "explication": "Faux ami : joindre (un fichier) = attach.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u08-c003",
+      "section": "en-b1-u08-s01",
+      "type": "question",
+      "recto": "Comment demander poliment quelque chose dans un e-mail formel ?",
+      "verso": "*I would be grateful if you could* … / *Could you please* … — ex. *I would be grateful if you could send me the invoice.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u08-c004",
+      "section": "en-b1-u08-s02",
+      "type": "qcm",
+      "question": "Complète : ___ the rain, we went for a walk.",
+      "choix": [
+        "Despite",
+        "Although",
+        "However",
+        "Despite of"
+      ],
+      "bonneReponse": 0,
+      "explication": "despite + nom (sans of).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u08-c005",
+      "section": "en-b1-u08-s02",
+      "type": "qcm",
+      "question": "« Actually » signifie :",
+      "choix": [
+        "en fait",
+        "actuellement",
+        "activement",
+        "en ce moment"
+      ],
+      "bonneReponse": 0,
+      "explication": "Faux ami : actuellement = currently / at the moment.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u08-c006",
+      "section": "en-b1-u08-s02",
+      "type": "qcm",
+      "question": "Complète : The software is powerful. ___, it is very expensive.",
+      "choix": [
+        "However",
+        "Although",
+        "Despite",
+        "Because"
+      ],
+      "bonneReponse": 0,
+      "explication": "However, en début de phrase, oppose deux phrases.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u08-c007",
+      "section": "en-b1-u08-s03",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "I agree with you.",
+        "I am agree with you.",
+        "I'm agree with you.",
+        "I agree you."
+      ],
+      "bonneReponse": 0,
+      "explication": "agree est un verbe : I agree (with).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u08-c008",
+      "section": "en-b1-u08-s03",
+      "type": "exercice",
+      "enonce": "Écris un paragraphe (5 phrases) : « Le télétravail est-il une bonne idée ? » avec un avis, deux arguments, un contre-argument et une conclusion.",
+      "etapes": [
+        "Avis : In my opinion, …",
+        "Argument 1 + exemple : First, … For instance, …",
+        "Argument 2 : Moreover, …",
+        "Contre-argument : However, … / Although …",
+        "Conclusion : To sum up, …"
+      ],
+      "reponse": "Exemple : *In my opinion, working from home is a good idea. First, it saves time: for instance, I don't spend two hours a day on the train. Moreover, it is easier to concentrate. However, it can make people feel isolated. To sum up, a mix of home and office work seems the best solution.*",
+      "difficulte": 3
+    }
+  ]
+}

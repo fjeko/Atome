@@ -1,0 +1,185 @@
+{
+  "formatVersion": 1,
+  "id": "en-a1-vocab",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "Vocabulaire A1 – Couleurs, corps, vêtements, maison et adjectifs",
+  "ordre": 84,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Le vocabulaire essentiel du niveau A1 : couleurs, parties du corps, vêtements, pièces et objets de la maison, et les adjectifs de base par paires de contraires.",
+  "notions": [
+    "Couleurs et vêtements",
+    "Le corps",
+    "La maison",
+    "Adjectifs contraires"
+  ],
+  "sections": [
+    {
+      "id": "en-a1-vocab-s01",
+      "titre": "Couleurs et vêtements",
+      "contenu": "**Couleurs** : red, blue, green, yellow, black, white, grey (US gray), brown, orange, pink, purple. *Light blue* (bleu clair), *dark green* (vert foncé).\n\nL'adjectif se place **avant** le nom et ne s'accorde jamais : *a red car, two red cars*.\n\n**Vêtements** : a shirt (chemise), a T-shirt, a jumper / sweater (pull), a jacket (veste), a coat (manteau), a dress (robe), a skirt (jupe), trousers (UK) / pants (US) (pantalon), jeans, shorts, shoes, trainers (UK) / sneakers (US) (baskets), socks, a hat, a cap.\n\nToujours au **pluriel** : *trousers, jeans, shorts, glasses* (lunettes) → *my jeans **are** blue* ; *a pair of jeans*.\n\n*What are you wearing?* — *I'm wearing a black jumper and blue jeans.*",
+      "notions": [
+        "Couleurs et vêtements"
+      ]
+    },
+    {
+      "id": "en-a1-vocab-s02",
+      "titre": "Le corps",
+      "contenu": "head (tête), hair (cheveux, **indénombrable** : *her hair **is** long*), face, eye(s), ear(s), nose, mouth, tooth / **teeth** (dent·s), neck (cou), shoulder (épaule), arm, hand, finger (doigt), back (dos), stomach (ventre), leg (jambe), knee (genou, k muet), foot / **feet** (pied·s), toe (orteil).\n\n**Avoir mal** : *I've got a headache / a stomachache / a toothache / a backache.* ou *My leg hurts.* (= j'ai mal à la jambe).\n\nAvec les parties du corps, on utilise le **possessif**, pas l'article : *I washed **my** hands* (et non *the hands*).",
+      "notions": [
+        "Le corps"
+      ]
+    },
+    {
+      "id": "en-a1-vocab-s03",
+      "titre": "La maison",
+      "contenu": "**Pièces** : the kitchen (cuisine), the living room / lounge (salon), the bedroom (chambre), the bathroom (salle de bain), the toilet, the hall (entrée), the garden (jardin), upstairs / downstairs (à l'étage / en bas).\n\n**Objets** : a bed, a table, a chair, a sofa, a wardrobe (armoire), a shelf (étagère), a lamp, a fridge (frigo), an oven (four), a cooker / stove (cuisinière), a sink (évier), a shower, a bath (baignoire), a mirror, a window, a door, the stairs (escalier).\n\n*There's a sofa in the living room. My bedroom is upstairs.*",
+      "notions": [
+        "La maison"
+      ]
+    },
+    {
+      "id": "en-a1-vocab-s04",
+      "titre": "Adjectifs de base",
+      "contenu": "| | | | |\n| --- | --- | --- | --- |\n| big / small | tall / short (personnes) | long / short | old / new (objets) |\n| old / young (personnes) | hot / cold | good / bad | easy / difficult |\n| cheap / expensive | fast / slow | happy / sad | beautiful / ugly |\n| clean / dirty | full / empty | early / late | busy / free |\n\n**Attention** : *tall* pour une personne ou un immeuble, *high* pour une montagne ou un mur ; *old* = vieux (objet ou personne), *young* = jeune (personne).\n\nPour renforcer : **very** (*very cold*), **really**, **quite** (assez), **too** (trop : *too expensive*).",
+      "notions": [
+        "Adjectifs contraires"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a1-vocab-c001",
+      "section": "en-a1-vocab-s01",
+      "type": "question",
+      "recto": "Comment dit-on « un pantalon » en anglais britannique et américain ?",
+      "verso": "UK : **trousers** ; US : **pants** (toujours au pluriel : *my trousers are…*, *a pair of trousers*).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-vocab-c002",
+      "section": "en-a1-vocab-s01",
+      "type": "qcm",
+      "question": "Quelle phrase est correcte ?",
+      "choix": [
+        "My new jeans are black.",
+        "My new jean is black.",
+        "My news jeans is black.",
+        "My jeans new are blacks."
+      ],
+      "bonneReponse": 0,
+      "explication": "*jeans* est pluriel ; l'adjectif est avant le nom et invariable.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-vocab-c003",
+      "section": "en-a1-vocab-s01",
+      "type": "question",
+      "recto": "🎙️ Décris à voix haute ce que tu portes aujourd'hui.",
+      "verso": "*Today I'm wearing a grey T-shirt, a black jacket, blue jeans and white trainers.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-vocab-c004",
+      "section": "en-a1-vocab-s02",
+      "type": "question",
+      "recto": "Quels sont les pluriels irréguliers de *tooth* et *foot* ?",
+      "verso": "**teeth** et **feet**.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-vocab-c005",
+      "section": "en-a1-vocab-s02",
+      "type": "question",
+      "recto": "Comment dire « j'ai mal à la tête » et « j'ai mal au genou » ?",
+      "verso": "*I've got a headache.* et *My knee hurts.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-vocab-c006",
+      "section": "en-a1-vocab-s02",
+      "type": "qcm",
+      "question": "Traduire : « Elle a les cheveux longs. »",
+      "choix": [
+        "She has long hair.",
+        "She has long hairs.",
+        "She has the hairs long.",
+        "She has the long hair."
+      ],
+      "bonneReponse": 0,
+      "explication": "*hair* (chevelure) est indénombrable : pas de -s, pas d'article.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-vocab-c007",
+      "section": "en-a1-vocab-s03",
+      "type": "question",
+      "recto": "Comment dit-on *armoire*, *étagère* et *évier* ?",
+      "verso": "**wardrobe**, **shelf** (pluriel *shelves*), **sink**.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-vocab-c008",
+      "section": "en-a1-vocab-s03",
+      "type": "qcm",
+      "question": "« Ma chambre est à l'étage » :",
+      "choix": [
+        "My bedroom is upstairs.",
+        "My bedroom is on the stage.",
+        "My chamber is at the floor.",
+        "My room is in the upper."
+      ],
+      "bonneReponse": 0,
+      "explication": "*upstairs* = à l'étage ; *chamber* est un faux ami (sens vieilli ou institutionnel).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-vocab-c009",
+      "section": "en-a1-vocab-s03",
+      "type": "exercice",
+      "enonce": "🎙️ Décris ton logement en 5 phrases (pièces, objets, ce que tu aimes).",
+      "etapes": [
+        "There is / There are + pièces.",
+        "Prépositions : in, next to, upstairs.",
+        "Termine par ta pièce préférée et pourquoi."
+      ],
+      "reponse": "*I live in a small flat. There's a kitchen, a living room, a bedroom and a bathroom. In my bedroom there's a bed, a desk and a big wardrobe. My computer is on the desk next to the window. My favourite room is my bedroom because it's quiet.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-vocab-c010",
+      "section": "en-a1-vocab-s04",
+      "type": "question",
+      "recto": "Quels sont les contraires de *cheap*, *early* et *busy* ?",
+      "verso": "**expensive**, **late**, **free**.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-vocab-c011",
+      "section": "en-a1-vocab-s04",
+      "type": "qcm",
+      "question": "« Mon frère est grand » :",
+      "choix": [
+        "My brother is tall.",
+        "My brother is high.",
+        "My brother is great.",
+        "My brother is long."
+      ],
+      "bonneReponse": 0,
+      "explication": "*tall* pour la taille d'une personne ; *great* = génial.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-vocab-c012",
+      "section": "en-a1-vocab-s04",
+      "type": "question",
+      "recto": "Quelle différence entre *very expensive* et *too expensive* ?",
+      "verso": "*very* = très ; *too* = **trop** (au point de poser problème : *It's too expensive, I can't buy it*).",
+      "difficulte": 1
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "formatVersion": 1,
+  "id": "en-a2-u06",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A2 – Élémentaire",
+  "sequence": null,
+  "seance": "U06 – Obligation, interdiction et conseil : must, have to, should",
+  "ordre": 60,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Exprimer l'obligation (must, have to), l'absence d'obligation (don't have to), l'interdiction (mustn't, can't) et le conseil (should, shouldn't), et les utiliser pour des règles au travail ou des recommandations.",
+  "notions": [
+    "Must",
+    "Have to",
+    "Interdiction (mustn't)",
+    "Absence d'obligation (don't have to)",
+    "Should"
+  ],
+  "sections": [
+    {
+      "id": "en-a2-u06-s01",
+      "titre": "Must et have to",
+      "contenu": "Les deux expriment une **obligation** :\n- ***must*** : obligation venant de **celui qui parle** (règle personnelle, forte recommandation) : *I must call my mum.* *You must see this film!* ;\n- ***have to*** : obligation **extérieure** (règle, loi, horaires) : *I have to wear a uniform at work.* *She has to get up at 5.*\n\n*have to* se conjugue (*has to, had to, will have to*) : *must* n'a pas de passé → *Yesterday I **had to** work late.*\nQuestion : ***Do** you **have to** work on Saturdays?*",
+      "notions": [
+        "Must",
+        "Have to"
+      ]
+    },
+    {
+      "id": "en-a2-u06-s02",
+      "titre": "Mustn't ou don't have to ?",
+      "contenu": "**Piège majeur** : les deux négations n'ont **pas** le même sens.\n| Forme | Sens | Exemple |\n| --- | --- | --- |\n| ***mustn't*** | **interdiction** (« il ne faut pas ») | *You mustn't smoke here.* |\n| ***don't have to*** | **pas obligatoire** (« ce n'est pas la peine ») | *You don't have to come. It's optional.* |\n\n*can't* exprime aussi une interdiction : *You can't park here.*\n\nExemple : *At my school we **don't have to** wear a uniform, but we **mustn't** use our phones in class.*",
+      "notions": [
+        "Interdiction (mustn't)",
+        "Absence d'obligation (don't have to)"
+      ]
+    },
+    {
+      "id": "en-a2-u06-s03",
+      "titre": "Should pour conseiller",
+      "contenu": "***should*** + base = conseil, recommandation (« tu devrais ») :\n- *You **should** see a doctor.* · *You **shouldn't** work so late.*\n- question : ***Should** I call her?* (« est-ce que je devrais… ? »)\n- avec *I think* : *I think you should …* ; *I don't think you should …* (plus naturel que *I think you shouldn't*).\n\nAutres formules de conseil : *If I were you, I'd …* (à ta place, je…), *Why don't you …?*",
+      "notions": [
+        "Should"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a2-u06-c001",
+      "section": "en-a2-u06-s01",
+      "type": "qcm",
+      "question": "Complète : Yesterday I ___ wait two hours at the doctor's.",
+      "choix": [
+        "had to",
+        "must",
+        "musted",
+        "have to"
+      ],
+      "bonneReponse": 0,
+      "explication": "Passé de l'obligation → had to.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u06-c002",
+      "section": "en-a2-u06-s01",
+      "type": "qcm",
+      "question": "Complète : ___ she have to work tomorrow?",
+      "choix": [
+        "Does",
+        "Has",
+        "Must",
+        "Is"
+      ],
+      "bonneReponse": 0,
+      "explication": "have to se comporte comme un verbe normal : Does …?",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u06-c003",
+      "section": "en-a2-u06-s01",
+      "type": "question",
+      "recto": "Traduis : « Il faut que je finisse ce rapport ce soir. »",
+      "verso": "*I **must** / **have to** finish this report tonight.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u06-c004",
+      "section": "en-a2-u06-s02",
+      "type": "qcm",
+      "question": "La réunion est facultative. Tu dis à un collègue :",
+      "choix": [
+        "You don't have to come.",
+        "You mustn't come.",
+        "You haven't come.",
+        "You must not to come."
+      ],
+      "bonneReponse": 0,
+      "explication": "Facultatif = don't have to ; mustn't = interdit.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u06-c005",
+      "section": "en-a2-u06-s02",
+      "type": "qcm",
+      "question": "Sur un panneau dans un laboratoire : « Il est interdit de manger ici. »",
+      "choix": [
+        "You mustn't eat here.",
+        "You don't have to eat here.",
+        "You haven't to eat here.",
+        "You needn't eat here."
+      ],
+      "bonneReponse": 0,
+      "explication": "Interdiction → mustn't.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u06-c006",
+      "section": "en-a2-u06-s02",
+      "type": "question",
+      "recto": "Quelle différence entre « You mustn't tell him » et « You don't have to tell him » ?",
+      "verso": "*mustn't* : il est **interdit** de lui dire ; *don't have to* : tu **n'es pas obligé** de lui dire (mais tu peux).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u06-c007",
+      "section": "en-a2-u06-s03",
+      "type": "qcm",
+      "question": "Ton ami a mal à la tête depuis trois jours. Tu lui conseilles :",
+      "choix": [
+        "You should see a doctor.",
+        "You must to see a doctor.",
+        "You should to see a doctor.",
+        "You should seeing a doctor."
+      ],
+      "bonneReponse": 0,
+      "explication": "should + base, sans to.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u06-c008",
+      "section": "en-a2-u06-s03",
+      "type": "exercice",
+      "enonce": "Un nouvel employé arrive dans ton entreprise. Donne-lui 4 consignes : une obligation, une interdiction, une chose facultative, un conseil.",
+      "etapes": [
+        "Obligation : You have to …",
+        "Interdiction : You mustn't / can't …",
+        "Facultatif : You don't have to …",
+        "Conseil : You should …"
+      ],
+      "reponse": "Exemple : *You have to badge in every morning. You mustn't share your password. You don't have to wear a tie. You should ask Paul if you have a problem with the network.*",
+      "difficulte": 2
+    }
+  ]
+}

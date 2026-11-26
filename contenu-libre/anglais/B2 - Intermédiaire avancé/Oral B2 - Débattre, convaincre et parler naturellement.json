@@ -1,0 +1,170 @@
+{
+  "formatVersion": 1,
+  "id": "en-b2-oral",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "Oral B2 – Débattre, convaincre et parler naturellement",
+  "ordre": 86,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Expression orale de niveau B2 : structurer une argumentation orale, débattre et répondre à une objection, parler de façon naturelle (fillers, hedging, phrasal verbs), et l'exposé type examen avec questions.",
+  "notions": [
+    "Argumentation orale",
+    "Débat et objections",
+    "Naturel à l'oral",
+    "Exposé et entretien d'examen"
+  ],
+  "sections": [
+    {
+      "id": "en-b2-oral-s01",
+      "titre": "Argumenter à l'oral",
+      "contenu": "Une argumentation orale doit être **plus explicite** qu'un écrit : l'auditeur ne peut pas revenir en arrière.\n\n**Structure** : position → argument 1 + exemple → argument 2 + exemple → concession + réfutation → conclusion.\n\n**Signposting** (balises orales) : *The main reason is… / Another thing to consider is… / What's more, … / Having said that, … / That brings me to… / The bottom line is…*\n\n**Concession + réfutation** : *Admittedly, … However, … / It's true that…, but… / While I accept that…, I still believe…*\n\n**Exemples et preuves** : *Take… for example. / A good case in point is… / Studies have shown that…*",
+      "notions": [
+        "Argumentation orale"
+      ]
+    },
+    {
+      "id": "en-b2-oral-s02",
+      "titre": "Débattre et répondre",
+      "contenu": "**Interrompre / reprendre la parole** : *If I could just come in here… / Sorry, can I just finish my point? / Going back to what you said about…*\n\n**Répondre à une objection** : *I take your point, but… / That's a fair point; however… / I'm not sure that's entirely true, because… / That may be the case, but it doesn't change the fact that…*\n\n**Demander une précision / pousser** : *What makes you say that? / Do you have any evidence for that? / Isn't that a bit of a generalisation?*\n\n**Concéder et faire avancer** : *We can agree on… at least. / Maybe the real question is…*\n\n> **A** : AI is going to replace most IT jobs.\n> **B** : I take your point, but isn't that a bit of a generalisation? AI tools still need people to configure, secure and maintain them.\n> **A** : For now, maybe.\n> **B** : That may be the case, but it doesn't change the fact that new jobs are appearing at the same time. Maybe the real question is how we train people for them.\n\n🎧 **Écoute** : copie le dialogue dans Edge → *Lire à voix haute* (voix anglaise, vitesse 0,75 puis 1). 🎙️ **Parle** : lis-le en shadowing, puis joue chaque rôle en t'enregistrant.",
+      "notions": [
+        "Débat et objections"
+      ]
+    },
+    {
+      "id": "en-b2-oral-s03",
+      "titre": "Parler naturellement",
+      "contenu": "Ce qui distingue un B2 « scolaire » d'un B2 naturel :\n\n**Hedging** (adoucir) : *I'd say… / I tend to think… / It seems to me… / kind of / a bit / sort of / probably / I guess*\n\n**Fillers naturels** : *you know, I mean, like* (avec modération), *actually, basically, to be honest, anyway*\n\n**Phrasal verbs** plutôt que les mots latins : *find out* (discover), *come up with* (invent), *put off* (postpone), *figure out* (understand), *get on with* (continue / be friends), *look into* (investigate).\n\n**Questions tags et réponses courtes** : *It's expensive, isn't it? – It is, yeah.* / *– Have you finished? – Not yet.*\n\n**Réactions** : *Fair enough. / That makes sense. / Tell me about it! / You're kidding!*",
+      "notions": [
+        "Naturel à l'oral"
+      ]
+    },
+    {
+      "id": "en-b2-oral-s04",
+      "titre": "L'exposé type examen",
+      "contenu": "Format fréquent (BTS, certifications) : **présentation de 5 à 10 minutes** à partir de documents ou d'un sujet, puis **questions**.\n\n1. **Introduction** : *The document I've chosen deals with… / The main issue raised is…*\n2. **Présentation des documents** : nature, source, date, idée principale (*It's an article from… published in…*).\n3. **Analyse** : *The author points out that… / What strikes me is… / This is linked to…*\n4. **Avis personnel** : *As far as I'm concerned, … / From my own experience, …*\n5. **Conclusion** : *To conclude, … / This raises the question of whether…*\n\n**Pendant les questions** : reformule si besoin (*If I understand your question correctly, …*), gagne du temps (*That's an interesting question…*), et si tu ne sais pas : *I'm not sure, but I'd guess that…*",
+      "notions": [
+        "Exposé et entretien d'examen"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b2-oral-c001",
+      "section": "en-b2-oral-s01",
+      "type": "question",
+      "recto": "À quoi sert le *signposting* ?",
+      "verso": "À **baliser** le discours pour l'auditeur : *The main reason is… / Another thing to consider… / That brings me to… / The bottom line is…*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-oral-c002",
+      "section": "en-b2-oral-s01",
+      "type": "question",
+      "recto": "Comment faire une concession suivie d'une réfutation ?",
+      "verso": "*Admittedly, …, however, … / It's true that…, but… / While I accept that…, I still believe…*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-oral-c003",
+      "section": "en-b2-oral-s01",
+      "type": "qcm",
+      "question": "Quelle formule introduit le mieux un exemple pertinent à l'oral ?",
+      "choix": [
+        "A good case in point is…",
+        "For example of this is…",
+        "As an exemple, we can say…",
+        "Like for instance as…"
+      ],
+      "bonneReponse": 0,
+      "explication": "*A good case in point is…* / *Take… for example.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-oral-c004",
+      "section": "en-b2-oral-s02",
+      "type": "question",
+      "recto": "Comment répondre à une objection en restant poli ?",
+      "verso": "*I take your point, but… / That's a fair point; however… / That may be the case, but it doesn't change the fact that…*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-oral-c005",
+      "section": "en-b2-oral-s02",
+      "type": "question",
+      "recto": "Comment reprendre la parole quand on t'interrompt ?",
+      "verso": "*Sorry, can I just finish my point?*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-oral-c006",
+      "section": "en-b2-oral-s02",
+      "type": "exercice",
+      "enonce": "🎙️ Débat seul (2 min) : *Should social networks be banned for under-15s?* Défends une position, puis réponds à l'objection la plus forte.",
+      "etapes": [
+        "Position + 2 arguments avec signposting.",
+        "Formule l'objection : Some people would argue that…",
+        "Réfute : I take the point, but…",
+        "Conclusion (The bottom line is…)."
+      ],
+      "reponse": "Modèle d'articulation : *I'd argue that… The main reason is… What's more, … Some people would argue that a ban is impossible to enforce. I take the point, but… The bottom line is…*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-oral-c007",
+      "section": "en-b2-oral-s03",
+      "type": "question",
+      "recto": "Donne un équivalent oral naturel de *investigate*, *postpone* et *discover*.",
+      "verso": "*look into*, *put off*, *find out*.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-oral-c008",
+      "section": "en-b2-oral-s03",
+      "type": "qcm",
+      "question": "Laquelle sonne le plus naturelle à l'oral ?",
+      "choix": [
+        "To be honest, I'd say it's kind of expensive.",
+        "Honestly, I affirm it is expensive.",
+        "In all sincerity, the price is elevated.",
+        "I declare that it costs very much money."
+      ],
+      "bonneReponse": 0,
+      "explication": "Hedging (*I'd say, kind of*) + filler (*to be honest*) : registre oral naturel.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-oral-c009",
+      "section": "en-b2-oral-s03",
+      "type": "question",
+      "recto": "Que veut dire *Tell me about it!* en réaction ?",
+      "verso": "« À qui le dis-tu ! » : on partage la même expérience (et non « raconte-moi »).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-oral-c010",
+      "section": "en-b2-oral-s04",
+      "type": "question",
+      "recto": "Comment introduire le document dans un exposé ?",
+      "verso": "*The document I've chosen deals with… It's an article from…, published in… The main issue raised is…*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-oral-c011",
+      "section": "en-b2-oral-s04",
+      "type": "exercice",
+      "enonce": "🎙️ Exposé de 3 minutes : choisis un article tech récent en anglais, présente-le et donne ton avis.",
+      "etapes": [
+        "Nature, source, date, sujet.",
+        "3 idées principales avec The author points out that…",
+        "Ton avis, avec un exemple personnel.",
+        "Une question d'ouverture (This raises the question of…)."
+      ],
+      "reponse": "Respecte la structure annoncée, parle à partir de mots-clés (pas de texte rédigé), et chronomètre-toi : 3 minutes à l'oral ≈ 350 à 400 mots.",
+      "difficulte": 3
+    }
+  ]
+}

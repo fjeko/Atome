@@ -1,0 +1,145 @@
+{
+  "formatVersion": 1,
+  "id": "en-b1-u06",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "U06 – Habitudes passées et adaptation : used to, would, be used to",
+  "ordre": 60,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Parler de ce qu'on faisait avant (used to, would) et de ce qui a changé, distinguer used to + base, be used to + -ing et get used to + -ing.",
+  "notions": [
+    "Used to",
+    "Would (habitudes passées)",
+    "Be used to",
+    "Get used to"
+  ],
+  "sections": [
+    {
+      "id": "en-b1-u06-s01",
+      "titre": "Used to",
+      "contenu": "***used to*** + base = une **habitude** ou un **état** passé **qui n'existe plus** :\n- *I **used to** play the piano.* (je jouais du piano, je n'en joue plus)\n- *There **used to** be a cinema here.*\n- négatif : *I **didn't use to** like vegetables.* — question : ***Did** you **use to** live here?* (sans d final après did)\n\nLe prétérit simple marche aussi, mais *used to* insiste sur le **changement**.\nPour le **présent**, *used to* n'existe pas : « d'habitude » = ***usually*** : *I usually walk to work.*",
+      "notions": [
+        "Used to"
+      ]
+    },
+    {
+      "id": "en-b1-u06-s02",
+      "titre": "Would pour les habitudes passées",
+      "contenu": "***would*** + base peut aussi décrire une **action répétée** dans le passé, souvent dans un récit nostalgique :\n*When I was a child, my grandfather **would** take me fishing every Sunday.*\n\nMais *would* **ne s'emploie pas pour un état** (be, have, live, like…) : *I **used to** live in Spain* (pas ~~I would live~~).",
+      "notions": [
+        "Would (habitudes passées)"
+      ]
+    },
+    {
+      "id": "en-b1-u06-s03",
+      "titre": "Be used to et get used to",
+      "contenu": "| Structure | Sens | Exemple |\n| --- | --- | --- |\n| ***used to*** + base | habitude **passée** | *I used to work nights.* |\n| ***be used to*** + nom / **-ing** | **être habitué** à | *I'm used to working nights.* (ça ne me gêne plus) |\n| ***get used to*** + nom / **-ing** | **s'habituer** à | *I'm getting used to driving on the left.* |\n\nDans *be / get used to*, ***to* est une préposition** : elle est suivie d'un nom ou d'un **-ing**, jamais de la base verbale : ~~*I'm used to work*~~ → *I'm used to work**ing***.",
+      "notions": [
+        "Be used to",
+        "Get used to"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b1-u06-c001",
+      "section": "en-b1-u06-s01",
+      "type": "qcm",
+      "question": "« Avant, je fumais » :",
+      "choix": [
+        "I used to smoke.",
+        "I use to smoke.",
+        "I was used to smoke.",
+        "I usually smoked now."
+      ],
+      "bonneReponse": 0,
+      "explication": "Habitude passée terminée → used to + base.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u06-c002",
+      "section": "en-b1-u06-s01",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "Did you use to have long hair?",
+        "Did you used to have long hair?",
+        "Used you to have long hair?",
+        "Were you use to have long hair?"
+      ],
+      "bonneReponse": 0,
+      "explication": "Après did → use (sans d).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u06-c003",
+      "section": "en-b1-u06-s01",
+      "type": "question",
+      "recto": "Traduis : « D'habitude, je prends le train. »",
+      "verso": "*I **usually** take the train.* (*used to* ne s'emploie pas au présent)",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u06-c004",
+      "section": "en-b1-u06-s02",
+      "type": "qcm",
+      "question": "Laquelle est incorrecte ?",
+      "choix": [
+        "I would have a dog when I was young.",
+        "I used to have a dog when I was young.",
+        "We would play outside every evening.",
+        "We used to play outside every evening."
+      ],
+      "bonneReponse": 0,
+      "explication": "would ne s'utilise pas pour un état comme have (posséder).",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b1-u06-c005",
+      "section": "en-b1-u06-s03",
+      "type": "qcm",
+      "question": "Complète : I've lived in London for a year, so I'm used to ___ in traffic.",
+      "choix": [
+        "sitting",
+        "sit",
+        "sat",
+        "have sat"
+      ],
+      "bonneReponse": 0,
+      "explication": "be used to + -ing.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u06-c006",
+      "section": "en-b1-u06-s03",
+      "type": "qcm",
+      "question": "« Je n'arrive pas à m'habituer au froid » :",
+      "choix": [
+        "I can't get used to the cold.",
+        "I can't use to the cold.",
+        "I can't be used the cold.",
+        "I can't get use to cold."
+      ],
+      "bonneReponse": 0,
+      "explication": "s'habituer à = get used to + nom.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u06-c007",
+      "section": "en-b1-u06-s03",
+      "type": "exercice",
+      "enonce": "Compare ta vie d'il y a 5 ans et maintenant en 3 phrases : une avec used to, une avec didn't use to, une avec be / get used to.",
+      "etapes": [
+        "used to + base : habitude disparue.",
+        "didn't use to + base : nouveauté.",
+        "I'm (getting) used to + -ing : adaptation."
+      ],
+      "reponse": "Exemple : *I used to live with my parents. I didn't use to cook, but now I do every day. At first it was hard, but now I'm used to managing my own budget.*",
+      "difficulte": 3
+    }
+  ]
+}

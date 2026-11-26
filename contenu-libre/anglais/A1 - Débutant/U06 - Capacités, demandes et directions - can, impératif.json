@@ -1,0 +1,217 @@
+{
+  "formatVersion": 1,
+  "id": "en-a1-u06",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "U06 – Capacités, demandes et directions : can, impératif",
+  "ordre": 60,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Exprimer la capacité et la permission avec can, faire des demandes polies (Can I…? Could you…?), donner des instructions à l'impératif, et demander ou indiquer son chemin.",
+  "notions": [
+    "Can (capacité)",
+    "Demandes polies",
+    "Permission",
+    "Impératif",
+    "Directions"
+  ],
+  "sections": [
+    {
+      "id": "en-a1-u06-s01",
+      "titre": "Can : capacité et possibilité",
+      "contenu": "**can** + base verbale = savoir / pouvoir faire.\n- *I **can** swim.* · *She **can** speak three languages.*\n- négation : ***can't*** (GB « kânt ») / ***cannot*** en un seul mot à l'écrit formel ;\n- question : ***Can** you drive?* → *Yes, I can. / No, I can't.*\n\n**can** est un **modal** : il ne prend **jamais de s**, n'est jamais suivi de *to*, et ne s'utilise pas avec *do* :\n~~*He cans*~~, ~~*I can to swim*~~, ~~*Do you can…?*~~\n\nPour la capacité **passée** : ***could*** — *I could read when I was four.*",
+      "notions": [
+        "Can (capacité)"
+      ]
+    },
+    {
+      "id": "en-a1-u06-s02",
+      "titre": "Demandes polies",
+      "contenu": "| Pour… | Formule | Réponse |\n| --- | --- | --- |\n| Demander la **permission** | ***Can I** open the window?* · ***Could I** sit here?* (plus poli) · ***May I** come in?* (formel) | *Sure. / Of course. / Go ahead.* — *Sorry, …* |\n| Demander un **service** | ***Can you** help me?* · ***Could you** repeat, please?* (plus poli) | *Yes, of course.* |\n| Proposer | ***Can I** help you?* (vendeur) | *No thanks, I'm just looking.* |\n| Commander | ***I'd like** a coffee, please.* (*I'd* = I would) | |\n\n***Please*** se place en fin (ou au début) ; ***Thank you / Thanks*** → ***You're welcome*** (de rien). *I want* est souvent **trop direct** pour demander quelque chose : préférer *I'd like* ou *Could I have…?*",
+      "notions": [
+        "Demandes polies",
+        "Permission"
+      ]
+    },
+    {
+      "id": "en-a1-u06-s03",
+      "titre": "L'impératif",
+      "contenu": "L'impératif sert à donner un ordre, une consigne, un conseil : la **base verbale**, sans sujet.\n- *Open your book. Turn left. Click on \"Save\".*\n- négatif : ***Don't*** + base : *Don't touch! Don't forget your keys.*\n- avec nous : ***Let's*** + base = « allons, faisons » : *Let's go! Let's have a break.* — négatif : *Let's not…*\n\nPour adoucir : *Please sit down.* · *Have a seat.* Dans les modes d'emploi et les logiciels, l'impératif est la norme : *Enter your password. Press any key.*",
+      "notions": [
+        "Impératif"
+      ]
+    },
+    {
+      "id": "en-a1-u06-s04",
+      "titre": "Demander et indiquer son chemin",
+      "contenu": "**Demander** :\n- *Excuse me, where's the station, please?*\n- *How do I get to the museum?* · *Is there a cash machine near here?*\n\n**Indiquer** :\n| Expression | Sens |\n| --- | --- |\n| *go straight on / ahead* | allez tout droit |\n| *turn left / right* | tournez à gauche / à droite |\n| *take the first / second left* | prenez la première / deuxième à gauche |\n| *go past the church* | passez devant l'église |\n| *at the traffic lights / at the roundabout* | aux feux / au rond-point |\n| *it's on your left / right* | c'est sur votre gauche / droite |\n| *it's a five-minute walk* | c'est à cinq minutes à pied |\n\n*Sorry, I'm not from here.* = Désolé, je ne suis pas d'ici.",
+      "notions": [
+        "Directions"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a1-u06-c001",
+      "section": "en-a1-u06-s01",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "She can play the guitar.",
+        "She cans play the guitar.",
+        "She can to play the guitar.",
+        "She can plays the guitar."
+      ],
+      "bonneReponse": 0,
+      "explication": "Modal : pas de s, pas de to, base verbale.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u06-c002",
+      "section": "en-a1-u06-s01",
+      "type": "qcm",
+      "question": "Comment demander « Sais-tu conduire ? »",
+      "choix": [
+        "Can you drive?",
+        "Do you can drive?",
+        "Can you to drive?",
+        "Are you can drive?"
+      ],
+      "bonneReponse": 0,
+      "explication": "Question : on inverse can et le sujet.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u06-c003",
+      "section": "en-a1-u06-s01",
+      "type": "question",
+      "recto": "Traduis : « Quand j'avais 10 ans, je savais nager. »",
+      "verso": "*When I was 10, I **could** swim.* (could = can au passé)",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u06-c004",
+      "section": "en-a1-u06-s02",
+      "type": "qcm",
+      "question": "Laquelle est la plus polie pour demander à un inconnu de répéter ?",
+      "choix": [
+        "Could you repeat that, please?",
+        "Repeat!",
+        "You repeat?",
+        "I want you repeat."
+      ],
+      "bonneReponse": 0,
+      "explication": "Could you … please? est la forme polie standard.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u06-c005",
+      "section": "en-a1-u06-s02",
+      "type": "qcm",
+      "question": "Au café, que dis-tu ?",
+      "choix": [
+        "I'd like a tea, please.",
+        "I want a tea.",
+        "Give me a tea.",
+        "I like a tea."
+      ],
+      "bonneReponse": 0,
+      "explication": "I'd like = je voudrais ; I want est trop direct ; I like = j'aime.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u06-c006",
+      "section": "en-a1-u06-s02",
+      "type": "question",
+      "recto": "Que répondre à « Thank you! » ?",
+      "verso": "*You're welcome.* (ou *No problem*, *Not at all*).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u06-c007",
+      "section": "en-a1-u06-s03",
+      "type": "qcm",
+      "question": "Comment traduire « Ne ferme pas la fenêtre » ?",
+      "choix": [
+        "Don't close the window.",
+        "Not close the window.",
+        "No close the window.",
+        "You don't close the window."
+      ],
+      "bonneReponse": 0,
+      "explication": "Impératif négatif : Don't + base.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u06-c008",
+      "section": "en-a1-u06-s03",
+      "type": "qcm",
+      "question": "« Allons manger ! » se dit :",
+      "choix": [
+        "Let's eat!",
+        "Let eat!",
+        "We eat!",
+        "Let's to eat!"
+      ],
+      "bonneReponse": 0,
+      "explication": "Let's + base verbale.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u06-c009",
+      "section": "en-a1-u06-s03",
+      "type": "question",
+      "recto": "Traduis la consigne : « Saisissez votre mot de passe et cliquez sur OK. »",
+      "verso": "*Enter your password and click (on) OK.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u06-c010",
+      "section": "en-a1-u06-s04",
+      "type": "qcm",
+      "question": "« Take the second right » signifie :",
+      "choix": [
+        "Prenez la deuxième rue à droite.",
+        "Tournez deux fois à droite.",
+        "Prenez à droite dans deux minutes.",
+        "Allez à droite puis tout droit."
+      ],
+      "bonneReponse": 0,
+      "explication": "Take the first / second right = la 1re / 2e rue à droite.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u06-c011",
+      "section": "en-a1-u06-s04",
+      "type": "qcm",
+      "question": "Comment dit-on « allez tout droit » ?",
+      "choix": [
+        "Go straight on.",
+        "Go right.",
+        "Go direct.",
+        "Go all right."
+      ],
+      "bonneReponse": 0,
+      "explication": "straight on / ahead = tout droit ; right = droite.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u06-c012",
+      "section": "en-a1-u06-s04",
+      "type": "exercice",
+      "enonce": "Un touriste te demande le chemin de la gare : elle est à 10 minutes, tout droit, puis deuxième à gauche, en face de la poste. Rédige ta réponse.",
+      "etapes": [
+        "Commencer poliment : Sure! / Yes, of course.",
+        "Go straight on…",
+        "…then take the second left.",
+        "It's opposite the post office.",
+        "It's a ten-minute walk."
+      ],
+      "reponse": "*Sure! Go straight on, then take the second left. The station is opposite the post office. It's a ten-minute walk.*",
+      "difficulte": 2
+    }
+  ]
+}

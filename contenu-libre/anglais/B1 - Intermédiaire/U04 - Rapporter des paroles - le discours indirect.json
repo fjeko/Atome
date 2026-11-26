@@ -1,0 +1,162 @@
+{
+  "formatVersion": 1,
+  "id": "en-b1-u04",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "U04 – Rapporter des paroles : le discours indirect",
+  "ordre": 40,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Rapporter ce que quelqu'un a dit (say / tell), la concordance des temps, les changements de pronoms et de repères de temps, les questions indirectes et les ordres rapportés.",
+  "notions": [
+    "Say / tell",
+    "Concordance des temps",
+    "Changements de repères",
+    "Questions indirectes",
+    "Ordres rapportés"
+  ],
+  "sections": [
+    {
+      "id": "en-b1-u04-s01",
+      "titre": "Say et tell, concordance des temps",
+      "contenu": "- ***say*** (something) : *She **said** (that) she was tired.*\n- ***tell*** + **personne** : *She **told me** (that) she was tired.* (~~said me~~, ~~told that~~)\n\nQuand le verbe introducteur est au **passé**, on **recule** les temps d'un cran :\n| Paroles | Discours indirect |\n| --- | --- |\n| présent : *\"I'm busy.\"* | prétérit : *He said he **was** busy.* |\n| présent continu : *\"I'm working.\"* | *He said he **was working**.* |\n| prétérit / present perfect : *\"I lost it.\" / \"I've lost it.\"* | past perfect : *He said he **had lost** it.* |\n| will : *\"I'll call you.\"* | would : *He said he **would** call me.* |\n| can : *\"I can help.\"* | could : *He said he **could** help.* |\n\nSi ce qui est rapporté est **toujours vrai**, le recul est facultatif : *She said she **lives** in Paris.*",
+      "notions": [
+        "Say / tell",
+        "Concordance des temps"
+      ]
+    },
+    {
+      "id": "en-b1-u04-s02",
+      "titre": "Repères de temps et de lieu",
+      "contenu": "Le point de vue change, donc les repères aussi :\n| Direct | Indirect |\n| --- | --- |\n| *now* | *then* |\n| *today / tonight* | *that day / that night* |\n| *yesterday* | *the day before / the previous day* |\n| *tomorrow* | *the next day / the following day* |\n| *next week* | *the following week* |\n| *ago* | *before* |\n| *here / this* | *there / that* |\n\nEt les **pronoms** : *\"I like **your** idea,\" Tom told me* → *Tom told me (that) **he** liked **my** idea.*",
+      "notions": [
+        "Changements de repères"
+      ]
+    },
+    {
+      "id": "en-b1-u04-s03",
+      "titre": "Questions et ordres rapportés",
+      "contenu": "**Questions** : on utilise ***asked***, et l'ordre redevient **sujet + verbe** (plus d'inversion, plus de *do/did*, pas de point d'interrogation) :\n- *\"Where do you live?\"* → *She asked me where **I lived**.*\n- question fermée → ***if / whether*** : *\"Are you free?\"* → *He asked **if I was** free.*\n\nMême règle pour les **questions polies** : *Could you tell me where the station **is**?* (pas ~~where is the station~~) · *Do you know what time it **starts**?*\n\n**Ordres, demandes** : ***tell / ask*** + personne + ***(not) to*** + base :\n- *\"Close the door.\"* → *He told me **to close** the door.*\n- *\"Don't be late.\"* → *She asked us **not to be** late.*",
+      "notions": [
+        "Questions indirectes",
+        "Ordres rapportés"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b1-u04-c001",
+      "section": "en-b1-u04-s01",
+      "type": "qcm",
+      "question": "Complète : He ___ me he was leaving.",
+      "choix": [
+        "told",
+        "said",
+        "said to",
+        "talked"
+      ],
+      "bonneReponse": 0,
+      "explication": "tell + personne.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u04-c002",
+      "section": "en-b1-u04-s01",
+      "type": "qcm",
+      "question": "« I'll send it tomorrow. » → She said she ___ it the next day.",
+      "choix": [
+        "would send",
+        "will send",
+        "sends",
+        "has sent"
+      ],
+      "bonneReponse": 0,
+      "explication": "will → would.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u04-c003",
+      "section": "en-b1-u04-s01",
+      "type": "qcm",
+      "question": "« I've finished. » → He said he ___.",
+      "choix": [
+        "had finished",
+        "has finished",
+        "finished yesterday",
+        "was finish"
+      ],
+      "bonneReponse": 0,
+      "explication": "present perfect → past perfect.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u04-c004",
+      "section": "en-b1-u04-s02",
+      "type": "qcm",
+      "question": "« I saw him yesterday. » → She said she had seen him ___.",
+      "choix": [
+        "the day before",
+        "yesterday ago",
+        "the next day",
+        "tomorrow"
+      ],
+      "bonneReponse": 0,
+      "explication": "yesterday → the day before.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u04-c005",
+      "section": "en-b1-u04-s02",
+      "type": "question",
+      "recto": "Rapporte : Paul: « I'm moving to Canada next month. »",
+      "verso": "*Paul said (that) he **was moving** to Canada **the following month**.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u04-c006",
+      "section": "en-b1-u04-s03",
+      "type": "qcm",
+      "question": "« Where is the meeting room? » → He asked me where ___.",
+      "choix": [
+        "the meeting room was",
+        "was the meeting room",
+        "is the meeting room",
+        "the meeting room is it"
+      ],
+      "bonneReponse": 0,
+      "explication": "Question indirecte : sujet + verbe.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u04-c007",
+      "section": "en-b1-u04-s03",
+      "type": "qcm",
+      "question": "Formule polie correcte :",
+      "choix": [
+        "Could you tell me what time the shop opens?",
+        "Could you tell me what time does the shop open?",
+        "Could you tell me what time opens the shop?",
+        "Could you tell me what time the shop does open?"
+      ],
+      "bonneReponse": 0,
+      "explication": "Question indirecte : pas d'auxiliaire do, ordre sujet-verbe.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b1-u04-c008",
+      "section": "en-b1-u04-s03",
+      "type": "exercice",
+      "enonce": "Rapporte cette conversation avec ton chef : « Can you work on Saturday? Don't forget the report. I'll pay you extra. »",
+      "etapes": [
+        "Question fermée : He asked me if I could …",
+        "Ordre négatif : He told me not to …",
+        "will → would : He said he would …"
+      ],
+      "reponse": "*My boss asked me if I could work on Saturday. He told me not to forget the report and said he would pay me extra.*",
+      "difficulte": 3
+    }
+  ]
+}

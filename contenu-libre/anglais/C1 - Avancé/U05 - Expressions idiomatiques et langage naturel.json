@@ -1,0 +1,168 @@
+{
+  "formatVersion": 1,
+  "id": "en-c1-u05",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "C1 – Avancé",
+  "sequence": null,
+  "seance": "U05 – Expressions idiomatiques et langage naturel",
+  "ordre": 50,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Les expressions idiomatiques réellement utilisées au travail et au quotidien, les binômes figés, les intensifs naturels, et comment éviter les idiomes démodés ou mal placés.",
+  "notions": [
+    "Idiomes professionnels",
+    "Idiomes courants",
+    "Binômes figés"
+  ],
+  "sections": [
+    {
+      "id": "en-c1-u05-s01",
+      "titre": "Idiomes au travail",
+      "contenu": "| Idiome | Sens |\n| --- | --- |\n| *to be on the same page* | être d'accord, avoir la même compréhension |\n| *to get the ball rolling* | lancer, démarrer |\n| *to think outside the box* | sortir des sentiers battus |\n| *a win-win situation* | gagnant-gagnant |\n| *to cut corners* | bâcler, faire des économies au détriment de la qualité |\n| *back to square one* | retour à la case départ |\n| *to touch base* | faire le point rapidement |\n| *the ball is in your court* | c'est à toi de jouer |\n| *to call it a day* | s'arrêter là pour aujourd'hui |\n| *to be swamped* | être débordé |\n| *a ballpark figure* | un chiffre approximatif |\n| *to go the extra mile* | faire un effort supplémentaire |\n| *to hit the ground running* | être opérationnel tout de suite |\n| *it's not rocket science* | ce n'est pas sorcier |",
+      "notions": [
+        "Idiomes professionnels"
+      ]
+    },
+    {
+      "id": "en-c1-u05-s02",
+      "titre": "Idiomes du quotidien",
+      "contenu": "| Idiome | Sens |\n| --- | --- |\n| *a piece of cake* | du gâteau, très facile |\n| *to break the ice* | briser la glace |\n| *under the weather* | patraque, pas en forme |\n| *to cost an arm and a leg* | coûter les yeux de la tête |\n| *once in a blue moon* | tous les trente-six du mois |\n| *to sit on the fence* | ne pas prendre parti |\n| *to let the cat out of the bag* | vendre la mèche |\n| *to hit the nail on the head* | mettre le doigt dessus |\n| *to beat around the bush* | tourner autour du pot |\n| *the last straw* | la goutte d'eau qui fait déborder le vase |\n| *to have second thoughts* | avoir des doutes, hésiter |\n| *to keep an eye on* | surveiller |\n\nConseil : un idiome mal placé sonne faux ; mieux vaut **les comprendre tous** et n'en **utiliser** que quelques-uns, bien maîtrisés. Les expressions démodées (*It's raining cats and dogs*) sont surtout connues des manuels.",
+      "notions": [
+        "Idiomes courants"
+      ]
+    },
+    {
+      "id": "en-c1-u05-s03",
+      "titre": "Binômes et intensifs naturels",
+      "contenu": "Paires figées dont l'**ordre ne change pas** :\n*pros and cons* (le pour et le contre), *ups and downs* (des hauts et des bas), *trial and error* (tâtonnement), *sooner or later*, *more or less*, *safe and sound* (sain et sauf), *by and large* (dans l'ensemble), *now and then* (de temps en temps), *sick and tired of* (en avoir marre), *odds and ends* (bricoles), *peace and quiet*, *black and white* (~~white and black~~), *rules and regulations*.",
+      "notions": [
+        "Binômes figés"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-c1-u05-c001",
+      "section": "en-c1-u05-s01",
+      "type": "qcm",
+      "question": "« We've lost all the data, we're back to square one » signifie :",
+      "choix": [
+        "Nous revenons à la case départ.",
+        "Nous sommes au premier rang.",
+        "Nous avons gagné.",
+        "Nous sommes au carré."
+      ],
+      "bonneReponse": 0,
+      "explication": "back to square one = tout recommencer.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u05-c002",
+      "section": "en-c1-u05-s01",
+      "type": "qcm",
+      "question": "« Ils ont bâclé les tests pour livrer à temps » :",
+      "choix": [
+        "They cut corners on testing to deliver on time.",
+        "They cut the tests corners to deliver.",
+        "They went the extra mile on testing.",
+        "They touched base on testing."
+      ],
+      "bonneReponse": 0,
+      "explication": "cut corners = bâcler.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u05-c003",
+      "section": "en-c1-u05-s01",
+      "type": "qcm",
+      "question": "« Donne-moi un chiffre approximatif » :",
+      "choix": [
+        "Give me a ballpark figure.",
+        "Give me a round square.",
+        "Give me a figure of ball.",
+        "Give me a rough box."
+      ],
+      "bonneReponse": 0,
+      "explication": "ballpark figure = estimation grossière.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u05-c004",
+      "section": "en-c1-u05-s01",
+      "type": "question",
+      "recto": "Que signifie « I'm swamped this week » ?",
+      "verso": "« Je suis **débordé** cette semaine. »",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u05-c005",
+      "section": "en-c1-u05-s02",
+      "type": "qcm",
+      "question": "« Arrête de tourner autour du pot ! » :",
+      "choix": [
+        "Stop beating around the bush!",
+        "Stop sitting on the fence!",
+        "Stop breaking the ice!",
+        "Stop hitting the nail!"
+      ],
+      "bonneReponse": 0,
+      "explication": "beat around the bush = tourner autour du pot.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u05-c006",
+      "section": "en-c1-u05-s02",
+      "type": "qcm",
+      "question": "« Elle a vendu la mèche » :",
+      "choix": [
+        "She let the cat out of the bag.",
+        "She broke the ice.",
+        "She hit the nail on the head.",
+        "She called it a day."
+      ],
+      "bonneReponse": 0,
+      "explication": "let the cat out of the bag.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u05-c007",
+      "section": "en-c1-u05-s02",
+      "type": "question",
+      "recto": "Que signifie « I'm feeling a bit under the weather » ?",
+      "verso": "« Je ne me sens **pas très bien** / je suis un peu patraque. »",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u05-c008",
+      "section": "en-c1-u05-s03",
+      "type": "qcm",
+      "question": "« Peser le pour et le contre » :",
+      "choix": [
+        "weigh up the pros and cons",
+        "weigh up the cons and pros",
+        "weigh the for and against",
+        "weigh the plus and minus"
+      ],
+      "bonneReponse": 0,
+      "explication": "pros and cons, dans cet ordre.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u05-c009",
+      "section": "en-c1-u05-s03",
+      "type": "qcm",
+      "question": "« J'en ai marre d'attendre » :",
+      "choix": [
+        "I'm sick and tired of waiting.",
+        "I'm tired and sick of waiting.",
+        "I'm sick of wait.",
+        "I have enough to wait."
+      ],
+      "bonneReponse": 0,
+      "explication": "sick and tired of + -ing.",
+      "difficulte": 3
+    }
+  ]
+}

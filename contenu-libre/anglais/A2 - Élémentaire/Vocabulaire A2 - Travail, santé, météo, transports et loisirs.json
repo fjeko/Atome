@@ -1,0 +1,187 @@
+{
+  "formatVersion": 1,
+  "id": "en-a2-vocab",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A2 – Élémentaire",
+  "sequence": null,
+  "seance": "Vocabulaire A2 – Travail, santé, météo, transports et loisirs",
+  "ordre": 84,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Vocabulaire thématique du niveau A2 : métiers et lieu de travail, santé et chez le médecin, météo et saisons, transports et voyages, loisirs, avec les collocations de base (make / do, go / play).",
+  "notions": [
+    "Le travail",
+    "Santé",
+    "Météo",
+    "Transports et loisirs"
+  ],
+  "sections": [
+    {
+      "id": "en-a2-vocab-s01",
+      "titre": "Le travail",
+      "contenu": "**Métiers** : a teacher, a nurse (infirmier·ère), a doctor, a cook / chef, a shop assistant (vendeur), a waiter / waitress (serveur), a mechanic, an engineer, a developer, a cashier (caissier), a manager, a receptionist.\n\n**Au travail** : a colleague, a boss / manager, a customer (client d'un magasin), a client (client d'un service), an office (bureau, la pièce), a desk (bureau, le meuble), a meeting (réunion), a salary (salaire), a full-time / part-time job.\n\n*What do you do?* = « Que fais-tu dans la vie ? » → *I'm **a** nurse.* (l'article **a** est obligatoire devant un métier).\n\n*I work **for** a bank* (employeur) / *I work **in** IT* (secteur) / *I work **as** a developer* (fonction).",
+      "notions": [
+        "Le travail"
+      ]
+    },
+    {
+      "id": "en-a2-vocab-s02",
+      "titre": "La santé",
+      "contenu": "**Symptômes** : *I've got a cold* (rhume), *the flu* (la grippe), *a temperature / a fever* (de la fièvre), *a sore throat* (mal à la gorge), *a cough* (toux), *a headache*. *I feel sick* (j'ai la nausée, UK). *I feel ill* (je suis malade). *I'm tired.*\n\n**Chez le médecin** : *What's the matter? / What seems to be the problem?* — *I've had a sore throat for three days.* — *You should rest and drink a lot of water. Take this medicine twice a day.*\n\na prescription (ordonnance), a pharmacy / chemist's (UK) (pharmacie), pills / tablets (comprimés), an appointment (rendez-vous).\n\n**Urgence** : 999 (UK), 911 (US), 112 (Europe).",
+      "notions": [
+        "Santé"
+      ]
+    },
+    {
+      "id": "en-a2-vocab-s03",
+      "titre": "Météo et saisons",
+      "contenu": "*What's the weather like?* — *It's sunny / cloudy / windy / rainy / foggy / snowy.* — *It's raining / snowing.* — *It's hot / warm / cool / cold / freezing.*\n\na storm (tempête, orage), thunder (tonnerre), lightning (éclair), a shower (averse), a heatwave (canicule), the forecast (les prévisions).\n\n**Saisons** : spring, summer, autumn (UK) / fall (US), winter → **in** summer, **in** winter.\n\n**Températures** : *It's 20 degrees.* Au Royaume-Uni on parle en °C ; aux États-Unis en °F (20 °C ≈ 68 °F).\n\nLa météo est **le** sujet de conversation britannique : *Lovely day, isn't it?*",
+      "notions": [
+        "Météo"
+      ]
+    },
+    {
+      "id": "en-a2-vocab-s04",
+      "titre": "Transports, voyages et loisirs",
+      "contenu": "**Transports** : by car, by bus, by train, by plane, by bike — mais **on foot** (à pied). *I get on / off the bus.* *I get in / out of the car.*\n\na ticket (single / return UK, one-way / round-trip US), a platform (quai), a timetable (horaire), a delay (retard), to miss the train (rater), to catch the train (attraper), luggage (bagages, indénombrable), a flight, to check in, boarding.\n\n**Loisirs et collocations** :\n- **play** + sport de ballon / jeu / instrument : *play football, play chess, play the guitar* ;\n- **go** + activité en -ing : *go swimming, go running, go shopping* ;\n- **do** + activité individuelle : *do yoga, do karate, do exercise*.\n\n**make / do** : *make a mistake, make a decision, make friends, make a phone call* ; *do homework, do the shopping, do the dishes, do your best*.",
+      "notions": [
+        "Transports et loisirs"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a2-vocab-c001",
+      "section": "en-a2-vocab-s01",
+      "type": "question",
+      "recto": "Que signifie *What do you do?* et comment y répondre ?",
+      "verso": "« Que fais-tu dans la vie ? » → *I'm **a** student / **an** engineer.* (article obligatoire devant le métier).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-vocab-c002",
+      "section": "en-a2-vocab-s01",
+      "type": "qcm",
+      "question": "« Je travaille comme développeur dans une banque » :",
+      "choix": [
+        "I work as a developer for a bank.",
+        "I work like developer for a bank.",
+        "I work as developer in the bank.",
+        "I'm working like a developer at a bank."
+      ],
+      "bonneReponse": 0,
+      "explication": "*as* = en tant que ; *like* = comme (comparaison) ; *a* devant le métier.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-vocab-c003",
+      "section": "en-a2-vocab-s01",
+      "type": "question",
+      "recto": "Quelle différence entre *office* et *desk* ?",
+      "verso": "*office* = le **bureau (la pièce)** ; *desk* = le **bureau (le meuble)**.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-vocab-c004",
+      "section": "en-a2-vocab-s02",
+      "type": "question",
+      "recto": "Comment dire « j'ai mal à la gorge depuis trois jours » ?",
+      "verso": "*I've had a sore throat **for** three days.* (present perfect + for)",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-vocab-c005",
+      "section": "en-a2-vocab-s02",
+      "type": "qcm",
+      "question": "Que veut dire *I feel sick* en anglais britannique ?",
+      "choix": [
+        "J'ai la nausée",
+        "Je me sens très fort",
+        "Je suis malade depuis longtemps",
+        "Je suis fatigué"
+      ],
+      "bonneReponse": 0,
+      "explication": "UK : *sick* = nauséeux (*I'm going to be sick* = je vais vomir) ; US : *sick* = malade en général.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-vocab-c006",
+      "section": "en-a2-vocab-s02",
+      "type": "question",
+      "recto": "Comment se dit « ordonnance » ?",
+      "verso": "a **prescription** (*ordonnance* n'existe pas en ce sens).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-vocab-c007",
+      "section": "en-a2-vocab-s03",
+      "type": "question",
+      "recto": "Comment demander le temps qu'il fait ?",
+      "verso": "*What's the weather like?* (et non *How is the weather?*, moins naturel).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-vocab-c008",
+      "section": "en-a2-vocab-s03",
+      "type": "qcm",
+      "question": "« Il pleut » :",
+      "choix": [
+        "It's raining.",
+        "It rains now.",
+        "He is raining.",
+        "It's rainy now outside today."
+      ],
+      "bonneReponse": 0,
+      "explication": "Action en cours → présent continu *It's raining*.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-vocab-c009",
+      "section": "en-a2-vocab-s04",
+      "type": "question",
+      "recto": "Comment dit-on « à pied » et « en train » ?",
+      "verso": "**on foot** et **by train**.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-vocab-c010",
+      "section": "en-a2-vocab-s04",
+      "type": "question",
+      "recto": "*play*, *go* ou *do* : football, swimming, yoga ?",
+      "verso": "**play** football, **go** swimming, **do** yoga.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-vocab-c011",
+      "section": "en-a2-vocab-s04",
+      "type": "qcm",
+      "question": "« J'ai fait une erreur » :",
+      "choix": [
+        "I made a mistake.",
+        "I did a mistake.",
+        "I have done an error.",
+        "I make a fault."
+      ],
+      "bonneReponse": 0,
+      "explication": "*make a mistake* est une collocation fixe.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-vocab-c012",
+      "section": "en-a2-vocab-s04",
+      "type": "qcm",
+      "question": "« J'ai raté mon train à cause d'un retard » :",
+      "choix": [
+        "I missed my train because of a delay.",
+        "I lost my train because of a retard.",
+        "I failed my train due to a late.",
+        "I missed my train because a delay."
+      ],
+      "bonneReponse": 0,
+      "explication": "*miss* = rater ; *delay* = retard ; *because of* + nom.",
+      "difficulte": 2
+    }
+  ]
+}

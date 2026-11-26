@@ -36,6 +36,9 @@ public sealed class EtatApplication(TimeProvider horloge, DepotProfil profil)
     /// </summary>
     public string? DossierCoursLibres { get; private set; }
 
+    /// <summary>Anglais général (A1 → C1) livré avec Atome : « contenu-libre/anglais », chargé à chaque démarrage (collection « Anglais »).</summary>
+    public string? DossierAnglais { get; private set; }
+
     private static string? TrouverCoursLibres()
     {
         for (var dossier = new DirectoryInfo(AppContext.BaseDirectory); dossier is not null; dossier = dossier.Parent)
@@ -49,6 +52,8 @@ public sealed class EtatApplication(TimeProvider horloge, DepotProfil profil)
     public void Initialiser()
     {
         DossierCoursLibres = TrouverCoursLibres();
+        DossierAnglais = DossierCoursLibres is { } libres && Path.GetDirectoryName(libres) is { } racine && Directory.Exists(Path.Combine(racine, "anglais"))
+            ? Path.Combine(racine, "anglais") : null;
         Reglages = profil.ChargerReglages();
         DetecterDossiers();
         AppliquerTheme();

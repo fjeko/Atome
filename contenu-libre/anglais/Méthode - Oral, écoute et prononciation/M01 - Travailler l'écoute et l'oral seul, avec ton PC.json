@@ -1,0 +1,226 @@
+{
+  "formatVersion": 1,
+  "id": "en-or-m01",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "Méthode – Oral, écoute et prononciation",
+  "sequence": null,
+  "seance": "M01 – Travailler l'écoute et l'oral seul, avec ton PC",
+  "ordre": 10,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Comment travailler la compréhension orale et l'expression orale sans professeur : faire lire l'anglais par ton PC, t'enregistrer, utiliser la dictée vocale comme juge de prononciation, le shadowing, et une routine d'écoute adaptée à ton niveau.",
+  "notions": [
+    "Principe",
+    "Synthèse vocale Windows",
+    "Enregistrement et dictée vocale",
+    "Shadowing",
+    "Ressources d'écoute",
+    "Pratiquer avec d'autres"
+  ],
+  "sections": [
+    {
+      "id": "en-or-m01-s01",
+      "titre": "Pourquoi l'oral se travaille à part",
+      "contenu": "Les cartes d'Atome entraînent la **grammaire** et le **vocabulaire**. Mais comprendre et parler sont des **compétences physiques** : l'oreille doit apprendre à découper un flot de sons, la bouche à produire des sons qui n'existent pas en français.\n\nCe qui marche :\n- **beaucoup d'écoute compréhensible** : un contenu où tu comprends 70 à 90 % (trop facile = peu de progrès, trop dur = bruit) ;\n- **parler tous les jours, même seul** : 5 minutes à voix haute valent mieux qu'une heure de lecture silencieuse ;\n- **t'entendre** : on ne corrige pas ce qu'on n'entend pas, d'où l'enregistrement.\n\nDans ce cours, chaque fois que tu vois **🎙️**, la carte te demande de **parler à voix haute** ; **🎧** signale une activité d'écoute.",
+      "notions": [
+        "Principe"
+      ]
+    },
+    {
+      "id": "en-or-m01-s02",
+      "titre": "Faire lire l'anglais par ton PC",
+      "contenu": "Windows contient des **voix anglaises** de bonne qualité. Tu peux t'en servir pour entendre n'importe quel texte du cours.\n\n**1. Installer une voix anglaise** : *Paramètres → Heure et langue → Voix* (« Speech »), puis *Ajouter des voix* → **English (United Kingdom)** ou **English (United States)**.\n\n**2. Écouter un texte :**\n- **Microsoft Edge** : colle le texte dans une page (ou ouvre un article en anglais), puis **clic droit → Lire à voix haute** (ou **Ctrl + Maj + U**). Dans la barre qui apparaît, choisis la **voix anglaise** et la **vitesse** (commence à 0,75).\n- **Le Narrateur** de Windows (**Ctrl + Windows + Entrée** pour l'activer ou le couper) lit ce qui est à l'écran, y compris les fiches d'Atome ; choisis une voix anglaise dans ses paramètres.\n\nAstuce : copie un dialogue d'une fiche (sélection puis Ctrl + C), colle-le dans Edge et fais-le lire. Tu as ainsi un **modèle audio** pour chaque dialogue du cours.",
+      "notions": [
+        "Synthèse vocale Windows"
+      ]
+    },
+    {
+      "id": "en-or-m01-s03",
+      "titre": "T'enregistrer et te faire juger par la dictée",
+      "contenu": "**S'enregistrer** : l'application **Enregistreur audio** de Windows (ou ton téléphone) suffit.\n1. Écoute le modèle (voix d'Edge ou podcast).\n2. Enregistre-toi sur la même phrase.\n3. Compare **phrase par phrase** : sons, mots accentués, mélodie. Note **une seule** chose à corriger, recommence.\n\n**La dictée vocale comme juge** : si la machine comprend, un humain comprendra.\n- **Windows + H** ouvre la dictée de Windows : passe la langue de saisie en anglais (**Windows + Espace**), puis parle.\n- Dans **Word** : *Accueil → Dicter*, langue **English**.\n\nLis une phrase du cours : si le texte transcrit est juste, ta prononciation est intelligible. Si *ship* devient *sheep* ou *think* devient *sink*, tu sais exactement quel son travailler.",
+      "notions": [
+        "Enregistrement et dictée vocale"
+      ]
+    },
+    {
+      "id": "en-or-m01-s04",
+      "titre": "Le shadowing",
+      "contenu": "Le **shadowing** (« faire l'ombre ») est la technique la plus efficace pour la prononciation et la fluidité :\n\n1. Choisis un audio court (30 s à 1 min) **avec sa transcription** et **compréhensible** pour toi.\n2. Écoute-le en lisant la transcription.\n3. Répète **phrase par phrase** en pause (bouton pause entre les phrases).\n4. Puis parle **en même temps** que l'audio, avec un léger décalage, en imitant **tout** : mélodie, rythme, accents, liaisons, même les hésitations.\n5. Recommence le même extrait **plusieurs jours de suite** jusqu'à pouvoir le faire sans le texte.\n\nCe qui compte, c'est **imiter la musique** de la phrase, pas articuler chaque mot. Dix minutes par jour suffisent.",
+      "notions": [
+        "Shadowing"
+      ]
+    },
+    {
+      "id": "en-or-m01-s05",
+      "titre": "Une routine d'écoute selon ton niveau",
+      "contenu": "| Niveau | Quoi écouter | Comment |\n| --- | --- | --- |\n| **A1–A2** | BBC Learning English (séries pour débutants), VOA Learning English (anglais lent), dessins animés pour enfants | sous-titres **anglais**, vitesse 0,75 si possible, réécouter |\n| **B1** | *6 Minute English* (BBC), podcasts pour apprenants, séries du quotidien (sitcoms) | sous-titres anglais, puis sans sur des épisodes déjà vus |\n| **B2** | podcasts natifs sur tes passions, vidéos tech (YouTube), séries | sans sous-titres sur ce que tu connais, avec sinon |\n| **C1** | radio, débats, conférences, documentaires, accents variés | sans sous-titres, prise de notes, résumé oral |\n\n**Progression des sous-titres** : VF → VO sous-titrée **français** → VO sous-titrée **anglais** → VO sans sous-titres. Le passage aux sous-titres anglais est le plus rentable : tu associes enfin le son et l'écrit.\n\n**Routine minimale** : 15 min d'écoute par jour + 5 min de shadowing + 5 min à voix haute sur les cartes d'Atome.",
+      "notions": [
+        "Ressources d'écoute"
+      ]
+    },
+    {
+      "id": "en-or-m01-s06",
+      "titre": "Parler avec de vraies personnes",
+      "contenu": "Seul, tu peux aller loin ; mais rien ne remplace un **vrai échange**.\n- **Tandems linguistiques** (applis ou sites d'échange, associations locales) : 30 min en anglais contre 30 min en français.\n- **Jeux en ligne et Discord** en anglais : naturel, informel, sans pression.\n- **Communautés tech** en anglais (forums, issues GitHub, Stack Overflow) : parfait pour l'écrit professionnel.\n- **Parler seul** : décris à voix haute ce que tu fais (*I'm opening the fridge, I'm looking for…*), commente une vidéo, explique un exercice de cours en anglais.\n\nRègle d'or : **fais des erreurs**. Un message compris avec trois fautes vaut mieux qu'un silence parfait.",
+      "notions": [
+        "Pratiquer avec d'autres"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-or-m01-c001",
+      "section": "en-or-m01-s01",
+      "type": "question",
+      "recto": "Quel pourcentage de compréhension viser pour une écoute efficace ?",
+      "verso": "Environ **70 à 90 %** : assez pour suivre, assez peu pour apprendre. En dessous, c'est du bruit ; au-dessus, tu progresses lentement.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c002",
+      "section": "en-or-m01-s01",
+      "type": "question",
+      "recto": "Pourquoi faut-il s'enregistrer ?",
+      "verso": "Parce qu'en parlant, on s'entend **de l'intérieur** (par les os du crâne) : on ne remarque pas ses erreurs de prononciation. L'enregistrement montre ce qu'entend vraiment l'interlocuteur.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c003",
+      "section": "en-or-m01-s02",
+      "type": "question",
+      "recto": "Comment faire lire un texte anglais par Edge ?",
+      "verso": "**Clic droit → Lire à voix haute** (ou **Ctrl + Maj + U**), puis choisir une **voix anglaise** et la vitesse dans la barre de lecture.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c004",
+      "section": "en-or-m01-s02",
+      "type": "question",
+      "recto": "Où installer une voix anglaise sous Windows ?",
+      "verso": "*Paramètres → Heure et langue → Voix* → **Ajouter des voix** → English (United Kingdom) ou (United States).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c005",
+      "section": "en-or-m01-s02",
+      "type": "qcm",
+      "question": "Tu veux entendre un dialogue d'une fiche Atome. Quelle est la méthode la plus simple ?",
+      "choix": [
+        "Copier le dialogue, le coller dans Edge et lancer « Lire à voix haute » avec une voix anglaise",
+        "Lire le dialogue dans sa tête en imaginant l'accent anglais",
+        "Demander au correcteur orthographique de Word de le prononcer",
+        "Traduire le dialogue en français puis l'écouter avec une voix française"
+      ],
+      "bonneReponse": 0,
+      "explication": "Edge lit tout texte collé, avec une voix anglaise et une vitesse réglable : c'est un modèle audio gratuit pour chaque dialogue.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c006",
+      "section": "en-or-m01-s03",
+      "type": "question",
+      "recto": "Quel raccourci ouvre la dictée vocale de Windows ?",
+      "verso": "**Windows + H** (avec la langue de saisie en anglais, que l'on change par Windows + Espace).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c007",
+      "section": "en-or-m01-s03",
+      "type": "question",
+      "recto": "Comment savoir si ta prononciation est intelligible, sans professeur ?",
+      "verso": "Lis la phrase en **dictée vocale anglaise** (Windows + H ou Word → Dicter) : si la transcription est juste, tu es compris ; un mot mal transcrit montre le son à travailler.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c008",
+      "section": "en-or-m01-s03",
+      "type": "exercice",
+      "enonce": "🎙️ Premier test : lis ces trois phrases avec la dictée vocale anglaise et note les mots mal transcrits.\n\n*I think this ship is very big. – She works at the third hotel on the hill. – We usually walk to work.*",
+      "etapes": [
+        "Passe la langue de saisie en anglais (Windows + Espace).",
+        "Ouvre un document ou un champ de texte, puis Windows + H.",
+        "Lis chaque phrase normalement, sans exagérer.",
+        "Compare avec le texte original."
+      ],
+      "reponse": "Erreurs fréquentes chez les francophones : *think* → *sink* (son **th**), *ship* → *sheep* (voyelle courte), *hotel*, *hill* sans **h** (→ *otel*, *ill*), *walk* et *work* confondus. Chaque erreur te donne un son à travailler dans l'unité M02.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c009",
+      "section": "en-or-m01-s04",
+      "type": "question",
+      "recto": "En quoi consiste le shadowing ?",
+      "verso": "Répéter un audio **en même temps** que le locuteur (léger décalage), en imitant sa mélodie, son rythme et ses accents, d'abord avec la transcription puis sans.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c010",
+      "section": "en-or-m01-s04",
+      "type": "qcm",
+      "question": "Pour le shadowing, quel audio choisir ?",
+      "choix": [
+        "Un extrait court, compréhensible pour toi, avec sa transcription",
+        "Un film entier sans sous-titres, pour être plongé dans la langue",
+        "Une chanson rapide, car le rythme aide à mémoriser",
+        "Un débat très technique, pour apprendre du vocabulaire rare"
+      ],
+      "bonneReponse": 0,
+      "explication": "Court (on le répète), compréhensible (on imite ce qu'on comprend) et transcrit (on sait ce qu'on dit).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c011",
+      "section": "en-or-m01-s05",
+      "type": "question",
+      "recto": "Quelle étape de sous-titres est la plus rentable pour progresser ?",
+      "verso": "Passer à la **VO sous-titrée en anglais** : on associe le son et l'écrit des mots, ce que la VOSTFR ne fait pas.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c012",
+      "section": "en-or-m01-s05",
+      "type": "question",
+      "recto": "Que faire en écoute au niveau A1–A2 ?",
+      "verso": "Des contenus **lents ou pour apprenants** (BBC Learning English, VOA Learning English, dessins animés), avec sous-titres anglais, vitesse réduite et réécoutes.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c013",
+      "section": "en-or-m01-s05",
+      "type": "qcm",
+      "question": "Tu es B1. Quelle routine est la plus efficace ?",
+      "choix": [
+        "15 min d'écoute quotidienne avec sous-titres anglais, plus du shadowing et de l'oral sur les cartes",
+        "Un film de 2 h par semaine en VOSTFR, sans rien faire d'autre entre deux films",
+        "Uniquement des exercices de grammaire écrits : l'oral finira par venir tout seul avec le temps",
+        "Des documentaires de niveau C1 sans sous-titres, pour progresser beaucoup plus vite"
+      ],
+      "bonneReponse": 0,
+      "explication": "La régularité et le bon niveau de difficulté priment ; la VOSTFR fait peu travailler l'oreille.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c014",
+      "section": "en-or-m01-s06",
+      "type": "question",
+      "recto": "Comment pratiquer l'oral tout seul au quotidien ?",
+      "verso": "**Commenter à voix haute** ce que tu fais ou ce que tu regardes, expliquer un cours en anglais, lire les cartes d'Atome à voix haute.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m01-c015",
+      "section": "en-or-m01-s06",
+      "type": "exercice",
+      "enonce": "🎙️ Défi 1 minute : décris à voix haute, en anglais, ce que tu fais en ce moment et ce que tu vas faire ensuite. Enregistre-toi.",
+      "etapes": [
+        "Utilise le présent continu (I'm …ing) et going to.",
+        "Ne t'arrête pas pour chercher un mot : contourne-le.",
+        "Réécoute-toi et note une erreur à corriger."
+      ],
+      "reponse": "Exemple : *Right now I'm sitting at my desk. I'm studying English with Atome. In a few minutes I'm going to make a coffee, and then I'm going to work on my networking course.*",
+      "difficulte": 1
+    }
+  ]
+}

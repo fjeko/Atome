@@ -13,11 +13,11 @@ public sealed class DepotCoursLibres(BaseDeDonnees baseDeDonnees, ImportateurPac
 {
     private readonly DepotCollections _collections = new(baseDeDonnees);
 
-    /// <summary>Nombre de packs en base qui ne sont pas des cours libres (packs privés de l'étudiant).</summary>
+    /// <summary>Nombre de packs privés de l'étudiant (ni cours libres, ni anglais général livré avec Atome).</summary>
     public int NombrePacksPrives()
     {
         using var connexion = baseDeDonnees.Ouvrir();
-        return connexion.ExecuteScalar<int>("SELECT COUNT(*) FROM pack WHERE id NOT LIKE 'libre-%'");
+        return connexion.ExecuteScalar<int>("SELECT COUNT(*) FROM pack WHERE id NOT LIKE 'libre-%' AND id NOT LIKE 'en-%'");
     }
 
     /// <summary>Nombre de cours libres actuellement visibles.</summary>

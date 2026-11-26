@@ -1,0 +1,192 @@
+{
+  "formatVersion": 1,
+  "id": "en-a2-u08",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A2 – Élémentaire",
+  "sequence": null,
+  "seance": "U08 – Situations du quotidien : téléphone, achats, voyages et phrasal verbs de base",
+  "ordre": 80,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Les échanges pratiques à l'oral : téléphoner et laisser un message, faire des achats et réclamer, voyager (gare, aéroport, hôtel), et les phrasal verbs les plus fréquents du quotidien.",
+  "notions": [
+    "Téléphoner",
+    "Faire des achats",
+    "Voyager",
+    "Phrasal verbs de base"
+  ],
+  "sections": [
+    {
+      "id": "en-a2-u08-s01",
+      "titre": "Au téléphone",
+      "contenu": "| Situation | Phrase |\n| --- | --- |\n| Se présenter | *Hello, this is Florian* (pas ~~I am Florian~~) |\n| Demander quelqu'un | *Could I speak to Mrs Smith, please?* |\n| Faire patienter | *Hold on, please. / Just a moment.* |\n| Absent | *I'm afraid she's not available. Can I take a message?* |\n| Laisser un message | *Could you ask her to call me back?* |\n| Mauvaise compréhension | *Sorry, could you speak more slowly / say that again?* |\n| Épeler / numéro | *My number is 0-7-6-double 5…* |\n| Fin | *Thanks for calling. Bye.* |",
+      "notions": [
+        "Téléphoner"
+      ]
+    },
+    {
+      "id": "en-a2-u08-s02",
+      "titre": "Les achats",
+      "contenu": "| Client | Vendeur |\n| --- | --- |\n| *I'm looking for a jacket.* | *Can I help you?* |\n| *Can I try it on?* | *The changing rooms are over there.* |\n| *Do you have it in a smaller / bigger size? in black?* | *What size are you?* |\n| *How much is it?* | *It's on sale: 20 % off.* |\n| *I'll take it.* · *Can I pay by card?* | *Would you like a bag?* |\n| *I'd like a refund / to exchange this.* | *Have you got the receipt?* |\n\nVocabulaire : *receipt* (ticket de caisse), *refund* (remboursement), *sales* (soldes), *cash* (espèces), *change* (monnaie).",
+      "notions": [
+        "Faire des achats"
+      ]
+    },
+    {
+      "id": "en-a2-u08-s03",
+      "titre": "Voyager",
+      "contenu": "- **Gare** : *a single (GB) / one-way (US) ticket, a return (GB) / round-trip (US) ticket, Which platform? The train is delayed / cancelled.*\n- **Aéroport** : *check in, boarding pass* (carte d'embarquement), *gate* (porte), *luggage / baggage* (indénombrables), *hand luggage, Is the flight on time?*\n- **Hôtel** : *I have a reservation / booking in the name of …, a single / double room, check-out is at 11, Is breakfast included? The Wi-Fi doesn't work.*\n\n*luggage* est indénombrable : ~~*two luggages*~~ → *two suitcases / two pieces of luggage*.",
+      "notions": [
+        "Voyager"
+      ]
+    },
+    {
+      "id": "en-a2-u08-s04",
+      "titre": "Phrasal verbs du quotidien",
+      "contenu": "Un **phrasal verb** = verbe + particule (*up, on, off, out…*), avec un sens souvent nouveau.\n\n| Phrasal verb | Sens | Exemple |\n| --- | --- | --- |\n| *get up* | se lever | *I get up at 7.* |\n| *turn on / off* | allumer / éteindre | *Turn off the lights.* |\n| *put on / take off* | mettre / enlever (vêtement) | *Put on your coat.* |\n| *look for* | chercher | *I'm looking for my keys.* |\n| *look after* | s'occuper de | *She looks after her brother.* |\n| *give up* | abandonner, arrêter | *He gave up smoking.* |\n| *find out* | découvrir, apprendre | *I found out the truth.* |\n| *pick up* | ramasser, aller chercher | *I'll pick you up at 8.* |\n| *fill in* | remplir (formulaire) | *Fill in this form.* |\n| *log in / log out* | se connecter / déconnecter | *Log in with your ID.* |\n\nAvec un **pronom**, il se place **entre** le verbe et la particule : *Turn **it** off* (pas ~~turn off it~~).",
+      "notions": [
+        "Phrasal verbs de base"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a2-u08-c001",
+      "section": "en-a2-u08-s01",
+      "type": "qcm",
+      "question": "Au téléphone, comment te présentes-tu ?",
+      "choix": [
+        "Hello, this is Florian.",
+        "Hello, I am Florian here.",
+        "Hello, here is Florian.",
+        "Hello, it's me Florian speaking you."
+      ],
+      "bonneReponse": 0,
+      "explication": "Au téléphone : this is …",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u08-c002",
+      "section": "en-a2-u08-s01",
+      "type": "qcm",
+      "question": "Que signifie « Hold on, please » ?",
+      "choix": [
+        "Ne quittez pas, s'il vous plaît.",
+        "Raccrochez, s'il vous plaît.",
+        "Rappelez plus tard.",
+        "Parlez plus fort."
+      ],
+      "bonneReponse": 0,
+      "explication": "hold on = patienter.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u08-c003",
+      "section": "en-a2-u08-s01",
+      "type": "question",
+      "recto": "Comment demander à quelqu'un de te rappeler ?",
+      "verso": "*Could you call me back, please?* (ou *ask him to call me back*)",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u08-c004",
+      "section": "en-a2-u08-s02",
+      "type": "qcm",
+      "question": "Comment demander à essayer un vêtement ?",
+      "choix": [
+        "Can I try it on?",
+        "Can I test it?",
+        "Can I essay it?",
+        "Can I try on it?"
+      ],
+      "bonneReponse": 0,
+      "explication": "try on = essayer un vêtement ; avec un pronom : try it on.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u08-c005",
+      "section": "en-a2-u08-s02",
+      "type": "qcm",
+      "question": "« Receipt » signifie :",
+      "choix": [
+        "ticket de caisse",
+        "recette de cuisine",
+        "réception",
+        "remise"
+      ],
+      "bonneReponse": 0,
+      "explication": "receipt = reçu, ticket de caisse ; recette = recipe.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u08-c006",
+      "section": "en-a2-u08-s03",
+      "type": "qcm",
+      "question": "« Un aller-retour pour Londres » (anglais britannique) :",
+      "choix": [
+        "A return ticket to London, please.",
+        "A go-back ticket to London.",
+        "A single ticket return to London.",
+        "A round ticket to London."
+      ],
+      "bonneReponse": 0,
+      "explication": "return (GB) / round-trip (US).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u08-c007",
+      "section": "en-a2-u08-s03",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "I've got two suitcases.",
+        "I've got two luggages.",
+        "I've got two baggages.",
+        "I've got a luggages."
+      ],
+      "bonneReponse": 0,
+      "explication": "luggage est indénombrable.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u08-c008",
+      "section": "en-a2-u08-s04",
+      "type": "qcm",
+      "question": "« J'irai te chercher à la gare » :",
+      "choix": [
+        "I'll pick you up at the station.",
+        "I'll look you for at the station.",
+        "I'll find you out at the station.",
+        "I'll take you off at the station."
+      ],
+      "bonneReponse": 0,
+      "explication": "pick up = aller chercher quelqu'un.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u08-c009",
+      "section": "en-a2-u08-s04",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "Turn it off.",
+        "Turn off it.",
+        "Turn it of.",
+        "Off turn it."
+      ],
+      "bonneReponse": 0,
+      "explication": "Pronom entre le verbe et la particule.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u08-c010",
+      "section": "en-a2-u08-s04",
+      "type": "question",
+      "recto": "Que signifie « He gave up smoking » ?",
+      "verso": "« Il a **arrêté** de fumer » (give up = abandonner, renoncer).",
+      "difficulte": 1
+    }
+  ]
+}

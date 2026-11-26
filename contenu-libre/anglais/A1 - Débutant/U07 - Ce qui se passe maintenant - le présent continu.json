@@ -1,0 +1,240 @@
+{
+  "formatVersion": 1,
+  "id": "en-a1-u07",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "U07 – Ce qui se passe maintenant : le présent continu",
+  "ordre": 70,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Le présent continu (be + -ing) pour ce qui se passe au moment où l'on parle ou en ce moment, sa différence avec le présent simple, les verbes qui ne se mettent pas à la forme continue, la météo et les vêtements.",
+  "notions": [
+    "Présent continu : forme",
+    "Orthographe en -ing",
+    "Simple ou continu",
+    "Verbes d'état",
+    "Météo",
+    "Vêtements"
+  ],
+  "sections": [
+    {
+      "id": "en-a1-u07-s01",
+      "titre": "Former le présent continu",
+      "contenu": "**be** (am / is / are) + **verbe en -ing** :\n- *I**'m working**. She**'s sleeping**. They**'re watching** a film.*\n- négatif : *He **isn't listening**.* — question : ***Are** you **coming**?* → *Yes, I am.*\n\n**Orthographe du -ing** :\n- e muet final disparaît : *make → making, write → writing* (mais *see → seeing*) ;\n- consonne finale doublée après une voyelle courte accentuée : *run → running, sit → sitting, stop → stopping, swim → swimming* ;\n- -ie → -ying : *lie → lying, die → dying*.",
+      "notions": [
+        "Présent continu : forme",
+        "Orthographe en -ing"
+      ]
+    },
+    {
+      "id": "en-a1-u07-s02",
+      "titre": "Présent simple ou présent continu ?",
+      "contenu": "| Présent **simple** | Présent **continu** |\n| --- | --- |\n| habitude, routine, vérité générale | action **en cours**, maintenant ou en ce moment |\n| *I work in Lyon.* (c'est mon lieu de travail) | *I'm working from home this week.* (temporaire) |\n| *She usually takes the bus.* | *She's taking a taxi today.* |\n| marqueurs : *always, usually, every day, on Mondays* | marqueurs : *now, right now, at the moment, today, this week, Look!, Listen!* |\n\nEn français, on dit « je travaille » dans les deux cas : en anglais, il faut **choisir**.\n\nQuestion classique : *What do you do?* (quel est ton métier ?) ≠ *What are you doing?* (que fais-tu en ce moment ?).",
+      "notions": [
+        "Simple ou continu"
+      ]
+    },
+    {
+      "id": "en-a1-u07-s03",
+      "titre": "Les verbes d'état",
+      "contenu": "Certains verbes décrivent un **état** et non une action : on les met **au présent simple**, même pour « maintenant ».\n- goûts : *like, love, hate, want, prefer, need* ;\n- pensée : *know, understand, believe, remember, think* (au sens « penser que ») ;\n- possession : *have* (posséder), *own, belong* ;\n- perception : *see, hear, smell, taste* (involontaires).\n\n*I **know** the answer* (pas ~~I'm knowing~~). *Do you **understand**?* *I **want** a pizza now.*\n\nNuance : *I **think** it's a good idea* (opinion) mais *I**'m thinking** about it* (réflexion en cours). *I **have** a car* mais *I**'m having** lunch* (have = prendre un repas).",
+      "notions": [
+        "Verbes d'état"
+      ]
+    },
+    {
+      "id": "en-a1-u07-s04",
+      "titre": "La météo et les vêtements",
+      "contenu": "**Météo** : *What's the weather like?*\n- *It's sunny / cloudy / windy / foggy / hot / cold / warm / cool.*\n- *It's raining / snowing.* (action en cours) — *It rains a lot in Brest.* (habitude)\n- température : *It's 25 degrees.*\n\n**Vêtements** : *a T-shirt, a shirt (chemise), a jumper / sweater (pull), a jacket (veste), a coat (manteau), trousers (GB) / pants (US) (pantalon), jeans, a skirt (jupe), a dress (robe), shoes, trainers (GB) / sneakers (US), a hat, a scarf (écharpe).*\n- *trousers, jeans, shorts, pyjamas* sont **pluriels** : *My jeans **are** new.* « un pantalon » = *a pair of trousers*.\n- porter = ***wear*** : *She's wearing a red dress.* · s'habiller = *get dressed* · essayer = *try on*.",
+      "notions": [
+        "Météo",
+        "Vêtements"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a1-u07-c001",
+      "section": "en-a1-u07-s01",
+      "type": "qcm",
+      "question": "Complète : Listen! The baby ___.",
+      "choix": [
+        "is crying",
+        "cries",
+        "cry",
+        "are crying"
+      ],
+      "bonneReponse": 0,
+      "explication": "Action en cours → présent continu.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u07-c002",
+      "section": "en-a1-u07-s01",
+      "type": "qcm",
+      "question": "Quelle orthographe est correcte ?",
+      "choix": [
+        "running",
+        "runing",
+        "runnning",
+        "runeing"
+      ],
+      "bonneReponse": 0,
+      "explication": "Voyelle courte + consonne → on double.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u07-c003",
+      "section": "en-a1-u07-s01",
+      "type": "qcm",
+      "question": "Quelle orthographe est correcte ?",
+      "choix": [
+        "writing",
+        "writting",
+        "writeing",
+        "wrote-ing"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le e muet disparaît ; i long → pas de doublement.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u07-c004",
+      "section": "en-a1-u07-s02",
+      "type": "qcm",
+      "question": "Complète : I usually ___ coffee, but today I ___ tea.",
+      "choix": [
+        "drink / 'm drinking",
+        "'m drinking / drink",
+        "drink / drink",
+        "'m drinking / 'm drinking"
+      ],
+      "bonneReponse": 0,
+      "explication": "Habitude → simple ; aujourd'hui, exception → continu.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u07-c005",
+      "section": "en-a1-u07-s02",
+      "type": "qcm",
+      "question": "« What are you doing? » signifie :",
+      "choix": [
+        "Qu'est-ce que tu fais (en ce moment) ?",
+        "Quel est ton métier ?",
+        "Qu'est-ce que tu fais d'habitude ?",
+        "Qu'as-tu fait ?"
+      ],
+      "bonneReponse": 0,
+      "explication": "Continu = maintenant.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u07-c006",
+      "section": "en-a1-u07-s02",
+      "type": "qcm",
+      "question": "Complète : Water ___ at 100 °C.",
+      "choix": [
+        "boils",
+        "is boiling",
+        "boil",
+        "are boiling"
+      ],
+      "bonneReponse": 0,
+      "explication": "Vérité générale → présent simple.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u07-c007",
+      "section": "en-a1-u07-s02",
+      "type": "question",
+      "recto": "Traduis : « Il pleut. Prends un parapluie ! »",
+      "verso": "*It's raining. Take an umbrella!*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u07-c008",
+      "section": "en-a1-u07-s03",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "I don't understand this word.",
+        "I'm not understanding this word.",
+        "I not understand this word.",
+        "I'm not understand this word."
+      ],
+      "bonneReponse": 0,
+      "explication": "understand est un verbe d'état.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u07-c009",
+      "section": "en-a1-u07-s03",
+      "type": "qcm",
+      "question": "Complète : Sorry, I can't talk now, I ___ dinner.",
+      "choix": [
+        "'m having",
+        "have",
+        "having",
+        "has"
+      ],
+      "bonneReponse": 0,
+      "explication": "have = prendre un repas est une action → continu possible.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-a1-u07-c010",
+      "section": "en-a1-u07-s03",
+      "type": "question",
+      "recto": "Pourquoi dit-on « I want a coffee now » et non « I'm wanting » ?",
+      "verso": "*want* est un **verbe d'état** (désir) : il reste au présent simple, même pour le moment présent.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u07-c011",
+      "section": "en-a1-u07-s04",
+      "type": "qcm",
+      "question": "Complète : My new jeans ___ too long.",
+      "choix": [
+        "are",
+        "is",
+        "am",
+        "be"
+      ],
+      "bonneReponse": 0,
+      "explication": "jeans est toujours pluriel.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u07-c012",
+      "section": "en-a1-u07-s04",
+      "type": "qcm",
+      "question": "« Elle porte un manteau noir » (maintenant) :",
+      "choix": [
+        "She's wearing a black coat.",
+        "She's carrying a black coat.",
+        "She wears a black coat now.",
+        "She's bringing a black coat."
+      ],
+      "bonneReponse": 0,
+      "explication": "porter un vêtement = wear ; carry = porter dans les bras.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u07-c013",
+      "section": "en-a1-u07-s04",
+      "type": "exercice",
+      "enonce": "Décris la scène autour de toi en 4 phrases au présent continu, plus la météo.",
+      "etapes": [
+        "Météo : It's … / It's raining…",
+        "Ce que tu fais : I'm … -ing",
+        "Ce que fait une autre personne : He's / She's …",
+        "Ce que porte quelqu'un : … is wearing …"
+      ],
+      "reponse": "Exemple : *It's cold and it's raining. I'm sitting at my desk and I'm studying English. My cat is sleeping on the sofa. I'm wearing a big jumper.*",
+      "difficulte": 2
+    }
+  ]
+}

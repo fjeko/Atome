@@ -1,0 +1,249 @@
+{
+  "formatVersion": 1,
+  "id": "en-c1-u08",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "C1 – Avancé",
+  "sequence": null,
+  "seance": "U08 – Entraînement C1 : tout le niveau",
+  "ordre": 80,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Révision mélangée du niveau C1 : inversion, phrases clivées, registre formel, participiales, idiomes, nuances fines et production. À faire avant de repasser le palier T5.",
+  "notions": [
+    "Reformulation C1",
+    "Erreurs fréquentes C1",
+    "Compréhension écrite C1",
+    "Production C1"
+  ],
+  "sections": [
+    {
+      "id": "en-c1-u08-s01",
+      "titre": "Reformuler",
+      "contenu": "Réécris la phrase en gardant le sens, avec le début imposé.",
+      "notions": [
+        "Reformulation C1"
+      ]
+    },
+    {
+      "id": "en-c1-u08-s02",
+      "titre": "Corriger et nuancer",
+      "contenu": "Corrige ou améliore le registre.",
+      "notions": [
+        "Erreurs fréquentes C1"
+      ]
+    },
+    {
+      "id": "en-c1-u08-s03",
+      "titre": "Lire et comprendre",
+      "contenu": "> *It is often argued that open-source software is inherently more secure, since anyone can inspect the code. Admittedly, transparency allows flaws to be spotted by a wide community. Yet the assumption that \"many eyes\" are actually looking is, arguably, more wishful thinking than fact: critical libraries have been maintained for years by a handful of unpaid volunteers. Only when a major vulnerability made headlines did governments and large companies begin to fund the projects on which their infrastructure relied. Security, it would seem, depends less on the licence than on the resources devoted to maintenance.*",
+      "notions": [
+        "Compréhension écrite C1"
+      ]
+    },
+    {
+      "id": "en-c1-u08-s04",
+      "titre": "Produire",
+      "contenu": "Rédige ta réponse avant de lire le modèle.",
+      "notions": [
+        "Production C1"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-c1-u08-c001",
+      "section": "en-c1-u08-s01",
+      "type": "question",
+      "recto": "« I had never seen such a mess. » → Never …",
+      "verso": "*Never had I seen such a mess.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u08-c002",
+      "section": "en-c1-u08-s01",
+      "type": "question",
+      "recto": "« If you need any help, call me. » → Should …",
+      "verso": "*Should you need any help, call me.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u08-c003",
+      "section": "en-c1-u08-s01",
+      "type": "question",
+      "recto": "« As soon as I arrived, it started to rain. » → No sooner …",
+      "verso": "*No sooner had I arrived than it started to rain.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u08-c004",
+      "section": "en-c1-u08-s01",
+      "type": "question",
+      "recto": "« Tom fixed the bug, not Sarah. » → It was …",
+      "verso": "*It was Tom who fixed the bug, not Sarah.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u08-c005",
+      "section": "en-c1-u08-s01",
+      "type": "question",
+      "recto": "« I need more time. » → What …",
+      "verso": "*What I need is more time.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u08-c006",
+      "section": "en-c1-u08-s01",
+      "type": "question",
+      "recto": "« After she had read the report, she resigned. » → Having …",
+      "verso": "*Having read the report, she resigned.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u08-c007",
+      "section": "en-c1-u08-s01",
+      "type": "question",
+      "recto": "« You mustn't open this file under any circumstances. » → Under no circumstances …",
+      "verso": "*Under no circumstances must / should you open this file.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u08-c008",
+      "section": "en-c1-u08-s01",
+      "type": "question",
+      "recto": "« They didn't realise the danger. » → Little …",
+      "verso": "*Little did they realise the danger.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u08-c009",
+      "section": "en-c1-u08-s02",
+      "type": "question",
+      "recto": "Corrige : « It is vital that she attends the meeting » (registre très formel).",
+      "verso": "*It is vital that she **attend** the meeting.* (subjonctif)",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u08-c010",
+      "section": "en-c1-u08-s02",
+      "type": "question",
+      "recto": "Corrige : « Walking to work, the rain started. »",
+      "verso": "*While I was walking to work, it started to rain.* (participe suspendu)",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u08-c011",
+      "section": "en-c1-u08-s02",
+      "type": "question",
+      "recto": "Améliore (formel) : « We need to get more info to fix the problem. »",
+      "verso": "*Further information is required in order to address the issue.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u08-c012",
+      "section": "en-c1-u08-s02",
+      "type": "question",
+      "recto": "Nuance (hedging) : « Video games make children violent. »",
+      "verso": "*Some studies suggest that violent video games may, to some extent, increase aggressive behaviour in certain children.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u08-c013",
+      "section": "en-c1-u08-s02",
+      "type": "question",
+      "recto": "Corrige : « All what I want is a quiet weekend. »",
+      "verso": "*All (that) I want is a quiet weekend.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u08-c014",
+      "section": "en-c1-u08-s02",
+      "type": "question",
+      "recto": "Corrige : « He's responsible of the network. »",
+      "verso": "*He's responsible **for** the network.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u08-c015",
+      "section": "en-c1-u08-s03",
+      "type": "qcm",
+      "question": "Quelle est la thèse de l'auteur ?",
+      "choix": [
+        "La sécurité dépend surtout des moyens consacrés à la maintenance, pas de la licence.",
+        "Le logiciel libre est toujours plus sûr.",
+        "Le logiciel propriétaire est toujours plus sûr.",
+        "Les bénévoles devraient arrêter de maintenir le code."
+      ],
+      "bonneReponse": 0,
+      "explication": "Security… depends less on the licence than on the resources devoted to maintenance.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u08-c016",
+      "section": "en-c1-u08-s03",
+      "type": "qcm",
+      "question": "Que signifie « more wishful thinking than fact » ?",
+      "choix": [
+        "plus un vœu pieux qu'une réalité",
+        "plus un fait qu'une opinion",
+        "une pensée très réaliste",
+        "une réflexion approfondie"
+      ],
+      "bonneReponse": 0,
+      "explication": "wishful thinking = prendre ses désirs pour des réalités.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u08-c017",
+      "section": "en-c1-u08-s03",
+      "type": "qcm",
+      "question": "Quand les entreprises ont-elles commencé à financer ces projets ?",
+      "choix": [
+        "Après qu'une faille majeure a fait la une",
+        "Dès la création des projets",
+        "Quand les bénévoles l'ont demandé",
+        "Jamais"
+      ],
+      "bonneReponse": 0,
+      "explication": "Only when a major vulnerability made headlines did governments… begin to fund…",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u08-c018",
+      "section": "en-c1-u08-s03",
+      "type": "question",
+      "recto": "Relève trois procédés de nuance ou de mise en relief utilisés par l'auteur.",
+      "verso": "*It is often argued that…* (attribution prudente), *Admittedly* (concession), *arguably* (hedging), *it would seem* (prudence), et l'**inversion** *Only when… did governments begin…*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u08-c019",
+      "section": "en-c1-u08-s04",
+      "type": "exercice",
+      "enonce": "Écris l'introduction (4 phrases) d'un essai : « Should companies be held legally responsible for data breaches? »",
+      "etapes": [
+        "Accroche : fait ou chiffre.",
+        "Reformulation du problème.",
+        "Nuance : It could be argued that… / Admittedly…",
+        "Annonce du plan ou de la position."
+      ],
+      "reponse": "*Hardly a week goes by without a major data breach making the headlines. Such incidents raise the question of whether companies should bear legal responsibility for the information they collect. While it could be argued that no system is entirely secure, there is no denying that many breaches result from negligence. This essay will examine both perspectives before arguing that liability should depend on the measures taken.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u08-c020",
+      "section": "en-c1-u08-s04",
+      "type": "exercice",
+      "enonce": "Rédige un e-mail formel (4 phrases) pour signaler à un fournisseur un retard de livraison et exiger une solution.",
+      "etapes": [
+        "Objet et ton formel, sans contractions.",
+        "Faits précis (commande, date prévue).",
+        "Exigence au subjonctif ou avec require / request.",
+        "Clôture avec inversion Should…"
+      ],
+      "reponse": "*Dear Mr Jones, I am writing with regard to order no. 4521, which was due to be delivered on 3 March and has yet to arrive. This delay has caused considerable disruption to our operations. We therefore request that the equipment be delivered by Friday at the latest, failing which we will have to cancel the order. Should you require any further details, please do not hesitate to contact me. Yours sincerely,*",
+      "difficulte": 3
+    }
+  ]
+}

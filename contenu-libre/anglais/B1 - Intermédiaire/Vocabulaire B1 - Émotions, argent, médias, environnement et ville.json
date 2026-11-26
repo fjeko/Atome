@@ -1,0 +1,178 @@
+{
+  "formatVersion": 1,
+  "id": "en-b1-vocab",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "Vocabulaire B1 – Émotions, argent, médias, environnement et ville",
+  "ordre": 94,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Vocabulaire thématique du niveau B1 : sentiments et personnalité (-ed / -ing), argent et consommation, médias et réseaux sociaux, environnement, ville et logement, avec les collocations utiles pour donner son avis.",
+  "notions": [
+    "Émotions et personnalité",
+    "Argent",
+    "Médias",
+    "Environnement et ville"
+  ],
+  "sections": [
+    {
+      "id": "en-b1-vocab-s01",
+      "titre": "Émotions et personnalité",
+      "contenu": "**-ed / -ing** : *-ed* = ce que **ressent** la personne ; *-ing* = ce qui **provoque** le sentiment.\n*I'm bored* (je m'ennuie) / *The film is boring* (le film est ennuyeux). Idem : interested / interesting, tired / tiring, excited / exciting, confused / confusing, disappointed / disappointing, embarrassed / embarrassing.\n\n**Émotions** : *anxious, upset* (contrarié), *relieved* (soulagé), *proud* (fier), *jealous, grateful* (reconnaissant), *annoyed* (agacé), *stressed out*.\n\n**Personnalité** : *outgoing* (sociable), *shy, reliable* (fiable), *hard-working, lazy, patient, bossy* (autoritaire), *easy-going* (facile à vivre), *open-minded, stubborn* (têtu), *sensitive* (sensible) ≠ *sensible* (raisonnable).",
+      "notions": [
+        "Émotions et personnalité"
+      ]
+    },
+    {
+      "id": "en-b1-vocab-s02",
+      "titre": "Argent et consommation",
+      "contenu": "*to earn* (gagner par le travail) ≠ *to win* (gagner un jeu) ; *to spend money **on** something* ; *to save* (économiser) ; *to borrow from* (emprunter) / *to lend to* (prêter) ; *to afford* (avoir les moyens) : *I can't afford a new phone.*\n\n*a bill* (facture, UK ; billet de banque, US), *a receipt* (ticket de caisse), *a refund* (remboursement), *a discount* (réduction), *on sale* (en promo, US), *a bargain* (une bonne affaire), *rent* (loyer), *a subscription* (abonnement), *cash / card*, *contactless*.\n\n*It's worth it* (ça vaut le coup) ; *It's a rip-off* (c'est du vol, familier).",
+      "notions": [
+        "Argent"
+      ]
+    },
+    {
+      "id": "en-b1-vocab-s03",
+      "titre": "Médias et réseaux sociaux",
+      "contenu": "*the news* (les infos, **singulier** : *the news **is** bad*), *a headline* (gros titre), *an article*, *a journalist*, *a reporter*, *a broadcast*, *to go viral*, *a post*, *to share*, *a follower*, *an influencer*, *fake news*, *a source*, *reliable / biased* (fiable / partial), *clickbait*, *a feed* (fil d'actualité), *screen time*, *to scroll*, *to block / unfollow someone*, *privacy settings*.\n\nCollocations : *to spread misinformation, to check the facts, to raise awareness* (sensibiliser), *to keep up with the news*.",
+      "notions": [
+        "Médias"
+      ]
+    },
+    {
+      "id": "en-b1-vocab-s04",
+      "titre": "Environnement et ville",
+      "contenu": "**Environnement** : *climate change, global warming, pollution, greenhouse gases, carbon footprint* (empreinte carbone), *renewable energy, solar panels, wind turbines, to recycle, waste* (déchets), *single-use plastic, to reduce, to protect, endangered species, a drought* (sécheresse), *a flood* (inondation).\n\n**Ville et logement** : *a flat (UK) / apartment (US), a landlord, a tenant* (locataire), *rent, the suburbs* (banlieue résidentielle), *the city centre / downtown* (US), *traffic jam* (embouteillage), *public transport, a pedestrian street, noisy / lively / crowded* (bruyant / animé / bondé).\n\nPour donner son avis : *It's high time we… / We should invest more in… / One solution would be to…*",
+      "notions": [
+        "Environnement et ville"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b1-vocab-c001",
+      "section": "en-b1-vocab-s01",
+      "type": "question",
+      "recto": "Quelle différence entre *I'm boring* et *I'm bored* ?",
+      "verso": "*I'm bored* = je **m'ennuie** ; *I'm boring* = je **suis ennuyeux**.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-vocab-c002",
+      "section": "en-b1-vocab-s01",
+      "type": "question",
+      "recto": "Que veut dire *sensible* en anglais ?",
+      "verso": "**raisonnable**, sensé. « Sensible » se dit **sensitive**.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-vocab-c003",
+      "section": "en-b1-vocab-s01",
+      "type": "qcm",
+      "question": "« J'étais soulagé quand j'ai eu les résultats » :",
+      "choix": [
+        "I was relieved when I got the results.",
+        "I was relaxed when I had the results.",
+        "I was relieving when I got the results.",
+        "I was released when I got my results."
+      ],
+      "bonneReponse": 0,
+      "explication": "*relieved* = soulagé ; *relaxed* = détendu.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-vocab-c004",
+      "section": "en-b1-vocab-s02",
+      "type": "question",
+      "recto": "Quelle différence entre *earn* et *win* ?",
+      "verso": "*earn* = gagner **en travaillant** (*earn a salary*) ; *win* = gagner **un jeu, un prix** (*win the lottery*).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-vocab-c005",
+      "section": "en-b1-vocab-s02",
+      "type": "question",
+      "recto": "Comment dire « je n'ai pas les moyens d'acheter une voiture » ?",
+      "verso": "*I can't **afford** (to buy) a car.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-vocab-c006",
+      "section": "en-b1-vocab-s02",
+      "type": "qcm",
+      "question": "« Tu peux me prêter 10 € ? » :",
+      "choix": [
+        "Can you lend me ten euros?",
+        "Can you borrow me ten euros?",
+        "Can you lend to me ten euros?",
+        "Can I lend ten euros from you?"
+      ],
+      "bonneReponse": 0,
+      "explication": "*lend someone something* = prêter ; *borrow something from someone* = emprunter.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-vocab-c007",
+      "section": "en-b1-vocab-s03",
+      "type": "question",
+      "recto": "*The news* est-il singulier ou pluriel ?",
+      "verso": "**Singulier** : *The news **is** good.* *A piece of news* = une nouvelle.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-vocab-c008",
+      "section": "en-b1-vocab-s03",
+      "type": "question",
+      "recto": "Comment dit-on « sensibiliser à » et « vérifier les faits » ?",
+      "verso": "*to raise awareness of* et *to check the facts*.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-vocab-c009",
+      "section": "en-b1-vocab-s04",
+      "type": "question",
+      "recto": "Comment dit-on *empreinte carbone* et *déchets* ?",
+      "verso": "*carbon footprint* et *waste*.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-vocab-c010",
+      "section": "en-b1-vocab-s04",
+      "type": "question",
+      "recto": "Quelle différence entre *landlord* et *tenant* ?",
+      "verso": "*landlord* = **propriétaire** qui loue ; *tenant* = **locataire**.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-vocab-c011",
+      "section": "en-b1-vocab-s04",
+      "type": "qcm",
+      "question": "Que signifie *the suburbs* ?",
+      "choix": [
+        "Les quartiers résidentiels autour de la ville",
+        "Les quartiers pauvres du centre-ville",
+        "Le métro de la ville",
+        "Les villages de montagne"
+      ],
+      "bonneReponse": 0,
+      "explication": "*suburbs* = banlieue résidentielle, souvent aisée ; pas de connotation négative comme « banlieue » en français.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-vocab-c012",
+      "section": "en-b1-vocab-s04",
+      "type": "exercice",
+      "enonce": "🎙️ En 1 minute : *What could your town do to become greener?* (au moins 5 mots de la section).",
+      "etapes": [
+        "Constat (There's too much traffic / waste…).",
+        "2 ou 3 propositions (One solution would be to…).",
+        "Conclusion personnelle."
+      ],
+      "reponse": "*In my town, there's a lot of traffic and air pollution. One solution would be to improve public transport and create more cycle lanes. The council should also install solar panels on public buildings and encourage people to recycle their waste. It's high time we reduced our carbon footprint.*",
+      "difficulte": 2
+    }
+  ]
+}

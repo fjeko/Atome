@@ -1,0 +1,186 @@
+{
+  "formatVersion": 1,
+  "id": "en-or-m04",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "Méthode – Oral, écoute et prononciation",
+  "sequence": null,
+  "seance": "M04 – Comprendre l'anglais parlé rapide : liaisons, réductions et accents",
+  "ordre": 40,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Pourquoi l'anglais réel semble incompréhensible même quand on connaît les mots : liaisons, élisions, assimilations, réductions familières (gonna, wanna, gotta, dunno), contractions, différences UK / US, et stratégies d'écoute.",
+  "notions": [
+    "Liaisons et réductions",
+    "Réductions familières",
+    "Accents UK et US",
+    "Stratégies d'écoute"
+  ],
+  "sections": [
+    {
+      "id": "en-or-m04-s01",
+      "titre": "Le connected speech",
+      "contenu": "À l'oral, les mots **ne sont pas séparés** : ils se fondent. C'est pourquoi un mot que tu connais à l'écrit devient méconnaissable.\n\n- **Liaison consonne + voyelle** : *turn it off* → « tur-ni-toff » ; *an apple* → « a-napple ».\n- **Élision** (sons qui disparaissent) : *next day* → « nex day » ; *I don't know* → « I dunno » ; *friendship* → « frienship ».\n- **Assimilation** (sons qui fusionnent) : *did you* → « didja » ; *would you* → « wouldja » ; *don't you* → « donchu » ; *got you* → « gotcha ».\n- **t américain** : entre deux voyelles, il devient un **d rapide** : *water* → « wader », *better* → « bedder », *a lot of* → « a lodda ».\n- **t britannique** : souvent remplacé par un **coup de glotte** (petit arrêt) : *water* → « wa'er », *not now* → « no' now ».",
+      "notions": [
+        "Liaisons et réductions"
+      ]
+    },
+    {
+      "id": "en-or-m04-s02",
+      "titre": "Réductions familières",
+      "contenu": "Très fréquentes dans les séries, les chansons et les conversations. À **comprendre** absolument, à **écrire** seulement dans un contexte très informel (messages entre amis).\n\n| Oral | Forme pleine |\n| --- | --- |\n| gonna | going to : *I'm gonna call him* |\n| wanna | want to / want a : *I wanna go* |\n| gotta | have got to / have to : *I gotta go* |\n| dunno | don't know |\n| lemme | let me : *lemme see* |\n| gimme | give me |\n| kinda / sorta | kind of / sort of |\n| outta | out of |\n| ya | you : *see ya* |\n| 'cause / cos | because |\n| y'all | you all (sud des États-Unis) |\n| innit | isn't it (Londres, familier) |\n\nEt les contractions, **normales à l'oral** même au travail : *I'd, you'll, she's, we've, wouldn't, could've* (→ « coulda », **jamais** « could of » à l'écrit).",
+      "notions": [
+        "Réductions familières"
+      ]
+    },
+    {
+      "id": "en-or-m04-s03",
+      "titre": "Anglais britannique et américain",
+      "contenu": "Les deux sont corrects ; l'important est d'être **cohérent** et surtout de **comprendre les deux**.\n\n| | Britannique (RP / standard) | Américain (General American) |\n| --- | --- | --- |\n| r après voyelle | muet : *car* /kɑː/ | prononcé : /kɑːr/ |\n| t entre voyelles | t net ou coup de glotte | d rapide : *water* « wader » |\n| *can't, bath, dance* | /ɑː/ long : « caan't » | /æ/ : « cænt » |\n| *hot, stop* | /ɒ/ arrondi | /ɑː/ ouvert : « haat » |\n| vocabulaire | flat, lift, mobile, holiday | apartment, elevator, cell phone, vacation |\n| orthographe | colour, organise, centre | color, organize, center |\n\nIl existe aussi de nombreux accents : écossais, irlandais, australien, indien… Varie tes sources dès B1 pour habituer ton oreille.",
+      "notions": [
+        "Accents UK et US"
+      ]
+    },
+    {
+      "id": "en-or-m04-s04",
+      "titre": "Stratégies d'écoute",
+      "contenu": "1. **Prédis** avant d'écouter : le titre, le contexte et les images te disent quels mots vont arriver.\n2. **Première écoute globale** : qui parle, où, de quoi, quel ton ? Ne cherche pas chaque mot.\n3. **Deuxième écoute ciblée** : les informations précises (chiffres, noms, raisons).\n4. **Appuie-toi sur les mots accentués** : ce sont les mots importants ; les petits mots faibles se devinent.\n5. **Ne bloque pas** sur un mot inconnu : continue, le sens arrive souvent après.\n6. **Réécoute avec la transcription** les passages incompris : c'est là que tu découvres les liaisons et les réductions.\n7. **Dictée partielle** : écris mot à mot 20 secondes d'audio, puis compare à la transcription. Très efficace pour l'oreille.",
+      "notions": [
+        "Stratégies d'écoute"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-or-m04-c001",
+      "section": "en-or-m04-s01",
+      "type": "question",
+      "recto": "Pourquoi *turn it off* sonne-t-il comme un seul mot ?",
+      "verso": "Par **liaison** : la consonne finale s'attache à la voyelle suivante : « tur-ni-toff ».",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m04-c002",
+      "section": "en-or-m04-s01",
+      "type": "question",
+      "recto": "Que devient *did you* à l'oral rapide ?",
+      "verso": "« **didja** » : le d + y fusionnent en « dj » (**assimilation**). De même *would you* → « wouldja », *don't you* → « donchu ».",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m04-c003",
+      "section": "en-or-m04-s01",
+      "type": "qcm",
+      "question": "Un Américain dit « I need a bedder lapdop ». Qu'a-t-il dit ?",
+      "choix": [
+        "I need a better laptop.",
+        "I need a bad old laptop.",
+        "I need a bigger lap top.",
+        "I need a bed or a laptop."
+      ],
+      "bonneReponse": 0,
+      "explication": "Le t américain entre voyelles devient un d rapide (*better* → « bedder ») ; le t de *laptop*, lui, est simplement adouci.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m04-c004",
+      "section": "en-or-m04-s02",
+      "type": "question",
+      "recto": "Que signifient *gonna*, *wanna* et *gotta* ?",
+      "verso": "*going to* (futur), *want to* (vouloir), *have got to / have to* (devoir).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m04-c005",
+      "section": "en-or-m04-s02",
+      "type": "question",
+      "recto": "Peut-on écrire *gonna* dans un e-mail professionnel ?",
+      "verso": "**Non** : réservé à l'oral et aux messages très informels. Au travail, écris *going to*.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m04-c006",
+      "section": "en-or-m04-s02",
+      "type": "qcm",
+      "question": "« Lemme check, I dunno if it's outta stock. » Que dit-on ?",
+      "choix": [
+        "Let me check, I don't know if it's out of stock.",
+        "Let me check, I do know it's out of stock.",
+        "Lemon check, I don't know if it's on stock.",
+        "Let's check, I know it's out of the shop."
+      ],
+      "bonneReponse": 0,
+      "explication": "lemme = let me, dunno = don't know, outta = out of.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m04-c007",
+      "section": "en-or-m04-s02",
+      "type": "qcm",
+      "question": "Un ami écrit « I could of done it ». Quelle est la forme correcte ?",
+      "choix": [
+        "I could have done it.",
+        "I could off done it.",
+        "I could of did it.",
+        "I could had done it."
+      ],
+      "bonneReponse": 0,
+      "explication": "*could have* réduit à l'oral (« could've », « coulda ») sonne comme « could of », mais s'écrit **could have**.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m04-c008",
+      "section": "en-or-m04-s03",
+      "type": "question",
+      "recto": "Comment un Britannique et un Américain prononcent-ils *can't* ?",
+      "verso": "Britannique : /kɑːnt/ (« caan't », a long) ; américain : /kænt/ (a de *cat*).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m04-c009",
+      "section": "en-or-m04-s03",
+      "type": "qcm",
+      "question": "Quel trio est américain ?",
+      "choix": [
+        "apartment, elevator, vacation",
+        "flat, lift, holiday",
+        "mobile, queue, autumn",
+        "colour, centre, organise"
+      ],
+      "bonneReponse": 0,
+      "explication": "flat / lift / holiday et l'orthographe en -our, -re sont britanniques.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m04-c010",
+      "section": "en-or-m04-s04",
+      "type": "question",
+      "recto": "Que faire à la première écoute d'un document ?",
+      "verso": "Une écoute **globale** : qui parle, où, de quoi, sur quel ton. On cherche les détails seulement à la deuxième écoute.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m04-c011",
+      "section": "en-or-m04-s04",
+      "type": "question",
+      "recto": "Pourquoi s'appuyer sur les mots accentués ?",
+      "verso": "Ce sont les **mots de contenu** (le sens) ; les mots grammaticaux faibles se reconstruisent à partir du contexte.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m04-c012",
+      "section": "en-or-m04-s04",
+      "type": "exercice",
+      "enonce": "🎧 Dictée partielle : choisis 20 secondes d'un podcast pour apprenants avec transcription (par exemple *6 Minute English*). Écris mot à mot ce que tu entends, puis compare.",
+      "etapes": [
+        "Écoute l'extrait une fois en entier.",
+        "Réécoute par morceaux de 3 à 5 mots et écris.",
+        "Compare à la transcription et surligne les erreurs.",
+        "Classe-les : mot inconnu, liaison, forme faible, accent."
+      ],
+      "reponse": "Les erreurs révèlent ce que ton oreille ne découpe pas encore. La plupart viennent des **formes faibles** (*to, of, and, have*) et des **liaisons** ; réécoute ces passages en shadowing.",
+      "difficulte": 2
+    }
+  ]
+}

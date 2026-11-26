@@ -1,0 +1,209 @@
+{
+  "formatVersion": 1,
+  "id": "en-test-c1",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "C1 – Avancé",
+  "sequence": null,
+  "seance": "Bilan C1 – 12 questions pour vérifier le niveau",
+  "ordre": 990,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Bilan de fin de niveau C1 (avancé) : 12 QCM pour vérifier que le niveau est acquis. 10 / 12 ou plus : passe au niveau suivant ; sinon, revois les unités où tu as hésité.",
+  "notions": [
+    "Bilan C1"
+  ],
+  "sections": [
+    {
+      "id": "en-test-c1-s01",
+      "titre": "Bilan C1",
+      "contenu": "**Bilan C1 — avancé**. Douze questions, sans aide, sans réfléchir plus de 30 secondes par question. À faire **à la fin du niveau**, après l'Entraînement.\n\nRésultat à la fin de la session :\n- **10 / 12 ou plus** : niveau acquis → passe au niveau suivant ;\n- **7 à 9 / 12** : presque : revois les unités où tu as hésité, puis refais le bilan quelques jours plus tard ;\n- **6 / 12 ou moins** : reprends les unités du niveau avant d'avancer.",
+      "notions": [
+        "Bilan C1"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-test-c1-c001",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "Never ___ such a disorganised meeting.",
+      "choix": [
+        "have I attended",
+        "I have attended",
+        "I attended",
+        "did I attended"
+      ],
+      "bonneReponse": 0,
+      "explication": "Inversion après never.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-test-c1-c002",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "___ you require further information, please contact us.",
+      "choix": [
+        "Should",
+        "Would",
+        "If should",
+        "Were"
+      ],
+      "bonneReponse": 0,
+      "explication": "Inversion conditionnelle formelle.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-test-c1-c003",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "It is essential that he ___ informed immediately.",
+      "choix": [
+        "be",
+        "is",
+        "will be",
+        "being"
+      ],
+      "bonneReponse": 0,
+      "explication": "Subjonctif après it is essential that.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-test-c1-c004",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "___ the report, she sent it to her manager.",
+      "choix": [
+        "Having finished",
+        "Finished",
+        "Being finished",
+        "Have finished"
+      ],
+      "bonneReponse": 0,
+      "explication": "Antériorité → having + participe.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-test-c1-c005",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "What I need ___ a long holiday.",
+      "choix": [
+        "is",
+        "it is",
+        "that is",
+        "are"
+      ],
+      "bonneReponse": 0,
+      "explication": "Phrase clivée : What … is.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-test-c1-c006",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "No sooner had we sat down ___ the fire alarm went off.",
+      "choix": [
+        "than",
+        "when",
+        "that",
+        "then"
+      ],
+      "bonneReponse": 0,
+      "explication": "No sooner … than.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-test-c1-c007",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "You needn't ___ a taxi; I could have driven you.",
+      "choix": [
+        "have taken",
+        "take",
+        "to take",
+        "taken"
+      ],
+      "bonneReponse": 0,
+      "explication": "needn't have + participe.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-test-c1-c008",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "Little ___ that their plan would fail.",
+      "choix": [
+        "did they know",
+        "they knew",
+        "they did know",
+        "knew they"
+      ],
+      "bonneReponse": 0,
+      "explication": "Inversion après little.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-test-c1-c009",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "The results ___ that the treatment may be effective.",
+      "choix": [
+        "suggest",
+        "prove definitely",
+        "are proving",
+        "demonstrate always"
+      ],
+      "bonneReponse": 0,
+      "explication": "Hedging : suggest + may.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-test-c1-c010",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "He was accused ___ stealing company data.",
+      "choix": [
+        "of",
+        "for",
+        "with",
+        "about"
+      ],
+      "bonneReponse": 0,
+      "explication": "accuse someone of.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-test-c1-c011",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "'To cut corners' means:",
+      "choix": [
+        "to do something badly to save time or money",
+        "to take a shortcut while driving",
+        "to reduce prices",
+        "to finish early"
+      ],
+      "bonneReponse": 0,
+      "explication": "Idiome professionnel.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-test-c1-c012",
+      "section": "en-test-c1-s01",
+      "type": "qcm",
+      "question": "Had I not ___ the warning, I would have lost everything.",
+      "choix": [
+        "noticed",
+        "notice",
+        "to notice",
+        "noticing"
+      ],
+      "bonneReponse": 0,
+      "explication": "Had + sujet + not + participe.",
+      "difficulte": 3
+    }
+  ]
+}

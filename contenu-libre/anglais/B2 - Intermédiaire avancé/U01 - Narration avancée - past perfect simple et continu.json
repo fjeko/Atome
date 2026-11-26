@@ -1,0 +1,137 @@
+{
+  "formatVersion": 1,
+  "id": "en-b2-u01",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "U01 – Narration avancée : past perfect simple et continu",
+  "ordre": 10,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Le past perfect pour marquer l'antériorité dans le passé, le past perfect continu pour une durée avant un moment passé, et l'articulation des temps du passé dans un récit (by the time, already, before, after).",
+  "notions": [
+    "Past perfect",
+    "Past perfect continu",
+    "Temps du récit"
+  ],
+  "sections": [
+    {
+      "id": "en-b2-u01-s01",
+      "titre": "Le past perfect",
+      "contenu": "**had + participe passé** : une action **antérieure** à un autre moment du passé (le « plus-que-parfait »).\n- *When I arrived, the train **had left**.* (le train était parti avant mon arrivée)\n- comparer : *When I arrived, the train **left**.* (il est parti au moment où j'arrivais)\n\nMarqueurs : ***by the time*** (le temps que), ***already***, ***before***, ***after***, ***never … before***.\n- *By the time the police came, the thieves **had escaped**.*\n- *I **had never seen** snow before I moved to Canada.*\n\nQuand l'ordre est évident (*after, before*), le prétérit simple suffit souvent : *After I finished, I went home.*",
+      "notions": [
+        "Past perfect"
+      ]
+    },
+    {
+      "id": "en-b2-u01-s02",
+      "titre": "Le past perfect continu",
+      "contenu": "**had been + -ing** : une activité qui **durait** jusqu'à un moment du passé (souvent avec la durée ou une conséquence visible).\n- *She **had been working** there for ten years when the company closed.*\n- *His eyes were red: he **had been crying**.*\n\nC'est le « present perfect continu décalé dans le passé » :\n*I've been waiting for an hour* (maintenant) → *I **had been waiting** for an hour when he finally arrived* (à ce moment-là).",
+      "notions": [
+        "Past perfect continu"
+      ]
+    },
+    {
+      "id": "en-b2-u01-s03",
+      "titre": "Les temps du récit",
+      "contenu": "| Rôle dans le récit | Temps | Exemple |\n| --- | --- | --- |\n| événements principaux, dans l'ordre | prétérit simple | *I opened the door and saw…* |\n| décor, actions en cours | prétérit continu | *It was getting dark and the wind was blowing.* |\n| retour en arrière, antériorité | past perfect | *Someone had broken the window.* |\n| durée avant un moment passé | past perfect continu | *The alarm had been ringing for minutes.* |\n\nBien utilisés ensemble, ces temps donnent un récit clair et vivant, attendu au niveau B2 (récit, rapport d'incident).",
+      "notions": [
+        "Temps du récit"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b2-u01-c001",
+      "section": "en-b2-u01-s01",
+      "type": "qcm",
+      "question": "Complète : When we got to the cinema, the film ___.",
+      "choix": [
+        "had already started",
+        "already started",
+        "has already started",
+        "was already start"
+      ],
+      "bonneReponse": 0,
+      "explication": "Antériorité par rapport à un moment passé → past perfect.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-u01-c002",
+      "section": "en-b2-u01-s01",
+      "type": "qcm",
+      "question": "Quelle phrase signifie que le patron est parti AVANT ton arrivée ?",
+      "choix": [
+        "When I arrived, my boss had left.",
+        "When I arrived, my boss left.",
+        "When I arrived, my boss was leaving.",
+        "When I arrived, my boss has left."
+      ],
+      "bonneReponse": 0,
+      "explication": "had left = parti avant ; left = parti à ce moment ; was leaving = en train de partir.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u01-c003",
+      "section": "en-b2-u01-s01",
+      "type": "question",
+      "recto": "Traduis : « Il n'avait jamais pris l'avion avant ce voyage. »",
+      "verso": "*He **had never flown** before that trip.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u01-c004",
+      "section": "en-b2-u01-s02",
+      "type": "qcm",
+      "question": "Complète : They were tired because they ___ all day.",
+      "choix": [
+        "had been walking",
+        "have been walking",
+        "walked since",
+        "were walk"
+      ],
+      "bonneReponse": 0,
+      "explication": "Activité qui durait avant un moment passé, avec conséquence → past perfect continu.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u01-c005",
+      "section": "en-b2-u01-s02",
+      "type": "question",
+      "recto": "Traduis : « J'attendais depuis deux heures quand le technicien est enfin arrivé. »",
+      "verso": "*I **had been waiting** for two hours when the technician finally **arrived**.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u01-c006",
+      "section": "en-b2-u01-s03",
+      "type": "exercice",
+      "enonce": "Écris un rapport d'incident en 4 phrases avec les quatre temps du récit : panne de serveur un lundi matin.",
+      "etapes": [
+        "Décor (prétérit continu) : Users were trying to …",
+        "Événement (prétérit) : At 9:15 the server crashed.",
+        "Antériorité (past perfect) : An update had been installed the night before.",
+        "Durée (past perfect continu) : The disk had been filling up for weeks."
+      ],
+      "reponse": "*On Monday morning, users were trying to log in when the file server crashed at 9:15. We discovered that an automatic update had been installed during the night. In fact, the disk had been filling up for weeks and the update used the last free space. We freed some space and restarted the service.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u01-c007",
+      "section": "en-b2-u01-s03",
+      "type": "qcm",
+      "question": "Quel temps exprime un retour en arrière dans un récit au passé ?",
+      "choix": [
+        "Le past perfect",
+        "Le prétérit continu",
+        "Le present perfect",
+        "Le présent simple"
+      ],
+      "bonneReponse": 0,
+      "explication": "had + participe passé = antériorité.",
+      "difficulte": 1
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "formatVersion": 1,
+  "id": "en-a2-u01",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A2 – Élémentaire",
+  "sequence": null,
+  "seance": "U01 – Raconter le passé (1) : was / were et les verbes réguliers",
+  "ordre": 10,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Le prétérit de to be (was / were), le prétérit des verbes réguliers en -ed (orthographe et prononciation), la négation et les questions avec did, et les marqueurs du passé (yesterday, last, ago).",
+  "notions": [
+    "Prétérit de to be",
+    "Prétérit régulier",
+    "Prononciation de -ed",
+    "Prétérit : négation",
+    "Prétérit : questions",
+    "Marqueurs du passé"
+  ],
+  "sections": [
+    {
+      "id": "en-a2-u01-s01",
+      "titre": "Was et were",
+      "contenu": "| | Affirmatif | Négatif | Question |\n| --- | --- | --- | --- |\n| I / he / she / it | *I **was** tired.* | *She **wasn't** at home.* | ***Was** it good?* |\n| you / we / they | *They **were** late.* | *We **weren't** ready.* | ***Were** you there?* |\n\nRéponses courtes : *Was it expensive? — Yes, it was. / No, it wasn't.*\nExpressions : *I was born in 2006* (je suis né), *Where were you yesterday?*",
+      "notions": [
+        "Prétérit de to be"
+      ]
+    },
+    {
+      "id": "en-a2-u01-s02",
+      "titre": "Verbes réguliers : -ed",
+      "contenu": "Prétérit régulier = base + **-ed**, à **toutes les personnes** : *I / she / they worked*.\n\n**Orthographe** : *live → lived* (e final) ; *study → studied* (consonne + y) mais *play → played* ; *stop → stopped, plan → planned* (consonne doublée après voyelle courte accentuée).\n\n**Prononciation** (trois sons, importante à l'oral) :\n| Son | Après | Exemples |\n| --- | --- | --- |\n| **/t/** | sons sourds : p, k, f, s, sh, ch | *worked, stopped, watched, missed* |\n| **/d/** | sons sonores et voyelles | *played, lived, called, cleaned* |\n| **/ɪd/** (syllabe en plus) | **t** ou **d** | *wanted, needed, started, decided* |\n\nOn ne dit **jamais** « work-ed » avec une syllabe en plus : *worked* = « workt ».",
+      "notions": [
+        "Prétérit régulier",
+        "Prononciation de -ed"
+      ]
+    },
+    {
+      "id": "en-a2-u01-s03",
+      "titre": "Négation et questions avec did",
+      "contenu": "Comme au présent avec *do*, on utilise l'auxiliaire **did** (le même pour toutes les personnes). Le **verbe reprend sa base**.\n- négatif : *I **didn't work** yesterday.* (et non ~~didn't worked~~)\n- question : ***Did** you **call** her?* → *Yes, I did. / No, I didn't.*\n- avec un mot interrogatif : ***Where did** you **go**? **What did** she **say**?*\n\nException : **to be** n'utilise pas *did* : *Were you happy?* (pas ~~Did you be~~).",
+      "notions": [
+        "Prétérit : négation",
+        "Prétérit : questions"
+      ]
+    },
+    {
+      "id": "en-a2-u01-s04",
+      "titre": "Les marqueurs du passé",
+      "contenu": "Le prétérit s'emploie pour une action **terminée** à un moment **passé précis**. Marqueurs typiques :\n- ***yesterday*** (hier), *yesterday morning*, *the day before yesterday* (avant-hier) ;\n- ***last*** + période (sans *the*) : *last night* (hier soir), *last week, last year, last summer* ;\n- durée + ***ago*** (il y a) : *two days ago, a long time ago* ;\n- ***in*** + année : *in 2019* ; ***when*** *I was a child*.\n\nLe français dit « je suis allé », « j'ai travaillé » (passé composé) : en anglais, s'il y a un moment passé précis → **prétérit** : *I worked last Saturday.*",
+      "notions": [
+        "Marqueurs du passé"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a2-u01-c001",
+      "section": "en-a2-u01-s01",
+      "type": "qcm",
+      "question": "Complète : We ___ at the cinema last night.",
+      "choix": [
+        "were",
+        "was",
+        "are",
+        "did"
+      ],
+      "bonneReponse": 0,
+      "explication": "we → were.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u01-c002",
+      "section": "en-a2-u01-s01",
+      "type": "qcm",
+      "question": "Comment dit-on « Je suis né à Lille » ?",
+      "choix": [
+        "I was born in Lille.",
+        "I am born in Lille.",
+        "I born in Lille.",
+        "I was borned in Lille."
+      ],
+      "bonneReponse": 0,
+      "explication": "Naître = be born, au passé : was born.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u01-c003",
+      "section": "en-a2-u01-s01",
+      "type": "question",
+      "recto": "Traduis : « Le film n'était pas intéressant. Où étiez-vous ? »",
+      "verso": "*The film wasn't interesting. Where were you?*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u01-c004",
+      "section": "en-a2-u01-s02",
+      "type": "qcm",
+      "question": "Quel est le prétérit de « study » ?",
+      "choix": [
+        "studied",
+        "studyed",
+        "studed",
+        "studdied"
+      ],
+      "bonneReponse": 0,
+      "explication": "Consonne + y → -ied.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u01-c005",
+      "section": "en-a2-u01-s02",
+      "type": "qcm",
+      "question": "Dans lequel de ces verbes -ed se prononce comme une syllabe en plus ?",
+      "choix": [
+        "wanted",
+        "worked",
+        "played",
+        "watched"
+      ],
+      "bonneReponse": 0,
+      "explication": "Après t ou d, -ed se prononce /ɪd/.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u01-c006",
+      "section": "en-a2-u01-s02",
+      "type": "question",
+      "recto": "Comment se prononce « stopped » ?",
+      "verso": "« **stopt** » en une syllabe (son /t/ après le p sourd).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u01-c007",
+      "section": "en-a2-u01-s03",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "Did you watch the match?",
+        "Did you watched the match?",
+        "Do you watched the match?",
+        "Watched you the match?"
+      ],
+      "bonneReponse": 0,
+      "explication": "did + base verbale.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u01-c008",
+      "section": "en-a2-u01-s03",
+      "type": "qcm",
+      "question": "Négation de « She visited Rome » :",
+      "choix": [
+        "She didn't visit Rome.",
+        "She didn't visited Rome.",
+        "She wasn't visit Rome.",
+        "She not visited Rome."
+      ],
+      "bonneReponse": 0,
+      "explication": "Le passé est porté par did.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u01-c009",
+      "section": "en-a2-u01-s03",
+      "type": "question",
+      "recto": "Traduis : « Est-ce qu'il a fini son travail ? — Non. »",
+      "verso": "*Did he finish his work? — No, he didn't.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u01-c010",
+      "section": "en-a2-u01-s04",
+      "type": "qcm",
+      "question": "« Hier soir » se dit :",
+      "choix": [
+        "last night",
+        "yesterday night",
+        "the last night",
+        "past night"
+      ],
+      "bonneReponse": 0,
+      "explication": "last night est l'expression usuelle.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u01-c011",
+      "section": "en-a2-u01-s04",
+      "type": "qcm",
+      "question": "Complète : I started this job three years ___.",
+      "choix": [
+        "ago",
+        "before",
+        "since",
+        "last"
+      ],
+      "bonneReponse": 0,
+      "explication": "durée + ago = il y a.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u01-c012",
+      "section": "en-a2-u01-s04",
+      "type": "exercice",
+      "enonce": "Raconte ton dernier week-end en 5 phrases au prétérit (au moins une négation et trois verbes réguliers).",
+      "etapes": [
+        "On Saturday I …",
+        "I visited / watched / played …",
+        "In the evening I …",
+        "Négation : I didn't …",
+        "Sentiment : It was …"
+      ],
+      "reponse": "Exemple : *Last weekend was great. On Saturday I visited my grandparents. We cooked a big lunch. In the evening I watched a film. I didn't study at all!*",
+      "difficulte": 2
+    }
+  ]
+}

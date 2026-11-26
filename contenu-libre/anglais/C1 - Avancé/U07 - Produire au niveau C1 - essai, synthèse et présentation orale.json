@@ -1,0 +1,157 @@
+{
+  "formatVersion": 1,
+  "id": "en-c1-u07",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "C1 – Avancé",
+  "sequence": null,
+  "seance": "U07 – Produire au niveau C1 : essai, synthèse et présentation orale",
+  "ordre": 70,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Structurer un essai argumentatif, résumer et synthétiser des documents, rédiger un rapport, et réussir une présentation orale : annoncer le plan, transitions, gérer les questions.",
+  "notions": [
+    "Essai argumentatif",
+    "Synthèse",
+    "Présentation orale"
+  ],
+  "sections": [
+    {
+      "id": "en-c1-u07-s01",
+      "titre": "L'essai argumentatif",
+      "contenu": "**Structure** :\n1. **Introduction** : accroche (fait, chiffre, question), reformulation du sujet, annonce de la position ou du plan ;\n2. **Développement** : 2 ou 3 paragraphes, chacun avec une **idée directrice** (*topic sentence*), une explication, un exemple ;\n3. **Contre-argument** et réfutation : *Admittedly, … However, …* ;\n4. **Conclusion** : synthèse, position nuancée, ouverture.\n\n**Expressions** : *It is often argued that… · There is no denying that… · This raises the question of… · A case in point is… · Admittedly,… · On balance,… · All things considered,…*\n\nÉviter : contractions, *I think* répété, *etc.*, phrases trop longues sans ponctuation, *a lot of* (préférer *a great deal of / numerous*).",
+      "notions": [
+        "Essai argumentatif"
+      ]
+    },
+    {
+      "id": "en-c1-u07-s02",
+      "titre": "Résumer et synthétiser",
+      "contenu": "**Résumer** un document : identifier la thèse, les arguments, les exemples clés ; **reformuler** (ne pas copier) ; réduire au tiers ou au quart ; rester neutre.\n\nVerbes de rapport (pour présenter un point de vue) : *the author argues / claims / maintains / points out / suggests / acknowledges / concludes that…* — ***claim*** laisse entendre qu'on n'est pas forcément d'accord.\n\n**Synthèse** de plusieurs documents : regrouper par **idées** (pas document par document) ; comparer : *Both documents highlight… · Unlike document A, document B… · While A focuses on…, B…*",
+      "notions": [
+        "Synthèse"
+      ]
+    },
+    {
+      "id": "en-c1-u07-s03",
+      "titre": "La présentation orale",
+      "contenu": "| Étape | Expressions |\n| --- | --- |\n| Ouvrir | *Good morning everyone. Today I'd like to talk about… / The aim of this presentation is to…* |\n| Annoncer le plan | *I've divided my talk into three parts. First,… then,… finally,…* |\n| Transition | *Let's move on to… / This brings me to my next point. / Turning now to…* |\n| Montrer un visuel | *As you can see on this slide,… / This graph shows…* |\n| Insister | *What's really important here is… / I'd like to stress that…* |\n| Conclure | *To sum up,… / In conclusion,… / Thank you for your attention.* |\n| Questions | *I'd be happy to answer any questions. / That's a good question. / I'm not sure, but I'll find out and get back to you.* |\n\nConseils : phrases courtes, pauses, regarder l'auditoire, ne pas lire ses notes, reformuler une question avant d'y répondre.",
+      "notions": [
+        "Présentation orale"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-c1-u07-c001",
+      "section": "en-c1-u07-s01",
+      "type": "qcm",
+      "question": "Que doit contenir la première phrase d'un paragraphe de développement ?",
+      "choix": [
+        "L'idée directrice (topic sentence)",
+        "La conclusion de l'essai",
+        "Une citation obligatoire",
+        "Le titre du document"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le lecteur doit savoir d'emblée de quoi parle le paragraphe.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u07-c002",
+      "section": "en-c1-u07-s01",
+      "type": "qcm",
+      "question": "Formule pour introduire un contre-argument :",
+      "choix": [
+        "Admittedly, …",
+        "Firstly, …",
+        "To begin with, …",
+        "In addition, …"
+      ],
+      "bonneReponse": 0,
+      "explication": "Admittedly = certes, il faut admettre que.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u07-c003",
+      "section": "en-c1-u07-s01",
+      "type": "question",
+      "recto": "Comment dire « tout bien considéré » en conclusion ?",
+      "verso": "*All things considered, …* ou *On balance, …*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u07-c004",
+      "section": "en-c1-u07-s02",
+      "type": "qcm",
+      "question": "Quel verbe de rapport suggère une prise de distance ?",
+      "choix": [
+        "claims",
+        "points out",
+        "explains",
+        "shows"
+      ],
+      "bonneReponse": 0,
+      "explication": "claim = prétendre, affirmer sans preuve forcément.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u07-c005",
+      "section": "en-c1-u07-s02",
+      "type": "exercice",
+      "enonce": "Synthétise en 2 phrases : le document A dit que l'IA va supprimer des emplois ; le document B dit qu'elle va créer de nouveaux métiers ; les deux insistent sur la formation.",
+      "etapes": [
+        "Point commun : Both documents emphasise …",
+        "Opposition : While A argues …, B suggests …",
+        "Verbes de rapport variés"
+      ],
+      "reponse": "*Both documents emphasise the need for training. While document A argues that AI will destroy jobs, document B suggests that it will mainly create new professions.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u07-c006",
+      "section": "en-c1-u07-s03",
+      "type": "qcm",
+      "question": "Comment passer à la partie suivante d'une présentation ?",
+      "choix": [
+        "Let's move on to the next point.",
+        "Let's pass to the following.",
+        "We go to next point.",
+        "Now the next."
+      ],
+      "bonneReponse": 0,
+      "explication": "move on to = passer à.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u07-c007",
+      "section": "en-c1-u07-s03",
+      "type": "qcm",
+      "question": "On te pose une question dont tu ne connais pas la réponse :",
+      "choix": [
+        "I'm not sure, but I'll find out and get back to you.",
+        "I don't know. Next question, please.",
+        "That's not really a relevant question here.",
+        "Sorry, I can't answer you, it's not my job."
+      ],
+      "bonneReponse": 0,
+      "explication": "Honnête et professionnel.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u07-c008",
+      "section": "en-c1-u07-s03",
+      "type": "exercice",
+      "enonce": "Rédige l'introduction orale (4 phrases) d'une présentation de ton projet de fin d'études.",
+      "etapes": [
+        "Saluer et présenter le sujet.",
+        "But de la présentation.",
+        "Annoncer le plan en trois parties.",
+        "Inviter aux questions à la fin."
+      ],
+      "reponse": "*Good morning everyone. Today I'd like to present the network infrastructure I designed for a small company. The aim is to show how I improved its security and reliability. I've divided my talk into three parts: the initial situation, the solution, and the results. I'll be happy to answer your questions at the end.*",
+      "difficulte": 3
+    }
+  ]
+}

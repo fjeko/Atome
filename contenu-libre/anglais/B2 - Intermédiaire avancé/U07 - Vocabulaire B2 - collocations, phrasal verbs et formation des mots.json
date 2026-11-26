@@ -1,0 +1,191 @@
+{
+  "formatVersion": 1,
+  "id": "en-b2-u07",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "U07 – Vocabulaire B2 : collocations, phrasal verbs et formation des mots",
+  "ordre": 70,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Enrichir son vocabulaire de façon efficace : les collocations (make / do, have / take…), les phrasal verbs essentiels du niveau B2, et la formation des mots avec préfixes et suffixes.",
+  "notions": [
+    "Collocations",
+    "Phrasal verbs B2",
+    "Formation des mots"
+  ],
+  "sections": [
+    {
+      "id": "en-b2-u07-s01",
+      "titre": "Collocations : make, do, take, have",
+      "contenu": "Une **collocation** est une association de mots naturelle (« prendre une décision » → *make a decision*, pas ~~take~~).\n\n| ***make*** (créer, produire) | ***do*** (tâche, activité) |\n| --- | --- |\n| *a decision, a mistake, a mess, money, a phone call, an effort, progress, an appointment, a suggestion, a complaint, noise* | *homework, the dishes, the shopping, a job, business, research, an exercise, your best, a favour, damage* |\n\n| ***take*** | ***have*** |\n| --- | --- |\n| *a photo, a break, an exam, a risk, notes, a decision (GB aussi), care of, part in, place (avoir lieu)* | *a shower, a meal, a good time, a look, an argument, a meeting, fun* |\n\nAutres : *pay attention* (faire attention), *keep a promise, break a rule, catch a cold, save time, waste time, raise awareness*.",
+      "notions": [
+        "Collocations"
+      ]
+    },
+    {
+      "id": "en-b2-u07-s02",
+      "titre": "Phrasal verbs du niveau B2",
+      "contenu": "| Phrasal verb | Sens | Exemple |\n| --- | --- | --- |\n| *carry out* | réaliser, mener | *carry out a survey / tests* |\n| *set up* | mettre en place, créer | *set up a company / a server* |\n| *come up with* | trouver (idée) | *come up with a solution* |\n| *put off* | reporter | *They put off the meeting.* |\n| *call off* | annuler | *The match was called off.* |\n| *run out of* | être à court de | *We've run out of paper.* |\n| *figure out* | comprendre, trouver | *I can't figure out the problem.* |\n| *turn down* | refuser (offre) / baisser (son) | *She turned down the job.* |\n| *bring up* | aborder (sujet) / élever (enfant) | *Don't bring up politics.* |\n| *deal with* | gérer, s'occuper de | *I'll deal with the client.* |\n| *point out* | faire remarquer | *He pointed out an error.* |\n| *look into* | examiner, étudier | *We're looking into the issue.* |\n| *get along (with)* | bien s'entendre | *I get along with my colleagues.* |\n| *break down* | tomber en panne | *My car broke down.* |",
+      "notions": [
+        "Phrasal verbs B2"
+      ]
+    },
+    {
+      "id": "en-b2-u07-s03",
+      "titre": "Formation des mots",
+      "contenu": "**Suffixes** pour changer la nature du mot :\n- noms : *-tion* (inform → *information*), *-ment* (develop → *development*), *-ness* (happy → *happiness*), *-ity* (secure → *security*), *-er / -or* (personne : *developer, administrator*) ;\n- adjectifs : *-ful* (use → *useful*), *-less* (sans : *useless, wireless*), *-able* (*reliable, affordable*), *-ive* (*effective*), *-al* (*professional*) ;\n- adverbes : *-ly* (*quick → quickly*, mais *good → well*).\n\n**Préfixes de sens contraire** : *un-* (*unhappy, unlikely*), *in- / im- / il- / ir-* (*inefficient, impossible, illegal, irrelevant*), *dis-* (*disagree, disconnect*), *mis-* (mal : *misunderstand*), *re-* (à nouveau : *reinstall*), *over-* (trop : *overload*), *under-* (pas assez : *underestimate*).",
+      "notions": [
+        "Formation des mots"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b2-u07-c001",
+      "section": "en-b2-u07-s01",
+      "type": "qcm",
+      "question": "« Faire une erreur » :",
+      "choix": [
+        "make a mistake",
+        "do a mistake",
+        "take a mistake",
+        "have a mistake"
+      ],
+      "bonneReponse": 0,
+      "explication": "make a mistake.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-u07-c002",
+      "section": "en-b2-u07-s01",
+      "type": "qcm",
+      "question": "« Faire de son mieux » :",
+      "choix": [
+        "do your best",
+        "make your best",
+        "take your best",
+        "have your best"
+      ],
+      "bonneReponse": 0,
+      "explication": "do your best.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u07-c003",
+      "section": "en-b2-u07-s01",
+      "type": "qcm",
+      "question": "« La réunion aura lieu lundi » :",
+      "choix": [
+        "The meeting will take place on Monday.",
+        "The meeting will have place on Monday.",
+        "The meeting will make place on Monday.",
+        "The meeting will do place on Monday."
+      ],
+      "bonneReponse": 0,
+      "explication": "take place = avoir lieu.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u07-c004",
+      "section": "en-b2-u07-s01",
+      "type": "question",
+      "recto": "Traduis : « Il faut que je fasse des progrès et que je prenne des notes. »",
+      "verso": "*I need to **make progress** and **take notes**.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u07-c005",
+      "section": "en-b2-u07-s02",
+      "type": "qcm",
+      "question": "« Nous sommes à court d'encre » :",
+      "choix": [
+        "We've run out of ink.",
+        "We've run off ink.",
+        "We've gone out of ink.",
+        "We've finished out ink."
+      ],
+      "bonneReponse": 0,
+      "explication": "run out of = manquer de.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u07-c006",
+      "section": "en-b2-u07-s02",
+      "type": "qcm",
+      "question": "« Ils ont reporté la réunion » :",
+      "choix": [
+        "They put off the meeting.",
+        "They called off the meeting.",
+        "They set up the meeting.",
+        "They turned down the meeting."
+      ],
+      "bonneReponse": 0,
+      "explication": "put off = reporter ; call off = annuler.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u07-c007",
+      "section": "en-b2-u07-s02",
+      "type": "qcm",
+      "question": "« Nous étudions le problème » (support) :",
+      "choix": [
+        "We're looking into the problem.",
+        "We're looking after the problem.",
+        "We're looking for the problem.",
+        "We're looking up the problem."
+      ],
+      "bonneReponse": 0,
+      "explication": "look into = enquêter, examiner.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u07-c008",
+      "section": "en-b2-u07-s02",
+      "type": "question",
+      "recto": "Que signifie « She turned down the offer » ?",
+      "verso": "Elle a **refusé** l'offre.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u07-c009",
+      "section": "en-b2-u07-s03",
+      "type": "qcm",
+      "question": "Contraire de « relevant » :",
+      "choix": [
+        "irrelevant",
+        "unrelevant",
+        "inrelevant",
+        "disrelevant"
+      ],
+      "bonneReponse": 0,
+      "explication": "Devant r → ir-.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u07-c010",
+      "section": "en-b2-u07-s03",
+      "type": "qcm",
+      "question": "Nom formé sur « secure » :",
+      "choix": [
+        "security",
+        "secureness",
+        "securement",
+        "securation"
+      ],
+      "bonneReponse": 0,
+      "explication": "secure → security.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u07-c011",
+      "section": "en-b2-u07-s03",
+      "type": "question",
+      "recto": "Que signifient « misunderstand » et « underestimate » ?",
+      "verso": "*misunderstand* : **mal comprendre** ; *underestimate* : **sous-estimer**.",
+      "difficulte": 2
+    }
+  ]
+}

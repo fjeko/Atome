@@ -1,0 +1,226 @@
+{
+  "formatVersion": 1,
+  "id": "en-a1-u08",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "U08 – Nourriture et quantités : like + -ing, some, any, how much, how many",
+  "ordre": 80,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Parler de ses goûts (like, love, hate + -ing), distinguer les noms dénombrables et indénombrables, utiliser some, any, a lot of, how much et how many, et commander au restaurant.",
+  "notions": [
+    "Exprimer ses goûts",
+    "Dénombrables et indénombrables",
+    "Some / any",
+    "Quantités",
+    "How much / how many",
+    "Au restaurant"
+  ],
+  "sections": [
+    {
+      "id": "en-a1-u08-s01",
+      "titre": "Exprimer ses goûts",
+      "contenu": "| ❤️❤️ | ❤️ | 😐 | 👎 | 👎👎 |\n| --- | --- | --- | --- | --- |\n| *I love* | *I like* / *I really like* | *I don't mind* (ça m'est égal) | *I don't like* | *I hate* / *I can't stand* |\n\nAprès ces verbes, une **action** se met en **-ing** : *I love **cooking**. She hates **getting up** early. I don't mind **waiting**.*\n\n*Would you like…?* (voulez-vous ?) ≠ *Do you like…?* (aimez-vous ?) :\n- *Do you like coffee?* → *Yes, I love it.* (goût en général)\n- *Would you like a coffee?* → *Yes, please.* (offre)",
+      "notions": [
+        "Exprimer ses goûts"
+      ]
+    },
+    {
+      "id": "en-a1-u08-s02",
+      "titre": "Dénombrables et indénombrables",
+      "contenu": "- **Dénombrables** : on peut les **compter** ; ils ont un pluriel : *an apple, two apples, a sandwich, three eggs*.\n- **Indénombrables** : pas de pluriel, pas de *a / an* : *water, bread, rice, milk, cheese, money, information, advice, news, furniture, hair*.\n\nPour compter un indénombrable, on utilise une **unité** : *a glass of water, a slice of bread, a piece of cheese, a bottle of milk, a kilo of rice, a piece of advice.*\n\nPièges pour les francophones : ***information***, ***advice*** (des conseils), ***news***, ***furniture*** (des meubles) sont **indénombrables** en anglais : ~~*an information*~~, ~~*advices*~~ → *some information, some advice*. *The news **is** good.*",
+      "notions": [
+        "Dénombrables et indénombrables"
+      ]
+    },
+    {
+      "id": "en-a1-u08-s03",
+      "titre": "Some, any, a lot of",
+      "contenu": "| | Dénombrable pluriel | Indénombrable |\n| --- | --- | --- |\n| Affirmatif | ***some** eggs* | ***some** milk* |\n| Négatif | *not **any** eggs* | *not **any** milk* |\n| Question | ***any** eggs?* | ***any** milk?* |\n| Beaucoup | ***a lot of** eggs / **many** eggs* | ***a lot of** milk / **much** milk* |\n\n- *some* dans une **question** quand on propose ou demande quelque chose : *Would you like **some** tea? Can I have **some** water?*\n- *much* et *many* surtout dans les **négations et questions** : *I don't have much time.* ; à l'affirmatif, *a lot of* est plus naturel.\n- *no* = *not any* : *There's **no** milk* = *There isn't **any** milk*.",
+      "notions": [
+        "Some / any",
+        "Quantités"
+      ]
+    },
+    {
+      "id": "en-a1-u08-s04",
+      "titre": "How much, how many et au restaurant",
+      "contenu": "- ***How many*** + dénombrable pluriel : *How many eggs do we need?*\n- ***How much*** + indénombrable : *How much sugar? How much time?* — et pour le **prix** : *How much is it? How much are these shoes?* → *They're £25.*\n\n**Au restaurant** :\n| Client | Serveur |\n| --- | --- |\n| *A table for two, please.* | *Are you ready to order?* |\n| *Could I see the menu, please?* | *What would you like?* |\n| *I'd like the soup, please. / I'll have the fish.* | *Anything to drink?* |\n| *Could we have the bill (GB) / check (US), please?* | *How would you like to pay?* |\n\n*starter* (entrée) · *main course* (plat) · *dessert* · *tip* (pourboire). Faux ami : ***entrée*** en américain désigne le **plat principal**.",
+      "notions": [
+        "How much / how many",
+        "Au restaurant"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a1-u08-c001",
+      "section": "en-a1-u08-s01",
+      "type": "qcm",
+      "question": "Complète : I hate ___ the dishes.",
+      "choix": [
+        "doing",
+        "do",
+        "to doing",
+        "does"
+      ],
+      "bonneReponse": 0,
+      "explication": "hate + -ing pour une activité.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u08-c002",
+      "section": "en-a1-u08-s01",
+      "type": "qcm",
+      "question": "Un ami te propose un café. Il dit :",
+      "choix": [
+        "Would you like a coffee?",
+        "Do you like a coffee?",
+        "Do you want coffee you?",
+        "Are you like a coffee?"
+      ],
+      "bonneReponse": 0,
+      "explication": "Would you like = offre ; Do you like = goût général.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u08-c003",
+      "section": "en-a1-u08-s01",
+      "type": "question",
+      "recto": "Que signifie « I don't mind » ?",
+      "verso": "« Ça m'est **égal** / ça ne me dérange pas » (ni positif ni négatif).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u08-c004",
+      "section": "en-a1-u08-s02",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "Can you give me some advice?",
+        "Can you give me an advice?",
+        "Can you give me some advices?",
+        "Can you give me advices?"
+      ],
+      "bonneReponse": 0,
+      "explication": "advice est indénombrable.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u08-c005",
+      "section": "en-a1-u08-s02",
+      "type": "qcm",
+      "question": "Comment dit-on « une tranche de pain » ?",
+      "choix": [
+        "a slice of bread",
+        "a bread",
+        "one bread",
+        "a breads"
+      ],
+      "bonneReponse": 0,
+      "explication": "bread est indénombrable → unité.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u08-c006",
+      "section": "en-a1-u08-s02",
+      "type": "question",
+      "recto": "Pourquoi « I need an information » est-il faux ?",
+      "verso": "*information* est **indénombrable** en anglais : *I need **some** information* ou *a piece of information*.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u08-c007",
+      "section": "en-a1-u08-s03",
+      "type": "qcm",
+      "question": "Complète : There isn't ___ cheese in the fridge.",
+      "choix": [
+        "any",
+        "some",
+        "a",
+        "many"
+      ],
+      "bonneReponse": 0,
+      "explication": "Négatif → any.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u08-c008",
+      "section": "en-a1-u08-s03",
+      "type": "qcm",
+      "question": "Complète : Would you like ___ cake?",
+      "choix": [
+        "some",
+        "any",
+        "a lot",
+        "many"
+      ],
+      "bonneReponse": 0,
+      "explication": "Offre → some, même dans une question.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u08-c009",
+      "section": "en-a1-u08-s03",
+      "type": "qcm",
+      "question": "Complète : I don't have ___ friends here.",
+      "choix": [
+        "many",
+        "much",
+        "a lot",
+        "any of"
+      ],
+      "bonneReponse": 0,
+      "explication": "friends est dénombrable → many.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u08-c010",
+      "section": "en-a1-u08-s04",
+      "type": "qcm",
+      "question": "Complète : How ___ water do you drink a day?",
+      "choix": [
+        "much",
+        "many",
+        "lot",
+        "often"
+      ],
+      "bonneReponse": 0,
+      "explication": "water est indénombrable → how much.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u08-c011",
+      "section": "en-a1-u08-s04",
+      "type": "qcm",
+      "question": "Comment demander l'addition au restaurant (anglais britannique) ?",
+      "choix": [
+        "Could we have the bill, please?",
+        "Could we have the addition, please?",
+        "Give us the note.",
+        "We want to pay the account."
+      ],
+      "bonneReponse": 0,
+      "explication": "bill (GB) / check (US).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u08-c012",
+      "section": "en-a1-u08-s04",
+      "type": "exercice",
+      "enonce": "Joue la scène : tu commandes au restaurant une entrée, un plat et une boisson, puis tu demandes l'addition.",
+      "etapes": [
+        "A table for one, please.",
+        "I'd like … as a starter.",
+        "For my main course, I'll have …",
+        "And a glass of water, please.",
+        "Could I have the bill, please?"
+      ],
+      "reponse": "*A table for one, please. — I'd like the tomato soup as a starter, and for my main course I'll have the chicken. And a glass of water, please. … Could I have the bill, please?*",
+      "difficulte": 2
+    }
+  ]
+}

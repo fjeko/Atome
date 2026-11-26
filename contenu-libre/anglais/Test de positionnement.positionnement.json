@@ -1,0 +1,1524 @@
+{
+ "formatPositionnement": 1,
+ "id": "en-positionnement",
+ "matiere": "Anglais",
+ "bloc": "Langue",
+ "titre": "Test de positionnement en anglais",
+ "consignes": "Le test s'adapte à tes réponses : il commence au niveau B1, puis monte ou descend selon tes résultats, par séries de six questions (grammaire, vocabulaire, lecture et écoute). Compte 12 à 30 questions, 10 à 20 minutes. Tu ne verras pas la correction pendant le test. Si tu ne connais pas la réponse, clique sur « Je ne sais pas » : répondre au hasard fausserait le résultat.",
+ "langueEcoute": "en-GB",
+ "depart": "B1",
+ "niveaux": [
+  {
+   "code": "A1",
+   "nom": "Débutant",
+   "partie": "A1 – Débutant",
+   "description": "Tu comprends et utilises des phrases très simples : te présenter, parler de ta famille, commander, demander ton chemin."
+  },
+  {
+   "code": "A2",
+   "nom": "Élémentaire",
+   "partie": "A2 – Élémentaire",
+   "description": "Tu te débrouilles au quotidien : raconter ton week-end au passé, faire des achats, parler de ton travail et de projets simples."
+  },
+  {
+   "code": "B1",
+   "nom": "Intermédiaire",
+   "partie": "B1 – Intermédiaire",
+   "description": "Tu tiens une conversation sur des sujets familiers : donner ton avis, raconter une expérience, te débrouiller en voyage ou en entretien."
+  },
+  {
+   "code": "B2",
+   "nom": "Intermédiaire avancé",
+   "partie": "B2 – Intermédiaire avancé",
+   "description": "Tu discutes avec aisance : argumenter, nuancer, comprendre l'essentiel d'articles, de séries et de réunions de travail."
+  },
+  {
+   "code": "C1",
+   "nom": "Avancé",
+   "partie": "C1 – Avancé",
+   "description": "Tu t'exprimes avec précision et naturel, même sur des sujets complexes, et tu saisis les sous-entendus."
+  }
+ ],
+ "questions": [
+  {
+   "id": "en-pos-a1-gra-1",
+   "niveau": "A1",
+   "competence": "grammaire",
+   "question": "*She ___ a student.*",
+   "choix": [
+    "is",
+    "are",
+    "am",
+    "be"
+   ]
+  },
+  {
+   "id": "en-pos-a1-gra-2",
+   "niveau": "A1",
+   "competence": "grammaire",
+   "question": "*___ you like coffee?*",
+   "choix": [
+    "Do",
+    "Does",
+    "Are",
+    "Is"
+   ]
+  },
+  {
+   "id": "en-pos-a1-gra-3",
+   "niveau": "A1",
+   "competence": "grammaire",
+   "question": "*There ___ two cats in the garden.*",
+   "choix": [
+    "are",
+    "is",
+    "be",
+    "has"
+   ]
+  },
+  {
+   "id": "en-pos-a1-gra-4",
+   "niveau": "A1",
+   "competence": "grammaire",
+   "question": "*My brother ___ in Paris.*",
+   "choix": [
+    "lives",
+    "live",
+    "living",
+    "is live"
+   ]
+  },
+  {
+   "id": "en-pos-a1-gra-5",
+   "niveau": "A1",
+   "competence": "grammaire",
+   "question": "*This is ___ umbrella.*",
+   "choix": [
+    "an",
+    "a",
+    "some",
+    "many"
+   ]
+  },
+  {
+   "id": "en-pos-a1-gra-6",
+   "niveau": "A1",
+   "competence": "grammaire",
+   "question": "*I can't find ___ keys. Have you seen them?*",
+   "choix": [
+    "my",
+    "me",
+    "I",
+    "mine"
+   ]
+  },
+  {
+   "id": "en-pos-a1-gra-7",
+   "niveau": "A1",
+   "competence": "grammaire",
+   "question": "*Be quiet, please! He ___ TV.*",
+   "choix": [
+    "is watching",
+    "watches",
+    "watch",
+    "are watching"
+   ]
+  },
+  {
+   "id": "en-pos-a1-gra-8",
+   "niveau": "A1",
+   "competence": "grammaire",
+   "question": "*We ___ at home yesterday evening.*",
+   "choix": [
+    "were",
+    "was",
+    "are",
+    "be"
+   ]
+  },
+  {
+   "id": "en-pos-a1-voc-1",
+   "niveau": "A1",
+   "competence": "vocabulaire",
+   "question": "Le contraire de *cheap* est…",
+   "choix": [
+    "expensive",
+    "small",
+    "old",
+    "slow"
+   ]
+  },
+  {
+   "id": "en-pos-a1-voc-2",
+   "niveau": "A1",
+   "competence": "vocabulaire",
+   "question": "*Monday, Tuesday, ___, Thursday*",
+   "choix": [
+    "Wednesday",
+    "Friday",
+    "Sunday",
+    "Saturday"
+   ]
+  },
+  {
+   "id": "en-pos-a1-voc-3",
+   "niveau": "A1",
+   "competence": "vocabulaire",
+   "question": "*You sleep in the…*",
+   "choix": [
+    "bedroom",
+    "kitchen",
+    "bathroom",
+    "garden"
+   ]
+  },
+  {
+   "id": "en-pos-a1-voc-4",
+   "niveau": "A1",
+   "competence": "vocabulaire",
+   "question": "*Your mother's sister is your…*",
+   "choix": [
+    "aunt",
+    "cousin",
+    "niece",
+    "grandmother"
+   ]
+  },
+  {
+   "id": "en-pos-a1-voc-5",
+   "niveau": "A1",
+   "competence": "vocabulaire",
+   "question": "Il est 7 h 30. *It's…*",
+   "choix": [
+    "half past seven",
+    "half past eight",
+    "seven fifteen",
+    "a quarter to seven"
+   ]
+  },
+  {
+   "id": "en-pos-a1-voc-6",
+   "niveau": "A1",
+   "competence": "vocabulaire",
+   "question": "*Which one is a drink?*",
+   "choix": [
+    "orange juice",
+    "bread",
+    "cheese",
+    "chicken"
+   ]
+  },
+  {
+   "id": "en-pos-a1-voc-7",
+   "niveau": "A1",
+   "competence": "vocabulaire",
+   "question": "*I'm ___. Can I have a sandwich?*",
+   "choix": [
+    "hungry",
+    "thirsty",
+    "tired",
+    "cold"
+   ]
+  },
+  {
+   "id": "en-pos-a1-voc-8",
+   "niveau": "A1",
+   "competence": "vocabulaire",
+   "question": "*What do you wear on your feet?*",
+   "choix": [
+    "shoes",
+    "gloves",
+    "a hat",
+    "a scarf"
+   ]
+  },
+  {
+   "id": "en-pos-a1-lec-1",
+   "niveau": "A1",
+   "competence": "lecture",
+   "question": "*Who does Sara live with?*",
+   "choix": [
+    "Her sisters",
+    "Her parents",
+    "Her friends",
+    "Nobody: she lives alone"
+   ],
+   "texte": "Hi! I'm Sara. I'm 19 and I'm from Madrid. I study English at university. I live with my two sisters. In my free time I play tennis."
+  },
+  {
+   "id": "en-pos-a1-lec-2",
+   "niveau": "A1",
+   "competence": "lecture",
+   "question": "*Can you go shopping there on Sunday?*",
+   "choix": [
+    "No, it's closed.",
+    "Yes, from 8 am to 9 pm.",
+    "Yes, but only in the morning.",
+    "Yes, but only in the evening."
+   ],
+   "texte": "SUPERMARKET\nOpen Monday to Saturday, 8 am – 9 pm.\nSunday: closed."
+  },
+  {
+   "id": "en-pos-a1-lec-3",
+   "niveau": "A1",
+   "competence": "lecture",
+   "question": "*When is the meeting?*",
+   "choix": [
+    "On Friday at 10",
+    "On Thursday at 10",
+    "On Friday at 9",
+    "On Thursday at 9"
+   ],
+   "texte": "Dear Tom,\nThe meeting is on Friday at 10, not on Thursday. See you then!\nAnna"
+  },
+  {
+   "id": "en-pos-a1-lec-4",
+   "niveau": "A1",
+   "competence": "lecture",
+   "question": "*How does Ben go to work?*",
+   "choix": [
+    "By bus",
+    "By car",
+    "On foot",
+    "By bike"
+   ],
+   "texte": "Ben gets up at 7. He has breakfast and takes the bus to work. He finishes work at 5 and then he goes to the gym."
+  },
+  {
+   "id": "en-pos-a1-eco-1",
+   "niveau": "A1",
+   "competence": "ecoute",
+   "question": "*Where is David from?*",
+   "choix": [
+    "Canada",
+    "England",
+    "Australia",
+    "The United States"
+   ],
+   "ecoute": "Hello, my name is David. That's D, A, V, I, D. I'm twenty-five and I'm from Canada."
+  },
+  {
+   "id": "en-pos-a1-eco-2",
+   "niveau": "A1",
+   "competence": "ecoute",
+   "question": "*When does the train leave?*",
+   "choix": [
+    "At 9:15",
+    "At 9:45",
+    "At 4:15",
+    "At 9:04"
+   ],
+   "ecoute": "The train to London leaves at a quarter past nine, from platform four."
+  },
+  {
+   "id": "en-pos-a1-eco-3",
+   "niveau": "A1",
+   "competence": "ecoute",
+   "question": "*What does the person order?*",
+   "choix": [
+    "Two coffees and a sandwich",
+    "Two teas and a sandwich",
+    "One coffee and two sandwiches",
+    "Two coffees and a cake"
+   ],
+   "ecoute": "Can I have two coffees and a cheese sandwich, please?"
+  },
+  {
+   "id": "en-pos-a1-eco-4",
+   "niveau": "A1",
+   "competence": "ecoute",
+   "question": "*What's the weather like today?*",
+   "choix": [
+    "Cold and rainy",
+    "Hot and sunny",
+    "Cold and snowy",
+    "Warm and windy"
+   ],
+   "ecoute": "It's cold and rainy today, so take your umbrella and a warm coat."
+  },
+  {
+   "id": "en-pos-a2-gra-1",
+   "niveau": "A2",
+   "competence": "grammaire",
+   "question": "*I ___ to Italy last summer.*",
+   "choix": [
+    "went",
+    "go",
+    "have gone",
+    "was go"
+   ]
+  },
+  {
+   "id": "en-pos-a2-gra-2",
+   "niveau": "A2",
+   "competence": "grammaire",
+   "question": "*She's ___ than her brother.*",
+   "choix": [
+    "taller",
+    "more tall",
+    "tallest",
+    "the taller"
+   ]
+  },
+  {
+   "id": "en-pos-a2-gra-3",
+   "niveau": "A2",
+   "competence": "grammaire",
+   "question": "*Have you ever ___ sushi?*",
+   "choix": [
+    "eaten",
+    "ate",
+    "eat",
+    "eating"
+   ]
+  },
+  {
+   "id": "en-pos-a2-gra-4",
+   "niveau": "A2",
+   "competence": "grammaire",
+   "question": "*We ___ dinner when the phone rang.*",
+   "choix": [
+    "were having",
+    "are having",
+    "have",
+    "has had"
+   ]
+  },
+  {
+   "id": "en-pos-a2-gra-5",
+   "niveau": "A2",
+   "competence": "grammaire",
+   "question": "*Look at those black clouds! It ___ rain.*",
+   "choix": [
+    "is going to",
+    "will to",
+    "goes to",
+    "is rain"
+   ]
+  },
+  {
+   "id": "en-pos-a2-gra-6",
+   "niveau": "A2",
+   "competence": "grammaire",
+   "question": "*You ___ wear a seatbelt in a car: it's the law.*",
+   "choix": [
+    "must",
+    "mustn't",
+    "don't have to",
+    "needn't"
+   ]
+  },
+  {
+   "id": "en-pos-a2-gra-7",
+   "niveau": "A2",
+   "competence": "grammaire",
+   "question": "*How ___ money do you need?*",
+   "choix": [
+    "much",
+    "many",
+    "lot of",
+    "few"
+   ]
+  },
+  {
+   "id": "en-pos-a2-gra-8",
+   "niveau": "A2",
+   "competence": "grammaire",
+   "question": "*I've lived here ___ 2020.*",
+   "choix": [
+    "since",
+    "for",
+    "from",
+    "during"
+   ]
+  },
+  {
+   "id": "en-pos-a2-voc-1",
+   "niveau": "A2",
+   "competence": "vocabulaire",
+   "question": "*I missed the bus, so I was ___ for work.*",
+   "choix": [
+    "late",
+    "early",
+    "slow",
+    "busy"
+   ]
+  },
+  {
+   "id": "en-pos-a2-voc-2",
+   "niveau": "A2",
+   "competence": "vocabulaire",
+   "question": "*Can you ___ me your pen? I'll give it back in a minute.*",
+   "choix": [
+    "lend",
+    "borrow",
+    "take",
+    "keep"
+   ]
+  },
+  {
+   "id": "en-pos-a2-voc-3",
+   "niveau": "A2",
+   "competence": "vocabulaire",
+   "question": "*A person who serves food and drinks in a restaurant is a…*",
+   "choix": [
+    "waiter",
+    "chef",
+    "cashier",
+    "customer"
+   ]
+  },
+  {
+   "id": "en-pos-a2-voc-4",
+   "niveau": "A2",
+   "competence": "vocabulaire",
+   "question": "*I've got a ___ throat, so I can't speak much.*",
+   "choix": [
+    "sore",
+    "hurt",
+    "pain",
+    "ill"
+   ]
+  },
+  {
+   "id": "en-pos-a2-voc-5",
+   "niveau": "A2",
+   "competence": "vocabulaire",
+   "question": "*Please ___ the lights when you leave the room.*",
+   "choix": [
+    "turn off",
+    "turn on",
+    "turn up",
+    "turn into"
+   ]
+  },
+  {
+   "id": "en-pos-a2-voc-6",
+   "niveau": "A2",
+   "competence": "vocabulaire",
+   "question": "*The film was really ___. I almost fell asleep.*",
+   "choix": [
+    "boring",
+    "bored",
+    "exciting",
+    "interested"
+   ]
+  },
+  {
+   "id": "en-pos-a2-voc-7",
+   "niveau": "A2",
+   "competence": "vocabulaire",
+   "question": "*We ___ a lot of photos on holiday.*",
+   "choix": [
+    "took",
+    "made",
+    "did",
+    "had"
+   ]
+  },
+  {
+   "id": "en-pos-a2-voc-8",
+   "niveau": "A2",
+   "competence": "vocabulaire",
+   "question": "*My flight was ___ because of the snow, so I left four hours later.*",
+   "choix": [
+    "delayed",
+    "missed",
+    "booked",
+    "landed"
+   ]
+  },
+  {
+   "id": "en-pos-a2-lec-1",
+   "niveau": "A2",
+   "competence": "lecture",
+   "question": "*What does Mark want to know?*",
+   "choix": [
+    "If he can arrive late",
+    "If he can bring a friend",
+    "What time the party finishes",
+    "Where the party is"
+   ],
+   "texte": "Hi Jess,\nThanks for the invitation! I'd love to come to your party, but I'm working until 8 on Saturday. Is it OK if I arrive a bit late?\nMark"
+  },
+  {
+   "id": "en-pos-a2-lec-2",
+   "niveau": "A2",
+   "competence": "lecture",
+   "question": "*Which sentence is true?*",
+   "choix": [
+    "Electricity and water are included in the rent.",
+    "You can live there with your cat or dog.",
+    "The flat is far from the station.",
+    "The flat has only one small bedroom."
+   ],
+   "texte": "FLAT TO RENT\n2 bedrooms, five minutes from the station.\n£900 a month, bills included. Sorry, no pets."
+  },
+  {
+   "id": "en-pos-a2-lec-3",
+   "niveau": "A2",
+   "competence": "lecture",
+   "question": "*Why does Leo save money?*",
+   "choix": [
+    "He doesn't need to buy petrol.",
+    "He works from home now.",
+    "He sold his bike.",
+    "He found a cheaper flat."
+   ],
+   "texte": "Last year, Leo started cycling to work instead of driving. At first it was hard, but now he feels healthier and saves about £100 a month on petrol."
+  },
+  {
+   "id": "en-pos-a2-lec-4",
+   "niveau": "A2",
+   "competence": "lecture",
+   "question": "*What are visitors allowed to do?*",
+   "choix": [
+    "Take photos without flash",
+    "Eat a sandwich in the rooms",
+    "Let a 10-year-old visit alone",
+    "Use the flash for photos"
+   ],
+   "texte": "MUSEUM RULES\nPhotos are allowed, but without flash.\nFood and drinks must stay in the cloakroom.\nChildren under 12 must be with an adult."
+  },
+  {
+   "id": "en-pos-a2-eco-1",
+   "niveau": "A2",
+   "competence": "ecoute",
+   "question": "*What does Emma suggest?*",
+   "choix": [
+    "Meeting later at the same place",
+    "Meeting at six at another café",
+    "Cancelling the meeting",
+    "Meeting earlier at a restaurant"
+   ],
+   "ecoute": "Hi, it's Emma. I'm sorry, I can't meet you at six. Can we meet at half past seven instead, at the same café?"
+  },
+  {
+   "id": "en-pos-a2-eco-2",
+   "niveau": "A2",
+   "competence": "ecoute",
+   "question": "*When will the train leave?*",
+   "choix": [
+    "At 11:00",
+    "At 10:20",
+    "At 10:40",
+    "At 11:20"
+   ],
+   "ecoute": "Attention, please. The ten forty train to Manchester is delayed by twenty minutes. We apologise for the inconvenience."
+  },
+  {
+   "id": "en-pos-a2-eco-3",
+   "niveau": "A2",
+   "competence": "ecoute",
+   "question": "*When is the person going to the gym this week?*",
+   "choix": [
+    "On Monday and Tuesday",
+    "On Monday and Wednesday",
+    "On Tuesday and Wednesday",
+    "Only on Tuesday"
+   ],
+   "ecoute": "I usually go to the gym on Mondays and Wednesdays, but this week I'm going on Tuesday instead of Wednesday, because I have a meeting."
+  },
+  {
+   "id": "en-pos-a2-eco-4",
+   "niveau": "A2",
+   "competence": "ecoute",
+   "question": "*How much is the jacket today?*",
+   "choix": [
+    "£48",
+    "£60",
+    "£40",
+    "£20"
+   ],
+   "ecoute": "The jacket is usually sixty pounds, but it's twenty percent off today, so you only pay forty-eight."
+  },
+  {
+   "id": "en-pos-b1-gra-1",
+   "niveau": "B1",
+   "competence": "grammaire",
+   "question": "*If it rains tomorrow, we ___ the match.*",
+   "choix": [
+    "will cancel",
+    "would cancel",
+    "cancelled",
+    "would have cancelled"
+   ]
+  },
+  {
+   "id": "en-pos-b1-gra-2",
+   "niveau": "B1",
+   "competence": "grammaire",
+   "question": "*This book ___ by a famous journalist in 2015.*",
+   "choix": [
+    "was written",
+    "wrote",
+    "has written",
+    "was wrote"
+   ]
+  },
+  {
+   "id": "en-pos-b1-gra-3",
+   "niveau": "B1",
+   "competence": "grammaire",
+   "question": "*I'm not used to ___ up so early.*",
+   "choix": [
+    "getting",
+    "get",
+    "got",
+    "have got"
+   ]
+  },
+  {
+   "id": "en-pos-b1-gra-4",
+   "niveau": "B1",
+   "competence": "grammaire",
+   "question": "*Yesterday, she asked me if I ___ free that evening.*",
+   "choix": [
+    "was",
+    "am",
+    "were I",
+    "be"
+   ]
+  },
+  {
+   "id": "en-pos-b1-gra-5",
+   "niveau": "B1",
+   "competence": "grammaire",
+   "question": "*That's the man ___ car was stolen.*",
+   "choix": [
+    "whose",
+    "who",
+    "which",
+    "who's"
+   ]
+  },
+  {
+   "id": "en-pos-b1-gra-6",
+   "niveau": "B1",
+   "competence": "grammaire",
+   "question": "*I've been waiting ___ two hours!*",
+   "choix": [
+    "for",
+    "since",
+    "during",
+    "from"
+   ]
+  },
+  {
+   "id": "en-pos-b1-gra-7",
+   "niveau": "B1",
+   "competence": "grammaire",
+   "question": "*You ___ call a taxi. I can drive you home.*",
+   "choix": [
+    "don't have to",
+    "mustn't",
+    "haven't",
+    "shouldn't to"
+   ]
+  },
+  {
+   "id": "en-pos-b1-gra-8",
+   "niveau": "B1",
+   "competence": "grammaire",
+   "question": "*By the time we arrived, the film ___.*",
+   "choix": [
+    "had already started",
+    "already starts",
+    "has already started",
+    "was already start"
+   ]
+  },
+  {
+   "id": "en-pos-b1-voc-1",
+   "niveau": "B1",
+   "competence": "vocabulaire",
+   "question": "*Could you ___ me up at the station at six?*",
+   "choix": [
+    "pick",
+    "take",
+    "bring",
+    "carry"
+   ]
+  },
+  {
+   "id": "en-pos-b1-voc-2",
+   "niveau": "B1",
+   "competence": "vocabulaire",
+   "question": "*I can't ___ a new phone right now: it's too expensive.*",
+   "choix": [
+    "afford",
+    "spend",
+    "earn",
+    "pay"
+   ]
+  },
+  {
+   "id": "en-pos-b1-voc-3",
+   "niveau": "B1",
+   "competence": "vocabulaire",
+   "question": "*She ___ her driving test on the first try.*",
+   "choix": [
+    "passed",
+    "succeeded",
+    "won",
+    "reached"
+   ]
+  },
+  {
+   "id": "en-pos-b1-voc-4",
+   "niveau": "B1",
+   "competence": "vocabulaire",
+   "question": "*The meeting has been ___ until next week.*",
+   "choix": [
+    "put off",
+    "put on",
+    "put up",
+    "put out"
+   ]
+  },
+  {
+   "id": "en-pos-b1-voc-5",
+   "niveau": "B1",
+   "competence": "vocabulaire",
+   "question": "*He's very ___: he always does what he promises.*",
+   "choix": [
+    "reliable",
+    "sensible",
+    "sensitive",
+    "available"
+   ]
+  },
+  {
+   "id": "en-pos-b1-voc-6",
+   "niveau": "B1",
+   "competence": "vocabulaire",
+   "question": "*The company is ___ 20 new employees this year.*",
+   "choix": [
+    "hiring",
+    "retiring",
+    "applying",
+    "resigning"
+   ]
+  },
+  {
+   "id": "en-pos-b1-voc-7",
+   "niveau": "B1",
+   "competence": "vocabulaire",
+   "question": "*Sorry, I didn't ___ what you said. Could you repeat that?*",
+   "choix": [
+    "catch",
+    "take",
+    "keep",
+    "hold"
+   ]
+  },
+  {
+   "id": "en-pos-b1-voc-8",
+   "niveau": "B1",
+   "competence": "vocabulaire",
+   "question": "*It's a ___ day: no clouds and lots of sun.*",
+   "choix": [
+    "clear",
+    "foggy",
+    "cloudy",
+    "stormy"
+   ]
+  },
+  {
+   "id": "en-pos-b1-lec-1",
+   "niveau": "B1",
+   "competence": "lecture",
+   "question": "*Why do many companies now use a mixed system?*",
+   "choix": [
+    "To balance productivity and team communication",
+    "Because employees refuse to work from home",
+    "Because offices have become too expensive",
+    "To reduce the number of managers"
+   ],
+   "texte": "Remote work has become common since 2020. Many employees say they are more productive at home, but some managers worry that teams communicate less. As a result, many companies now ask staff to come to the office two or three days a week."
+  },
+  {
+   "id": "en-pos-b1-lec-2",
+   "niveau": "B1",
+   "competence": "lecture",
+   "question": "*Why was the Wi-Fi a problem for the writer?*",
+   "choix": [
+    "The writer needed it for work.",
+    "The writer wanted to watch films.",
+    "It was very expensive.",
+    "The staff refused to fix it."
+   ],
+   "texte": "The hotel was in a great location and the staff were friendly. However, our room was tiny and the Wi-Fi kept disconnecting, which was really annoying because I had to work during the trip."
+  },
+  {
+   "id": "en-pos-b1-lec-3",
+   "niveau": "B1",
+   "competence": "lecture",
+   "question": "*What will change on Thursdays?*",
+   "choix": [
+    "The shop will close later.",
+    "The shop will open at 8 am.",
+    "The shop will be closed.",
+    "The shop will open at 10 am."
+   ],
+   "texte": "Dear customers,\nFrom 1 March, our opening hours will change. On weekdays we will open one hour later (9 am instead of 8 am), but on Thursdays we will stay open until 8 pm."
+  },
+  {
+   "id": "en-pos-b1-lec-4",
+   "niveau": "B1",
+   "competence": "lecture",
+   "question": "*How did Maya feel after a few weeks?*",
+   "choix": [
+    "Surprised by how much she understood",
+    "Still too nervous to speak",
+    "Disappointed with her level",
+    "Ready to stop studying Spanish"
+   ],
+   "texte": "Although Maya had studied Spanish for years, she felt nervous when she first arrived in Mexico. After a few weeks of speaking every day, she realised she understood much more than she had expected."
+  },
+  {
+   "id": "en-pos-b1-eco-1",
+   "niveau": "B1",
+   "competence": "ecoute",
+   "question": "*Why can the speaker only work part-time?*",
+   "choix": [
+    "They are still studying.",
+    "They already have another job.",
+    "They live too far away.",
+    "They are moving house in June."
+   ],
+   "ecoute": "I'd love to join the team, but I can only work part-time at first, because I'm finishing my degree until June."
+  },
+  {
+   "id": "en-pos-b1-eco-2",
+   "niveau": "B1",
+   "competence": "ecoute",
+   "question": "*Who will send the new figures?*",
+   "choix": [
+    "Sarah",
+    "The supplier",
+    "The speaker",
+    "Nobody has been chosen yet."
+   ],
+   "ecoute": "So, to sum up: we'll keep the same supplier, but we need to cut costs by ten percent, and Sarah will send everyone the new figures on Monday."
+  },
+  {
+   "id": "en-pos-b1-eco-3",
+   "niveau": "B1",
+   "competence": "ecoute",
+   "question": "*What is the speaker doing?*",
+   "choix": [
+    "Advising against buying something",
+    "Recommending the laptop strongly",
+    "Complaining to a shop assistant",
+    "Trying to sell their old laptop"
+   ],
+   "ecoute": "If I were you, I wouldn't buy that laptop. The battery doesn't last long, and for a bit more money you can get a much better one."
+  },
+  {
+   "id": "en-pos-b1-eco-4",
+   "niveau": "B1",
+   "competence": "ecoute",
+   "question": "*How did they travel in the end?*",
+   "choix": [
+    "By train",
+    "By plane",
+    "By car",
+    "They didn't travel."
+   ],
+   "ecoute": "We were supposed to fly to Rome on Friday, but the airline cancelled our flight, so we ended up taking the train, which actually turned out to be quite nice."
+  },
+  {
+   "id": "en-pos-b2-gra-1",
+   "niveau": "B2",
+   "competence": "grammaire",
+   "question": "*If I had known about the traffic, I ___ earlier.*",
+   "choix": [
+    "would have left",
+    "would leave",
+    "had left",
+    "will have left"
+   ]
+  },
+  {
+   "id": "en-pos-b2-gra-2",
+   "niveau": "B2",
+   "competence": "grammaire",
+   "question": "*She ___ to have left the company last month.*",
+   "choix": [
+    "is said",
+    "says",
+    "is saying",
+    "has said"
+   ]
+  },
+  {
+   "id": "en-pos-b2-gra-3",
+   "niveau": "B2",
+   "competence": "grammaire",
+   "question": "*I wish I ___ more time to travel.*",
+   "choix": [
+    "had",
+    "have",
+    "will have",
+    "would had"
+   ]
+  },
+  {
+   "id": "en-pos-b2-gra-4",
+   "niveau": "B2",
+   "competence": "grammaire",
+   "question": "*Not only ___ late, but he also forgot the documents.*",
+   "choix": [
+    "was he",
+    "he was",
+    "he has",
+    "did he be"
+   ]
+  },
+  {
+   "id": "en-pos-b2-gra-5",
+   "niveau": "B2",
+   "competence": "grammaire",
+   "question": "*It's high time we ___ a decision.*",
+   "choix": [
+    "made",
+    "make",
+    "will make",
+    "have made"
+   ]
+  },
+  {
+   "id": "en-pos-b2-gra-6",
+   "niveau": "B2",
+   "competence": "grammaire",
+   "question": "*He denied ___ the email.*",
+   "choix": [
+    "sending",
+    "to send",
+    "send",
+    "to sending"
+   ]
+  },
+  {
+   "id": "en-pos-b2-gra-7",
+   "niveau": "B2",
+   "competence": "grammaire",
+   "question": "*___ the bad weather, the event was a great success.*",
+   "choix": [
+    "Despite",
+    "Although",
+    "However",
+    "Even though"
+   ]
+  },
+  {
+   "id": "en-pos-b2-gra-8",
+   "niveau": "B2",
+   "competence": "grammaire",
+   "question": "*The report ___ by Friday, otherwise the client will complain.*",
+   "choix": [
+    "must be finished",
+    "must finish",
+    "must be finish",
+    "must have finish"
+   ]
+  },
+  {
+   "id": "en-pos-b2-voc-1",
+   "niveau": "B2",
+   "competence": "vocabulaire",
+   "question": "*The negotiations broke ___ after the two sides failed to agree.*",
+   "choix": [
+    "down",
+    "up",
+    "out",
+    "away"
+   ]
+  },
+  {
+   "id": "en-pos-b2-voc-2",
+   "niveau": "B2",
+   "competence": "vocabulaire",
+   "question": "*We need to ___ the root cause of the problem before fixing it.*",
+   "choix": [
+    "identify",
+    "notice",
+    "realise",
+    "remark"
+   ]
+  },
+  {
+   "id": "en-pos-b2-voc-3",
+   "niveau": "B2",
+   "competence": "vocabulaire",
+   "question": "*The new rules will ___ effect from January.*",
+   "choix": [
+    "take",
+    "have",
+    "make",
+    "give"
+   ]
+  },
+  {
+   "id": "en-pos-b2-voc-4",
+   "niveau": "B2",
+   "competence": "vocabulaire",
+   "question": "*Her argument was very ___: nobody could disagree with it.*",
+   "choix": [
+    "convincing",
+    "convinced",
+    "conventional",
+    "controversial"
+   ]
+  },
+  {
+   "id": "en-pos-b2-voc-5",
+   "niveau": "B2",
+   "competence": "vocabulaire",
+   "question": "*The project is running ___ schedule, so we'll need extra resources.*",
+   "choix": [
+    "behind",
+    "under",
+    "late",
+    "after"
+   ]
+  },
+  {
+   "id": "en-pos-b2-voc-6",
+   "niveau": "B2",
+   "competence": "vocabulaire",
+   "question": "*Sorry, the delay was ___ our control.*",
+   "choix": [
+    "beyond",
+    "under",
+    "against",
+    "without"
+   ]
+  },
+  {
+   "id": "en-pos-b2-voc-7",
+   "niveau": "B2",
+   "competence": "vocabulaire",
+   "question": "*The company made a ___ of two million euros this year.*",
+   "choix": [
+    "profit",
+    "benefit",
+    "gain",
+    "win"
+   ]
+  },
+  {
+   "id": "en-pos-b2-voc-8",
+   "niveau": "B2",
+   "competence": "vocabulaire",
+   "question": "*We should ___ advantage of the sales while they last.*",
+   "choix": [
+    "take",
+    "make",
+    "get",
+    "have"
+   ]
+  },
+  {
+   "id": "en-pos-b2-lec-1",
+   "niveau": "B2",
+   "competence": "lecture",
+   "question": "*What does the research suggest?*",
+   "choix": [
+    "The effects depend on the teenager's existing friendships.",
+    "Social media isolates all teenagers in the same way.",
+    "Social media has no effect on friendships.",
+    "Isolated teenagers benefit the most from social media."
+   ],
+   "texte": "Critics of social media often argue that it isolates people. Yet recent research paints a more nuanced picture: for teenagers who already have strong friendships offline, online platforms tend to reinforce those relationships, whereas isolated teenagers are more likely to experience negative effects."
+  },
+  {
+   "id": "en-pos-b2-lec-2",
+   "niveau": "B2",
+   "competence": "lecture",
+   "question": "*What do the two sides disagree about?*",
+   "choix": [
+    "Whether residents were properly consulted",
+    "Whether the library is too expensive",
+    "Whether a new library should be built",
+    "When the library was opened"
+   ],
+   "texte": "The council's decision to close the library has sparked outrage among residents, who claim it was taken without proper consultation. Officials, however, insist that a public survey was carried out last spring."
+  },
+  {
+   "id": "en-pos-b2-lec-3",
+   "niveau": "B2",
+   "competence": "lecture",
+   "question": "*What does the writer mean?*",
+   "choix": [
+    "The product is actually expensive.",
+    "The product is the cheapest option.",
+    "The subscription is free.",
+    "The competitors are more expensive."
+   ],
+   "texte": "Despite its reputation as a cheap alternative, the new model is anything but: once you factor in the subscription needed to unlock its main features, it ends up costing more than its competitors."
+  },
+  {
+   "id": "en-pos-b2-lec-4",
+   "niveau": "B2",
+   "competence": "lecture",
+   "question": "*What happened?*",
+   "choix": [
+    "Insufficient testing led to an outage.",
+    "The team managed to avoid an outage.",
+    "The update was never released.",
+    "The review process caused the outage."
+   ],
+   "texte": "Had the team tested the update more thoroughly, the outage could have been avoided. The company has since introduced a compulsory review process for all releases."
+  },
+  {
+   "id": "en-pos-b2-eco-1",
+   "niveau": "B2",
+   "competence": "ecoute",
+   "question": "*What is the speaker's main criticism?*",
+   "choix": [
+    "The people concerned weren't consulted.",
+    "The schedule is badly written.",
+    "The schedule is too expensive.",
+    "The schedule was printed on paper."
+   ],
+   "ecoute": "Frankly, I'm not convinced the new schedule will work. It looks good on paper, but nobody has asked the people who will actually have to follow it."
+  },
+  {
+   "id": "en-pos-b2-eco-2",
+   "niveau": "B2",
+   "competence": "ecoute",
+   "question": "*What did the speaker do?*",
+   "choix": [
+    "They decided not to apply.",
+    "They applied and moved abroad.",
+    "They got the job.",
+    "They are waiting for an answer."
+   ],
+   "ecoute": "I was going to apply for the job, but when I found out it involved moving abroad, I had second thoughts. In the end, I decided to stay where I am."
+  },
+  {
+   "id": "en-pos-b2-eco-3",
+   "niveau": "B2",
+   "competence": "ecoute",
+   "question": "*How does the speaker see the results?*",
+   "choix": [
+    "Better, but still not good enough",
+    "Excellent and above the target",
+    "Worse than last quarter",
+    "Exactly on target"
+   ],
+   "ecoute": "The figures are slightly better than last quarter, but let's not get carried away. We're still well below the target we set in January."
+  },
+  {
+   "id": "en-pos-b2-eco-4",
+   "niveau": "B2",
+   "competence": "ecoute",
+   "question": "*How does the speaker feel overall?*",
+   "choix": [
+    "Satisfied, despite one disappointment",
+    "Angry about the whole stay",
+    "Disappointed by the view from the room",
+    "Delighted with the hotel Wi-Fi"
+   ],
+   "ecoute": "You'd think a five-star hotel would at least have decent Wi-Fi. Mind you, the view from the room more than made up for it."
+  },
+  {
+   "id": "en-pos-c1-gra-1",
+   "niveau": "C1",
+   "competence": "grammaire",
+   "question": "*Little ___ that the decision would change everything.*",
+   "choix": [
+    "did they know",
+    "they knew",
+    "knew they",
+    "they did know"
+   ]
+  },
+  {
+   "id": "en-pos-c1-gra-2",
+   "niveau": "C1",
+   "competence": "grammaire",
+   "question": "*___ it not been for her help, we would have failed.*",
+   "choix": [
+    "Had",
+    "If",
+    "Were",
+    "Should"
+   ]
+  },
+  {
+   "id": "en-pos-c1-gra-3",
+   "niveau": "C1",
+   "competence": "grammaire",
+   "question": "*The proposal, ___ merits are obvious, was nonetheless rejected.*",
+   "choix": [
+    "whose",
+    "which",
+    "of which",
+    "that"
+   ]
+  },
+  {
+   "id": "en-pos-c1-gra-4",
+   "niveau": "C1",
+   "competence": "grammaire",
+   "question": "*Under no circumstances ___ the door be left open.*",
+   "choix": [
+    "should",
+    "shouldn't",
+    "mustn't",
+    "can't"
+   ]
+  },
+  {
+   "id": "en-pos-c1-gra-5",
+   "niveau": "C1",
+   "competence": "grammaire",
+   "question": "*I'd rather you ___ tell anyone about it.*",
+   "choix": [
+    "didn't",
+    "don't",
+    "won't",
+    "not"
+   ]
+  },
+  {
+   "id": "en-pos-c1-gra-6",
+   "niveau": "C1",
+   "competence": "grammaire",
+   "question": "*No sooner had we sat down ___ the fire alarm went off.*",
+   "choix": [
+    "than",
+    "when",
+    "that",
+    "then"
+   ]
+  },
+  {
+   "id": "en-pos-c1-gra-7",
+   "niveau": "C1",
+   "competence": "grammaire",
+   "question": "*Were the government ___ taxes, there would be protests.*",
+   "choix": [
+    "to raise",
+    "raising",
+    "raise",
+    "raised"
+   ]
+  },
+  {
+   "id": "en-pos-c1-gra-8",
+   "niveau": "C1",
+   "competence": "grammaire",
+   "question": "*It was not until the end of the meeting ___ the real issue was raised.*",
+   "choix": [
+    "that",
+    "when",
+    "which",
+    "then"
+   ]
+  },
+  {
+   "id": "en-pos-c1-voc-1",
+   "niveau": "C1",
+   "competence": "vocabulaire",
+   "question": "*The new findings ___ doubt on the original theory.*",
+   "choix": [
+    "cast",
+    "threw",
+    "put",
+    "made"
+   ]
+  },
+  {
+   "id": "en-pos-c1-voc-2",
+   "niveau": "C1",
+   "competence": "vocabulaire",
+   "question": "*His answer was rather ___: it was hard to know what he really meant.*",
+   "choix": [
+    "ambiguous",
+    "ambitious",
+    "unanimous",
+    "obvious"
+   ]
+  },
+  {
+   "id": "en-pos-c1-voc-3",
+   "niveau": "C1",
+   "competence": "vocabulaire",
+   "question": "*The minister was forced to ___ after the scandal.*",
+   "choix": [
+    "step down",
+    "step up",
+    "step in",
+    "step over"
+   ]
+  },
+  {
+   "id": "en-pos-c1-voc-4",
+   "niveau": "C1",
+   "competence": "vocabulaire",
+   "question": "*She has a ___ knowledge of the subject: she's a real expert.*",
+   "choix": [
+    "thorough",
+    "through",
+    "thoughtful",
+    "tough"
+   ]
+  },
+  {
+   "id": "en-pos-c1-voc-5",
+   "niveau": "C1",
+   "competence": "vocabulaire",
+   "question": "*The two reports ___ each other: one says sales rose, the other that they fell.*",
+   "choix": [
+    "contradict",
+    "confirm",
+    "complement",
+    "comply with"
+   ]
+  },
+  {
+   "id": "en-pos-c1-voc-6",
+   "niveau": "C1",
+   "competence": "vocabulaire",
+   "question": "*After hours of debate, the committee finally reached a ___.*",
+   "choix": [
+    "consensus",
+    "consent",
+    "census",
+    "conscience"
+   ]
+  },
+  {
+   "id": "en-pos-c1-voc-7",
+   "niveau": "C1",
+   "competence": "vocabulaire",
+   "question": "*It goes without ___ that safety comes first.*",
+   "choix": [
+    "saying",
+    "telling",
+    "speaking",
+    "mentioning"
+   ]
+  },
+  {
+   "id": "en-pos-c1-voc-8",
+   "niveau": "C1",
+   "competence": "vocabulaire",
+   "question": "*The new measures are a ___ in the right direction, but much more is needed.*",
+   "choix": [
+    "step",
+    "jump",
+    "run",
+    "march"
+   ]
+  },
+  {
+   "id": "en-pos-c1-lec-1",
+   "niveau": "C1",
+   "competence": "lecture",
+   "question": "*What is the sceptics' main objection?*",
+   "choix": [
+    "The results may not apply to every sector.",
+    "Productivity fell during the trials.",
+    "Staff were less happy during the trials.",
+    "The trials lasted too long."
+   ],
+   "texte": "Proponents of the four-day week point to pilot schemes in which productivity held steady while staff wellbeing improved. Sceptics counter that such trials have largely involved office-based firms whose output is hard to measure, and that the results may not translate to sectors such as healthcare or manufacturing."
+  },
+  {
+   "id": "en-pos-c1-lec-2",
+   "niveau": "C1",
+   "competence": "lecture",
+   "question": "*What does the reviewer suggest?*",
+   "choix": [
+    "The novel's deeper message only emerges gradually.",
+    "The novel is purely light entertainment.",
+    "The ending of the novel is disappointing.",
+    "The critique is obvious from the first page."
+   ],
+   "texte": "The author's latest novel is, on the surface, a gentle family drama; it is only in the final chapters that its quietly devastating critique of class becomes apparent."
+  },
+  {
+   "id": "en-pos-c1-lec-3",
+   "niveau": "C1",
+   "competence": "lecture",
+   "question": "*What does the report warn about?*",
+   "choix": [
+    "The savings may be cancelled out by other costs.",
+    "The technology does not actually work.",
+    "Routine tasks will take longer.",
+    "Training staff is unnecessary."
+   ],
+   "texte": "While the technology undoubtedly streamlines routine tasks, the report cautions against assuming it will cut costs across the board: implementation, training and maintenance can easily offset the initial savings."
+  },
+  {
+   "id": "en-pos-c1-lec-4",
+   "niveau": "C1",
+   "competence": "lecture",
+   "question": "*What is the writer's view?*",
+   "choix": [
+    "Revising the plan was the right thing to do.",
+    "The minister is too indecisive.",
+    "The new evidence was unreliable.",
+    "The plan should never have been changed."
+   ],
+   "texte": "Far from being a sign of indecision, the minister's willingness to revise the plan in light of new evidence should be seen as a strength."
+  },
+  {
+   "id": "en-pos-c1-eco-1",
+   "niveau": "C1",
+   "competence": "ecoute",
+   "question": "*What does the speaker think about cutting the training?*",
+   "choix": [
+    "It would cost more in the long run.",
+    "It's a sensible way to save money.",
+    "It's unavoidable given the budget.",
+    "It should simply be postponed."
+   ],
+   "ecoute": "I take your point about the budget, but I'd argue that cutting the training programme now would be a false economy. We'd end up paying far more to fix the mistakes later."
+  },
+  {
+   "id": "en-pos-c1-eco-2",
+   "niveau": "C1",
+   "competence": "ecoute",
+   "question": "*What is the speaker's view of the launch?*",
+   "choix": [
+    "It had early problems that were quickly solved.",
+    "It was a complete disaster.",
+    "The press described it accurately.",
+    "Its problems have still not been solved."
+   ],
+   "ecoute": "To be fair, the launch wasn't the disaster the press made it out to be. There were teething problems, granted, but most of them were ironed out within a week."
+  },
+  {
+   "id": "en-pos-c1-eco-3",
+   "niveau": "C1",
+   "competence": "ecoute",
+   "question": "*How does the speaker feel about their decision?*",
+   "choix": [
+    "They don't regret it, despite the hassle.",
+    "They deeply regret it.",
+    "They gave up because of the paperwork.",
+    "They haven't made a decision yet."
+   ],
+   "ecoute": "Had I known how much paperwork was involved, I'd probably have thought twice. That said, I don't regret it for a second."
+  },
+  {
+   "id": "en-pos-c1-eco-4",
+   "niveau": "C1",
+   "competence": "ecoute",
+   "question": "*What surprised the speaker?*",
+   "choix": [
+    "How quiet the city was at night",
+    "How big the city was",
+    "How noisy the capital was at night",
+    "How busy the streets were at night"
+   ],
+   "ecoute": "What struck me most wasn't the size of the city, but how quiet it was at night, which is the last thing you'd expect from a capital."
+  }
+ ]
+}

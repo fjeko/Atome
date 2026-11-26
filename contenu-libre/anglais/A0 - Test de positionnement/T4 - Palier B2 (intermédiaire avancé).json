@@ -1,0 +1,209 @@
+{
+  "formatVersion": 1,
+  "id": "en-test-b2",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "Bilan B2 – 12 questions pour vérifier le niveau",
+  "ordre": 990,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Bilan de fin de niveau B2 (intermédiaire avancé) : 12 QCM pour vérifier que le niveau est acquis. 10 / 12 ou plus : passe au niveau suivant ; sinon, revois les unités où tu as hésité.",
+  "notions": [
+    "Bilan B2"
+  ],
+  "sections": [
+    {
+      "id": "en-test-b2-s01",
+      "titre": "Bilan B2",
+      "contenu": "**Bilan B2 — intermédiaire avancé**. Douze questions, sans aide, sans réfléchir plus de 30 secondes par question. À faire **à la fin du niveau**, après l'Entraînement.\n\nRésultat à la fin de la session :\n- **10 / 12 ou plus** : niveau acquis → passe au niveau suivant ;\n- **7 à 9 / 12** : presque : revois les unités où tu as hésité, puis refais le bilan quelques jours plus tard ;\n- **6 / 12 ou moins** : reprends les unités du niveau avant d'avancer.",
+      "notions": [
+        "Bilan B2"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-test-b2-c001",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "If I had known, I ___ you.",
+      "choix": [
+        "would have told",
+        "would tell",
+        "had told",
+        "will have told"
+      ],
+      "bonneReponse": 0,
+      "explication": "3e conditionnel.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b2-c002",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "He ___ have left already; his coat is still here.",
+      "choix": [
+        "can't",
+        "mustn't",
+        "shouldn't",
+        "needn't"
+      ],
+      "bonneReponse": 0,
+      "explication": "Impossibilité passée → can't have.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b2-c003",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "I wish I ___ that email. It was a mistake.",
+      "choix": [
+        "hadn't sent",
+        "didn't send",
+        "wouldn't send",
+        "haven't sent"
+      ],
+      "bonneReponse": 0,
+      "explication": "Regret passé → wish + past perfect.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b2-c004",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "I'm having my car ___ tomorrow.",
+      "choix": [
+        "repaired",
+        "repair",
+        "to repair",
+        "repairing"
+      ],
+      "bonneReponse": 0,
+      "explication": "Causatif : have + objet + participe.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b2-c005",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "By next June, she ___ her degree.",
+      "choix": [
+        "will have finished",
+        "will finish",
+        "finishes",
+        "is finishing"
+      ],
+      "bonneReponse": 0,
+      "explication": "Futur antérieur avec by.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b2-c006",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "The CEO is said ___ the company last year.",
+      "choix": [
+        "to have left",
+        "to leave",
+        "leaving",
+        "that he left"
+      ],
+      "bonneReponse": 0,
+      "explication": "Passif impersonnel au passé.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b2-c007",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "She left early so as ___ the traffic.",
+      "choix": [
+        "to avoid",
+        "avoiding",
+        "for avoiding",
+        "avoid"
+      ],
+      "bonneReponse": 0,
+      "explication": "so as to + base.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b2-c008",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "We need to ___ a decision quickly.",
+      "choix": [
+        "make",
+        "do",
+        "take on",
+        "have"
+      ],
+      "bonneReponse": 0,
+      "explication": "make a decision.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b2-c009",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "They had to ___ the meeting because the boss was ill.",
+      "choix": [
+        "call off",
+        "call up",
+        "put up",
+        "turn up"
+      ],
+      "bonneReponse": 0,
+      "explication": "call off = annuler.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b2-c010",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "Take an umbrella ___ it rains.",
+      "choix": [
+        "in case",
+        "unless",
+        "so that",
+        "even though"
+      ],
+      "bonneReponse": 0,
+      "explication": "in case = par précaution.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b2-c011",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "It's high time we ___ home.",
+      "choix": [
+        "went",
+        "go",
+        "will go",
+        "have gone"
+      ],
+      "bonneReponse": 0,
+      "explication": "It's time + prétérit.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b2-c012",
+      "section": "en-test-b2-s01",
+      "type": "qcm",
+      "question": "'Eventually' means:",
+      "choix": [
+        "finalement",
+        "éventuellement",
+        "actuellement",
+        "évidemment"
+      ],
+      "bonneReponse": 0,
+      "explication": "Faux ami.",
+      "difficulte": 2
+    }
+  ]
+}

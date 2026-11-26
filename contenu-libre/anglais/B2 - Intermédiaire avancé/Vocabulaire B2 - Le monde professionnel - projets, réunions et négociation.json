@@ -1,0 +1,139 @@
+{
+  "formatVersion": 1,
+  "id": "en-b2-vocab",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "Vocabulaire B2 – Le monde professionnel : projets, réunions et négociation",
+  "ordre": 84,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Vocabulaire professionnel de niveau B2 : gestion de projet, réunions, e-mails et appels, négociation et résolution de problèmes, avec les collocations et phrasal verbs du travail.",
+  "notions": [
+    "Gestion de projet",
+    "Communication professionnelle",
+    "Négociation et résolution de problèmes"
+  ],
+  "sections": [
+    {
+      "id": "en-b2-vocab-s01",
+      "titre": "Gestion de projet",
+      "contenu": "*a deadline* (échéance), *to meet a deadline* (tenir) / *to miss a deadline*, *a milestone* (jalon), *a deliverable* (livrable), *the scope* (périmètre), *a stakeholder* (partie prenante), *the budget*, *to be on track* (dans les temps) / *behind schedule* (en retard) / *ahead of schedule*, *a bottleneck* (goulot d'étranglement), *a workaround* (contournement), *to prioritise*, *to delegate*, *to roll out* (déployer), *feedback* (indénombrable), *a follow-up*.\n\nPhrasal verbs : *to set up* (mettre en place), *to carry out* (réaliser), *to come up with* (proposer), *to put off* (reporter), *to call off* (annuler), *to follow up on* (faire le suivi), *to run into* (se heurter à : *we ran into a problem*).",
+      "notions": [
+        "Gestion de projet"
+      ]
+    },
+    {
+      "id": "en-b2-vocab-s02",
+      "titre": "Réunions, e-mails et appels",
+      "contenu": "**Réunions** : *to schedule / reschedule a meeting, the agenda* (ordre du jour, ≠ agenda = *diary / planner*), *the minutes* (compte rendu), *action items, to chair a meeting* (présider), *to take notes, AOB* (any other business : questions diverses).\n\n**E-mails** : *Please find attached… / I'm writing to follow up on… / As discussed, … / Could you let me know by…? / I look forward to hearing from you. / Kind regards*. *cc, to forward, to reply all*.\n\n**Appels / visio** : *You're on mute. / Can you see my screen? / You're breaking up* (ça coupe). *Let's take this offline* (en parler en dehors de la réunion). *Can we circle back to that?* (y revenir).",
+      "notions": [
+        "Communication professionnelle"
+      ]
+    },
+    {
+      "id": "en-b2-vocab-s03",
+      "titre": "Négocier et résoudre",
+      "contenu": "**Négocier** : *to reach an agreement, to make a compromise, a trade-off* (compromis entre deux avantages), *to meet someone halfway, a win-win situation, the bottom line* (l'essentiel ; le prix plancher), *non-negotiable*.\n\nFormules : *What if we…? / Would you be willing to…? / We could consider… provided that… / That's the best we can offer. / Let me get back to you on that.*\n\n**Problèmes** : *to troubleshoot, to identify the root cause, to escalate an issue* (faire remonter), *a quick fix* vs *a long-term solution*, *to sort out* (régler), *to address an issue* (traiter un problème, ≠ adresser).",
+      "notions": [
+        "Négociation et résolution de problèmes"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b2-vocab-c001",
+      "section": "en-b2-vocab-s01",
+      "type": "question",
+      "recto": "Comment dit-on « tenir une échéance » et « être en retard sur le planning » ?",
+      "verso": "*to **meet** a deadline* et *to be **behind schedule***.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-vocab-c002",
+      "section": "en-b2-vocab-s01",
+      "type": "question",
+      "recto": "Que signifient *to put off* et *to call off* ?",
+      "verso": "*put off* = **reporter** ; *call off* = **annuler**.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-vocab-c003",
+      "section": "en-b2-vocab-s01",
+      "type": "qcm",
+      "question": "« Nous avons rencontré un problème lors du déploiement » :",
+      "choix": [
+        "We ran into a problem during the roll-out.",
+        "We met a problem during the deployment of it.",
+        "We encountered into a problem during rolling.",
+        "We ran onto a problem while the roll-out."
+      ],
+      "bonneReponse": 0,
+      "explication": "*run into a problem* = se heurter à un problème ; *roll-out* = déploiement.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-vocab-c004",
+      "section": "en-b2-vocab-s02",
+      "type": "question",
+      "recto": "Que signifie *agenda* en anglais ? Et le carnet « agenda » ?",
+      "verso": "*agenda* = **ordre du jour** ; le carnet se dit *diary* (UK) ou *planner*.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-vocab-c005",
+      "section": "en-b2-vocab-s02",
+      "type": "question",
+      "recto": "Que signifient *You're on mute* et *You're breaking up* ?",
+      "verso": "« Ton micro est coupé » et « Ça coupe / je t'entends mal ».",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-vocab-c006",
+      "section": "en-b2-vocab-s02",
+      "type": "qcm",
+      "question": "Quelle formule convient pour joindre un fichier dans un e-mail professionnel ?",
+      "choix": [
+        "Please find attached the report.",
+        "I join you the report in the email.",
+        "You will find joined the report.",
+        "Here is attached to you the report."
+      ],
+      "bonneReponse": 0,
+      "explication": "*Please find attached…* ; *join* est un faux ami.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-vocab-c007",
+      "section": "en-b2-vocab-s03",
+      "type": "question",
+      "recto": "Que signifie *to escalate an issue* ?",
+      "verso": "**Faire remonter** un problème au niveau supérieur (support niveau 2, manager).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-vocab-c008",
+      "section": "en-b2-vocab-s03",
+      "type": "question",
+      "recto": "Que signifie *to address an issue* ?",
+      "verso": "**Traiter / s'attaquer à** un problème (faux ami : pas « adresser »).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-vocab-c009",
+      "section": "en-b2-vocab-s03",
+      "type": "exercice",
+      "enonce": "🎙️ Négociation (1 min 30) : un client veut une fonctionnalité en plus sans changer la date de livraison. Propose un compromis.",
+      "etapes": [
+        "Reformule la demande.",
+        "Explique la contrainte.",
+        "Propose 2 options (What if we…? / We could… provided that…).",
+        "Conclus (Let me get back to you…)."
+      ],
+      "reponse": "*If I understand correctly, you'd like the export feature included without changing the deadline. The problem is that our team is already at full capacity. What if we delivered the core features on time and added the export two weeks later? Alternatively, we could keep the date, provided that we simplify the dashboard. Let me get back to you on the exact costs by Thursday.*",
+      "difficulte": 3
+    }
+  ]
+}

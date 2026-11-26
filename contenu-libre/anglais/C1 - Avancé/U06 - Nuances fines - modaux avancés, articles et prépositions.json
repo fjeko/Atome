@@ -1,0 +1,160 @@
+{
+  "formatVersion": 1,
+  "id": "en-c1-u06",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "C1 – Avancé",
+  "sequence": null,
+  "seance": "U06 – Nuances fines : modaux avancés, articles et prépositions",
+  "ordre": 60,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Les nuances que maîtrise un utilisateur avancé : modaux de possibilité théorique et de reproche, needn't have / didn't need to, l'article avec les noms abstraits et les institutions, et les prépositions dépendantes.",
+  "notions": [
+    "Modaux avancés",
+    "Articles avancés",
+    "Prépositions dépendantes"
+  ],
+  "sections": [
+    {
+      "id": "en-c1-u06-s01",
+      "titre": "Modaux : nuances avancées",
+      "contenu": "- ***needn't have done*** : c'était inutile **et on l'a fait** : *You needn't have bought milk, we had some.*\n- ***didn't need to do*** : ce n'était pas nécessaire (généralement **pas fait**) : *I didn't need to buy milk, so I didn't.*\n- ***could have*** : possibilité passée non réalisée / reproche : *You could have warned me!*\n- ***would have*** : ce qui aurait été la conséquence : *I would have helped you.*\n- ***may well / might well*** : très probable : *It may well rain later.*\n- ***might as well*** : autant faire : *The bus isn't coming, we might as well walk.*\n- ***be to*** (formel, instruction ou destin) : *All staff **are to** attend the meeting.* · *He was never **to** see his family again.*",
+      "notions": [
+        "Modaux avancés"
+      ]
+    },
+    {
+      "id": "en-c1-u06-s02",
+      "titre": "Les articles : cas avancés",
+      "contenu": "- **noms abstraits** en général : **sans article** (*Society, Technology, Life*), mais **the** s'il est précisé : *the technology **we use**, the society of the 18th century* ;\n- **institutions** : sans article quand on parle de leur **fonction** : *go to school / university / church / hospital / prison* (*He's in hospital* GB) ; avec **the** pour le **bâtiment** : *I went to the school to meet the teacher* ;\n- ***the*** + adjectif = groupe de personnes : *the rich, the elderly, the unemployed* (verbe au pluriel) ;\n- ***the*** avec instruments de musique (*play the piano*), océans, fleuves, chaînes de montagnes, pays au pluriel ou en « union » (*the Netherlands, the UK*) ;\n- **pas** d'article : lacs isolés, montagnes isolées (*Mount Everest*), la plupart des rues et villes.",
+      "notions": [
+        "Articles avancés"
+      ]
+    },
+    {
+      "id": "en-c1-u06-s03",
+      "titre": "Prépositions dépendantes",
+      "contenu": "Elles s'apprennent avec le mot :\n| Mot | Préposition | Exemple |\n| --- | --- | --- |\n| *responsible* | ***for*** | *responsible for the network* |\n| *in charge* | ***of*** | *in charge of security* |\n| *interested* | ***in*** | |\n| *good / bad* | ***at*** | *good at maths* |\n| *aware* | ***of*** | *aware of the risks* |\n| *capable* | ***of*** + -ing | |\n| *similar* | ***to*** | |\n| *different* | ***from*** (GB aussi *to*) | |\n| *rely / depend* | ***on*** | |\n| *apply* | ***for*** (poste) / ***to*** (entreprise) | |\n| *congratulate* | ***on*** | |\n| *accuse* | ***of*** | |\n| *insist* | ***on*** + -ing | |\n| *succeed* | ***in*** + -ing | |\n| *the reason* | ***for*** | |\n| *an increase* | ***in*** (domaine) / ***of*** (montant) | *an increase in sales of 5 %* |",
+      "notions": [
+        "Prépositions dépendantes"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-c1-u06-c001",
+      "section": "en-c1-u06-s01",
+      "type": "qcm",
+      "question": "Tu as acheté du pain, mais il y en avait déjà. Ta coloc dit :",
+      "choix": [
+        "You needn't have bought bread.",
+        "You didn't need to buy bread.",
+        "You mustn't have bought bread.",
+        "You shouldn't buy bread."
+      ],
+      "bonneReponse": 0,
+      "explication": "needn't have = inutile mais fait.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u06-c002",
+      "section": "en-c1-u06-s01",
+      "type": "qcm",
+      "question": "« Le bus ne vient pas, autant marcher » :",
+      "choix": [
+        "We might as well walk.",
+        "We may well walk.",
+        "We could have walked.",
+        "We are to walk."
+      ],
+      "bonneReponse": 0,
+      "explication": "might as well = autant.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u06-c003",
+      "section": "en-c1-u06-s01",
+      "type": "question",
+      "recto": "Traduis (formel) : « Tous les employés doivent badger à l'entrée. »",
+      "verso": "*All employees **are to** badge in at the entrance.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u06-c004",
+      "section": "en-c1-u06-s02",
+      "type": "qcm",
+      "question": "« Les personnes âgées sont souvent isolées » :",
+      "choix": [
+        "The elderly are often isolated.",
+        "The elderlies are often isolated.",
+        "Elderly is often isolated.",
+        "The elderly is often isolated."
+      ],
+      "bonneReponse": 0,
+      "explication": "the + adjectif = groupe, verbe au pluriel.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u06-c005",
+      "section": "en-c1-u06-s02",
+      "type": "qcm",
+      "question": "Ton grand-père est hospitalisé (anglais britannique) :",
+      "choix": [
+        "He's in hospital.",
+        "He's in the hospital building.",
+        "He's at hospital.",
+        "He's in an hospital."
+      ],
+      "bonneReponse": 0,
+      "explication": "Fonction de l'institution → sans article (GB).",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u06-c006",
+      "section": "en-c1-u06-s03",
+      "type": "qcm",
+      "question": "Complète : She's in charge ___ the IT department.",
+      "choix": [
+        "of",
+        "for",
+        "on",
+        "with"
+      ],
+      "bonneReponse": 0,
+      "explication": "in charge of.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u06-c007",
+      "section": "en-c1-u06-s03",
+      "type": "qcm",
+      "question": "Complète : He succeeded ___ fixing the bug.",
+      "choix": [
+        "in",
+        "to",
+        "at",
+        "on"
+      ],
+      "bonneReponse": 0,
+      "explication": "succeed in + -ing.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u06-c008",
+      "section": "en-c1-u06-s03",
+      "type": "qcm",
+      "question": "« Une hausse des ventes de 10 % » :",
+      "choix": [
+        "an increase in sales of 10 %",
+        "an increase of sales in 10 %",
+        "an increase on sales of 10 %",
+        "an increase of sales of 10 %"
+      ],
+      "bonneReponse": 0,
+      "explication": "increase in (domaine) of (montant).",
+      "difficulte": 3
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "formatVersion": 1,
+  "id": "en-b1-oral",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "Oral B1 – Donner son avis, raconter, l'entretien et la réunion",
+  "ordre": 96,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Expression orale de niveau B1 : donner et nuancer son avis, être d'accord ou non, raconter une expérience avec des connecteurs, se présenter en entretien de stage, participer à une réunion et présenter un sujet en deux minutes.",
+  "notions": [
+    "Exprimer et nuancer une opinion",
+    "Raconter à l'oral",
+    "Entretien en anglais",
+    "Réunions et présentation"
+  ],
+  "sections": [
+    {
+      "id": "en-b1-oral-s01",
+      "titre": "Donner son avis et réagir",
+      "contenu": "**Donner son avis** : *I think… / In my opinion, … / Personally, I feel that… / As far as I'm concerned, … / If you ask me, …*\n\n**Nuancer** : *I'm not sure, but… / It depends on… / On the one hand… on the other hand… / To some extent…*\n\n**Être d'accord** : *I agree. / Exactly! / That's true. / Good point. / I couldn't agree more.*\n\n**Ne pas être d'accord (poliment)** : *I see what you mean, but… / I'm not sure I agree. / That's a good point, but don't you think… ? / I'd say it's the opposite.*\n\nÉvite *I am agree* (faute classique) : on dit **I agree**. Et *I'm not agree* → **I don't agree**.\n\n> **A** : I think remote work is better for everyone.\n> **B** : I see what you mean, but it depends on the job. In my opinion, some people need an office to stay motivated.\n> **A** : That's a good point. But you save so much time with no commute!\n> **B** : True. Maybe a mix of both is the best solution.\n\n🎧 **Écoute** : copie le dialogue dans Edge → *Lire à voix haute* (voix anglaise, vitesse 0,75 puis 1). 🎙️ **Parle** : lis-le en shadowing, puis joue chaque rôle en t'enregistrant.",
+      "notions": [
+        "Exprimer et nuancer une opinion"
+      ]
+    },
+    {
+      "id": "en-b1-oral-s02",
+      "titre": "Raconter une expérience",
+      "contenu": "Pour un récit vivant, structure et connecteurs :\n\n**Situer** : *A few years ago, … / Last summer, … / When I was at school, …*\n**Enchaîner** : *First, … / Then, … / After that, … / Meanwhile, …*\n**Le rebondissement** : *Suddenly, … / All of a sudden, … / Unfortunately, … / Luckily, …*\n**Conclure** : *In the end, … / Finally, … / Looking back, … / It was the best / worst… ever.*\n\nTemps : **prétérit** pour les actions, **prétérit continu** pour le décor (*It was raining…*), **past perfect** pour ce qui précède (*I had forgotten my phone*).",
+      "notions": [
+        "Raconter à l'oral"
+      ]
+    },
+    {
+      "id": "en-b1-oral-s03",
+      "titre": "Entretien de stage",
+      "contenu": "Questions classiques et amorces de réponse :\n\n| Question | Amorce |\n| --- | --- |\n| *Tell me about yourself.* | *I'm a first-year student in a two-year IT program. I'm especially interested in… In my free time, I…* |\n| *Why do you want this internship?* | *Because I'd like to get hands-on experience in… and your company works on…* |\n| *What are your strengths?* | *I'm curious and I learn fast. For example, …* |\n| *What are your weaknesses?* | *I sometimes spend too long on details, but I'm learning to…* |\n| *Tell me about a project.* | *Last year, I worked on… My role was to… The result was…* |\n| *Do you have any questions?* | *What would a typical day look like? / Which tools does the team use?* |\n\nToujours **un exemple concret** après une qualité. Et ne réponds jamais *No* à la dernière question.",
+      "notions": [
+        "Entretien en anglais"
+      ]
+    },
+    {
+      "id": "en-b1-oral-s04",
+      "titre": "En réunion et présentation courte",
+      "contenu": "**En réunion** : *Can I add something? / Could you clarify that? / So, to sum up, … / What's the next step? / Who's in charge of…? / Let's move on to…*\n\n**Présenter un sujet en 2 minutes** :\n1. **Annonce** : *Today I'm going to talk about… I'll cover three points.*\n2. **Points** : *First, … / Second, … / Finally, …*\n3. **Exemple** : *For example, … / Let me give you an example.*\n4. **Conclusion** : *To sum up, … / Thank you for listening. Any questions?*\n\nParle **plus lentement** qu'en français, fais des **pauses** entre les idées, et regarde ton public, pas tes notes.",
+      "notions": [
+        "Réunions et présentation"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b1-oral-c001",
+      "section": "en-b1-oral-s01",
+      "type": "question",
+      "recto": "Comment dit-on « je suis d'accord » et « je ne suis pas d'accord » ?",
+      "verso": "**I agree** et **I don't agree** (jamais *I am agree*).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-oral-c002",
+      "section": "en-b1-oral-s01",
+      "type": "question",
+      "recto": "Comment exprimer poliment son désaccord ?",
+      "verso": "*I see what you mean, but… / That's a good point, but… / I'm not sure I agree.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-oral-c003",
+      "section": "en-b1-oral-s01",
+      "type": "exercice",
+      "enonce": "🎙️ Donne ton avis en 1 minute : *Should video games be considered a sport?*",
+      "etapes": [
+        "Annonce ton avis (In my opinion…).",
+        "Deux arguments avec exemples (First… / Also…).",
+        "Une concession (Of course… but…).",
+        "Conclusion (So, overall…)."
+      ],
+      "reponse": "*In my opinion, some video games can be considered a sport. First, professional players train for hours every day, like athletes. Also, big tournaments have teams, coaches and millions of viewers. Of course, it's not physical like football, but it requires skill and strategy. So, overall, I'd say esports is a real sport, just a different kind.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-oral-c004",
+      "section": "en-b1-oral-s02",
+      "type": "question",
+      "recto": "Quels connecteurs pour introduire un rebondissement ?",
+      "verso": "*Suddenly, … / All of a sudden, … / Unfortunately, … / Luckily, …*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-oral-c005",
+      "section": "en-b1-oral-s02",
+      "type": "exercice",
+      "enonce": "🎙️ Raconte en 1 min 30 un problème que tu as résolu (panne, voyage, bug, situation imprévue).",
+      "etapes": [
+        "Situe (When / Where).",
+        "Décris le décor au prétérit continu.",
+        "Le problème (Suddenly…) puis ce que tu as fait.",
+        "La fin et ce que tu en retiens."
+      ],
+      "reponse": "*Last year, I was working on a school project the night before the deadline. Suddenly, my laptop crashed and wouldn't restart. I panicked because I hadn't saved my work for two hours. Luckily, I found the auto-recovery file. In the end, I lost only ten minutes of work. Since then, I always use Git and save regularly.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-oral-c006",
+      "section": "en-b1-oral-s03",
+      "type": "question",
+      "recto": "Comment commencer la réponse à *Tell me about yourself* ?",
+      "verso": "*I'm a first-year student in a two-year IT program (BTS SIO). I'm especially interested in…* puis études, intérêts techniques, objectif.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-oral-c007",
+      "section": "en-b1-oral-s03",
+      "type": "qcm",
+      "question": "À la fin d'un entretien, on te demande *Do you have any questions?* Que réponds-tu ?",
+      "choix": [
+        "Yes: what would a typical day look like for an intern?",
+        "No, everything is clear, thank you.",
+        "How much will I be paid, and how many holidays?",
+        "No questions, I already know everything."
+      ],
+      "bonneReponse": 0,
+      "explication": "Poser une question montre de l'intérêt ; le salaire peut se discuter plus tard.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-oral-c008",
+      "section": "en-b1-oral-s03",
+      "type": "exercice",
+      "enonce": "🎙️ Réponds à *Tell me about yourself* en 1 minute, enregistré.",
+      "etapes": [
+        "Qui tu es et ta formation.",
+        "Ce qui t'intéresse dans l'informatique + un exemple.",
+        "Une qualité + un exemple.",
+        "Ce que tu cherches maintenant."
+      ],
+      "reponse": "*I'm Florian, a student in a two-year IT degree, specialising in networks and infrastructure. I've always enjoyed understanding how things work: for example, I built my own revision app. I'm curious and I like solving problems. Right now, I'm looking for an internship where I can work on real networks and learn from a team.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-oral-c009",
+      "section": "en-b1-oral-s04",
+      "type": "question",
+      "recto": "Comment annoncer le plan d'une présentation ?",
+      "verso": "*Today I'm going to talk about… I'll cover three points: first…, then…, and finally…*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-oral-c010",
+      "section": "en-b1-oral-s04",
+      "type": "exercice",
+      "enonce": "🎙️ Présente en 2 minutes un outil que tu utilises (logiciel, appli, site), à quelqu'un qui ne le connaît pas.",
+      "etapes": [
+        "Annonce le sujet et les 3 points.",
+        "Ce que c'est, à quoi ça sert, pourquoi tu l'aimes.",
+        "Un exemple concret.",
+        "Conclusion + Any questions?"
+      ],
+      "reponse": "*Today I'm going to talk about Git. I'll cover what it is, why it's useful and how I use it. First, Git is a version control system… For example, last week… To sum up, … Thank you for listening. Any questions?*",
+      "difficulte": 2
+    }
+  ]
+}

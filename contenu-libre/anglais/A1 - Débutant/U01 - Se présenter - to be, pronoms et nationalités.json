@@ -1,0 +1,283 @@
+{
+  "formatVersion": 1,
+  "id": "en-a1-u01",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "U01 – Se présenter : to be, pronoms et nationalités",
+  "ordre": 10,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Le verbe to be (am, is, are) aux trois formes, les pronoms sujets, les contractions, l'alphabet pour épeler son nom, les pays et nationalités, et les phrases pour se présenter et saluer.",
+  "notions": [
+    "Pronoms sujets",
+    "To be : formes affirmatives",
+    "Contractions",
+    "To be : négation",
+    "To be : questions et réponses courtes",
+    "Nationalités",
+    "Épeler (alphabet)",
+    "Se présenter"
+  ],
+  "sections": [
+    {
+      "id": "en-a1-u01-s01",
+      "titre": "Les pronoms sujets",
+      "contenu": "| Anglais | Français | Remarque |\n| --- | --- | --- |\n| **I** | je | toujours en **majuscule**, même au milieu d'une phrase |\n| **you** | tu / vous | une seule forme pour *tu*, *vous* singulier et *vous* pluriel |\n| **he** | il | pour un **homme** |\n| **she** | elle | pour une **femme** |\n| **it** | il / elle | pour une **chose**, un **animal**, une idée |\n| **we** | nous | |\n| **they** | ils / elles | personnes **ou** choses |\n\nAttention : une table, une voiture, un ordinateur → **it** (jamais *he* ou *she*, contrairement au français).",
+      "notions": [
+        "Pronoms sujets"
+      ]
+    },
+    {
+      "id": "en-a1-u01-s02",
+      "titre": "Le verbe to be au présent",
+      "contenu": "| Forme pleine | Contractée |\n| --- | --- |\n| I **am** | I**'m** |\n| you **are** | you**'re** |\n| he / she / it **is** | he**'s** / she**'s** / it**'s** |\n| we / you / they **are** | we**'re** / you**'re** / they**'re** |\n\nÀ l'oral et dans les messages, on utilise presque toujours la **forme contractée** : *I'm Florian. She's French.*\n\n**To be** sert aussi pour :\n- l'**âge** : *I'm 20.* (« j'ai 20 ans » : on ne dit **pas** *I have 20*) ;\n- les sensations : *I'm hungry* (j'ai faim), *I'm cold* (j'ai froid), *I'm right* (j'ai raison).",
+      "notions": [
+        "To be : formes affirmatives",
+        "Contractions"
+      ]
+    },
+    {
+      "id": "en-a1-u01-s03",
+      "titre": "Négation et questions avec to be",
+      "contenu": "**Négation** : on ajoute **not** après le verbe.\n- *I'm not tired.* · *She isn't (is not) here.* · *They aren't (are not) ready.*\n- Attention : *I amn't* n'existe pas → **I'm not**.\n\n**Question** : on **inverse** le sujet et le verbe.\n- *Are you French?* · *Is he your teacher?* · *Where are they?*\n\n**Réponses courtes** (plus naturelles qu'un simple *yes*) :\n- *Are you French?* → **Yes, I am.** / **No, I'm not.**\n- *Is it expensive?* → **Yes, it is.** / **No, it isn't.**\n\nDans une réponse courte **affirmative**, on ne contracte pas : *Yes, I am* (jamais *Yes, I'm*).",
+      "notions": [
+        "To be : négation",
+        "To be : questions et réponses courtes"
+      ]
+    },
+    {
+      "id": "en-a1-u01-s04",
+      "titre": "Pays, nationalités et alphabet",
+      "contenu": "Les **nationalités** et les **langues** prennent **toujours une majuscule** en anglais.\n\n| Pays | Nationalité / langue |\n| --- | --- |\n| France | French |\n| England / the UK | English / British |\n| the USA | American |\n| Spain | Spanish |\n| Germany | German |\n| Italy | Italian |\n| Ireland | Irish |\n| China | Chinese |\n\n*I'm French. I speak French and a little English.* · *Where are you from?* → *I'm from Lyon, in France.*\n\n**L'alphabet** — les lettres qui piègent les francophones :\n- **A** [eɪ] « éï », **E** [iː] « i », **I** [aɪ] « aï » ;\n- **G** [dʒiː] « dji », **J** [dʒeɪ] « djéï » ;\n- **R** [ɑː] « âr », **Y** [waɪ] « ouaï », **W** « double-you », **Z** « zed » (GB) / « zi » (US).\n\nPour épeler : *How do you spell your name?* → *F-L-O-R-I-A-N.* Deux lettres identiques : *double L* (« Hill » = H-I-double L).",
+      "notions": [
+        "Nationalités",
+        "Épeler (alphabet)"
+      ]
+    },
+    {
+      "id": "en-a1-u01-s05",
+      "titre": "Saluer et se présenter",
+      "contenu": "| Situation | Phrase |\n| --- | --- |\n| Saluer | *Hello! / Hi!* (familier) · *Good morning / afternoon / evening* |\n| Se présenter | *My name's Florian.* · *I'm Florian.* |\n| Demander le nom | *What's your name?* |\n| Première rencontre | *Nice to meet you.* → *Nice to meet you too.* |\n| Prendre des nouvelles | *How are you?* → *I'm fine, thanks. And you?* |\n| Partir | *Goodbye! / Bye! / See you later! / Good night* (seulement pour aller dormir ou quitter le soir) |\n\nAttention : *How do you do?* est une formule très formelle ; on répond par la même phrase, ce n'est pas une vraie question.",
+      "notions": [
+        "Se présenter"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a1-u01-c001",
+      "section": "en-a1-u01-s01",
+      "type": "qcm",
+      "question": "Comment dit-on « Elle est rouge » en parlant d'une voiture ?",
+      "choix": [
+        "It is red.",
+        "She is red.",
+        "He is red.",
+        "They is red."
+      ],
+      "bonneReponse": 0,
+      "explication": "Une chose = it, quel que soit son genre en français.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c002",
+      "section": "en-a1-u01-s01",
+      "type": "question",
+      "recto": "Quelle particularité a le pronom « I » à l'écrit ?",
+      "verso": "Il s'écrit **toujours en majuscule** : *Yesterday I was tired.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c003",
+      "section": "en-a1-u01-s01",
+      "type": "question",
+      "recto": "Comment traduire « vous » en anglais, qu'on parle à une personne ou à plusieurs ?",
+      "verso": "**you** dans tous les cas (il n'existe pas de vouvoiement grammatical).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c004",
+      "section": "en-a1-u01-s02",
+      "type": "qcm",
+      "question": "Complète : My brother ___ a student.",
+      "choix": [
+        "is",
+        "am",
+        "are",
+        "be"
+      ],
+      "bonneReponse": 0,
+      "explication": "My brother = he → is.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c005",
+      "section": "en-a1-u01-s02",
+      "type": "qcm",
+      "question": "Comment dit-on « J'ai 19 ans » ?",
+      "choix": [
+        "I'm 19.",
+        "I have 19 years.",
+        "I have 19.",
+        "I am 19 years."
+      ],
+      "bonneReponse": 0,
+      "explication": "L'âge se dit avec to be. On peut ajouter « years old » : I'm 19 years old.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c006",
+      "section": "en-a1-u01-s02",
+      "type": "question",
+      "recto": "Traduis : « J'ai froid et j'ai faim. »",
+      "verso": "*I'm cold and I'm hungry.* (sensations avec **to be**)",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c007",
+      "section": "en-a1-u01-s02",
+      "type": "qcm",
+      "question": "Complète : You and Tom ___ late.",
+      "choix": [
+        "are",
+        "is",
+        "am",
+        "be"
+      ],
+      "bonneReponse": 0,
+      "explication": "You and Tom = you (pluriel) → are.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c008",
+      "section": "en-a1-u01-s03",
+      "type": "qcm",
+      "question": "Quelle est la négation correcte de « I am late » ?",
+      "choix": [
+        "I'm not late.",
+        "I amn't late.",
+        "I don't late.",
+        "I not am late."
+      ],
+      "bonneReponse": 0,
+      "explication": "« amn't » n'existe pas ; on contracte I am → I'm puis not.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c009",
+      "section": "en-a1-u01-s03",
+      "type": "qcm",
+      "question": "Transforme en question : « She is from Spain. »",
+      "choix": [
+        "Is she from Spain?",
+        "Does she is from Spain?",
+        "She is from Spain?",
+        "Is from Spain she?"
+      ],
+      "bonneReponse": 0,
+      "explication": "Avec to be, on inverse simplement sujet et verbe.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c010",
+      "section": "en-a1-u01-s03",
+      "type": "qcm",
+      "question": "« Are they students? » — Réponse courte affirmative :",
+      "choix": [
+        "Yes, they are.",
+        "Yes, they're.",
+        "Yes, they do.",
+        "Yes, are they."
+      ],
+      "bonneReponse": 0,
+      "explication": "On ne contracte jamais en fin de réponse courte affirmative.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c011",
+      "section": "en-a1-u01-s03",
+      "type": "question",
+      "recto": "Traduis : « Tu n'es pas en retard. Est-ce qu'ils sont prêts ? »",
+      "verso": "*You aren't late. Are they ready?*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u01-c012",
+      "section": "en-a1-u01-s04",
+      "type": "qcm",
+      "question": "Laquelle de ces phrases est correcte ?",
+      "choix": [
+        "She's Italian.",
+        "She's italian.",
+        "She's Italy.",
+        "She's an italian."
+      ],
+      "bonneReponse": 0,
+      "explication": "Nationalité avec majuscule, sans article.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c013",
+      "section": "en-a1-u01-s04",
+      "type": "question",
+      "recto": "Comment prononce-t-on les lettres E et I en anglais ?",
+      "verso": "**E** se dit « i » [iː] et **I** se dit « aï » [aɪ] : c'est l'inverse de ce qu'on attend en français.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u01-c014",
+      "section": "en-a1-u01-s04",
+      "type": "question",
+      "recto": "Comment demander à quelqu'un d'épeler son nom ?",
+      "verso": "*How do you spell your name?* (ou *Can you spell it, please?*)",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c015",
+      "section": "en-a1-u01-s05",
+      "type": "qcm",
+      "question": "Que répondre à « Nice to meet you » ?",
+      "choix": [
+        "Nice to meet you too.",
+        "I'm fine, thanks.",
+        "Yes, I am.",
+        "Good night."
+      ],
+      "bonneReponse": 0,
+      "explication": "C'est la réponse polie lors d'une première rencontre.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u01-c016",
+      "section": "en-a1-u01-s05",
+      "type": "qcm",
+      "question": "Tu arrives à un rendez-vous à 20 h. Que dis-tu ?",
+      "choix": [
+        "Good evening!",
+        "Good night!",
+        "Good afternoon!",
+        "Goodbye!"
+      ],
+      "bonneReponse": 0,
+      "explication": "Good night = bonne nuit, pour se quitter ou aller se coucher.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u01-c017",
+      "section": "en-a1-u01-s05",
+      "type": "exercice",
+      "enonce": "Présente-toi en 4 phrases : nom, âge, nationalité et ville, formule de politesse.",
+      "etapes": [
+        "Nom : My name's … / I'm …",
+        "Âge avec to be : I'm 20 (years old).",
+        "Origine : I'm French. I'm from Poitiers.",
+        "Fin : Nice to meet you."
+      ],
+      "reponse": "Exemple : *Hi! I'm Florian. I'm 20 years old. I'm French and I'm from Poitiers. Nice to meet you!*",
+      "difficulte": 1
+    }
+  ]
+}

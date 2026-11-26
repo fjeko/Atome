@@ -1,0 +1,209 @@
+{
+  "formatVersion": 1,
+  "id": "en-test-b1",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "Bilan B1 – 12 questions pour vérifier le niveau",
+  "ordre": 990,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Bilan de fin de niveau B1 (intermédiaire) : 12 QCM pour vérifier que le niveau est acquis. 10 / 12 ou plus : passe au niveau suivant ; sinon, revois les unités où tu as hésité.",
+  "notions": [
+    "Bilan B1"
+  ],
+  "sections": [
+    {
+      "id": "en-test-b1-s01",
+      "titre": "Bilan B1",
+      "contenu": "**Bilan B1 — intermédiaire**. Douze questions, sans aide, sans réfléchir plus de 30 secondes par question. À faire **à la fin du niveau**, après l'Entraînement.\n\nRésultat à la fin de la session :\n- **10 / 12 ou plus** : niveau acquis → passe au niveau suivant ;\n- **7 à 9 / 12** : presque : revois les unités où tu as hésité, puis refais le bilan quelques jours plus tard ;\n- **6 / 12 ou moins** : reprends les unités du niveau avant d'avancer.",
+      "notions": [
+        "Bilan B1"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-test-b1-c001",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "I've lived here ___ 2019.",
+      "choix": [
+        "since",
+        "for",
+        "from",
+        "during"
+      ],
+      "bonneReponse": 0,
+      "explication": "Point de départ → since.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b1-c002",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "If I ___ more money, I would buy a car.",
+      "choix": [
+        "had",
+        "have",
+        "would have",
+        "will have"
+      ],
+      "bonneReponse": 0,
+      "explication": "2e conditionnel : if + prétérit.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b1-c003",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "The bridge ___ in 1932.",
+      "choix": [
+        "was built",
+        "built",
+        "has built",
+        "is building"
+      ],
+      "bonneReponse": 0,
+      "explication": "Passif au prétérit.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b1-c004",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "She told me she ___ tired.",
+      "choix": [
+        "was",
+        "is being",
+        "will be",
+        "has"
+      ],
+      "bonneReponse": 0,
+      "explication": "Concordance des temps.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b1-c005",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "The woman ___ son plays in the team is my neighbour.",
+      "choix": [
+        "whose",
+        "who",
+        "which",
+        "who's"
+      ],
+      "bonneReponse": 0,
+      "explication": "Possession → whose.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b1-c006",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "I'm not used to ___ up so early.",
+      "choix": [
+        "getting",
+        "get",
+        "got",
+        "have got"
+      ],
+      "bonneReponse": 0,
+      "explication": "be used to + -ing.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b1-c007",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "He suggested ___ a taxi.",
+      "choix": [
+        "taking",
+        "to take",
+        "take",
+        "that take"
+      ],
+      "bonneReponse": 0,
+      "explication": "suggest + -ing.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b1-c008",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "This is the first time I ___ sushi.",
+      "choix": [
+        "have eaten",
+        "eat",
+        "ate",
+        "am eating"
+      ],
+      "bonneReponse": 0,
+      "explication": "This is the first time + present perfect.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b1-c009",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "___ the bad weather, we enjoyed the trip.",
+      "choix": [
+        "Despite",
+        "Although",
+        "However",
+        "Even"
+      ],
+      "bonneReponse": 0,
+      "explication": "despite + nom.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b1-c010",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "I used to ___ glasses, but now I wear contact lenses.",
+      "choix": [
+        "wear",
+        "wearing",
+        "wore",
+        "worn"
+      ],
+      "bonneReponse": 0,
+      "explication": "used to + base.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b1-c011",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "Could you tell me where ___?",
+      "choix": [
+        "the station is",
+        "is the station",
+        "the station it is",
+        "does the station be"
+      ],
+      "bonneReponse": 0,
+      "explication": "Question indirecte : sujet + verbe.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-test-b1-c012",
+      "section": "en-test-b1-s01",
+      "type": "qcm",
+      "question": "Unless you hurry, you ___ the bus.",
+      "choix": [
+        "'ll miss",
+        "miss",
+        "would miss",
+        "missed"
+      ],
+      "bonneReponse": 0,
+      "explication": "unless + présent, will dans la principale.",
+      "difficulte": 2
+    }
+  ]
+}

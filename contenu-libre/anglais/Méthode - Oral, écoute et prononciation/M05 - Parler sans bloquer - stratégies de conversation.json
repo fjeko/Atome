@@ -1,0 +1,184 @@
+{
+  "formatVersion": 1,
+  "id": "en-or-m05",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "Méthode – Oral, écoute et prononciation",
+  "sequence": null,
+  "seance": "M05 – Parler sans bloquer : stratégies de conversation",
+  "ordre": 50,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Les outils pour tenir une conversation même avec un vocabulaire limité : gagner du temps, contourner un mot inconnu, faire répéter, vérifier qu'on a compris, prendre et rendre la parole, réagir, et la technique 4-3-2 pour la fluidité.",
+  "notions": [
+    "Stratégies de compensation",
+    "Faire répéter et vérifier la compréhension",
+    "Réagir et gérer les tours de parole",
+    "Fluidité : technique 4-3-2"
+  ],
+  "sections": [
+    {
+      "id": "en-or-m05-s01",
+      "titre": "Gagner du temps et contourner un mot",
+      "contenu": "Le blocage vient rarement d'un manque de grammaire : il vient du **mot qui manque** et du **silence** qui panique. Deux armes :\n\n**Gagner du temps** (à la place de « euh ») : *Well… / Let me think… / That's a good question. / How can I put it? / You know… / I mean…*\n\n**Contourner un mot inconnu** (paraphrase) :\n- *It's a kind of… / It's a sort of…* : *It's a kind of tool for cutting wood* (= a saw).\n- *It's something you use to… / It's what you use when…*\n- *It's like a…, but…* : *It's like a sofa, but for one person* (= an armchair).\n- *The opposite of… / Someone who…* : *someone who repairs cars* (= a mechanic).\n- *How do you say… in English? / What's the word for…?*\n\nUn natif fait ça en permanence : ce n'est pas un échec, c'est de la **fluidité**.",
+      "notions": [
+        "Stratégies de compensation"
+      ]
+    },
+    {
+      "id": "en-or-m05-s02",
+      "titre": "Faire répéter et vérifier",
+      "contenu": "**Faire répéter** (poliment) :\n- *Sorry? / Pardon? / Sorry, could you say that again?*\n- *Could you speak a bit more slowly, please?*\n- *Sorry, I didn't catch that.* (= je n'ai pas saisi)\n- *Could you spell that, please?* (noms, e-mails)\n\n**Vérifier qu'on a compris** :\n- *So you mean… ? / If I understand correctly, … / Do you mean that… ?*\n- *Sorry, what do you mean by \"…\"?*\n\n**Vérifier que l'autre a compris** : *Does that make sense? / Is that clear? / Do you see what I mean?*\n\nÉvite *What?* seul (sec, voire impoli) et *Repeat!* (un ordre).",
+      "notions": [
+        "Faire répéter et vérifier la compréhension"
+      ]
+    },
+    {
+      "id": "en-or-m05-s03",
+      "titre": "Animer la conversation",
+      "contenu": "Une conversation n'est pas une suite de monologues. Il faut **réagir**, **relancer** et **rendre la parole**.\n\n**Réagir** (montrer qu'on écoute) : *Really? / Oh, nice! / That's interesting. / Oh no! / I see. / Fair enough. / No way!*\n\n**Relancer** (questions de suivi) : *What happened next? / How was it? / Why did you choose that? / What do you mean?*\n\n**Rendre la parole** : *What about you? / How about you? / Have you ever…?*\n\n**Prendre la parole** : *Can I just say something? / Sorry to interrupt, but… / Actually, … / Speaking of…*\n\n**Echo questions** (très naturel) : — *I've just moved to Lyon.* — *Have you? How do you like it?*",
+      "notions": [
+        "Réagir et gérer les tours de parole"
+      ]
+    },
+    {
+      "id": "en-or-m05-s04",
+      "titre": "La technique 4-3-2",
+      "contenu": "Pour gagner en **fluidité** (parler sans s'arrêter), une technique éprouvée :\n\n1. Choisis un sujet que tu connais (ton week-end, ton projet, ta formation).\n2. Parle **4 minutes** dessus, en t'enregistrant.\n3. Raconte **la même chose en 3 minutes**.\n4. Puis **en 2 minutes**.\n\nÀ chaque tour, les mots viennent plus vite, les phrases s'enchaînent, tu élimines les hésitations. **Fluidité** (parler sans bloquer) et **précision** (sans faute) se travaillent séparément : pendant le 4-3-2, ne te corrige pas, réécoute après.",
+      "notions": [
+        "Fluidité : technique 4-3-2"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-or-m05-c001",
+      "section": "en-or-m05-s01",
+      "type": "question",
+      "recto": "Que dire au lieu de « euh » pour gagner du temps ?",
+      "verso": "*Well… / Let me think… / That's a good question. / How can I put it?*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m05-c002",
+      "section": "en-or-m05-s01",
+      "type": "question",
+      "recto": "Tu ne connais pas le mot *screwdriver*. Comment le contourner ?",
+      "verso": "*It's a tool you use to turn screws.* (ou *It's a kind of tool for…*)",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m05-c003",
+      "section": "en-or-m05-s01",
+      "type": "qcm",
+      "question": "Tu cherches le mot *landlord*. Quelle paraphrase est la plus claire ?",
+      "choix": [
+        "The person who owns the flat I rent",
+        "The man of the earth and the house",
+        "My house chief person, you know",
+        "A lord who has many lands in a castle"
+      ],
+      "bonneReponse": 0,
+      "explication": "*Someone who…* / *The person who…* + définition simple : c'est la paraphrase la plus efficace.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m05-c004",
+      "section": "en-or-m05-s01",
+      "type": "exercice",
+      "enonce": "🎙️ Paraphrase à voix haute, sans dire le mot : *fridge, nurse, umbrella, keyboard, neighbour, to borrow*.",
+      "etapes": [
+        "Utilise It's a kind of… / something you use to… / someone who… / the opposite of…",
+        "Une seule phrase par mot.",
+        "Enregistre-toi et vérifie que c'est compréhensible."
+      ],
+      "reponse": "Exemples : *It's something you use to keep food cold.* – *Someone who looks after sick people in a hospital.* – *Something you use when it rains.* – *The thing you type on.* – *Someone who lives next door.* – *To take something that you'll give back later.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m05-c005",
+      "section": "en-or-m05-s02",
+      "type": "question",
+      "recto": "Comment dire poliment « je n'ai pas saisi » ?",
+      "verso": "*Sorry, I didn't catch that.* ou *Sorry, could you say that again?*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m05-c006",
+      "section": "en-or-m05-s02",
+      "type": "qcm",
+      "question": "Au téléphone, ton interlocuteur parle trop vite. Que dis-tu ?",
+      "choix": [
+        "Could you speak a bit more slowly, please?",
+        "What? Repeat, please, slowly.",
+        "You speak too fast for me, stop.",
+        "Please talk me more slow."
+      ],
+      "bonneReponse": 0,
+      "explication": "*Could you… please?* est la formule polie ; *What?* et l'impératif seul sont brusques.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m05-c007",
+      "section": "en-or-m05-s02",
+      "type": "question",
+      "recto": "Comment reformuler pour vérifier que tu as compris ?",
+      "verso": "*So you mean that… ?* / *If I understand correctly, …* / *Do you mean that… ?*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m05-c008",
+      "section": "en-or-m05-s03",
+      "type": "question",
+      "recto": "Que répondre pour relancer quand quelqu'un dit *I went to Ireland last summer* ?",
+      "verso": "Réagir + question de suivi : *Oh, nice! How was it? / What did you do there?*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m05-c009",
+      "section": "en-or-m05-s03",
+      "type": "question",
+      "recto": "Qu'est-ce qu'une *echo question* ?",
+      "verso": "Une courte question qui reprend l'auxiliaire pour montrer l'intérêt : — *I've got a new job.* — *Have you? Where?*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m05-c010",
+      "section": "en-or-m05-s03",
+      "type": "qcm",
+      "question": "Quelle formule permet d'interrompre poliment ?",
+      "choix": [
+        "Sorry to interrupt, but…",
+        "Stop, I want to talk now.",
+        "Shut up a second, please.",
+        "Wait me, I speak."
+      ],
+      "bonneReponse": 0,
+      "explication": "*Sorry to interrupt, but…* ou *Can I just say something?*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m05-c011",
+      "section": "en-or-m05-s04",
+      "type": "question",
+      "recto": "En quoi consiste la technique 4-3-2 ?",
+      "verso": "Raconter **la même chose** en 4 minutes, puis 3, puis 2 : à chaque tour on gagne en vitesse et en aisance.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m05-c012",
+      "section": "en-or-m05-s04",
+      "type": "exercice",
+      "enonce": "🎙️ 4-3-2 : présente ta formation et ton projet professionnel (BTS, ce que tu aimes, ce que tu veux faire ensuite).",
+      "etapes": [
+        "Prépare 5 mots-clés, pas de phrases écrites.",
+        "4 minutes en t'enregistrant, sans t'arrêter.",
+        "Même contenu en 3 minutes, puis en 2.",
+        "Réécoute la version 2 minutes : note 2 erreurs à corriger."
+      ],
+      "reponse": "Amorces utiles : *I'm studying for a two-year IT degree called a BTS… / What I enjoy most is… / The hardest part is… / After that, I'd like to… / That's why…*",
+      "difficulte": 2
+    }
+  ]
+}

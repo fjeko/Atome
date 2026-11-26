@@ -1,0 +1,197 @@
+{
+  "formatVersion": 1,
+  "id": "en-b2-u08",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "U08 – Les pièges des francophones : faux amis et erreurs typiques",
+  "ordre": 80,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Les faux amis les plus trompeurs, les erreurs de construction calquées sur le français (depuis, dire, expliquer, demander…), et les erreurs de prononciation les plus fréquentes.",
+  "notions": [
+    "Faux amis",
+    "Erreurs de construction",
+    "Prononciation"
+  ],
+  "sections": [
+    {
+      "id": "en-b2-u08-s01",
+      "titre": "Les faux amis",
+      "contenu": "| Anglais | Veut dire | et non | « … » se dit |\n| --- | --- | --- | --- |\n| *actually* | en fait | actuellement | *currently* |\n| *eventually* | finalement | éventuellement | *possibly* |\n| *sensible* | raisonnable | sensible | *sensitive* |\n| *library* | bibliothèque | librairie | *bookshop* |\n| *to attend* | assister à | attendre | *to wait* |\n| *to assist* | aider | assister à | *to attend* |\n| *to pretend* | faire semblant | prétendre | *to claim* |\n| *to realise* | se rendre compte | réaliser | *to carry out / achieve* |\n| *to support* | soutenir, prendre en charge | supporter | *to stand / bear* |\n| *a lecture* | un cours magistral, conférence | une lecture | *reading* |\n| *a résumé* (US) | un CV | un résumé | *a summary* |\n| *a formation* | une formation (militaire, géologique) | une formation (cursus) | *training* |\n| *a stage* | une scène, une étape | un stage | *an internship / a work placement* |\n| *a coin* | une pièce de monnaie | un coin | *a corner* |\n| *deceive* | tromper | décevoir | *disappoint* |",
+      "notions": [
+        "Faux amis"
+      ]
+    },
+    {
+      "id": "en-b2-u08-s02",
+      "titre": "Constructions calquées sur le français",
+      "contenu": "| ❌ Erreur | ✅ Correct | Règle |\n| --- | --- | --- |\n| *I explain you* | *I explain **to** you / I explain it to you* | explain + to + personne |\n| *He said me* | *He **told** me / He said **to** me* | say sth, tell someone |\n| *I ask you a favour* ✔ mais *I ask him to come* (pas *that he comes*) | | ask someone to do |\n| *Depend of* | *Depend **on*** | |\n| *I am agree* | *I agree* | agree est un verbe |\n| *It's depend* | *It depends* | |\n| *I have 20 years* | *I'm 20* | âge avec to be |\n| *Since three years* | *For three years* | for + durée |\n| *I'm here since Monday* | *I've been here since Monday* | present perfect |\n| *Discuss about* | *Discuss* (sans about) | discuss sth |\n| *Enter in the room* | *Enter the room* | |\n| *Listen music* | *Listen **to** music* | listen to |\n| *Phone to someone* | *Phone / call someone* | |\n| *Informations, advices* | *information, advice* | indénombrables |",
+      "notions": [
+        "Erreurs de construction"
+      ]
+    },
+    {
+      "id": "en-b2-u08-s03",
+      "titre": "Prononciation : les erreurs les plus fréquentes",
+      "contenu": "- **th** : /θ/ sourd (*think, three*) et /ð/ sonore (*this, the*) : langue entre les dents, ni « z » ni « s ».\n- **h** se prononce (*house, happy, hotel*) — sauf *hour, honest, honour, heir*.\n- voyelles longues / brèves : *ship* /ɪ/ ≠ *sheep* /iː/ ; *full* ≠ *fool* ; *live* (vivre) ≠ *leave*.\n- accent de mot : ***pho**tograph*, *pho**to**grapher*, *photo**gra**phic* ; ***com**fortable* (3 syllabes : « COMF-ta-ble ») ; *de**ve**lop* ; ***ho**tel* → *ho**tel*** (accent final).\n- -ed (voir A2) et -s final : *works*, *watches* (syllabe en plus après s, sh, ch).\n- mots piégeux : *Wednesday* (« WENZ-day »), *vegetable* (« VEDJ-ta-ble »), *island* (s muet), *debt* (b muet), *recipe* (« RÉ-si-pi »), *Leicester* (« LES-ter »).",
+      "notions": [
+        "Prononciation"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b2-u08-c001",
+      "section": "en-b2-u08-s01",
+      "type": "qcm",
+      "question": "« Je cherche un stage de deux mois » :",
+      "choix": [
+        "I'm looking for a two-month internship.",
+        "I'm looking for a two-month stage.",
+        "I'm looking for a two-month formation.",
+        "I'm looking for a stage of two months."
+      ],
+      "bonneReponse": 0,
+      "explication": "stage = internship / work placement.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u08-c002",
+      "section": "en-b2-u08-s01",
+      "type": "qcm",
+      "question": "« Eventually, he found a job » signifie :",
+      "choix": [
+        "Finalement, il a trouvé un travail.",
+        "Éventuellement, il a trouvé un travail.",
+        "Peut-être qu'il trouvera un travail.",
+        "Il a trouvé un travail temporaire."
+      ],
+      "bonneReponse": 0,
+      "explication": "eventually = finalement.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u08-c003",
+      "section": "en-b2-u08-s01",
+      "type": "qcm",
+      "question": "« J'ai assisté à la réunion » :",
+      "choix": [
+        "I attended the meeting.",
+        "I assisted the meeting.",
+        "I assisted at the meeting.",
+        "I waited the meeting."
+      ],
+      "bonneReponse": 0,
+      "explication": "attend = assister à ; assist = aider.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u08-c004",
+      "section": "en-b2-u08-s01",
+      "type": "question",
+      "recto": "Traduis : « Elle est très sensible et je suis déçu. »",
+      "verso": "*She's very **sensitive** and I'm **disappointed**.* (sensible = raisonnable ; deceive = tromper)",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u08-c005",
+      "section": "en-b2-u08-s02",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "We discussed the problem.",
+        "We discussed about the problem.",
+        "We discussed on the problem.",
+        "We discussed of the problem."
+      ],
+      "bonneReponse": 0,
+      "explication": "discuss + COD, sans préposition.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u08-c006",
+      "section": "en-b2-u08-s02",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "Can you explain it to me?",
+        "Can you explain me it?",
+        "Can you explain me?",
+        "Can you explain to me it?"
+      ],
+      "bonneReponse": 0,
+      "explication": "explain something to someone.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u08-c007",
+      "section": "en-b2-u08-s02",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "It depends on the price.",
+        "It depends of the price.",
+        "It's depend on the price.",
+        "It depend of the price."
+      ],
+      "bonneReponse": 0,
+      "explication": "depend on.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u08-c008",
+      "section": "en-b2-u08-s02",
+      "type": "exercice",
+      "enonce": "Corrige les 4 erreurs : « I am agree with you, but it's depend of the budget. I will explain you tomorrow. We can discuss about it. »",
+      "etapes": [
+        "I am agree → I agree",
+        "it's depend of → it depends on",
+        "explain you → explain it to you",
+        "discuss about it → discuss it"
+      ],
+      "reponse": "*I agree with you, but it depends on the budget. I'll explain it to you tomorrow. We can discuss it.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u08-c009",
+      "section": "en-b2-u08-s03",
+      "type": "qcm",
+      "question": "Dans quel mot le h est-il muet ?",
+      "choix": [
+        "honest",
+        "house",
+        "hotel",
+        "happy"
+      ],
+      "bonneReponse": 0,
+      "explication": "hour, honest, honour, heir : h muet.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u08-c010",
+      "section": "en-b2-u08-s03",
+      "type": "qcm",
+      "question": "Combien de syllabes se prononcent dans « comfortable » ?",
+      "choix": [
+        "3 (COMF-ta-ble)",
+        "4 (com-for-ta-ble)",
+        "2 (comf-table)",
+        "5"
+      ],
+      "bonneReponse": 0,
+      "explication": "Le « or » est quasi muet.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u08-c011",
+      "section": "en-b2-u08-s03",
+      "type": "question",
+      "recto": "Comment se prononce « Wednesday » ?",
+      "verso": "« **WENZ**-day » : le premier d ne se prononce pas.",
+      "difficulte": 2
+    }
+  ]
+}

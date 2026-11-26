@@ -1,0 +1,169 @@
+{
+  "formatVersion": 1,
+  "id": "en-b1-u09",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "U09 – Anglais professionnel : informatique et support technique",
+  "ordre": 90,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Le vocabulaire et les phrases pour travailler dans l'informatique en anglais : matériel et logiciels, réseau et sécurité, décrire un problème, rédiger un ticket, guider un utilisateur et lire une documentation.",
+  "notions": [
+    "Vocabulaire informatique",
+    "Décrire un problème",
+    "Rédiger un ticket",
+    "Assistance à l'utilisateur"
+  ],
+  "sections": [
+    {
+      "id": "en-b1-u09-s01",
+      "titre": "Matériel, logiciel et réseau",
+      "contenu": "| Anglais | Français | Anglais | Français |\n| --- | --- | --- | --- |\n| *hardware / software* | matériel / logiciel | *device* | appareil |\n| *hard drive / SSD* | disque dur | *storage* | stockage |\n| *screen / display* | écran | *keyboard / mouse* | clavier / souris |\n| *to install / uninstall* | installer / désinstaller | *update / upgrade* | mise à jour / montée de version |\n| *to download / upload* | télécharger / téléverser | *file / folder* | fichier / dossier |\n| *network* | réseau | *router / switch* | routeur / commutateur |\n| *wireless / Wi-Fi* | sans fil | *bandwidth* | bande passante |\n| *server* | serveur | *backup* | sauvegarde |\n| *user account* | compte utilisateur | *password* | mot de passe |\n| *firewall* | pare-feu | *malware / virus* | logiciel malveillant |\n| *to log in / log out* | se connecter / déconnecter | *to reboot / restart* | redémarrer |\n\nFaux amis : ***library*** = bibliothèque (logicielle aussi) ; ***license*** (US) / ***licence*** (GB) ; ***to support*** = prendre en charge / assister (pas « supporter » au sens d'endurer).",
+      "notions": [
+        "Vocabulaire informatique"
+      ]
+    },
+    {
+      "id": "en-b1-u09-s02",
+      "titre": "Décrire un problème et rédiger un ticket",
+      "contenu": "**Décrire un problème** :\n- *My laptop **won't** start.* (*won't* = refuse de, ne veut pas) · *The printer **isn't working**.*\n- *I **can't** connect to the Wi-Fi.* · *I keep getting an error message.* · *The application crashes / freezes.*\n- *It **started** happening after the last update.* · *It **has been** slow **since** this morning.*\n\n**Ticket** (structure claire) :\n1. ***Summary*** : *Outlook crashes when opening attachments* ;\n2. ***Steps to reproduce*** : *1. Open Outlook. 2. Click on a PDF attachment.* ;\n3. ***Expected result*** / ***Actual result*** ;\n4. ***Environment*** : *Windows 11, Outlook 365, version …* ;\n5. ***Priority / Impact*** : *the whole sales team is affected*.",
+      "notions": [
+        "Décrire un problème",
+        "Rédiger un ticket"
+      ]
+    },
+    {
+      "id": "en-b1-u09-s03",
+      "titre": "Guider un utilisateur",
+      "contenu": "| Étape | Phrases |\n| --- | --- |\n| Accueillir | *IT support, how can I help you?* |\n| Questionner | *When did the problem start? / What exactly happens? / Have you changed anything recently? / Can you read me the error message?* |\n| Guider | *First, click on the Start menu. / Right-click on the icon. / Select \"Settings\". / Type your username in the box. / Press Enter.* |\n| Vérifier | *What can you see now? / Does it work now?* |\n| Escalader | *I'll escalate this to the network team. / I'll open a ticket.* |\n| Conclure | *Is there anything else I can help you with?* |\n\nVerbes d'interface : *click, double-click, right-click, drag and drop, scroll down, tick / untick a box, select, type, enter, press, close, save*.",
+      "notions": [
+        "Assistance à l'utilisateur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b1-u09-c001",
+      "section": "en-b1-u09-s01",
+      "type": "qcm",
+      "question": "« Mise à jour » se dit :",
+      "choix": [
+        "update",
+        "actualisation",
+        "upload",
+        "date"
+      ],
+      "bonneReponse": 0,
+      "explication": "update = mise à jour ; upgrade = montée de version.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u09-c002",
+      "section": "en-b1-u09-s01",
+      "type": "qcm",
+      "question": "« Ce logiciel prend en charge IPv6 » :",
+      "choix": [
+        "This software supports IPv6.",
+        "This software bears IPv6.",
+        "This software takes charge IPv6.",
+        "This software endures IPv6."
+      ],
+      "bonneReponse": 0,
+      "explication": "support = prendre en charge.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u09-c003",
+      "section": "en-b1-u09-s01",
+      "type": "question",
+      "recto": "Quelle différence entre download et upload ?",
+      "verso": "*download* : **télécharger** depuis un serveur vers son appareil ; *upload* : **envoyer** un fichier vers un serveur.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u09-c004",
+      "section": "en-b1-u09-s02",
+      "type": "qcm",
+      "question": "« Mon ordinateur ne veut pas démarrer » :",
+      "choix": [
+        "My computer won't start.",
+        "My computer doesn't want to start.",
+        "My computer will not starting.",
+        "My computer refuses starting."
+      ],
+      "bonneReponse": 0,
+      "explication": "won't = refuse de fonctionner, pour un appareil.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u09-c005",
+      "section": "en-b1-u09-s02",
+      "type": "qcm",
+      "question": "Dans un ticket, que décrit « Steps to reproduce » ?",
+      "choix": [
+        "Les étapes pour reproduire le problème",
+        "Les étapes de la réparation",
+        "Les étapes de l'installation",
+        "Les produits à commander"
+      ],
+      "bonneReponse": 0,
+      "explication": "Permet au technicien de constater le bug.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u09-c006",
+      "section": "en-b1-u09-s02",
+      "type": "exercice",
+      "enonce": "Rédige un ticket en anglais : depuis la mise à jour d'hier, l'imprimante du 2e étage n'imprime plus les PDF ; les autres fichiers s'impriment ; 15 personnes sont concernées.",
+      "etapes": [
+        "Summary : Printer on 2nd floor doesn't print PDFs",
+        "Description : Since yesterday's update, …",
+        "Expected / actual result",
+        "Impact : 15 users are affected"
+      ],
+      "reponse": "*Summary: 2nd-floor printer doesn't print PDF files. Description: Since yesterday's update, PDF files are sent to the printer but nothing is printed. Other file types print correctly. Expected result: PDFs are printed. Actual result: the job disappears from the queue. Impact: 15 users are affected.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b1-u09-c007",
+      "section": "en-b1-u09-s03",
+      "type": "qcm",
+      "question": "« Cochez la case » se dit :",
+      "choix": [
+        "Tick the box.",
+        "Cross the box.",
+        "Check the case.",
+        "Mark the case."
+      ],
+      "bonneReponse": 0,
+      "explication": "tick (GB) / check (US) the box ; case = étui, affaire.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u09-c008",
+      "section": "en-b1-u09-s03",
+      "type": "qcm",
+      "question": "Que signifie « I'll escalate this to the network team » ?",
+      "choix": [
+        "Je vais transmettre au service réseau.",
+        "Je vais monter au service réseau.",
+        "Je vais réparer le réseau.",
+        "Je vais aggraver le problème."
+      ],
+      "bonneReponse": 0,
+      "explication": "escalate = faire remonter à un niveau supérieur.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u09-c009",
+      "section": "en-b1-u09-s03",
+      "type": "question",
+      "recto": "Comment demander à un utilisateur s'il a changé quelque chose récemment ?",
+      "verso": "*Have you changed anything recently?* (present perfect : période récente, lien avec le présent)",
+      "difficulte": 2
+    }
+  ]
+}

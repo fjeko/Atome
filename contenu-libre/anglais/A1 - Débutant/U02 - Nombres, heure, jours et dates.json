@@ -1,0 +1,241 @@
+{
+  "formatVersion": 1,
+  "id": "en-a1-u02",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "U02 – Nombres, heure, jours et dates",
+  "ordre": 20,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Compter de 0 à des milliers, les nombres ordinaux, dire et demander l'heure, les jours, les mois et les saisons, écrire et lire une date, et les prépositions de temps at, on, in.",
+  "notions": [
+    "Nombres cardinaux",
+    "Nombres ordinaux",
+    "Dates",
+    "Dire l'heure",
+    "Prépositions de temps"
+  ],
+  "sections": [
+    {
+      "id": "en-a1-u02-s01",
+      "titre": "Les nombres",
+      "contenu": "- 0 *zero* (au téléphone : « oh »), 1 *one*, 2 *two*, 3 *three*, 4 *four*, 5 *five*, 6 *six*, 7 *seven*, 8 *eight*, 9 *nine*, 10 *ten*\n- 11 *eleven*, 12 *twelve*, 13 *thirteen*, 14 *fourteen*, 15 *fifteen*, 16 *sixteen*, 17 *seventeen*, 18 *eighteen*, 19 *nineteen*\n- 20 *twenty*, 30 *thirty*, 40 ***forty*** (sans u !), 50 *fifty*, 60 *sixty*, 70 *seventy*, 80 *eighty*, 90 *ninety*\n- 21 *twenty-one* (avec un **trait d'union**), 100 *a / one hundred*, 1 000 *a thousand*, 1 000 000 *a million*\n\n**Pièges** :\n- *thirteen* (13) / *thirty* (30) : l'accent tombe sur la **fin** pour 13 (thir**TEEN**), au **début** pour 30 (**THIR**ty).\n- 345 = *three hundred **and** forty-five* (GB) ; *hundred*, *thousand* **ne prennent pas de s** après un nombre : *two hundred people*.\n- 1,000 en anglais = 1 000 ; 2.5 = 2,5 : la **virgule et le point sont inversés** par rapport au français.",
+      "notions": [
+        "Nombres cardinaux"
+      ]
+    },
+    {
+      "id": "en-a1-u02-s02",
+      "titre": "Les ordinaux et les dates",
+      "contenu": "**Ordinaux** : 1st *first*, 2nd *second*, 3rd *third*, 4th *fourth*, 5th *fifth*, 8th *eighth*, 9th *ninth*, 12th *twelfth*, 20th *twentieth*, 21st *twenty-first*.\nLa règle : on ajoute **-th**, sauf pour ceux qui finissent par 1, 2, 3 (*first, second, third*), et quelques formes modifiées (*fifth, ninth, twelfth*).\n\n**Jours** (majuscule obligatoire) : *Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday*.\n**Mois** (majuscule) : *January, February, March, April, May, June, July, August, September, October, November, December*.\n**Saisons** : *spring, summer, autumn* (GB) / *fall* (US), *winter*.\n\n**Dates** :\n- écrit GB : *14 July 2026* ou *14/07/2026* ; écrit US : *July 14, 2026* ou ***07/14/2026*** (mois d'abord !) ;\n- oral : *the fourteenth of July* (GB) / *July fourteenth* (US) ;\n- années : 2026 = *twenty twenty-six* ; 1998 = *nineteen ninety-eight* ; 2005 = *two thousand and five*.",
+      "notions": [
+        "Nombres ordinaux",
+        "Dates"
+      ]
+    },
+    {
+      "id": "en-a1-u02-s03",
+      "titre": "L'heure",
+      "contenu": "**Demander** : *What time is it?* / *What's the time?* — **Répondre** : *It's …*\n\n| Heure | Manière classique | Manière « digitale » (plus simple) |\n| --- | --- | --- |\n| 9:00 | *nine o'clock* | *nine* |\n| 9:15 | *(a) quarter **past** nine* | *nine fifteen* |\n| 9:30 | ***half past** nine* | *nine thirty* |\n| 9:45 | *(a) quarter **to** ten* | *nine forty-five* |\n| 9:10 | *ten past nine* | *nine ten* |\n| 9:50 | *ten to ten* | *nine fifty* |\n\n- *past* = « et », *to* = « moins » ;\n- **am** = le matin (avant midi), **pm** = l'après-midi et le soir : 15 h = *3 pm*. Le format 24 h est rare à l'oral (horaires de train, armée) ;\n- *noon* / *midday* = midi ; *midnight* = minuit.\n\n**Piège** : *half past nine* = **9 h 30**, et non 8 h 30 ; l'allemand dit « halb zehn », l'anglais non.",
+      "notions": [
+        "Dire l'heure"
+      ]
+    },
+    {
+      "id": "en-a1-u02-s04",
+      "titre": "Prépositions de temps : at, on, in",
+      "contenu": "| Préposition | Avec | Exemples |\n| --- | --- | --- |\n| **at** | une **heure** précise, quelques expressions | *at 8 o'clock, at noon, at night, at the weekend* (GB), *at Christmas* |\n| **on** | un **jour**, une **date** | *on Monday, on 14 July, on my birthday, on Friday morning* |\n| **in** | une **période** plus longue : mois, année, saison, partie de journée | *in June, in 2026, in winter, in the morning, in the evening* |\n\nMoyen mnémotechnique : du plus précis au plus large, **at** (point) → **on** (jour) → **in** (période).\n\nPas de préposition devant *next, last, this, every* : *I work **next Monday*** (pas *on next Monday*).",
+      "notions": [
+        "Prépositions de temps"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a1-u02-c001",
+      "section": "en-a1-u02-s01",
+      "type": "qcm",
+      "question": "Comment s'écrit 40 en anglais ?",
+      "choix": [
+        "forty",
+        "fourty",
+        "fourteen",
+        "fortee"
+      ],
+      "bonneReponse": 0,
+      "explication": "Four → forty : le u disparaît.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u02-c002",
+      "section": "en-a1-u02-s01",
+      "type": "qcm",
+      "question": "Comment dit-on 300 personnes ?",
+      "choix": [
+        "three hundred people",
+        "three hundreds people",
+        "three hundreds of people",
+        "three hundred of people"
+      ],
+      "bonneReponse": 0,
+      "explication": "hundred reste invariable après un nombre.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u02-c003",
+      "section": "en-a1-u02-s01",
+      "type": "question",
+      "recto": "Que signifie « 3.5 kg » écrit par un Anglais ?",
+      "verso": "**3,5 kg** : en anglais, le **point** sépare les décimales (et la virgule sépare les milliers : 1,000 = mille).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u02-c004",
+      "section": "en-a1-u02-s01",
+      "type": "question",
+      "recto": "Comment distinguer à l'oral fifteen (15) et fifty (50) ?",
+      "verso": "Par l'**accent** : fif**TEEN** (accent à la fin, son long « ii ») / **FIF**ty (accent au début, « i » bref).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u02-c005",
+      "section": "en-a1-u02-s02",
+      "type": "qcm",
+      "question": "Un collègue américain écrit « 03/04/2026 ». De quelle date s'agit-il ?",
+      "choix": [
+        "Le 4 mars 2026",
+        "Le 3 avril 2026",
+        "Le 30 avril 2026",
+        "Impossible à savoir"
+      ],
+      "bonneReponse": 0,
+      "explication": "Aux États-Unis, le mois vient en premier : MM/JJ/AAAA.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u02-c006",
+      "section": "en-a1-u02-s02",
+      "type": "qcm",
+      "question": "Comment dit-on « le 2 mai » à l'oral (anglais britannique) ?",
+      "choix": [
+        "the second of May",
+        "the two of May",
+        "the second of may",
+        "May the two"
+      ],
+      "bonneReponse": 0,
+      "explication": "Ordinal + of + mois avec majuscule.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u02-c007",
+      "section": "en-a1-u02-s02",
+      "type": "question",
+      "recto": "Comment se lit l'année 2026 en anglais ?",
+      "verso": "*twenty twenty-six* (on la coupe en deux nombres).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u02-c008",
+      "section": "en-a1-u02-s02",
+      "type": "question",
+      "recto": "Écris en lettres : 3rd, 5th, 12th.",
+      "verso": "*third, fifth, twelfth*.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u02-c009",
+      "section": "en-a1-u02-s03",
+      "type": "qcm",
+      "question": "« It's half past six » signifie :",
+      "choix": [
+        "Il est 6 h 30.",
+        "Il est 5 h 30.",
+        "Il est 6 h 15.",
+        "Il est 6 h moins le quart."
+      ],
+      "bonneReponse": 0,
+      "explication": "half past six = six heures passées d'une demie.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u02-c010",
+      "section": "en-a1-u02-s03",
+      "type": "qcm",
+      "question": "Comment dire 19 h 45 de façon classique ?",
+      "choix": [
+        "a quarter to eight",
+        "a quarter past seven",
+        "seven and three quarters",
+        "a quarter to seven"
+      ],
+      "bonneReponse": 0,
+      "explication": "To = moins : 8 h moins le quart.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u02-c011",
+      "section": "en-a1-u02-s03",
+      "type": "question",
+      "recto": "Rendez-vous « at 3 pm » : à quelle heure ?",
+      "verso": "À **15 h** (pm = après midi).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u02-c012",
+      "section": "en-a1-u02-s04",
+      "type": "qcm",
+      "question": "Complète : The meeting is ___ Tuesday ___ 10 am.",
+      "choix": [
+        "on / at",
+        "in / at",
+        "at / on",
+        "on / in"
+      ],
+      "bonneReponse": 0,
+      "explication": "Jour → on ; heure → at.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u02-c013",
+      "section": "en-a1-u02-s04",
+      "type": "qcm",
+      "question": "Complète : I was born ___ 2006.",
+      "choix": [
+        "in",
+        "on",
+        "at",
+        "—"
+      ],
+      "bonneReponse": 0,
+      "explication": "Année = période → in.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u02-c014",
+      "section": "en-a1-u02-s04",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "See you next Friday.",
+        "See you on next Friday.",
+        "See you in next Friday.",
+        "See you at next Friday."
+      ],
+      "bonneReponse": 0,
+      "explication": "Pas de préposition devant next / last / this / every.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u02-c015",
+      "section": "en-a1-u02-s04",
+      "type": "question",
+      "recto": "Traduis : « Je travaille le matin et je dors la nuit. »",
+      "verso": "*I work **in** the morning and I sleep **at** night.*",
+      "difficulte": 2
+    }
+  ]
+}

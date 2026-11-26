@@ -1,0 +1,131 @@
+{
+  "formatVersion": 1,
+  "id": "en-c1-oral",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "C1 – Avancé",
+  "sequence": null,
+  "seance": "Oral C1 – Aisance, précision et registre",
+  "ordre": 76,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Expression orale de niveau C1 : adapter son registre, nuancer finement, gérer les questions difficiles, reformuler et résumer une discussion, et utiliser l'intonation pour convaincre.",
+  "notions": [
+    "Registre à l'oral",
+    "Gérer les questions",
+    "Prosodie expressive"
+  ],
+  "sections": [
+    {
+      "id": "en-c1-oral-s01",
+      "titre": "Adapter son registre",
+      "contenu": "Un C1 passe sans effort d'un registre à l'autre.\n\n| Familier | Neutre | Soutenu |\n| --- | --- | --- |\n| *Can you sort it out?* | *Can you fix it?* | *Would you be able to resolve the issue?* |\n| *No way!* | *I don't think so.* | *I'm afraid that won't be possible.* |\n| *It's a bit pricey.* | *It's quite expensive.* | *The cost is somewhat prohibitive.* |\n| *Let's get going.* | *Let's start.* | *Shall we proceed?* |\n| *Got it.* | *I understand.* | *Duly noted.* |\n\nEn contexte professionnel anglo-saxon, la politesse passe par l'**indirect** : *I was wondering if you could… / Would it be possible to… / It might be worth considering…*",
+      "notions": [
+        "Registre à l'oral"
+      ]
+    },
+    {
+      "id": "en-c1-oral-s02",
+      "titre": "Questions difficiles et reformulation",
+      "contenu": "**Gagner du temps avec élégance** : *That's a very good question, and it deserves a careful answer. / Let me think about how best to put this.*\n\n**Recadrer** : *I think the real issue here is… / If I could reframe the question slightly…*\n\n**Admettre ses limites** : *I'm not in a position to say for certain, but… / That's outside my area of expertise, but my understanding is…*\n\n**Reformuler et résumer** : *So, if I've understood correctly, your concern is… / To sum up what's been said, … / Where we seem to agree is…, whereas…*\n\n**Éviter de répondre** (diplomatie) : *I'd rather not speculate on that. / It's too early to say.*",
+      "notions": [
+        "Gérer les questions"
+      ]
+    },
+    {
+      "id": "en-c1-oral-s03",
+      "titre": "L'intonation pour convaincre",
+      "contenu": "À C1, la **voix** porte autant que les mots :\n- **Accent contrastif** : *We didn't say it was impossible; we said it was **expensive**.*\n- **Pauses stratégiques** avant l'idée clé : *And the result was… || a 40 % drop in incidents.*\n- **Groupes de trois** à l'intonation montante puis descendante finale : *It's faster ↗, cheaper ↗, and more secure ↘.*\n- **Ralentir** sur les chiffres et les conclusions.\n- **Phrases clivées** à l'oral pour mettre en relief : *What we really need is… / The thing is, …*\n\nTravaille en shadowing sur des discours ou des conférences (TED, débats) : imite la **mise en relief**, pas seulement les sons.",
+      "notions": [
+        "Prosodie expressive"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-c1-oral-c001",
+      "section": "en-c1-oral-s01",
+      "type": "question",
+      "recto": "Transforme en registre soutenu : *Can you fix it?*",
+      "verso": "*Would you be able to resolve the issue?*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-c1-oral-c002",
+      "section": "en-c1-oral-s01",
+      "type": "question",
+      "recto": "Comment formuler une demande très polie en contexte pro ?",
+      "verso": "*I was wondering if you could… / Would it be possible to… / It might be worth considering…*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-c1-oral-c003",
+      "section": "en-c1-oral-s01",
+      "type": "qcm",
+      "question": "Laquelle est la façon la plus diplomatique de dire non à un client ?",
+      "choix": [
+        "I'm afraid that won't be possible at this stage.",
+        "No way, we can't do that for you at this stage.",
+        "That's impossible, sorry, we never do that.",
+        "We don't want to do that, it's not our job."
+      ],
+      "bonneReponse": 0,
+      "explication": "*I'm afraid* + forme indirecte = refus ferme mais courtois.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-oral-c004",
+      "section": "en-c1-oral-s02",
+      "type": "question",
+      "recto": "Comment admettre qu'on ne sait pas, à un niveau C1 ?",
+      "verso": "*I'm not in a position to say for certain, but… / That's outside my area of expertise, but my understanding is…*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-c1-oral-c005",
+      "section": "en-c1-oral-s02",
+      "type": "question",
+      "recto": "Comment résumer une discussion en réunion ?",
+      "verso": "*To sum up what's been said, … Where we seem to agree is…, whereas…*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-oral-c006",
+      "section": "en-c1-oral-s02",
+      "type": "exercice",
+      "enonce": "🎙️ On te demande en réunion : *Why did the migration to the new server take twice as long as planned?* Réponds en 1 minute sans te défausser.",
+      "etapes": [
+        "Reconnaître le fait.",
+        "Expliquer les causes (hedging et précision).",
+        "Ce qui a été appris / mis en place.",
+        "Proposer la suite."
+      ],
+      "reponse": "*That's a fair question. The migration did take longer than planned, mainly for two reasons: we underestimated the time needed to test legacy applications, and we had to wait for a licence renewal we hadn't anticipated. In hindsight, we should have built in a buffer. For the next phase, we've added a testing checklist and a two-week margin, and I'll be sending a revised schedule by Friday.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-oral-c007",
+      "section": "en-c1-oral-s03",
+      "type": "question",
+      "recto": "Comment mettre en valeur une idée clé à l'oral ?",
+      "verso": "Accent contrastif, **pause** juste avant, ralentissement, phrase clivée (*What we really need is…*).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-c1-oral-c008",
+      "section": "en-c1-oral-s03",
+      "type": "qcm",
+      "question": "Dans *It's faster, cheaper, and more secure*, quelle mélodie est naturelle ?",
+      "choix": [
+        "Montante sur les deux premiers, descendante sur le dernier",
+        "Montante sur les trois éléments",
+        "Plate du début à la fin",
+        "Descendante sur le premier, montante ensuite"
+      ],
+      "bonneReponse": 0,
+      "explication": "Liste fermée : montée sur les éléments non finaux, descente finale (= fin de la liste).",
+      "difficulte": 2
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "formatVersion": 1,
+  "id": "en-b1-u05",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "U05 – Les propositions relatives : who, which, that, whose, where",
+  "ordre": 50,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Relier des phrases avec les pronoms relatifs, savoir quand on peut omettre le pronom, distinguer relatives déterminatives et explicatives (avec virgules), et utiliser whose, where, when.",
+  "notions": [
+    "Pronoms relatifs",
+    "Omission du pronom relatif",
+    "Relatives explicatives"
+  ],
+  "sections": [
+    {
+      "id": "en-b1-u05-s01",
+      "titre": "Les pronoms relatifs",
+      "contenu": "| Pronom | Pour | Exemple |\n| --- | --- | --- |\n| ***who*** | une **personne** | *The man **who** called you is my boss.* |\n| ***which*** | une **chose**, un animal | *The laptop **which** I bought is fast.* |\n| ***that*** | personne **ou** chose (relatives déterminatives) | *The film **that** we saw was great.* |\n| ***whose*** | possession (dont le / la) | *The girl **whose** phone was stolen.* |\n| ***where*** | un lieu (où) | *The town **where** I grew up.* |\n| ***when*** | un moment (où) | *The day **when** we met.* |\n\n« **où** » temporel se traduit par ***when*** (pas *where*) : *the year **when** I was born*.",
+      "notions": [
+        "Pronoms relatifs"
+      ]
+    },
+    {
+      "id": "en-b1-u05-s02",
+      "titre": "Omettre le pronom",
+      "contenu": "Quand le pronom est **complément** (il est suivi d'un sujet), on peut le **supprimer** — c'est même très courant à l'oral :\n- *The book (**that**) I'm reading is great.* (I = sujet)\n- *The people (**who**) we met were friendly.*\n\nImpossible quand il est **sujet** : *The man **who** lives next door* (pas ~~The man lives next door is~~).\n\nPrépositions : on les met souvent **à la fin** : *The company (that) I work **for**.* · *The person (who) I spoke **to**.* (registre formel : *the person to whom I spoke*)",
+      "notions": [
+        "Omission du pronom relatif"
+      ]
+    },
+    {
+      "id": "en-b1-u05-s03",
+      "titre": "Relatives déterminatives et explicatives",
+      "contenu": "- **Déterminative** (sans virgule) : elle **identifie** de qui / quoi on parle ; indispensable au sens.\n  *Students **who** work hard pass.* (seulement ceux qui travaillent)\n- **Explicative** (avec **virgules**) : elle **ajoute** une information ; on peut la retirer.\n  *My brother, **who** lives in Paris, is a nurse.* (je n'ai qu'un frère)\n\nDans une explicative : ***that* est interdit** et le pronom ne s'omet **jamais** : *Paris, **which** is the capital, …*\n\n***which*** peut reprendre **toute une phrase** : *He passed the exam, **which** surprised everyone.* (ce qui)",
+      "notions": [
+        "Relatives explicatives"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b1-u05-c001",
+      "section": "en-b1-u05-s01",
+      "type": "qcm",
+      "question": "Complète : That's the colleague ___ helped me with the server.",
+      "choix": [
+        "who",
+        "which",
+        "whose",
+        "where"
+      ],
+      "bonneReponse": 0,
+      "explication": "Personne sujet → who (ou that).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u05-c002",
+      "section": "en-b1-u05-s01",
+      "type": "qcm",
+      "question": "Complète : Do you know the woman ___ car is parked outside?",
+      "choix": [
+        "whose",
+        "who's",
+        "which",
+        "who"
+      ],
+      "bonneReponse": 0,
+      "explication": "Possession → whose.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u05-c003",
+      "section": "en-b1-u05-s01",
+      "type": "qcm",
+      "question": "Complète : I'll never forget the day ___ I passed my exam.",
+      "choix": [
+        "when",
+        "where",
+        "which",
+        "who"
+      ],
+      "bonneReponse": 0,
+      "explication": "Moment → when.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u05-c004",
+      "section": "en-b1-u05-s02",
+      "type": "qcm",
+      "question": "Dans quelle phrase peut-on supprimer le pronom relatif ?",
+      "choix": [
+        "The app that I use is free.",
+        "The app that crashed is free.",
+        "The man who called is here.",
+        "The girl who won is my sister."
+      ],
+      "bonneReponse": 0,
+      "explication": "On peut l'omettre seulement s'il est complément.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b1-u05-c005",
+      "section": "en-b1-u05-s02",
+      "type": "question",
+      "recto": "Traduis naturellement : « L'entreprise pour laquelle je travaille est à Nantes. »",
+      "verso": "*The company I work **for** is in Nantes.* (pronom omis, préposition en fin)",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b1-u05-c006",
+      "section": "en-b1-u05-s03",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "My car, which is ten years old, still works.",
+        "My car, that is ten years old, still works.",
+        "My car, is ten years old, still works.",
+        "My car which, is ten years old still works."
+      ],
+      "bonneReponse": 0,
+      "explication": "Relative explicative (virgules) → which, jamais that.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b1-u05-c007",
+      "section": "en-b1-u05-s03",
+      "type": "qcm",
+      "question": "« Il est arrivé en retard, ce qui a énervé le prof » :",
+      "choix": [
+        "He arrived late, which annoyed the teacher.",
+        "He arrived late, what annoyed the teacher.",
+        "He arrived late, that annoyed the teacher.",
+        "He arrived late, who annoyed the teacher."
+      ],
+      "bonneReponse": 0,
+      "explication": "« ce qui » reprenant une phrase = which.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b1-u05-c008",
+      "section": "en-b1-u05-s03",
+      "type": "exercice",
+      "enonce": "Relie en une phrase : « J'ai un ami. Son frère travaille chez Google. Il habite à Londres. »",
+      "etapes": [
+        "Possession → whose.",
+        "Information en plus → relative explicative avec virgules.",
+        "Personne → who."
+      ],
+      "reponse": "*I have a friend whose brother works at Google. / My friend, whose brother works at Google, lives in London.*",
+      "difficulte": 3
+    }
+  ]
+}

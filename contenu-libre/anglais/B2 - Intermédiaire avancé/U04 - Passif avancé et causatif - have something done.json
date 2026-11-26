@@ -1,0 +1,130 @@
+{
+  "formatVersion": 1,
+  "id": "en-b2-u04",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "U04 – Passif avancé et causatif : have something done",
+  "ordre": 40,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Le passif aux temps complexes, le passif impersonnel (it is said that, he is thought to), le causatif have / get something done, et get passif.",
+  "notions": [
+    "Passif impersonnel",
+    "Causatif",
+    "Get passif"
+  ],
+  "sections": [
+    {
+      "id": "en-b2-u04-s01",
+      "titre": "Passif impersonnel",
+      "contenu": "Très fréquent dans la presse et les rapports pour rapporter une opinion ou une rumeur :\n- ***It is said / believed / reported that*** + phrase : *It is believed that the attack came from abroad.*\n- ***Sujet + is said / thought / expected to*** + base : *The CEO **is expected to resign**.* (on s'attend à ce qu'il démissionne)\n- passé : ***to have*** + participe : *He **is thought to have left** the country.* (on pense qu'il a quitté le pays)\n\nCorrespond au français « on dit que », « il paraît que », « il serait… » (conditionnel journalistique).",
+      "notions": [
+        "Passif impersonnel"
+      ]
+    },
+    {
+      "id": "en-b2-u04-s02",
+      "titre": "Le causatif : have / get something done",
+      "contenu": "**have + objet + participe passé** = **faire faire** quelque chose par quelqu'un d'autre :\n- *I **had my car repaired**.* (je l'ai fait réparer)\n- *She's **having her hair cut** tomorrow.* · *We need to **have the server replaced**.*\n- ***get*** something done = même sens, plus familier : *I must **get my phone fixed**.*\n\nAussi pour une chose **subie** : *He **had his wallet stolen**.* (on lui a volé son portefeuille)\n\nAvec une personne : ***have someone do*** / ***get someone to do*** : *I had the technician check the cables. I got my brother to help me.*",
+      "notions": [
+        "Causatif"
+      ]
+    },
+    {
+      "id": "en-b2-u04-s03",
+      "titre": "Get au passif",
+      "contenu": "À l'oral, ***get*** remplace souvent *be* au passif, pour un **changement** ou un événement souvent inattendu ou négatif :\n- *He **got fired**.* (il s'est fait virer) · *My bag **got stolen**.* · *They **got married** in June.*\n- expressions : *get dressed, get lost* (se perdre), *get hurt* (se blesser), *get paid* (être payé), *get caught* (se faire prendre).",
+      "notions": [
+        "Get passif"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b2-u04-c001",
+      "section": "en-b2-u04-s01",
+      "type": "qcm",
+      "question": "« Le ministre serait malade » (presse) :",
+      "choix": [
+        "The minister is said to be ill.",
+        "The minister would be ill.",
+        "It is said the minister to be ill.",
+        "The minister is saying to be ill."
+      ],
+      "bonneReponse": 0,
+      "explication": "Conditionnel journalistique → be said to.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u04-c002",
+      "section": "en-b2-u04-s01",
+      "type": "qcm",
+      "question": "« On pense que les pirates ont volé des données » :",
+      "choix": [
+        "The hackers are thought to have stolen data.",
+        "The hackers are thought to steal data yesterday.",
+        "It thinks the hackers have stolen data.",
+        "The hackers think to have stolen data."
+      ],
+      "bonneReponse": 0,
+      "explication": "Antériorité → to have + participe.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u04-c003",
+      "section": "en-b2-u04-s02",
+      "type": "qcm",
+      "question": "« Je me suis fait couper les cheveux » :",
+      "choix": [
+        "I had my hair cut.",
+        "I cut my hair by someone.",
+        "I had cut my hair.",
+        "I made cut my hair."
+      ],
+      "bonneReponse": 0,
+      "explication": "have + objet + participe passé.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u04-c004",
+      "section": "en-b2-u04-s02",
+      "type": "qcm",
+      "question": "« On lui a volé son téléphone » :",
+      "choix": [
+        "She had her phone stolen.",
+        "She stole her phone.",
+        "She had stolen her phone.",
+        "Her phone had her stolen."
+      ],
+      "bonneReponse": 0,
+      "explication": "Causatif pour une chose subie.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u04-c005",
+      "section": "en-b2-u04-s02",
+      "type": "question",
+      "recto": "Traduis : « Nous allons faire installer la fibre la semaine prochaine. »",
+      "verso": "*We're going to **have fibre installed** next week.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u04-c006",
+      "section": "en-b2-u04-s03",
+      "type": "qcm",
+      "question": "« Ils se sont perdus dans la forêt » :",
+      "choix": [
+        "They got lost in the forest.",
+        "They lost in the forest.",
+        "They were losing in the forest.",
+        "They have lost themselves the forest."
+      ],
+      "bonneReponse": 0,
+      "explication": "get lost = se perdre.",
+      "difficulte": 2
+    }
+  ]
+}

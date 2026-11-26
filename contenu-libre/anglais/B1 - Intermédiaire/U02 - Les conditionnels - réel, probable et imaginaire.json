@@ -1,0 +1,183 @@
+{
+  "formatVersion": 1,
+  "id": "en-b1-u02",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "U02 – Les conditionnels : réel, probable et imaginaire",
+  "ordre": 20,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Le conditionnel zéro (vérités), le premier conditionnel (situation probable), le deuxième conditionnel (situation imaginaire ou peu probable), unless, et la règle d'or : jamais de will ou would après if.",
+  "notions": [
+    "Conditionnel zéro",
+    "Premier conditionnel",
+    "Deuxième conditionnel",
+    "Usages des conditionnels"
+  ],
+  "sections": [
+    {
+      "id": "en-b1-u02-s01",
+      "titre": "Zéro et premier conditionnel",
+      "contenu": "| Type | Structure | Sens | Exemple |\n| --- | --- | --- | --- |\n| **0** | *If* + présent, présent | vérité générale, règle | *If you heat ice, it melts.* |\n| **1** | *If* + présent, **will** + base | situation **réelle / probable** dans le futur | *If it rains, I'll stay home.* |\n\n**Règle d'or** : après ***if*** (et *when, as soon as, unless*), on met le **présent**, même pour le futur :\n~~*If it will rain*~~ → *If it rains* ; *I'll call you **when** I **arrive*** (pas ~~when I will arrive~~).\n\n***unless*** = *if … not* (à moins que, sauf si) : *I'll go **unless** it rains* = *I'll go if it doesn't rain.*\n\nL'ordre peut s'inverser (sans virgule) : *I'll stay home if it rains.*",
+      "notions": [
+        "Conditionnel zéro",
+        "Premier conditionnel"
+      ]
+    },
+    {
+      "id": "en-b1-u02-s02",
+      "titre": "Le deuxième conditionnel",
+      "contenu": "**If + prétérit, would + base** : situation **imaginaire**, peu probable ou contraire à la réalité **présente**.\n- *If I **won** the lottery, I **would travel** around the world.*\n- *If I **had** more time, I**'d learn** Japanese.* (je n'ai pas le temps)\n- conseil : *If I **were** you, I **wouldn't** accept.* — avec *if*, on utilise ***were*** à toutes les personnes dans un registre soigné.\n\n1er ou 2e ? Tout dépend de la **probabilité** perçue :\n- *If I get the job, I'll move to Lyon.* (j'ai de vraies chances)\n- *If I got the job, I'd move to Lyon.* (j'y crois peu)\n\nNe jamais mettre *would* après *if* : ~~*If I would have*~~.",
+      "notions": [
+        "Deuxième conditionnel"
+      ]
+    },
+    {
+      "id": "en-b1-u02-s03",
+      "titre": "Utiliser les conditionnels",
+      "contenu": "Les conditionnels servent à :\n- **négocier** : *If you sign today, we'll give you a 10 % discount.* ;\n- **mettre en garde** : *If you don't save the file, you'll lose your work.* ;\n- **imaginer, rêver** : *If I could live anywhere, I'd live in Canada.* ;\n- **refuser poliment** : *I'd love to, but if I came, I wouldn't finish my work.*\n\n*would* se contracte ***'d*** : *I'd, she'd, we'd*. Attention : *'d* peut aussi être *had* : *I'd finished* = I had finished.",
+      "notions": [
+        "Usages des conditionnels"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b1-u02-c001",
+      "section": "en-b1-u02-s01",
+      "type": "qcm",
+      "question": "Complète : If you ___ hard, you'll pass the exam.",
+      "choix": [
+        "study",
+        "will study",
+        "studied",
+        "would study"
+      ],
+      "bonneReponse": 0,
+      "explication": "Premier conditionnel : if + présent.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u02-c002",
+      "section": "en-b1-u02-s01",
+      "type": "qcm",
+      "question": "Complète : I'll text you as soon as I ___ home.",
+      "choix": [
+        "get",
+        "will get",
+        "got",
+        "am getting"
+      ],
+      "bonneReponse": 0,
+      "explication": "as soon as + présent pour le futur.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u02-c003",
+      "section": "en-b1-u02-s01",
+      "type": "qcm",
+      "question": "« Unless you hurry, you'll miss the train » signifie :",
+      "choix": [
+        "Si tu ne te dépêches pas, tu vas rater le train.",
+        "Si tu te dépêches, tu vas rater le train.",
+        "Même si tu te dépêches, tu rateras le train.",
+        "Dès que tu te dépêches, tu rates le train."
+      ],
+      "bonneReponse": 0,
+      "explication": "unless = if … not.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u02-c004",
+      "section": "en-b1-u02-s01",
+      "type": "question",
+      "recto": "Traduis : « Si l'écran devient rouge, l'ordinateur s'arrête. » (règle générale)",
+      "verso": "*If the screen turns red, the computer stops.* (conditionnel zéro)",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u02-c005",
+      "section": "en-b1-u02-s02",
+      "type": "qcm",
+      "question": "Complète : If I ___ rich, I'd buy a house by the sea.",
+      "choix": [
+        "were",
+        "would be",
+        "am",
+        "will be"
+      ],
+      "bonneReponse": 0,
+      "explication": "Situation imaginaire : if + prétérit (were).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u02-c006",
+      "section": "en-b1-u02-s02",
+      "type": "qcm",
+      "question": "Complète : What ___ you do if you lost your phone?",
+      "choix": [
+        "would",
+        "will",
+        "did",
+        "do"
+      ],
+      "bonneReponse": 0,
+      "explication": "2e conditionnel → would dans la principale.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u02-c007",
+      "section": "en-b1-u02-s02",
+      "type": "qcm",
+      "question": "Tu as de réelles chances d'avoir le poste. Tu dis :",
+      "choix": [
+        "If I get the job, I'll move.",
+        "If I got the job, I'd move.",
+        "If I will get the job, I move.",
+        "If I would get the job, I'll move."
+      ],
+      "bonneReponse": 0,
+      "explication": "Situation probable → 1er conditionnel.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b1-u02-c008",
+      "section": "en-b1-u02-s02",
+      "type": "question",
+      "recto": "Comment donner un conseil avec « à ta place » ?",
+      "verso": "*If I were you, I'd* (I would) … — ex. *If I were you, I'd talk to your manager.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u02-c009",
+      "section": "en-b1-u02-s03",
+      "type": "exercice",
+      "enonce": "Écris 3 phrases : une règle générale (0), une mise en garde (1), un rêve (2).",
+      "etapes": [
+        "0 : If + présent, présent.",
+        "1 : If + présent, will + base.",
+        "2 : If + prétérit, would + base."
+      ],
+      "reponse": "Exemple : *If you press Ctrl+S, the file is saved. If you don't update your antivirus, your computer will be at risk. If I had a year off, I'd travel across Asia.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u02-c010",
+      "section": "en-b1-u02-s03",
+      "type": "qcm",
+      "question": "« If I had known… » : que représente « 'd » dans « I'd go » ?",
+      "choix": [
+        "would",
+        "had",
+        "did",
+        "should"
+      ],
+      "bonneReponse": 0,
+      "explication": "I'd + base verbale = I would ; I'd + participe = I had.",
+      "difficulte": 3
+    }
+  ]
+}

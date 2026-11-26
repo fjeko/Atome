@@ -1,0 +1,184 @@
+{
+  "formatVersion": 1,
+  "id": "en-a2-u04",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A2 – Élémentaire",
+  "sequence": null,
+  "seance": "U04 – Comparer : comparatifs et superlatifs",
+  "ordre": 40,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Comparer des personnes, des produits ou des villes : comparatifs en -er et more, superlatifs en -est et the most, formes irrégulières, as … as, et les adjectifs pour décrire.",
+  "notions": [
+    "Comparatif",
+    "Superlatif",
+    "As … as",
+    "Adjectifs de description"
+  ],
+  "sections": [
+    {
+      "id": "en-a2-u04-s01",
+      "titre": "Le comparatif",
+      "contenu": "| Adjectif | Comparatif | Exemple |\n| --- | --- | --- |\n| **court** (1 syllabe) | + **-er** | *cheap → cheaper, fast → faster* |\n| finissant par **-y** | **-ier** | *easy → easier, happy → happier* |\n| **long** (2 syllabes ou plus) | **more** + adj. | *expensive → more expensive, interesting → more interesting* |\n| **irréguliers** | | *good → **better**, bad → **worse**, far → **further / farther*** |\n\n« que » = ***than*** : *Trains are **faster than** buses.*\nOrthographe : *big → bigger, hot → hotter* (consonne doublée) ; *nice → nicer*.\nInfériorité : ***less*** + adj. + than : *This one is less expensive.* (souvent, on préfère *cheaper*).",
+      "notions": [
+        "Comparatif"
+      ]
+    },
+    {
+      "id": "en-a2-u04-s02",
+      "titre": "Le superlatif",
+      "contenu": "**the** + adj. **-est** / **the most** + adj. long :\n- *the cheapest, the biggest, the easiest* ; *the most beautiful, the most important* ;\n- irréguliers : *the best* (good), *the worst* (bad), *the furthest* (far).\n\n« de » après un superlatif = ***in*** pour un lieu ou un groupe, ***of*** pour une période ou un nombre : *the best player **in** the team, the tallest building **in** the world, the best day **of** my life.*\n\nAvec le present perfect : *It's the best film **I've ever seen**.* (le meilleur que j'aie jamais vu)",
+      "notions": [
+        "Superlatif"
+      ]
+    },
+    {
+      "id": "en-a2-u04-s03",
+      "titre": "As … as et décrire",
+      "contenu": "**Égalité** : ***as*** + adj. + ***as*** : *She's **as tall as** her brother.* — négatif : *not as … as* (moins … que) : *The bus is **not as fast as** the train.*\n\n**Adjectifs utiles pour comparer** :\n- prix : *cheap / expensive* ; taille : *big / small, large, tiny* ; vitesse : *fast / slow* ;\n- qualité : *reliable* (fiable), *useful, powerful* (puissant), *light / heavy* (léger / lourd) ;\n- villes : *busy* (animé), *quiet* (calme), *safe / dangerous, crowded* (bondé), *polluted*.\n\nL'adjectif est **invariable** et se place **avant** le nom : *two **old** cars* (pas ~~olds~~).",
+      "notions": [
+        "As … as",
+        "Adjectifs de description"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a2-u04-c001",
+      "section": "en-a2-u04-s01",
+      "type": "qcm",
+      "question": "Complète : My new phone is ___ than the old one.",
+      "choix": [
+        "better",
+        "gooder",
+        "more good",
+        "best"
+      ],
+      "bonneReponse": 0,
+      "explication": "good → better.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u04-c002",
+      "section": "en-a2-u04-s01",
+      "type": "qcm",
+      "question": "Complète : London is ___ than Paris.",
+      "choix": [
+        "more expensive",
+        "expensiver",
+        "more expensiver",
+        "most expensive"
+      ],
+      "bonneReponse": 0,
+      "explication": "Adjectif long → more.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u04-c003",
+      "section": "en-a2-u04-s01",
+      "type": "qcm",
+      "question": "Complète : Today is ___ than yesterday.",
+      "choix": [
+        "hotter",
+        "hoter",
+        "more hot",
+        "hottest"
+      ],
+      "bonneReponse": 0,
+      "explication": "hot → hotter (consonne doublée).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u04-c004",
+      "section": "en-a2-u04-s01",
+      "type": "question",
+      "recto": "Traduis : « Le test était pire que je ne pensais. »",
+      "verso": "*The test was **worse than** I thought.* (bad → worse)",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u04-c005",
+      "section": "en-a2-u04-s02",
+      "type": "qcm",
+      "question": "Complète : It's the ___ restaurant in town.",
+      "choix": [
+        "best",
+        "better",
+        "goodest",
+        "most good"
+      ],
+      "bonneReponse": 0,
+      "explication": "Superlatif de good = the best.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u04-c006",
+      "section": "en-a2-u04-s02",
+      "type": "qcm",
+      "question": "« La plus haute montagne du monde » :",
+      "choix": [
+        "the highest mountain in the world",
+        "the highest mountain of the world",
+        "the most high mountain in the world",
+        "the higher mountain in the world"
+      ],
+      "bonneReponse": 0,
+      "explication": "Lieu → in.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u04-c007",
+      "section": "en-a2-u04-s02",
+      "type": "question",
+      "recto": "Traduis : « C'est le pire jour de ma vie. »",
+      "verso": "*It's the **worst** day **of** my life.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u04-c008",
+      "section": "en-a2-u04-s03",
+      "type": "qcm",
+      "question": "« Il n'est pas aussi grand que son père » :",
+      "choix": [
+        "He isn't as tall as his father.",
+        "He isn't so tall that his father.",
+        "He isn't as tall than his father.",
+        "He isn't tall as his father."
+      ],
+      "bonneReponse": 0,
+      "explication": "not as … as.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u04-c009",
+      "section": "en-a2-u04-s03",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "They're nice people.",
+        "They're nices people.",
+        "They're people nices.",
+        "They're people nice."
+      ],
+      "bonneReponse": 0,
+      "explication": "Adjectif invariable, placé avant le nom.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u04-c010",
+      "section": "en-a2-u04-s03",
+      "type": "exercice",
+      "enonce": "Compare deux ordinateurs : A (800 €, 1,2 kg, très rapide) et B (500 €, 2 kg, assez rapide).",
+      "etapes": [
+        "Prix : B is cheaper than A.",
+        "Poids : A is lighter than B.",
+        "Vitesse : A is faster than B / B isn't as fast as A.",
+        "Conclusion : A is the best for … ; B is better for …"
+      ],
+      "reponse": "*Laptop B is cheaper than laptop A, but A is lighter and faster. B isn't as fast as A. If you travel a lot, A is the best choice; if you have a small budget, B is better.*",
+      "difficulte": 2
+    }
+  ]
+}

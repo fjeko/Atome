@@ -25,6 +25,13 @@ Le but : des cours que n'importe qui peut réutiliser, **sans reprendre le texte
 
 Les cours d'origine, les fiches intermédiaires et les rapports de contrôle ne sont **pas** publiés.
 
+## Anglais général (A1 → C1)
+
+Le dossier `anglais/` contient un parcours d'anglais général, du niveau A1 au C1. Il comprend 65 séances, des
+modules de méthode pour l'oral et un test de positionnement. Il est rédigé de zéro et ne reprend aucun manuel ni
+aucune plateforme. Atome le charge à chaque démarrage dans sa propre collection, « Anglais ». Ses cartes entrent
+dans les révisions seulement quand tu lis la séance. La même licence s'applique.
+
 ## Licence
 
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.fr) : tu peux copier, partager et adapter ces

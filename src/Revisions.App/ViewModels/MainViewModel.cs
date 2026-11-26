@@ -327,6 +327,10 @@ public partial class MainViewModel(
                 // Cours libres livrés avec Atome : mise à jour si activés, proposition au premier lancement.
                 resultatsImport.AddRange(SynchroniserCoursLibres(out proposerCoursLibres));
                 Journal.Etape("Cours libres synchronisés");
+                // Anglais général livré avec Atome : toujours chargé (collection « Anglais »). Ses cartes n'entrent
+                // dans les révisions qu'une fois la séance lue : il ne s'impose donc à personne.
+                if (etat.DossierAnglais is { } anglais) resultatsImport.AddRange(importateur.ImporterDossier(anglais, null));
+                Journal.Etape("Anglais général synchronisé");
                 // Planning du CNED : dossier « planning » à côté du dossier « packs » (facultatif).
                 planningArrive = ImporterPlanning();
                 Journal.Etape("Planning chargé");
@@ -513,7 +517,7 @@ public partial class MainViewModel(
         if (_banques is null)
         {
             var erreurs = new List<(string Fichier, IReadOnlyList<string> Erreurs)>();
-            _banques = DepotPositionnement.ChargerBanques([etat.Reglages.DossierPacks, etat.DossierCoursLibres], erreurs);
+            _banques = DepotPositionnement.ChargerBanques([etat.Reglages.DossierPacks, etat.DossierCoursLibres, etat.DossierAnglais], erreurs);
             foreach (var (fichier, liste) in erreurs)
                 Journal.Info("Positionnement", $"{Path.GetFileName(fichier)} refusé : {string.Join(" ; ", liste.Take(5))}");
         }

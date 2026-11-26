@@ -1,0 +1,134 @@
+{
+  "formatVersion": 1,
+  "id": "en-b2-u03",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "U03 – Déduction et probabilité : must, might, can't (have)",
+  "ordre": 30,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Exprimer la certitude, la probabilité et l'impossibilité sur le présent (must, might, could, can't + base) et sur le passé (must have, might have, can't have + participe passé), et la critique avec should have.",
+  "notions": [
+    "Déduction au présent",
+    "Déduction au passé"
+  ],
+  "sections": [
+    {
+      "id": "en-b2-u03-s01",
+      "titre": "Déduction au présent",
+      "contenu": "| Degré | Modal | Exemple |\n| --- | --- | --- |\n| quasi certain (oui) | ***must*** | *The lights are on: they **must** be at home.* |\n| possible | ***might / may / could*** | *She **might** be in a meeting.* |\n| quasi certain (non) | ***can't*** | *He **can't** be at work, it's Sunday.* |\n\nAttention : le contraire de *must* (déduction) est ***can't***, pas *mustn't* (qui exprime une interdiction).\nPour une action en cours : *must / might + be + -ing* : *He **must be sleeping**.*",
+      "notions": [
+        "Déduction au présent"
+      ]
+    },
+    {
+      "id": "en-b2-u03-s02",
+      "titre": "Déduction sur le passé",
+      "contenu": "**Modal + have + participe passé** :\n- *The ground is wet. It **must have rained**.* (il a dû pleuvoir)\n- *I can't find my keys. I **might have left** them at work.* (je les ai peut-être laissées)\n- *She **can't have seen** us, she didn't say hello.* (elle n'a pas pu nous voir)\n\nCritique ou reproche : ***should have*** / ***shouldn't have*** + participe : *You **should have told** me!* (tu aurais dû me le dire) · *I **shouldn't have eaten** so much.*\n***needn't have*** : c'était inutile (mais on l'a fait) : *You needn't have brought a gift.*",
+      "notions": [
+        "Déduction au passé"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b2-u03-c001",
+      "section": "en-b2-u03-s01",
+      "type": "qcm",
+      "question": "Il ne répond pas au téléphone, sa voiture n'est pas là. → He ___ be at home.",
+      "choix": [
+        "can't",
+        "mustn't",
+        "must",
+        "should"
+      ],
+      "bonneReponse": 0,
+      "explication": "Quasi-certitude négative → can't.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u03-c002",
+      "section": "en-b2-u03-s01",
+      "type": "qcm",
+      "question": "Tu n'es pas sûr : « Elle est peut-être malade » :",
+      "choix": [
+        "She might be ill.",
+        "She must be ill.",
+        "She can't be ill.",
+        "She should be ill."
+      ],
+      "bonneReponse": 0,
+      "explication": "Possibilité → might / may / could.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-u03-c003",
+      "section": "en-b2-u03-s01",
+      "type": "question",
+      "recto": "Traduis : « Tu dois être fatigué après ce voyage » (déduction).",
+      "verso": "*You **must be** tired after that trip.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u03-c004",
+      "section": "en-b2-u03-s02",
+      "type": "qcm",
+      "question": "« Il a dû oublier » :",
+      "choix": [
+        "He must have forgotten.",
+        "He must forget.",
+        "He had to forget.",
+        "He must had forgotten."
+      ],
+      "bonneReponse": 0,
+      "explication": "Déduction passée : must have + participe.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u03-c005",
+      "section": "en-b2-u03-s02",
+      "type": "qcm",
+      "question": "« Tu aurais dû sauvegarder ton fichier » :",
+      "choix": [
+        "You should have saved your file.",
+        "You should save your file yesterday.",
+        "You must have saved your file.",
+        "You had saved your file."
+      ],
+      "bonneReponse": 0,
+      "explication": "Reproche → should have + participe.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u03-c006",
+      "section": "en-b2-u03-s02",
+      "type": "qcm",
+      "question": "« Elle n'a pas pu partir sans son sac » :",
+      "choix": [
+        "She can't have left without her bag.",
+        "She mustn't have left without her bag.",
+        "She couldn't leave without her bag yesterday.",
+        "She can't leave without her bag."
+      ],
+      "bonneReponse": 0,
+      "explication": "Impossibilité passée → can't have.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u03-c007",
+      "section": "en-b2-u03-s02",
+      "type": "exercice",
+      "enonce": "Le serveur web est inaccessible ce matin ; hier soir une mise à jour était prévue ; le serveur de secours fonctionne. Fais trois déductions.",
+      "etapes": [
+        "Certitude : The update must have …",
+        "Possibilité : It might have …",
+        "Impossibilité : It can't be a network problem because …"
+      ],
+      "reponse": "*The update must have failed during the night. It might have changed the web server configuration. It can't be a network problem because the backup server is working.*",
+      "difficulte": 3
+    }
+  ]
+}

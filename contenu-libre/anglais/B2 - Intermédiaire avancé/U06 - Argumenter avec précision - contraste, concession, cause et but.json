@@ -1,0 +1,146 @@
+{
+  "formatVersion": 1,
+  "id": "en-b2-u06",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "U06 – Argumenter avec précision : contraste, concession, cause et but",
+  "ordre": 60,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Les connecteurs avancés et leur construction exacte : although, even though, whereas, despite, in spite of, nevertheless, so as to, in order to, so that, due to, owing to, as long as, provided that.",
+  "notions": [
+    "Contraste et concession",
+    "But",
+    "Cause",
+    "Condition"
+  ],
+  "sections": [
+    {
+      "id": "en-b2-u06-s01",
+      "titre": "Contraste et concession",
+      "contenu": "| Connecteur | Construction | Exemple |\n| --- | --- | --- |\n| ***although / even though*** | + proposition | *Although it was late, we kept working.* (*even though* = plus fort) |\n| ***though*** | + proposition, ou en fin (oral) | *It's expensive. It works well, though.* |\n| ***despite / in spite of*** | + **nom** ou **-ing** | *Despite the noise / Despite being tired, …* |\n| ***despite the fact that*** | + proposition | *Despite the fact that it was raining, …* |\n| ***whereas / while*** | opposition de deux faits | *I like coffee, whereas my sister prefers tea.* |\n| ***however / nevertheless / nonetheless*** | entre deux phrases | *The plan is risky. Nevertheless, we'll try.* |\n| ***even if*** | hypothèse | *Even if you leave now, you'll be late.* |\n\n~~*despite of*~~ n'existe pas ; ~~*although of*~~ non plus.",
+      "notions": [
+        "Contraste et concession"
+      ]
+    },
+    {
+      "id": "en-b2-u06-s02",
+      "titre": "But, cause et condition",
+      "contenu": "**But** :\n- ***to / in order to / so as to*** + base : *I left early **in order to** avoid the traffic.* — négatif : ***so as not to / in order not to*** ;\n- ***so that*** + proposition (souvent avec *can / could / would*) : *Speak louder **so that** everyone **can** hear.*\n\n**Cause** :\n- ***because / as / since*** + proposition ;\n- ***because of / due to / owing to*** + **nom** : *The flight was cancelled **due to** the strike.*\n\n**Condition** :\n- ***as long as / provided (that) / providing*** (à condition que) : *You can borrow it **as long as** you return it tomorrow.*\n- ***in case*** (au cas où, par précaution) : *Take an umbrella **in case** it rains.* — différent de *if*.",
+      "notions": [
+        "But",
+        "Cause",
+        "Condition"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b2-u06-c001",
+      "section": "en-b2-u06-s01",
+      "type": "qcm",
+      "question": "Complète : ___ having a degree, he couldn't find a job.",
+      "choix": [
+        "Despite",
+        "Although",
+        "Even though",
+        "Whereas"
+      ],
+      "bonneReponse": 0,
+      "explication": "despite + -ing.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u06-c002",
+      "section": "en-b2-u06-s01",
+      "type": "qcm",
+      "question": "Complète : ___ it was expensive, we bought it.",
+      "choix": [
+        "Although",
+        "Despite",
+        "In spite of",
+        "However"
+      ],
+      "bonneReponse": 0,
+      "explication": "although + proposition.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u06-c003",
+      "section": "en-b2-u06-s01",
+      "type": "qcm",
+      "question": "Quelle différence entre « even though » et « even if » ?",
+      "choix": [
+        "even though : fait réel ; even if : hypothèse",
+        "Aucune différence",
+        "even though : hypothèse ; even if : fait réel",
+        "even if est familier, even though est formel"
+      ],
+      "bonneReponse": 0,
+      "explication": "Even though it's raining (il pleut) / Even if it rains (s'il pleuvait).",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u06-c004",
+      "section": "en-b2-u06-s02",
+      "type": "qcm",
+      "question": "« Il est parti tôt pour ne pas rater le train » :",
+      "choix": [
+        "He left early so as not to miss the train.",
+        "He left early for not missing the train.",
+        "He left early to not to miss the train.",
+        "He left early so that not miss the train."
+      ],
+      "bonneReponse": 0,
+      "explication": "so as not to + base.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u06-c005",
+      "section": "en-b2-u06-s02",
+      "type": "qcm",
+      "question": "Complète : The match was postponed ___ the heavy rain.",
+      "choix": [
+        "due to",
+        "because",
+        "since",
+        "so that"
+      ],
+      "bonneReponse": 0,
+      "explication": "due to + nom.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u06-c006",
+      "section": "en-b2-u06-s02",
+      "type": "qcm",
+      "question": "« Prends ton chargeur au cas où ta batterie serait vide » :",
+      "choix": [
+        "Take your charger in case your battery runs out.",
+        "Take your charger if your battery runs out.",
+        "Take your charger in case of your battery runs out.",
+        "Take your charger unless your battery runs out."
+      ],
+      "bonneReponse": 0,
+      "explication": "in case = par précaution.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u06-c007",
+      "section": "en-b2-u06-s02",
+      "type": "exercice",
+      "enonce": "Écris un paragraphe argumentatif (4 phrases) pour ou contre les réseaux sociaux au lycée, avec un connecteur de concession, de cause, de but et de condition.",
+      "etapes": [
+        "Concession : Although / Despite …",
+        "Cause : … due to / because …",
+        "But : … in order to / so that …",
+        "Condition : … as long as / provided that …"
+      ],
+      "reponse": "Exemple : *Although social media can be distracting, it can also help students. Many pupils use it to share notes, so that absent classmates can catch up. However, problems arise due to cyberbullying. Social media can be useful at school as long as clear rules are set.*",
+      "difficulte": 3
+    }
+  ]
+}

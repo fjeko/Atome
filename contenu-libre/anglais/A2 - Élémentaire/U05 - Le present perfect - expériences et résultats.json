@@ -1,0 +1,183 @@
+{
+  "formatVersion": 1,
+  "id": "en-a2-u05",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A2 – Élémentaire",
+  "sequence": null,
+  "seance": "U05 – Le present perfect : expériences et résultats",
+  "ordre": 50,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Le present perfect (have + participe passé) pour les expériences de vie (ever, never), les actions récentes avec un résultat présent (just, already, yet), et les participes passés irréguliers. Première approche de la différence avec le prétérit.",
+  "notions": [
+    "Present perfect : forme",
+    "Participes passés",
+    "Expériences (ever / never)",
+    "Just / already / yet"
+  ],
+  "sections": [
+    {
+      "id": "en-a2-u05-s01",
+      "titre": "Former le present perfect",
+      "contenu": "**have / has + participe passé**\n- *I**'ve finished**. She**'s gone**. They **haven't arrived**. **Have** you **eaten**?*\n- participe passé régulier = forme en **-ed** : *worked, played* ;\n- irréguliers, la 3e colonne : *be → **been**, do → **done**, go → **gone / been**, see → **seen**, eat → **eaten**, write → **written**, take → **taken**, give → **given**, buy → **bought**, make → **made**, have → **had**, break → **broken**, forget → **forgotten**.*\n\n*been* ou *gone* : *She's **gone** to Spain* (elle y est, pas encore revenue) ; *She's **been** to Spain* (elle y est allée et revenue).",
+      "notions": [
+        "Present perfect : forme",
+        "Participes passés"
+      ]
+    },
+    {
+      "id": "en-a2-u05-s02",
+      "titre": "Les expériences : ever, never",
+      "contenu": "Pour parler d'une expérience **dans la vie**, **sans** dire quand :\n- *Have you **ever** been to London?* (as-tu déjà… ?) → *Yes, I have. / No, I've **never** been there.*\n- *I've **never** eaten sushi.* · *She's visited ten countries.*\n\nDès qu'on précise **quand**, on passe au **prétérit** :\n*Have you ever been to London? — Yes, I **went** there **last year**.*",
+      "notions": [
+        "Expériences (ever / never)"
+      ]
+    },
+    {
+      "id": "en-a2-u05-s03",
+      "titre": "Just, already, yet",
+      "contenu": "Actions **récentes** dont le **résultat** compte maintenant :\n- ***just*** (venir de) : *I've **just** had lunch.* (je viens de déjeuner) ;\n- ***already*** (déjà, plus tôt que prévu) : *She's **already** finished.* ;\n- ***yet*** (en fin de phrase) : questions = « déjà ? », négations = « pas encore » : *Have you done it **yet**? — No, I haven't done it **yet**.*\n\nPlace : *just* et *already* **entre** have et le participe ; *yet* **à la fin**.\nSituation typique : *I've lost my keys!* (je ne les ai pas maintenant) ; *Oh no, I've forgotten my password.*",
+      "notions": [
+        "Just / already / yet"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a2-u05-c001",
+      "section": "en-a2-u05-s01",
+      "type": "qcm",
+      "question": "Participe passé de « write » :",
+      "choix": [
+        "written",
+        "wrote",
+        "writed",
+        "writen"
+      ],
+      "bonneReponse": 0,
+      "explication": "write / wrote / written.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u05-c002",
+      "section": "en-a2-u05-s01",
+      "type": "qcm",
+      "question": "Ton collègue est en ce moment à Berlin. Tu dis :",
+      "choix": [
+        "He's gone to Berlin.",
+        "He's been to Berlin.",
+        "He went to Berlin yesterday ago.",
+        "He's going to Berlin last week."
+      ],
+      "bonneReponse": 0,
+      "explication": "gone = il y est encore.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u05-c003",
+      "section": "en-a2-u05-s01",
+      "type": "question",
+      "recto": "Donne les participes passés de : see, eat, take, forget.",
+      "verso": "*seen, eaten, taken, forgotten*.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u05-c004",
+      "section": "en-a2-u05-s02",
+      "type": "qcm",
+      "question": "Complète : ___ you ever ___ a horse?",
+      "choix": [
+        "Have / ridden",
+        "Did / ride",
+        "Have / rode",
+        "Are / ridden"
+      ],
+      "bonneReponse": 0,
+      "explication": "Expérience sans date → present perfect.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u05-c005",
+      "section": "en-a2-u05-s02",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "I went to Rome in 2022.",
+        "I've been to Rome in 2022.",
+        "I've gone to Rome in 2022.",
+        "I've went to Rome in 2022."
+      ],
+      "bonneReponse": 0,
+      "explication": "Date précise → prétérit.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u05-c006",
+      "section": "en-a2-u05-s02",
+      "type": "question",
+      "recto": "Traduis : « Je n'ai jamais vu ce film. »",
+      "verso": "*I've **never** seen this film.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u05-c007",
+      "section": "en-a2-u05-s03",
+      "type": "qcm",
+      "question": "« Je viens de recevoir ton e-mail » :",
+      "choix": [
+        "I've just received your email.",
+        "I just have received your email.",
+        "I come to receive your email.",
+        "I've received just your email."
+      ],
+      "bonneReponse": 0,
+      "explication": "venir de = have just + participe.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u05-c008",
+      "section": "en-a2-u05-s03",
+      "type": "qcm",
+      "question": "Complète : Has the meeting started ___?",
+      "choix": [
+        "yet",
+        "already",
+        "just",
+        "ever"
+      ],
+      "bonneReponse": 0,
+      "explication": "Question « déjà ? » en fin de phrase → yet.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u05-c009",
+      "section": "en-a2-u05-s03",
+      "type": "qcm",
+      "question": "Complète : I haven't finished my report ___.",
+      "choix": [
+        "yet",
+        "already",
+        "just",
+        "never"
+      ],
+      "bonneReponse": 0,
+      "explication": "Négation « pas encore » → yet.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u05-c010",
+      "section": "en-a2-u05-s03",
+      "type": "exercice",
+      "enonce": "Tu fais le point sur une liste de tâches. Écris 3 phrases : une faite à l'instant, une déjà faite, une pas encore faite.",
+      "etapes": [
+        "just : I've just …",
+        "already : I've already …",
+        "yet : I haven't … yet."
+      ],
+      "reponse": "Exemple : *I've just sent the email to the client. I've already updated the software. I haven't tested the backup yet.*",
+      "difficulte": 2
+    }
+  ]
+}

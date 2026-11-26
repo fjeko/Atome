@@ -1,0 +1,198 @@
+{
+  "formatVersion": 1,
+  "id": "en-b1-u01",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "U01 – Present perfect ou prétérit ? for, since et le present perfect continu",
+  "ordre": 10,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Choisir entre prétérit et present perfect, exprimer une durée qui dure encore avec for et since (et non le présent comme en français), et le present perfect continu pour une activité qui dure jusqu'à maintenant.",
+  "notions": [
+    "Prétérit / present perfect",
+    "For",
+    "Since",
+    "Present perfect continu"
+  ],
+  "sections": [
+    {
+      "id": "en-b1-u01-s01",
+      "titre": "Prétérit ou present perfect",
+      "contenu": "| **Prétérit** | **Present perfect** |\n| --- | --- |\n| action **terminée**, moment passé **précis ou connu** | lien avec le **présent** : expérience, résultat, période **non terminée** |\n| *I lost my keys yesterday.* | *I've lost my keys.* (je ne les ai toujours pas) |\n| *I saw her last week.* | *I haven't seen her this week.* (la semaine n'est pas finie) |\n| *Shakespeare wrote 39 plays.* (il est mort) | *She has written three novels.* (elle écrit encore) |\n| marqueurs : *yesterday, last…, ago, in 2020, when…* | marqueurs : *ever, never, just, already, yet, so far, recently, today, this week* |\n\nLe français « j'ai fait » se traduit par **l'un ou l'autre** : on choisit selon le lien avec le présent.",
+      "notions": [
+        "Prétérit / present perfect"
+      ]
+    },
+    {
+      "id": "en-b1-u01-s02",
+      "titre": "For et since",
+      "contenu": "Pour une situation qui a **commencé dans le passé et continue**, l'anglais utilise le **present perfect** (le français utilise le présent) :\n- « J'habite ici **depuis** 2020 » → *I**'ve lived** here **since** 2020.* (et non ~~I live here since~~)\n- « Je la connais **depuis** dix ans » → *I**'ve known** her **for** ten years.*\n\n| ***for*** + **durée** | ***since*** + **point de départ** |\n| --- | --- |\n| *for three days, for a long time, for ages* | *since Monday, since 2020, since I was a child* |\n\nQuestion : ***How long have** you **been** here?* (depuis combien de temps ?)\nPrétérit + *for* = durée **terminée** : *I lived in Spain **for** two years* (je n'y vis plus).",
+      "notions": [
+        "For",
+        "Since"
+      ]
+    },
+    {
+      "id": "en-b1-u01-s03",
+      "titre": "Le present perfect continu",
+      "contenu": "**have / has been + -ing** : une **activité** qui dure depuis un moment et continue (ou vient de s'arrêter avec des traces visibles).\n- *I**'ve been waiting** for an hour!* (j'attends depuis une heure)\n- *It**'s been raining** all day.* · *Why are you out of breath? — I**'ve been running**.*\n\nSimple ou continu ?\n- **résultat**, quantité : *I've written **three emails**.* ;\n- **durée**, activité : *I've been writing emails **all morning**.* ;\n- verbes d'état → toujours simple : *I've **known** him for years* (pas ~~been knowing~~).",
+      "notions": [
+        "Present perfect continu"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b1-u01-c001",
+      "section": "en-b1-u01-s01",
+      "type": "qcm",
+      "question": "Complète : I ___ him three days ago.",
+      "choix": [
+        "met",
+        "have met",
+        "have meet",
+        "meet"
+      ],
+      "bonneReponse": 0,
+      "explication": "ago → prétérit.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u01-c002",
+      "section": "en-b1-u01-s01",
+      "type": "qcm",
+      "question": "Complète : ___ you ___ any emails this morning? (il est 10 h)",
+      "choix": [
+        "Have / received",
+        "Did / received",
+        "Did / receive yet",
+        "Have / receive"
+      ],
+      "bonneReponse": 0,
+      "explication": "La matinée n'est pas terminée → present perfect.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u01-c003",
+      "section": "en-b1-u01-s01",
+      "type": "qcm",
+      "question": "Complète : So far, we ___ 20 new customers this month.",
+      "choix": [
+        "have had",
+        "had",
+        "have",
+        "are having"
+      ],
+      "bonneReponse": 0,
+      "explication": "so far + période en cours → present perfect.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u01-c004",
+      "section": "en-b1-u01-s01",
+      "type": "question",
+      "recto": "Pourquoi dit-on « Picasso painted many pictures » mais « My sister has painted many pictures » ?",
+      "verso": "Picasso est **mort** : sa période d'activité est terminée (prétérit). Ma sœur peint **encore** : la période continue (present perfect).",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b1-u01-c005",
+      "section": "en-b1-u01-s02",
+      "type": "qcm",
+      "question": "Traduis : « Je travaille ici depuis trois ans. »",
+      "choix": [
+        "I've worked here for three years.",
+        "I work here since three years.",
+        "I work here for three years.",
+        "I've worked here since three years."
+      ],
+      "bonneReponse": 0,
+      "explication": "Durée qui continue → present perfect + for + durée.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u01-c006",
+      "section": "en-b1-u01-s02",
+      "type": "qcm",
+      "question": "Complète : She has been ill ___ last Friday.",
+      "choix": [
+        "since",
+        "for",
+        "from",
+        "during"
+      ],
+      "bonneReponse": 0,
+      "explication": "Point de départ → since.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u01-c007",
+      "section": "en-b1-u01-s02",
+      "type": "question",
+      "recto": "Traduis : « Depuis combien de temps apprends-tu l'anglais ? »",
+      "verso": "*How long **have** you **been learning** / **have** you **learnt** English?*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u01-c008",
+      "section": "en-b1-u01-s02",
+      "type": "qcm",
+      "question": "« I lived in Dublin for two years » signifie :",
+      "choix": [
+        "J'ai vécu deux ans à Dublin (je n'y vis plus).",
+        "J'habite à Dublin depuis deux ans.",
+        "Je vais vivre deux ans à Dublin.",
+        "J'ai vécu à Dublin il y a deux ans."
+      ],
+      "bonneReponse": 0,
+      "explication": "Prétérit = période terminée.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u01-c009",
+      "section": "en-b1-u01-s03",
+      "type": "qcm",
+      "question": "Complète : You look tired. — Yes, I ___ all night.",
+      "choix": [
+        "'ve been working",
+        "worked yesterday",
+        "'m working",
+        "'ve worked three tasks"
+      ],
+      "bonneReponse": 0,
+      "explication": "Activité longue avec trace visible → present perfect continu.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u01-c010",
+      "section": "en-b1-u01-s03",
+      "type": "qcm",
+      "question": "Complète : I ___ five chapters so far.",
+      "choix": [
+        "'ve read",
+        "'ve been reading",
+        "read since",
+        "am reading"
+      ],
+      "bonneReponse": 0,
+      "explication": "Quantité / résultat → present perfect simple.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b1-u01-c011",
+      "section": "en-b1-u01-s03",
+      "type": "exercice",
+      "enonce": "Traduis : « J'attends le bus depuis vingt minutes et il n'est toujours pas arrivé. »",
+      "etapes": [
+        "« attends depuis » → present perfect continu.",
+        "durée → for twenty minutes.",
+        "« n'est toujours pas arrivé » → present perfect + yet / still hasn't."
+      ],
+      "reponse": "*I've been waiting for the bus for twenty minutes and it **still hasn't** arrived / it **hasn't arrived yet**.*",
+      "difficulte": 3
+    }
+  ]
+}

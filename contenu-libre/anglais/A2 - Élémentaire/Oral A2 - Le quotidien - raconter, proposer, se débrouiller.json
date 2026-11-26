@@ -1,0 +1,139 @@
+{
+  "formatVersion": 1,
+  "id": "en-a2-oral",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A2 – Élémentaire",
+  "sequence": null,
+  "seance": "Oral A2 – Le quotidien : raconter, proposer, se débrouiller",
+  "ordre": 86,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Échanges du quotidien à l'oral : raconter son week-end au passé, proposer et accepter une sortie, appeler pour un rendez-vous, acheter et réclamer dans un magasin, prononcer les verbes au passé. Dialogues modèles et tâches orales.",
+  "notions": [
+    "Raconter au passé à l'oral",
+    "Proposer une sortie",
+    "Téléphoner"
+  ],
+  "sections": [
+    {
+      "id": "en-a2-oral-s01",
+      "titre": "Dialogue : raconter son week-end",
+      "contenu": "> **Sam** : Hey! How was your weekend?\n> **Léa** : It was great, thanks. On Saturday I went to the beach with some friends.\n> **Sam** : Oh, nice! Was the weather good?\n> **Léa** : Yes, it was sunny. We swam and had a picnic. What about you?\n> **Sam** : Not much. I stayed at home and watched a film. On Sunday I visited my grandparents.\n> **Léa** : Did you have a good time?\n> **Sam** : Yeah, it was nice and relaxing.\n\n**Prononciation** : *stayed* « steïd », *watched* « wotcht », *visited* « vi-zi-tid » (3 syllabes) ; *Did you* → « didja ».\n\n🎧 **Écoute** : copie le dialogue dans Edge → *Lire à voix haute* (voix anglaise, vitesse 0,75 puis 1). 🎙️ **Parle** : lis-le en shadowing, puis joue chaque rôle en t'enregistrant.",
+      "notions": [
+        "Raconter au passé à l'oral"
+      ]
+    },
+    {
+      "id": "en-a2-oral-s02",
+      "titre": "Proposer, accepter, refuser",
+      "contenu": "> **Max** : Are you free on Friday evening?\n> **Jade** : I think so. Why?\n> **Max** : Do you want to go to the cinema? There's a new sci-fi film.\n> **Jade** : Sounds good! What time?\n> **Max** : How about seven thirty?\n> **Jade** : Hmm, I finish work at seven. Can we make it eight?\n> **Max** : Sure, no problem. Let's meet outside the cinema.\n> **Jade** : Great, see you on Friday!\n\n**Proposer** : *Do you want to…? / Shall we…? / How about + -ing? / Let's…*\n**Accepter** : *Sounds good! / Great idea! / Why not?*\n**Refuser poliment** : *I'd love to, but I can't. I'm busy on… / Sorry, I've got other plans. Maybe another time?*\n\n🎧 **Écoute** : copie le dialogue dans Edge → *Lire à voix haute* (voix anglaise, vitesse 0,75 puis 1). 🎙️ **Parle** : lis-le en shadowing, puis joue chaque rôle en t'enregistrant.",
+      "notions": [
+        "Proposer une sortie"
+      ]
+    },
+    {
+      "id": "en-a2-oral-s03",
+      "titre": "Au téléphone : prendre rendez-vous",
+      "contenu": "> **Receptionist** : Good morning, City Dental Clinic. How can I help you?\n> **You** : Hello, I'd like to make an appointment, please.\n> **Receptionist** : Of course. What's your name?\n> **You** : It's Florian Martin.\n> **Receptionist** : Could you spell your surname?\n> **You** : M-A-R-T-I-N.\n> **Receptionist** : Thank you. Is Tuesday at 10 OK?\n> **You** : I'm afraid I can't on Tuesday. Is Wednesday possible?\n> **Receptionist** : Yes, Wednesday at 2 pm.\n> **You** : Perfect. Thank you very much. Goodbye!\n\nAu téléphone : *This is Florian* (pas « I am Florian ») ; *Could I speak to…? / Hold on, please. / I'll call back later. / Sorry, the line is bad.*\n\n🎧 **Écoute** : copie le dialogue dans Edge → *Lire à voix haute* (voix anglaise, vitesse 0,75 puis 1). 🎙️ **Parle** : lis-le en shadowing, puis joue chaque rôle en t'enregistrant.",
+      "notions": [
+        "Téléphoner"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a2-oral-c001",
+      "section": "en-a2-oral-s01",
+      "type": "question",
+      "recto": "🎙️ Réponds : *How was your weekend? What did you do?* (4 phrases au passé)",
+      "verso": "Modèle : *It was good, thanks. On Saturday I worked on my course. In the evening I watched a series. On Sunday I went for a walk.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-oral-c002",
+      "section": "en-a2-oral-s01",
+      "type": "qcm",
+      "question": "Comment se prononce *watched* ?",
+      "choix": [
+        "« wotcht », en une syllabe",
+        "« wot-ched », en deux syllabes",
+        "« wot-chid », avec /ɪd/",
+        "« watch-ède », comme en français"
+      ],
+      "bonneReponse": 0,
+      "explication": "-ed après un son sourd (ch) = /t/ ; une seule syllabe.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-oral-c003",
+      "section": "en-a2-oral-s01",
+      "type": "question",
+      "recto": "Que répondre si on te demande *What about you?* après avoir raconté son week-end ?",
+      "verso": "Raconter le tien, en commençant par une réaction : *Oh, nice! Well, I…*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-oral-c004",
+      "section": "en-a2-oral-s02",
+      "type": "question",
+      "recto": "Trois façons de proposer une sortie ?",
+      "verso": "*Do you want to go…? – Shall we go…? – How about going…?* (ou *Let's go…*)",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-oral-c005",
+      "section": "en-a2-oral-s02",
+      "type": "question",
+      "recto": "Comment refuser poliment une invitation ?",
+      "verso": "*I'd love to, but I can't. I'm busy on Friday. Maybe another time?*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-oral-c006",
+      "section": "en-a2-oral-s02",
+      "type": "qcm",
+      "question": "Que veut dire *Can we make it eight?* ?",
+      "choix": [
+        "On peut dire plutôt huit heures ?",
+        "On peut être huit personnes ?",
+        "On peut le fabriquer en huit jours ?",
+        "Tu peux arriver avant huit heures ?"
+      ],
+      "bonneReponse": 0,
+      "explication": "*make it* + heure / jour = fixer un autre moment.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-oral-c007",
+      "section": "en-a2-oral-s03",
+      "type": "question",
+      "recto": "Comment se présenter au téléphone ?",
+      "verso": "*Hello, **this is** Florian.* (et non *I am Florian*)",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-oral-c008",
+      "section": "en-a2-oral-s03",
+      "type": "question",
+      "recto": "Comment dire « je voudrais prendre rendez-vous » ?",
+      "verso": "*I'd like to make an appointment, please.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-oral-c009",
+      "section": "en-a2-oral-s03",
+      "type": "exercice",
+      "enonce": "🎙️ Jeu de rôle : appelle un magasin d'informatique. Ton ordinateur portable acheté la semaine dernière ne s'allume pas. Explique le problème et demande si tu peux le rapporter.",
+      "etapes": [
+        "Salutation + qui tu es.",
+        "Le problème au passé (bought, doesn't turn on).",
+        "La demande (Can I bring it back? / Can I get a refund or a repair?).",
+        "Remercie et conclus."
+      ],
+      "reponse": "*Hello, this is Florian Martin. I bought a laptop in your shop last week, but it doesn't turn on. I charged it all night, but nothing happens. Can I bring it back? Can you repair it or give me a refund? … OK, thank you very much. Goodbye!*",
+      "difficulte": 2
+    }
+  ]
+}

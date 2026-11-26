@@ -1,0 +1,111 @@
+{
+  "formatVersion": 1,
+  "id": "en-c1-u04",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "C1 – Avancé",
+  "sequence": null,
+  "seance": "U04 – Les propositions participiales et la réduction",
+  "ordre": 40,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Alléger et densifier ses phrases : propositions participiales en -ing et en -ed, participe parfait (having done), relatives réduites, et l'erreur du participe « suspendu ».",
+  "notions": [
+    "Propositions participiales",
+    "Participe suspendu"
+  ],
+  "sections": [
+    {
+      "id": "en-c1-u04-s01",
+      "titre": "Participiales en -ing et -ed",
+      "contenu": "On remplace une proposition par un **participe** quand le **sujet est le même** :\n- action **simultanée** ou **cause** (-ing) : ***Feeling** tired, I went to bed early.* (= As I felt tired) · ***Walking** home, I met an old friend.*\n- sens **passif** (-ed) : ***Built** in 1890, the bridge is still in use.* (= which was built) · ***Asked** about the delay, the manager refused to comment.*\n- **antériorité** (having + participe) : ***Having finished** the report, she went home.* (= After she had finished)\n- négation : ***Not knowing** what to do, he called his brother.*\n\nRelatives réduites : *The man **sitting** next to me* (= who was sitting) · *The files **stored** on the server* (= which are stored).",
+      "notions": [
+        "Propositions participiales"
+      ]
+    },
+    {
+      "id": "en-c1-u04-s02",
+      "titre": "Le participe suspendu",
+      "contenu": "Le participe se rapporte **toujours au sujet** de la proposition principale. Sinon, la phrase devient absurde (*dangling participle*) :\n- ❌ ***Walking** in the park, **a dog** bit me.* (le chien se promenait ?)\n- ✅ *Walking in the park, **I** was bitten by a dog.* / *While I was walking in the park, a dog bit me.*\n- ❌ *Having finished the test, the room was quiet.* → ✅ *Having finished the test, **the students** sat quietly.*\n\nExceptions figées acceptées : *Generally speaking, … · Considering the price, … · Judging by…*",
+      "notions": [
+        "Participe suspendu"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-c1-u04-c001",
+      "section": "en-c1-u04-s01",
+      "type": "qcm",
+      "question": "Réduis : « As I didn't know the answer, I kept quiet. »",
+      "choix": [
+        "Not knowing the answer, I kept quiet.",
+        "Knowing not the answer, I kept quiet.",
+        "Didn't knowing the answer, I kept quiet.",
+        "Not known the answer, I kept quiet."
+      ],
+      "bonneReponse": 0,
+      "explication": "Négation : Not + -ing en tête.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u04-c002",
+      "section": "en-c1-u04-s01",
+      "type": "qcm",
+      "question": "Réduis : « After he had read the email, he called the client. »",
+      "choix": [
+        "Having read the email, he called the client.",
+        "Reading the email had, he called the client.",
+        "Had read the email, he called the client.",
+        "Being read the email, he called the client."
+      ],
+      "bonneReponse": 0,
+      "explication": "Antériorité → Having + participe.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u04-c003",
+      "section": "en-c1-u04-s01",
+      "type": "qcm",
+      "question": "Complète : ___ in 1998, Google is now one of the largest companies.",
+      "choix": [
+        "Founded",
+        "Founding",
+        "Having founded",
+        "Found"
+      ],
+      "bonneReponse": 0,
+      "explication": "Sens passif (la société a été fondée) → participe passé.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u04-c004",
+      "section": "en-c1-u04-s02",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "Arriving late, I missed the introduction.",
+        "Arriving late, the introduction was missed.",
+        "Arriving late, the teacher started without me.",
+        "Arriving late, my seat was taken."
+      ],
+      "bonneReponse": 0,
+      "explication": "Le sujet de la principale doit faire l'action du participe.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u04-c005",
+      "section": "en-c1-u04-s02",
+      "type": "exercice",
+      "enonce": "Corrige le participe suspendu : « Having installed the update, the computer restarted by itself. » (c'est le technicien qui a installé la mise à jour)",
+      "etapes": [
+        "Identifier qui a installé : le technicien.",
+        "Le sujet de la principale doit être ce même acteur, ou passer à une subordonnée.",
+        "Proposer une version correcte."
+      ],
+      "reponse": "*Having installed the update, **the technician** restarted the computer.* ou *After the technician had installed the update, the computer restarted.*",
+      "difficulte": 3
+    }
+  ]
+}

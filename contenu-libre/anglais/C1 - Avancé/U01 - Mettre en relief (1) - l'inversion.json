@@ -1,0 +1,137 @@
+{
+  "formatVersion": 1,
+  "id": "en-c1-u01",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "C1 – Avancé",
+  "sequence": null,
+  "seance": "U01 – Mettre en relief (1) : l'inversion",
+  "ordre": 10,
+  "source": {
+    "fichier": null
+  },
+  "resume": "L'inversion après une expression négative ou restrictive en tête de phrase (never, rarely, not only, no sooner, hardly, under no circumstances, only when…) et l'inversion conditionnelle (should, were, had).",
+  "notions": [
+    "Inversion négative",
+    "Inversion conditionnelle"
+  ],
+  "sections": [
+    {
+      "id": "en-c1-u01-s01",
+      "titre": "Inversion après une expression négative",
+      "contenu": "Pour un effet **emphatique** ou **soutenu**, on place en tête une expression négative ou restrictive, puis on **inverse** auxiliaire et sujet (comme dans une question) :\n\n| Expression | Exemple |\n| --- | --- |\n| *Never (before)* | ***Never have I seen** such a mess.* |\n| *Rarely / Seldom* | ***Rarely does he** admit his mistakes.* |\n| *Not only … but (also)* | ***Not only did she** finish early, but she also helped the others.* |\n| *No sooner … than* | ***No sooner had we arrived than** it started to rain.* |\n| *Hardly / Scarcely … when* | ***Hardly had I sat down when** the phone rang.* |\n| *Under no circumstances* | ***Under no circumstances should you** share your password.* |\n| *Not until / Only when* | ***Only when** I read the report **did I understand** the problem.* |\n| *Little* | ***Little did they know** that…* (ils étaient loin de se douter) |\n\nAu présent et au prétérit simples, il faut ajouter ***do / does / did***.",
+      "notions": [
+        "Inversion négative"
+      ]
+    },
+    {
+      "id": "en-c1-u01-s02",
+      "titre": "Inversion conditionnelle",
+      "contenu": "Dans un registre **formel**, on peut supprimer *if* en inversant :\n- ***Should*** (1er conditionnel, éventualité) : *If you need help…* → ***Should you need** any help, please contact us.* (formule d'e-mail très courante)\n- ***Were*** (2e conditionnel) : *If I were in charge…* → ***Were I** in charge, I would…* ; avec un verbe : ***Were we to** cancel, we would lose the deposit.*\n- ***Had*** (3e conditionnel) : *If I had known…* → ***Had I known**, I would have come.*\n\nNégation : ***Had I not*** *seen it…* (jamais ~~Hadn't I~~).",
+      "notions": [
+        "Inversion conditionnelle"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-c1-u01-c001",
+      "section": "en-c1-u01-s01",
+      "type": "qcm",
+      "question": "Complète : Never ___ such a beautiful view.",
+      "choix": [
+        "have I seen",
+        "I have seen",
+        "I saw",
+        "did I saw"
+      ],
+      "bonneReponse": 0,
+      "explication": "Inversion après Never : auxiliaire + sujet.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u01-c002",
+      "section": "en-c1-u01-s01",
+      "type": "qcm",
+      "question": "Complète : Not only ___ late, but he also forgot the documents.",
+      "choix": [
+        "did he arrive",
+        "he arrived",
+        "arrived he",
+        "he did arrive"
+      ],
+      "bonneReponse": 0,
+      "explication": "Prétérit simple → did + sujet + base.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u01-c003",
+      "section": "en-c1-u01-s01",
+      "type": "qcm",
+      "question": "Complète : No sooner ___ the house than it started to snow.",
+      "choix": [
+        "had we left",
+        "we had left",
+        "did we leave than",
+        "we left"
+      ],
+      "bonneReponse": 0,
+      "explication": "No sooner + past perfect inversé … than.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u01-c004",
+      "section": "en-c1-u01-s01",
+      "type": "question",
+      "recto": "Réécris avec « Under no circumstances » : « You must never leave the server room open. »",
+      "verso": "*Under no circumstances **must you** / **should you** leave the server room open.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u01-c005",
+      "section": "en-c1-u01-s01",
+      "type": "question",
+      "recto": "Traduis : « Ils étaient loin de se douter que… »",
+      "verso": "*Little did they know that…*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u01-c006",
+      "section": "en-c1-u01-s02",
+      "type": "qcm",
+      "question": "Formule d'e-mail formelle : « Si vous avez des questions, n'hésitez pas à me contacter. »",
+      "choix": [
+        "Should you have any questions, please do not hesitate to contact me.",
+        "Should you to have any questions, …",
+        "Had you any questions, please contact me.",
+        "If should you have any questions, …"
+      ],
+      "bonneReponse": 0,
+      "explication": "Should + sujet + base.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u01-c007",
+      "section": "en-c1-u01-s02",
+      "type": "qcm",
+      "question": "Équivalent de « If I had known » :",
+      "choix": [
+        "Had I known",
+        "Did I know",
+        "Would I have known",
+        "Have I known"
+      ],
+      "bonneReponse": 0,
+      "explication": "3e conditionnel inversé → Had + sujet + participe.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u01-c008",
+      "section": "en-c1-u01-s02",
+      "type": "question",
+      "recto": "Réécris : « If they hadn't helped us, we would have failed. »",
+      "verso": "*Had they not helped us, we would have failed.*",
+      "difficulte": 3
+    }
+  ]
+}

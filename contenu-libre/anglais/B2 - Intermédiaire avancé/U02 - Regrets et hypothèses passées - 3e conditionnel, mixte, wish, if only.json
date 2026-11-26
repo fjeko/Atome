@@ -1,0 +1,160 @@
+{
+  "formatVersion": 1,
+  "id": "en-b2-u02",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "U02 – Regrets et hypothèses passées : 3e conditionnel, mixte, wish, if only",
+  "ordre": 20,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Imaginer un passé différent avec le troisième conditionnel, combiner passé et présent avec le conditionnel mixte, exprimer souhaits et regrets avec wish et if only, et la nuance I'd rather / it's time.",
+  "notions": [
+    "Troisième conditionnel",
+    "Conditionnel mixte",
+    "Wish / if only",
+    "I'd rather / it's time"
+  ],
+  "sections": [
+    {
+      "id": "en-b2-u02-s01",
+      "titre": "Le troisième conditionnel",
+      "contenu": "**If + past perfect, would have + participe passé** : une situation **passée imaginaire** (ce qui ne s'est pas produit).\n- *If I **had studied** harder, I **would have passed**.* (je n'ai pas assez travaillé, j'ai échoué)\n- *If you **hadn't called**, I **would have missed** the meeting.*\n\nContractions à l'oral : *If I'd known, I'd have come.* (*I'd known* = I had ; *I'd have* = I would have, prononcé « I'd've »)\nVariantes : *could have / might have* : *If we had left earlier, we **might have** caught the train.*",
+      "notions": [
+        "Troisième conditionnel"
+      ]
+    },
+    {
+      "id": "en-b2-u02-s02",
+      "titre": "Le conditionnel mixte",
+      "contenu": "On mélange les temps quand la condition et le résultat ne sont pas à la même époque :\n- **passé → présent** : *If I **had taken** that job, I **would be** rich now.* (if + past perfect, would + base)\n- **présent → passé** : *If I **were** more organised, I **wouldn't have forgotten** the meeting.* (trait permanent → conséquence passée)\n\nRepère : regarder **à quelle époque** se situe chaque partie de la phrase.",
+      "notions": [
+        "Conditionnel mixte"
+      ]
+    },
+    {
+      "id": "en-b2-u02-s03",
+      "titre": "Wish, if only, I'd rather, it's time",
+      "contenu": "| Regret / souhait sur… | Structure | Exemple |\n| --- | --- | --- |\n| le **présent** | *wish* + **prétérit** | *I **wish** I **had** more time.* (je n'en ai pas) |\n| le **passé** | *wish* + **past perfect** | *I **wish** I **hadn't said** that.* |\n| le comportement d'autrui (agacement) | *wish* + **would** | *I **wish** you **would** stop interrupting!* |\n\n***If only*** = version plus forte : *If only I **had** listened!*\nAvec *be* : *I wish I **were** taller.*\n\n- ***I'd rather*** + base (je préfère) : *I'd rather stay home.* · *I'd rather **you didn't** smoke here.* (prétérit quand le sujet change)\n- ***It's (high) time*** + prétérit : *It's time we **left**.* (il est grand temps que nous partions)",
+      "notions": [
+        "Wish / if only",
+        "I'd rather / it's time"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b2-u02-c001",
+      "section": "en-b2-u02-s01",
+      "type": "qcm",
+      "question": "Complète : If I ___ the alarm, I wouldn't have been late.",
+      "choix": [
+        "had heard",
+        "heard",
+        "would hear",
+        "have heard"
+      ],
+      "bonneReponse": 0,
+      "explication": "If + past perfect.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-u02-c002",
+      "section": "en-b2-u02-s01",
+      "type": "qcm",
+      "question": "Complète : If she had asked me, I ___ her.",
+      "choix": [
+        "would have helped",
+        "would help",
+        "will have helped",
+        "had helped"
+      ],
+      "bonneReponse": 0,
+      "explication": "would have + participe passé.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u02-c003",
+      "section": "en-b2-u02-s01",
+      "type": "question",
+      "recto": "Traduis : « Si tu m'avais prévenu, je serais venu. »",
+      "verso": "*If you **had told** me, I **would have come**.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u02-c004",
+      "section": "en-b2-u02-s02",
+      "type": "qcm",
+      "question": "« Si j'avais accepté ce poste, je vivrais à Londres maintenant » :",
+      "choix": [
+        "If I had accepted that job, I would live in London now.",
+        "If I accepted that job, I would have lived in London now.",
+        "If I would have accepted that job, I live in London now.",
+        "If I had accepted that job, I would have live in London now."
+      ],
+      "bonneReponse": 0,
+      "explication": "Condition passée, résultat présent → mixte.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u02-c005",
+      "section": "en-b2-u02-s03",
+      "type": "qcm",
+      "question": "« J'aimerais savoir parler espagnol » (je ne le parle pas) :",
+      "choix": [
+        "I wish I spoke Spanish.",
+        "I wish I speak Spanish.",
+        "I wish I will speak Spanish.",
+        "I wish I had speak Spanish."
+      ],
+      "bonneReponse": 0,
+      "explication": "Regret présent → wish + prétérit.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u02-c006",
+      "section": "en-b2-u02-s03",
+      "type": "qcm",
+      "question": "« Je regrette de ne pas être allé à la fête » :",
+      "choix": [
+        "I wish I had gone to the party.",
+        "I wish I went to the party.",
+        "I wish I would go to the party.",
+        "I wish I have gone to the party."
+      ],
+      "bonneReponse": 0,
+      "explication": "Regret passé → wish + past perfect.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u02-c007",
+      "section": "en-b2-u02-s03",
+      "type": "qcm",
+      "question": "Complète : It's high time you ___ a new laptop.",
+      "choix": [
+        "bought",
+        "buy",
+        "will buy",
+        "have bought"
+      ],
+      "bonneReponse": 0,
+      "explication": "It's time + prétérit.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-b2-u02-c008",
+      "section": "en-b2-u02-s03",
+      "type": "exercice",
+      "enonce": "Exprime trois regrets sur ta scolarité ou ton travail : un sur le présent, un sur le passé, un avec le 3e conditionnel.",
+      "etapes": [
+        "I wish I + prétérit …",
+        "I wish I had + participe …",
+        "If I had …, I would have …"
+      ],
+      "reponse": "Exemple : *I wish I had more free time. I wish I had started learning English earlier. If I had practised more, I would have passed the oral exam.*",
+      "difficulte": 3
+    }
+  ]
+}

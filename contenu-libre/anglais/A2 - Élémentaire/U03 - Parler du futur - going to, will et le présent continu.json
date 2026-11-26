@@ -1,0 +1,158 @@
+{
+  "formatVersion": 1,
+  "id": "en-a2-u03",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A2 – Élémentaire",
+  "sequence": null,
+  "seance": "U03 – Parler du futur : going to, will et le présent continu",
+  "ordre": 30,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Trois façons de parler du futur selon le sens : going to pour les projets et les prévisions évidentes, will pour les décisions spontanées, promesses et prédictions, le présent continu pour les rendez-vous fixés.",
+  "notions": [
+    "Be going to",
+    "Will",
+    "Présent continu à valeur de futur"
+  ],
+  "sections": [
+    {
+      "id": "en-a2-u03-s01",
+      "titre": "Be going to",
+      "contenu": "**be + going to + base verbale**\n1. un **projet**, une intention déjà décidée : *I'm going to learn Spanish next year.* ;\n2. une **prévision évidente** d'après ce qu'on voit : *Look at the clouds! It's going to rain.*\n\nNégatif : *I'm not going to …* — question : *Are you going to …?*\n\nÀ l'oral, *going to* se prononce souvent ***gonna*** : *I'm gonna call him.* (à ne pas écrire dans un texte formel)",
+      "notions": [
+        "Be going to"
+      ]
+    },
+    {
+      "id": "en-a2-u03-s02",
+      "titre": "Will",
+      "contenu": "**will + base verbale** (contraction ***'ll***, négation ***won't***)\n1. **décision spontanée**, prise au moment où l'on parle : *The phone's ringing. — I'll get it!* ;\n2. **promesse, offre** : *I'll help you. I won't tell anyone.* ;\n3. **prédiction**, opinion sur l'avenir (souvent avec *I think, probably*) : *I think it'll be a good film.* ;\n4. faits futurs : *She'll be 30 next week.*\n\nPas de *to* après *will* : ~~*I will to go*~~. *Will* est un modal : *He will* (pas ~~wills~~).",
+      "notions": [
+        "Will"
+      ]
+    },
+    {
+      "id": "en-a2-u03-s03",
+      "titre": "Le présent continu pour le futur",
+      "contenu": "Pour un **rendez-vous** ou un **arrangement fixé** (date, heure, personnes prévues) : ***I'm meeting** Sam at 7. **We're flying** to Rome on Friday.*\n\nLes trois formes ensemble :\n| Sens | Forme | Exemple |\n| --- | --- | --- |\n| rendez-vous organisé | présent continu | *I'm seeing the dentist tomorrow.* |\n| intention, projet | going to | *I'm going to look for a new job.* |\n| décision sur le moment, promesse, prédiction | will | *OK, I'll call you back.* |\n\nHoraires officiels (train, film, cours) : **présent simple** : *The train leaves at 8:15.*",
+      "notions": [
+        "Présent continu à valeur de futur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a2-u03-c001",
+      "section": "en-a2-u03-s01",
+      "type": "qcm",
+      "question": "Tu as déjà décidé : tu vas repeindre ta chambre ce week-end.",
+      "choix": [
+        "I'm going to paint my room this weekend.",
+        "I'll paint my room this weekend.",
+        "I paint my room this weekend.",
+        "I'm painting my room since this weekend."
+      ],
+      "bonneReponse": 0,
+      "explication": "Projet déjà décidé → going to.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u03-c002",
+      "section": "en-a2-u03-s01",
+      "type": "qcm",
+      "question": "Le ciel est noir. Que dis-tu ?",
+      "choix": [
+        "It's going to rain.",
+        "It will raining.",
+        "It rains.",
+        "It's raining tomorrow."
+      ],
+      "bonneReponse": 0,
+      "explication": "Prévision évidente → going to.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u03-c003",
+      "section": "en-a2-u03-s02",
+      "type": "qcm",
+      "question": "On frappe à la porte. Tu réagis tout de suite :",
+      "choix": [
+        "I'll open it!",
+        "I'm going to open it!",
+        "I open it!",
+        "I'm opening it tomorrow!"
+      ],
+      "bonneReponse": 0,
+      "explication": "Décision spontanée → will.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u03-c004",
+      "section": "en-a2-u03-s02",
+      "type": "qcm",
+      "question": "Négation de « She will come » :",
+      "choix": [
+        "She won't come.",
+        "She willn't come.",
+        "She will not to come.",
+        "She doesn't will come."
+      ],
+      "bonneReponse": 0,
+      "explication": "will not → won't.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u03-c005",
+      "section": "en-a2-u03-s02",
+      "type": "question",
+      "recto": "Traduis : « Je te promets que je ne serai pas en retard. »",
+      "verso": "*I promise I **won't be** late.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u03-c006",
+      "section": "en-a2-u03-s03",
+      "type": "qcm",
+      "question": "Tu as rendez-vous chez le médecin demain à 10 h :",
+      "choix": [
+        "I'm seeing the doctor tomorrow at 10.",
+        "I'll see the doctor tomorrow at 10.",
+        "I see the doctor tomorrow at 10 maybe.",
+        "I'm going see the doctor at 10."
+      ],
+      "bonneReponse": 0,
+      "explication": "Rendez-vous fixé → présent continu.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u03-c007",
+      "section": "en-a2-u03-s03",
+      "type": "qcm",
+      "question": "Complète : The film ___ at 8 pm.",
+      "choix": [
+        "starts",
+        "will starting",
+        "is going start",
+        "start"
+      ],
+      "bonneReponse": 0,
+      "explication": "Programme / horaire officiel → présent simple.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u03-c008",
+      "section": "en-a2-u03-s03",
+      "type": "exercice",
+      "enonce": "Écris 3 phrases sur ton avenir : un rendez-vous déjà fixé, un projet pour l'année prochaine, une prédiction.",
+      "etapes": [
+        "Rendez-vous : I'm … -ing on …",
+        "Projet : I'm going to …",
+        "Prédiction : I think … will …"
+      ],
+      "reponse": "Exemple : *I'm meeting my teacher on Monday. Next year I'm going to do an internship abroad. I think it'll be a great experience.*",
+      "difficulte": 2
+    }
+  ]
+}

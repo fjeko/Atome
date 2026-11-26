@@ -1,0 +1,181 @@
+{
+  "formatVersion": 1,
+  "id": "en-or-m03",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "Méthode – Oral, écoute et prononciation",
+  "sequence": null,
+  "seance": "M03 – Accent tonique, rythme, formes faibles et intonation",
+  "ordre": 30,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Ce qui rend un anglais naturel et compréhensible : l'accent tonique des mots (et ses règles), le rythme accentuel, le schwa et les formes faibles (to, of, can, and), l'accent de phrase et l'intonation des questions.",
+  "notions": [
+    "Accent tonique",
+    "Rythme et formes faibles",
+    "Intonation"
+  ],
+  "sections": [
+    {
+      "id": "en-or-m03-s01",
+      "titre": "L'accent tonique des mots",
+      "contenu": "En français, toutes les syllabes ont presque le même poids. En anglais, **une syllabe par mot est forte** (plus longue, plus forte, plus haute) et les autres s'affaiblissent. Mal placer l'accent rend un mot **incompréhensible**, même bien articulé.\n\nQuelques règles utiles :\n- la plupart des **noms et adjectifs de deux syllabes** sont accentués sur la **première** : *TAble, HAppy, WINdow* ;\n- la plupart des **verbes de deux syllabes**, sur la **deuxième** : *beGIN, deCIDE, reLAX* ;\n- d'où des paires **nom / verbe** : a **RE**cord / to re**CORD**, a **PRE**sent / to pre**SENT**, an **OB**ject / to ob**JECT** ;\n- **-tion, -sion, -ic, -ical, -ity** : accent sur la syllabe **juste avant** : *informaTion → inforMAtion, ecoNOmic, elecTRIcity* ;\n- l'accent **bouge** dans une même famille : *PHOtograph, phoTOgrapher, photoGRAphic*.\n\nMots pièges pour les francophones : *deVElop, deVElopment, comPUter, inTEresting* (3 syllabes : IN-tres-ting), *VEgetable* (3 syllabes), *hoTEL*, *eVENT*, *TEchnology → techNOlogy*.",
+      "notions": [
+        "Accent tonique"
+      ]
+    },
+    {
+      "id": "en-or-m03-s02",
+      "titre": "Rythme, schwa et formes faibles",
+      "contenu": "L'anglais est une langue **accentuelle** : les syllabes fortes arrivent à **intervalles réguliers**, et tout ce qui est entre elles est **compressé**. Les mots importants (noms, verbes, adjectifs, négations) sont forts ; les **petits mots grammaticaux** sont faibles et leur voyelle devient **schwa /ə/**.\n\n| Mot | Forme forte | Forme faible (habituelle) |\n| --- | --- | --- |\n| to | /tuː/ | /tə/ : *I want to go* → « wanna go » |\n| of | /ɒv/ | /əv/ : *a cup of tea* → « a cuppa tea » |\n| and | /ænd/ | /ən/ : *fish and chips* → « fish'n'chips » |\n| can | /kæn/ | /kən/ : *I can swim* → « I k'n SWIM » |\n| for | /fɔː/ | /fə/ : *for you* |\n| was | /wɒz/ | /wəz/ : *he was late* |\n| a, the | /eɪ/, /ðiː/ | /ə/, /ðə/ |\n\nConséquence importante : **can** faible /kən/ = affirmatif ; **can't** /kɑːnt/ est toujours **fort et long**. Si tu entends une voyelle pleine, c'est probablement *can't*.\n\nLes formes fortes s'utilisent seulement quand le mot est **mis en valeur** ou **en fin de phrase** : *Yes, I* **can** */kæn/.*",
+      "notions": [
+        "Rythme et formes faibles"
+      ]
+    },
+    {
+      "id": "en-or-m03-s03",
+      "titre": "Accent de phrase et intonation",
+      "contenu": "**L'accent de phrase change le sens** : on accentue l'information **nouvelle ou contrastée**.\n- *I didn't say he stole the money.* → **I** didn't say… (quelqu'un d'autre l'a dit) ; I didn't **say**… (je l'ai suggéré) ; …he stole the **money** (il a volé autre chose).\n\n**Intonation** :\n- **Descendante ↘** : affirmations, ordres, questions ouvertes en **wh-** : *Where do you live? ↘*\n- **Montante ↗** : questions fermées oui / non : *Do you live here? ↗* ; listes inachevées ; surprise.\n- **Question tags** : descendante quand on attend une confirmation (*It's cold, isn't it? ↘*), montante quand on demande vraiment (*You're coming, aren't you? ↗*).\n\nLes francophones font souvent monter les questions wh- : en anglais, *What's your name?* **descend**.",
+      "notions": [
+        "Intonation"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-or-m03-c001",
+      "section": "en-or-m03-s01",
+      "type": "question",
+      "recto": "Où tombe l'accent dans *photograph, photographer, photographic* ?",
+      "verso": "**PHO**tograph, pho**TO**grapher, photo**GRA**phic : l'accent se déplace dans la famille.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m03-c002",
+      "section": "en-or-m03-s01",
+      "type": "question",
+      "recto": "Quelle est la différence de prononciation entre *a record* et *to record* ?",
+      "verso": "Nom : **RE**cord (accent sur la 1re) ; verbe : re**CORD** (accent sur la 2e). Même schéma : present, object, export, increase.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m03-c003",
+      "section": "en-or-m03-s01",
+      "type": "qcm",
+      "question": "Où est l'accent tonique de *technology* ?",
+      "choix": [
+        "tech-NO-lo-gy",
+        "TECH-no-lo-gy",
+        "tech-no-LO-gy",
+        "tech-no-lo-GY"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les mots en -logy sont accentués sur la syllabe juste avant : tech**NO**logy, bi**O**logy.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m03-c004",
+      "section": "en-or-m03-s01",
+      "type": "qcm",
+      "question": "Comment prononce-t-on *development* ?",
+      "choix": [
+        "de-VE-lop-ment",
+        "DE-ve-lop-ment",
+        "de-ve-LOP-ment",
+        "de-ve-lop-MENT"
+      ],
+      "bonneReponse": 0,
+      "explication": "Accent sur la 2e syllabe, comme le verbe de**VE**lop. Piège classique des informaticiens francophones.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m03-c005",
+      "section": "en-or-m03-s01",
+      "type": "exercice",
+      "enonce": "🎙️ Lis en marquant l'accent (syllabe forte plus longue et plus forte) : *computer, interesting, vegetable, decide, information, economic, hotel, event, develop, photographer*.",
+      "etapes": [
+        "Cherche la syllabe forte de chaque mot (règles ci-dessus).",
+        "Vérifie dans un dictionnaire en ligne (symbole ˈ).",
+        "Lis la liste à voix haute en exagérant la syllabe forte."
+      ],
+      "reponse": "com**PU**ter, **IN**teresting, **VEG**etable, de**CIDE**, infor**MA**tion, eco**NO**mic, ho**TEL**, e**VENT**, de**VE**lop, pho**TO**grapher.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m03-c006",
+      "section": "en-or-m03-s02",
+      "type": "question",
+      "recto": "Pourquoi *I can swim* et *I can't swim* se distinguent-ils surtout par la voyelle ?",
+      "verso": "Dans l'affirmative, *can* est **faible** /kən/ et *swim* porte l'accent ; *can't* est **fort et long** /kɑːnt/, le t final étant souvent à peine audible.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m03-c007",
+      "section": "en-or-m03-s02",
+      "type": "question",
+      "recto": "Quels mots sont accentués dans une phrase anglaise ?",
+      "verso": "Les **mots de contenu** : noms, verbes principaux, adjectifs, adverbes, négations, mots interrogatifs. Les mots grammaticaux (to, of, a, the, can, and, was…) sont faibles.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m03-c008",
+      "section": "en-or-m03-s02",
+      "type": "qcm",
+      "question": "Dans *I'd like a cup of tea*, comment se prononce *of* ?",
+      "choix": [
+        "/əv/, réduit, presque « a »",
+        "/ɒv/, avec une voyelle pleine",
+        "/of/, comme en français",
+        "Il est totalement muet"
+      ],
+      "bonneReponse": 0,
+      "explication": "Mot grammatical non accentué → forme faible avec schwa : « a cuppa tea ».",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m03-c009",
+      "section": "en-or-m03-s02",
+      "type": "exercice",
+      "enonce": "🎙️ Lis en tapant le rythme sur la table à chaque syllabe forte (en gras) : *I* **want** *to* **go** *to the* **beach**. – *A* **cup** *of* **tea** *and a* **piece** *of* **cake**. – *It was the* **best** *day of my* **life**.",
+      "etapes": [
+        "Une tape par syllabe forte, à intervalles réguliers.",
+        "Compresse les petits mots entre les tapes (schwa).",
+        "Fais lire la phrase par Edge et compare le rythme."
+      ],
+      "reponse": "Les mots faibles (*to, the, of, a, and, was*) doivent « glisser » entre les tapes : *I WANT tə GO tə thə BEACH*. Si chaque mot a le même poids, tu parles « à la française ».",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m03-c010",
+      "section": "en-or-m03-s03",
+      "type": "question",
+      "recto": "Quelle intonation pour une question en *wh-* (what, where, why…) ?",
+      "verso": "**Descendante** : *Where do you work? ↘* Les questions oui / non, elles, montent.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-or-m03-c011",
+      "section": "en-or-m03-s03",
+      "type": "question",
+      "recto": "Que change l'accent dans « I didn't say **he** stole the money » ?",
+      "verso": "On insiste sur **he** : j'ai dit que quelqu'un l'avait volé, mais **pas lui** (contraste sur la personne).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-or-m03-c012",
+      "section": "en-or-m03-s03",
+      "type": "qcm",
+      "question": "*It's a nice day, isn't it? ↘* Que signifie l'intonation descendante ?",
+      "choix": [
+        "On attend simplement que l'autre confirme",
+        "On ne sait vraiment pas s'il fait beau",
+        "On est en colère contre l'autre",
+        "On pose une question très formelle"
+      ],
+      "bonneReponse": 0,
+      "explication": "Tag descendant = recherche d'accord ; tag montant = vraie question.",
+      "difficulte": 2
+    }
+  ]
+}

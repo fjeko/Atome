@@ -1,0 +1,183 @@
+{
+  "formatVersion": 1,
+  "id": "en-a1-oral",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "Oral A1 – Premiers échanges : se présenter, épeler, demander",
+  "ordre": 86,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Les échanges oraux de survie : saluer, se présenter, épeler son nom et son e-mail, donner des nombres, demander de répéter, commander et demander son chemin. Dialogues modèles à écouter et rejouer, tâches orales enregistrées.",
+  "notions": [
+    "Se présenter à l'oral",
+    "Alphabet et e-mails à l'oral",
+    "Nombres à l'oral",
+    "Phrases de survie"
+  ],
+  "sections": [
+    {
+      "id": "en-a1-oral-s01",
+      "titre": "Dialogue : faire connaissance",
+      "contenu": "> **Anna** : Hi, I'm Anna. What's your name?\n> **Tom** : Hi Anna, I'm Tom. Nice to meet you.\n> **Anna** : Nice to meet you too. Where are you from?\n> **Tom** : I'm from France, from Lyon. And you?\n> **Anna** : I'm from Dublin, in Ireland. What do you do?\n> **Tom** : I'm a student. I study computer science.\n> **Anna** : Oh, cool! How old are you?\n> **Tom** : I'm twenty. And you?\n> **Anna** : I'm twenty-two.\n\n**Prononciation** : *Nice to meet you* → « naïss-tə-MEET-you » (to faible) ; *What's your name?* descend ↘ ; *I'm* en un seul son « aïm ».\n\n🎧 **Écoute** : copie le dialogue dans Edge → *Lire à voix haute* (voix anglaise, vitesse 0,75 puis 1). 🎙️ **Parle** : lis-le en shadowing, puis joue chaque rôle en t'enregistrant.",
+      "notions": [
+        "Se présenter à l'oral"
+      ]
+    },
+    {
+      "id": "en-a1-oral-s02",
+      "titre": "Épeler et dire un e-mail",
+      "contenu": "Les lettres que les francophones confondent :\n\n| Lettre | Son | Piège |\n| --- | --- | --- |\n| **A** | « eï » | ≠ E |\n| **E** | « ii » | ≠ I |\n| **I** | « aï » | ≠ E |\n| **G** | « dji » | ≠ J |\n| **J** | « djeï » | ≠ G |\n| **R** | « aa(r) » | |\n| **U** | « you » | |\n| **W** | « double you » | |\n| **Y** | « waï » | |\n| **H** | « eïtch » | |\n\n**Doubles** : *double L, double S* (*Florian Martin* : F-L-O-R-I-A-N, M-A-R-T-I-N).\n\n**E-mail à l'oral** : @ = **at**, . = **dot**, - = **dash** (ou *hyphen*), _ = **underscore**, tout attaché = *all one word*, minuscules = *lower case*.\n\n*florian.martin@mail.fr* → « florian **dot** martin **at** mail **dot** f-r ».\n\n🎙️ **Parle** : épelle ton nom, ton prénom, ta ville et ton e-mail à voix haute, en t'enregistrant.",
+      "notions": [
+        "Alphabet et e-mails à l'oral"
+      ]
+    },
+    {
+      "id": "en-a1-oral-s03",
+      "titre": "Les nombres à l'oral",
+      "contenu": "- **-teen / -ty** : l'accent fait la différence ! thir**TEEN** (13) / **THIR**ty (30), fif**TEEN** / **FIF**ty, eigh**TEEN** / **EIGH**ty.\n- **Téléphone** : chiffre par chiffre ; 0 = « **oh** » ; double = *double* : 07 44 = « oh seven double four ».\n- **Prix** : £4.50 = *four pounds fifty* ; 9,99 € = *nine ninety-nine*.\n- **Années** : 1998 = *nineteen ninety-eight* ; 2026 = *twenty twenty-six*.\n- **Heure** : 7:15 = *seven fifteen* ou *a quarter past seven*.",
+      "notions": [
+        "Nombres à l'oral"
+      ]
+    },
+    {
+      "id": "en-a1-oral-s04",
+      "titre": "Survivre : faire répéter, commander, demander",
+      "contenu": "> **Waiter** : Hi, what can I get you?\n> **You** : Can I have a coffee, please?\n> **Waiter** : Small, medium or large?\n> **You** : Sorry, can you repeat, please?\n> **Waiter** : Sure. Small, medium or large?\n> **You** : Small, please. How much is it?\n> **Waiter** : Two fifty.\n> **You** : Here you are. Thank you!\n\nIndispensables : *Sorry? / Can you repeat, please? / Can you speak slowly, please? / I don't understand. / What does … mean? / How do you say … in English? / Excuse me, where is the station? / Is it far?*\n\n🎧 **Écoute** : copie le dialogue dans Edge → *Lire à voix haute* (voix anglaise, vitesse 0,75 puis 1). 🎙️ **Parle** : lis-le en shadowing, puis joue chaque rôle en t'enregistrant.",
+      "notions": [
+        "Phrases de survie"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a1-oral-c001",
+      "section": "en-a1-oral-s01",
+      "type": "question",
+      "recto": "🎙️ Réponds à voix haute : *What's your name? Where are you from? What do you do?*",
+      "verso": "Modèle : *I'm Florian. I'm from France. I'm a student, I study IT.* (avec *I'm* contracté)",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-oral-c002",
+      "section": "en-a1-oral-s01",
+      "type": "question",
+      "recto": "Comment répondre à *Nice to meet you* ?",
+      "verso": "*Nice to meet you **too**.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-oral-c003",
+      "section": "en-a1-oral-s01",
+      "type": "qcm",
+      "question": "Quelle intonation pour *Where are you from?* ?",
+      "choix": [
+        "Descendante, comme toutes les questions en wh-",
+        "Montante, comme une question en français",
+        "Plate, sans aucune mélodie",
+        "Montante puis descendante sur *you*"
+      ],
+      "bonneReponse": 0,
+      "explication": "Les questions en wh- descendent en anglais.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-oral-c004",
+      "section": "en-a1-oral-s02",
+      "type": "question",
+      "recto": "Comment épelle-t-on les lettres **E**, **I**, **G** et **J** en anglais ?",
+      "verso": "**E** « ii », **I** « aï », **G** « dji », **J** « djeï ». Ce sont les plus confondues par les francophones.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-oral-c005",
+      "section": "en-a1-oral-s02",
+      "type": "question",
+      "recto": "Comment dit-on *@* et *.* dans une adresse e-mail ?",
+      "verso": "**at** et **dot** : *anna.smith@gmail.com* → « anna dot smith at gmail dot com ».",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-oral-c006",
+      "section": "en-a1-oral-s02",
+      "type": "qcm",
+      "question": "On t'épelle « dji – eï – aa – i ». Quel mot est-ce ?",
+      "choix": [
+        "GARE",
+        "JARI",
+        "GERI",
+        "JEAR"
+      ],
+      "bonneReponse": 0,
+      "explication": "G = dji, A = eï, R = aa, E = ii.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-oral-c007",
+      "section": "en-a1-oral-s02",
+      "type": "exercice",
+      "enonce": "🎙️ Épelle à voix haute : *JAVA*, *GITHUB*, *WEB*, *YOUTUBE*, puis dis l'adresse *tom_lee-92@site.co.uk*.",
+      "etapes": [
+        "Lis chaque lettre, sans hésiter sur E / I et G / J.",
+        "Pour l'e-mail, utilise underscore, dash, at, dot.",
+        "Enregistre-toi et vérifie."
+      ],
+      "reponse": "J-A-V-A = djeï-eï-vii-eï ; G-I-T-H-U-B = dji-aï-tii-eïtch-you-bii ; W-E-B = double you-ii-bii ; Y-O-U-T-U-B-E = waï-ô-you-tii-you-bii-ii. E-mail : « tom **underscore** lee **dash** nine two **at** site **dot** co **dot** uk ».",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-oral-c008",
+      "section": "en-a1-oral-s03",
+      "type": "question",
+      "recto": "Comment distinguer *thirteen* et *thirty* à l'oral ?",
+      "verso": "Par l'**accent** : thir**TEEN** (13, accent final, n final net) ; **THIR**ty (30, accent initial, « thirdy » en américain).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-oral-c009",
+      "section": "en-a1-oral-s03",
+      "type": "qcm",
+      "question": "Comment dit-on le numéro 06 33 ?",
+      "choix": [
+        "oh six double three",
+        "zero six thirty-three",
+        "oh six three and three",
+        "null six two three"
+      ],
+      "bonneReponse": 0,
+      "explication": "Au téléphone : chiffre par chiffre, 0 = oh, chiffres répétés = double.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-oral-c010",
+      "section": "en-a1-oral-s04",
+      "type": "question",
+      "recto": "Trois phrases pour faire répéter ou ralentir ?",
+      "verso": "*Sorry? – Can you repeat, please? – Can you speak slowly, please?*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-oral-c011",
+      "section": "en-a1-oral-s04",
+      "type": "question",
+      "recto": "🎙️ Commande un thé et un sandwich, demande le prix, puis remercie.",
+      "verso": "*Hi! Can I have a tea and a sandwich, please? … How much is it? … Here you are. Thank you!*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-oral-c012",
+      "section": "en-a1-oral-s04",
+      "type": "exercice",
+      "enonce": "🎙️ Jeu de rôle : tu arrives à un hôtel à Londres. Salue, donne ton nom (épelé), dis que tu as une réservation pour deux nuits, demande l'heure du petit déjeuner et le mot de passe Wi-Fi.",
+      "etapes": [
+        "Prépare 5 phrases au brouillon, puis cache-les.",
+        "Dis-les à voix haute en t'enregistrant.",
+        "Compare avec le modèle."
+      ],
+      "reponse": "*Hello! My name is Florian Martin, F-L-O-R-I-A-N, M-A-R-T-I-N. I have a reservation for two nights. What time is breakfast, please? And what's the Wi-Fi password? Thank you!*",
+      "difficulte": 2
+    }
+  ]
+}

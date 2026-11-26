@@ -1,0 +1,209 @@
+{
+  "formatVersion": 1,
+  "id": "en-test-a2",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A2 – Élémentaire",
+  "sequence": null,
+  "seance": "Bilan A2 – 12 questions pour vérifier le niveau",
+  "ordre": 990,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Bilan de fin de niveau A2 (élémentaire) : 12 QCM pour vérifier que le niveau est acquis. 10 / 12 ou plus : passe au niveau suivant ; sinon, revois les unités où tu as hésité.",
+  "notions": [
+    "Bilan A2"
+  ],
+  "sections": [
+    {
+      "id": "en-test-a2-s01",
+      "titre": "Bilan A2",
+      "contenu": "**Bilan A2 — élémentaire**. Douze questions, sans aide, sans réfléchir plus de 30 secondes par question. À faire **à la fin du niveau**, après l'Entraînement.\n\nRésultat à la fin de la session :\n- **10 / 12 ou plus** : niveau acquis → passe au niveau suivant ;\n- **7 à 9 / 12** : presque : revois les unités où tu as hésité, puis refais le bilan quelques jours plus tard ;\n- **6 / 12 ou moins** : reprends les unités du niveau avant d'avancer.",
+      "notions": [
+        "Bilan A2"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-test-a2-c001",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "I ___ to the cinema last night.",
+      "choix": [
+        "went",
+        "go",
+        "have gone",
+        "was go"
+      ],
+      "bonneReponse": 0,
+      "explication": "last night → prétérit.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a2-c002",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "___ you see the match yesterday?",
+      "choix": [
+        "Did",
+        "Do",
+        "Have",
+        "Were"
+      ],
+      "bonneReponse": 0,
+      "explication": "Question au prétérit → did.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a2-c003",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "She's ___ than her sister.",
+      "choix": [
+        "taller",
+        "more tall",
+        "tallest",
+        "the taller"
+      ],
+      "bonneReponse": 0,
+      "explication": "Comparatif court → -er.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a2-c004",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "Have you ever ___ to Ireland?",
+      "choix": [
+        "been",
+        "gone",
+        "was",
+        "be"
+      ],
+      "bonneReponse": 0,
+      "explication": "Expérience → have been.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a2-c005",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "Look at those clouds! It ___ rain.",
+      "choix": [
+        "is going to",
+        "will",
+        "goes to",
+        "is raining to"
+      ],
+      "bonneReponse": 0,
+      "explication": "Prévision évidente → going to.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a2-c006",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "You ___ smoke here. It's forbidden.",
+      "choix": [
+        "mustn't",
+        "don't have to",
+        "needn't",
+        "shouldn't to"
+      ],
+      "bonneReponse": 0,
+      "explication": "Interdiction → mustn't.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a2-c007",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "I was having dinner when the phone ___.",
+      "choix": [
+        "rang",
+        "was ringing",
+        "rings",
+        "has rung"
+      ],
+      "bonneReponse": 0,
+      "explication": "Action courte interrompant → prétérit simple.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a2-c008",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "I've ___ finished my homework.",
+      "choix": [
+        "just",
+        "yet",
+        "ever",
+        "since"
+      ],
+      "bonneReponse": 0,
+      "explication": "just entre have et le participe.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a2-c009",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "This is the ___ film I've ever seen.",
+      "choix": [
+        "best",
+        "better",
+        "most good",
+        "goodest"
+      ],
+      "bonneReponse": 0,
+      "explication": "Superlatif de good.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a2-c010",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "I'll call you when I ___ home.",
+      "choix": [
+        "get",
+        "will get",
+        "got",
+        "am going to get"
+      ],
+      "bonneReponse": 0,
+      "explication": "when + présent pour le futur.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a2-c011",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "Can you turn ___ the light? It's dark.",
+      "choix": [
+        "on",
+        "up",
+        "in",
+        "at"
+      ],
+      "bonneReponse": 0,
+      "explication": "turn on = allumer.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-test-a2-c012",
+      "section": "en-test-a2-s01",
+      "type": "qcm",
+      "question": "We didn't ___ anything interesting.",
+      "choix": [
+        "do",
+        "did",
+        "done",
+        "doing"
+      ],
+      "bonneReponse": 0,
+      "explication": "didn't + base.",
+      "difficulte": 1
+    }
+  ]
+}

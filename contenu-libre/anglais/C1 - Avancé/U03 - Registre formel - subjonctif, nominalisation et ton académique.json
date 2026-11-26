@@ -1,0 +1,154 @@
+{
+  "formatVersion": 1,
+  "id": "en-c1-u03",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "C1 – Avancé",
+  "sequence": null,
+  "seance": "U03 – Registre formel : subjonctif, nominalisation et ton académique",
+  "ordre": 30,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Écrire dans un registre soutenu : le subjonctif anglais (it is essential that he be), la nominalisation, le passif et les tournures impersonnelles, le choix des mots formels et la prudence (hedging).",
+  "notions": [
+    "Subjonctif",
+    "Nominalisation",
+    "Tournures impersonnelles",
+    "Hedging"
+  ],
+  "sections": [
+    {
+      "id": "en-c1-u03-s01",
+      "titre": "Le subjonctif anglais",
+      "contenu": "Après les verbes et expressions d'**exigence** ou d'**importance**, l'anglais soutenu utilise la **base verbale** à toutes les personnes (pas de -s, pas d'accord) :\n- verbes : *suggest, recommend, insist, demand, require, propose, request* ;\n- expressions : *it is essential / vital / crucial / important / necessary that…*\n\n*The committee **recommends that** he **be** promoted.* · *It is vital that every user **change** their password.* · *I insist that she **not be** informed.*\n\nEn anglais britannique courant, on dit aussi *should* : *We suggest that he **should** apply.*\nLes deux erreurs classiques : ~~*suggest him to apply*~~ et ~~*suggest that he applies*~~ (ce dernier est toléré à l'oral GB, mais pas en écrit formel).",
+      "notions": [
+        "Subjonctif"
+      ]
+    },
+    {
+      "id": "en-c1-u03-s02",
+      "titre": "Nominalisation et tournures impersonnelles",
+      "contenu": "L'écrit académique et professionnel préfère les **noms** aux verbes, et s'efface derrière les faits :\n| Oral / neutre | Formel |\n| --- | --- |\n| *We analysed the data and found that sales fell.* | *Analysis of the data revealed a decline in sales.* |\n| *Because the system failed…* | *Owing to the failure of the system…* |\n| *We think that…* | *It is widely believed that… / It appears that…* |\n| *You need to…* | *It is necessary to… / Users are required to…* |\n\nVerbes formels : *obtain* (get), *require* (need), *assist* (help), *purchase* (buy), *commence* (start), *inform* (tell), *demonstrate* (show), *enhance* (improve), *address* (deal with an issue), *ensure* (make sure).",
+      "notions": [
+        "Nominalisation",
+        "Tournures impersonnelles"
+      ]
+    },
+    {
+      "id": "en-c1-u03-s03",
+      "titre": "La prudence (hedging)",
+      "contenu": "En C1, on **nuance** au lieu d'affirmer de façon absolue :\n- verbes : *seem, appear, tend to, suggest, indicate* : *The results **suggest** that…* · *Users **tend to** forget passwords.*\n- modaux : *may, might, could* : *This **may** be due to…*\n- adverbes : *arguably* (on peut soutenir que), *apparently, presumably, largely, to some extent, relatively*\n- expressions : *It could be argued that… · There is some evidence that… · In most cases… · As far as we know…*\n\nComparer : *This solution is the best.* → *This solution **appears to be** the most effective **in most cases**.*",
+      "notions": [
+        "Hedging"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-c1-u03-c001",
+      "section": "en-c1-u03-s01",
+      "type": "qcm",
+      "question": "Complète (registre formel) : It is essential that every employee ___ the training.",
+      "choix": [
+        "complete",
+        "completes",
+        "will complete",
+        "to complete"
+      ],
+      "bonneReponse": 0,
+      "explication": "Subjonctif : base verbale.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u03-c002",
+      "section": "en-c1-u03-s01",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "I suggest that he apply for the job.",
+        "I suggest him to apply for the job.",
+        "I suggest he to apply for the job.",
+        "I suggest that he will apply for the job."
+      ],
+      "bonneReponse": 0,
+      "explication": "suggest that + subjonctif (ou suggest applying).",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u03-c003",
+      "section": "en-c1-u03-s01",
+      "type": "question",
+      "recto": "Traduis (formel) : « Le directeur exige que le rapport soit envoyé avant lundi. »",
+      "verso": "*The director demands / requires that the report **be sent** before Monday.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u03-c004",
+      "section": "en-c1-u03-s02",
+      "type": "qcm",
+      "question": "Version formelle de « We need to get more information » :",
+      "choix": [
+        "Further information is required.",
+        "We gotta get more info.",
+        "More informations are needed.",
+        "We need to get more informations."
+      ],
+      "bonneReponse": 0,
+      "explication": "Passif + vocabulaire formel ; information indénombrable.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u03-c005",
+      "section": "en-c1-u03-s02",
+      "type": "qcm",
+      "question": "Équivalent formel de « make sure » :",
+      "choix": [
+        "ensure",
+        "assure",
+        "insure",
+        "secure"
+      ],
+      "bonneReponse": 0,
+      "explication": "ensure = s'assurer que ; insure = assurer (contrat) ; assure = rassurer quelqu'un.",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u03-c006",
+      "section": "en-c1-u03-s02",
+      "type": "question",
+      "recto": "Nominalise : « The company expanded quickly, so it hired 200 people. »",
+      "verso": "*The company's rapid **expansion** led to the **recruitment** of 200 people.*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-c1-u03-c007",
+      "section": "en-c1-u03-s03",
+      "type": "qcm",
+      "question": "Laquelle est la plus nuancée ?",
+      "choix": [
+        "The data suggests that the change may improve performance.",
+        "The data proves the change improves performance.",
+        "The change improves performance, obviously.",
+        "The change will always improve performance."
+      ],
+      "bonneReponse": 0,
+      "explication": "suggest + may = prudence académique.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-c1-u03-c008",
+      "section": "en-c1-u03-s03",
+      "type": "exercice",
+      "enonce": "Réécris de façon nuancée et formelle : « Teleworking is better for everyone. People work more at home. »",
+      "etapes": [
+        "Nuancer la généralisation : for many employees / in most cases",
+        "Verbe prudent : tends to / appears to",
+        "Vocabulaire formel : productivity",
+        "Source ou preuve : Some studies suggest that…"
+      ],
+      "reponse": "*Teleworking appears to benefit many employees. Some studies suggest that productivity tends to increase when people work from home, at least to some extent.*",
+      "difficulte": 3
+    }
+  ]
+}

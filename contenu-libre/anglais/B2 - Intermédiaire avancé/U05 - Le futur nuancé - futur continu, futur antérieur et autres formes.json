@@ -1,0 +1,123 @@
+{
+  "formatVersion": 1,
+  "id": "en-b2-u05",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B2 – Intermédiaire avancé",
+  "sequence": null,
+  "seance": "U05 – Le futur nuancé : futur continu, futur antérieur et autres formes",
+  "ordre": 50,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Exprimer le futur avec précision : futur continu (will be doing), futur antérieur (will have done), be about to, be due to, be bound to, et les probabilités sur le futur (likely, unlikely).",
+  "notions": [
+    "Futur continu",
+    "Futur antérieur",
+    "Expressions du futur"
+  ],
+  "sections": [
+    {
+      "id": "en-b2-u05-s01",
+      "titre": "Futur continu et futur antérieur",
+      "contenu": "- ***will be + -ing*** (futur continu) : action **en cours** à un moment du futur, ou ce qui se passera « normalement » :\n  *This time tomorrow I'**ll be flying** to New York.* · *Will you **be using** the car tonight?* (question polie)\n- ***will have + participe passé*** (futur antérieur) : action **terminée avant** un moment futur, souvent avec ***by*** :\n  *By Friday, we'**ll have finished** the migration.* · *By 2030, she **will have worked** here for 20 years.*\n\n***by*** = au plus tard / d'ici (et non *until* = jusqu'à) : *Send it **by** Monday.* ≠ *Wait **until** Monday.*",
+      "notions": [
+        "Futur continu",
+        "Futur antérieur"
+      ]
+    },
+    {
+      "id": "en-b2-u05-s02",
+      "titre": "Autres formes de futur",
+      "contenu": "| Forme | Sens | Exemple |\n| --- | --- | --- |\n| ***be about to*** + base | sur le point de | *The film is about to start.* |\n| ***be due to*** + base | prévu (horaire, officiel) | *The plane is due to land at 6.* |\n| ***be bound to*** + base | c'est sûr, forcément | *It's bound to rain, it always does.* |\n| ***be likely / unlikely to*** + base | probable / improbable | *Prices are likely to rise.* |\n| ***be set to*** + base | en passe de (presse) | *The company is set to hire 500 people.* |\n\nExprimer la probabilité : *There's a good chance that… / I doubt that… / It's highly unlikely that…*",
+      "notions": [
+        "Expressions du futur"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b2-u05-c001",
+      "section": "en-b2-u05-s01",
+      "type": "qcm",
+      "question": "« D'ici vendredi, nous aurons terminé le projet » :",
+      "choix": [
+        "By Friday, we will have finished the project.",
+        "Until Friday, we will finish the project.",
+        "By Friday, we will be finishing the project.",
+        "For Friday, we have finished the project."
+      ],
+      "bonneReponse": 0,
+      "explication": "Action terminée avant un moment futur → will have + participe, by.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u05-c002",
+      "section": "en-b2-u05-s01",
+      "type": "qcm",
+      "question": "« Demain à 10 h, je serai en train de passer mon examen » :",
+      "choix": [
+        "At 10 tomorrow, I'll be taking my exam.",
+        "At 10 tomorrow, I'll have taken my exam.",
+        "At 10 tomorrow, I take my exam since.",
+        "At 10 tomorrow, I'm going take my exam."
+      ],
+      "bonneReponse": 0,
+      "explication": "Action en cours à un moment futur → futur continu.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u05-c003",
+      "section": "en-b2-u05-s01",
+      "type": "qcm",
+      "question": "Complète : Please return the form ___ 30 June.",
+      "choix": [
+        "by",
+        "until",
+        "since",
+        "for"
+      ],
+      "bonneReponse": 0,
+      "explication": "by = au plus tard.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u05-c004",
+      "section": "en-b2-u05-s02",
+      "type": "qcm",
+      "question": "« Le train est sur le point de partir » :",
+      "choix": [
+        "The train is about to leave.",
+        "The train is due to leave yesterday.",
+        "The train is bound leaving.",
+        "The train is going leave."
+      ],
+      "bonneReponse": 0,
+      "explication": "be about to = sur le point de.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b2-u05-c005",
+      "section": "en-b2-u05-s02",
+      "type": "qcm",
+      "question": "« Les prix vont probablement augmenter » :",
+      "choix": [
+        "Prices are likely to rise.",
+        "Prices are likely rising.",
+        "Prices like to rise.",
+        "Prices are probably to rise."
+      ],
+      "bonneReponse": 0,
+      "explication": "be likely to + base.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b2-u05-c006",
+      "section": "en-b2-u05-s02",
+      "type": "question",
+      "recto": "Traduis : « Il est forcément en retard, il l'est toujours. »",
+      "verso": "*He's **bound to** be late; he always is.*",
+      "difficulte": 3
+    }
+  ]
+}

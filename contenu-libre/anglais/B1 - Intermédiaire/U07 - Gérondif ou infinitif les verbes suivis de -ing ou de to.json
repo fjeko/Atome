@@ -1,0 +1,175 @@
+{
+  "formatVersion": 1,
+  "id": "en-b1-u07",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "U07 – Gérondif ou infinitif ? les verbes suivis de -ing ou de to",
+  "ordre": 70,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Savoir quel verbe se construit avec -ing ou avec to + base, les verbes qui changent de sens (stop, remember, try), les prépositions suivies de -ing et let / make + base.",
+  "notions": [
+    "Verbes suivis de -ing",
+    "Verbes suivis de to",
+    "Verbes à double construction"
+  ],
+  "sections": [
+    {
+      "id": "en-b1-u07-s01",
+      "titre": "Verbes + -ing",
+      "contenu": "Ces verbes sont suivis du **gérondif** (-ing) :\n*enjoy, finish, avoid, mind, suggest, keep (continuer), consider, miss, practise, risk, deny, admit, imagine, can't stand, look forward to, give up.*\n- *I **enjoy cooking**. She **suggested going** out. Would you **mind closing** the door?*\n\nAprès une **préposition**, toujours **-ing** : *I'm interested **in learning** Python. Thank you **for coming**. Before **leaving**, check the lights.*\n***look forward to* + -ing** : *I look forward to **hearing** from you.* (formule finale d'e-mail, *to* est une préposition)",
+      "notions": [
+        "Verbes suivis de -ing"
+      ]
+    },
+    {
+      "id": "en-b1-u07-s02",
+      "titre": "Verbes + to + base",
+      "contenu": "Ces verbes sont suivis de **to + base** (infinitif) :\n*want, decide, hope, plan, agree, refuse, promise, manage (réussir à), learn, need, offer, expect, seem, afford (avoir les moyens), would like, would prefer.*\n- *I **decided to leave**. We **managed to fix** the bug. I can't **afford to buy** a new car.*\n\nAvec un complément personne : ***want / ask / tell / expect someone to*** : *I **want you to** help me* (et non ~~I want that you help~~).\n\n***let*** et ***make*** + personne + **base sans to** : *My boss **let me leave** early. The film **made me cry**.*",
+      "notions": [
+        "Verbes suivis de to"
+      ]
+    },
+    {
+      "id": "en-b1-u07-s03",
+      "titre": "Les verbes qui changent de sens",
+      "contenu": "| Verbe | + -ing | + to |\n| --- | --- | --- |\n| ***stop*** | arrêter une activité : *I stopped **smoking**.* | s'arrêter **pour** : *I stopped **to smoke**.* |\n| ***remember*** | se souvenir (passé) : *I remember **meeting** her.* | penser à faire : *Remember **to lock** the door.* |\n| ***forget*** | oublier un souvenir : *I'll never forget **seeing** it.* | oublier de faire : *I forgot **to call** him.* |\n| ***try*** | essayer (pour voir) : *Try **restarting** the PC.* | s'efforcer de : *I tried **to open** it, but I couldn't.* |\n\n*like, love, hate, start, begin* acceptent les deux presque sans différence.",
+      "notions": [
+        "Verbes à double construction"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b1-u07-c001",
+      "section": "en-b1-u07-s01",
+      "type": "qcm",
+      "question": "Complète : Have you finished ___ the report?",
+      "choix": [
+        "writing",
+        "to write",
+        "write",
+        "wrote"
+      ],
+      "bonneReponse": 0,
+      "explication": "finish + -ing.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u07-c002",
+      "section": "en-b1-u07-s01",
+      "type": "qcm",
+      "question": "Fin d'e-mail correcte :",
+      "choix": [
+        "I look forward to hearing from you.",
+        "I look forward to hear from you.",
+        "I look forward hearing from you.",
+        "I look forward for hearing from you."
+      ],
+      "bonneReponse": 0,
+      "explication": "look forward to + -ing.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u07-c003",
+      "section": "en-b1-u07-s01",
+      "type": "qcm",
+      "question": "Complète : He's good at ___ problems.",
+      "choix": [
+        "solving",
+        "solve",
+        "to solve",
+        "solved"
+      ],
+      "bonneReponse": 0,
+      "explication": "Après une préposition → -ing.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u07-c004",
+      "section": "en-b1-u07-s02",
+      "type": "qcm",
+      "question": "Complète : We managed ___ the problem before the deadline.",
+      "choix": [
+        "to solve",
+        "solving",
+        "solve",
+        "solved"
+      ],
+      "bonneReponse": 0,
+      "explication": "manage + to + base.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u07-c005",
+      "section": "en-b1-u07-s02",
+      "type": "qcm",
+      "question": "« Je veux que tu viennes » :",
+      "choix": [
+        "I want you to come.",
+        "I want that you come.",
+        "I want you come.",
+        "I want you coming."
+      ],
+      "bonneReponse": 0,
+      "explication": "want + personne + to + base.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u07-c006",
+      "section": "en-b1-u07-s02",
+      "type": "qcm",
+      "question": "Complète : My parents didn't let me ___ out late.",
+      "choix": [
+        "go",
+        "to go",
+        "going",
+        "went"
+      ],
+      "bonneReponse": 0,
+      "explication": "let + personne + base sans to.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u07-c007",
+      "section": "en-b1-u07-s03",
+      "type": "qcm",
+      "question": "« Il a arrêté de fumer » :",
+      "choix": [
+        "He stopped smoking.",
+        "He stopped to smoke.",
+        "He stopped smoke.",
+        "He stopped from smoke."
+      ],
+      "bonneReponse": 0,
+      "explication": "stop + -ing = cesser l'activité.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u07-c008",
+      "section": "en-b1-u07-s03",
+      "type": "qcm",
+      "question": "« N'oublie pas d'éteindre l'ordinateur » :",
+      "choix": [
+        "Don't forget to turn off the computer.",
+        "Don't forget turning off the computer.",
+        "Don't forget turn off the computer.",
+        "Don't forget of turning off the computer."
+      ],
+      "bonneReponse": 0,
+      "explication": "forget + to = oublier de faire.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u07-c009",
+      "section": "en-b1-u07-s03",
+      "type": "question",
+      "recto": "Quelle différence entre « I remember sending the email » et « Remember to send the email » ?",
+      "verso": "1re : je me **souviens** de l'avoir envoyé (souvenir). 2e : **pense à** l'envoyer (action à faire).",
+      "difficulte": 3
+    }
+  ]
+}

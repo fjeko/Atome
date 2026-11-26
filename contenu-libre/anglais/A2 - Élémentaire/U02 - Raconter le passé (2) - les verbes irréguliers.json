@@ -1,0 +1,175 @@
+{
+  "formatVersion": 1,
+  "id": "en-a2-u02",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A2 – Élémentaire",
+  "sequence": null,
+  "seance": "U02 – Raconter le passé (2) : les verbes irréguliers",
+  "ordre": 20,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Les verbes irréguliers les plus fréquents au prétérit, regroupés par familles pour les retenir, et des techniques pour raconter une histoire au passé (first, then, after that, finally).",
+  "notions": [
+    "Prétérit irrégulier",
+    "Familles de verbes irréguliers",
+    "Organiser un récit"
+  ],
+  "sections": [
+    {
+      "id": "en-a2-u02-s01",
+      "titre": "Les irréguliers incontournables",
+      "contenu": "Les 30 verbes les plus fréquents (base → prétérit) :\n\n| | | | |\n| --- | --- | --- | --- |\n| be → was/were | have → **had** | do → **did** | go → **went** |\n| get → **got** | make → **made** | say → **said** | see → **saw** |\n| come → **came** | take → **took** | give → **gave** | know → **knew** |\n| think → **thought** | buy → **bought** | bring → **brought** | find → **found** |\n| tell → **told** | feel → **felt** | leave → **left** | meet → **met** |\n| eat → **ate** | drink → **drank** | write → **wrote** | read → **read** (« red ») |\n| put → **put** | cost → **cost** | sleep → **slept** | speak → **spoke** |\n| run → **ran** | sit → **sat** | | |\n\nSeul l'**affirmatif** est irrégulier : à la négation et en question, on revient à la base avec *did* : *I **went** → I didn't **go** → Did you **go**?*",
+      "notions": [
+        "Prétérit irrégulier"
+      ]
+    },
+    {
+      "id": "en-a2-u02-s02",
+      "titre": "Mémoriser par familles",
+      "contenu": "Regrouper les verbes qui « sonnent » pareil aide beaucoup :\n- **-ought / -aught** : *think → thought, buy → bought, bring → brought, fight → fought, catch → caught, teach → taught* ;\n- **i → a** : *drink → drank, swim → swam, sing → sang, begin → began, ring → rang* ;\n- **ee → e** : *meet → met, feel → felt, keep → kept, sleep → slept, leave → left* ;\n- **invariables** : *put, cut, cost, hit, let, set, shut* ;\n- **-ew** : *know → knew, grow → grew, throw → threw, fly → flew, draw → drew*.\n\nMéthode : réviser 10 verbes par jour, et les **utiliser dans une phrase** sur sa propre vie.",
+      "notions": [
+        "Familles de verbes irréguliers"
+      ]
+    },
+    {
+      "id": "en-a2-u02-s03",
+      "titre": "Raconter une histoire",
+      "contenu": "Connecteurs de chronologie :\n- ***First*** / *At first* (d'abord), ***Then*** / ***After that*** (ensuite), ***Later*** (plus tard), ***Finally*** / *In the end* (finalement) ;\n- ***When*** + passé : *When I arrived, the shop was closed.* ;\n- ***suddenly*** (soudain), ***luckily*** (heureusement), ***unfortunately*** (malheureusement).\n\nExemple : *Last summer I went to Dublin. First, I visited the city centre. Then I took a bus to the coast. Unfortunately it rained a lot, but in the end I had a great time.*\n\n*At the end* (à la fin de quelque chose, lieu/moment) ≠ ***in the end*** (finalement).",
+      "notions": [
+        "Organiser un récit"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a2-u02-c001",
+      "section": "en-a2-u02-s01",
+      "type": "qcm",
+      "question": "Prétérit de « buy » :",
+      "choix": [
+        "bought",
+        "buyed",
+        "brought",
+        "boughted"
+      ],
+      "bonneReponse": 0,
+      "explication": "buy → bought (ne pas confondre avec bring → brought).",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u02-c002",
+      "section": "en-a2-u02-s01",
+      "type": "qcm",
+      "question": "Prétérit de « leave » :",
+      "choix": [
+        "left",
+        "leaved",
+        "lived",
+        "lefted"
+      ],
+      "bonneReponse": 0,
+      "explication": "leave → left.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u02-c003",
+      "section": "en-a2-u02-s01",
+      "type": "qcm",
+      "question": "Laquelle est correcte ?",
+      "choix": [
+        "Did you see him?",
+        "Did you saw him?",
+        "Do you saw him?",
+        "Saw you him?"
+      ],
+      "bonneReponse": 0,
+      "explication": "Question → did + base.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u02-c004",
+      "section": "en-a2-u02-s01",
+      "type": "question",
+      "recto": "Donne le prétérit de : think, bring, teach.",
+      "verso": "*thought, brought, taught* (même terminaison -ought / -aught).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u02-c005",
+      "section": "en-a2-u02-s02",
+      "type": "qcm",
+      "question": "Prétérit de « swim » :",
+      "choix": [
+        "swam",
+        "swum",
+        "swimmed",
+        "swimed"
+      ],
+      "bonneReponse": 0,
+      "explication": "Famille i → a : swim / swam.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u02-c006",
+      "section": "en-a2-u02-s02",
+      "type": "qcm",
+      "question": "Prétérit de « keep » :",
+      "choix": [
+        "kept",
+        "keeped",
+        "kepted",
+        "kip"
+      ],
+      "bonneReponse": 0,
+      "explication": "Famille ee → e + t : keep / kept.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u02-c007",
+      "section": "en-a2-u02-s02",
+      "type": "question",
+      "recto": "Donne le prétérit de : cost, cut, put.",
+      "verso": "Ils sont **invariables** : *cost, cut, put*.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a2-u02-c008",
+      "section": "en-a2-u02-s03",
+      "type": "qcm",
+      "question": "« Finalement, nous sommes rentrés à la maison » :",
+      "choix": [
+        "In the end, we went home.",
+        "At the end, we went home.",
+        "To the end, we went home.",
+        "Finally we go home."
+      ],
+      "bonneReponse": 0,
+      "explication": "in the end = finalement.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u02-c009",
+      "section": "en-a2-u02-s03",
+      "type": "exercice",
+      "enonce": "Mets ces éléments dans un récit au prétérit : arriver à l'aéroport / perdre son passeport / le retrouver dans son sac / prendre l'avion.",
+      "etapes": [
+        "First, I arrived at the airport.",
+        "Then I lost my passport!",
+        "Luckily, I found it in my bag.",
+        "Finally, I took the plane."
+      ],
+      "reponse": "*First, I arrived at the airport. Then, suddenly, I lost my passport! Luckily, I found it in my bag, and in the end I took the plane on time.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a2-u02-c010",
+      "section": "en-a2-u02-s03",
+      "type": "question",
+      "recto": "Traduis : « Quand je suis arrivé, ils avaient déjà mangé. »",
+      "verso": "*When I arrived, they **had already eaten**.* (le plus-que-parfait marque l'antériorité ; il sera vu au niveau B2)",
+      "difficulte": 3
+    }
+  ]
+}

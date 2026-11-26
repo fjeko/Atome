@@ -1,0 +1,258 @@
+{
+  "formatVersion": 1,
+  "id": "en-a1-u09",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "U09 – Entraînement A1 : tout le niveau",
+  "ordre": 90,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Révision mélangée de tout le niveau A1 : traduire, corriger les erreurs typiques, lire un court texte et répondre, et produire de petites présentations. À faire à la fin du niveau, avant de repasser le palier T1.",
+  "notions": [
+    "Traduction A1",
+    "Erreurs fréquentes A1",
+    "Compréhension écrite A1",
+    "Production A1"
+  ],
+  "sections": [
+    {
+      "id": "en-a1-u09-s01",
+      "titre": "Traduire",
+      "contenu": "Traduis **à voix haute ou par écrit** avant de retourner la carte. Vise la phrase naturelle, pas le mot à mot.",
+      "notions": [
+        "Traduction A1"
+      ]
+    },
+    {
+      "id": "en-a1-u09-s02",
+      "titre": "Corriger les erreurs",
+      "contenu": "Chaque phrase contient **une** erreur typique des francophones. Trouve-la et corrige-la.",
+      "notions": [
+        "Erreurs fréquentes A1"
+      ]
+    },
+    {
+      "id": "en-a1-u09-s03",
+      "titre": "Lire et comprendre",
+      "contenu": "> *Hi! My name's Sam and I'm 24. I'm from Manchester, but I live in Bristol now. I'm a web developer. I work from home on Mondays and Fridays, and I go to the office the other days. I usually start at 9 and finish at 5. In my free time I play football and I love cooking. I've got a cat called Pixel. Right now I'm writing this message on the train!*",
+      "notions": [
+        "Compréhension écrite A1"
+      ]
+    },
+    {
+      "id": "en-a1-u09-s04",
+      "titre": "Produire",
+      "contenu": "Écris ou dis ta réponse **avant** de lire le modèle.",
+      "notions": [
+        "Production A1"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a1-u09-c001",
+      "section": "en-a1-u09-s01",
+      "type": "question",
+      "recto": "« J'ai 22 ans et je suis infirmière. »",
+      "verso": "*I'm 22 and I'm a nurse.* (âge avec be ; a devant le métier)",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u09-c002",
+      "section": "en-a1-u09-s01",
+      "type": "question",
+      "recto": "« Ma sœur ne mange pas de viande. »",
+      "verso": "*My sister doesn't eat meat.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c003",
+      "section": "en-a1-u09-s01",
+      "type": "question",
+      "recto": "« Il y a une banque près d'ici ? »",
+      "verso": "*Is there a bank near here?*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c004",
+      "section": "en-a1-u09-s01",
+      "type": "question",
+      "recto": "« Je me lève à 7 h le lundi. »",
+      "verso": "*I get up at 7 on Mondays.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c005",
+      "section": "en-a1-u09-s01",
+      "type": "question",
+      "recto": "« Qu'est-ce que tu fais ? — Je regarde un film. »",
+      "verso": "*What are you doing? — I'm watching a film.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c006",
+      "section": "en-a1-u09-s01",
+      "type": "question",
+      "recto": "« Est-ce que tu sais parler allemand ? »",
+      "verso": "*Can you speak German?*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c007",
+      "section": "en-a1-u09-s01",
+      "type": "question",
+      "recto": "« C'est la voiture de mon père. »",
+      "verso": "*It's my father's car.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c008",
+      "section": "en-a1-u09-s01",
+      "type": "question",
+      "recto": "« Je voudrais deux bouteilles d'eau, s'il vous plaît. »",
+      "verso": "*I'd like two bottles of water, please.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c009",
+      "section": "en-a1-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « She have two brothers. »",
+      "verso": "*She **has** two brothers.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u09-c010",
+      "section": "en-a1-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « I have 18 years. »",
+      "verso": "*I'**m** 18 (years old).*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u09-c011",
+      "section": "en-a1-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « He don't like coffee. »",
+      "verso": "*He **doesn't** like coffee.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c012",
+      "section": "en-a1-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « Do you can help me? »",
+      "verso": "*Can you help me?*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c013",
+      "section": "en-a1-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « I go to home at 6. »",
+      "verso": "*I go home at 6.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c014",
+      "section": "en-a1-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « She is a french teacher from Lyon. » (elle est française)",
+      "verso": "*She's a **French** teacher from Lyon.* (majuscule)",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c015",
+      "section": "en-a1-u09-s02",
+      "type": "question",
+      "recto": "Corrige : « Can you give me an information? »",
+      "verso": "*Can you give me **some information**?*",
+      "difficulte": 3
+    },
+    {
+      "id": "en-a1-u09-c016",
+      "section": "en-a1-u09-s03",
+      "type": "qcm",
+      "question": "Où habite Sam aujourd'hui ?",
+      "choix": [
+        "À Bristol",
+        "À Manchester",
+        "À Londres",
+        "On ne sait pas"
+      ],
+      "bonneReponse": 0,
+      "explication": "I'm from Manchester, but I live in Bristol now.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u09-c017",
+      "section": "en-a1-u09-s03",
+      "type": "qcm",
+      "question": "Combien de jours par semaine Sam va-t-il au bureau ?",
+      "choix": [
+        "Trois",
+        "Deux",
+        "Cinq",
+        "Un"
+      ],
+      "bonneReponse": 0,
+      "explication": "Télétravail lundi et vendredi, bureau les autres jours : 3 jours (du mardi au jeudi).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c018",
+      "section": "en-a1-u09-s03",
+      "type": "qcm",
+      "question": "Que fait Sam au moment où il écrit ?",
+      "choix": [
+        "Il est dans le train.",
+        "Il est au bureau.",
+        "Il cuisine.",
+        "Il joue au football."
+      ],
+      "bonneReponse": 0,
+      "explication": "Right now I'm writing this message on the train.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u09-c019",
+      "section": "en-a1-u09-s03",
+      "type": "question",
+      "recto": "Pourquoi le texte utilise-t-il « I work » mais « I'm writing » ?",
+      "verso": "*I work* : habitude (présent simple). *I'm writing* : action en cours (présent continu, *right now*).",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c020",
+      "section": "en-a1-u09-s04",
+      "type": "exercice",
+      "enonce": "Écris un petit message (5 phrases) pour te présenter à un correspondant anglais.",
+      "etapes": [
+        "Nom, âge, ville.",
+        "Études ou métier.",
+        "Une habitude (présent simple).",
+        "Un goût (I love / I don't like + -ing).",
+        "Ce que tu fais maintenant (présent continu)."
+      ],
+      "reponse": "*Hi! I'm Léa, I'm 19 and I live in Nantes. I'm a student in IT. I usually study in the library. I love playing video games, but I don't like running. Right now I'm drinking a coffee in my kitchen!*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u09-c021",
+      "section": "en-a1-u09-s04",
+      "type": "exercice",
+      "enonce": "Décris ta ville en 4 phrases avec there is / there are et des adjectifs.",
+      "etapes": [
+        "There is a …",
+        "There are some / lots of …",
+        "There isn't a …",
+        "Adjectifs : big, small, quiet, beautiful…"
+      ],
+      "reponse": "*My town is small and quiet. There's a big park near the river. There are lots of cafés in the centre, but there isn't a cinema.*",
+      "difficulte": 2
+    }
+  ]
+}

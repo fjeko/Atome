@@ -1,0 +1,257 @@
+{
+  "formatVersion": 1,
+  "id": "en-a1-u05",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "A1 – Débutant",
+  "sequence": null,
+  "seance": "U05 – Décrire un lieu : there is / there are, articles, pluriels et prépositions",
+  "ordre": 50,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Décrire sa maison, sa ville ou un bureau : there is et there are, les articles a, an, the et l'article zéro, les pluriels réguliers et irréguliers, this / that / these / those et les prépositions de lieu.",
+  "notions": [
+    "There is / there are",
+    "Articles a / an",
+    "Article the",
+    "Article zéro",
+    "Pluriel des noms",
+    "Démonstratifs",
+    "Prépositions de lieu"
+  ],
+  "sections": [
+    {
+      "id": "en-a1-u05-s01",
+      "titre": "There is / there are",
+      "contenu": "« Il y a » se dit **there is** (singulier) ou **there are** (pluriel).\n\n| | Singulier | Pluriel |\n| --- | --- | --- |\n| Affirmatif | ***There's** a sofa.* | ***There are** two windows.* |\n| Négatif | ***There isn't** a garden.* | ***There aren't** any shops.* |\n| Question | ***Is there** a bank near here?* | ***Are there** any restaurants?* |\n\n- avec un pluriel, on ajoute souvent ***some*** (affirmatif) ou ***any*** (négatif et question) ;\n- *there are* ne se contracte pas à l'écrit (*there're* est très rare) ;\n- « Il y a deux jours » (dans le temps) se dit ***two days ago*** : *there is* ne sert que pour l'existence.",
+      "notions": [
+        "There is / there are"
+      ]
+    },
+    {
+      "id": "en-a1-u05-s02",
+      "titre": "Les articles a, an, the et l'article zéro",
+      "contenu": "**a / an** (un, une) devant un nom **singulier dénombrable** :\n- **a** devant un **son** consonne : *a book, a university* (« you »), *a European country* ;\n- **an** devant un **son** voyelle : *an apple, an hour* (h muet), *an IT job* (« aï »).\nC'est le **son** qui compte, pas la lettre.\n\n**the** (le, la, les) pour quelque chose de **précis** ou déjà connu : *The book on the table is mine.*\n\n**Article zéro** (rien) pour les **généralités** au pluriel ou les indénombrables :\n- *I love **dogs**.* (les chiens en général) ; ***Life** is beautiful.* ; ***Coffee** is expensive.*\n- pas d'article devant les repas, les langues, les sports, la plupart des pays : *I play tennis. I speak English. He lives in France* (mais *the USA, the UK*).\n\nLe métier prend **a** : *She's **a** nurse.* (« Elle est infirmière »)",
+      "notions": [
+        "Articles a / an",
+        "Article the",
+        "Article zéro"
+      ]
+    },
+    {
+      "id": "en-a1-u05-s03",
+      "titre": "Les pluriels et this / that",
+      "contenu": "**Pluriel régulier** : + **s** (*cars*), + **es** après s, sh, ch, x (*boxes, watches*), consonne + y → **ies** (*cities*), certains -f → **ves** (*knife → knives, wife → wives*).\n\n**Pluriels irréguliers** à connaître : *man → men, woman → women, child → children, person → people, foot → feet, tooth → teeth, mouse → mice*. Certains sont invariables : *sheep, fish*.\n\n*people* est **pluriel** : *People **are** nice here.*\n\n**Démonstratifs** :\n\n| | Proche | Éloigné |\n| --- | --- | --- |\n| Singulier | **this** (ce…ci) | **that** (ce…là) |\n| Pluriel | **these** (ces…ci) | **those** (ces…là) |\n\n*This phone is new. Those people are my colleagues.*",
+      "notions": [
+        "Pluriel des noms",
+        "Démonstratifs"
+      ]
+    },
+    {
+      "id": "en-a1-u05-s04",
+      "titre": "Les prépositions de lieu",
+      "contenu": "| Préposition | Sens | Exemple |\n| --- | --- | --- |\n| **in** | dans | *in the box, in London, in the kitchen* |\n| **on** | sur (contact) | *on the table, on the wall, on the second floor* |\n| **under** | sous | *under the bed* |\n| **next to / beside** | à côté de | *next to the window* |\n| **between** | entre | *between the bank and the café* |\n| **in front of** | devant | *in front of the cinema* |\n| **behind** | derrière | *behind the door* |\n| **opposite** | en face de | *opposite the station* |\n| **near** | près de | *near my house* |\n| **at** | à (un point, une adresse, un lieu d'activité) | *at home, at work, at the bus stop, at 12 Baker Street* |\n\nPiège : « en face de » = ***opposite***, et ***in front of*** = « devant ».",
+      "notions": [
+        "Prépositions de lieu"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-a1-u05-c001",
+      "section": "en-a1-u05-s01",
+      "type": "qcm",
+      "question": "Complète : ___ three bedrooms in my flat.",
+      "choix": [
+        "There are",
+        "There is",
+        "It is",
+        "They are"
+      ],
+      "bonneReponse": 0,
+      "explication": "Pluriel → there are.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u05-c002",
+      "section": "en-a1-u05-s01",
+      "type": "qcm",
+      "question": "Complète : Is there ___ supermarket near here?",
+      "choix": [
+        "a",
+        "any",
+        "some",
+        "the"
+      ],
+      "bonneReponse": 0,
+      "explication": "Singulier dénombrable → a.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u05-c003",
+      "section": "en-a1-u05-s01",
+      "type": "qcm",
+      "question": "Comment dit-on « Je l'ai vu il y a trois jours » ?",
+      "choix": [
+        "I saw him three days ago.",
+        "I saw him there are three days.",
+        "I saw him there is three days.",
+        "I saw him since three days."
+      ],
+      "bonneReponse": 0,
+      "explication": "« Il y a » + durée passée = ago.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u05-c004",
+      "section": "en-a1-u05-s02",
+      "type": "qcm",
+      "question": "Complète : She's ___ engineer.",
+      "choix": [
+        "an",
+        "a",
+        "the",
+        "—"
+      ],
+      "bonneReponse": 0,
+      "explication": "Métier → article indéfini ; son voyelle → an.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u05-c005",
+      "section": "en-a1-u05-s02",
+      "type": "qcm",
+      "question": "Complète : It's ___ university in London.",
+      "choix": [
+        "a",
+        "an",
+        "the",
+        "—"
+      ],
+      "bonneReponse": 0,
+      "explication": "university commence par le son « you » (consonne) → a.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u05-c006",
+      "section": "en-a1-u05-s02",
+      "type": "qcm",
+      "question": "Comment dit-on « J'aime les chats » (en général) ?",
+      "choix": [
+        "I like cats.",
+        "I like the cats.",
+        "I like a cats.",
+        "I like the cat."
+      ],
+      "bonneReponse": 0,
+      "explication": "Généralité au pluriel → pas d'article.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u05-c007",
+      "section": "en-a1-u05-s02",
+      "type": "question",
+      "recto": "Pourquoi dit-on « an hour » mais « a house » ?",
+      "verso": "Parce que le **h** de *hour* est **muet** (son voyelle) alors que celui de *house* se prononce.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u05-c008",
+      "section": "en-a1-u05-s03",
+      "type": "qcm",
+      "question": "Quel est le pluriel de « child » ?",
+      "choix": [
+        "children",
+        "childs",
+        "childrens",
+        "childes"
+      ],
+      "bonneReponse": 0,
+      "explication": "Pluriel irrégulier.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u05-c009",
+      "section": "en-a1-u05-s03",
+      "type": "qcm",
+      "question": "Complète : ___ shoes over there are expensive.",
+      "choix": [
+        "Those",
+        "This",
+        "That",
+        "These"
+      ],
+      "bonneReponse": 0,
+      "explication": "Pluriel + éloigné → those.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u05-c010",
+      "section": "en-a1-u05-s03",
+      "type": "qcm",
+      "question": "Complète : People ___ very friendly in Ireland.",
+      "choix": [
+        "are",
+        "is",
+        "be",
+        "am"
+      ],
+      "bonneReponse": 0,
+      "explication": "people est pluriel.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u05-c011",
+      "section": "en-a1-u05-s03",
+      "type": "question",
+      "recto": "Donne le pluriel de : woman, tooth, city, knife.",
+      "verso": "*women, teeth, cities, knives*.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u05-c012",
+      "section": "en-a1-u05-s04",
+      "type": "qcm",
+      "question": "La pharmacie est de l'autre côté de la rue, face à la banque :",
+      "choix": [
+        "The chemist's is opposite the bank.",
+        "The chemist's is in front of the bank.",
+        "The chemist's is behind the bank.",
+        "The chemist's is on the bank."
+      ],
+      "bonneReponse": 0,
+      "explication": "En face de = opposite ; in front of = devant.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-a1-u05-c013",
+      "section": "en-a1-u05-s04",
+      "type": "qcm",
+      "question": "Complète : I'm ___ work until 6.",
+      "choix": [
+        "at",
+        "in",
+        "on",
+        "to"
+      ],
+      "bonneReponse": 0,
+      "explication": "at work, at home, at school.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-a1-u05-c014",
+      "section": "en-a1-u05-s04",
+      "type": "exercice",
+      "enonce": "Décris ta chambre ou ton bureau en 5 phrases avec there is / there are et au moins trois prépositions de lieu.",
+      "etapes": [
+        "There's a … / There are …",
+        "Placer les objets : on, under, next to, between…",
+        "Utiliser a / an / the correctement.",
+        "Au moins une négation : There isn't …"
+      ],
+      "reponse": "Exemple : *There's a desk next to the window. There are two screens on the desk. My laptop is between the screens. There's a lamp behind my chair. There isn't a TV in my room.*",
+      "difficulte": 2
+    }
+  ]
+}

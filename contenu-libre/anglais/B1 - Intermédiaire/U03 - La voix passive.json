@@ -1,0 +1,166 @@
+{
+  "formatVersion": 1,
+  "id": "en-b1-u03",
+  "matiere": "Anglais",
+  "bloc": "Langue",
+  "partie": "B1 – Intermédiaire",
+  "sequence": null,
+  "seance": "U03 – La voix passive",
+  "ordre": 30,
+  "source": {
+    "fichier": null
+  },
+  "resume": "Former et utiliser le passif (be + participe passé) à tous les temps courants, choisir entre actif et passif, mentionner l'agent avec by, et les tournures très fréquentes dans les textes techniques et la presse.",
+  "notions": [
+    "Passif : forme",
+    "Emplois du passif",
+    "Tournures passives courantes"
+  ],
+  "sections": [
+    {
+      "id": "en-b1-u03-s01",
+      "titre": "Former le passif",
+      "contenu": "**be** (au temps voulu) + **participe passé**. Le complément de l'actif devient le sujet.\n\n| Temps | Actif | Passif |\n| --- | --- | --- |\n| présent simple | *They clean the office every day.* | *The office **is cleaned** every day.* |\n| prétérit | *Someone stole my bike.* | *My bike **was stolen**.* |\n| present perfect | *They have changed the password.* | *The password **has been changed**.* |\n| futur | *They will deliver it tomorrow.* | *It **will be delivered** tomorrow.* |\n| présent continu | *They are repairing the road.* | *The road **is being repaired**.* |\n| modal | *You must save the file.* | *The file **must be saved**.* |\n\nL'**agent** est introduit par ***by*** seulement s'il est utile : *The app was developed **by** a team of students.*",
+      "notions": [
+        "Passif : forme"
+      ]
+    },
+    {
+      "id": "en-b1-u03-s02",
+      "titre": "Quand utiliser le passif ?",
+      "contenu": "On choisit le passif quand :\n- l'**auteur** est inconnu, évident ou sans importance : *My phone was stolen. English is spoken here.* ;\n- on veut mettre l'accent sur **l'objet ou le résultat** (textes techniques, scientifiques, procédures) : *The data **is encrypted** before it **is sent**.* ;\n- on veut rester **neutre** ou éviter d'accuser : *Mistakes **were made**.*\n\nLe français utilise souvent « **on** » là où l'anglais met le passif : « On m'a volé mon vélo » → *My bike was stolen* ; « On parle anglais ici » → *English is spoken here.*\n\nVerbes à deux compléments : *They gave me a prize* → ***I was given** a prize* (tournure très naturelle en anglais).",
+      "notions": [
+        "Emplois du passif"
+      ]
+    },
+    {
+      "id": "en-b1-u03-s03",
+      "titre": "Tournures passives utiles",
+      "contenu": "- ***be supposed to*** (être censé) : *You're supposed to log out before leaving.*\n- ***be born*** : *I was born in 2006.*\n- ***be made of / from*** : *It's made of steel.*\n- **passif impersonnel** (presse) : ***It is said that**…* / *He **is said to** be very rich.* · ***It is believed that**…*\n- ***have something done*** (faire faire) : *I **had my laptop repaired*** (je l'ai fait réparer). Voir B2.",
+      "notions": [
+        "Tournures passives courantes"
+      ]
+    }
+  ],
+  "cartes": [
+    {
+      "id": "en-b1-u03-c001",
+      "section": "en-b1-u03-s01",
+      "type": "qcm",
+      "question": "Mets au passif : « They built this bridge in 1890. »",
+      "choix": [
+        "This bridge was built in 1890.",
+        "This bridge is built in 1890.",
+        "This bridge was build in 1890.",
+        "This bridge has built in 1890."
+      ],
+      "bonneReponse": 0,
+      "explication": "Prétérit → was + participe passé.",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u03-c002",
+      "section": "en-b1-u03-s01",
+      "type": "qcm",
+      "question": "Mets au passif : « They are testing the new software. »",
+      "choix": [
+        "The new software is being tested.",
+        "The new software is tested now being.",
+        "The new software is testing.",
+        "The new software was being test."
+      ],
+      "bonneReponse": 0,
+      "explication": "Présent continu → is being + participe.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u03-c003",
+      "section": "en-b1-u03-s01",
+      "type": "qcm",
+      "question": "Complète : The results ___ next week.",
+      "choix": [
+        "will be published",
+        "will publish",
+        "are publish",
+        "will published"
+      ],
+      "bonneReponse": 0,
+      "explication": "Futur passif : will be + participe.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u03-c004",
+      "section": "en-b1-u03-s01",
+      "type": "question",
+      "recto": "Mets au passif : « Someone has hacked our website. »",
+      "verso": "*Our website **has been hacked**.*",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u03-c005",
+      "section": "en-b1-u03-s02",
+      "type": "qcm",
+      "question": "Traduis : « On m'a proposé un nouveau poste. »",
+      "choix": [
+        "I was offered a new job.",
+        "One offered me a new job.",
+        "It was offered me a new job.",
+        "I offered a new job."
+      ],
+      "bonneReponse": 0,
+      "explication": "On + verbe → souvent un passif avec la personne en sujet.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u03-c006",
+      "section": "en-b1-u03-s02",
+      "type": "qcm",
+      "question": "Dans une documentation technique, quelle phrase est la plus naturelle ?",
+      "choix": [
+        "The backup is run every night.",
+        "Somebody runs the backup every night.",
+        "We are the ones who run the backup every night.",
+        "The backup runs itself every nights."
+      ],
+      "bonneReponse": 0,
+      "explication": "Le passif met l'accent sur le processus.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u03-c007",
+      "section": "en-b1-u03-s02",
+      "type": "question",
+      "recto": "Traduis : « Ce logiciel est utilisé dans 50 pays. »",
+      "verso": "*This software **is used** in 50 countries.*",
+      "difficulte": 1
+    },
+    {
+      "id": "en-b1-u03-c008",
+      "section": "en-b1-u03-s03",
+      "type": "qcm",
+      "question": "« You are supposed to wear a badge » signifie :",
+      "choix": [
+        "Tu es censé porter un badge.",
+        "Tu supposes porter un badge.",
+        "Tu as porté un badge.",
+        "On suppose que tu portes un badge."
+      ],
+      "bonneReponse": 0,
+      "explication": "be supposed to = être censé.",
+      "difficulte": 2
+    },
+    {
+      "id": "en-b1-u03-c009",
+      "section": "en-b1-u03-s03",
+      "type": "exercice",
+      "enonce": "Réécris cette consigne au passif : « Les utilisateurs doivent changer leur mot de passe tous les 90 jours. On bloquera les comptes inactifs. »",
+      "etapes": [
+        "must + passif : must be changed",
+        "futur passif : will be blocked",
+        "sujet = mot de passe / comptes"
+      ],
+      "reponse": "*Passwords **must be changed** every 90 days. Inactive accounts **will be blocked**.*",
+      "difficulte": 2
+    }
+  ]
+}
