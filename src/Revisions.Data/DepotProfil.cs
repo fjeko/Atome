@@ -108,6 +108,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
             DossierSauvegardeAuto = valeurs.GetValueOrDefault("dossier_sauvegarde_auto"),
             TailleTexte = Entier("taille_texte", defaut.TailleTexte, Reglages.TailleTexteMin, Reglages.TailleTexteMax),
             VolumeVoix = Entier("volume_voix", defaut.VolumeVoix, 0, 100),
+            VitesseVoix = Entier("vitesse_voix", defaut.VitesseVoix, 50, 150),
             ReduireAnimations = valeurs.GetValueOrDefault("reduire_animations") == "1",
             Sons = valeurs.GetValueOrDefault("sons") == "1",
             Mascotte = valeurs.GetValueOrDefault("mascotte") is "reduite" or "masquee" ? valeurs["mascotte"] : "normale",
@@ -132,6 +133,7 @@ public sealed class DepotProfil(BaseDeDonnees baseDeDonnees) : IStockageCleValeu
         EcrireValeur("verifier_mises_a_jour", r.VerifierMisesAJour ? "1" : "0");
         EcrireValeur("taille_texte", r.TailleTexte.ToString(CultureInfo.InvariantCulture));
         EcrireValeur("volume_voix", r.VolumeVoix.ToString(CultureInfo.InvariantCulture));
+        EcrireValeur("vitesse_voix", r.VitesseVoix.ToString(CultureInfo.InvariantCulture));
         EcrireValeur("reduire_animations", r.ReduireAnimations ? "1" : "0");
         EcrireValeur("sons", r.Sons ? "1" : "0");
         EcrireValeur("mascotte", r.Mascotte);

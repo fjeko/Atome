@@ -129,7 +129,7 @@ public partial class LectureViewModel : ObservableObject
         }
         elements.Add(new { genre = "titre", markdown = section.Titre });
         elements.Add(new { genre = "texte", markdown = section.Contenu });
-        MessageRendu = JsonSerializer.Serialize(new { elements });
+        MessageRendu = JsonSerializer.Serialize(new { elements, ecoute = Revisions.Core.Voix.ChoixVoix.LanguePourPack(_seance.PackId, _seance.Matiere) });
     }
 
     [RelayCommand(CanExecute = nameof(PeutReculer))]

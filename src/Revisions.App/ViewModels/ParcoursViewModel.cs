@@ -189,7 +189,7 @@ public partial class ParcoursViewModel : ObservableObject
         if (_parcours.IndexSection == 0 && !_relecture) elements.Add(new { genre = "resume", markdown = _seance.Resume });
         elements.Add(new { genre = "titre", markdown = section.Titre });
         elements.Add(new { genre = "texte", markdown = section.Contenu });
-        MessageRendu = JsonSerializer.Serialize(new { elements });
+        MessageRendu = JsonSerializer.Serialize(new { elements, ecoute = Revisions.Core.Voix.ChoixVoix.LanguePourPack(_seance.PackId, _seance.Matiere) });
     }
 
     /// <summary>Nouvelle question : réponse cachée, choix de QCM mélangés.</summary>
@@ -221,14 +221,16 @@ public partial class ParcoursViewModel : ObservableObject
         var carte = _question!.Carte;
         bool qcm = carte.Type == TypeCarte.Qcm;
         var elements = RenduCarte.Elements(carte, _ordreChoix, _choixFait, _reponseVisible, _etapesRevelees, ReponseSaisie, Matrice?.Latex, code: SaisieCode);
-        MessageRendu = JsonSerializer.Serialize(new { elements, defiler = defilerEnBas ? "bas" : "haut", animation = "carte" });
+        MessageRendu = JsonSerializer.Serialize(new { elements, defiler = defilerEnBas ? "bas" : "haut", animation = "carte", ecoute = Revisions.Core.Voix.ChoixVoix.LanguePourPack(_seance.PackId, _seance.Matiere) });
 
         bool mauvaisChoix = qcm && _reponseVisible && _choixFait != carte.Contenu.BonneReponse;
         RevelerVisible = !_reponseVisible && !qcm;
         TexteReveler = SaisieCode ? "Voir la correction" : "Voir la réponse";
         RaccourciReveler = SaisieCode ? "Ctrl+Entrée" : "Espace";
         // Question et exercice : on peut écrire sa réponse (le résultat d'un exercice) pour la comparer.
-        SaisieVisible = carte.Type is TypeCarte.Question or TypeCarte.Exercice && !_reponseVisible && Matrice is null;
+        // Carte orale (« 🎙️ Réponds à voix haute ») : pas de zone de saisie, on répond en parlant.
+        bool orale = CarteOrale.Est(carte);
+        SaisieVisible = carte.Type is TypeCarte.Question or TypeCarte.Exercice && !_reponseVisible && Matrice is null && !orale;
         MatriceVisible = Matrice is not null && !_reponseVisible;
         ContinuerVisible = mauvaisChoix;
         NotesVisibles = _reponseVisible && !mauvaisChoix;
@@ -239,6 +241,7 @@ public partial class ParcoursViewModel : ObservableObject
         Consigne = !_reponseVisible
             ? (qcm ? "Choisis une réponse (clic ou touches A à E)"
                 : SaisieVisible && SaisieCode ? "Écris ton code dans la zone (Tab pour y entrer), puis Ctrl+Entrée pour voir la correction"
+                : orale && RevelerVisible ? "Réponds à voix haute, puis Espace pour comparer avec le modèle"
                 : SaisieVisible ? "Réponds de tête puis Espace, ou écris ta réponse (Tab) puis Entrée"
                 : MatriceVisible ? "Réponds de tête puis Espace, ou remplis la matrice (Tab) puis Entrée"
                 : "Réponds de tête, puis appuie sur Espace")

@@ -42,13 +42,14 @@ public sealed partial class NavigationReglagesViewModel : ObservableObject
     {
         var revision = new SectionReglages("revision", "Révision", Icones.Cible);
         var apparence = new SectionReglages("apparence", "Apparence", Icones.Galerie);
+        var voix = new SectionReglages("voix", "Voix", Icones.Volume);
         var collections = new SectionReglages("collections", "Collections", Icones.Bibliotheque);
         var planning = new SectionReglages("planning", "Planning", Icones.Planning);
         var donnees = new SectionReglages("donnees", "Données", Icones.Dossier);
         var partage = new SectionReglages("partage", "Partage", Icones.Partager);
         var maj = new SectionReglages("maj", "Mises à jour", Icones.Telecharger);
         var apropos = new SectionReglages("apropos", "À propos", Icones.Info);
-        Sections = [revision, apparence, collections, planning, donnees, partage, maj, apropos];
+        Sections = [revision, apparence, voix, collections, planning, donnees, partage, maj, apropos];
 
         _entrees =
         [
@@ -65,7 +66,10 @@ public sealed partial class NavigationReglagesViewModel : ObservableObject
             new("Réduire les animations", "mouvement transitions fondu", apparence),
             new("Sons", "audio bruit son", apparence),
             new("Mascotte", "atome personnage masquer", apparence),
-            new("Mes collections", "afficher masquer cours libres packs", collections),
+            new("Volume de la voix", "son anglais écouter haut-parleur", voix),
+            new("Vitesse de la voix", "lent rapide débit anglais écouter", voix),
+            new("Voix anglaise naturelle", "piper téléchargement prononciation tester", voix),
+            new("Mes collections","afficher masquer cours libres packs", collections),
             new("Planning CNED", "dates échéances frise", planning),
             new("Mes signalements", "erreurs drapeau corriger", donnees),
             new("Dossier des packs", "chemin répertoire avancé", donnees),

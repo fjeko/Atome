@@ -388,12 +388,46 @@
                                Visibility="{Binding Message, Converter={StaticResource VisibleSi}}" />
                 </StackPanel>
 
+                <!-- ===== Voix (boutons 🔊 des cours d'anglais, test de positionnement) ===== -->
+                <StackPanel Margin="{StaticResource Marge.Haut.24}"
+                            Visibility="{Binding Navigation.SectionChoisie.Cle, Converter={StaticResource VisibleSiEgal}, ConverterParameter=voix}">
+                    <ds:LigneReglage Libelle="Volume de la voix" Aide="Pour les boutons 🔊 des cours et des cartes d'anglais, et le test de positionnement.">
+                        <StackPanel Orientation="Horizontal">
+                            <Slider Width="{StaticResource Largeur.ControleReglage}" Value="{Binding VolumeVoix}" Minimum="0" Maximum="100" TickFrequency="5" IsSnapToTickEnabled="True"
+                                    AutomationProperties.Name="Volume de la voix" />
+                            <TextBlock Style="{StaticResource ValeurReglage}"><Run Text="{Binding VolumeVoix, Mode=OneWay}" /> %</TextBlock>
+                        </StackPanel>
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Vitesse de la voix" Aide="100 % = vitesse normale. Plus bas pour bien entendre chaque mot.">
+                        <StackPanel Orientation="Horizontal">
+                            <Slider Width="{StaticResource Largeur.ControleReglage}" Value="{Binding VitesseVoix}" Minimum="50" Maximum="150" TickFrequency="5" IsSnapToTickEnabled="True"
+                                    AutomationProperties.Name="Vitesse de la voix" />
+                            <TextBlock Style="{StaticResource ValeurReglage}"><Run Text="{Binding VitesseVoix, Mode=OneWay}" /> %</TextBlock>
+                        </StackPanel>
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="{Binding VoixUtilisee}" Icone="{x:Static ds:Icones.Volume}">
+                        <Button Content="Tester" Command="{Binding TesterVoixCommand}" Style="{StaticResource BoutonSecondaire}"
+                                ds:Forme.Icone="{x:Static ds:Icones.Jouer}" AutomationProperties.Name="Tester la voix" />
+                    </ds:LigneReglage>
+                    <ds:LigneReglage Libelle="Voix anglaises naturelles"
+                                     Aide="Deux voix de synthèse réalistes (Piper : Cori, britannique, et Norman, américain, pour que deux personnages d'un dialogue n'aient pas la même voix). Environ 200 Mo, téléchargés une seule fois depuis GitHub au premier lancement, puis utilisés hors ligne. Les mises à jour d'Atome ne les retéléchargent pas.">
+                        <Button Content="Réessayer" Command="{Binding VoixNaturelle.ReessayerCommand}" Style="{StaticResource BoutonSecondaire}"
+                                ds:Forme.Icone="{x:Static ds:Icones.Actualiser}"
+                                Visibility="{Binding VoixNaturelle.Etat, Converter={StaticResource VisibleSiEgal}, ConverterParameter=Echec}" />
+                    </ds:LigneReglage>
+                    <ProgressBar Style="{StaticResource BarreProgression}" Value="{Binding VoixNaturelle.Progression, Mode=OneWay}"
+                                 AutomationProperties.Name="Téléchargement de la voix"
+                                 Visibility="{Binding VoixNaturelle.Etat, Converter={StaticResource VisibleSiEgal}, ConverterParameter=Telechargement}" />
+                    <TextBlock Text="{Binding VoixNaturelle.Message}" Style="{StaticResource Texte.Secondaire}" Margin="{StaticResource Marge.Haut.8}"
+                               TextWrapping="Wrap" AutomationProperties.Name="État de la voix naturelle" />
+                </StackPanel>
+
                 <!-- ===== Mises à jour ===== -->
                 <StackPanel Margin="{StaticResource Marge.Haut.24}"
                             Visibility="{Binding Navigation.SectionChoisie.Cle, Converter={StaticResource VisibleSiEgal}, ConverterParameter=maj}">
                     <ds:LigneReglage Libelle="{Binding VersionInstallee}" Icone="{x:Static ds:Icones.Info}" />
                     <ds:LigneReglage Libelle="Vérifier les mises à jour au démarrage"
-                                     Aide="Une fois par jour au plus, Atome demande à GitHub (api.github.com) le numéro de la dernière version. C'est la seule fois où Atome se connecte à Internet. Rien d'autre n'est envoyé : ni tes données, ni ton nom.">
+                                     Aide="Une fois par jour au plus, Atome demande à GitHub (api.github.com) le numéro de la dernière version. Rien d'autre n'est envoyé : ni tes données, ni ton nom. (Seule autre connexion : le téléchargement unique de la voix anglaise, voir Réglages → Voix.)">
                         <CheckBox IsChecked="{Binding VerifierMisesAJour}" Style="{StaticResource Interrupteur}" AutomationProperties.Name="Vérifier les mises à jour au démarrage" />
                     </ds:LigneReglage>
                     <ds:LigneReglage Libelle="Vérifier maintenant" Icone="{x:Static ds:Icones.Actualiser}">
@@ -410,7 +444,7 @@
                     <TextBlock Style="{StaticResource Texte.Secondaire}"
                                Text="Atome : tes révisions, at home. Un projet étudiant de BTS SIO option SLAM, hors ligne et sans compte : tes données restent sur ton PC." />
                     <TextBlock Style="{StaticResource Texte.Meta}" Margin="{StaticResource Marge.Haut.8}"
-                               Text="Code sous licence MIT. Cours libres intégrés sous licence CC BY-SA 4.0 (« Atome – packs libres BTS SIO »). Les cours du CNED ne sont pas fournis." />
+                               Text="Code sous licence MIT. Cours libres intégrés sous licence CC BY-SA 4.0 (« Atome – packs libres BTS SIO »). Les cours du CNED ne sont pas fournis. Voix anglaises : moteur Piper (MIT, avec eSpeak NG sous GPL-3.0), voix « cori » et « norman » de Bryce Beattie (enregistrements LibriVox du domaine public). Détails dans THIRD-PARTY-NOTICES.md." />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

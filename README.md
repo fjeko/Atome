@@ -84,7 +84,18 @@ charger les cours libres.
 Installé avec le setup, Atome vérifie au démarrage (à chaque lancement, une fois par heure au plus, désactivable dans les Réglages) s'il
 existe une nouvelle version et la propose dans un bandeau : **Mettre à jour**, **Plus tard** ou **Ignorer cette version**.
 Le setup téléchargé est vérifié par son empreinte SHA-256, la base est sauvegardée, puis Atome se réinstalle et se
-relance. Tes données et ta progression ne sont jamais touchées. C'est la seule connexion Internet d'Atome.
+relance. Tes données et ta progression ne sont jamais touchées. C'est, avec le téléchargement unique de la voix anglaise
+(voir [Voix anglaise naturelle](#voix-anglaise-naturelle)), la seule connexion Internet d'Atome.
+
+### Voix anglaise naturelle
+
+Les cours et les cartes d'anglais ont des boutons **🔊** (répliques des dialogues, exemples en italique). Ils sont lus
+par des voix réalistes, **Piper** (Cori, britannique, et Norman, américain : une voix par personnage dans les
+dialogues), qui fonctionnent hors ligne. Elles ne sont pas dans le setup :
+au premier lancement, Atome les télécharge **une seule fois** en arrière-plan (environ 200 Mo, chaque fichier vérifié par
+son empreinte SHA-256), dans `%LOCALAPPDATA%RevisionsBTSoix`. En attendant, ou sans Internet, Atome utilise la
+voix anglaise de Windows. Volume, vitesse, état du téléchargement et bouton « Tester » : **Réglages → Voix**.
+Licences du moteur et des voix : [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 
 ## Cours libres intégrés
 
@@ -336,4 +347,6 @@ puis dévoile la correction étape par étape, Entrée (hors des cases) fait la 
 
 - **Code d'Atome** : [MIT](LICENSE) © 2026 fjeko.
 - **Cours libres** (`contenu-libre/`) : [CC BY-SA 4.0](contenu-libre/LICENSE), attribution « Atome – packs libres BTS SIO ».
+- **Voix anglaises** (téléchargées à part) : moteur Piper (MIT, avec eSpeak NG sous GPL-3.0), voix « cori » et « norman » (domaine public),
+  détails et attributions dans [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 - **Cours du CNED** : non fournis, réservés à leurs destinataires.

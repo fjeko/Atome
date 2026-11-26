@@ -155,7 +155,7 @@ public sealed class VueMarkdown : ContentControl
             _web.CoreWebView2.PostWebMessageAsJson(message);
     }
 
-    /// <summary>Messages venant de la page : « pret », « choix » (QCM), « touche », « lien ».</summary>
+    /// <summary>Messages venant de la page : « pret », « choix » (QCM), « touche », « ecouter » (bouton 🔊), « lien ».</summary>
     private void RecevoirMessage(string json)
     {
         using var document = JsonDocument.Parse(json);
@@ -179,6 +179,29 @@ public sealed class VueMarkdown : ContentControl
             case "touche":
                 string touche = racine.GetProperty("touche").GetString() ?? "";
                 if (CommandeTouche?.CanExecute(touche) == true) CommandeTouche.Execute(touche);
+                break;
+            case "ecouter":
+                // Bouton 🔊 d'une phrase anglaise : lue par la voix naturelle (ou celle de Windows en attendant).
+                string phrase = racine.GetProperty("texte").GetString() ?? "";
+                string langue = racine.TryGetProperty("langue", out var l) ? l.GetString() ?? "en-GB" : "en-GB";
+                // Réplique d'un dialogue : la voix du personnage (féminine ou masculine), choisie d'après tous les noms du dialogue.
+                var timbre = Revisions.Core.Voix.Timbre.Feminin;
+                if (racine.TryGetProperty("interlocuteur", out var qui) && racine.TryGetProperty("interlocuteurs", out var tous))
+                {
+                    var timbres = Revisions.Core.Voix.ChoixVoix.AttribuerTimbres(tous.EnumerateArray().Select(n => n.GetString() ?? ""));
+                    timbre = timbres.GetValueOrDefault(qui.GetString()?.Trim() ?? "", timbre);
+                }
+                if (phrase.Trim().Length > 0)
+                    _ = App.Services.GetRequiredService<ServiceVoix>().LireAsync(phrase, langue, timbre: timbre);
+                break;
+            case "dialogue":
+                // « Tout écouter » : tout le dialogue, chaque personnage avec sa voix.
+                var repliques = racine.GetProperty("repliques").EnumerateArray()
+                    .Select(r => (r.GetProperty("nom").GetString() ?? "", r.GetProperty("texte").GetString() ?? ""))
+                    .Where(r => r.Item2.Trim().Length > 0).ToList();
+                string langueDialogue = racine.TryGetProperty("langue", out var ld) ? ld.GetString() ?? "en-GB" : "en-GB";
+                if (repliques.Count > 0)
+                    _ = App.Services.GetRequiredService<ServiceVoix>().LireDialogueAsync(repliques, langueDialogue);
                 break;
             // « lien » : ignoré volontairement, l'application fonctionne hors ligne.
         }

@@ -113,6 +113,8 @@
       contenu.appendChild(bloc);
     }
     precedent = rang;
+    // Cours et cartes d'anglais : boutons 🔊 à côté des phrases anglaises.
+    if (message.ecoute) ajouterEcoute(contenu, message.ecoute);
     // Nouvelle carte de session : elle arrive en se retournant ; nouvelle page de cours : un simple fondu.
     if (nouvelleCarte) {
       contenu.classList.remove("arrive-carte", "arrive-page");
@@ -142,6 +144,107 @@
     }
   }
 
+  // ---- Écoute (boutons 🔊) -------------------------------------------------------------------
+  // Règle, sans rien changer au format des packs : dans un pack d'anglais, on peut écouter
+  //  - chaque réplique d'une citation (« > **Anna** : Hi, I'm Anna. ») et toute la citation d'un coup ;
+  //  - chaque passage en italique (« *Nice to meet you* ») qui ressemble à de l'anglais.
+  // Les passages en français (accents, petits mots français) et les adresses e-mail sont ignorés.
+
+  /** Petits mots qui trahissent une phrase française. */
+  const MOTS_FRANCAIS = new Set(("le la les des une est et du dans pour avec que qui au aux je tu nous vous ils elle " +
+    "mon ma mes ses ce il ne pas sont ou sur").split(" "));
+
+  /** Vrai si le texte ressemble à de l'anglais à lire. */
+  function semblerAnglais(texte) {
+    const t = texte.trim();
+    if (t.length < 2 || t.length > 600) return false;
+    if (!/[A-Za-z]{2}/.test(t)) return false;
+    if (/[àâçéèêëîïôùûüœ«»@]/i.test(t)) return false;
+    const mots = t.toLowerCase().split(/[^a-z']+/).filter(Boolean);
+    return !mots.some((m) => MOTS_FRANCAIS.has(m));
+  }
+
+  /** Texte à lire : « / » sépare des exemples (une petite pause), les espaces en trop disparaissent. */
+  function texteALire(texte) {
+    return texte.replace(/\s+\/\s+/g, ". ").replace(/\s+/g, " ").trim();
+  }
+
+  /**
+   * Crée un bouton 🔊. « message » est envoyé tel quel à l'application : { type: "ecouter", texte, … }
+   * pour une phrase, { type: "dialogue", repliques } pour tout un dialogue.
+   */
+  function boutonEcoute(message, texteAffiche, libelle) {
+    const bouton = document.createElement("button");
+    bouton.type = "button";
+    bouton.className = "ecouter";
+    bouton.textContent = libelle ? "🔊 " + libelle : "🔊";
+    bouton.title = "Écouter";
+    bouton.setAttribute("aria-label", "Écouter : " + texteAffiche);
+    bouton.addEventListener("click", (e) => {
+      // Le clic ne doit pas choisir la réponse d'un QCM ni suivre un lien.
+      e.preventDefault();
+      e.stopPropagation();
+      envoyer(message);
+    });
+    return bouton;
+  }
+
+  /** Une réplique : « **Anna** : Hi » → { nom: "Anna", texte: "Hi" } (nom vide s'il n'y en a pas). */
+  function lireReplique(ligne) {
+    const premier = ligne.firstElementChild;
+    const copie = ligne.cloneNode(true);
+    copie.querySelectorAll("button.ecouter").forEach((b) => b.remove());
+    if (premier && premier.tagName === "STRONG" && ligne.firstChild === premier) {
+      const nom = copie.firstChild.textContent.trim();
+      copie.firstChild.remove();
+      return { nom: nom, texte: copie.textContent.replace(/^\s*:\s*/, "") };
+    }
+    return { nom: "", texte: copie.textContent };
+  }
+
+  /** Ajoute les boutons 🔊 dans la page affichée. */
+  function ajouterEcoute(racine, langue) {
+    // Zones jamais lues : titres, étiquettes, saisie de l'étudiant, code et formules.
+    const exclu = (e) => e.closest("h1, .etiquette, .saisie, pre, code, .katex, button");
+
+    // 1. Citations : une ligne = une réplique (markdown-it garde les retours à la ligne dans le paragraphe).
+    //    Chaque personnage a sa voix : l'application choisit d'après la liste des noms du dialogue.
+    for (const citation of racine.querySelectorAll("blockquote")) {
+      if (exclu(citation)) continue;
+      const trouvees = [];
+      for (const p of citation.querySelectorAll("p")) {
+        if (p.querySelector(".katex")) continue;
+        const morceaux = p.innerHTML.split("\n");
+        p.innerHTML = morceaux.map((m) => '<span class="replique">' + m + "</span>").join("\n");
+        for (const ligne of p.querySelectorAll("span.replique")) {
+          const r = lireReplique(ligne);
+          r.texte = texteALire(r.texte);
+          if (semblerAnglais(r.texte)) trouvees.push({ ligne: ligne, nom: r.nom, texte: r.texte });
+        }
+      }
+      const noms = trouvees.map((r) => r.nom);
+      for (const r of trouvees) {
+        const message = { type: "ecouter", texte: r.texte, langue: langue, interlocuteur: r.nom, interlocuteurs: noms };
+        r.ligne.prepend(boutonEcoute(message, r.texte), " ");
+      }
+      if (trouvees.length >= 2) {
+        const repliques = trouvees.map((r) => ({ nom: r.nom, texte: r.texte }));
+        const tout = boutonEcoute({ type: "dialogue", langue: langue, repliques: repliques },
+          trouvees.map((r) => r.texte).join(" "), "Tout écouter");
+        tout.classList.add("tout");
+        citation.prepend(tout);
+      }
+    }
+
+    // 2. Passages en italique, hors citations (déjà traitées) : voix par défaut.
+    for (const em of racine.querySelectorAll("em")) {
+      if (exclu(em) || em.closest("blockquote") || em.parentElement.closest("em")) continue;
+      const texte = texteALire(em.textContent);
+      if (!semblerAnglais(texte)) continue;
+      em.after(boutonEcoute({ type: "ecouter", texte: texte, langue: langue }, texte));
+    }
+  }
+
   /** Applique les couleurs du thème choisi dans l'application (variables CSS de app.css). */
   function appliquerTheme(variables) {
     for (const nom of Object.keys(variables || {})) {
@@ -160,6 +263,8 @@
   // plus dès qu'on clique dans le contenu).
   document.addEventListener("keydown", (e) => {
     if (e.ctrlKey || e.altKey || e.metaKey) return;
+    // Entrée ou Espace sur un bouton 🔊 : c'est le bouton qui les reçoit (lecture au clavier).
+    if (e.target && e.target.classList && e.target.classList.contains("ecouter")) return;
     let touche = e.key.length === 1 ? e.key.toLowerCase() : e.key;
     // Chiffres : on lit la position de la touche (e.code) et non le caractère, car sur un clavier
     // AZERTY la rangée du haut donne « & é " ' » sans Maj. Le pavé numérique marche aussi.

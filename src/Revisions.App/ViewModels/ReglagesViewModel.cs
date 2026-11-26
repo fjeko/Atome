@@ -104,6 +104,36 @@ public partial class ReglagesViewModel : ObservableObject
     [RelayCommand]
     private void AllerSignalements() => _main.AllerSignalements();
 
+    // ---- Voix (boutons 🔊 des cours d'anglais, test de positionnement) ----------------------
+
+    private readonly ServiceVoix _voix;
+
+    /// <summary>Téléchargement et état de la voix naturelle (affichés tels quels).</summary>
+    public ServiceVoixNaturelle VoixNaturelle { get; }
+
+    /// <summary>Volume de la voix, en pourcentage (0 à 100).</summary>
+    [ObservableProperty] private double _volumeVoix;
+    /// <summary>Vitesse de la voix, en pourcentage (50 à 150 ; 100 = normale).</summary>
+    [ObservableProperty] private double _vitesseVoix;
+    /// <summary>« Voix utilisée : … », recalculée quand la voix naturelle devient prête.</summary>
+    [ObservableProperty] private string _voixUtilisee = "";
+
+    private void MettreAJourVoixUtilisee(object? _ = null, System.ComponentModel.PropertyChangedEventArgs? __ = null)
+    {
+        string langue = Revisions.Core.Voix.ChoixVoix.Anglais;
+        VoixUtilisee = _voix.NomVoix(langue) is { } nom
+            ? $"Voix utilisée : {nom}" + (_voix.Moteur(langue) == Revisions.Core.Voix.MoteurVoix.Piper ? "" : " (voix de Windows)")
+            : "Aucune voix anglaise pour l'instant : la voix naturelle se télécharge, ou ajoute une voix anglaise dans Windows (Paramètres → Heure et langue → Voix).";
+    }
+
+    /// <summary>Bouton « Tester » : une phrase courte, avec le volume et la vitesse choisis.</summary>
+    [RelayCommand]
+    private async Task TesterVoixAsync()
+    {
+        MettreAJourVoixUtilisee();
+        await _voix.LireAsync("Hello! This is the English voice of Atome. Nice to meet you.", Revisions.Core.Voix.ChoixVoix.Anglais);
+    }
+
     // ---- Mises à jour --------------------------------------------------------------------------
 
     private readonly ServiceMiseAJour _miseAJour;
@@ -153,8 +183,12 @@ public partial class ReglagesViewModel : ObservableObject
         if (resultat.AProposer) _main.Proposer(resultat.Release!, immediatement: true);
     }
 
-    public ReglagesViewModel(EtatApplication etat, PartageViewModel partage, MainViewModel main, ServiceMiseAJour miseAJour, BaseDeDonnees baseDeDonnees)
+    public ReglagesViewModel(EtatApplication etat, PartageViewModel partage, MainViewModel main, ServiceMiseAJour miseAJour, BaseDeDonnees baseDeDonnees, ServiceVoix voix, ServiceVoixNaturelle voixNaturelle)
     {
+        _voix = voix;
+        VoixNaturelle = voixNaturelle;
+        // Abonnement « faible » : l'écran Réglages peut disparaître sans rester accroché au service.
+        System.ComponentModel.PropertyChangedEventManager.AddHandler(voixNaturelle, MettreAJourVoixUtilisee, nameof(ServiceVoixNaturelle.Etat));
         _main = main;
         _base = baseDeDonnees;
         _etat = etat;
@@ -178,6 +212,9 @@ public partial class ReglagesViewModel : ObservableObject
         _tailleTexte = r.TailleTexte;
         _reduireAnimations = r.ReduireAnimations;
         _sons = r.Sons;
+        _volumeVoix = r.VolumeVoix;
+        _vitesseVoix = r.VitesseVoix;
+        MettreAJourVoixUtilisee();
         _mascotteIndex = Math.Max(0, Array.IndexOf(ClesMascotte, r.Mascotte));
         MesCollections = main.ListerCollections().Select(i => new ChoixCollection(i, ChangerCollectionAsync)).ToList();
 #pragma warning restore MVVMTK0034
@@ -210,7 +247,7 @@ public partial class ReglagesViewModel : ObservableObject
         base.OnPropertyChanged(e);
         // Le champ libre et son message d'erreur ne s'enregistrent pas tels quels (voir OnAccentLibreChanged).
         if (!_initialise || e.PropertyName is nameof(AccentLibre) or nameof(ErreurAccent) or nameof(MessageMiseAJour)
-            or nameof(MesCollections) or nameof(MessageCollections) or nameof(MessageSauvegarde)) return;
+            or nameof(MesCollections) or nameof(MessageCollections) or nameof(MessageSauvegarde) or nameof(VoixUtilisee)) return;
         Enregistrer();
     }
 
@@ -233,6 +270,8 @@ public partial class ReglagesViewModel : ObservableObject
         r.TailleTexte = (int)Math.Round(TailleTexte);
         r.ReduireAnimations = ReduireAnimations;
         r.Sons = Sons;
+        r.VolumeVoix = (int)Math.Round(VolumeVoix);
+        r.VitesseVoix = (int)Math.Round(VitesseVoix);
         r.Mascotte = ClesMascotte[Math.Clamp(MascotteIndex, 0, 2)];
         _etat.Enregistrer(); // enregistre et applique le thème immédiatement
     }

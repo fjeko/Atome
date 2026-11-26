@@ -113,9 +113,9 @@ public sealed partial class PositionnementViewModel : ObservableObject
     private void VerifierVoix()
     {
         if (!AEcoute) { VoixDisponible = false; EtatVoix = ""; return; }
-        VoixDisponible = ServiceVoix.Disponible(_banque.LangueEcoute!);
+        VoixDisponible = _voix.Disponible(_banque.LangueEcoute!);
         EtatVoix = VoixDisponible
-            ? $"Certaines questions se font à l'écoute (voix « {ServiceVoix.NomVoix(_banque.LangueEcoute!)} »). Monte le son et clique sur « Tester le son »."
+            ? $"Certaines questions se font à l'écoute (voix « {_voix.NomVoix(_banque.LangueEcoute!)} »). Monte le son et clique sur « Tester le son »."
             : "Certaines questions se font à l'écoute, mais aucune voix anglaise n'est installée dans Windows. Pour l'ajouter : "
               + "Paramètres → Heure et langue → Voix → Ajouter des voix → English (United Kingdom), puis clique sur « Vérifier à nouveau ». "
               + "Tu peux aussi passer le test sans les questions d'écoute.";

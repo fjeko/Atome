@@ -8,7 +8,8 @@ namespace Revisions.App;
 public sealed class VisibleSiEgalConvertisseur : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        Equals(value as string, parameter as string) ? Visibility.Visible : Visibility.Collapsed;
+        // ToString : la comparaison marche aussi avec une énumération (ex. l'état de la voix naturelle).
+        Equals(value?.ToString(), parameter as string) ? Visibility.Visible : Visibility.Collapsed;
 
     public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
         throw new NotSupportedException();

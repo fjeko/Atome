@@ -272,6 +272,7 @@ public partial class App : Application
             services.AddSingleton<DepotCoursLibres>();
             services.AddSingleton<DepotCollections>();
             services.AddSingleton<DepotPositionnement>();
+            services.AddSingleton<ServiceVoixNaturelle>();
             services.AddSingleton<ServiceVoix>();
             services.AddSingleton(new Fsrs());
             services.AddSingleton<Planificateur>();
@@ -304,6 +305,8 @@ public partial class App : Application
             MainWindow.Closed += (_, _) => LibererInstanceUnique();
             MainWindow.Show();
             Journal.Etape("Fenêtre affichée");
+            // Voix anglaise naturelle : téléchargée une seule fois, en arrière-plan, un peu après le démarrage.
+            _ = Services.GetRequiredService<ServiceVoixNaturelle>().DemarrerAsync(TimeSpan.FromSeconds(20));
             await principal.DemarrerAsync(); // lance aussi la vérification des mises à jour, en tâche de fond
 #if DEBUG
             OuvrirEcranDeTest(principal, e.Args);

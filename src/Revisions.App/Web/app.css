@@ -161,3 +161,16 @@ html.reduit .arrive-carte, html.reduit .arrive-page, html.reduit .apparait { ani
 @media (prefers-reduced-motion: reduce) {
   .arrive-carte, .arrive-page, .apparait { animation: fondu 90ms linear; }
 }
+
+/* ---- Boutons 🔊 des cours et cartes d'anglais (voir ajouterEcoute dans app.js) ---- */
+button.ecouter {
+  font: inherit; font-size: .8em; line-height: 1; cursor: pointer;
+  margin: 0 .15em; padding: .15em .35em; vertical-align: .05em;
+  color: var(--accent); background: var(--accent-pale);
+  border: 1px solid transparent; border-radius: 999px;
+}
+button.ecouter:hover { border-color: var(--accent-trait); }
+button.ecouter:focus-visible { outline: 2px solid var(--accent-trait); outline-offset: 2px; }
+button.ecouter.tout { float: right; margin: .2em 0 .2em .6em; padding: .25em .7em; }
+/* Une réplique de dialogue par ligne. */
+blockquote span.replique { display: block; }
